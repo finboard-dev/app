@@ -1,0 +1,40 @@
+{
+  "summary": "Frontend-only Playwright verification of the hero carousel Semantic Layer inner sub-carousel (Analytics / P2P / O2C), plus ribbon copy, source-column badges, hero capability grid, stat bullet copy, and Team section placement/assets. 50/50 assertions PASS on the second run.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_behaviours": [
+    "hero-carousel-view-warehouse is the active first slide (opacity-100).",
+    "wh-process-tabs container renders 3 pills with data-testids wh-process-tab-analytics|p2p|o2c.",
+    "Analytics tab is active by default with bg-[#0A0A0A] and shows panel wh-process-panel-analytics containing 'Board dashboard', 'Consolidation', 'Scorecards', 'Planning models'.",
+    "Auto-rotation cycles Analytics -> P2P (~3.2s) -> O2C (~6.4s) while warehouse view is active. P2P panel shows 'PO issued', '3-way match', 'Approvals', 'Payment run'. O2C panel shows 'Quote -> Order', 'Invoice sent', 'Collections', 'DSO tracker'.",
+    "Clicking wh-process-tab-p2p / o2c / analytics immediately switches the visible panel to the corresponding wh-process-panel-* (confirmed on retry with 150ms wait after click).",
+    "Tabs are not clipped: right edge of wh-process-tab-o2c (x=1530) is inside the mockup card (right edge=1560).",
+    "Eyebrow reads 'ACME CORP' and heading reads 'Business Data Hub' inside the semantic-layer view.",
+    "Ribbon shows three chips: 'Custom workflows', 'Live in 15 days or less', 'No upfront cost · pay on value' (emerald). 'Fraction of the cost' is NOT present anywhere on the page.",
+    "Left source column has QuickBooks with POPULAR badge, industry connectors Toast/Procore/BuilderTrend/Epic with INDUSTRY badges, and dashed 'and 100+ more' row.",
+    "Hero capability grid contains all 5 items: 'Consolidate entities', 'Automate month-end close', 'Planning & forecasting', 'Centralise business data & ops', 'People & manager scorecards'.",
+    "Stat bullet hero-stat-close reads 'Accurate books, quick close'. 'Touchless close' and 'Close 6x faster' are absent from the page.",
+    "Section order on the landing page confirmed by scroll positions: trust-bar (772) -> team (864) -> use-cases (1405).",
+    "Team cards team-card-0 (Vaishnav) and team-card-1 (Ujjwal) are rendered; /team/vaishnav.webp and /team/ujjwal.webp both return HTTP 200."
+  ],
+  "flaky_tests": [
+    "First run: click on wh-process-tab-p2p immediately after ~7s of auto-rotation waits was checked at only 300ms; the inner setInterval fired during that window and the panel had already advanced. Retest with a shorter (150ms) check and no prior long waits confirmed clicking any tab flips the panel immediately. Behaviour is correct; the initial assertion was a timing race in the test script, not a product bug."
+  ],
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "WHProcesses setInterval is not reset when a user clicks a tab — so shortly after a manual click, the panel may auto-advance. Not required by the spec but consider clearing/resetting the interval on manual click for better UX.",
+    "HeroCarousel.jsx is ~1075 lines and contains many sub-views (BoardView, ReconView, PeopleView, WarehouseView, P2P, O2C). Consider splitting each view into its own module (guideline: >700 lines should be split)."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A (skipped per request)", "frontend": "100%" },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All assertions from the review_request pass. Only nit: manual tab click does not reset the 3.2s auto-rotate interval, so if a user clicks near the end of a tick they may see the panel advance shortly after. If the product spec requires 'sticky' behaviour on click, add clearInterval + setInterval reset inside the onClick handler in WHProcesses (HeroCarousel.jsx ~line 782).",
+  "rca of the issue": "N/A — no product bugs found."
+}

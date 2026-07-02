@@ -625,10 +625,43 @@ const WH_SOURCES = [
   { id: "more",  label: "and 100 more",sub: "connectors",       icon: null,              tag: "more" },
 ];
 
-const WH_OUTPUTS = [
-  { id: "analytics", label: "Analytics", sub: "Dashboards · Board pack",   icon: BarChart3 },
-  { id: "p2p",       label: "Procure-to-Pay",  sub: "AP · approvals · pay", icon: Receipt },
-  { id: "o2c",       label: "Order-to-Cash",   sub: "AR · billing · collect", icon: CircleDollarSign },
+const WH_PROCESSES = [
+  {
+    id: "analytics",
+    label: "Analytics",
+    sub: "Dashboards · Board pack",
+    icon: BarChart3,
+    items: [
+      { id: "board", label: "Board dashboard", icon: FileText },
+      { id: "recon", label: "Consolidation",   icon: Landmark },
+      { id: "score", label: "Scorecards",      icon: Users },
+      { id: "plan",  label: "Planning models", icon: Sparkles },
+    ],
+  },
+  {
+    id: "p2p",
+    label: "Procure-to-Pay",
+    sub: "AP · approvals · pay",
+    icon: Receipt,
+    items: [
+      { id: "po",     label: "PO issued",       icon: FileText },
+      { id: "match",  label: "3-way match",     icon: ShieldCheck },
+      { id: "approve",label: "Approvals",       icon: Users },
+      { id: "pay",    label: "Payment run",     icon: CircleDollarSign },
+    ],
+  },
+  {
+    id: "o2c",
+    label: "Order-to-Cash",
+    sub: "AR · billing · collect",
+    icon: CircleDollarSign,
+    items: [
+      { id: "quote",  label: "Quote → Order",   icon: FileText },
+      { id: "invoice",label: "Invoice sent",    icon: Receipt },
+      { id: "collect",label: "Collections",     icon: CircleDollarSign },
+      { id: "dso",    label: "DSO tracker",     icon: Sparkles },
+    ],
+  },
 ];
 
 function WarehouseView({ active }) {
@@ -724,27 +757,74 @@ function WarehouseView({ active }) {
           </div>
         </div>
 
-        {/* Outputs — 3 downstream processes */}
-        <div className="flex flex-col gap-2 justify-center">
-          {WH_OUTPUTS.map((o, i) => {
-            const Icon = o.icon;
-            return (
-              <div
-                key={o.id}
-                className={`rounded-md border border-line bg-white px-2.5 py-2 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
-                style={{ animationDelay: `${700 + i * 120}ms` }}
-              >
-                <div className="h-7 w-7 rounded bg-[#F5F0E8] border border-line grid place-items-center">
-                  <Icon size={13} />
-                </div>
-                <div className="min-w-0 leading-tight">
-                  <div className="text-[11px] font-medium truncate">{o.label}</div>
-                  <div className="text-[9px] text-[#0A0A0A]/50 truncate">{o.sub}</div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Outputs — rotates between Analytics, P2P, O2C */}
+        <WHProcesses active={active} />
+      </div>
+    </div>
+  );
+}
+
+function WHProcesses({ active }) {
+  const [procIdx, setProcIdx] = React.useState(0);
+  React.useEffect(() => {
+    if (!active) return undefined;
+    const t = setInterval(() => setProcIdx((v) => (v + 1) % WH_PROCESSES.length), 3200);
+    return () => clearInterval(t);
+  }, [active]);
+  const proc = WH_PROCESSES[procIdx];
+  const HeadIcon = proc.icon;
+  return (
+    <div className="flex flex-col gap-2 justify-start min-w-0">
+      {/* Process tab strip */}
+      <div className="flex items-center gap-1" data-testid="wh-process-tabs">
+        {WH_PROCESSES.map((p, i) => (
+          <button
+            key={p.id}
+            type="button"
+            onClick={() => setProcIdx(i)}
+            data-testid={`wh-process-tab-${p.id}`}
+            className={`text-[9px] uppercase tracking-[0.1em] px-1.5 py-0.5 rounded-full border transition-colors ${
+              i === procIdx
+                ? "border-[#0A0A0A] bg-[#0A0A0A] text-white"
+                : "border-line bg-white text-[#0A0A0A]/55 hover:text-[#0A0A0A]"
+            }`}
+          >
+            {p.id === "analytics" ? "Analytics" : p.id === "p2p" ? "P2P" : "O2C"}
+          </button>
+        ))}
+      </div>
+
+      {/* Header row */}
+      <div
+        key={`head-${proc.id}`}
+        className="flex items-center gap-2 rounded-md border border-line bg-[#F9F6F0] px-2 py-1.5 animate-fade-up"
+      >
+        <div className="h-6 w-6 rounded bg-white border border-line grid place-items-center">
+          <HeadIcon size={12} />
         </div>
+        <div className="leading-tight min-w-0">
+          <div className="text-[11px] font-medium truncate">{proc.label}</div>
+          <div className="text-[9px] text-[#0A0A0A]/55 truncate">{proc.sub}</div>
+        </div>
+      </div>
+
+      {/* Item options */}
+      <div className="flex flex-col gap-1.5" data-testid={`wh-process-panel-${proc.id}`}>
+        {proc.items.map((it, i) => {
+          const ItIcon = it.icon;
+          return (
+            <div
+              key={`${proc.id}-${it.id}`}
+              className="rounded-md border border-line bg-white px-2 py-1.5 flex items-center gap-2 animate-fade-up"
+              style={{ animationDelay: `${100 + i * 90}ms` }}
+            >
+              <div className="h-5 w-5 rounded bg-[#F5F0E8] border border-line grid place-items-center">
+                <ItIcon size={11} />
+              </div>
+              <div className="text-[11px] font-medium truncate">{it.label}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
