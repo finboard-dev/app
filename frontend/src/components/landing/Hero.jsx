@@ -18,7 +18,7 @@ export default function Hero({ onBookDemo }) {
             </div>
 
             <h1 className="mt-2 font-serif-display text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
-              The finance stack for<br />
+              Finance stack for<br />
               <span className="italic">multi-entity</span> groups.
             </h1>
 
