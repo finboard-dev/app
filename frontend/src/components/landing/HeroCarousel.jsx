@@ -2,7 +2,7 @@ import React from "react";
 import {
   ArrowUp, ArrowDown, Check, Users, Database, Briefcase,
   Mail, Receipt, ShieldCheck, Landmark, User, CircleDollarSign, FileText,
-  Sparkles, Timer, PiggyBank, Utensils, HardHat, Stethoscope,
+  Sparkles, Timer, Utensils, HardHat, Stethoscope, BookOpen,
 } from "lucide-react";
 
 /**
@@ -53,9 +53,6 @@ export default function HeroCarousel() {
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
           <Timer size={11} /> Live in 15 days or less
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
-          <PiggyBank size={11} /> Fraction of the cost
-        </span>
       </div>
 
       <div className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]">
@@ -92,9 +89,6 @@ export default function HeroCarousel() {
           <div className="flex items-center gap-1.5 shrink-0">
             <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-0.5 whitespace-nowrap">
               <Timer size={10} /> {VIEWS[idx].days} days
-            </span>
-            <span className="hidden md:inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-0.5 whitespace-nowrap">
-              Fraction of cost
             </span>
           </div>
         </div>
@@ -616,6 +610,7 @@ function FlowLines({ active }) {
 
 /* ---------- View: AI-Native warehouse ---------- */
 const WH_SOURCES = [
+  { id: "qbo",   label: "QuickBooks", sub: "Accounting · ERP", icon: BookOpen,          tag: "featured" },
   { id: "erp",   label: "NetSuite",   sub: "ERP",              icon: Database,          tag: "core" },
   { id: "crm",   label: "Salesforce", sub: "CRM",              icon: Briefcase,         tag: "core" },
   { id: "hris",  label: "Workday",    sub: "HRIS",             icon: Users,             tag: "core" },
@@ -624,7 +619,6 @@ const WH_SOURCES = [
   { id: "cons",  label: "Procore",     sub: "Construction",       icon: HardHat,           tag: "industry" },
   { id: "bldr",  label: "BuilderTrend",sub: "Construction · PM",  icon: HardHat,           tag: "industry" },
   { id: "hlth",  label: "Epic",        sub: "Healthcare · EHR",   icon: Stethoscope,       tag: "industry" },
-  { id: "mail",  label: "Gmail",      sub: "Documents",        icon: Mail,              tag: "core" },
   { id: "more",  label: "and 100 more",sub: "connectors",       icon: null,              tag: "more" },
 ];
 
@@ -656,6 +650,7 @@ function WarehouseView({ active }) {
             const Icon = s.icon;
             const isIndustry = s.tag === "industry";
             const isMore = s.tag === "more";
+            const isFeatured = s.tag === "featured";
             if (isMore) {
               return (
                 <div
@@ -671,21 +666,29 @@ function WarehouseView({ active }) {
                 </div>
               );
             }
+            const styles = isFeatured
+              ? { row: "border-[#059669]/30 bg-white ring-1 ring-[#059669]/15", icon: "border-[#059669]/35 bg-[#ECFDF5] text-[#059669]", sub: "text-[#059669]/85", badge: "text-[#059669]/85" }
+              : isIndustry
+              ? { row: "border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10", icon: "border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB]", sub: "text-[#2563EB]/80", badge: "text-[#2563EB]/80" }
+              : { row: "border-line bg-[#F5F0E8]", icon: "border-line bg-white", sub: "text-[#0A0A0A]/50", badge: "" };
             return (
               <div
                 key={s.id}
-                className={`rounded-md border px-2 py-0.5 flex items-center gap-2 ${isIndustry ? "border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10" : "border-line bg-[#F5F0E8]"} ${active ? "animate-fade-up" : ""}`}
+                className={`rounded-md border px-2 py-0.5 flex items-center gap-2 ${styles.row} ${active ? "animate-fade-up" : ""}`}
                 style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className={`h-5 w-5 rounded grid place-items-center border ${isIndustry ? "border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB]" : "border-line bg-white"}`}>
+                <div className={`h-5 w-5 rounded grid place-items-center border ${styles.icon}`}>
                   <Icon size={11} />
                 </div>
                 <div className="min-w-0 leading-tight flex-1">
                   <div className="text-[10px] font-medium truncate">{s.label}</div>
-                  <div className={`text-[8px] truncate ${isIndustry ? "text-[#2563EB]/80" : "text-[#0A0A0A]/50"}`}>{s.sub}</div>
+                  <div className={`text-[8px] truncate ${styles.sub}`}>{s.sub}</div>
                 </div>
+                {isFeatured && (
+                  <span className={`text-[8px] uppercase tracking-[0.12em] shrink-0 ${styles.badge}`}>popular</span>
+                )}
                 {isIndustry && (
-                  <span className="text-[8px] uppercase tracking-[0.12em] text-[#2563EB]/80 shrink-0">industry</span>
+                  <span className={`text-[8px] uppercase tracking-[0.12em] shrink-0 ${styles.badge}`}>industry</span>
                 )}
               </div>
             );

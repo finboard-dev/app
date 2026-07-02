@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
+import { ArrowRight, PlayCircle, Sparkles, Layers, Zap, LineChart, Database, Users } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
 
 export default function Hero({ onBookDemo }) {
@@ -22,9 +22,22 @@ export default function Hero({ onBookDemo }) {
               <span className="italic">multi-entity</span> groups.
             </h1>
 
-            <p className="mt-5 text-base text-[#0A0A0A]/70 max-w-xl leading-relaxed" data-testid="hero-subheading">
-              Consolidate entities, automate month-end close, planning and forecasting, centralise business data and operations, build people and manager scorecards.
-            </p>
+            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 max-w-xl" data-testid="hero-capabilities">
+              {[
+                { icon: Layers,     label: "Consolidate entities" },
+                { icon: Zap,        label: "Automate month-end close" },
+                { icon: LineChart,  label: "Planning & forecasting" },
+                { icon: Database,   label: "Centralise business data & ops" },
+                { icon: Users,      label: "People & manager scorecards" },
+              ].map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
+                  <span className="h-7 w-7 shrink-0 rounded-md border border-line bg-[#F5F0E8] grid place-items-center">
+                    <Icon size={13} />
+                  </span>
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <button
