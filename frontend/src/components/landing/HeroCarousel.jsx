@@ -629,10 +629,13 @@ const WH_SOURCES = [
 ];
 
 const WH_OUTPUTS = [
-  { id: "board", label: "Board dashboard", icon: FileText },
-  { id: "recon", label: "Consolidation",   icon: Landmark },
-  { id: "score", label: "Scorecards",      icon: Users },
-  { id: "plan",  label: "Planning models", icon: Sparkles },
+  { id: "board", label: "Board dashboard", icon: FileText,          group: "analytics" },
+  { id: "recon", label: "Consolidation",   icon: Landmark,          group: "analytics" },
+  { id: "score", label: "Scorecards",      icon: Users,             group: "analytics" },
+  { id: "plan",  label: "Planning models", icon: Sparkles,          group: "analytics" },
+  { id: "sfdc",  label: "Salesforce",      icon: Briefcase,         group: "reverse" },
+  { id: "slack", label: "Slack alerts",    icon: Mail,              group: "reverse" },
+  { id: "ns",    label: "NetSuite writes", icon: Database,          group: "reverse" },
 ];
 
 function WarehouseView({ active }) {
@@ -720,17 +723,38 @@ function WarehouseView({ active }) {
         </div>
 
         {/* Outputs */}
-        <div className="flex flex-col gap-2 justify-center">
-          {WH_OUTPUTS.map((o, i) => {
+        <div className="flex flex-col gap-2 justify-start">
+          <div className="text-[8px] uppercase tracking-[0.18em] text-[#0A0A0A]/45">Analytics</div>
+          {WH_OUTPUTS.filter(o => o.group === "analytics").map((o, i) => {
             const Icon = o.icon;
             return (
               <div
                 key={o.id}
-                className={`rounded-md border border-line bg-white px-2 py-2 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
-                style={{ animationDelay: `${700 + i * 100}ms` }}
+                className={`rounded-md border border-line bg-white px-2 py-1.5 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
+                style={{ animationDelay: `${700 + i * 90}ms` }}
               >
-                <div className="h-6 w-6 rounded bg-[#F5F0E8] border border-line grid place-items-center">
-                  <Icon size={12} />
+                <div className="h-5 w-5 rounded bg-[#F5F0E8] border border-line grid place-items-center">
+                  <Icon size={11} />
+                </div>
+                <div className="text-[11px] font-medium">{o.label}</div>
+              </div>
+            );
+          })}
+
+          <div className="mt-1 flex items-center gap-1.5">
+            <div className="text-[8px] uppercase tracking-[0.18em] text-[#2563EB]/80">Reverse ETL</div>
+            <span className="text-[8px] text-[#2563EB]/70">←</span>
+          </div>
+          {WH_OUTPUTS.filter(o => o.group === "reverse").map((o, i) => {
+            const Icon = o.icon;
+            return (
+              <div
+                key={o.id}
+                className={`rounded-md border border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10 px-2 py-1 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
+                style={{ animationDelay: `${1100 + i * 90}ms` }}
+              >
+                <div className="h-5 w-5 rounded border border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB] grid place-items-center">
+                  <Icon size={11} />
                 </div>
                 <div className="text-[11px] font-medium">{o.label}</div>
               </div>
