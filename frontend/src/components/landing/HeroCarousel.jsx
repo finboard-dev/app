@@ -766,13 +766,18 @@ function WarehouseView({ active }) {
 
 function WHProcesses({ active }) {
   const [procIdx, setProcIdx] = React.useState(0);
+  const [tick, setTick] = React.useState(0); // bumped on manual click to reset interval
   React.useEffect(() => {
     if (!active) return undefined;
     const t = setInterval(() => setProcIdx((v) => (v + 1) % WH_PROCESSES.length), 3200);
     return () => clearInterval(t);
-  }, [active]);
+  }, [active, tick]);
   const proc = WH_PROCESSES[procIdx];
   const HeadIcon = proc.icon;
+  const selectProc = (i) => {
+    setProcIdx(i);
+    setTick((v) => v + 1);
+  };
   return (
     <div className="flex flex-col gap-2 justify-start min-w-0">
       {/* Process tab strip */}
@@ -781,7 +786,7 @@ function WHProcesses({ active }) {
           <button
             key={p.id}
             type="button"
-            onClick={() => setProcIdx(i)}
+            onClick={() => selectProc(i)}
             data-testid={`wh-process-tab-${p.id}`}
             className={`text-[9px] uppercase tracking-[0.1em] px-1.5 py-0.5 rounded-full border transition-colors ${
               i === procIdx
