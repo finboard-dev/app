@@ -14,12 +14,12 @@ import {
  * 5. Order-to-cash (quote → invoice → collect)
  */
 const VIEWS = [
-  { id: "warehouse", label: "AI-Native warehouse",           team: "Data & Finance",    days: 60 },
-  { id: "board",     label: "Board meeting review",          team: "Finance & Ops",     days: 45 },
-  { id: "recon",     label: "Inter-company reconciliation",  team: "Group Controllers", days: 30 },
-  { id: "people",    label: "People scorecards",             team: "HR & Ops",          days: 60 },
-  { id: "p2p",       label: "Procure-to-pay",                team: "AP team",           days: 30 },
-  { id: "o2c",       label: "Order-to-cash",                 team: "AR team",           days: 30 },
+  { id: "warehouse", label: "AI-Native warehouse",           team: "Data & Finance",    days: 15 },
+  { id: "board",     label: "Board meeting review",          team: "Finance & Ops",     days: 12 },
+  { id: "recon",     label: "Inter-company reconciliation",  team: "Group Controllers", days: 10 },
+  { id: "people",    label: "People scorecards",             team: "HR & Ops",          days: 14 },
+  { id: "p2p",       label: "Procure-to-pay",                team: "AP team",           days: 10 },
+  { id: "o2c",       label: "Order-to-cash",                 team: "AR team",           days: 10 },
 ];
 
 export default function HeroCarousel() {
@@ -48,10 +48,10 @@ export default function HeroCarousel() {
           <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#0A0A0A] text-white">
             <Sparkles size={11} />
           </span>
-          Custom application · purpose-built
+          Custom workflows
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
-          <Timer size={11} /> Live in 60 days or less
+          <Timer size={11} /> Deployed in 15 days or less
         </span>
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
           <PiggyBank size={11} /> Fraction of the cost
