@@ -625,6 +625,7 @@ const WH_SOURCES = [
   { id: "bldr",  label: "BuilderTrend",sub: "Construction · PM",  icon: HardHat,           tag: "industry" },
   { id: "hlth",  label: "Epic",        sub: "Healthcare · EHR",   icon: Stethoscope,       tag: "industry" },
   { id: "mail",  label: "Gmail",      sub: "Documents",        icon: Mail,              tag: "core" },
+  { id: "more",  label: "and 100 more",sub: "connectors",       icon: null,              tag: "more" },
 ];
 
 const WH_OUTPUTS = [
@@ -639,30 +640,46 @@ function WarehouseView({ active }) {
     <div className="bg-white h-full p-5 flex flex-col">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Semantic layer</div>
-          <div className="font-serif-display text-xl mt-0.5">Centralised business data across systems</div>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">FinBoard</div>
+          <div className="font-serif-display text-xl mt-0.5">Centralised business data</div>
         </div>
-        <div className="text-[11px] text-[#0A0A0A]/60">9 sources · industry-aware</div>
+        <div className="text-[11px] text-[#0A0A0A]/60">9 sources + 100 more</div>
       </div>
 
       <div className="mt-4 grid grid-cols-[minmax(140px,160px)_1fr_minmax(140px,160px)] gap-3 items-stretch flex-1">
         {/* Sources */}
-        <div className="flex flex-col gap-1 justify-between">
+        <div className="flex flex-col gap-[3px]">
           {WH_SOURCES.map((s, i) => {
             const Icon = s.icon;
             const isIndustry = s.tag === "industry";
+            const isMore = s.tag === "more";
+            if (isMore) {
+              return (
+                <div
+                  key={s.id}
+                  className={`rounded-md border border-dashed border-[#0A0A0A]/20 bg-[#F5F0E8]/40 px-2 py-0.5 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
+                  style={{ animationDelay: `${i * 70}ms` }}
+                >
+                  <div className="h-5 w-5 rounded grid place-items-center border border-dashed border-[#0A0A0A]/25 bg-white text-[#0A0A0A]/50 text-[9px] tracking-widest">···</div>
+                  <div className="min-w-0 leading-tight flex-1">
+                    <div className="text-[10px] font-medium truncate">and 100+ more</div>
+                    <div className="text-[8px] text-[#0A0A0A]/50 truncate">connectors</div>
+                  </div>
+                </div>
+              );
+            }
             return (
               <div
                 key={s.id}
-                className={`rounded-md border px-2 py-1 flex items-center gap-2 ${isIndustry ? "border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10" : "border-line bg-[#F5F0E8]"} ${active ? "animate-fade-up" : ""}`}
+                className={`rounded-md border px-2 py-0.5 flex items-center gap-2 ${isIndustry ? "border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10" : "border-line bg-[#F5F0E8]"} ${active ? "animate-fade-up" : ""}`}
                 style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className={`h-6 w-6 rounded grid place-items-center border ${isIndustry ? "border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB]" : "border-line bg-white"}`}>
-                  <Icon size={12} />
+                <div className={`h-5 w-5 rounded grid place-items-center border ${isIndustry ? "border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB]" : "border-line bg-white"}`}>
+                  <Icon size={11} />
                 </div>
                 <div className="min-w-0 leading-tight flex-1">
                   <div className="text-[10px] font-medium truncate">{s.label}</div>
-                  <div className={`text-[9px] truncate ${isIndustry ? "text-[#2563EB]/80" : "text-[#0A0A0A]/50"}`}>{s.sub}</div>
+                  <div className={`text-[8px] truncate ${isIndustry ? "text-[#2563EB]/80" : "text-[#0A0A0A]/50"}`}>{s.sub}</div>
                 </div>
                 {isIndustry && (
                   <span className="text-[8px] uppercase tracking-[0.12em] text-[#2563EB]/80 shrink-0">industry</span>
@@ -678,8 +695,7 @@ function WarehouseView({ active }) {
           <div className="relative z-10 mx-auto mt-2 rounded-md bg-[#0A0A0A] text-white px-3 py-2 flex items-center gap-2 shadow-[0_10px_24px_-16px_rgba(10,10,10,0.6)]">
             <Database size={14} />
             <div className="leading-tight">
-              <div className="text-[10px] uppercase tracking-[0.15em] text-white/60">Semantic Layer</div>
-              <div className="text-[12px] font-medium">FinBoard Semantic Layer</div>
+              <div className="text-[12px] font-medium">Semantic Layer</div>
             </div>
             <span className="ml-2 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">AI-Native</span>
           </div>
