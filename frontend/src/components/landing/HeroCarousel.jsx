@@ -134,9 +134,9 @@ function BoardView() {
     <div className="grid grid-cols-12 h-full">
       <aside className="col-span-3 bg-[#F5F0E8] border-r border-line py-4 px-3 hidden sm:block">
         <div className="flex items-center gap-2 px-2 py-2 rounded-md bg-white border border-line">
-          <div className="h-6 w-6 rounded bg-[#0A0A0A] text-white text-[10px] grid place-items-center">4</div>
+          <div className="h-6 w-6 rounded bg-[#0A0A0A] text-white text-[10px] grid place-items-center">A</div>
           <div className="text-[11px] leading-tight">
-            <div className="font-medium">4 Seasons Home…</div>
+            <div className="font-medium">ACME Corp</div>
             <div className="text-[9px] text-emerald-600">● Connected</div>
           </div>
         </div>
