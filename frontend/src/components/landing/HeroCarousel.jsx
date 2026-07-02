@@ -14,7 +14,7 @@ import {
  * 5. Order-to-cash (quote → invoice → collect)
  */
 const VIEWS = [
-  { id: "warehouse", label: "AI-Native warehouse",           team: "Data & Finance",    days: 15 },
+  { id: "warehouse", label: "Semantic layer",                  team: "Data & Finance",    days: 15 },
   { id: "board",     label: "Board meeting review",          team: "Finance & Ops",     days: 12 },
   { id: "recon",     label: "Inter-company reconciliation",  team: "Group Controllers", days: 10 },
   { id: "people",    label: "People scorecards",             team: "HR & Ops",          days: 14 },
@@ -639,7 +639,7 @@ function WarehouseView({ active }) {
     <div className="bg-white h-full p-5 flex flex-col">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">AI-Native warehousing</div>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Semantic layer</div>
           <div className="font-serif-display text-xl mt-0.5">Centralised business data across systems</div>
         </div>
         <div className="text-[11px] text-[#0A0A0A]/60">9 sources · industry-aware</div>
@@ -678,8 +678,8 @@ function WarehouseView({ active }) {
           <div className="relative z-10 mx-auto mt-2 rounded-md bg-[#0A0A0A] text-white px-3 py-2 flex items-center gap-2 shadow-[0_10px_24px_-16px_rgba(10,10,10,0.6)]">
             <Database size={14} />
             <div className="leading-tight">
-              <div className="text-[10px] uppercase tracking-[0.15em] text-white/60">Warehouse</div>
-              <div className="text-[12px] font-medium">FinBoard · unified layer</div>
+              <div className="text-[10px] uppercase tracking-[0.15em] text-white/60">Semantic Layer</div>
+              <div className="text-[12px] font-medium">FinBoard Semantic Layer</div>
             </div>
             <span className="ml-2 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">AI-Native</span>
           </div>
