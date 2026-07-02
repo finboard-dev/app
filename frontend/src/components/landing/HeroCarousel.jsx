@@ -640,7 +640,7 @@ function WarehouseView({ active }) {
     <div className="bg-white h-full p-5 flex flex-col">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">FinBoard</div>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">ACME Corp</div>
           <div className="font-serif-display text-xl mt-0.5">Centralised business data</div>
         </div>
         <div className="text-[11px] text-[#0A0A0A]/60">9 sources + 100 more</div>
@@ -695,6 +695,7 @@ function WarehouseView({ active }) {
           <div className="relative z-10 mx-auto mt-2 rounded-md bg-[#0A0A0A] text-white px-3 py-2 flex items-center gap-2 shadow-[0_10px_24px_-16px_rgba(10,10,10,0.6)]">
             <Database size={14} />
             <div className="leading-tight">
+              <div className="text-[9px] uppercase tracking-[0.18em] text-white/55">FinBoard</div>
               <div className="text-[12px] font-medium">Semantic Layer</div>
             </div>
             <span className="ml-2 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">AI-Native</span>

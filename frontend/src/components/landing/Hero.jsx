@@ -7,22 +7,22 @@ export default function Hero({ onBookDemo }) {
     <section id="top" className="relative overflow-hidden">
       <div className="grain absolute inset-0" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-16 lg:pb-24">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-6 animate-fade-up">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-5 animate-fade-up">
             <span className="kbd-chip" data-testid="hero-eyebrow">
               <Sparkles size={12} /> For the Office of the CFO
             </span>
 
-            <div className="mt-5 font-serif-display italic text-2xl sm:text-3xl text-[#0A0A0A]/60" data-testid="hero-kicker">
+            <div className="mt-5 font-serif-display italic text-xl sm:text-2xl text-[#0A0A0A]/60" data-testid="hero-kicker">
               Multi-entity CFO?
             </div>
 
-            <h1 className="mt-2 font-serif-display text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
+            <h1 className="mt-2 font-serif-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
               Finance stack for<br />
               <span className="italic">multi-entity</span> groups.
             </h1>
 
-            <p className="mt-6 text-lg text-[#0A0A0A]/70 max-w-xl leading-relaxed" data-testid="hero-subheading">
+            <p className="mt-5 text-base text-[#0A0A0A]/70 max-w-xl leading-relaxed" data-testid="hero-subheading">
               Consolidate entities, automate month-end close, planning and forecasting, centralise business data and operations, build people and manager scorecards.
             </p>
 
@@ -71,7 +71,7 @@ export default function Hero({ onBookDemo }) {
             </div>
           </div>
 
-          <div className="lg:col-span-6 animate-fade-up" style={{ animationDelay: "120ms" }}>
+          <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "120ms" }}>
             <HeroCarousel />
           </div>
         </div>
