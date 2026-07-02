@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
 
 export default function Hero({ onBookDemo }) {
@@ -9,7 +9,15 @@ export default function Hero({ onBookDemo }) {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-16 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-6 animate-fade-up">
-            <h1 className="font-serif-display text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
+            <span className="kbd-chip" data-testid="hero-eyebrow">
+              <Sparkles size={12} /> For the Office of the CFO
+            </span>
+
+            <div className="mt-5 font-serif-display italic text-2xl sm:text-3xl text-[#0A0A0A]/60" data-testid="hero-kicker">
+              Multi-entity CFO?
+            </div>
+
+            <h1 className="mt-2 font-serif-display text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
               The finance stack for<br />
               <span className="italic">multi-entity</span> groups.
             </h1>
