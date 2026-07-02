@@ -713,8 +713,8 @@ function WarehouseView({ active }) {
             ))}
           </div>
 
-          <div className="relative z-10 mt-2 flex items-center gap-1.5 text-[10px] text-[#0A0A0A]/60">
-            <ShieldCheck size={11} /> Governed · lineage tracked · SOC 2
+          <div className="relative z-10 mt-auto pt-4 flex items-center gap-1.5 text-[10px] text-[#0A0A0A]/60 bg-[#F9F6F0]">
+            <ShieldCheck size={11} /> Governed · lineage tracked
           </div>
         </div>
 
