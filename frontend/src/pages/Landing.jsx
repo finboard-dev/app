@@ -25,11 +25,11 @@ export default function Landing() {
       <main>
         <Hero onBookDemo={openDemo} />
         <TrustBar />
+        <Team />
         <UseCases />
         <ForwardDeployed />
         <HowItWorks />
         <CaseStudies />
-        <Team />
         <Manifesto />
         <Testimonials />
         <Pricing onBookDemo={openDemo} />

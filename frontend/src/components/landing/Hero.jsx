@@ -46,7 +46,7 @@ export default function Hero({ onBookDemo }) {
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#0A0A0A]/60">
               <div className="flex items-center gap-2" data-testid="hero-stat-close">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                Continuous close, live books
+                Touchless close
               </div>
               <div className="flex items-center gap-2" data-testid="hero-stat-entities">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
