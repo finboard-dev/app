@@ -2,7 +2,7 @@ import React from "react";
 import {
   ArrowUp, ArrowDown, Check, Users, Database, Briefcase,
   Mail, Receipt, ShieldCheck, Landmark, User, CircleDollarSign, FileText,
-  Sparkles, Timer, Utensils, HardHat, Stethoscope, BookOpen,
+  Sparkles, Timer, Utensils, HardHat, Stethoscope, BookOpen, BarChart3,
 } from "lucide-react";
 
 /**
@@ -52,6 +52,9 @@ export default function HeroCarousel() {
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
           <Timer size={11} /> Live in 15 days or less
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#ECFDF5] border border-[#059669]/30 px-2 py-1 text-[11px] text-[#065F46]">
+          <ShieldCheck size={11} /> No upfront cost · pay on value
         </span>
       </div>
 
@@ -623,13 +626,9 @@ const WH_SOURCES = [
 ];
 
 const WH_OUTPUTS = [
-  { id: "board", label: "Board dashboard", icon: FileText,          group: "analytics" },
-  { id: "recon", label: "Consolidation",   icon: Landmark,          group: "analytics" },
-  { id: "score", label: "Scorecards",      icon: Users,             group: "analytics" },
-  { id: "plan",  label: "Planning models", icon: Sparkles,          group: "analytics" },
-  { id: "sfdc",  label: "Salesforce",      icon: Briefcase,         group: "reverse" },
-  { id: "slack", label: "Slack alerts",    icon: Mail,              group: "reverse" },
-  { id: "ns",    label: "NetSuite writes", icon: Database,          group: "reverse" },
+  { id: "analytics", label: "Analytics", sub: "Dashboards · Board pack",   icon: BarChart3 },
+  { id: "p2p",       label: "Procure-to-Pay",  sub: "AP · approvals · pay", icon: Receipt },
+  { id: "o2c",       label: "Order-to-Cash",   sub: "AR · billing · collect", icon: CircleDollarSign },
 ];
 
 function WarehouseView({ active }) {
@@ -638,7 +637,7 @@ function WarehouseView({ active }) {
       <div className="flex items-center justify-between">
         <div>
           <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">ACME Corp</div>
-          <div className="font-serif-display text-xl mt-0.5">Centralised business data</div>
+          <div className="font-serif-display text-xl mt-0.5">Business Data Hub</div>
         </div>
         <div className="text-[11px] text-[#0A0A0A]/60">9 sources + 100 more</div>
       </div>
@@ -725,41 +724,23 @@ function WarehouseView({ active }) {
           </div>
         </div>
 
-        {/* Outputs */}
-        <div className="flex flex-col gap-2 justify-start">
-          <div className="text-[8px] uppercase tracking-[0.18em] text-[#0A0A0A]/45">Analytics</div>
-          {WH_OUTPUTS.filter(o => o.group === "analytics").map((o, i) => {
+        {/* Outputs — 3 downstream processes */}
+        <div className="flex flex-col gap-2 justify-center">
+          {WH_OUTPUTS.map((o, i) => {
             const Icon = o.icon;
             return (
               <div
                 key={o.id}
-                className={`rounded-md border border-line bg-white px-2 py-1.5 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
-                style={{ animationDelay: `${700 + i * 90}ms` }}
+                className={`rounded-md border border-line bg-white px-2.5 py-2 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
+                style={{ animationDelay: `${700 + i * 120}ms` }}
               >
-                <div className="h-5 w-5 rounded bg-[#F5F0E8] border border-line grid place-items-center">
-                  <Icon size={11} />
+                <div className="h-7 w-7 rounded bg-[#F5F0E8] border border-line grid place-items-center">
+                  <Icon size={13} />
                 </div>
-                <div className="text-[11px] font-medium">{o.label}</div>
-              </div>
-            );
-          })}
-
-          <div className="mt-1 flex items-center gap-1.5">
-            <div className="text-[8px] uppercase tracking-[0.18em] text-[#2563EB]/80">Reverse ETL</div>
-            <span className="text-[8px] text-[#2563EB]/70">←</span>
-          </div>
-          {WH_OUTPUTS.filter(o => o.group === "reverse").map((o, i) => {
-            const Icon = o.icon;
-            return (
-              <div
-                key={o.id}
-                className={`rounded-md border border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10 px-2 py-1 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
-                style={{ animationDelay: `${1100 + i * 90}ms` }}
-              >
-                <div className="h-5 w-5 rounded border border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB] grid place-items-center">
-                  <Icon size={11} />
+                <div className="min-w-0 leading-tight">
+                  <div className="text-[11px] font-medium truncate">{o.label}</div>
+                  <div className="text-[9px] text-[#0A0A0A]/50 truncate">{o.sub}</div>
                 </div>
-                <div className="text-[11px] font-medium">{o.label}</div>
               </div>
             );
           })}
