@@ -2,7 +2,7 @@ import React from "react";
 import {
   ArrowUp, ArrowDown, Check, Users, Database, Briefcase,
   Mail, Receipt, ShieldCheck, Landmark, User, CircleDollarSign, FileText,
-  Sparkles, Timer, PiggyBank,
+  Sparkles, Timer, PiggyBank, Utensils, HardHat, Stethoscope,
 } from "lucide-react";
 
 /**
@@ -51,7 +51,7 @@ export default function HeroCarousel() {
           Custom workflows
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
-          <Timer size={11} /> Deployed in 15 days or less
+          <Timer size={11} /> Live in 15 days or less
         </span>
         <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
           <PiggyBank size={11} /> Fraction of the cost
@@ -616,12 +616,14 @@ function FlowLines({ active }) {
 
 /* ---------- View: AI-Native warehouse ---------- */
 const WH_SOURCES = [
-  { id: "erp",  label: "NetSuite",   sub: "ERP",       icon: Database },
-  { id: "crm",  label: "Salesforce", sub: "CRM",       icon: Briefcase },
-  { id: "hris", label: "Workday",    sub: "HRIS",      icon: Users },
-  { id: "ap",   label: "Bill.com",   sub: "AP",        icon: Receipt },
-  { id: "bill", label: "Stripe",     sub: "Billing",   icon: CircleDollarSign },
-  { id: "mail", label: "Gmail",      sub: "Documents", icon: Mail },
+  { id: "erp",   label: "NetSuite",   sub: "ERP",              icon: Database,          tag: "core" },
+  { id: "crm",   label: "Salesforce", sub: "CRM",              icon: Briefcase,         tag: "core" },
+  { id: "hris",  label: "Workday",    sub: "HRIS",             icon: Users,             tag: "core" },
+  { id: "ap",    label: "Bill.com",   sub: "AP",               icon: Receipt,           tag: "core" },
+  { id: "rest",  label: "Toast",      sub: "Restaurant · POS", icon: Utensils,          tag: "industry" },
+  { id: "cons",  label: "Procore",    sub: "Construction",     icon: HardHat,           tag: "industry" },
+  { id: "hlth",  label: "Epic",       sub: "Healthcare · EHR", icon: Stethoscope,       tag: "industry" },
+  { id: "mail",  label: "Gmail",      sub: "Documents",        icon: Mail,              tag: "core" },
 ];
 
 const WH_OUTPUTS = [
@@ -639,27 +641,31 @@ function WarehouseView({ active }) {
           <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">AI-Native warehousing</div>
           <div className="font-serif-display text-xl mt-0.5">Centralised business data across systems</div>
         </div>
-        <div className="text-[11px] text-[#0A0A0A]/60">6 sources · 128 tables · governed</div>
+        <div className="text-[11px] text-[#0A0A0A]/60">8 sources · industry-aware</div>
       </div>
 
       <div className="mt-4 grid grid-cols-[minmax(140px,160px)_1fr_minmax(140px,160px)] gap-3 items-stretch flex-1">
         {/* Sources */}
-        <div className="flex flex-col gap-1.5 justify-between">
+        <div className="flex flex-col gap-1 justify-between">
           {WH_SOURCES.map((s, i) => {
             const Icon = s.icon;
+            const isIndustry = s.tag === "industry";
             return (
               <div
                 key={s.id}
-                className={`rounded-md border border-line bg-[#F5F0E8] px-2 py-1.5 flex items-center gap-2 ${active ? "animate-fade-up" : ""}`}
-                style={{ animationDelay: `${i * 80}ms` }}
+                className={`rounded-md border px-2 py-1 flex items-center gap-2 ${isIndustry ? "border-[#2563EB]/25 bg-white ring-1 ring-[#2563EB]/10" : "border-line bg-[#F5F0E8]"} ${active ? "animate-fade-up" : ""}`}
+                style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className="h-6 w-6 rounded bg-white border border-line grid place-items-center">
+                <div className={`h-6 w-6 rounded grid place-items-center border ${isIndustry ? "border-[#2563EB]/30 bg-[#EEF2FF] text-[#2563EB]" : "border-line bg-white"}`}>
                   <Icon size={12} />
                 </div>
-                <div className="min-w-0 leading-tight">
+                <div className="min-w-0 leading-tight flex-1">
                   <div className="text-[10px] font-medium truncate">{s.label}</div>
-                  <div className="text-[9px] text-[#0A0A0A]/50 truncate">{s.sub}</div>
+                  <div className={`text-[9px] truncate ${isIndustry ? "text-[#2563EB]/80" : "text-[#0A0A0A]/50"}`}>{s.sub}</div>
                 </div>
+                {isIndustry && (
+                  <span className="text-[8px] uppercase tracking-[0.12em] text-[#2563EB]/80 shrink-0">industry</span>
+                )}
               </div>
             );
           })}
