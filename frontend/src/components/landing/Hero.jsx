@@ -23,7 +23,7 @@ export default function Hero({ onBookDemo }) {
             </h1>
 
             <p className="mt-6 text-lg text-[#0A0A0A]/70 max-w-xl leading-relaxed" data-testid="hero-subheading">
-              Software and services for consolidating entities, month-end close, planning and forecasting, centralising business data across systems, and people scorecards — one intelligent workspace for the whole group.
+              Consolidate entities, automate month-end close, planning and forecasting, centralise business data and operations, build people and manager scorecards.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">

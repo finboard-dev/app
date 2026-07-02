@@ -620,9 +620,10 @@ const WH_SOURCES = [
   { id: "crm",   label: "Salesforce", sub: "CRM",              icon: Briefcase,         tag: "core" },
   { id: "hris",  label: "Workday",    sub: "HRIS",             icon: Users,             tag: "core" },
   { id: "ap",    label: "Bill.com",   sub: "AP",               icon: Receipt,           tag: "core" },
-  { id: "rest",  label: "Toast",      sub: "Restaurant · POS", icon: Utensils,          tag: "industry" },
-  { id: "cons",  label: "Procore",    sub: "Construction",     icon: HardHat,           tag: "industry" },
-  { id: "hlth",  label: "Epic",       sub: "Healthcare · EHR", icon: Stethoscope,       tag: "industry" },
+  { id: "rest",  label: "Toast",       sub: "Restaurant · POS",   icon: Utensils,          tag: "industry" },
+  { id: "cons",  label: "Procore",     sub: "Construction",       icon: HardHat,           tag: "industry" },
+  { id: "bldr",  label: "BuilderTrend",sub: "Construction · PM",  icon: HardHat,           tag: "industry" },
+  { id: "hlth",  label: "Epic",        sub: "Healthcare · EHR",   icon: Stethoscope,       tag: "industry" },
   { id: "mail",  label: "Gmail",      sub: "Documents",        icon: Mail,              tag: "core" },
 ];
 
@@ -641,7 +642,7 @@ function WarehouseView({ active }) {
           <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">AI-Native warehousing</div>
           <div className="font-serif-display text-xl mt-0.5">Centralised business data across systems</div>
         </div>
-        <div className="text-[11px] text-[#0A0A0A]/60">8 sources · industry-aware</div>
+        <div className="text-[11px] text-[#0A0A0A]/60">9 sources · industry-aware</div>
       </div>
 
       <div className="mt-4 grid grid-cols-[minmax(140px,160px)_1fr_minmax(140px,160px)] gap-3 items-stretch flex-1">
