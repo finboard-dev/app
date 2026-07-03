@@ -22,7 +22,8 @@ const team = [
     role: "Co-founder · Engineering",
     tag: { icon: Cpu, label: "Tech leader" },
     photo: "/team/ujjwal.webp",
-    photoPos: "center 20%",
+    photoPos: "center 22%",
+    photoScale: 1.25,
     story: "Built distributed learning systems at MindTickle and shipped R&D at Samsung. Published peer-reviewed work on search & ranking algorithms.",
     highlights: [
       { icon: Cpu,           text: "MindTickle · Tech Lead" },
@@ -80,7 +81,7 @@ export default function Team() {
                         alt={p.name}
                         data-testid={`team-card-${i}-photo`}
                         className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-                        style={{ objectPosition: p.photoPos }}
+                        style={{ objectPosition: p.photoPos, transform: p.photoScale ? `scale(${p.photoScale})` : undefined, transformOrigin: "center top" }}
                         loading="lazy"
                       />
                     </div>
