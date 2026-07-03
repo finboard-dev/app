@@ -22,7 +22,7 @@ const team = [
     role: "Co-founder · Engineering",
     tag: { icon: Cpu, label: "Tech leader" },
     photo: "/team/ujjwal.webp",
-    photoPos: "center 35%",
+    photoPos: "center 20%",
     story: "Built distributed learning systems at MindTickle and shipped R&D at Samsung. Published peer-reviewed work on search & ranking algorithms.",
     highlights: [
       { icon: Cpu,           text: "MindTickle · Tech Lead" },
