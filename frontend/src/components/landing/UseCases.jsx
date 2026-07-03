@@ -104,8 +104,8 @@ const MOCKUP_COMPONENTS = {
 export default function UseCases() {
   return (
     <section id="use-cases" className="relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <div className="space-y-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
+        <div className="space-y-16">
           {cases.map((c) => (
             <UseCaseRow key={c.id} data={c} />
           ))}

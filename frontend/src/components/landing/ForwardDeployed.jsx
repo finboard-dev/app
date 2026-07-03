@@ -31,7 +31,7 @@ const pillars = [
 export default function ForwardDeployed() {
   return (
     <section id="approach" className="relative bg-[#F5F0E8]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <div className="kbd-chip" data-testid="approach-eyebrow">
