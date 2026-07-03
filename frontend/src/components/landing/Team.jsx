@@ -41,7 +41,7 @@ export default function Team() {
             <UsersRound size={12} /> Team
           </div>
           <h2
-            className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight"
+            className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight"
             data-testid="team-heading"
           >
             The people building your <span className="italic">finance stack.</span>
@@ -62,7 +62,7 @@ export default function Team() {
               >
                 {/* Photo section */}
                 <div className="relative">
-                  <div className="aspect-[5/4] w-full overflow-hidden bg-[#EDE6DA]">
+                  <div className="aspect-[5/3] w-full overflow-hidden bg-[#EDE6DA]">
                     <img
                       src={p.photo}
                       alt={p.name}
