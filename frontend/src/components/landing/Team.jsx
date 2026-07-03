@@ -37,7 +37,7 @@ const team = [
 export default function Team() {
   return (
     <section id="team" className="relative bg-white border-y border-line">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* LEFT — intro rail */}
           <aside className="lg:col-span-4 lg:sticky lg:top-24">
