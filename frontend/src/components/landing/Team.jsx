@@ -51,7 +51,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="mt-14 grid md:grid-cols-2 gap-5 max-w-3xl">
           {team.map((p, i) => {
             const TagIcon = p.tag.icon;
             return (
@@ -91,25 +91,25 @@ export default function Team() {
                 </div>
 
                 {/* Info section */}
-                <div className="p-6 lg:p-7">
-                  <div className="text-[11px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">
+                <div className="p-4 lg:p-5">
+                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">
                     {p.role}
                   </div>
-                  <h3 className="mt-1 font-serif-display text-3xl leading-tight tracking-tight">
+                  <h3 className="mt-0.5 font-serif-display text-2xl leading-tight tracking-tight">
                     {p.name}
                   </h3>
 
-                  <p className="mt-3 text-[15px] text-[#0A0A0A]/80 leading-relaxed">
+                  <p className="mt-2.5 text-[13px] text-[#0A0A0A]/80 leading-relaxed">
                     {p.story}
                   </p>
 
-                  <ul className="mt-5 space-y-2 border-t border-line pt-4">
+                  <ul className="mt-4 space-y-1.5 border-t border-line pt-3">
                     {p.highlights.map((h) => {
                       const Icon = h.icon;
                       return (
-                        <li key={h.text} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/75">
-                          <span className="h-6 w-6 rounded-md border border-line bg-white grid place-items-center shrink-0">
-                            <Icon size={12} />
+                        <li key={h.text} className="flex items-center gap-2 text-[12px] text-[#0A0A0A]/75">
+                          <span className="h-5 w-5 rounded-md border border-line bg-white grid place-items-center shrink-0">
+                            <Icon size={11} />
                           </span>
                           {h.text}
                         </li>
@@ -120,9 +120,9 @@ export default function Team() {
                   <a
                     href={p.linkedin}
                     data-testid={`team-card-${i}-linkedin`}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium border-b border-[#0A0A0A] pb-0.5 hover:opacity-70 transition-opacity"
+                    className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium border-b border-[#0A0A0A] pb-0.5 hover:opacity-70 transition-opacity"
                   >
-                    <Linkedin size={13} /> Connect on LinkedIn <ArrowUpRight size={13} />
+                    <Linkedin size={12} /> Connect on LinkedIn <ArrowUpRight size={12} />
                   </a>
                 </div>
               </article>
