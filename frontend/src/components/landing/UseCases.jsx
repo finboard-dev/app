@@ -105,19 +105,7 @@ export default function UseCases() {
   return (
     <section id="use-cases" className="relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <div className="max-w-2xl">
-          <div className="kbd-chip" data-testid="use-cases-eyebrow">
-            <GitMerge size={12} /> Tailored to your operations
-          </div>
-          <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="use-cases-heading">
-            The pipelines your finance and ops teams wish they had.
-          </h2>
-          <p className="mt-4 text-[#0A0A0A]/70 leading-relaxed">
-            Every group is different. Our forward-deployed engineers build the data pipelines, models and dashboards around <em>your</em> chart of accounts, entities, dimensions and systems — then FinBoard keeps them running.
-          </p>
-        </div>
-
-        <div className="mt-16 space-y-24">
+        <div className="space-y-24">
           {cases.map((c) => (
             <UseCaseRow key={c.id} data={c} />
           ))}
