@@ -299,58 +299,6 @@ function GanttChart() {
 /* Small pieces                                                    */
 /* -------------------------------------------------------------- */
 
-function SchedulePreview() {
-  return (
-    <div
-      className="relative rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]"
-      data-testid="engagement-hero-schedule"
-    >
-      {/* Header bar */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-line bg-[#F9F6F0]">
-        <span className="flex gap-1">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#E8A94B]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#4C63C7]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#2E9668]" />
-        </span>
-        <span className="text-[11px] font-medium tracking-wide text-[#0A0A0A]/55">
-          engagement.schedule
-        </span>
-        <span className="ml-auto text-[10.5px] uppercase tracking-[0.14em] text-[#0A0A0A]/40">
-          ~8 weeks
-        </span>
-      </div>
-
-      {/* Rows */}
-      <ul className="divide-y divide-line">
-        {STEPS.map((s, i) => {
-          const meta = PHASE_META[s.phase];
-          return (
-            <li
-              key={s.title}
-              className="flex items-center gap-3 px-4 py-2.5 animate-fade-up"
-              style={{ animationDelay: `${120 + i * 45}ms` }}
-            >
-              <span className={`h-6 w-9 rounded-md grid place-items-center text-[10.5px] font-semibold text-white shrink-0`} style={{ background: meta.bar }}>
-                W{s.n <= 2 ? 1 : s.n}
-              </span>
-              <span className="text-[13px] text-[#0A0A0A]/85 truncate flex-1">
-                {s.title}
-              </span>
-              <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Footer */}
-      <div className="flex items-center gap-2 px-4 py-3 border-t border-line bg-[#F9F6F0] text-[11.5px] text-[#0A0A0A]/60">
-        <ShieldCheck size={13} className="text-emerald-600" />
-        Pay nothing until it is deployed.
-      </div>
-    </div>
-  );
-}
-
 function PhaseTag({ phase, className = "" }) {
   const meta = PHASE_META[phase];
   return (
@@ -657,13 +605,13 @@ export default function Engagement() {
 
       <main>
         {/* ============================================================
-            HERO — asymmetric split with schedule preview
+            HERO — Gantt chart is the visual hero
         ============================================================ */}
         <section className="relative overflow-hidden">
           <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-16 pb-10 lg:pb-14">
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left: copy */}
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-16 pb-12 lg:pb-20">
+            {/* Copy row */}
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-end">
               <div className="lg:col-span-7 animate-fade-up">
                 <span className="kbd-chip" data-testid="engagement-eyebrow">
                   <Sparkles size={12} /> The engagement
@@ -683,78 +631,79 @@ export default function Engagement() {
                   A forward-deployed team that goes from the first call to a live, working workflow in about eight weeks. We build alongside you, check in every week, and you pay nothing until it is deployed.
                 </p>
 
-                <div className="mt-8 flex flex-wrap items-center gap-3">
+                <div className="mt-7 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="engagement-book-demo-button" className="btn-primary">
                     Book an intro call <ArrowRight size={16} />
                   </button>
                   <a href="#timeline" data-testid="engagement-timeline-link" className="btn-secondary">
-                    See the timeline
+                    See the plan
                   </a>
                 </div>
+              </div>
 
-                {/* Inline stat strip */}
-                <div
-                  className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 divide-x divide-line"
-                  data-testid="engagement-glance"
-                >
-                  {GLANCE.map(({ icon: GIcon, value, label }, i) => (
-                    <div key={label} className={`flex items-center gap-3 ${i > 0 ? "pl-8" : ""}`}>
-                      <span className="h-9 w-9 rounded-lg border border-line bg-white grid place-items-center shrink-0">
-                        <GIcon size={15} />
+              {/* Right: stats stacked */}
+              <div
+                className="lg:col-span-5 animate-fade-up"
+                style={{ animationDelay: "120ms" }}
+                data-testid="engagement-glance"
+              >
+                <div className="grid grid-cols-3 gap-0 rounded-xl border border-line bg-white overflow-hidden divide-x divide-line">
+                  {GLANCE.map(({ icon: GIcon, value, label }) => (
+                    <div key={label} className="p-4 lg:p-5">
+                      <span className="h-8 w-8 rounded-lg border border-line bg-[#F9F6F0] grid place-items-center">
+                        <GIcon size={14} />
                       </span>
-                      <div className="min-w-0">
-                        <div className="font-serif-display text-lg leading-none tracking-tight">{value}</div>
-                        <div className="mt-1 text-[11.5px] text-[#0A0A0A]/55 whitespace-nowrap">{label}</div>
-                      </div>
+                      <div className="mt-3 font-serif-display text-[1.35rem] leading-none tracking-tight">{value}</div>
+                      <div className="mt-1.5 text-[11px] text-[#0A0A0A]/55 leading-snug">{label}</div>
                     </div>
                   ))}
                 </div>
               </div>
+            </div>
 
-              {/* Right: schedule preview */}
-              <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "120ms" }}>
-                <SchedulePreview />
+            {/* Gantt — visual hero */}
+            <div
+              id="timeline"
+              className="scroll-mt-20 mt-10 lg:mt-14 animate-fade-up"
+              style={{ animationDelay: "180ms" }}
+            >
+              <div className="rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
+                {/* Card header with title + legend */}
+                <div className="flex flex-wrap items-center justify-between gap-3 px-5 lg:px-8 py-4 border-b border-line bg-[#F9F6F0]">
+                  <div className="flex items-baseline gap-3">
+                    <div className="text-[10.5px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/60">
+                      The timeline
+                    </div>
+                    <div className="text-[12.5px] text-[#0A0A0A]/55">
+                      First call to live workflow · ~8 weeks
+                    </div>
+                  </div>
+                  {/* Legend */}
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {Object.entries(PHASE_META).map(([k, meta]) => (
+                      <span
+                        key={k}
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10.5px] font-medium ${meta.chip}`}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+                        {meta.label}
+                        <span className="opacity-60 font-normal">· {meta.weeks}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Gantt body */}
+                <div className="p-5 lg:p-8">
+                  <GanttChart />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            TIMELINE — Gantt with phase-coded lanes
-        ============================================================ */}
-        <section id="timeline" className="scroll-mt-20 border-t border-line bg-[#F5F0E8]">
-          <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
-            <div className="flex items-end justify-between flex-wrap gap-6">
-              <div>
-                <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">The timeline</div>
-                <h2 className="mt-3 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">
-                  From first call to <span className="italic">live workflow</span>.
-                </h2>
-                <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-[#0A0A0A]/60">
-                  The engagement runs in three parts. One workflow, scoped, built, and rolled out in roughly eight weeks.
-                </p>
-              </div>
-
-              {/* Legend */}
-              <div className="flex flex-wrap items-center gap-2">
-                {Object.entries(PHASE_META).map(([k, meta]) => (
-                  <span key={k} className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${meta.chip}`}>
-                    <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
-                    {meta.label} <span className="opacity-60 font-normal">· {meta.weeks}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Gantt chart */}
-            <div className="mt-10 card-white p-5 lg:p-8">
-              <GanttChart />
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            JOURNEY — vertical zig-zag timeline
+            JOURNEY — spreadsheet-style plan
         ============================================================ */}
         <section className="relative border-t border-line">
           <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
