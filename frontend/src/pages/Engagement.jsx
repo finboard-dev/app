@@ -188,7 +188,7 @@ function GanttChart() {
   const rowH = 34;
   return (
     <div className="overflow-x-auto" data-testid="engagement-gantt">
-      <div className="min-w-[900px] px-4">
+      <div className="min-w-[560px] px-2 sm:px-3">
         {/* Phase headers */}
         <div className="relative h-8 mb-3">
           {GANTT_PHASES.map((p) => {
@@ -605,14 +605,14 @@ export default function Engagement() {
 
       <main>
         {/* ============================================================
-            HERO — Gantt chart is the visual hero
+            HERO — copy left, Gantt right (both in fold)
         ============================================================ */}
         <section className="relative overflow-hidden">
           <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-8 lg:pb-12">
-            {/* Copy row */}
-            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
-              <div className="lg:col-span-7 animate-fade-up">
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-10 pb-8 lg:pb-12">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              {/* Left: copy + stats */}
+              <div className="lg:col-span-5 animate-fade-up">
                 <span className="kbd-chip" data-testid="engagement-eyebrow">
                   <Sparkles size={12} /> The engagement
                 </span>
@@ -625,77 +625,73 @@ export default function Engagement() {
                 </h1>
 
                 <p
-                  className="mt-3 max-w-xl text-[14px] leading-relaxed text-[#0A0A0A]/75"
+                  className="mt-3 max-w-md text-[14px] leading-relaxed text-[#0A0A0A]/75"
                   data-testid="engagement-subhead"
                 >
-                  A forward-deployed team that goes from the first call to a live, working workflow in about eight weeks. Weekly check-ins, and you pay nothing until it is deployed.
+                  A forward-deployed team that goes from the first call to a live workflow in about eight weeks. Weekly check-ins, and you pay nothing until it is deployed.
                 </p>
 
                 <div className="mt-4 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="engagement-book-demo-button" className="btn-primary">
                     Book an intro call <ArrowRight size={16} />
                   </button>
-                  <a href="#timeline" data-testid="engagement-timeline-link" className="btn-secondary">
+                  <a href="#plan" data-testid="engagement-timeline-link" className="btn-secondary">
                     See the plan
                   </a>
                 </div>
-              </div>
 
-              {/* Right: stats — compact horizontal card */}
-              <div
-                className="lg:col-span-5 animate-fade-up"
-                style={{ animationDelay: "120ms" }}
-                data-testid="engagement-glance"
-              >
-                <div className="grid grid-cols-3 gap-0 rounded-xl border border-line bg-white overflow-hidden divide-x divide-line">
-                  {GLANCE.map(({ icon: GIcon, value, label }) => (
-                    <div key={label} className="p-3">
-                      <span className="inline-flex items-center gap-1.5 text-[#0A0A0A]/60">
-                        <GIcon size={12} />
+                {/* Inline stat strip */}
+                <div
+                  className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 divide-x divide-line"
+                  data-testid="engagement-glance"
+                >
+                  {GLANCE.map(({ icon: GIcon, value, label }, i) => (
+                    <div key={label} className={`flex items-center gap-2.5 ${i > 0 ? "pl-5" : ""}`}>
+                      <span className="h-8 w-8 rounded-lg border border-line bg-white grid place-items-center shrink-0">
+                        <GIcon size={13} />
                       </span>
-                      <div className="mt-1.5 font-serif-display text-[1.05rem] leading-none tracking-tight">{value}</div>
-                      <div className="mt-1 text-[10.5px] text-[#0A0A0A]/55 leading-snug">{label}</div>
+                      <div className="min-w-0">
+                        <div className="font-serif-display text-[15px] leading-none tracking-tight">{value}</div>
+                        <div className="mt-1 text-[10.5px] text-[#0A0A0A]/55 whitespace-nowrap">{label}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Gantt — visual hero */}
-            <div
-              id="timeline"
-              className="scroll-mt-20 mt-6 lg:mt-8 animate-fade-up"
-              style={{ animationDelay: "180ms" }}
-            >
-              <div className="rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
-                {/* Card header with title + legend */}
-                <div className="flex flex-wrap items-center justify-between gap-3 px-4 lg:px-6 py-3 border-b border-line bg-[#F9F6F0]">
-                  <div className="flex items-baseline gap-3">
-                    <div className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/60">
-                      The timeline
+              {/* Right: Gantt — visual hero */}
+              <div
+                id="timeline"
+                className="scroll-mt-20 lg:col-span-7 animate-fade-up"
+                style={{ animationDelay: "120ms" }}
+              >
+                <div className="rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
+                  {/* Card header with title + legend */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 px-4 lg:px-5 py-3 border-b border-line bg-[#F9F6F0]">
+                    <div className="flex items-baseline gap-2">
+                      <div className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/60">
+                        The timeline
+                      </div>
+                      <div className="text-[11px] text-[#0A0A0A]/55">~8 weeks</div>
                     </div>
-                    <div className="text-[11.5px] text-[#0A0A0A]/55">
-                      First call to live workflow · ~8 weeks
+                    {/* Legend */}
+                    <div className="flex flex-wrap items-center gap-1">
+                      {Object.entries(PHASE_META).map(([k, meta]) => (
+                        <span
+                          key={k}
+                          className={`inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5 text-[9.5px] font-medium ${meta.chip}`}
+                        >
+                          <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+                          {meta.label}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  {/* Legend */}
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    {Object.entries(PHASE_META).map(([k, meta]) => (
-                      <span
-                        key={k}
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium ${meta.chip}`}
-                      >
-                        <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
-                        {meta.label}
-                        <span className="opacity-60 font-normal">· {meta.weeks}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Gantt body */}
-                <div className="p-4 lg:p-6">
-                  <GanttChart />
+                  {/* Gantt body */}
+                  <div className="p-3 lg:p-5">
+                    <GanttChart />
+                  </div>
                 </div>
               </div>
             </div>
@@ -705,7 +701,7 @@ export default function Engagement() {
         {/* ============================================================
             JOURNEY — spreadsheet-style plan
         ============================================================ */}
-        <section className="relative border-t border-line">
+        <section id="plan" className="scroll-mt-20 relative border-t border-line">
           <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
             <div className="max-w-2xl">
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Week by week</div>
