@@ -185,7 +185,7 @@ const BARS = [
 ];
 
 function GanttChart() {
-  const rowH = 44;
+  const rowH = 34;
   return (
     <div className="overflow-x-auto" data-testid="engagement-gantt">
       <div className="min-w-[900px] px-4">
@@ -279,7 +279,7 @@ function GanttChart() {
                 }}
               >
                 <div
-                  className={`h-9 rounded-full flex items-center gap-2 px-3 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
+                  className={`h-7 rounded-full flex items-center gap-2 px-3 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
                   style={{ background: meta.bar }}
                   title={b.label}
                 >
@@ -609,29 +609,29 @@ export default function Engagement() {
         ============================================================ */}
         <section className="relative overflow-hidden">
           <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-16 pb-12 lg:pb-20">
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-8 lg:pb-12">
             {/* Copy row */}
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-end">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-7 animate-fade-up">
                 <span className="kbd-chip" data-testid="engagement-eyebrow">
                   <Sparkles size={12} /> The engagement
                 </span>
 
                 <h1
-                  className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight"
+                  className="mt-3 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight"
                   data-testid="engagement-heading"
                 >
                   What working with FinBoard <span className="italic">looks like</span>.
                 </h1>
 
                 <p
-                  className="mt-6 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/75"
+                  className="mt-3 max-w-xl text-[14px] leading-relaxed text-[#0A0A0A]/75"
                   data-testid="engagement-subhead"
                 >
-                  A forward-deployed team that goes from the first call to a live, working workflow in about eight weeks. We build alongside you, check in every week, and you pay nothing until it is deployed.
+                  A forward-deployed team that goes from the first call to a live, working workflow in about eight weeks. Weekly check-ins, and you pay nothing until it is deployed.
                 </p>
 
-                <div className="mt-7 flex flex-wrap items-center gap-3">
+                <div className="mt-4 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="engagement-book-demo-button" className="btn-primary">
                     Book an intro call <ArrowRight size={16} />
                   </button>
@@ -641,7 +641,7 @@ export default function Engagement() {
                 </div>
               </div>
 
-              {/* Right: stats stacked */}
+              {/* Right: stats — compact horizontal card */}
               <div
                 className="lg:col-span-5 animate-fade-up"
                 style={{ animationDelay: "120ms" }}
@@ -649,12 +649,12 @@ export default function Engagement() {
               >
                 <div className="grid grid-cols-3 gap-0 rounded-xl border border-line bg-white overflow-hidden divide-x divide-line">
                   {GLANCE.map(({ icon: GIcon, value, label }) => (
-                    <div key={label} className="p-4 lg:p-5">
-                      <span className="h-8 w-8 rounded-lg border border-line bg-[#F9F6F0] grid place-items-center">
-                        <GIcon size={14} />
+                    <div key={label} className="p-3">
+                      <span className="inline-flex items-center gap-1.5 text-[#0A0A0A]/60">
+                        <GIcon size={12} />
                       </span>
-                      <div className="mt-3 font-serif-display text-[1.35rem] leading-none tracking-tight">{value}</div>
-                      <div className="mt-1.5 text-[11px] text-[#0A0A0A]/55 leading-snug">{label}</div>
+                      <div className="mt-1.5 font-serif-display text-[1.05rem] leading-none tracking-tight">{value}</div>
+                      <div className="mt-1 text-[10.5px] text-[#0A0A0A]/55 leading-snug">{label}</div>
                     </div>
                   ))}
                 </div>
@@ -664,17 +664,17 @@ export default function Engagement() {
             {/* Gantt — visual hero */}
             <div
               id="timeline"
-              className="scroll-mt-20 mt-10 lg:mt-14 animate-fade-up"
+              className="scroll-mt-20 mt-6 lg:mt-8 animate-fade-up"
               style={{ animationDelay: "180ms" }}
             >
               <div className="rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
                 {/* Card header with title + legend */}
-                <div className="flex flex-wrap items-center justify-between gap-3 px-5 lg:px-8 py-4 border-b border-line bg-[#F9F6F0]">
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 lg:px-6 py-3 border-b border-line bg-[#F9F6F0]">
                   <div className="flex items-baseline gap-3">
-                    <div className="text-[10.5px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/60">
+                    <div className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/60">
                       The timeline
                     </div>
-                    <div className="text-[12.5px] text-[#0A0A0A]/55">
+                    <div className="text-[11.5px] text-[#0A0A0A]/55">
                       First call to live workflow · ~8 weeks
                     </div>
                   </div>
@@ -683,7 +683,7 @@ export default function Engagement() {
                     {Object.entries(PHASE_META).map(([k, meta]) => (
                       <span
                         key={k}
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10.5px] font-medium ${meta.chip}`}
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium ${meta.chip}`}
                       >
                         <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
                         {meta.label}
@@ -694,7 +694,7 @@ export default function Engagement() {
                 </div>
 
                 {/* Gantt body */}
-                <div className="p-5 lg:p-8">
+                <div className="p-4 lg:p-6">
                   <GanttChart />
                 </div>
               </div>
