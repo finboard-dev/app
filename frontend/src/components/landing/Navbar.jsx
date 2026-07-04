@@ -8,23 +8,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PRODUCT_NAV } from "@/data/products";
+import { INDUSTRY_NAV } from "@/data/industries";
 
 const resourceLinks = [
   { href: "/#how-it-works", label: "How it works" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#case-studies", label: "Case studies" },
   { href: "/#manifesto", label: "Manifesto" },
-];
-
-const industries = [
-  "Healthcare",
-  "Restaurants",
-  "Retail",
-  "Financial Services",
-  "Family Office",
-  "Real Estate",
-  "Manufacturing",
-  "SaaS",
 ];
 
 export default function Navbar({ onBookDemo }) {
@@ -76,8 +66,8 @@ export default function Navbar({ onBookDemo }) {
                     className="cursor-pointer text-sm gap-2.5 py-2"
                     onSelect={() => navigate(`/products/${p.slug}`)}
                   >
-                    <span className="h-6 w-6 rounded border border-line bg-[#F5F0E8] grid place-items-center shrink-0" style={{ color: p.accent }}>
-                      <PIcon size={13} />
+                    <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
+                      <PIcon size={13} strokeWidth={1.75} />
                     </span>
                     <span className="flex-1">{p.nav}</span>
                     <span className="text-[11px] text-[#0A0A0A]/45">{p.eyebrow}</span>
@@ -146,21 +136,24 @@ export default function Navbar({ onBookDemo }) {
             <DropdownMenuContent
               align="end"
               data-testid="nav-industries-menu"
-              className="min-w-[220px] bg-white border-line"
+              className="min-w-[240px] bg-white border-line"
             >
-              {industries.map((ind) => (
-                <DropdownMenuItem
-                  key={ind}
-                  data-testid={`nav-industry-${ind.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="cursor-pointer text-sm"
-                  onSelect={() => {
-                    // scroll to use cases as a soft anchor
-                    document.querySelector("#use-cases")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  {ind}
-                </DropdownMenuItem>
-              ))}
+              {INDUSTRY_NAV.map((ind) => {
+                const IIcon = ind.icon;
+                return (
+                  <DropdownMenuItem
+                    key={ind.slug}
+                    data-testid={`nav-industry-${ind.slug}`}
+                    className="cursor-pointer text-sm gap-2.5 py-2"
+                    onSelect={() => navigate(`/industries/${ind.slug}`)}
+                  >
+                    <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
+                      <IIcon size={13} strokeWidth={1.75} />
+                    </span>
+                    <span className="flex-1">{ind.nav}</span>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -201,8 +194,8 @@ export default function Navbar({ onBookDemo }) {
                       data-testid={`mobile-nav-product-${p.slug}`}
                       className="flex items-center gap-2.5 py-1.5 text-base"
                     >
-                      <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0" style={{ color: p.accent }}>
-                        <PIcon size={13} />
+                      <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
+                        <PIcon size={13} strokeWidth={1.75} />
                       </span>
                       {p.nav}
                     </Link>
@@ -252,18 +245,24 @@ export default function Navbar({ onBookDemo }) {
             </a>
             <div className="pt-2 border-t border-line/70">
               <div className="text-xs uppercase tracking-[0.18em] text-[#0A0A0A]/50 mb-2">Industries</div>
-              <div className="flex flex-wrap gap-1.5">
-                {industries.map((ind) => (
-                  <a
-                    key={ind}
-                    href="#use-cases"
-                    onClick={() => setOpen(false)}
-                    data-testid={`mobile-nav-industry-${ind.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="text-xs rounded-full border border-line px-2.5 py-1"
-                  >
-                    {ind}
-                  </a>
-                ))}
+              <div className="flex flex-col gap-1">
+                {INDUSTRY_NAV.map((ind) => {
+                  const IIcon = ind.icon;
+                  return (
+                    <Link
+                      key={ind.slug}
+                      to={`/industries/${ind.slug}`}
+                      onClick={() => setOpen(false)}
+                      data-testid={`mobile-nav-industry-${ind.slug}`}
+                      className="flex items-center gap-2.5 py-1.5 text-base"
+                    >
+                      <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
+                        <IIcon size={13} strokeWidth={1.75} />
+                      </span>
+                      {ind.nav}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
             <button
