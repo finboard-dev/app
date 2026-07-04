@@ -134,6 +134,50 @@
 }
 .animate-fade-up { animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) both; }
 
+@keyframes iconBob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-2.5px); }
+}
+
+@keyframes growbar {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+.icon-bob { animation: iconBob 3s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .icon-bob { animation: none; }
+}
+
+/* Needle-and-thread stitching underline (draws left-to-right) */
+@keyframes stitchDraw {
+    0%   { width: 0; }
+    28%  { width: 100%; }
+    100% { width: 100%; }
+}
+@keyframes stitchLead {
+    0%   { left: 0; opacity: 1; }
+    24%  { opacity: 1; }
+    28%  { left: 100%; opacity: 0; }
+    100% { left: 100%; opacity: 0; }
+}
+.stitch-word { position: relative; display: inline-block; }
+.stitch-line { position: absolute; left: 0; right: 0; bottom: -0.16em; height: 10px; pointer-events: none; }
+.stitch-thread { position: absolute; top: 5px; left: 0; width: 0; border-top: 2px dashed #0A0A0A; }
+.stitch-needle {
+    position: absolute; top: 1px; left: 0;
+    width: 8px; height: 8px; border-radius: 9999px;
+    background: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+    transform: translateX(-50%); opacity: 0;
+}
+.is-stitching .stitch-thread { animation: stitchDraw 4.5s cubic-bezier(.45, 0, .25, 1) .3s infinite; }
+.is-stitching .stitch-needle { animation: stitchLead 4.5s cubic-bezier(.45, 0, .25, 1) .3s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .stitch-thread { width: 100%; animation: none; }
+    .stitch-needle { display: none; }
+}
+
 @keyframes marquee {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }

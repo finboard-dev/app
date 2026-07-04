@@ -6,32 +6,32 @@ const steps = [
     icon: Plug,
     step: "01",
     title: "Discovery with a forward-deployed engineer",
-    copy: "We map your entities, chart of accounts, dimensions and every source system — from QuickBooks and NetSuite to HRIS, CRM and your data warehouse.",
+    copy: "We map your entities, chart of accounts, dimensions and every source system, from QuickBooks and NetSuite to HRIS, CRM and your data warehouse.",
   },
   {
     icon: Sparkles,
     step: "02",
     title: "We build your custom pipelines",
-    copy: "Our engineers build the data pipelines end-to-end: ingestion, classification, inter-company logic, eliminations and dimensional models — tailored to how your group actually operates.",
+    copy: "Our engineers build the data pipelines end-to-end: ingestion, classification, inter-company logic, eliminations and dimensional models, tailored to how your group actually operates.",
   },
   {
     icon: Layers,
     step: "03",
     title: "Audit-ready consolidation goes live",
-    copy: "Consolidated P&L, Balance Sheet, Cash Flow — with every adjustment traceable. Your close moves from spreadsheet archaeology to a review.",
+    copy: "Consolidated P&L, Balance Sheet, Cash Flow, with every adjustment traceable. Your close moves from spreadsheet archaeology to a review.",
   },
   {
     icon: FileText,
     step: "04",
     title: "Real-time dashboards & reviews",
-    copy: "Reports and dashboards for people and business refresh in real time. We stay embedded — iterating models and dashboards every quarter.",
+    copy: "Reports and dashboards for people and business refresh in real time. We stay embedded, iterating models and dashboards every quarter.",
   },
 ];
 
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-white border-y border-line">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="max-w-2xl">
           <div className="kbd-chip" data-testid="how-eyebrow"><Layers size={12} /> How it works</div>
           <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="how-heading">

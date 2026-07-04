@@ -55,11 +55,11 @@ const plans = [
 export default function Pricing({ onBookDemo }) {
   return (
     <section id="pricing" className="relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="max-w-2xl">
           <div className="kbd-chip" data-testid="pricing-eyebrow"><Sparkles size={12} /> Pricing</div>
           <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="pricing-heading">
-            Straightforward pricing for real groups.
+            Straightforward pricing for ambitious groups.
           </h2>
           <p className="mt-4 text-[#0A0A0A]/70">Every plan includes unlimited data sources, audit trails and hands-on onboarding.</p>
         </div>

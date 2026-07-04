@@ -1,43 +1,60 @@
 import React from "react";
-import { ArrowRight, PlayCircle, Sparkles, Layers, Zap, LineChart, Database, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, PlayCircle, Sparkles, Layers, LineChart, Users, ShieldCheck, Building2, Database, Receipt, CircleDollarSign } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
+import AiTrustRow from "@/components/landing/AiTrustRow";
+import { INDUSTRY_NAV } from "@/data/industries";
+
+// Capability line, kept in sync with the hero carousel view on the right.
+const CAP_BY_VIEW = {
+  warehouse: { icon: Database,          text: "Business Warehouse and Intelligence" },
+  board:     { icon: LineChart,         text: "Business planning and scorecards" },
+  recon:     { icon: Layers,            text: "Inter-company eliminations and consolidation" },
+  people:    { icon: Users,             text: "Manager and individual scorecards" },
+  p2p:       { icon: Receipt,           text: "Procure-to-pay operations" },
+  o2c:       { icon: CircleDollarSign,  text: "Order-to-cash operations" },
+};
 
 export default function Hero({ onBookDemo }) {
+  const [viewId, setViewId] = React.useState("warehouse");
+  const cap = CAP_BY_VIEW[viewId] || CAP_BY_VIEW.warehouse;
+  const CapIcon = cap.icon;
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="grain absolute inset-0" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-16 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5 animate-fade-up">
-            <span className="kbd-chip" data-testid="hero-eyebrow">
-              <Sparkles size={12} /> For the Office of the CFO
-            </span>
-
-            <div className="mt-5 font-serif-display italic text-xl sm:text-2xl text-[#0A0A0A]/60" data-testid="hero-kicker">
-              Multi-entity CFO?
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="kbd-chip" data-testid="hero-eyebrow">
+                <Sparkles size={12} /> For the Office of the CFO
+              </span>
+              <span className="kbd-chip" data-testid="hero-eyebrow-managed-services">
+                <ShieldCheck size={12} /> Managed services
+              </span>
             </div>
 
-            <h1 className="mt-2 font-serif-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
-              Finance stack for<br />
-              <span className="italic">multi-entity</span> groups.
+            <h1 className="mt-6 font-serif-display text-4xl sm:text-5xl lg:text-[2.35rem] xl:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
+              AI-native finance for<br />
+              <span className="italic">multi-entity</span> operators.
             </h1>
 
-            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 max-w-xl" data-testid="hero-capabilities">
-              {[
-                { icon: Layers,     label: "Consolidate entities" },
-                { icon: Zap,        label: "Automate month-end close" },
-                { icon: LineChart,  label: "Planning & forecasting" },
-                { icon: Database,   label: "Centralise business data & ops" },
-                { icon: Users,      label: "People & manager scorecards" },
-              ].map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
-                  <span className="h-7 w-7 shrink-0 rounded-md border border-line bg-[#F5F0E8] grid place-items-center">
-                    <Icon size={13} />
-                  </span>
-                  <span>{label}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-6 flex items-start gap-2.5 min-h-[2.5rem]" data-testid="hero-capabilities">
+              <span
+                key={`cap-icon-${viewId}`}
+                className="shrink-0 mt-0.5 text-[#0A0A0A] animate-fade-up"
+              >
+                <CapIcon size={18} />
+              </span>
+              <div className="text-[15px] sm:text-base leading-snug">
+                <span key={`cap-text-${viewId}`} className="font-medium text-[#0A0A0A] inline animate-fade-up">
+                  {cap.text}
+                </span>
+              </div>
+            </div>
+
+            <AiTrustRow className="mt-5" testid="hero-ai-native" />
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <button
@@ -56,36 +73,44 @@ export default function Hero({ onBookDemo }) {
               </a>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#0A0A0A]/60">
-              <div className="flex items-center gap-2" data-testid="hero-stat-close">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                Accurate books, quick close
+            <Link
+              to="/advisory"
+              data-testid="hero-advisory-shortcut"
+              className="mt-6 group inline-flex items-center gap-2 text-[13px] text-[#0A0A0A]/60 hover:text-[#0A0A0A] transition-colors"
+            >
+              <Building2 size={13} className="shrink-0" />
+              <span>
+                Advising multiple clients?{" "}
+                <span className="font-medium text-[#0A0A0A] underline underline-offset-4 decoration-[#0A0A0A]/25 group-hover:decoration-[#0A0A0A]">
+                  See FinBoard for firms
+                </span>
+              </span>
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+
+            <div className="mt-8 max-w-md" data-testid="hero-industries">
+              <div className="text-[11px] uppercase tracking-[0.16em] text-[#0A0A0A]/45">
+                Tuned for your industry
               </div>
-              <div className="flex items-center gap-2" data-testid="hero-stat-entities">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                50+ entity consolidation
-              </div>
-              <div className="flex items-center gap-2" data-testid="hero-stat-integrations">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                ERP, CRM, HRMS · 100+ connections
-              </div>
-              <div className="flex items-center gap-2" data-testid="hero-stat-people">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                People scorecards
-              </div>
-              <div className="flex items-center gap-2" data-testid="hero-stat-manager">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                Manager scorecards
-              </div>
-              <div className="flex items-center gap-2" data-testid="hero-stat-business">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-                Business scorecards
+              <div className="mt-1.5 text-[12.5px] leading-relaxed">
+                {INDUSTRY_NAV.map((ind, idx) => (
+                  <React.Fragment key={ind.slug}>
+                    <Link
+                      to={`/industries/${ind.slug}`}
+                      data-testid={`hero-industry-${ind.slug}`}
+                      className="font-medium text-[#0A0A0A]/75 underline underline-offset-2 decoration-[#0A0A0A]/20 hover:text-[#0A0A0A] hover:decoration-[#0A0A0A] transition-colors"
+                    >
+                      {ind.nav}
+                    </Link>
+                    {idx < INDUSTRY_NAV.length - 1 && <span className="text-[#0A0A0A]/30">,{" "}</span>}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <HeroCarousel />
+            <HeroCarousel onViewChange={setViewId} />
           </div>
         </div>
       </div>

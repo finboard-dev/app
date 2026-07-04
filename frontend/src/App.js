@@ -1,6 +1,10 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "@/pages/Landing";
+import Product from "@/pages/Product";
+import Advisory from "@/pages/Advisory";
+import Engagement from "@/pages/Engagement";
+import Industry from "@/pages/Industry";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
@@ -9,6 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/products/:slug" element={<Product />} />
+          <Route path="/advisory" element={<Advisory />} />
+          <Route path="/engagement" element={<Engagement />} />
+          <Route path="/industries/:slug" element={<Industry />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" richColors closeButton />

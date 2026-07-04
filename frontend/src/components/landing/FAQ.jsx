@@ -9,7 +9,7 @@ const items = [
   },
   {
     q: "How many entities can FinBoard consolidate?",
-    a: "From 2 to 200+. The platform is built for groups — inter-company eliminations, currency, dimensions and roll-ups scale together.",
+    a: "From 2 to 200+. The platform is built for groups, inter-company eliminations, currency, dimensions and roll-ups scale together.",
   },
   {
     q: "Which systems does FinBoard connect to?",
@@ -17,11 +17,11 @@ const items = [
   },
   {
     q: "Is the AI reliable for close?",
-    a: "Every AI action — classification, elimination, adjustment — is fully explained and reviewable, with a complete audit trail. FinBoard never posts silently.",
+    a: "Every AI action, classification, elimination, adjustment, is fully explained and reviewable, with a complete audit trail. FinBoard never posts silently.",
   },
   {
     q: "Who is FinBoard for?",
-    a: "CFOs, group controllers, FP&A leads and founders of multi-entity businesses — anywhere spreadsheets and stitched-together tools have become the bottleneck.",
+    a: "CFOs, group controllers, FP&A leads and founders of multi-entity businesses, anywhere spreadsheets and stitched-together tools have become the bottleneck.",
   },
   {
     q: "How does implementation work?",
@@ -36,7 +36,7 @@ const items = [
 export default function FAQ() {
   return (
     <section id="faq" className="bg-white border-y border-line">
-      <div className="max-w-4xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="kbd-chip" data-testid="faq-eyebrow"><HelpCircle size={12} /> FAQ</div>
         <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="faq-heading">
           Frequently asked questions.

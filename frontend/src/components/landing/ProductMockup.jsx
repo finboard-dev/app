@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 
 /**
- * ProductMockup — a fully HTML/Tailwind SaaS UI mimicking the user's
+ * ProductMockup, a fully HTML/Tailwind SaaS UI mimicking the user's
  * real product screenshots (warm sand sidebar + white main area).
  */
 export default function ProductMockup() {
@@ -70,7 +70,7 @@ export default function ProductMockup() {
           {/* eliminations tag */}
           <div className="mt-3 flex items-center gap-2 text-[11px] text-[#0A0A0A]/60">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
-            AI detected 12 inter-company entries — auto-reconciled.
+            AI detected 12 inter-company entries, auto-reconciled.
           </div>
         </div>
       </div>

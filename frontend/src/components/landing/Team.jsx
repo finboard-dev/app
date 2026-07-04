@@ -8,7 +8,7 @@ const team = [
     tag: { icon: Briefcase, label: "Finance leader" },
     photo: "/team/vaishnav.webp",
     photoPos: "center 20%",
-    story: "Led finance transformations for Fortune 500 groups at PwC. Then ran tax & payroll product at Rippling — shipping systems that moved billions.",
+    story: "Led finance transformations for Fortune 500 groups at PwC. Then ran tax & payroll product at Rippling, shipping systems that moved billions.",
     highlights: [
       { icon: GraduationCap, text: "PwC · Finance Transformation" },
       { icon: Briefcase,     text: "Rippling · Tax & Payroll leader" },
@@ -40,7 +40,7 @@ export default function Team() {
     <section id="team" className="relative bg-white border-y border-line">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* LEFT — intro rail */}
+          {/* LEFT, intro rail */}
           <aside className="lg:col-span-4 lg:sticky lg:top-24">
             <div className="kbd-chip" data-testid="team-eyebrow">
               <UsersRound size={12} /> Team
@@ -63,7 +63,7 @@ export default function Team() {
             </div>
           </aside>
 
-          {/* RIGHT — team cards */}
+          {/* RIGHT, team cards */}
           <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
             {team.map((p, i) => {
               const TagIcon = p.tag.icon;

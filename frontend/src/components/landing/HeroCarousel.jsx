@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 
 /**
- * HeroCarousel — auto-rotates through 5 product views.
+ * HeroCarousel, auto-rotates through 5 product views.
  * 1. Board dashboard
  * 2. Inter-company reconciliation (spreadsheet grid)
  * 3. People scorecards (sources merging)
@@ -14,7 +14,7 @@ import {
  * 5. Order-to-cash (quote → invoice → collect)
  */
 const VIEWS = [
-  { id: "warehouse", label: "Semantic layer",                  team: "Data & Finance",    days: 15 },
+  { id: "warehouse", label: "Semantic layer",                  team: "Data & Finance",    days: 30 },
   { id: "board",     label: "Board meeting review",          team: "Finance & Ops",     days: 12 },
   { id: "recon",     label: "Inter-company reconciliation",  team: "Group Controllers", days: 10 },
   { id: "people",    label: "People scorecards",             team: "HR & Ops",          days: 14 },
@@ -22,15 +22,23 @@ const VIEWS = [
   { id: "o2c",       label: "Order-to-cash",                 team: "AR team",           days: 10 },
 ];
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ onViewChange }) {
   const [idx, setIdx] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
 
   React.useEffect(() => {
     if (paused) return undefined;
-    const t = setInterval(() => setIdx((v) => (v + 1) % VIEWS.length), 5200);
-    return () => clearInterval(t);
-  }, [paused]);
+    // Every view dwells 3s, same time between each switch. The Business Data
+    // Hub's 4 output tabs cycle at 750ms each to complete once within that 3s.
+    const duration = 3000;
+    const t = setTimeout(() => setIdx((v) => (v + 1) % VIEWS.length), duration);
+    return () => clearTimeout(t);
+  }, [paused, idx]);
+
+  // Report the active view up so the hero copy can stay in sync.
+  React.useEffect(() => {
+    if (onViewChange) onViewChange(VIEWS[idx].id);
+  }, [idx, onViewChange]);
 
   return (
     <div
@@ -39,25 +47,6 @@ export default function HeroCarousel() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Value ribbon above the app frame — single row */}
-      <div
-        className="flex flex-wrap items-center gap-1.5 mb-3 px-1"
-        data-testid="hero-carousel-ribbon"
-      >
-        <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#0A0A0A] bg-white border border-line rounded-full pl-2 pr-3 py-1">
-          <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#0A0A0A] text-white">
-            <Sparkles size={11} />
-          </span>
-          Custom workflows
-        </div>
-        <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
-          <Timer size={11} /> Live in 15 days or less
-        </span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-[#ECFDF5] border border-[#059669]/30 px-2 py-1 text-[11px] text-[#065F46]">
-          <ShieldCheck size={11} /> No upfront cost · pay on value
-        </span>
-      </div>
-
       <div className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]">
         <MockChrome viewLabel={VIEWS[idx].label} />
         <div className="relative min-h-[420px] bg-white">
@@ -95,6 +84,25 @@ export default function HeroCarousel() {
             </span>
           </div>
         </div>
+      </div>
+
+      {/* Value ribbon below the app frame, single row */}
+      <div
+        className="flex flex-wrap items-center justify-center gap-1.5 mt-4 px-1"
+        data-testid="hero-carousel-ribbon"
+      >
+        <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#0A0A0A] bg-white border border-line rounded-full pl-2 pr-3 py-1">
+          <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#0A0A0A] text-white">
+            <Sparkles size={11} />
+          </span>
+          Custom workflows
+        </div>
+        <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-1 text-[11px] text-[#0A0A0A]/70">
+          <Timer size={11} /> Live in 30 days or less
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#ECFDF5] border border-[#059669]/30 px-2 py-1 text-[11px] text-[#065F46]">
+          <ShieldCheck size={11} /> No upfront cost · pay on value
+        </span>
       </div>
 
       {/* indicators */}
@@ -627,19 +635,34 @@ const WH_SOURCES = [
 
 const WH_PROCESSES = [
   {
+    id: "consolidation",
+    tab: "Consolidation",
+    label: "Consolidation",
+    sub: "Group close · eliminations",
+    icon: Landmark,
+    items: [
+      { id: "recon", label: "Inter-co reconciliation", icon: FileText },
+      { id: "elim",  label: "Eliminations",            icon: ShieldCheck },
+      { id: "group", label: "Group consolidation",     icon: Landmark },
+      { id: "fx",    label: "FX translation",          icon: CircleDollarSign },
+    ],
+  },
+  {
     id: "analytics",
+    tab: "Analytics",
     label: "Analytics",
     sub: "Dashboards · Board pack",
     icon: BarChart3,
     items: [
-      { id: "board", label: "Board dashboard", icon: FileText },
-      { id: "recon", label: "Consolidation",   icon: Landmark },
-      { id: "score", label: "Scorecards",      icon: Users },
-      { id: "plan",  label: "Planning models", icon: Sparkles },
+      { id: "board",  label: "Board dashboard", icon: FileText },
+      { id: "kpi",    label: "KPI scorecards",  icon: Users },
+      { id: "report", label: "Custom reports",  icon: Landmark },
+      { id: "adhoc",  label: "Ad-hoc analysis", icon: Sparkles },
     ],
   },
   {
     id: "p2p",
+    tab: "P2P",
     label: "Procure-to-Pay",
     sub: "AP · approvals · pay",
     icon: Receipt,
@@ -652,6 +675,7 @@ const WH_PROCESSES = [
   },
   {
     id: "o2c",
+    tab: "O2C",
     label: "Order-to-Cash",
     sub: "AR · billing · collect",
     icon: CircleDollarSign,
@@ -757,7 +781,7 @@ function WarehouseView({ active }) {
           </div>
         </div>
 
-        {/* Outputs — rotates between Analytics, P2P, O2C */}
+        {/* Outputs, rotates between Analytics, P2P, O2C */}
         <WHProcesses active={active} />
       </div>
     </div>
@@ -769,7 +793,7 @@ function WHProcesses({ active }) {
   const [tick, setTick] = React.useState(0); // bumped on manual click to reset interval
   React.useEffect(() => {
     if (!active) return undefined;
-    const t = setInterval(() => setProcIdx((v) => (v + 1) % WH_PROCESSES.length), 3200);
+    const t = setInterval(() => setProcIdx((v) => (v + 1) % WH_PROCESSES.length), 750);
     return () => clearInterval(t);
   }, [active, tick]);
   const proc = WH_PROCESSES[procIdx];
@@ -781,7 +805,7 @@ function WHProcesses({ active }) {
   return (
     <div className="flex flex-col gap-2 justify-start min-w-0">
       {/* Process tab strip */}
-      <div className="flex items-center gap-1" data-testid="wh-process-tabs">
+      <div className="flex flex-wrap items-center gap-1" data-testid="wh-process-tabs">
         {WH_PROCESSES.map((p, i) => (
           <button
             key={p.id}
@@ -794,7 +818,7 @@ function WHProcesses({ active }) {
                 : "border-line bg-white text-[#0A0A0A]/55 hover:text-[#0A0A0A]"
             }`}
           >
-            {p.id === "analytics" ? "Analytics" : p.id === "p2p" ? "P2P" : "O2C"}
+            {p.tab}
           </button>
         ))}
       </div>
