@@ -185,10 +185,35 @@ const BARS = [
 ];
 
 function GanttChart() {
-  const rowH = 28;
+  const rowH = 40;
   return (
     <div className="overflow-x-auto" data-testid="engagement-gantt">
       <div className="min-w-[820px] px-2">
+        {/* Milestone callouts */}
+        <div className="relative h-6 mb-1">
+          {[
+            { pos: 1, label: "Kickoff", color: "#0A0A0A", align: "left" },
+            { pos: 6, label: "Pilot", color: "#4C63C7", align: "center" },
+            { pos: 8, label: "Go live", color: "#2E9668", align: "center" },
+          ].map((m) => (
+            <div
+              key={m.label}
+              className="absolute top-0"
+              style={{
+                left: `${pct(m.pos)}%`,
+                transform: m.align === "left" ? "translateX(0)" : "translateX(-50%)",
+              }}
+            >
+              <span
+                className="inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[9.5px] font-mono uppercase tracking-[0.1em] text-white shadow-sm"
+                style={{ background: m.color }}
+              >
+                {m.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
         {/* Phase headers */}
         <div className="relative h-6 mb-2">
           {GANTT_PHASES.map((p) => {
@@ -202,7 +227,7 @@ function GanttChart() {
                 style={{ left: `${left}%`, width: `${width}%` }}
               >
                 <div className="flex items-center justify-center">
-                  <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[9.5px] font-medium uppercase tracking-[0.14em] ${meta.chip}`}>
+                  <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] ${meta.chip}`}>
                     <span className={`h-1 w-1 rounded-full ${meta.dot}`} />
                     {meta.label}
                   </span>
@@ -213,7 +238,7 @@ function GanttChart() {
         </div>
 
         {/* Axis */}
-        <div className="relative h-3 mb-3">
+        <div className="relative h-3 mb-4">
           <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-[#0A0A0A]" />
           {GANTT_DOTS.map((u) => (
             <span
@@ -226,7 +251,7 @@ function GanttChart() {
           {GANTT_GRID.map((u) => (
             <span
               key={u}
-              className="absolute top-full mt-1 -translate-x-1/2 text-[10px] text-[#0A0A0A]/45"
+              className="absolute top-full mt-1 -translate-x-1/2 text-[10.5px] font-mono text-[#0A0A0A]/50"
               style={{ left: `${pct(u)}%` }}
             >
               W{u - 1}
@@ -235,7 +260,7 @@ function GanttChart() {
         </div>
 
         {/* Bars area */}
-        <div className="relative mt-3" style={{ height: BARS.length * rowH }}>
+        <div className="relative mt-4" style={{ height: BARS.length * rowH }}>
           {/* Phase bands */}
           {GANTT_PHASES.map((p) => {
             const meta = PHASE_META[p.key];
@@ -264,6 +289,18 @@ function GanttChart() {
               style={{ left: `${pct(u)}%` }}
             />
           ))}
+          {/* Milestone vertical lines */}
+          {[
+            { pos: 1, color: "#0A0A0A" },
+            { pos: 6, color: "#4C63C7" },
+            { pos: 8, color: "#2E9668" },
+          ].map((m) => (
+            <div
+              key={m.pos}
+              className="absolute top-0 bottom-0 w-px opacity-25"
+              style={{ left: `${pct(m.pos)}%`, background: m.color, backgroundImage: `linear-gradient(to bottom, ${m.color} 50%, transparent 50%)`, backgroundSize: "1px 6px" }}
+            />
+          ))}
           {/* Task bars */}
           {BARS.map((b, i) => {
             const meta = PHASE_META[b.phase];
@@ -279,12 +316,12 @@ function GanttChart() {
                 }}
               >
                 <div
-                  className={`h-6 rounded-full flex items-center gap-1.5 px-2 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
+                  className={`h-8 rounded-full flex items-center gap-2 px-3 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
                   style={{ background: meta.bar }}
                   title={b.label}
                 >
-                  <span className="text-[9.5px] font-semibold text-white/85 shrink-0 tracking-wide">{b.week}</span>
-                  <span className="text-[10.5px] font-medium text-white truncate">{b.label}</span>
+                  <span className="text-[10px] font-semibold text-white/85 shrink-0 tracking-wide">{b.week}</span>
+                  <span className="text-[11.5px] font-medium text-white truncate">{b.label}</span>
                 </div>
               </div>
             );
@@ -605,44 +642,44 @@ export default function Engagement() {
 
       <main>
         {/* ============================================================
-            HERO — stacked: copy on top, Gantt below, all in one view
+            HERO — fills viewport, stacked layout with dashboard feel
         ============================================================ */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden" style={{ minHeight: "calc(100vh - 68px)" }}>
           <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-4 lg:pt-6 pb-4 lg:pb-6">
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-10 pb-8 lg:pb-10 flex flex-col" style={{ minHeight: "calc(100vh - 68px)" }}>
             {/* Copy row */}
-            <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-center">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-7 animate-fade-up">
                 <span className="kbd-chip" data-testid="engagement-eyebrow">
-                  <Sparkles size={11} /> The engagement
+                  <Sparkles size={12} /> The engagement
                 </span>
 
                 <h1
-                  className="mt-2 font-serif-display text-2xl sm:text-[1.6rem] leading-[1.1] tracking-tight"
+                  className="mt-4 font-serif-display text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.05] tracking-tight"
                   data-testid="engagement-heading"
                 >
                   What working with FinBoard <span className="italic">looks like</span>.
                 </h1>
 
                 <p
-                  className="mt-2 max-w-[62ch] text-[12.5px] leading-[1.55] text-[#0A0A0A]/75"
+                  className="mt-4 max-w-xl text-[14px] leading-relaxed text-[#0A0A0A]/75"
                   data-testid="engagement-subhead"
                 >
                   A forward-deployed team that goes from the first call to a live workflow in about eight weeks. Weekly check-ins, and you pay nothing until it is deployed.
                 </p>
 
-                <div className="mt-3 flex flex-wrap items-center gap-2.5">
+                <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
                     onClick={openDemo}
                     data-testid="engagement-book-demo-button"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-[#0A0A0A] text-white px-3.5 py-2 text-[12.5px] font-medium hover:bg-[#1A1A1A] transition-colors"
+                    className="btn-primary"
                   >
-                    Book an intro call <ArrowRight size={13} />
+                    Book an intro call <ArrowRight size={16} />
                   </button>
                   <a
                     href="#plan"
                     data-testid="engagement-timeline-link"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-2 text-[12.5px] font-medium hover:bg-[#F5F0E8] transition-colors"
+                    className="btn-secondary"
                   >
                     See the plan
                   </a>
@@ -655,19 +692,17 @@ export default function Engagement() {
                 style={{ animationDelay: "120ms" }}
                 data-testid="engagement-glance"
               >
-                <div className="grid grid-cols-3 gap-0 rounded-lg border border-line bg-white overflow-hidden divide-x divide-line">
+                <div className="grid grid-cols-3 gap-0 rounded-xl border border-line bg-white overflow-hidden divide-x divide-line">
                   {GLANCE.map(({ icon: GIcon, value, label }) => (
-                    <div key={label} className="p-2.5 flex items-start gap-2">
-                      <span className="mt-0.5 text-[#0A0A0A]/55 shrink-0">
-                        <GIcon size={12} />
+                    <div key={label} className="p-3.5">
+                      <span className="inline-flex items-center gap-1.5 text-[#0A0A0A]/55">
+                        <GIcon size={13} />
                       </span>
-                      <div className="min-w-0">
-                        <div className="font-serif-display text-[0.95rem] leading-none tracking-tight">
-                          {value}
-                        </div>
-                        <div className="mt-1 text-[10px] text-[#0A0A0A]/55 leading-snug">
-                          {label}
-                        </div>
+                      <div className="mt-2 font-serif-display text-[1.15rem] leading-none tracking-tight">
+                        {value}
+                      </div>
+                      <div className="mt-1.5 text-[10.5px] text-[#0A0A0A]/55 leading-snug">
+                        {label}
                       </div>
                     </div>
                   ))}
@@ -675,29 +710,29 @@ export default function Engagement() {
               </div>
             </div>
 
-            {/* Gantt — visual hero, full width */}
+            {/* Gantt — visual hero, fills remaining vertical space */}
             <div
               id="timeline"
-              className="scroll-mt-20 mt-3 lg:mt-4 animate-fade-up"
+              className="scroll-mt-20 mt-6 lg:mt-8 animate-fade-up flex-1 flex flex-col"
               style={{ animationDelay: "180ms" }}
             >
-              <div className="rounded-xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
+              <div className="rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)] flex flex-col flex-1">
                 {/* Card header with title + legend */}
-                <div className="flex flex-wrap items-center justify-between gap-2 px-3 lg:px-4 py-2 border-b border-line bg-[#F9F6F0]">
-                  <div className="flex items-baseline gap-2">
-                    <div className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#0A0A0A]/60">
+                <div className="flex flex-wrap items-center justify-between gap-2 px-4 lg:px-6 py-3 border-b border-line bg-[#F9F6F0]">
+                  <div className="flex items-baseline gap-3">
+                    <div className="text-[10.5px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]/70">
                       The timeline
                     </div>
-                    <div className="text-[11px] text-[#0A0A0A]/55">
+                    <div className="text-[12px] text-[#0A0A0A]/55">
                       First call to live workflow · ~8 weeks
                     </div>
                   </div>
                   {/* Legend */}
-                  <div className="flex flex-wrap items-center gap-1">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     {Object.entries(PHASE_META).map(([k, meta]) => (
                       <span
                         key={k}
-                        className={`inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5 text-[9.5px] font-medium ${meta.chip}`}
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10.5px] font-medium ${meta.chip}`}
                       >
                         <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
                         {meta.label}
@@ -707,9 +742,41 @@ export default function Engagement() {
                   </div>
                 </div>
 
-                {/* Gantt body */}
-                <div className="p-3 lg:p-4">
+                {/* Gantt body — grows */}
+                <div className="p-4 lg:p-6 flex-1">
                   <GanttChart />
+                </div>
+
+                {/* Footer strip with promises */}
+                <div className="border-t border-line bg-[#F9F6F0] px-4 lg:px-6 py-3">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-[#0A0A0A]/70">
+                    <div className="flex items-center gap-2">
+                      <span className="h-6 w-6 rounded-full bg-white border border-line grid place-items-center">
+                        <ShieldCheck size={12} className="text-emerald-600" />
+                      </span>
+                      <span><span className="font-semibold text-[#0A0A0A]">Pay on deploy</span> — nothing upfront</span>
+                    </div>
+                    <div className="hidden sm:block h-4 w-px bg-line" />
+                    <div className="flex items-center gap-2">
+                      <span className="h-6 w-6 rounded-full bg-white border border-line grid place-items-center">
+                        <CalendarClock size={12} />
+                      </span>
+                      <span><span className="font-semibold text-[#0A0A0A]">Weekly check-in</span> — call, Slack, or Loom</span>
+                    </div>
+                    <div className="hidden sm:block h-4 w-px bg-line" />
+                    <div className="flex items-center gap-2">
+                      <span className="h-6 w-6 rounded-full bg-white border border-line grid place-items-center">
+                        <Repeat size={12} />
+                      </span>
+                      <span><span className="font-semibold text-[#0A0A0A]">One workflow live.</span> Then the next.</span>
+                    </div>
+                    <a
+                      href="#plan"
+                      className="ml-auto inline-flex items-center gap-1 text-[11.5px] font-medium text-[#0A0A0A] hover:opacity-70 transition-opacity"
+                    >
+                      Week-by-week detail <ArrowRight size={11} />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
