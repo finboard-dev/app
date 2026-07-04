@@ -362,92 +362,233 @@ function PhaseTag({ phase, className = "" }) {
 }
 
 /* -------------------------------------------------------------- */
-/* Compact accordion timeline                                       */
+/* Spreadsheet-style plan table                                     */
 /* -------------------------------------------------------------- */
 
-function TimelineRow({ step, expanded, onToggle }) {
+/**
+ * Grid layout (desktop):
+ *   [ #row ][ WEEK ][ PHASE ][ MILESTONE ][ WHAT HAPPENS ][ DETAILS ]
+ *   40px    88px     150px     220px         1fr             90px
+ */
+const CELL_BASE =
+  "px-3 py-2.5 text-[12.5px] leading-snug border-r border-line last:border-r-0";
+const HEADER_CELL_BASE =
+  "px-3 py-2 text-[10px] uppercase tracking-[0.16em] font-semibold text-[#0A0A0A]/55 bg-[#EFEAE0] border-r border-line last:border-r-0 select-none";
+const ROW_GRID =
+  "grid grid-cols-[40px_88px_150px_220px_1fr_90px] min-w-[820px]";
+
+function SheetToolbar({ onExpandAll, allExpanded }) {
+  return (
+    <div className="flex items-center gap-3 px-3 py-2 border-b border-line bg-white">
+      {/* Traffic light dots */}
+      <span className="flex gap-1.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#E8A94B]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#4C63C7]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#2E9668]" />
+      </span>
+
+      {/* File name */}
+      <div className="flex items-center gap-2 text-[12px] text-[#0A0A0A]/70">
+        <span className="font-mono text-[#0A0A0A]/90">engagement_plan.xlsx</span>
+        <span className="text-[#0A0A0A]/35">·</span>
+        <span className="text-[11.5px] text-[#0A0A0A]/50">9 rows · 6 cols</span>
+      </div>
+
+      {/* Right side actions */}
+      <div className="ml-auto flex items-center gap-2">
+        <button
+          type="button"
+          onClick={onExpandAll}
+          className="text-[11.5px] px-2 py-1 rounded border border-line bg-white hover:bg-[#F9F6F0] transition-colors text-[#0A0A0A]/70"
+        >
+          {allExpanded ? "Collapse all" : "Expand all"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ColumnHeader() {
+  return (
+    <div className={`${ROW_GRID} border-b border-line`}>
+      <div className={`${HEADER_CELL_BASE} text-center bg-[#EFEAE0]`}>#</div>
+      <div className={HEADER_CELL_BASE}>Week</div>
+      <div className={HEADER_CELL_BASE}>Phase</div>
+      <div className={HEADER_CELL_BASE}>Milestone</div>
+      <div className={HEADER_CELL_BASE}>What happens</div>
+      <div className={`${HEADER_CELL_BASE} text-center`}>Details</div>
+    </div>
+  );
+}
+
+function AnnotationRow({ children, tone = "get-started" }) {
+  const meta = PHASE_META[tone];
+  return (
+    <div className="border-b border-line grid grid-cols-[40px_1fr] min-w-[820px]">
+      <div
+        className="border-r border-line bg-[#EFEAE0] flex items-center justify-center"
+        aria-hidden
+      >
+        <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
+      </div>
+      <div className="px-3 py-2 flex items-center gap-3">{children}</div>
+    </div>
+  );
+}
+
+function PhaseBandRow({ phaseKey }) {
+  const meta = PHASE_META[phaseKey];
+  return (
+    <AnnotationRow tone={phaseKey}>
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-sm border px-2 py-0.5 text-[10.5px] font-medium uppercase tracking-[0.16em] ${meta.chip}`}
+      >
+        {meta.label}
+      </span>
+      <span className="text-[11.5px] text-[#0A0A0A]/55 font-mono">{meta.weeks}</span>
+    </AnnotationRow>
+  );
+}
+
+function CheckinRow() {
+  return (
+    <div
+      className="border-b border-line grid grid-cols-[40px_1fr] min-w-[820px] bg-[#FBF7EF]"
+      data-testid="engagement-checkin-note"
+    >
+      <div className="border-r border-line bg-[#EFEAE0] flex items-center justify-center" aria-hidden>
+        <CalendarClock size={12} className="text-[#0A0A0A]/60" />
+      </div>
+      <div className="px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/80">
+          Note
+        </span>
+        <span className="text-[12.5px] text-[#0A0A0A]/80">
+          <span className="font-semibold">Weekly check-in</span>{" "}
+          <span className="text-[#0A0A0A]/60">
+            — every week, whichever fits your team.
+          </span>
+        </span>
+        <span className="ml-auto flex flex-wrap gap-1.5">
+          {CHECKIN_CHANNELS.map(({ icon: CIcon, label }) => (
+            <span
+              key={label}
+              className="inline-flex items-center gap-1 rounded border border-line bg-white px-1.5 py-0.5 text-[10.5px] text-[#0A0A0A]/70"
+            >
+              <CIcon size={10} /> {label}
+            </span>
+          ))}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function SpreadsheetRow({ step, expanded, onToggle, rowIndex }) {
   const meta = PHASE_META[step.phase];
   const SIcon = step.icon;
   const isExpandable = Boolean(step.points || step.highlight);
+  const detailCount = (step.points ? step.points.length : 0) + (step.highlight ? 1 : 0);
 
   return (
     <div
-      className="group"
+      className="border-b border-line last:border-b-0"
       data-testid={`engagement-step-${step.week.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      <button
-        type="button"
+      <div
+        className={`${ROW_GRID} group ${isExpandable ? "cursor-pointer hover:bg-[#FBF7EF]" : ""} ${expanded ? "bg-[#FBF7EF]" : "bg-white"} transition-colors`}
         onClick={isExpandable ? onToggle : undefined}
-        className={`w-full flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3.5 text-left transition-colors ${isExpandable ? "hover:bg-[#F9F6F0] cursor-pointer" : "cursor-default"}`}
-        aria-expanded={expanded}
+        role={isExpandable ? "button" : undefined}
+        aria-expanded={isExpandable ? expanded : undefined}
       >
-        {/* Number */}
-        <span className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 rounded-lg border border-line bg-white grid place-items-center font-serif-display text-sm font-semibold text-[#0A0A0A]/80">
-          {step.n}
-        </span>
-
-        {/* Week + phase dot */}
-        <div className="flex items-center gap-2 shrink-0 w-[70px] sm:w-[80px]">
-          <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
-          <span className="text-[11px] font-medium uppercase tracking-wider text-[#0A0A0A]/60">
-            {step.week}
-          </span>
+        {/* Row number gutter */}
+        <div className="px-2 py-2.5 bg-[#EFEAE0] border-r border-line text-center text-[11px] font-mono text-[#0A0A0A]/55 select-none group-hover:bg-[#E5E0D2]">
+          {rowIndex}
         </div>
 
-        {/* Icon */}
-        <span className="hidden sm:grid h-8 w-8 shrink-0 rounded-md border border-line bg-[#F9F6F0] place-items-center">
-          <SIcon size={14} />
-        </span>
-
-        {/* Title + body */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[14px] font-semibold text-[#0A0A0A]">{step.title}</span>
-            {step.time && (
-              <span className="inline-flex items-center gap-1 text-[11px] text-[#0A0A0A]/50">
-                <Timer size={11} /> {step.time}
-              </span>
-            )}
-          </div>
-          <p className="mt-0.5 text-[12.5px] leading-snug text-[#0A0A0A]/60 line-clamp-1">
-            {step.body}
-          </p>
+        {/* Week */}
+        <div className={CELL_BASE}>
+          <div className="font-mono font-medium text-[#0A0A0A]">{step.week}</div>
+          {step.time && (
+            <div className="mt-0.5 inline-flex items-center gap-1 text-[10.5px] text-[#0A0A0A]/50">
+              <Timer size={10} /> {step.time}
+            </div>
+          )}
         </div>
 
-        {/* Expand chevron */}
-        {isExpandable ? (
+        {/* Phase */}
+        <div className={CELL_BASE}>
           <span
-            className={`h-7 w-7 shrink-0 grid place-items-center rounded-full border border-line bg-white text-[#0A0A0A]/60 transition-transform ${expanded ? "rotate-180" : ""}`}
-            aria-hidden
+            className={`inline-flex items-center gap-1.5 rounded-sm border px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] ${meta.chip}`}
           >
-            <ChevronDown size={14} />
+            <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+            {meta.label}
           </span>
-        ) : (
-          <span className="h-7 w-7 shrink-0" aria-hidden />
-        )}
-      </button>
+        </div>
 
-      {/* Expanded content */}
+        {/* Milestone */}
+        <div className={`${CELL_BASE} flex items-center gap-2`}>
+          <span className="h-6 w-6 shrink-0 rounded-sm border border-line bg-[#F5F0E8] grid place-items-center">
+            <SIcon size={12} />
+          </span>
+          <span className="font-semibold text-[#0A0A0A] truncate">{step.title}</span>
+        </div>
+
+        {/* What happens */}
+        <div className={`${CELL_BASE} text-[#0A0A0A]/75`}>
+          <span className="line-clamp-2">{step.body}</span>
+        </div>
+
+        {/* Details */}
+        <div className={`${CELL_BASE} text-center`}>
+          {isExpandable ? (
+            <span
+              className={`inline-flex items-center gap-1 rounded-sm border px-1.5 py-1 text-[10.5px] font-mono transition-colors ${expanded ? "bg-[#0A0A0A] text-white border-[#0A0A0A]" : "bg-white text-[#0A0A0A]/70 border-line"}`}
+            >
+              <ChevronDown
+                size={11}
+                className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+              />
+              {detailCount}
+            </span>
+          ) : (
+            <span className="text-[#0A0A0A]/30 font-mono text-[11px]">—</span>
+          )}
+        </div>
+      </div>
+
+      {/* Expanded detail row */}
       {isExpandable && expanded && (
-        <div className="px-4 sm:px-5 pb-5 pt-1 animate-fade-up">
-          <div className="ml-11 sm:ml-[9.75rem] max-w-2xl">
+        <div
+          className="grid grid-cols-[40px_1fr] min-w-[820px] border-t border-line bg-[#FBF7EF] animate-fade-up"
+        >
+          <div className="bg-[#EFEAE0] border-r border-line" aria-hidden />
+          <div className="px-4 py-4">
             {step.points && (
-              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
-                {step.points.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/80">
-                    <Check size={13} className="mt-0.5 shrink-0 text-emerald-600" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.16em] font-semibold text-[#0A0A0A]/55 mb-2">
+                  Agenda / deliverables
+                </div>
+                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                  {step.points.map((p) => (
+                    <li
+                      key={p}
+                      className="flex items-start gap-2 text-[12.5px] text-[#0A0A0A]/80"
+                    >
+                      <Check size={12} className="mt-0.5 shrink-0 text-emerald-600" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
             {step.highlight && (
               <div
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#0A0A0A] text-white text-[12.5px] px-3 py-1.5"
+                className="mt-3 inline-flex items-center gap-2 rounded bg-[#0A0A0A] text-white text-[12px] px-2.5 py-1.5"
                 data-testid="engagement-pay-on-value"
               >
-                <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
+                <ShieldCheck size={12} className="text-emerald-400 shrink-0" />
                 <span>{step.highlight}</span>
               </div>
             )}
@@ -458,46 +599,25 @@ function TimelineRow({ step, expanded, onToggle }) {
   );
 }
 
-function CheckinStrip() {
+function SheetTabs() {
   return (
-    <div
-      className="flex flex-wrap items-center gap-3 px-4 sm:px-5 py-3 bg-[#F9F6F0]"
-      data-testid="engagement-checkin-note"
-    >
-      <span className="h-8 w-8 shrink-0 rounded-lg bg-[#0A0A0A] text-white grid place-items-center">
-        <CalendarClock size={14} />
+    <div className="flex items-center gap-1 px-3 py-1.5 border-t border-line bg-[#EFEAE0]">
+      {Object.entries(PHASE_META).map(([k, meta], i) => (
+        <span
+          key={k}
+          className={`inline-flex items-center gap-1.5 rounded-t-sm px-2 py-1 text-[10.5px] font-mono ${
+            i === 0
+              ? "bg-white text-[#0A0A0A] border-t border-x border-line -mb-px"
+              : "text-[#0A0A0A]/55 hover:bg-white/60"
+          }`}
+        >
+          <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+          {meta.label}
+        </span>
+      ))}
+      <span className="ml-auto text-[10.5px] font-mono text-[#0A0A0A]/40">
+        Sheet 1 of 1
       </span>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-semibold text-[#0A0A0A]">Weekly check-in on progress</div>
-        <div className="text-[12px] text-[#0A0A0A]/60">
-          Every week, whichever fits your team.
-        </div>
-      </div>
-      <div className="flex flex-wrap gap-1.5">
-        {CHECKIN_CHANNELS.map(({ icon: CIcon, label }) => (
-          <span
-            key={label}
-            className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-2 py-0.5 text-[11px] text-[#0A0A0A]/70"
-          >
-            <CIcon size={11} /> {label}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PhaseHeader({ phaseKey, first = false }) {
-  const meta = PHASE_META[phaseKey];
-  return (
-    <div
-      className={`flex items-center gap-3 px-4 sm:px-5 py-2.5 bg-[#F5F0E8] border-y border-line ${first ? "border-t-0" : ""}`}
-    >
-      <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
-      <span className="text-[10.5px] uppercase tracking-[0.18em] font-semibold text-[#0A0A0A]/80">
-        {meta.label}
-      </span>
-      <span className="text-[11px] text-[#0A0A0A]/45">· {meta.weeks}</span>
     </div>
   );
 }
@@ -648,48 +768,49 @@ export default function Engagement() {
               </p>
             </div>
 
-            {/* Compact accordion timeline */}
+            {/* Spreadsheet-style plan table */}
             <div
-              className="mt-10 card-white overflow-hidden"
+              className="mt-10 rounded-lg border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]"
               data-testid="engagement-detail"
             >
-              {PHASE_ORDER.map((phaseKey, phaseIdx) => {
-                const phaseSteps = STEPS.filter((s) => s.phase === phaseKey);
-                return (
-                  <div key={phaseKey} data-testid={`engagement-phase-${phaseKey}`}>
-                    <PhaseHeader phaseKey={phaseKey} first={phaseIdx === 0} />
-                    {phaseKey === "build-roll-out" && <CheckinStrip />}
-                    <div className="divide-y divide-line">
-                      {phaseSteps.map((step) => (
-                        <TimelineRow
-                          key={step.n}
-                          step={step}
-                          expanded={expandedRows.has(step.n)}
-                          onToggle={() => toggleRow(step.n)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 flex items-center justify-between flex-wrap gap-2 text-[12px] text-[#0A0A0A]/55">
-              <span>Tap any row to see the details.</span>
-              <button
-                type="button"
-                onClick={() => {
+              <SheetToolbar
+                allExpanded={STEPS.filter((s) => s.points || s.highlight).every((s) => expandedRows.has(s.n))}
+                onExpandAll={() => {
                   const rich = STEPS.filter((s) => s.points || s.highlight).map((s) => s.n);
                   const allExpanded = rich.every((n) => expandedRows.has(n));
                   if (allExpanded) setExpandedRows(new Set());
                   else setExpandedRows(new Set(rich));
                 }}
-                className="underline underline-offset-2 hover:text-[#0A0A0A] transition-colors"
-              >
-                {STEPS.filter((s) => s.points || s.highlight).every((s) => expandedRows.has(s.n))
-                  ? "Collapse all"
-                  : "Expand all"}
-              </button>
+              />
+
+              <div className="overflow-x-auto">
+                <ColumnHeader />
+                {PHASE_ORDER.map((phaseKey) => {
+                  const phaseSteps = STEPS.filter((s) => s.phase === phaseKey);
+                  return (
+                    <div key={phaseKey} data-testid={`engagement-phase-${phaseKey}`}>
+                      <PhaseBandRow phaseKey={phaseKey} />
+                      {phaseKey === "build-roll-out" && <CheckinRow />}
+                      {phaseSteps.map((step, idx) => (
+                        <SpreadsheetRow
+                          key={step.n}
+                          step={step}
+                          rowIndex={step.n}
+                          expanded={expandedRows.has(step.n)}
+                          onToggle={() => toggleRow(step.n)}
+                        />
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <SheetTabs />
+            </div>
+
+            <div className="mt-3 flex items-center gap-2 text-[11.5px] text-[#0A0A0A]/50 font-mono">
+              <span>▲</span>
+              <span>Click any row with a details chip to open its cells.</span>
             </div>
           </div>
         </section>
