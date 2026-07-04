@@ -3,6 +3,7 @@ import {
   ArrowRight, Check, Handshake, ClipboardList, Layers,
   FileText, GitBranch, FlaskConical, Rocket, Target, Repeat,
   Phone, MessageSquare, Video, ShieldCheck, CalendarClock, Sparkles, Timer,
+  ChevronDown,
 } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -361,88 +362,142 @@ function PhaseTag({ phase, className = "" }) {
 }
 
 /* -------------------------------------------------------------- */
-/* Vertical zig-zag timeline                                        */
+/* Compact accordion timeline                                       */
 /* -------------------------------------------------------------- */
 
-function StepCard({ step, side }) {
+function TimelineRow({ step, expanded, onToggle }) {
   const meta = PHASE_META[step.phase];
   const SIcon = step.icon;
+  const isExpandable = Boolean(step.points || step.highlight);
+
   return (
     <div
-      className={`card-white p-6 hover:-translate-y-0.5 transition-transform relative ${side === "left" ? "lg:mr-8" : "lg:ml-8"}`}
+      className="group"
       data-testid={`engagement-step-${step.week.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      {/* Connector arrow to spine (desktop) */}
-      <span
-        aria-hidden
-        className={`hidden lg:block absolute top-8 h-px w-8 bg-line ${side === "left" ? "-right-8" : "-left-8"}`}
-      />
+      <button
+        type="button"
+        onClick={isExpandable ? onToggle : undefined}
+        className={`w-full flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3.5 text-left transition-colors ${isExpandable ? "hover:bg-[#F9F6F0] cursor-pointer" : "cursor-default"}`}
+        aria-expanded={expanded}
+      >
+        {/* Number */}
+        <span className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 rounded-lg border border-line bg-white grid place-items-center font-serif-display text-sm font-semibold text-[#0A0A0A]/80">
+          {step.n}
+        </span>
 
-      <div className="flex items-center gap-2.5 flex-wrap">
-        <span className="h-9 w-9 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center shrink-0">
-          <SIcon size={16} />
-        </span>
-        <span className="inline-flex items-center rounded-full bg-[#0A0A0A] text-white text-[10.5px] font-medium px-2 py-0.5">
-          {step.week}
-        </span>
-        {step.time && (
-          <span className="inline-flex items-center gap-1 text-[11px] text-[#0A0A0A]/50">
-            <Timer size={11} /> {step.time}
+        {/* Week + phase dot */}
+        <div className="flex items-center gap-2 shrink-0 w-[70px] sm:w-[80px]">
+          <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+          <span className="text-[11px] font-medium uppercase tracking-wider text-[#0A0A0A]/60">
+            {step.week}
           </span>
+        </div>
+
+        {/* Icon */}
+        <span className="hidden sm:grid h-8 w-8 shrink-0 rounded-md border border-line bg-[#F9F6F0] place-items-center">
+          <SIcon size={14} />
+        </span>
+
+        {/* Title + body */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-[14px] font-semibold text-[#0A0A0A]">{step.title}</span>
+            {step.time && (
+              <span className="inline-flex items-center gap-1 text-[11px] text-[#0A0A0A]/50">
+                <Timer size={11} /> {step.time}
+              </span>
+            )}
+          </div>
+          <p className="mt-0.5 text-[12.5px] leading-snug text-[#0A0A0A]/60 line-clamp-1">
+            {step.body}
+          </p>
+        </div>
+
+        {/* Expand chevron */}
+        {isExpandable ? (
+          <span
+            className={`h-7 w-7 shrink-0 grid place-items-center rounded-full border border-line bg-white text-[#0A0A0A]/60 transition-transform ${expanded ? "rotate-180" : ""}`}
+            aria-hidden
+          >
+            <ChevronDown size={14} />
+          </span>
+        ) : (
+          <span className="h-7 w-7 shrink-0" aria-hidden />
         )}
-        <PhaseTag phase={step.phase} className="ml-auto" />
-      </div>
+      </button>
 
-      <div className="mt-4 font-serif-display text-xl leading-tight">{step.title}</div>
-      <p className="mt-1.5 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{step.body}</p>
+      {/* Expanded content */}
+      {isExpandable && expanded && (
+        <div className="px-4 sm:px-5 pb-5 pt-1 animate-fade-up">
+          <div className="ml-11 sm:ml-[9.75rem] max-w-2xl">
+            {step.points && (
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                {step.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/80">
+                    <Check size={13} className="mt-0.5 shrink-0 text-emerald-600" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-      {step.points && (
-        <ul className="mt-4 space-y-2">
-          {step.points.map((p) => (
-            <li key={p} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/80">
-              <Check size={14} className="mt-0.5 shrink-0 text-emerald-600" />
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {step.highlight && (
-        <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#0A0A0A] text-white text-[13px] px-3 py-2" data-testid="engagement-pay-on-value">
-          <ShieldCheck size={15} className="text-emerald-400 shrink-0" />
-          <span>{step.highlight}</span>
+            {step.highlight && (
+              <div
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#0A0A0A] text-white text-[12.5px] px-3 py-1.5"
+                data-testid="engagement-pay-on-value"
+              >
+                <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
+                <span>{step.highlight}</span>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-function CheckinBanner() {
+function CheckinStrip() {
   return (
     <div
-      className="relative rounded-2xl border border-line bg-white p-6 lg:p-7 overflow-hidden"
+      className="flex flex-wrap items-center gap-3 px-4 sm:px-5 py-3 bg-[#F9F6F0]"
       data-testid="engagement-checkin-note"
     >
-      <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#0A0A0A]/[0.04] blur-2xl" aria-hidden />
-      <div className="flex flex-col md:flex-row md:items-center gap-5">
-        <span className="h-11 w-11 shrink-0 rounded-xl bg-[#0A0A0A] text-white grid place-items-center">
-          <CalendarClock size={18} />
-        </span>
-        <div className="flex-1 min-w-0">
-          <div className="text-[11px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Every week, without fail</div>
-          <div className="mt-1 font-serif-display text-xl leading-tight">Weekly check-in on progress</div>
-          <p className="mt-1.5 text-[13.5px] leading-relaxed text-[#0A0A0A]/70 max-w-2xl">
-            Every week we share where things stand, on a call, over Slack, or as a recorded Loom, whatever fits your team.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2 md:justify-end">
-          {CHECKIN_CHANNELS.map(({ icon: CIcon, label }) => (
-            <span key={label} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-[#F9F6F0] px-3 py-1.5 text-[12px] text-[#0A0A0A]/75">
-              <CIcon size={13} /> {label}
-            </span>
-          ))}
+      <span className="h-8 w-8 shrink-0 rounded-lg bg-[#0A0A0A] text-white grid place-items-center">
+        <CalendarClock size={14} />
+      </span>
+      <div className="flex-1 min-w-0">
+        <div className="text-[13px] font-semibold text-[#0A0A0A]">Weekly check-in on progress</div>
+        <div className="text-[12px] text-[#0A0A0A]/60">
+          Every week, whichever fits your team.
         </div>
       </div>
+      <div className="flex flex-wrap gap-1.5">
+        {CHECKIN_CHANNELS.map(({ icon: CIcon, label }) => (
+          <span
+            key={label}
+            className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-2 py-0.5 text-[11px] text-[#0A0A0A]/70"
+          >
+            <CIcon size={11} /> {label}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PhaseHeader({ phaseKey, first = false }) {
+  const meta = PHASE_META[phaseKey];
+  return (
+    <div
+      className={`flex items-center gap-3 px-4 sm:px-5 py-2.5 bg-[#F5F0E8] border-y border-line ${first ? "border-t-0" : ""}`}
+    >
+      <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
+      <span className="text-[10.5px] uppercase tracking-[0.18em] font-semibold text-[#0A0A0A]/80">
+        {meta.label}
+      </span>
+      <span className="text-[11px] text-[#0A0A0A]/45">· {meta.weeks}</span>
     </div>
   );
 }
@@ -457,12 +512,24 @@ export default function Engagement() {
 
   React.useEffect(() => { window.scrollTo({ top: 0 }); }, []);
 
-  // Group steps by phase for the zig-zag timeline, but keep global n for spine dots
-  const grouped = React.useMemo(() => {
-    const map = { "get-started": [], "build-roll-out": [], "prove-expand": [] };
-    STEPS.forEach((s) => map[s.phase].push(s));
-    return map;
-  }, []);
+  // Ordered phase keys for compact timeline
+  const PHASE_ORDER = ["get-started", "build-roll-out", "prove-expand"];
+
+  // Track expanded rows (default: expand rows with rich content, i.e. Week 1 items)
+  const [expandedRows, setExpandedRows] = React.useState(() => {
+    const s = new Set();
+    STEPS.forEach((step) => {
+      if (step.points || step.highlight) s.add(step.n);
+    });
+    return s;
+  });
+  const toggleRow = (n) =>
+    setExpandedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(n)) next.delete(n);
+      else next.add(n);
+      return next;
+    });
 
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="engagement-page">
@@ -581,72 +648,48 @@ export default function Engagement() {
               </p>
             </div>
 
-            {/* Journey rail */}
-            <div className="mt-14 relative" data-testid="engagement-detail">
-              {/* Central spine (desktop only) */}
-              <div aria-hidden className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-line" />
-
-              {["get-started", "build-roll-out", "prove-expand"].map((phaseKey, phaseIdx) => {
-                const meta = PHASE_META[phaseKey];
+            {/* Compact accordion timeline */}
+            <div
+              className="mt-10 card-white overflow-hidden"
+              data-testid="engagement-detail"
+            >
+              {PHASE_ORDER.map((phaseKey, phaseIdx) => {
+                const phaseSteps = STEPS.filter((s) => s.phase === phaseKey);
                 return (
-                  <div key={phaseKey} className="relative" data-testid={`engagement-phase-${phaseKey}`}>
-                    {/* Phase divider */}
-                    <div className={`relative flex items-center gap-4 ${phaseIdx === 0 ? "mb-8" : "my-14"}`}>
-                      <div className="hidden lg:block flex-1 h-px bg-line" />
-                      <div className="mx-auto flex items-center gap-3 rounded-full border border-line bg-white px-4 py-2 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
-                        <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
-                        <span className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#0A0A0A]/80">
-                          {meta.label}
-                        </span>
-                        <span className="text-[11px] text-[#0A0A0A]/45">· {meta.weeks}</span>
-                      </div>
-                      <div className="hidden lg:block flex-1 h-px bg-line" />
-                    </div>
-
-                    {/* Check-in banner (only before build-roll-out) */}
-                    {phaseKey === "build-roll-out" && (
-                      <div className="mb-10">
-                        <CheckinBanner />
-                      </div>
-                    )}
-
-                    {/* Steps */}
-                    <div className="space-y-10">
-                      {grouped[phaseKey].map((step, i) => {
-                        const side = i % 2 === 0 ? "left" : "right";
-                        return (
-                          <div
-                            key={step.title}
-                            className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch"
-                          >
-                            {/* Spine node (desktop) */}
-                            <span
-                              aria-hidden
-                              className={`hidden lg:grid place-items-center absolute top-6 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full border border-line bg-white shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-4 ring-[#F5F0E8]`}
-                            >
-                              <span className="font-serif-display text-sm font-semibold text-[#0A0A0A]/80">
-                                {step.n}
-                              </span>
-                            </span>
-
-                            {side === "left" ? (
-                              <>
-                                <StepCard step={step} side="left" />
-                                <div className="hidden lg:block" />
-                              </>
-                            ) : (
-                              <>
-                                <div className="hidden lg:block" />
-                                <StepCard step={step} side="right" />
-                              </>
-                            )}
-                          </div>
-                        );
-                      })}
+                  <div key={phaseKey} data-testid={`engagement-phase-${phaseKey}`}>
+                    <PhaseHeader phaseKey={phaseKey} first={phaseIdx === 0} />
+                    {phaseKey === "build-roll-out" && <CheckinStrip />}
+                    <div className="divide-y divide-line">
+                      {phaseSteps.map((step) => (
+                        <TimelineRow
+                          key={step.n}
+                          step={step}
+                          expanded={expandedRows.has(step.n)}
+                          onToggle={() => toggleRow(step.n)}
+                        />
+                      ))}
                     </div>
                   </div>
                 );
               })}
+            </div>
+
+            <div className="mt-6 flex items-center justify-between flex-wrap gap-2 text-[12px] text-[#0A0A0A]/55">
+              <span>Tap any row to see the details.</span>
+              <button
+                type="button"
+                onClick={() => {
+                  const rich = STEPS.filter((s) => s.points || s.highlight).map((s) => s.n);
+                  const allExpanded = rich.every((n) => expandedRows.has(n));
+                  if (allExpanded) setExpandedRows(new Set());
+                  else setExpandedRows(new Set(rich));
+                }}
+                className="underline underline-offset-2 hover:text-[#0A0A0A] transition-colors"
+              >
+                {STEPS.filter((s) => s.points || s.highlight).every((s) => expandedRows.has(s.n))
+                  ? "Collapse all"
+                  : "Expand all"}
+              </button>
             </div>
           </div>
         </section>
