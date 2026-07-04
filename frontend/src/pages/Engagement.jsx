@@ -483,7 +483,7 @@ export default function Engagement() {
                 </span>
 
                 <h1
-                  className="mt-5 font-serif-display text-4xl sm:text-5xl lg:text-[3.75rem] leading-[0.98] tracking-tight"
+                  className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight"
                   data-testid="engagement-heading"
                 >
                   What working with FinBoard <span className="italic">looks like</span>.
