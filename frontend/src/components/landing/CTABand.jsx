@@ -8,7 +8,7 @@ export default function CTABand({ onBookDemo }) {
         <div className="rounded-3xl bg-[#0A0A0A] text-white p-10 lg:p-16 grid md:grid-cols-12 gap-10 items-end" data-testid="cta-band">
           <div className="md:col-span-8">
             <div className="text-xs uppercase tracking-[0.22em] text-white/60">Talk to a forward-deployed engineer</div>
-            <h2 className="mt-3 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">
+            <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
               Bring every entity into one intelligent workspace.
             </h2>
             <p className="mt-4 text-white/70 max-w-xl">

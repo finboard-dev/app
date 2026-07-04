@@ -672,13 +672,6 @@ export default function Engagement() {
                   >
                     Book an intro call <ArrowRight size={16} />
                   </button>
-                  <a
-                    href="#plan"
-                    data-testid="engagement-timeline-link"
-                    className="btn-secondary"
-                  >
-                    See the plan
-                  </a>
                 </div>
               </div>
 
@@ -766,12 +759,6 @@ export default function Engagement() {
                       </span>
                       <span><span className="font-semibold text-[#0A0A0A]">One workflow live.</span> Then the next.</span>
                     </div>
-                    <a
-                      href="#plan"
-                      className="ml-auto inline-flex items-center gap-1 text-[11.5px] font-medium text-[#0A0A0A] hover:opacity-70 transition-opacity"
-                    >
-                      Week-by-week detail <ArrowRight size={11} />
-                    </a>
                   </div>
                 </div>
               </div>
@@ -780,73 +767,11 @@ export default function Engagement() {
         </section>
 
         {/* ============================================================
-            JOURNEY — spreadsheet-style plan
-        ============================================================ */}
-        <section id="plan" className="scroll-mt-20 relative border-t border-line">
-          <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
-            <div className="max-w-2xl">
-              <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Week by week</div>
-              <h2 className="mt-3 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
-                Nine weeks, <span className="italic">one workflow</span> live.
-              </h2>
-              <p className="mt-4 text-[14px] leading-relaxed text-[#0A0A0A]/60">
-                Every step below is a real meeting or deliverable. No surprises, no theatre — you always know what happens next.
-              </p>
-            </div>
-
-            {/* Spreadsheet-style plan table */}
-            <div
-              className="mt-10 rounded-lg border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04)]"
-              data-testid="engagement-detail"
-            >
-              <SheetToolbar
-                allExpanded={STEPS.filter((s) => s.points || s.highlight).every((s) => expandedRows.has(s.n))}
-                onExpandAll={() => {
-                  const rich = STEPS.filter((s) => s.points || s.highlight).map((s) => s.n);
-                  const allExpanded = rich.every((n) => expandedRows.has(n));
-                  if (allExpanded) setExpandedRows(new Set());
-                  else setExpandedRows(new Set(rich));
-                }}
-              />
-
-              <div className="overflow-x-auto">
-                <ColumnHeader />
-                {PHASE_ORDER.map((phaseKey) => {
-                  const phaseSteps = STEPS.filter((s) => s.phase === phaseKey);
-                  return (
-                    <div key={phaseKey} data-testid={`engagement-phase-${phaseKey}`}>
-                      <PhaseBandRow phaseKey={phaseKey} />
-                      {phaseKey === "build-roll-out" && <CheckinRow />}
-                      {phaseSteps.map((step, idx) => (
-                        <SpreadsheetRow
-                          key={step.n}
-                          step={step}
-                          rowIndex={step.n}
-                          expanded={expandedRows.has(step.n)}
-                          onToggle={() => toggleRow(step.n)}
-                        />
-                      ))}
-                    </div>
-                  );
-                })}
-              </div>
-
-              <SheetTabs />
-            </div>
-
-            <div className="mt-3 flex items-center gap-2 text-[11.5px] text-[#0A0A0A]/50 font-mono">
-              <span>▲</span>
-              <span>Click any row with a details chip to open its cells.</span>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
             CLOSING — dark card
         ============================================================ */}
-        <section className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+        <section className="max-w-6xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
           <div
-            className="relative overflow-hidden rounded-3xl bg-[#0A0A0A] text-white p-10 lg:p-14"
+            className="relative overflow-hidden rounded-3xl bg-[#0A0A0A] text-white p-8 lg:p-12"
             data-testid="engagement-closing"
           >
             {/* Decorative dots */}
@@ -854,15 +779,15 @@ export default function Engagement() {
               backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
               backgroundSize: "18px 18px",
             }} aria-hidden />
-            <div className="relative grid lg:grid-cols-12 gap-8 items-center">
+            <div className="relative grid lg:grid-cols-12 gap-6 items-center">
               <div className="lg:col-span-8">
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/50">
+                <div className="text-[10.5px] uppercase tracking-[0.22em] text-white/50">
                   Then we do it again
                 </div>
-                <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
+                <h2 className="mt-3 font-serif-display text-xl sm:text-2xl leading-[1.15] tracking-tight">
                   One workflow live. <span className="italic text-white/80">Then the next.</span>
                 </h2>
-                <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/70">
+                <p className="mt-3 max-w-xl text-[13.5px] leading-relaxed text-white/70">
                   Each engagement lands one workflow, proves it on your numbers, and sets up the next. Over time, your finance stack quietly becomes AI-native, one deployed workflow at a time.
                 </p>
               </div>
@@ -870,12 +795,12 @@ export default function Engagement() {
                 <button
                   onClick={openDemo}
                   data-testid="engagement-closing-cta"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#0A0A0A] px-5 py-3 font-medium text-[15px] hover:bg-[#F5F0E8] transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#0A0A0A] px-4 py-2.5 font-medium text-[13.5px] hover:bg-[#F5F0E8] transition-colors"
                 >
-                  Start with an intro call <ArrowRight size={16} />
+                  Start with an intro call <ArrowRight size={15} />
                 </button>
-                <div className="mt-3 flex items-center gap-2 text-[12px] text-white/55">
-                  <ShieldCheck size={13} className="text-emerald-400" />
+                <div className="mt-2.5 flex items-center gap-2 text-[11.5px] text-white/55">
+                  <ShieldCheck size={12} className="text-emerald-400" />
                   Pay nothing until it is deployed
                 </div>
               </div>
