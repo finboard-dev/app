@@ -185,7 +185,7 @@ const BARS = [
 ];
 
 function GanttChart() {
-  const rowH = 40;
+  const rowH = 32;
   return (
     <div className="overflow-x-auto" data-testid="engagement-gantt">
       <div className="min-w-[820px] px-2">
@@ -316,7 +316,7 @@ function GanttChart() {
                 }}
               >
                 <div
-                  className={`h-8 rounded-full flex items-center gap-2 px-3 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
+                  className={`h-7 rounded-full flex items-center gap-2 px-3 overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.06)] ring-1 ${meta.ring}`}
                   style={{ background: meta.bar }}
                   title={b.label}
                 >
@@ -650,12 +650,8 @@ export default function Engagement() {
             {/* Copy row */}
             <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-7 animate-fade-up">
-                <span className="kbd-chip" data-testid="engagement-eyebrow">
-                  <Sparkles size={12} /> The engagement
-                </span>
-
                 <h1
-                  className="mt-4 font-serif-display text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.05] tracking-tight"
+                  className="font-serif-display text-xl sm:text-2xl lg:text-[1.75rem] leading-[1.1] tracking-tight whitespace-nowrap"
                   data-testid="engagement-heading"
                 >
                   What working with FinBoard <span className="italic">looks like</span>.
