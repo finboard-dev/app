@@ -24,14 +24,17 @@ const VIEWS = [
 
 export default function HeroCarousel({ onViewChange }) {
   const [idx, setIdx] = React.useState(0);
+  const [prevIdx, setPrevIdx] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
 
   React.useEffect(() => {
     if (paused) return undefined;
-    // Every view dwells 3s, same time between each switch. The Business Data
-    // Hub's 4 output tabs cycle at 750ms each to complete once within that 3s.
-    const duration = 3000;
-    const t = setTimeout(() => setIdx((v) => (v + 1) % VIEWS.length), duration);
+    // Every view dwells 2.8s, snappy but readable.
+    const duration = 2800;
+    const t = setTimeout(() => {
+      setPrevIdx(idx);
+      setIdx((v) => (v + 1) % VIEWS.length);
+    }, duration);
     return () => clearTimeout(t);
   }, [paused, idx]);
 
@@ -39,6 +42,10 @@ export default function HeroCarousel({ onViewChange }) {
   React.useEffect(() => {
     if (onViewChange) onViewChange(VIEWS[idx].id);
   }, [idx, onViewChange]);
+
+  // Determine slide direction. New view (larger idx) enters from the right;
+  // old view exits to the left. On wrap-around (last→first), keep direction consistent.
+  const slidingForward = (idx - prevIdx + VIEWS.length) % VIEWS.length !== VIEWS.length - 1;
 
   return (
     <div
@@ -49,23 +56,33 @@ export default function HeroCarousel({ onViewChange }) {
     >
       <div className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]">
         <MockChrome viewLabel={VIEWS[idx].label} />
-        <div className="relative min-h-[420px] bg-white">
-          {VIEWS.map((v, i) => (
-            <div
-              key={v.id}
-              data-testid={`hero-carousel-view-${v.id}`}
-              className={`absolute inset-0 transition-all duration-700 ease-out ${
-                i === idx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
-              }`}
-            >
-              {v.id === "board" && <BoardView />}
-              {v.id === "warehouse" && <WarehouseView active={i === idx} />}
-              {v.id === "recon" && <ReconView active={i === idx} />}
-              {v.id === "people" && <PeopleView active={i === idx} />}
-              {v.id === "p2p" && <ProcureToPayView active={i === idx} />}
-              {v.id === "o2c" && <OrderToCashView active={i === idx} />}
-            </div>
-          ))}
+        <div className="relative min-h-[420px] bg-white overflow-hidden">
+          {VIEWS.map((v, i) => {
+            let position;
+            if (i === idx) {
+              position = "opacity-100 translate-x-0";
+            } else if (i === prevIdx) {
+              position = slidingForward
+                ? "opacity-0 -translate-x-6 pointer-events-none"
+                : "opacity-0 translate-x-6 pointer-events-none";
+            } else {
+              position = "opacity-0 translate-x-6 pointer-events-none";
+            }
+            return (
+              <div
+                key={v.id}
+                data-testid={`hero-carousel-view-${v.id}`}
+                className={`absolute inset-0 transition-all duration-500 ease-out ${position}`}
+              >
+                {v.id === "board" && <BoardView />}
+                {v.id === "warehouse" && <WarehouseView active={i === idx} />}
+                {v.id === "recon" && <ReconView active={i === idx} />}
+                {v.id === "people" && <PeopleView active={i === idx} />}
+                {v.id === "p2p" && <ProcureToPayView active={i === idx} />}
+                {v.id === "o2c" && <OrderToCashView active={i === idx} />}
+              </div>
+            );
+          })}
         </div>
 
         {/* Per-view caption strip */}
@@ -73,13 +90,19 @@ export default function HeroCarousel({ onViewChange }) {
           className="flex flex-nowrap items-center justify-between gap-3 px-4 py-2.5 border-t border-line bg-[#F9F6F0] text-[11px]"
           data-testid="hero-carousel-caption"
         >
-          <div className="text-[#0A0A0A]/70 min-w-0 flex items-center gap-2 truncate">
+          <div
+            key={`caption-${idx}`}
+            className="text-[#0A0A0A]/70 min-w-0 flex items-center gap-2 truncate animate-fade-up"
+          >
             <span className="font-medium text-[#0A0A0A] truncate">{VIEWS[idx].label}</span>
             <span className="text-[#0A0A0A]/30 shrink-0">·</span>
             <span className="shrink-0">Built for <span className="font-medium text-[#0A0A0A]">{VIEWS[idx].team}</span></span>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
-            <span className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-0.5 whitespace-nowrap">
+            <span
+              key={`days-${idx}`}
+              className="inline-flex items-center gap-1 rounded-full bg-white border border-line px-2 py-0.5 whitespace-nowrap animate-fade-up"
+            >
               <Timer size={10} /> {VIEWS[idx].days} days
             </span>
           </div>
