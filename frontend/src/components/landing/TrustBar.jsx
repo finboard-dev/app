@@ -18,7 +18,7 @@ export default function TrustBar() {
       className="border-y border-line bg-[#F5F0E8]"
       aria-label="Trusted by finance teams"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col sm:flex-row items-center gap-6">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12 flex flex-col sm:flex-row items-center gap-6">
         <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50 whitespace-nowrap">
           Trusted by finance teams at
         </div>

@@ -62,7 +62,7 @@ export default function BookDemoDialog({ open, onOpenChange }) {
             </div>
             <h3 className="mt-4 font-serif-display text-2xl tracking-tight">You're on our calendar.</h3>
             <p className="mt-2 text-sm text-[#0A0A0A]/70">
-              Thanks {form.name?.split(" ")[0] || "there"} &mdash; our team will reach out to <span className="font-medium">{form.email}</span> within one business day.
+              Thanks {form.name?.split(" ")[0] || "there"}, our team will reach out to <span className="font-medium">{form.email}</span> within one business day.
             </p>
             <button
               onClick={() => onOpenChange(false)}

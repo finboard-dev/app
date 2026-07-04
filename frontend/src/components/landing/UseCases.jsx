@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  Building2, GitMerge, BarChart3, TrendingUp, Users, ArrowUpRight, ArrowDown, ArrowUp,
-  RefreshCw, Zap, CheckCircle2, Sparkles,
+  Landmark, BarChart3, CircleDollarSign, Receipt,
+  ArrowUp, ArrowDown, RefreshCw, Zap, CheckCircle2, Sparkles, ShieldCheck,
 } from "lucide-react";
 
 /**
@@ -17,153 +17,147 @@ function useCycle(count, interval = 2600) {
   return i;
 }
 
-const cases = [
+/**
+ * Two-level product explorer:
+ *   top tab (module)  ×  left sub-tab (workflow)  →  a live visual
+ */
+const TABS = [
   {
     id: "consolidation",
-    tag: "01 · Multi-entity consolidation",
-    icon: Building2,
-    title: "Audit-ready consolidation across every entity.",
-    copy:
-      "Agents identify inter-company transactions, classify entries, and prepare consolidated financials — with every adjustment traceable.",
-    bullets: [
-      "Auto-detected inter-company entries",
-      "Consolidated P&L, BS, Cash Flow",
+    label: "Consolidation",
+    icon: Landmark,
+    headline: "Audit-ready consolidations",
+    subs: [
+      { id: "interco",  label: "Inter-company eliminations", desc: "Auto-detect & clear IC balances", Mockup: ConsolidationMockup },
+      { id: "group-pl", label: "Consolidated P&L", desc: "Every entity in one statement",    Mockup: GroupPnLMockup },
+      { id: "fx",       label: "FX translation",   desc: "Month-end rates, CTA booked",      Mockup: FxMockup },
     ],
-    tiles: [
-      { l: "Auto eliminations", v: "12 · Jun" },
-      { l: "Adjustments", v: "6 posted" },
-      { l: "Audit trail", v: "100%" },
-    ],
-    mockupKey: "consolidation",
   },
   {
-    id: "group-reporting",
-    tag: "02 · Group reporting",
+    id: "analytics",
+    label: "Analytics",
     icon: BarChart3,
-    title: "Real-time reporting across entities, departments, dimensions.",
-    copy:
-      "PY, PP, YTD, budget vs actuals — every slice, live. Dashboards shaped to your business by our engineering team.",
-    bullets: [
-      "KPI trends & budget rollups",
-      "Variance & vendor analysis",
+    headline: "Board-ready analytics",
+    subs: [
+      { id: "dashboards", label: "Dashboards", desc: "Live KPIs & budget vs actuals", Mockup: ReportingMockup },
+      { id: "planning",   label: "Planning",   desc: "Scenarios & cashflow forecast",  Mockup: PlanningMockup },
+      { id: "scorecards", label: "Scorecards", desc: "People & team performance",      Mockup: PeopleMockup },
     ],
-    tiles: [
-      { l: "Live reports", v: "38" },
-      { l: "Board prep", v: "5d → 4h" },
-      { l: "Dimensions", v: "unlimited" },
-    ],
-    mockupKey: "reporting",
-    reverse: true,
   },
   {
-    id: "planning",
-    tag: "03 · Financial planning",
-    icon: TrendingUp,
-    title: "Forecast revenue, expenses and cashflow with AI models.",
-    copy:
-      "Driver-based revenue and expense models. FinBoard keeps net income, EBITDA and cashflow live as actuals land.",
-    bullets: [
-      "Revenue & expense modelling",
-      "Cashflow: short & long-term",
+    id: "o2c",
+    label: "O2C",
+    icon: CircleDollarSign,
+    headline: "Order-to-cash, automated",
+    subs: [
+      { id: "quote-cash",  label: "Quote → Cash", desc: "Quote to invoice, credit-checked", Mockup: O2CFlowMockup },
+      { id: "collections", label: "Collections",  desc: "AR aging & automated dunning",     Mockup: CollectionsMockup },
     ],
-    tiles: [
-      { l: "Scenarios", v: "3 · live" },
-      { l: "Refresh", v: "real-time" },
-      { l: "Horizons", v: "0–36 mo" },
-    ],
-    mockupKey: "planning",
   },
   {
-    id: "people",
-    tag: "04 · People performance",
-    icon: Users,
-    title: "Real-time people dashboards, from every system.",
-    copy:
-      "A custom data pipeline that ingests HRIS, CRM, ticketing and finance data — rendered as a live report per individual and team.",
-    bullets: [
-      "Per-person performance report",
-      "Auto-refreshed manager reviews",
+    id: "p2p",
+    label: "P2P",
+    icon: Receipt,
+    headline: "Procure-to-pay, automated",
+    subs: [
+      { id: "capture-pay", label: "Capture → Pay", desc: "Invoice capture to payment run",   Mockup: P2PFlowMockup },
+      { id: "match",       label: "3-way match",   desc: "PO, receipt & invoice reconciled", Mockup: MatchMockup },
     ],
-    tiles: [
-      { l: "People", v: "214" },
-      { l: "Systems", v: "5" },
-      { l: "Refresh", v: "2 min" },
-    ],
-    mockupKey: "people",
-    reverse: true,
   },
 ];
 
-const MOCKUP_COMPONENTS = {
-  consolidation: ConsolidationMockup,
-  reporting: ReportingMockup,
-  planning: PlanningMockup,
-  people: PeopleMockup,
-};
-
 export default function UseCases() {
+  const [topId, setTopId] = React.useState(TABS[0].id);
+  const top = TABS.find((t) => t.id === topId) || TABS[0];
+  const [subId, setSubId] = React.useState(top.subs[0].id);
+  const sub = top.subs.find((s) => s.id === subId) || top.subs[0];
+  const Mockup = sub.Mockup;
+
+  const selectTop = (id) => {
+    const t = TABS.find((x) => x.id === id) || TABS[0];
+    setTopId(id);
+    setSubId(t.subs[0].id);
+  };
+
   return (
     <section id="use-cases" className="relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
-        <div className="space-y-16">
-          {cases.map((c) => (
-            <UseCaseRow key={c.id} data={c} />
-          ))}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
+        <div>
+          <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Explore the platform</div>
+          <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl lg:text-5xl leading-[1.02] tracking-tight whitespace-normal lg:whitespace-nowrap">
+            One workspace, every finance workflow.
+          </h2>
+          <p className="mt-4 max-w-2xl text-[14px] text-[#0A0A0A]/70 leading-relaxed">
+            Pick a module, then a workflow, and see exactly what FinBoard runs for your group. No scrolling required.
+          </p>
+        </div>
+
+        {/* Top tabs (modules) */}
+        <div className="mt-8 flex flex-wrap gap-2" data-testid="explorer-top-tabs">
+          {TABS.map((t) => {
+            const TIcon = t.icon;
+            const active = t.id === topId;
+            return (
+              <button
+                key={t.id}
+                onClick={() => selectTop(t.id)}
+                data-testid={`explorer-top-${t.id}`}
+                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                  active
+                    ? "bg-[#0A0A0A] text-white border-[#0A0A0A]"
+                    : "bg-white text-[#0A0A0A]/70 border-line hover:text-[#0A0A0A]"
+                }`}
+              >
+                <TIcon size={15} /> {t.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Body: sidebar (workflows) + visual */}
+        <div className="mt-6 grid lg:grid-cols-12 gap-5 items-start">
+          <aside className="lg:col-span-3" data-testid="explorer-sub-tabs">
+            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0">
+              {top.subs.map((s) => {
+                const active = s.id === subId;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => setSubId(s.id)}
+                    data-testid={`explorer-sub-${s.id}`}
+                    className={`shrink-0 lg:w-full text-left rounded-xl border px-4 py-3 transition-all ${
+                      active
+                        ? "border-[#0A0A0A] bg-[#F5F0E8]"
+                        : "border-line bg-white hover:border-line-strong hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className={`h-1.5 w-1.5 rounded-full transition-colors ${active ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]/25"}`} />
+                      <span className="text-[14px] font-medium whitespace-nowrap">{s.label}</span>
+                    </div>
+                    <div className="mt-1 text-[12px] text-[#0A0A0A]/55 lg:pl-3.5 whitespace-nowrap lg:whitespace-normal">{s.desc}</div>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
+
+          <div className="lg:col-span-9">
+            <div key={`title-${topId}-${subId}`} className="mb-4 animate-fade-up" data-testid="explorer-title">
+              <div className="font-serif-display text-2xl sm:text-3xl tracking-tight">{top.headline}</div>
+              <div className="mt-1 text-sm text-[#0A0A0A]/60">{sub.label}</div>
+            </div>
+            <div
+              key={`${topId}-${subId}`}
+              className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.03),0_20px_40px_-24px_rgba(10,10,10,0.15)] animate-fade-up"
+              data-testid="explorer-visual"
+            >
+              <Mockup />
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function UseCaseRow({ data }) {
-  const Icon = data.icon;
-  const Mockup = MOCKUP_COMPONENTS[data.mockupKey];
-  return (
-    <div className="grid lg:grid-cols-12 gap-10 items-center" data-testid={`use-case-${data.id}`}>
-      <div className={`lg:col-span-5 ${data.reverse ? "lg:order-2" : ""}`}>
-        <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50 flex items-center gap-2">
-          <Icon size={14} /> {data.tag}
-        </div>
-        <h3 className="mt-3 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
-          {data.title}
-        </h3>
-        <p className="mt-4 text-[#0A0A0A]/70 leading-relaxed">{data.copy}</p>
-        <ul className="mt-5 space-y-2">
-          {data.bullets.map((b) => (
-            <li key={b} className="flex items-start gap-3 text-[15px]">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" />
-              <span className="text-[#0A0A0A]/85">{b}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-5 grid grid-cols-3 gap-2">
-          {data.tiles.map((t) => (
-            <div key={t.l} className="rounded-lg border border-line bg-[#F5F0E8] px-3 py-2.5">
-              <div className="text-[9px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">{t.l}</div>
-              <div className="mt-0.5 font-serif-display text-lg leading-none tracking-tight">{t.v}</div>
-            </div>
-          ))}
-        </div>
-
-        <a
-          href="#book-demo"
-          data-testid={`use-case-${data.id}-cta`}
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium border-b border-[#0A0A0A] hover:opacity-70 transition-opacity"
-        >
-          See it in action <ArrowUpRight size={14} />
-        </a>
-      </div>
-
-      <div className={`lg:col-span-7 ${data.reverse ? "lg:order-1" : ""}`}>
-        <div
-          className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.03),0_20px_40px_-24px_rgba(10,10,10,0.15)]"
-          data-testid={`use-case-${data.id}-mockup`}
-        >
-          <Mockup />
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -198,7 +192,7 @@ function MockChrome({ title, tabActive = "Overview", right, phaseLabel }) {
   );
 }
 
-/* ---------- 1. Consolidation: rows animate detecting → clearing → cleared ---------- */
+/* ---------- Consolidation: rows animate detecting → clearing → cleared ---------- */
 const CONSOL_PHASES = [
   { label: "Detecting IC", cleared: 9, ready: false, dot: "amber" },
   { label: "Auto-clearing", cleared: 11, ready: false, dot: "amber" },
@@ -218,11 +212,7 @@ function ConsolidationMockup() {
 
   return (
     <>
-      <MockChrome
-        title="consolidation"
-        tabActive="Consolidation"
-        phaseLabel={p.label}
-      />
+      <MockChrome title="consolidation" tabActive="Consolidation" phaseLabel={p.label} />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -235,7 +225,6 @@ function ConsolidationMockup() {
           </div>
         </div>
 
-        {/* progress bar */}
         <div className="mt-3 h-1 bg-[#F5F0E8] rounded-full overflow-hidden">
           <div
             className="h-full bg-[#0A0A0A] transition-all duration-[1200ms] ease-out"
@@ -272,7 +261,6 @@ function ConsolidationMockup() {
           })}
         </div>
 
-        {/* Consolidated output appears when phase reaches 2 */}
         <div className={`mt-3 rounded-lg border border-line bg-[#F9F6F0] p-3 flex items-center justify-between transition-all duration-700 ${p.ready ? "opacity-100 translate-y-0" : "opacity-40 translate-y-1"}`}>
           <div className="flex items-center gap-2 text-[11px] text-[#0A0A0A]/80">
             <Sparkles size={12} />
@@ -287,7 +275,102 @@ function ConsolidationMockup() {
   );
 }
 
-/* ---------- 2. Reporting: KPIs tick, budget bars redraw, live refresh ---------- */
+/* ---------- Consolidated P&L ---------- */
+function GroupPnLMockup() {
+  const cols = ["North", "South", "Clinical", "Elim", "Group"];
+  const rows = [
+    { l: "Revenue",       v: ["1.82", "1.24", "0.96", "(0.14)", "3.88"] },
+    { l: "COGS",          v: ["(0.71)", "(0.49)", "(0.36)", "0.05", "(1.51)"] },
+    { l: "Gross profit",  v: ["1.11", "0.75", "0.60", "(0.09)", "2.37"], strong: true },
+    { l: "Operating exp", v: ["(0.68)", "(0.44)", "(0.33)", "0.04", "(1.41)"] },
+    { l: "EBITDA",        v: ["0.43", "0.31", "0.27", "(0.05)", "0.96"], strong: true },
+  ];
+  const grid = "grid-cols-[1.4fr_repeat(5,0.8fr)]";
+  return (
+    <>
+      <MockChrome title="consolidated-p&l" tabActive="Consolidation" phaseLabel="Consolidated · Jun 2026" />
+      <div className="p-5 bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Consolidated</div>
+            <div className="font-serif-display text-xl mt-0.5">Group P&amp;L · $M</div>
+          </div>
+          <div className="text-[11px] text-[#0A0A0A]/60">4 entities · 1 elimination</div>
+        </div>
+        <div className="mt-4 rounded-lg border border-line overflow-hidden">
+          <div className={`grid ${grid} px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#0A0A0A]/50 bg-[#F5F0E8]/60 border-b border-line`}>
+            <div>Line</div>
+            {cols.map((c) => (
+              <div key={c} className={`text-right ${c === "Group" ? "text-[#0A0A0A] font-semibold" : ""}`}>{c}</div>
+            ))}
+          </div>
+          {rows.map((r, ri) => (
+            <div
+              key={r.l}
+              className={`grid ${grid} px-3 py-2 items-center border-b border-line last:border-0 text-[12px] animate-fade-up ${r.strong ? "bg-[#F9F6F0]" : ""}`}
+              style={{ animationDelay: `${ri * 70}ms` }}
+            >
+              <div className={r.strong ? "font-medium" : ""}>{r.l}</div>
+              {r.v.map((v, ci) => (
+                <div key={ci} className={`text-right tabular-nums ${ci === 4 ? "font-semibold" : ci === 3 ? "text-[#0A0A0A]/45" : "text-[#0A0A0A]/70"}`}>{v}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-2 text-[11px] text-[#0A0A0A]/60">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" /> Eliminations column removes inter-company revenue &amp; cost automatically.
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ---------- FX translation ---------- */
+function FxMockup() {
+  const rows = [
+    { e: "UK · Ltd",  loc: "£1.20M",  rate: "1.27", usd: "$1.52M" },
+    { e: "EU · GmbH", loc: "€0.98M",  rate: "1.08", usd: "$1.06M" },
+    { e: "CA · Inc",  loc: "C$0.74M", rate: "0.73", usd: "$0.54M" },
+    { e: "US · Corp", loc: "$2.10M",  rate: "1.00", usd: "$2.10M" },
+  ];
+  const grid = "grid-cols-[1.3fr_0.9fr_0.7fr_0.9fr]";
+  return (
+    <>
+      <MockChrome title="fx-translation" tabActive="Consolidation" phaseLabel="Month-end rates" />
+      <div className="p-5 bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Currency translation</div>
+            <div className="font-serif-display text-xl mt-0.5">Entities → USD</div>
+          </div>
+          <div className="text-[11px] text-[#0A0A0A]/60">4 currencies</div>
+        </div>
+        <div className="mt-4 rounded-lg border border-line overflow-hidden">
+          <div className={`grid ${grid} px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#0A0A0A]/50 bg-[#F5F0E8]/60 border-b border-line`}>
+            <div>Entity</div>
+            <div className="text-right">Local</div>
+            <div className="text-right">Rate</div>
+            <div className="text-right">USD</div>
+          </div>
+          {rows.map((r, i) => (
+            <div key={r.e} className={`grid ${grid} px-3 py-2.5 items-center border-b border-line last:border-0 text-[12px] animate-fade-up`} style={{ animationDelay: `${i * 80}ms` }}>
+              <div className="font-medium">{r.e}</div>
+              <div className="text-right tabular-nums text-[#0A0A0A]/70">{r.loc}</div>
+              <div className="text-right tabular-nums text-[#0A0A0A]/60">{r.rate}</div>
+              <div className="text-right tabular-nums font-medium">{r.usd}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 rounded-lg border border-line bg-[#F9F6F0] p-3 flex items-center justify-between text-[11px]">
+          <span className="flex items-center gap-2 text-[#0A0A0A]/80"><Sparkles size={12} /> Cumulative translation adjustment</span>
+          <span className="font-medium tabular-nums">$42,180 → equity</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ---------- Analytics · Dashboards: KPIs tick, budget bars redraw ---------- */
 const KPI_SETS = [
   [
     { l: "Revenue", v: "$4.82M", d: "+8.4%", up: true },
@@ -322,11 +405,7 @@ function ReportingMockup() {
 
   return (
     <>
-      <MockChrome
-        title="reports"
-        tabActive="Reports"
-        phaseLabel="Refreshing · YTD 2026"
-      />
+      <MockChrome title="reports" tabActive="Reports" phaseLabel="Refreshing · YTD 2026" />
       <div className="p-5 bg-white">
         <div className="grid grid-cols-4 gap-3">
           {kpis.map((k) => (
@@ -373,7 +452,7 @@ function ReportingMockup() {
   );
 }
 
-/* ---------- 3. Planning: bars grow, forecast reveals progressively ---------- */
+/* ---------- Analytics · Planning: bars grow, forecast reveals ---------- */
 function PlanningMockup() {
   const bars = [10, 12, 14, 13, 16, 18, 17, 20, 22, 21, 24, 27];
   const forecast = [null, null, null, null, null, null, null, null, 22, 25, 28, 31];
@@ -409,7 +488,6 @@ function PlanningMockup() {
             {bars.map((h, i) => {
               const isForecast = !!forecast[i];
               const target = forecast[i] || h;
-              // pulse the last "active" bar based on phase
               const activePulse = i === phase;
               return (
                 <div key={i} className="flex flex-col items-center justify-end h-full">
@@ -447,7 +525,7 @@ function PlanningMockup() {
   );
 }
 
-/* ---------- 4. People: sources sync, scores animate up ---------- */
+/* ---------- Analytics · Scorecards: sources sync, scores animate up ---------- */
 const PEOPLE_BASE = [
   { n: "Amara Chen", r: "AE · Sales",       s: [88, 92, 90] },
   { n: "Devin Cole", r: "Nurse Manager",    s: [84, 88, 91] },
@@ -476,7 +554,6 @@ function PeopleMockup() {
           <div className="text-[11px] text-[#0A0A0A]/60">5 systems · 214 people</div>
         </div>
 
-        {/* Source pings row */}
         <div className="mt-3 flex flex-wrap gap-1.5">
           {SYSTEMS.map((s, i) => (
             <span
@@ -495,7 +572,7 @@ function PeopleMockup() {
             return (
               <div key={p.n} className="rounded-lg border border-line p-3 flex items-center gap-3">
                 <div className="h-9 w-9 rounded-full bg-[#F5F0E8] border border-line grid place-items-center text-[11px] font-medium">
-                  {p.n.split(" ").map(x=>x[0]).join("")}
+                  {p.n.split(" ").map((x) => x[0]).join("")}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-[13px] font-medium truncate">{p.n}</div>
@@ -511,6 +588,175 @@ function PeopleMockup() {
               </div>
             );
           })}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ---------- Shared 3-stage flow board (O2C / P2P) ---------- */
+function FlowBoard({ chromeTitle, phase, stages }) {
+  return (
+    <>
+      <MockChrome title={chromeTitle} tabActive="Overview" phaseLabel={phase} />
+      <div className="p-5 bg-white">
+        <div className="grid grid-cols-3 gap-3">
+          {stages.map((st, i) => (
+            <div key={st.title} className="rounded-lg border border-line bg-white p-3 flex flex-col animate-fade-up" style={{ animationDelay: `${i * 130}ms` }}>
+              <div className="text-[10px] uppercase tracking-[0.14em] text-[#0A0A0A]/50 border-b border-line pb-2 mb-2">{st.title}</div>
+              <div className="space-y-2">
+                {st.items.map((it, j) => (
+                  <div key={j} className="rounded-md border border-line bg-[#F9F6F0] px-2.5 py-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-medium">{it.a}</span>
+                      {it.badge && (
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded-full shrink-0 ${it.tone === "ok" ? "bg-emerald-50 text-emerald-700" : it.tone === "warn" ? "bg-amber-50 text-amber-700" : "bg-[#F5F0E8] text-[#0A0A0A]/55"}`}>{it.badge}</span>
+                      )}
+                    </div>
+                    {it.b && <div className="mt-1 text-[10px] text-[#0A0A0A]/55">{it.b}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ---------- O2C · Quote → Cash ---------- */
+function O2CFlowMockup() {
+  return (
+    <FlowBoard
+      chromeTitle="order-to-cash"
+      phase="AR agent · live"
+      stages={[
+        { title: "1 · Ingest quote", items: [
+          { a: "Quote Q-2214", b: "Meridian Retail · $32,900" },
+          { a: "Salesforce CPQ", b: "live sync", badge: "Synced", tone: "ok" },
+        ] },
+        { title: "2 · Credit & approve", items: [
+          { a: "AI credit check", b: "rating A2", badge: "Pass", tone: "ok" },
+          { a: "Sara Lindgren · AR", badge: "Approved", tone: "ok" },
+          { a: "Elena Marsh · CFO", badge: "Pending", tone: "warn" },
+        ] },
+        { title: "3 · Invoice & collect", items: [
+          { a: "INV-9021", b: "$32,900 · Net-45" },
+          { a: "DSO 41 days", b: "dunning scheduled", badge: "Auto", tone: "ok" },
+        ] },
+      ]}
+    />
+  );
+}
+
+/* ---------- P2P · Capture → Pay ---------- */
+function P2PFlowMockup() {
+  return (
+    <FlowBoard
+      chromeTitle="procure-to-pay"
+      phase="AP agent · live"
+      stages={[
+        { title: "1 · Capture invoice", items: [
+          { a: "Quote_88421.pdf", b: "Orbital Supplies · $18,420" },
+          { a: "NetSuite POs", b: "live sync", badge: "Synced", tone: "ok" },
+        ] },
+        { title: "2 · Approvals", items: [
+          { a: "Priya Rao · Controller", badge: "Approved", tone: "ok" },
+          { a: "Marc Levy · VP Ops", badge: "Approved", tone: "ok" },
+          { a: "Elena Marsh · CFO", badge: "Pending", tone: "warn" },
+        ] },
+        { title: "3 · Payment run", items: [
+          { a: "PAY-4402", b: "$18,420 · Net-30" },
+          { a: "6 linked docs", b: "fully traceable", badge: "Ready", tone: "ok" },
+        ] },
+      ]}
+    />
+  );
+}
+
+/* ---------- O2C · Collections (AR aging) ---------- */
+function CollectionsMockup() {
+  const buckets = [
+    { l: "Current", v: 182, p: 100 },
+    { l: "1–30", v: 96, p: 53 },
+    { l: "31–60", v: 54, p: 30 },
+    { l: "61–90", v: 28, p: 16 },
+    { l: "90+", v: 14, p: 8 },
+  ];
+  return (
+    <>
+      <MockChrome title="collections" tabActive="Overview" phaseLabel="AR · live" />
+      <div className="p-5 bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Accounts receivable</div>
+            <div className="font-serif-display text-xl mt-0.5">Aging &amp; collections</div>
+          </div>
+          <div className="text-[11px] text-[#0A0A0A]/60">$374k open</div>
+        </div>
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          {[{ l: "DSO", v: "41 d" }, { l: "Overdue", v: "$96k" }, { l: "Collected MTD", v: "$212k" }].map((t) => (
+            <div key={t.l} className="rounded-lg border border-line bg-[#F5F0E8] px-3 py-2.5">
+              <div className="text-[9px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">{t.l}</div>
+              <div className="mt-0.5 font-serif-display text-lg leading-none tracking-tight">{t.v}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 rounded-lg border border-line p-4">
+          <div className="text-[11px] text-[#0A0A0A]/60 mb-2">Aging buckets · $k</div>
+          <div className="space-y-2">
+            {buckets.map((b, i) => (
+              <div key={b.l} className="flex items-center gap-3 text-[12px] animate-fade-up" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="w-14 text-[#0A0A0A]/60">{b.l}</div>
+                <div className="flex-1 h-2.5 bg-[#F5F0E8] rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full ${i >= 3 ? "bg-rose-500" : "bg-[#0A0A0A]"}`} style={{ width: `${b.p}%` }} />
+                </div>
+                <div className="w-12 text-right tabular-nums text-[#0A0A0A]/70">${b.v}k</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ---------- P2P · 3-way match ---------- */
+function MatchMockup() {
+  const rows = [
+    { d: "Purchase order", ref: "PO-8842", v: "$18,420.00" },
+    { d: "Goods receipt", ref: "GRN-8842", v: "$18,420.00" },
+    { d: "Vendor invoice", ref: "INV-3391", v: "$18,420.00" },
+  ];
+  return (
+    <>
+      <MockChrome title="3-way-match" tabActive="Overview" phaseLabel="Matched" />
+      <div className="p-5 bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Orbital Supplies</div>
+            <div className="font-serif-display text-xl mt-0.5">3-way match</div>
+          </div>
+          <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 inline-flex items-center gap-1"><CheckCircle2 size={11} /> Matched</span>
+        </div>
+        <div className="mt-4 space-y-2">
+          {rows.map((r, i) => (
+            <div key={r.ref} className="rounded-lg border border-line px-4 py-3 flex items-center justify-between animate-fade-up" style={{ animationDelay: `${i * 120}ms` }}>
+              <div>
+                <div className="text-[13px] font-medium">{r.d}</div>
+                <div className="text-[10px] text-[#0A0A0A]/50 font-mono">{r.ref}</div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-[13px] tabular-nums">{r.v}</span>
+                <CheckCircle2 size={16} className="text-emerald-600" />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 rounded-lg border border-line bg-[#F9F6F0] p-3 flex items-center justify-between text-[11px]">
+          <span className="text-[#0A0A0A]/70 flex items-center gap-2"><ShieldCheck size={12} /> Variance within tolerance</span>
+          <span className="font-medium">Ready to pay</span>
         </div>
       </div>
     </>

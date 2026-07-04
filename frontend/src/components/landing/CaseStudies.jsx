@@ -7,7 +7,7 @@ const cases = [
     company: "Meridian Retail Group",
     industry: "Multi-brand retail · 9 entities",
     quote:
-      "We closed our 9-entity month-end in a single afternoon. What used to be spreadsheet archaeology is now a review — not a reconstruction.",
+      "We closed our 9-entity month-end in a single afternoon. What used to be spreadsheet archaeology is now a review, not a reconstruction.",
     author: "Elena Marsh · CFO",
     metrics: [
       { l: "Close time", v: "3 wks → 2 days" },
@@ -20,7 +20,7 @@ const cases = [
     company: "Sable Ventures",
     industry: "Family office · 14 entities",
     quote:
-      "Inter-company eliminations are the moment of truth. FinBoard is the first tool that handled ours automatically — and we trusted the numbers.",
+      "Inter-company eliminations are the moment of truth. FinBoard is the first tool that handled ours automatically, and we trusted the numbers.",
     author: "Rohan Patel · Group Controller",
     metrics: [
       { l: "IC eliminations", v: "100% auto" },
@@ -46,7 +46,7 @@ const cases = [
 export default function CaseStudies() {
   return (
     <section id="case-studies" className="relative bg-[#F5F0E8]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="flex items-end justify-between flex-wrap gap-6">
           <div className="max-w-2xl">
             <div className="kbd-chip" data-testid="case-studies-eyebrow"><BookOpenText size={12} /> Case studies</div>

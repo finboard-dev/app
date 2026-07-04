@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import axios from "axios";
+import { PRODUCT_NAV } from "@/data/products";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -35,7 +37,7 @@ export default function Footer() {
               FinBoard.
             </div>
             <p className="mt-6 max-w-md text-[#F5F0E8]/70 leading-relaxed">
-              The AI-native business operations platform for multi-entity groups. Consolidate, report, plan and review — in one place.
+              The AI-native business operations platform for multi-entity groups. Consolidate, report, plan and review, in one place.
             </p>
 
             <form onSubmit={submit} className="mt-8 flex gap-2 max-w-md" data-testid="footer-newsletter-form">
@@ -58,7 +60,23 @@ export default function Footer() {
             </form>
           </div>
 
-          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <div>
+              <div className="text-xs uppercase tracking-[0.22em] text-[#F5F0E8]/50">Platform</div>
+              <ul className="mt-4 space-y-2.5">
+                {PRODUCT_NAV.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      to={`/products/${p.slug}`}
+                      data-testid={`footer-product-${p.slug}`}
+                      className="text-sm text-[#F5F0E8]/80 hover:text-white transition-colors"
+                    >
+                      {p.nav}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <FooterCol title="Product" links={[
               { l: "Use cases", href: "#use-cases" },
               { l: "How it works", href: "#how-it-works" },
