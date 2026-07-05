@@ -52,14 +52,11 @@ export default function Hero({ onBookDemo }) {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-16 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5 animate-fade-up">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="kbd-chip" data-testid="hero-eyebrow">
+            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
+              <span className="kbd-chip whitespace-nowrap" data-testid="hero-eyebrow">
                 <Sparkles size={12} /> For the Office of the CFO
               </span>
-              <span className="kbd-chip" data-testid="hero-eyebrow-multi-entity">
-                <Building2 size={12} /> Multi-entity operators
-              </span>
-              <span className="kbd-chip" data-testid="hero-eyebrow-managed-services">
+              <span className="kbd-chip whitespace-nowrap" data-testid="hero-eyebrow-managed-services">
                 <ShieldCheck size={12} /> Advisory firms
               </span>
             </div>
