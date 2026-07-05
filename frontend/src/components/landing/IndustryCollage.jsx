@@ -8,10 +8,10 @@ import { ArrowUpRight } from "lucide-react";
  */
 
 const CELLS = [
-  { slug: "restaurants",  label: "Restaurants",  accent: "#D97706", src: "/videos/restaurants.mp4",  origin: "top left"     },
-  { slug: "healthcare",   label: "Healthcare",   accent: "#0891B2", src: "/videos/healthcare.mp4",   origin: "top right"    },
-  { slug: "construction", label: "Construction", accent: "#B45309", src: "/videos/construction.mp4", origin: "bottom left"  },
-  { slug: "ecommerce",    label: "E-commerce",   accent: "#059669", src: "/videos/ecommerce.mp4",    origin: "bottom right" },
+  { slug: "restaurants",  label: "Restaurants",  accent: "#D97706", src: "/videos/collage/restaurants.mp4",  origin: "top left"     },
+  { slug: "healthcare",   label: "Healthcare",   accent: "#0891B2", src: "/videos/collage/healthcare.mp4",   origin: "top right"    },
+  { slug: "construction", label: "Construction", accent: "#B45309", src: "/videos/collage/construction.mp4", origin: "bottom left"  },
+  { slug: "ecommerce",    label: "E-commerce",   accent: "#059669", src: "/videos/collage/ecommerce.mp4",    origin: "bottom right" },
 ];
 
 export default function IndustryCollage() {
