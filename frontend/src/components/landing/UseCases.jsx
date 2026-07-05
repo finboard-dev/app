@@ -161,18 +161,18 @@ export default function UseCases() {
                 data-testid={`explorer-top-${t.id}`}
                 className={`group relative text-left rounded-2xl p-5 border transition-all overflow-hidden ${
                   active
-                    ? "bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.7)] ring-1 ring-emerald-400/40"
+                    ? "bg-white text-[#0A0A0A] border-[#0A0A0A]/15 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.35)] ring-1 ring-emerald-400/40"
                     : "bg-[#F5F0E8] text-[#0A0A0A] border-[#EDE4D2] hover:border-[#DDD1B8] hover:bg-[#EFE7D6] hover:-translate-y-0.5"
                 }`}
               >
                 {active && (
-                  <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-emerald-400" />
+                  <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-emerald-500" />
                 )}
                 <div className="flex items-start justify-between gap-3">
                   <span
                     className={`h-10 w-10 rounded-lg grid place-items-center transition-colors ${
                       active
-                        ? "bg-white/10 text-white border border-white/15"
+                        ? "bg-[#0A0A0A] text-white border border-[#0A0A0A]"
                         : "bg-white text-[#0A0A0A] border border-[#EDE4D2] group-hover:bg-white"
                     }`}
                   >
@@ -180,7 +180,7 @@ export default function UseCases() {
                   </span>
                   <span
                     className={`font-serif-display text-[13px] tabular-nums ${
-                      active ? "text-white/45" : "text-[#0A0A0A]/35"
+                      active ? "text-[#0A0A0A]/45" : "text-[#0A0A0A]/35"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -191,20 +191,20 @@ export default function UseCases() {
                 </div>
                 <div
                   className={`mt-1 text-[12.5px] leading-snug ${
-                    active ? "text-white/70" : "text-[#0A0A0A]/65"
+                    active ? "text-[#0A0A0A]/70" : "text-[#0A0A0A]/65"
                   }`}
                 >
                   {t.headline}
                 </div>
                 <div
                   className={`mt-4 pt-3 border-t flex items-center justify-between text-[10.5px] uppercase tracking-[0.2em] ${
-                    active ? "border-white/15 text-white/55" : "border-[#EDE4D2] text-[#0A0A0A]/55"
+                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/60" : "border-[#EDE4D2] text-[#0A0A0A]/55"
                   }`}
                 >
                   <span>{t.subs.length} workflows</span>
                   {active && (
-                    <span className="inline-flex items-center gap-1.5 text-emerald-400">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 text-emerald-700">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       Selected
                     </span>
                   )}
@@ -228,13 +228,16 @@ export default function UseCases() {
                 data-testid={`explorer-sub-${s.id}`}
                 className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium border transition-all ${
                   active
-                    ? "bg-[#F5F0E8] text-[#0A0A0A] border-[#F5F0E8]"
-                    : "bg-white/[0.05] text-white/80 border-white/20 hover:text-white hover:border-white/40 hover:bg-white/[0.1]"
+                    ? "bg-white text-[#0A0A0A] border-[#0A0A0A]/25 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.25)] ring-1 ring-emerald-400/40"
+                    : "bg-[#F5F0E8] text-[#0A0A0A] border-[#EDE4D2] hover:border-[#DDD1B8] hover:bg-[#EFE7D6]"
                 }`}
               >
+                {active && (
+                  <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                )}
                 <span
                   className={`font-serif-display text-[11px] tabular-nums ${
-                    active ? "text-[#0A0A0A]/45" : "text-white/50"
+                    active ? "text-[#0A0A0A]/50" : "text-[#0A0A0A]/40"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
