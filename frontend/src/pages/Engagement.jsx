@@ -9,6 +9,8 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
+import ForwardDeployed from "@/components/landing/ForwardDeployed";
+import HowItWorks from "@/components/landing/HowItWorks";
 
 /**
  * Engagement — redesigned.
@@ -765,6 +767,15 @@ export default function Engagement() {
             </div>
           </div>
         </section>
+
+        {/* ============================================================
+            HOW IT WORKS + FORWARD-DEPLOYED (moved from Landing)
+            Wrapped with an id so nav "How it works" deep-links here
+        ============================================================ */}
+        <div id="how-it-works" className="scroll-mt-20">
+          <HowItWorks />
+        </div>
+        <ForwardDeployed />
 
         {/* ============================================================
             CLOSING — dark card

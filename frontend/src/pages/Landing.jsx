@@ -6,11 +6,8 @@ import Outcomes from "@/components/landing/Outcomes";
 import AudienceFork from "@/components/landing/AudienceFork";
 import TrustBar from "@/components/landing/TrustBar";
 import UseCases from "@/components/landing/UseCases";
-import ForwardDeployed from "@/components/landing/ForwardDeployed";
-import HowItWorks from "@/components/landing/HowItWorks";
 import CaseStudies from "@/components/landing/CaseStudies";
 import Team from "@/components/landing/Team";
-import Manifesto from "@/components/landing/Manifesto";
 import Testimonials from "@/components/landing/Testimonials";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
@@ -34,12 +31,9 @@ export default function Landing() {
         <TrustBar />
         <AudienceFork onBookDemo={openDemo} />
         <UseCases />
-        <ForwardDeployed />
-        <HowItWorks />
         <CaseStudies />
         <Pricing onBookDemo={openDemo} />
         <Testimonials />
-        <Manifesto />
         <Team />
         <FAQ />
         <CTABand onBookDemo={openDemo} />

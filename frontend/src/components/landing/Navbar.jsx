@@ -11,10 +11,10 @@ import { PRODUCT_NAV } from "@/data/products";
 import { INDUSTRY_NAV } from "@/data/industries";
 
 const resourceLinks = [
-  { href: "/#how-it-works", label: "How it works" },
+  { href: "/engagement#how-it-works", label: "How it works" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#case-studies", label: "Case studies" },
-  { href: "/#manifesto", label: "Manifesto" },
+  { href: "/manifesto", label: "Manifesto", route: true },
 ];
 
 export default function Navbar({ onBookDemo }) {
@@ -110,7 +110,10 @@ export default function Navbar({ onBookDemo }) {
                   key={l.href}
                   data-testid={`nav-resource-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                   className="cursor-pointer text-sm"
-                  onSelect={() => { window.location.href = l.href; }}
+                  onSelect={() => {
+                    if (l.route) navigate(l.href);
+                    else window.location.href = l.href;
+                  }}
                 >
                   {l.label}
                 </DropdownMenuItem>

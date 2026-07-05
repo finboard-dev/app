@@ -101,3 +101,110 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  User reported: "CAROUSEL IS NOT BEING ROTATED" on the landing page hero. The auto-rotating dashboard
+  carousel on `/` (Hero component) was perceived as stuck. Root cause: hover-pause was pausing the
+  rotation whenever the mouse was over the carousel, which made it feel broken when users
+  scrolled/interacted.
+
+  Additional reorganization requested (not a bug, but part of same request):
+  - Moved HowItWorks and ForwardDeployed sections from Landing → Engagement page (below Gantt hero)
+  - Made Manifesto a standalone route at /manifesto, linked from Navbar Resources dropdown
+  - Navbar "How it works" resource link now points to /engagement#how-it-works
+
+frontend:
+  - task: "Hero carousel auto-rotates continuously on landing page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/landing/HeroCarousel.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Removed hover-pause (paused state, onMouseEnter/onMouseLeave handlers) so the carousel
+          rotates every 2.8s continuously regardless of mouse position. The carousel cycles through
+          6 views: warehouse → board → recon → people → p2p → o2c, using a slide + fade transition.
+          Test at http://localhost:3000/ (or preview URL). Verify:
+          1) Open landing page, do NOT move mouse over carousel
+          2) Observe that the visible view (data-testid=hero-carousel-view-{id}) changes every ~2.8s
+          3) Move mouse OVER the carousel — rotation should CONTINUE, not pause
+          4) Verify all 6 views rotate in order and wrap back to the first
+      - working: true
+        agent: "testing"
+        comment: |
+          ✓ VERIFIED: Carousel auto-rotates continuously every ~2.8s
+          ✓ VERIFIED: Rotation continues when mouse hovers over carousel (no pause behavior)
+          ✓ VERIFIED: All 6 views exist and cycle through in order
+          
+          Test results:
+          - Rotation sequence observed (mouse OFF): board → recon → people → p2p → o2c (5 unique views in 12s)
+          - Rotation during hover (mouse ON): o2c → board → recon (3 unique views in 6s)
+          - All 6 carousel views confirmed present: warehouse, board, recon, people, p2p, o2c
+          
+          PRIMARY BUG FIX CONFIRMED: The hover-pause behavior has been successfully removed.
+          The carousel now rotates continuously regardless of mouse position.
+
+  - task: "HowItWorks section available on Engagement page below Gantt"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Engagement.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          HowItWorks + ForwardDeployed sections moved from Landing to Engagement, wrapped in a div
+          with id="how-it-works" and scroll-mt-20 so the Resources → How it works nav link deep-links
+          to it. Test at /engagement: scroll below the Gantt hero, verify HowItWorks and
+          ForwardDeployed sections render.
+
+  - task: "Manifesto standalone page at /manifesto"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ManifestoPage.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Created ManifestoPage at /manifesto that renders the Manifesto component plus CTABand.
+          Removed Manifesto section from Landing.jsx. Navbar Resources dropdown "Manifesto" item
+          now routes to /manifesto (uses react-router navigate, marked with route:true). Test:
+          1) Visit /manifesto directly — should render manifesto content with navbar+footer
+          2) From landing, click Resources → Manifesto → should navigate to /manifesto without full
+             page reload
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+test_plan:
+  current_focus:
+    - "Hero carousel auto-rotates continuously on landing page"
+    - "HowItWorks section available on Engagement page below Gantt"
+    - "Manifesto standalone page at /manifesto"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: |
+      Bug fix applied for the reported "carousel not rotating" issue. Root cause was hover-pause
+      behavior — I removed the paused state entirely so the carousel now rotates every 2.8s no
+      matter what. Please verify:
+      (1) On /  , confirm hero-carousel-view-{id} data-testid element changes every ~2.8s
+          across all 6 views (warehouse, board, recon, people, p2p, o2c)
+      (2) Rotation continues even when mouse hovers over the carousel
+      Also please verify the reorganization: HowItWorks now on /engagement below the Gantt;
+      Manifesto now at /manifesto (navigated to via Navbar Resources dropdown).

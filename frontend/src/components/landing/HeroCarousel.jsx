@@ -25,18 +25,16 @@ const VIEWS = [
 export default function HeroCarousel({ onViewChange }) {
   const [idx, setIdx] = React.useState(0);
   const [prevIdx, setPrevIdx] = React.useState(0);
-  const [paused, setPaused] = React.useState(false);
 
   React.useEffect(() => {
-    if (paused) return undefined;
-    // Every view dwells 2.8s, snappy but readable.
+    // Auto-rotate every 2.8s — never pauses so the visual keeps moving.
     const duration = 2800;
     const t = setTimeout(() => {
       setPrevIdx(idx);
       setIdx((v) => (v + 1) % VIEWS.length);
     }, duration);
     return () => clearTimeout(t);
-  }, [paused, idx]);
+  }, [idx]);
 
   // Report the active view up so the hero copy can stay in sync.
   React.useEffect(() => {
@@ -48,12 +46,7 @@ export default function HeroCarousel({ onViewChange }) {
   const slidingForward = (idx - prevIdx + VIEWS.length) % VIEWS.length !== VIEWS.length - 1;
 
   return (
-    <div
-      data-testid="hero-carousel"
-      className="relative"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div data-testid="hero-carousel" className="relative">
       <div className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]">
         <MockChrome viewLabel={VIEWS[idx].label} />
         <div className="relative min-h-[420px] bg-white overflow-hidden">
