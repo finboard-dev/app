@@ -38,7 +38,7 @@ export default function Industry() {
         {/* ============================================================
             HERO
         ============================================================ */}
-        {slug === "restaurants" ? (
+        {hasIndustryVideo(slug) ? (
           <section
             className="relative overflow-hidden bg-[#0A0A0A] text-white flex flex-col"
             style={{ minHeight: "calc(100vh - 68px)" }}
@@ -145,8 +145,8 @@ export default function Industry() {
           </section>
         ) : null}
 
-        {/* IndustryScene supporting card (restaurants only, below viewport hero) */}
-        {slug === "restaurants" && (
+        {/* IndustryScene supporting card (video industries only, below viewport hero) */}
+        {hasIndustryVideo(slug) && (
           <section className="border-t border-line">
             <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-14">
               <IndustryScene slug={slug} />
@@ -154,7 +154,7 @@ export default function Industry() {
           </section>
         )}
 
-        {slug !== "restaurants" && (
+        {!hasIndustryVideo(slug) && (
           <section className="relative overflow-hidden">
             <div className="grain absolute inset-0" />
             <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-12 lg:pb-20">
