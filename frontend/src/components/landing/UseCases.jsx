@@ -80,20 +80,53 @@ export default function UseCases() {
   };
 
   return (
-    <section id="use-cases" className="relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
-        <div>
-          <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Explore the platform</div>
-          <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl lg:text-5xl leading-[1.02] tracking-tight whitespace-normal lg:whitespace-nowrap">
-            One workspace, every finance workflow.
-          </h2>
-          <p className="mt-4 max-w-2xl text-[14px] text-[#0A0A0A]/70 leading-relaxed">
-            Pick a module, then a workflow, and see exactly what FinBoard runs for your group. No scrolling required.
-          </p>
+    <section id="use-cases" className="relative border-t border-line">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
+        {/* Editorial header */}
+        <div className="grid lg:grid-cols-12 gap-8 items-end">
+          <div className="lg:col-span-8">
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/50">Explore the platform</span>
+              <span className="h-px flex-1 bg-line max-w-[220px]" />
+            </div>
+            <h2 className="mt-5 font-serif-display text-3xl sm:text-4xl lg:text-5xl leading-[1.02] tracking-tight">
+              One workspace, <span className="italic">every finance workflow</span>.
+            </h2>
+            <p className="mt-4 max-w-xl text-[14.5px] text-[#0A0A0A]/70 leading-relaxed">
+              Pick a module, then a workflow, and see exactly what FinBoard runs for your group — no scrolling, no demo call required.
+            </p>
+          </div>
+
+          {/* Right side stats strip */}
+          <div className="lg:col-span-4 flex lg:justify-end">
+            <div className="flex gap-6 text-[12px]">
+              <div>
+                <div className="font-serif-display text-3xl tracking-tight tabular-nums">{TABS.length}</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5">modules</div>
+              </div>
+              <div className="w-px bg-line" />
+              <div>
+                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
+                  {TABS.reduce((n, t) => n + t.subs.length, 0)}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5">workflows</div>
+              </div>
+              <div className="w-px bg-line" />
+              <div>
+                <div className="font-serif-display text-3xl tracking-tight tabular-nums inline-flex items-baseline gap-1">
+                  Live
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5 inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  data
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Top tabs (modules) */}
-        <div className="mt-8 flex flex-wrap gap-2" data-testid="explorer-top-tabs">
+        {/* Top tabs (modules) — segmented, with sub-count */}
+        <div className="mt-10 rounded-2xl border border-line bg-white p-1.5 inline-flex flex-wrap gap-1 shadow-[0_1px_2px_rgba(10,10,10,0.03)]" data-testid="explorer-top-tabs">
           {TABS.map((t) => {
             const TIcon = t.icon;
             const active = t.id === topId;
@@ -102,40 +135,67 @@ export default function UseCases() {
                 key={t.id}
                 onClick={() => selectTop(t.id)}
                 data-testid={`explorer-top-${t.id}`}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                className={`group inline-flex items-center gap-2.5 rounded-xl px-4 py-2.5 text-sm transition-all ${
                   active
-                    ? "bg-[#0A0A0A] text-white border-[#0A0A0A]"
-                    : "bg-white text-[#0A0A0A]/70 border-line hover:text-[#0A0A0A]"
+                    ? "bg-[#0A0A0A] text-white shadow-sm"
+                    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A] hover:bg-[#F5F0E8]"
                 }`}
               >
-                <TIcon size={15} /> {t.label}
+                <span className={`h-6 w-6 rounded-md grid place-items-center transition-colors ${
+                  active ? "bg-white/10" : "bg-[#F5F0E8] group-hover:bg-white border border-line"
+                }`}>
+                  <TIcon size={13} strokeWidth={1.75} />
+                </span>
+                <span className="font-medium">{t.label}</span>
+                <span className={`text-[10px] tabular-nums px-1.5 py-0.5 rounded-full ${
+                  active ? "bg-white/15 text-white/80" : "bg-[#F5F0E8] text-[#0A0A0A]/50"
+                }`}>
+                  {t.subs.length}
+                </span>
               </button>
             );
           })}
         </div>
 
         {/* Body: sidebar (workflows) + visual */}
-        <div className="mt-6 grid lg:grid-cols-12 gap-5 items-start">
+        <div className="mt-8 grid lg:grid-cols-12 gap-6 items-start">
           <aside className="lg:col-span-3" data-testid="explorer-sub-tabs">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/40 mb-3 hidden lg:block">
+              Workflows
+            </div>
             <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0">
-              {top.subs.map((s) => {
+              {top.subs.map((s, i) => {
                 const active = s.id === subId;
                 return (
                   <button
                     key={s.id}
                     onClick={() => setSubId(s.id)}
                     data-testid={`explorer-sub-${s.id}`}
-                    className={`shrink-0 lg:w-full text-left rounded-xl border px-4 py-3 transition-all ${
+                    className={`shrink-0 lg:w-full text-left rounded-xl px-4 py-3 transition-all border relative overflow-hidden ${
                       active
-                        ? "border-[#0A0A0A] bg-[#F5F0E8]"
-                        : "border-line bg-white hover:border-line-strong hover:-translate-y-0.5"
+                        ? "bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-sm"
+                        : "bg-white border-line hover:border-line-strong hover:bg-[#F5F0E8]/50"
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className={`h-1.5 w-1.5 rounded-full transition-colors ${active ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]/25"}`} />
-                      <span className="text-[14px] font-medium whitespace-nowrap">{s.label}</span>
+                    <div className="flex items-center gap-3">
+                      <span className={`font-serif-display text-[13px] tabular-nums shrink-0 ${
+                        active ? "text-white/60" : "text-[#0A0A0A]/35"
+                      }`}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[13.5px] font-medium leading-tight whitespace-nowrap lg:whitespace-normal">{s.label}</span>
                     </div>
-                    <div className="mt-1 text-[12px] text-[#0A0A0A]/55 lg:pl-3.5 whitespace-nowrap lg:whitespace-normal">{s.desc}</div>
+                    <div className={`mt-1 text-[11.5px] leading-snug pl-[26px] whitespace-nowrap lg:whitespace-normal ${
+                      active ? "text-white/60" : "text-[#0A0A0A]/50"
+                    }`}>
+                      {s.desc}
+                    </div>
+                    {active && (
+                      <span
+                        aria-hidden
+                        className="absolute right-3 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-emerald-400"
+                      />
+                    )}
                   </button>
                 );
               })}
@@ -143,9 +203,16 @@ export default function UseCases() {
           </aside>
 
           <div className="lg:col-span-9">
-            <div key={`title-${topId}-${subId}`} className="mb-4 animate-fade-up" data-testid="explorer-title">
-              <div className="font-serif-display text-2xl sm:text-3xl tracking-tight">{top.headline}</div>
-              <div className="mt-1 text-sm text-[#0A0A0A]/60">{sub.label}</div>
+            <div key={`title-${topId}-${subId}`} className="mb-4 flex items-end justify-between gap-4 animate-fade-up" data-testid="explorer-title">
+              <div>
+                <div className="text-[11px] text-[#0A0A0A]/50 font-mono tracking-tight">
+                  {top.label} <span className="opacity-40">/</span> {sub.label}
+                </div>
+                <div className="mt-1 font-serif-display text-2xl sm:text-3xl leading-tight tracking-tight">{top.headline}</div>
+              </div>
+              <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/45 shrink-0">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live preview
+              </div>
             </div>
             <div
               key={`${topId}-${subId}`}
