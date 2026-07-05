@@ -10,6 +10,42 @@ import {
  */
 export const PRODUCTS = [
   {
+    slug: "month-end-close",
+    order: 0,
+    nav: "Month-end close",
+    icon: ClipboardCheck,
+    accent: "#0A0A0A",
+    eyebrow: "Close & controllership",
+    kicker: "Close the group in days, not weeks.",
+    headlineLead: "Month-end",
+    headlineItalic: "close",
+    headlineTail: "on autopilot.",
+    subhead:
+      "GL accounting, reconciliations, prepaid, accruals, fixed assets and board packs, one governed workspace that runs the entire close from cutoff to consolidation.",
+    capabilities: [
+      { icon: FileText,       label: "GL accounting & JE queue" },
+      { icon: RefreshCw,      label: "Bank & subledger recs" },
+      { icon: Layers,         label: "Group consolidation" },
+      { icon: ClipboardCheck, label: "Board reporting packs" },
+    ],
+    features: [
+      { icon: FileText,       title: "GL & journal entries", body: "AI drafts recurring journals, accruals, prepaid amortization, revenue cutoff, with a full posting trail and reviewer sign-off." },
+      { icon: RefreshCw,      title: "Reconciliations", body: "Bank, credit-card and subledger reconciliations run continuously. Only true unmatched items surface for investigation." },
+      { icon: ShieldCheck,    title: "Prepaid, accruals & FA", body: "Amortization schedules, accrual recognition, auto-reversal and a live fixed-asset register with depreciation, all reconciled to GL." },
+      { icon: ClipboardCheck, title: "Board reporting packs", body: "Executive summary, consolidated P&L, BS, CF and KPI scorecard, auto-generated with AI-drafted narrative, every number traceable." },
+    ],
+    steps: [
+      { title: "Cutoff & post", body: "AI drafts month-end JEs, accruals, prepaid, revenue cutoff, and books them after reviewer sign-off." },
+      { title: "Reconcile & consolidate", body: "Bank, subledger and inter-company recs run continuously; group consolidation applies FX and eliminations." },
+      { title: "Publish the pack", body: "Board-ready packs generate automatically with narrative, every figure drills back to source." },
+    ],
+    metrics: [
+      { value: "3 days", label: "typical close" },
+      { value: "100%", label: "reconciled" },
+      { value: "Auto", label: "board pack" },
+    ],
+  },
+  {
     slug: "consolidation",
     order: 1,
     nav: "Consolidation",
