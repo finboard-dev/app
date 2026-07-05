@@ -53,7 +53,7 @@ const IMPACTS = [
 
 const LETTERS = ["A", "B", "C", "D", "E"];
 const GRID = "grid-cols-[30px_minmax(130px,1.7fr)_repeat(4,minmax(58px,0.9fr))]";
-const ROW_COUNT = 16; // fixed rows → constant image height across sheets
+const ROW_COUNT = 12; // data + filler rows; +1 header row = 13 total rows
 
 export default function Outcomes() {
   const [active, setActive] = React.useState(0);
