@@ -12,7 +12,7 @@ const CAP_BY_VIEW = {
   recon:     { icon: Layers,            text: "Inter-company eliminations and consolidation" },
   people:    { icon: Users,             text: "Manager and individual scorecards" },
   p2p:       { icon: Receipt,           text: "Procure-to-pay operations" },
-  o2c:       { icon: CircleDollarSign,  text: "Order-to-cash operations" },
+  o2c:       { icon: CircleDollarSign,  text: "Order-to-cash · usage-based billing · revenue recognition" },
 };
 
 export default function Hero({ onBookDemo }) {
