@@ -29,7 +29,7 @@ const PATHS = [
     kicker: "Advisory firms & CAS",
     icon: Building2,
     title: "I advise multiple clients.",
-    tags: ["One workspace", "White-label", "Partner pricing"],
+    tags: ["One workspace", "Partner pricing"],
     ctaLabel: "See firm workspace",
     external: "/advisory",
   },

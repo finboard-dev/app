@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, ArrowLeft, Check, Sparkles, Timer, ShieldCheck,
-  Users, PaintBucket, LayoutGrid, Repeat, Gauge, Building2, Briefcase,
+  Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase,
 } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -13,14 +13,12 @@ import { PRODUCT_NAV } from "@/data/products";
 
 const CAPABILITIES = [
   { icon: LayoutGrid,  label: "One workspace, every client" },
-  { icon: PaintBucket, label: "White-label board packs" },
   { icon: Repeat,      label: "Standardized close templates" },
   { icon: Gauge,       label: "Practice & staff economics" },
 ];
 
 const FEATURES = [
   { icon: LayoutGrid,  title: "Multi-client workspace", body: "Manage every client's entities from one place. Switch clients in a click; each one stays cleanly separated and governed." },
-  { icon: PaintBucket, title: "White-label deliverables", body: "Put your firm's brand on board packs, dashboards and client portals, FinBoard runs invisibly underneath." },
   { icon: Repeat,      title: "Standardized templates", body: "Build a close, consolidation or FP&A template once, then deploy it across clients. Onboard new engagements in days, not weeks." },
   { icon: Gauge,       title: "Practice economics", body: "See utilization, realization and margin across engagements, run your firm on the same live data you give clients." },
 ];
@@ -28,13 +26,12 @@ const FEATURES = [
 const STEPS = [
   { title: "Onboard clients", body: "Connect each client's QuickBooks, NetSuite or ERP. We do the forward-deployed build once; you reuse it everywhere." },
   { title: "Standardize delivery", body: "Roll your templates for close, consolidation and reporting across the whole client book for consistent output." },
-  { title: "Deliver & scale", body: "Ship white-labeled board packs and advisory insight, add clients without adding headcount." },
+  { title: "Deliver & scale", body: "Ship board packs and advisory insight, add clients without adding headcount." },
 ];
 
 const METRICS = [
   { value: "1", label: "workspace, all clients" },
   { value: "30 days", label: "to onboard a client" },
-  { value: "White-label", label: "board packs" },
 ];
 
 export default function Advisory() {
@@ -63,7 +60,7 @@ export default function Advisory() {
                 </h1>
 
                 <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75" data-testid="advisory-subhead">
-                  Consolidation, close, FP&amp;A and reporting for your entire client book, standardized templates, white-label deliverables and a portfolio view of your whole practice. Add clients without adding headcount.
+                  Consolidation, close, FP&amp;A and reporting for your entire client book, standardized templates and a portfolio view of your whole practice. Add clients without adding headcount.
                 </p>
 
                 <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 max-w-xl" data-testid="advisory-capabilities">
@@ -187,7 +184,7 @@ export default function Advisory() {
               ))}
             </div>
 
-            <div className="mt-4 grid grid-cols-3 gap-4" data-testid="advisory-metrics">
+            <div className="mt-4 grid grid-cols-2 gap-4" data-testid="advisory-metrics">
               {METRICS.map((m) => (
                 <div key={m.label} className="card-white p-6 text-center">
                   <div className="font-serif-display text-4xl sm:text-5xl tracking-tight">{m.value}</div>
@@ -205,10 +202,10 @@ export default function Advisory() {
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Partner program</div>
               <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">Firm-friendly economics.</h2>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/70">
-                Per-client and per-seat pricing built for resale margin, white-label rights, and a dedicated forward-deployed team for your practice. Land one firm, serve a whole portfolio.
+                Per-client and per-seat pricing built for resale margin, and a dedicated forward-deployed team for your practice. Land one firm, serve a whole portfolio.
               </p>
               <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-[#0A0A0A]/75">
-                {["Per-client pricing", "White-label rights", "Reseller margin", "Dedicated onboarding"].map((x) => (
+                {["Per-client pricing", "Reseller margin", "Dedicated onboarding"].map((x) => (
                   <li key={x} className="inline-flex items-center gap-2">
                     <Check size={14} className="text-emerald-600" /> {x}
                   </li>
@@ -248,7 +245,6 @@ function AdvisoryVisual() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#E5E0D8]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#E5E0D8]" />
         <div className="ml-4 text-[11px] text-[#0A0A0A]/50">yourfirm.finboard.app / clients</div>
-        <div className="ml-auto text-[10px] px-2 py-1 rounded-full bg-white border border-line">White-label</div>
       </div>
 
       <div className="grid grid-cols-12 bg-white min-h-[360px]">
