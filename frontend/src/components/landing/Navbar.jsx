@@ -41,7 +41,12 @@ export default function Navbar({ onBookDemo }) {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link to="/" data-testid="brand-logo" className="flex items-center gap-2">
-          <span className="h-7 w-7 rounded-md bg-[#0A0A0A] text-white grid place-items-center font-serif-display text-[13px] leading-none">Fb</span>
+          <img
+            src="/brand/finboard-mark-dark.png"
+            alt=""
+            className="h-8 w-8 rounded-md select-none"
+            draggable="false"
+          />
           <span className="font-serif-display text-[22px] tracking-tight">FinBoard</span>
         </Link>
 

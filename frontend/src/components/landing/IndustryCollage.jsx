@@ -60,9 +60,12 @@ export default function IndustryCollage() {
               className="pointer-events-auto group relative flex items-center gap-3 rounded-full bg-white text-[#0A0A0A] pl-2 pr-5 py-2 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-black/5 hover:-translate-y-0.5 transition-transform"
               aria-label="FinBoard — home"
             >
-              <span className="h-10 w-10 rounded-full bg-[#0A0A0A] text-white grid place-items-center font-serif-display text-[16px] leading-none">
-                Fb
-              </span>
+              <img
+                src="/brand/finboard-mark-dark.png"
+                alt=""
+                className="h-10 w-10 rounded-full select-none"
+                draggable="false"
+              />
               <span className="font-serif-display text-[22px] leading-none tracking-tight">
                 FinBoard
               </span>
