@@ -40,31 +40,32 @@ export default function Industry() {
         ============================================================ */}
         {slug === "restaurants" ? (
           <section
-            className="relative overflow-hidden bg-sand flex flex-col"
+            className="relative overflow-hidden bg-[#0A0A0A] text-white flex flex-col"
             style={{ minHeight: "calc(100vh - 68px)" }}
           >
-            <div className="grain absolute inset-0 pointer-events-none" />
-            {/* Copy block — top row (fixed height) */}
+            {/* subtle dot texture for the whole hero */}
+            <div
+              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              style={{
+                backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+                backgroundSize: "22px 22px",
+              }}
+              aria-hidden
+            />
+
+            {/* Title strip — top, dark */}
             <div className="relative shrink-0">
               <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-10 pb-4 lg:pb-6">
-                <div className="animate-fade-up">
-                  <h1
-                    className="font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-[#0A0A0A] lg:whitespace-nowrap"
-                    data-testid="industry-heading"
-                  >
-                    {headlineLead}{" "}
-                    <span className="italic" style={{ color: accent }}>
-                      {headlineItalic}
-                    </span>{" "}
-                    {headlineTail}
-                  </h1>
-                  <p
-                    className="mt-3 max-w-3xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
-                    data-testid="industry-subhead"
-                  >
-                    {subhead}
-                  </p>
-                </div>
+                <h1
+                  className="animate-fade-up font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-white lg:whitespace-nowrap"
+                  data-testid="industry-heading"
+                >
+                  {headlineLead}{" "}
+                  <span className="italic" style={{ color: accent }}>
+                    {headlineItalic}
+                  </span>{" "}
+                  {headlineTail}
+                </h1>
               </div>
             </div>
 
@@ -79,19 +80,9 @@ export default function Industry() {
 
               {/* Dark contrast sidebar */}
               <aside
-                className="lg:col-span-1 relative flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-10 bg-[#0A0A0A] text-white overflow-hidden"
+                className="lg:col-span-1 relative flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-10 bg-[#0A0A0A] text-white overflow-hidden border-t lg:border-t-0 lg:border-l border-white/10"
                 data-testid="industry-hero-sidebar"
               >
-                {/* subtle dot pattern for texture */}
-                <div
-                  className="absolute inset-0 opacity-[0.05] pointer-events-none"
-                  style={{
-                    backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-                    backgroundSize: "18px 18px",
-                  }}
-                  aria-hidden
-                />
-
                 {/* Capabilities */}
                 <div className="relative">
                   <div className="inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.18em] font-semibold text-white/50">
