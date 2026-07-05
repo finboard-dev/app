@@ -159,10 +159,10 @@ export default function UseCases() {
                 key={t.id}
                 onClick={() => selectTop(t.id)}
                 data-testid={`explorer-top-${t.id}`}
-                className={`group relative text-left rounded-2xl p-5 border transition-all overflow-hidden ${
+                className={`group relative text-left rounded-2xl p-5 border-2 transition-all overflow-hidden ${
                   active
-                    ? "bg-white text-[#0A0A0A] border-[#0A0A0A]/15 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.35)] ring-1 ring-emerald-400/40"
-                    : "bg-[#F5F0E8] text-[#0A0A0A] border-[#EDE4D2] hover:border-[#DDD1B8] hover:bg-[#EFE7D6] hover:-translate-y-0.5"
+                    ? "bg-emerald-50 text-[#0A0A0A] border-emerald-500 shadow-[0_20px_50px_-16px_rgba(16,185,129,0.45)] scale-[1.02]"
+                    : "bg-[#F5F0E8] text-[#0A0A0A] border-transparent hover:border-[#DDD1B8] hover:bg-[#EFE7D6] hover:-translate-y-0.5"
                 }`}
               >
                 {active && (
@@ -172,7 +172,7 @@ export default function UseCases() {
                   <span
                     className={`h-10 w-10 rounded-lg grid place-items-center transition-colors ${
                       active
-                        ? "bg-[#0A0A0A] text-white border border-[#0A0A0A]"
+                        ? "bg-emerald-500 text-white border border-emerald-600"
                         : "bg-white text-[#0A0A0A] border border-[#EDE4D2] group-hover:bg-white"
                     }`}
                   >
@@ -180,7 +180,7 @@ export default function UseCases() {
                   </span>
                   <span
                     className={`font-serif-display text-[13px] tabular-nums ${
-                      active ? "text-[#0A0A0A]/45" : "text-[#0A0A0A]/35"
+                      active ? "text-emerald-700" : "text-[#0A0A0A]/35"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -191,14 +191,14 @@ export default function UseCases() {
                 </div>
                 <div
                   className={`mt-1 text-[12.5px] leading-snug ${
-                    active ? "text-[#0A0A0A]/70" : "text-[#0A0A0A]/65"
+                    active ? "text-[#0A0A0A]/75" : "text-[#0A0A0A]/65"
                   }`}
                 >
                   {t.headline}
                 </div>
                 <div
                   className={`mt-4 pt-3 border-t flex items-center justify-between text-[10.5px] uppercase tracking-[0.2em] ${
-                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/60" : "border-[#EDE4D2] text-[#0A0A0A]/55"
+                    active ? "border-emerald-500/25 text-emerald-800" : "border-[#EDE4D2] text-[#0A0A0A]/55"
                   }`}
                 >
                   <span>{t.subs.length} workflows</span>
@@ -226,10 +226,10 @@ export default function UseCases() {
                 key={s.id}
                 onClick={() => setSubId(s.id)}
                 data-testid={`explorer-sub-${s.id}`}
-                className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium border transition-all ${
+                className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium border-2 transition-all ${
                   active
-                    ? "bg-white text-[#0A0A0A] border-[#0A0A0A]/25 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.25)] ring-1 ring-emerald-400/40"
-                    : "bg-[#F5F0E8] text-[#0A0A0A] border-[#EDE4D2] hover:border-[#DDD1B8] hover:bg-[#EFE7D6]"
+                    ? "bg-emerald-50 text-emerald-800 border-emerald-500 shadow-[0_4px_14px_-4px_rgba(16,185,129,0.5)]"
+                    : "bg-[#F5F0E8] text-[#0A0A0A] border-transparent hover:border-[#DDD1B8] hover:bg-[#EFE7D6]"
                 }`}
               >
                 {active && (
@@ -237,7 +237,7 @@ export default function UseCases() {
                 )}
                 <span
                   className={`font-serif-display text-[11px] tabular-nums ${
-                    active ? "text-[#0A0A0A]/50" : "text-[#0A0A0A]/40"
+                    active ? "text-emerald-700" : "text-[#0A0A0A]/40"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
