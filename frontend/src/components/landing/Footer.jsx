@@ -80,7 +80,7 @@ export default function Footer() {
             <FooterCol title="Product" links={[
               { l: "Use cases", href: "#use-cases" },
               { l: "How it works", href: "#how-it-works" },
-              { l: "Pricing", href: "#pricing" },
+              { l: "Pricing", href: "/pricing" },
               { l: "FAQ", href: "#faq" },
             ]} />
             <FooterCol title="Company" links={[

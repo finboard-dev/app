@@ -121,13 +121,13 @@ export default function Navbar({ onBookDemo }) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a
-            href="/#pricing"
+          <Link
+            to="/pricing"
             data-testid="nav-link-pricing"
             className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
           >
             Pricing
-          </a>
+          </Link>
 
           <DropdownMenu>
             <DropdownMenuTrigger
@@ -238,14 +238,14 @@ export default function Navbar({ onBookDemo }) {
                 ))}
               </div>
             </div>
-            <a
-              href="/#pricing"
+            <Link
+              to="/pricing"
               onClick={() => setOpen(false)}
               data-testid="mobile-nav-link-pricing"
               className="text-base"
             >
               Pricing
-            </a>
+            </Link>
             <div className="pt-2 border-t border-line/70">
               <div className="text-xs uppercase tracking-[0.18em] text-[#0A0A0A]/50 mb-2">Industries</div>
               <div className="flex flex-col gap-1">

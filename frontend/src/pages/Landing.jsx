@@ -9,7 +9,6 @@ import UseCases from "@/components/landing/UseCases";
 import CaseStudies from "@/components/landing/CaseStudies";
 import Team from "@/components/landing/Team";
 import Testimonials from "@/components/landing/Testimonials";
-import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
@@ -32,7 +31,6 @@ export default function Landing() {
         <AudienceFork onBookDemo={openDemo} />
         <UseCases />
         <CaseStudies />
-        <Pricing onBookDemo={openDemo} />
         <Testimonials />
         <Team />
         <FAQ />
