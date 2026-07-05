@@ -2,6 +2,7 @@ import React from "react";
 import {
   Landmark, BarChart3, CircleDollarSign, Receipt,
   ArrowUp, ArrowDown, RefreshCw, Zap, CheckCircle2, Sparkles, ShieldCheck,
+  ClipboardCheck, Clock,
 } from "lucide-react";
 
 /**
@@ -22,6 +23,21 @@ function useCycle(count, interval = 2600) {
  *   top tab (module)  ×  left sub-tab (workflow)  →  a live visual
  */
 const TABS = [
+  {
+    id: "close",
+    label: "Month-end close",
+    icon: ClipboardCheck,
+    headline: "Close the books in days, not weeks",
+    subs: [
+      { id: "gl",        label: "GL Accounting",         desc: "Journal entries & ledger tie-out",  Mockup: () => <CloseMockup activeIdx={0} /> },
+      { id: "recon",     label: "Reconciliation",        desc: "Bank & subledger reconciliations",  Mockup: () => <CloseMockup activeIdx={1} /> },
+      { id: "consol",    label: "Consolidation",         desc: "Multi-entity roll-up & FX",         Mockup: () => <CloseMockup activeIdx={2} /> },
+      { id: "prepaid",   label: "Prepaid",               desc: "Prepaid amortization schedule",     Mockup: () => <CloseMockup activeIdx={3} /> },
+      { id: "accruals",  label: "Accruals",              desc: "Recognition & auto-reversal",       Mockup: () => <CloseMockup activeIdx={4} /> },
+      { id: "fa",        label: "Fixed Asset Register",  desc: "Depreciation & FA schedule",        Mockup: () => <CloseMockup activeIdx={5} /> },
+      { id: "board",     label: "Board Reporting Packs", desc: "Board-ready packs & narrative",     Mockup: () => <CloseMockup activeIdx={6} /> },
+    ],
+  },
   {
     id: "consolidation",
     label: "Consolidation",
@@ -111,9 +127,6 @@ export default function UseCases() {
             >
               One workspace, <span className="italic text-white/90">every finance workflow</span>.
             </h2>
-            <p className="mt-4 max-w-xl text-[14.5px] text-white/60 leading-relaxed">
-              Pick a module, then a workflow, and see exactly what FinBoard runs for your group — no scrolling, no demo call required.
-            </p>
           </div>
 
           {/* Stat trio */}
@@ -152,7 +165,7 @@ export default function UseCases() {
 
         {/* Module rail — four rich cards, filmstrip style */}
         <div
-          className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-3"
+          className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-3"
           data-testid="explorer-top-tabs"
         >
           {TABS.map((t, i) => {
@@ -888,6 +901,252 @@ function MatchMockup() {
         <div className="mt-3 rounded-lg border border-line bg-[#F9F6F0] p-3 flex items-center justify-between text-[11px]">
           <span className="text-[#0A0A0A]/70 flex items-center gap-2"><ShieldCheck size={12} /> Variance within tolerance</span>
           <span className="font-medium">Ready to pay</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+
+/* ---------- Month-end close: shared multi-workflow mockup ---------- */
+const CLOSE_STEPS = [
+  { id: "gl",       label: "GL Accounting",         status: "done" },
+  { id: "recon",    label: "Reconciliation",        status: "done" },
+  { id: "consol",   label: "Consolidation",         status: "wip"  },
+  { id: "prepaid",  label: "Prepaid",               status: "wip"  },
+  { id: "accruals", label: "Accruals",              status: "pending" },
+  { id: "fa",       label: "Fixed Asset Register",  status: "pending" },
+  { id: "board",    label: "Board Reporting Packs", status: "pending" },
+];
+
+const CLOSE_DETAIL = {
+  0: {
+    // GL Accounting
+    kicker: "Journal entries",
+    title: "GL · June 2026",
+    cols: ["JE #", "Description", "Debit", "Credit"],
+    grid: "grid-cols-[0.7fr_2fr_0.8fr_0.8fr]",
+    rows: [
+      { c: ["JE-4412", "Payroll accrual · Ops",     "18,400", "—"],       tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4413", "Payroll accrual · Ops",     "—",       "18,400"], tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4418", "Revenue cutoff · NA",       "22,150", "—"],       tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4419", "Deferred rev · NA",         "—",       "22,150"], tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4426", "FX gain · EU · GmbH",       "1,820",  "—"],       tag: "Review",  tone: "warn" },
+    ],
+    summary: "12 posted · 3 pending review",
+  },
+  1: {
+    // Reconciliation
+    kicker: "Bank & subledger recs",
+    title: "Reconciliations",
+    cols: ["Account",    "GL Balance", "Bank / Sub", "Δ"],
+    grid: "grid-cols-[1.6fr_0.9fr_0.9fr_0.7fr]",
+    rows: [
+      { c: ["Chase · 4421 · Ops",         "482,190", "482,190", "0"],        tag: "Matched",  tone: "ok"   },
+      { c: ["Chase · 8811 · Payroll",     "182,050", "182,050", "0"],        tag: "Matched",  tone: "ok"   },
+      { c: ["Wise · EUR ops",             "96,410",  "96,410",  "0"],        tag: "Matched",  tone: "ok"   },
+      { c: ["Stripe · US receivable",     "142,720", "141,900", "820"],      tag: "Investigating", tone: "warn" },
+      { c: ["AP subledger · NetSuite",    "216,340", "216,340", "0"],        tag: "Matched",  tone: "ok"   },
+    ],
+    summary: "24 accounts · 1 under review",
+  },
+  2: {
+    // Consolidation
+    kicker: "Group consolidation",
+    title: "Entities → Group",
+    cols: ["Entity",              "Currency", "Local", "USD"],
+    grid: "grid-cols-[1.6fr_0.7fr_0.8fr_0.8fr]",
+    rows: [
+      { c: ["Home Care · North",  "USD", "1.82M", "1.82M"],   tag: "Consolidated", tone: "ok"   },
+      { c: ["Home Care · South",  "USD", "1.24M", "1.24M"],   tag: "Consolidated", tone: "ok"   },
+      { c: ["Clinical Group",     "USD", "0.96M", "0.96M"],   tag: "Consolidated", tone: "ok"   },
+      { c: ["Feature · UK Ltd",   "GBP", "0.74M", "0.94M"],   tag: "FX applied",   tone: "ok"   },
+      { c: ["Feature · GmbH",     "EUR", "0.51M", "0.55M"],   tag: "IC pending",   tone: "warn" },
+    ],
+    summary: "5 entities · 1 IC elimination outstanding",
+  },
+  3: {
+    // Prepaid
+    kicker: "Prepaid amortization",
+    title: "Prepaid schedule",
+    cols: ["Vendor", "Total", "Monthly", "Remaining"],
+    grid: "grid-cols-[1.6fr_0.8fr_0.7fr_0.8fr]",
+    rows: [
+      { c: ["Rippling · HR platform", "24,000", "2,000", "8,000"],    tag: "Auto",   tone: "ok"   },
+      { c: ["Sage · Insurance",       "18,600", "1,550", "9,300"],    tag: "Auto",   tone: "ok"   },
+      { c: ["AWS · Reserved",         "48,000", "4,000", "20,000"],   tag: "Auto",   tone: "ok"   },
+      { c: ["Legal · retainer",       "12,000", "1,000", "6,000"],    tag: "Auto",   tone: "ok"   },
+      { c: ["Rent · NYC office",      "84,000", "7,000", "35,000"],   tag: "Auto",   tone: "ok"   },
+    ],
+    summary: "17 prepaid contracts · $15.5k monthly amortization",
+  },
+  4: {
+    // Accruals
+    kicker: "Accrual recognition",
+    title: "Accruals · Jun 2026",
+    cols: ["Type", "Estimated", "Recognized", "Reversal"],
+    grid: "grid-cols-[1.4fr_0.9fr_0.9fr_0.8fr]",
+    rows: [
+      { c: ["Legal · Q2 fees",           "14,200", "14,200", "Jul 2026"], tag: "Booked", tone: "ok"   },
+      { c: ["Audit · YE prep",           "22,000", "22,000", "Sep 2026"], tag: "Booked", tone: "ok"   },
+      { c: ["Payroll · variable comp",   "48,500", "48,500", "Jul 2026"], tag: "Booked", tone: "ok"   },
+      { c: ["Utilities · Jun est",       "6,800",  "6,800",  "Jul 2026"], tag: "Booked", tone: "ok"   },
+      { c: ["Marketing · agency",        "9,200",  "—",      "—"],        tag: "Draft",  tone: "warn" },
+    ],
+    summary: "9 accruals · auto-reversed next period",
+  },
+  5: {
+    // Fixed Asset Register
+    kicker: "Fixed asset register",
+    title: "Depreciation · Jun 2026",
+    cols: ["Asset", "Cost", "Life", "Deprec / mo"],
+    grid: "grid-cols-[1.7fr_0.8fr_0.6fr_0.8fr]",
+    rows: [
+      { c: ["MacBook Pro · fleet (42)",  "126,000", "36 mo", "3,500"], tag: "Active", tone: "ok" },
+      { c: ["Office fit-out · NYC",      "310,000", "60 mo", "5,167"], tag: "Active", tone: "ok" },
+      { c: ["Warehouse racking · Cle",   "88,400",  "60 mo", "1,473"], tag: "Active", tone: "ok" },
+      { c: ["Server room · SF",          "44,000",  "36 mo", "1,222"], tag: "Active", tone: "ok" },
+      { c: ["Trade booths",              "18,500",  "24 mo", "771"],   tag: "Retiring", tone: "warn" },
+    ],
+    summary: "134 assets · $19,412 monthly depreciation",
+  },
+  6: {
+    // Board Reporting Packs
+    kicker: "Board pack",
+    title: "Board pack · Jun 2026",
+    cols: ["Section",              "Owner",     "Pages", "Status"],
+    grid: "grid-cols-[1.6fr_1fr_0.6fr_0.8fr]",
+    rows: [
+      { c: ["Executive summary",     "CFO",       "2",    "Drafting"],  tag: "AI", tone: "warn" },
+      { c: ["Consolidated P&L",      "Controller","3",    "Ready"],     tag: "Auto", tone: "ok" },
+      { c: ["Balance Sheet",         "Controller","2",    "Ready"],     tag: "Auto", tone: "ok" },
+      { c: ["Cash Flow",             "Controller","2",    "Ready"],     tag: "Auto", tone: "ok" },
+      { c: ["KPI scorecard",         "FP&A",      "1",    "Ready"],     tag: "Auto", tone: "ok" },
+    ],
+    summary: "10 sections · 1 narrative in review",
+  },
+};
+
+function CloseMockup({ activeIdx = 0 }) {
+  const d = CLOSE_DETAIL[activeIdx];
+  const activeId = CLOSE_STEPS[activeIdx].id;
+
+  return (
+    <>
+      <MockChrome title="month-end-close" tabActive="Overview" phaseLabel="Close · Jun 2026" />
+      <div className="p-5 bg-white">
+        {/* Progress strip */}
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50">Month-end close</div>
+            <div className="font-serif-display text-xl mt-0.5">Day 3 of 6 · June 2026</div>
+          </div>
+          <div className="text-[11px] text-[#0A0A0A]/60 flex items-center gap-1.5">
+            <Clock size={11} />
+            <span>28% left · <span className="text-[#0A0A0A] font-medium">on track</span></span>
+          </div>
+        </div>
+        <div className="mt-3 h-1 bg-[#F5F0E8] rounded-full overflow-hidden">
+          <div className="h-full bg-[#0A0A0A] transition-all duration-700 ease-out" style={{ width: "72%" }} />
+        </div>
+
+        {/* Body: checklist + detail */}
+        <div className="mt-4 grid grid-cols-12 gap-3">
+          {/* Checklist */}
+          <div className="col-span-12 md:col-span-5">
+            <div className="text-[10px] uppercase tracking-[0.15em] text-[#0A0A0A]/50 mb-2">Close checklist</div>
+            <ol className="rounded-lg border border-line overflow-hidden divide-y divide-line">
+              {CLOSE_STEPS.map((s, i) => {
+                const on = s.id === activeId;
+                const done = s.status === "done";
+                const wip  = s.status === "wip";
+                return (
+                  <li
+                    key={s.id}
+                    className={`flex items-center gap-3 px-3 py-2 text-[12.5px] transition-colors ${
+                      on ? "bg-[#F5F0E8]" : "bg-white"
+                    }`}
+                  >
+                    <span className={`font-serif-display text-[13px] tabular-nums w-6 shrink-0 ${
+                      on ? "text-[#0A0A0A]/70" : "text-[#0A0A0A]/30"
+                    }`}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={`h-5 w-5 shrink-0 rounded-full grid place-items-center transition-colors ${
+                      done ? "bg-emerald-500 text-white" :
+                      wip  ? "bg-amber-100 text-amber-700 border border-amber-300" :
+                             "bg-[#F5F0E8] text-[#0A0A0A]/40 border border-line"
+                    }`}>
+                      {done ? <CheckCircle2 size={11} /> : wip ? <RefreshCw size={10} className="animate-spin" style={{ animationDuration: "2.4s" }} /> : <span className="h-1 w-1 rounded-full bg-current" />}
+                    </span>
+                    <span className={`flex-1 truncate ${on ? "font-medium text-[#0A0A0A]" : "text-[#0A0A0A]/70"}`}>
+                      {s.label}
+                    </span>
+                    {on && (
+                      <span className="text-[9px] uppercase tracking-[0.18em] text-emerald-700 shrink-0 inline-flex items-center gap-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Active
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          {/* Workflow detail */}
+          <div className="col-span-12 md:col-span-7">
+            <div className="flex items-center justify-between mb-2">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">{d.kicker}</div>
+                <div className="font-serif-display text-lg leading-tight">{d.title}</div>
+              </div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-700 inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-line overflow-hidden">
+              <div className={`grid ${d.grid} px-3 py-2 text-[9.5px] uppercase tracking-[0.12em] text-[#0A0A0A]/50 bg-[#F5F0E8]/60 border-b border-line`}>
+                {d.cols.map((c, i) => (
+                  <div key={c} className={i === 0 ? "" : "text-right"}>{c}</div>
+                ))}
+              </div>
+              {d.rows.map((r, i) => (
+                <div
+                  key={i}
+                  className={`grid ${d.grid} px-3 py-2 items-center border-b border-line last:border-0 text-[11.5px] animate-fade-up`}
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  {r.c.map((cell, ci) => (
+                    <div
+                      key={ci}
+                      className={`${ci === 0 ? "text-[#0A0A0A]/80 truncate" : "text-right tabular-nums text-[#0A0A0A]/75"} ${ci === r.c.length - 1 ? "flex items-center justify-end gap-1.5" : ""}`}
+                    >
+                      {ci === r.c.length - 1 ? (
+                        <>
+                          <span>{cell}</span>
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded-full shrink-0 ${
+                            r.tone === "ok"   ? "bg-emerald-50 text-emerald-700" :
+                            r.tone === "warn" ? "bg-amber-50 text-amber-700" :
+                                                "bg-[#F5F0E8] text-[#0A0A0A]/50"
+                          }`}>{r.tag}</span>
+                        </>
+                      ) : (
+                        cell
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-3 rounded-lg border border-line bg-[#F9F6F0] px-3 py-2 flex items-center justify-between text-[11px] text-[#0A0A0A]/75">
+              <span className="inline-flex items-center gap-2"><Sparkles size={12} /> {d.summary}</span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/45">Audit trail on</span>
+            </div>
+          </div>
         </div>
       </div>
     </>
