@@ -42,30 +42,29 @@ export default function Industry() {
           <section className="relative overflow-hidden">
             <div className="grain absolute inset-0" />
             <div className="relative">
-              {/* Copy block — top row, centered container */}
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-8 lg:pb-10">
-                <div className="grid lg:grid-cols-12 gap-8 items-start animate-fade-up">
-                  <div className="lg:col-span-7">
-                    <h1
-                      className="font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-[#0A0A0A] lg:whitespace-nowrap"
-                      data-testid="industry-heading"
-                    >
-                      {headlineLead}{" "}
-                      <span className="italic" style={{ color: accent }}>
-                        {headlineItalic}
-                      </span>{" "}
-                      {headlineTail}
-                    </h1>
+              {/* Copy block — top row */}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-6 lg:pb-8">
+                <div className="animate-fade-up">
+                  <h1
+                    className="font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-[#0A0A0A] lg:whitespace-nowrap"
+                    data-testid="industry-heading"
+                  >
+                    {headlineLead}{" "}
+                    <span className="italic" style={{ color: accent }}>
+                      {headlineItalic}
+                    </span>{" "}
+                    {headlineTail}
+                  </h1>
 
+                  <div className="mt-4 grid lg:grid-cols-12 gap-6 items-start">
                     <p
-                      className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
+                      className="lg:col-span-7 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
                       data-testid="industry-subhead"
                     >
                       {subhead}
                     </p>
-
                     <ul
-                      className="mt-5 flex flex-wrap gap-x-4 gap-y-2 max-w-3xl"
+                      className="lg:col-span-5 flex flex-wrap gap-x-4 gap-y-2"
                       data-testid="industry-capabilities"
                     >
                       {capabilities.map(({ icon: CapIcon, label }) => (
@@ -81,28 +80,36 @@ export default function Industry() {
                       ))}
                     </ul>
                   </div>
-
-                  <div className="lg:col-span-5 lg:pt-2 flex flex-col lg:items-end gap-4">
-                    <AiTrustRow className="lg:justify-end" />
-                    <div className="flex flex-wrap items-center gap-3">
-                      <button
-                        onClick={openDemo}
-                        data-testid="industry-book-demo-button"
-                        className="btn-primary"
-                      >
-                        Book consultation <ArrowRight size={16} />
-                      </button>
-                      <a href="#pains" data-testid="industry-how-link" className="btn-secondary">
-                        See what you get
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              {/* Full-width video — edge to edge */}
-              <div className="w-full animate-fade-up" style={{ animationDelay: "120ms" }}>
-                <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" />
+              {/* Full-width row: video (75%) + sidebar (25%) */}
+              <div className="w-full grid grid-cols-1 lg:grid-cols-4 animate-fade-up" style={{ animationDelay: "120ms" }}>
+                <div className="lg:col-span-3">
+                  <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" />
+                </div>
+                <aside
+                  className="lg:col-span-1 flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-8 border-t lg:border-t-0 lg:border-l border-line bg-[#F9F6F0]"
+                  data-testid="industry-hero-sidebar"
+                >
+                  <AiTrustRow />
+                  <div className="flex flex-col gap-2.5">
+                    <button
+                      onClick={openDemo}
+                      data-testid="industry-book-demo-button"
+                      className="btn-primary justify-center w-full"
+                    >
+                      Book consultation <ArrowRight size={16} />
+                    </button>
+                    <a
+                      href="#pains"
+                      data-testid="industry-how-link"
+                      className="btn-secondary justify-center w-full"
+                    >
+                      See what you get
+                    </a>
+                  </div>
+                </aside>
               </div>
 
               {/* IndustryScene below */}
