@@ -38,7 +38,7 @@ export default function FAQ() {
     <section id="faq" className="bg-white border-y border-line">
       <div className="max-w-4xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
         <div className="kbd-chip" data-testid="faq-eyebrow"><HelpCircle size={12} /> FAQ</div>
-        <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="faq-heading">
+        <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight" data-testid="faq-heading">
           Frequently asked questions.
         </h2>
 

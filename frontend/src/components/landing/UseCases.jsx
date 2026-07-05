@@ -80,44 +80,69 @@ export default function UseCases() {
   };
 
   return (
-    <section id="use-cases" className="relative border-t border-line">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
-        {/* Editorial header */}
+    <section id="use-cases" className="relative bg-[#0A0A0A] text-white overflow-hidden">
+      {/* Ambient depth: grain + soft radial highlights */}
+      <div className="grain absolute inset-0 opacity-40" aria-hidden />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(60% 40% at 15% 0%, rgba(255,255,255,0.06), transparent 60%), radial-gradient(50% 40% at 85% 100%, rgba(16,185,129,0.06), transparent 60%)",
+        }}
+      />
+      {/* Subtle top/bottom hairline separators */}
+      <div className="absolute inset-x-0 top-0 h-px bg-white/10" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" aria-hidden />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+        {/* Editorial header, inverted */}
         <div className="grid lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/50">Explore the platform</span>
-              <span className="h-px flex-1 bg-line max-w-[220px]" />
+              <span className="text-[10px] uppercase tracking-[0.28em] text-white/40">
+                Product studio
+              </span>
+              <span className="h-px flex-1 bg-white/15 max-w-[220px]" />
             </div>
-            <h2 className="mt-5 font-serif-display text-3xl sm:text-4xl lg:text-5xl leading-[1.02] tracking-tight">
-              One workspace, <span className="italic">every finance workflow</span>.
+            <h2
+              className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-white"
+              data-testid="use-cases-heading"
+            >
+              One workspace, <span className="italic text-white/90">every finance workflow</span>.
             </h2>
-            <p className="mt-4 max-w-xl text-[14.5px] text-[#0A0A0A]/70 leading-relaxed">
+            <p className="mt-4 max-w-xl text-[14.5px] text-white/60 leading-relaxed">
               Pick a module, then a workflow, and see exactly what FinBoard runs for your group — no scrolling, no demo call required.
             </p>
           </div>
 
-          {/* Right side stats strip */}
+          {/* Stat trio */}
           <div className="lg:col-span-4 flex lg:justify-end">
             <div className="flex gap-6 text-[12px]">
               <div>
-                <div className="font-serif-display text-3xl tracking-tight tabular-nums">{TABS.length}</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5">modules</div>
+                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
+                  {TABS.length}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5">
+                  modules
+                </div>
               </div>
-              <div className="w-px bg-line" />
+              <div className="w-px bg-white/15" />
               <div>
                 <div className="font-serif-display text-3xl tracking-tight tabular-nums">
                   {TABS.reduce((n, t) => n + t.subs.length, 0)}
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5">workflows</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5">
+                  workflows
+                </div>
               </div>
-              <div className="w-px bg-line" />
+              <div className="w-px bg-white/15" />
               <div>
-                <div className="font-serif-display text-3xl tracking-tight tabular-nums inline-flex items-baseline gap-1">
+                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
                   Live
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/50 mt-0.5 inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5 inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   data
                 </div>
               </div>
@@ -125,9 +150,12 @@ export default function UseCases() {
           </div>
         </div>
 
-        {/* Top tabs (modules) — segmented, with sub-count */}
-        <div className="mt-10 rounded-2xl border border-line bg-white p-1.5 inline-flex flex-wrap gap-1 shadow-[0_1px_2px_rgba(10,10,10,0.03)]" data-testid="explorer-top-tabs">
-          {TABS.map((t) => {
+        {/* Module rail — four rich cards, filmstrip style */}
+        <div
+          className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-3"
+          data-testid="explorer-top-tabs"
+        >
+          {TABS.map((t, i) => {
             const TIcon = t.icon;
             const active = t.id === topId;
             return (
@@ -135,93 +163,129 @@ export default function UseCases() {
                 key={t.id}
                 onClick={() => selectTop(t.id)}
                 data-testid={`explorer-top-${t.id}`}
-                className={`group inline-flex items-center gap-2.5 rounded-xl px-4 py-2.5 text-sm transition-all ${
+                className={`group relative text-left rounded-2xl p-5 border transition-all overflow-hidden ${
                   active
-                    ? "bg-[#0A0A0A] text-white shadow-sm"
-                    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A] hover:bg-[#F5F0E8]"
+                    ? "bg-white text-[#0A0A0A] border-white shadow-[0_20px_50px_-24px_rgba(255,255,255,0.4)]"
+                    : "bg-white/[0.03] text-white/85 border-white/10 hover:border-white/25 hover:bg-white/[0.06] hover:-translate-y-0.5"
                 }`}
               >
-                <span className={`h-6 w-6 rounded-md grid place-items-center transition-colors ${
-                  active ? "bg-white/10" : "bg-[#F5F0E8] group-hover:bg-white border border-line"
-                }`}>
-                  <TIcon size={13} strokeWidth={1.75} />
-                </span>
-                <span className="font-medium">{t.label}</span>
-                <span className={`text-[10px] tabular-nums px-1.5 py-0.5 rounded-full ${
-                  active ? "bg-white/15 text-white/80" : "bg-[#F5F0E8] text-[#0A0A0A]/50"
-                }`}>
-                  {t.subs.length}
-                </span>
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className={`h-10 w-10 rounded-lg grid place-items-center transition-colors ${
+                      active
+                        ? "bg-[#0A0A0A] text-white"
+                        : "bg-white/10 text-white/90 group-hover:bg-white/20 border border-white/10"
+                    }`}
+                  >
+                    <TIcon size={16} strokeWidth={1.75} />
+                  </span>
+                  <span
+                    className={`font-serif-display text-[13px] tabular-nums ${
+                      active ? "text-[#0A0A0A]/35" : "text-white/30"
+                    }`}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="mt-6 font-serif-display text-lg leading-tight">
+                  {t.label}
+                </div>
+                <div
+                  className={`mt-1 text-[12.5px] leading-snug ${
+                    active ? "text-[#0A0A0A]/60" : "text-white/55"
+                  }`}
+                >
+                  {t.headline}
+                </div>
+                <div
+                  className={`mt-4 pt-3 border-t flex items-center justify-between text-[10.5px] uppercase tracking-[0.2em] ${
+                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/50" : "border-white/10 text-white/40"
+                  }`}
+                >
+                  <span>{t.subs.length} workflows</span>
+                  {active && (
+                    <span className="inline-flex items-center gap-1.5 text-emerald-600">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Selected
+                    </span>
+                  )}
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Body: sidebar (workflows) + visual */}
-        <div className="mt-8 grid lg:grid-cols-12 gap-6 items-start">
-          <aside className="lg:col-span-3" data-testid="explorer-sub-tabs">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/40 mb-3 hidden lg:block">
-              Workflows
-            </div>
-            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0">
-              {top.subs.map((s, i) => {
-                const active = s.id === subId;
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => setSubId(s.id)}
-                    data-testid={`explorer-sub-${s.id}`}
-                    className={`shrink-0 lg:w-full text-left rounded-xl px-4 py-3 transition-all border relative overflow-hidden ${
-                      active
-                        ? "bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-sm"
-                        : "bg-white border-line hover:border-line-strong hover:bg-[#F5F0E8]/50"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`font-serif-display text-[13px] tabular-nums shrink-0 ${
-                        active ? "text-white/60" : "text-[#0A0A0A]/35"
-                      }`}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-[13.5px] font-medium leading-tight whitespace-nowrap lg:whitespace-normal">{s.label}</span>
-                    </div>
-                    <div className={`mt-1 text-[11.5px] leading-snug pl-[26px] whitespace-nowrap lg:whitespace-normal ${
-                      active ? "text-white/60" : "text-[#0A0A0A]/50"
-                    }`}>
-                      {s.desc}
-                    </div>
-                    {active && (
-                      <span
-                        aria-hidden
-                        className="absolute right-3 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-emerald-400"
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </aside>
+        {/* Workflow chip row */}
+        <div className="mt-10 flex flex-wrap items-center gap-2" data-testid="explorer-sub-tabs">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 mr-2">
+            Workflow
+          </span>
+          {top.subs.map((s, i) => {
+            const active = s.id === subId;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setSubId(s.id)}
+                data-testid={`explorer-sub-${s.id}`}
+                className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium border transition-all ${
+                  active
+                    ? "bg-white text-[#0A0A0A] border-white"
+                    : "bg-white/[0.03] text-white/70 border-white/15 hover:text-white hover:border-white/30 hover:bg-white/[0.06]"
+                }`}
+              >
+                <span
+                  className={`font-serif-display text-[11px] tabular-nums ${
+                    active ? "text-[#0A0A0A]/40" : "text-white/40"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {s.label}
+              </button>
+            );
+          })}
+        </div>
 
-          <div className="lg:col-span-9">
-            <div key={`title-${topId}-${subId}`} className="mb-4 flex items-end justify-between gap-4 animate-fade-up" data-testid="explorer-title">
-              <div>
-                <div className="text-[11px] text-[#0A0A0A]/50 font-mono tracking-tight">
-                  {top.label} <span className="opacity-40">/</span> {sub.label}
-                </div>
-                <div className="mt-1 font-serif-display text-2xl sm:text-3xl leading-tight tracking-tight">{top.headline}</div>
-              </div>
-              <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/45 shrink-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live preview
-              </div>
+        {/* Title strip above the mockup */}
+        <div
+          key={`title-${topId}-${subId}`}
+          className="mt-8 mb-4 flex items-end justify-between gap-4 animate-fade-up"
+          data-testid="explorer-title"
+        >
+          <div>
+            <div className="text-[11px] text-white/40 font-mono tracking-tight">
+              {top.label} <span className="opacity-40">/</span> {sub.label}
             </div>
-            <div
-              key={`${topId}-${subId}`}
-              className="card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.03),0_20px_40px_-24px_rgba(10,10,10,0.15)] animate-fade-up"
-              data-testid="explorer-visual"
-            >
-              <Mockup />
+            <div className="mt-1 font-serif-display text-2xl sm:text-3xl leading-tight tracking-tight text-white">
+              {top.headline}
             </div>
+            <div className="mt-1 text-[13px] text-white/60 max-w-xl">{sub.desc}</div>
           </div>
+          <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-white/40 shrink-0">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Live preview
+          </div>
+        </div>
+
+        {/* Big light-card mockup floating on the dark canvas */}
+        <div
+          key={`${topId}-${subId}`}
+          className="rounded-2xl overflow-hidden bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgba(0,0,0,0.2),0_40px_80px_-24px_rgba(0,0,0,0.55)] animate-fade-up"
+          data-testid="explorer-visual"
+        >
+          <Mockup />
+        </div>
+
+        {/* Editorial footer strip */}
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-white/45" data-testid="explorer-footer">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Streaming from your governed ledger
+          </span>
+          <span className="hidden sm:inline text-white/25">·</span>
+          <span>ERP · CRM · HRIS unified</span>
+          <span className="hidden sm:inline text-white/25">·</span>
+          <span>Every number traceable to source</span>
         </div>
       </div>
     </section>

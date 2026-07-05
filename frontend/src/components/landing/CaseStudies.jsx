@@ -50,7 +50,7 @@ export default function CaseStudies() {
         <div className="flex items-end justify-between flex-wrap gap-6">
           <div className="max-w-2xl">
             <div className="kbd-chip" data-testid="case-studies-eyebrow"><BookOpenText size={12} /> Case studies</div>
-            <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight" data-testid="case-studies-heading">
+            <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight" data-testid="case-studies-heading">
               What the office of the CFO ships with FinBoard.
             </h2>
           </div>
