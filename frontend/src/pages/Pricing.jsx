@@ -102,9 +102,9 @@ const FAQS = [
 ];
 
 const QUOTE_INCLUDES = [
-  { icon: ShieldCheck, label: "A tailored quote within one business day" },
-  { icon: Users,       label: "Answers to your close, reporting & spend questions" },
-  { icon: Database,    label: "A walk-through of how FinBoard scales with your group" },
+  { icon: Timer,       label: "Tailored quote in 1 business day" },
+  { icon: MessageSquare, label: "Answers to close, reporting & spend questions" },
+  { icon: Database,    label: "Walk-through of how FinBoard scales with your group" },
   { icon: Sparkles,    label: "Forward-deployed build plan for your first 30 days" },
 ];
 
@@ -137,16 +137,30 @@ export default function Pricing() {
                   Tell us what modules you need and how your group is structured, and we&apos;ll send you a custom quote. No sticker prices, no per-seat surprises, no fine print — just a plan that fits how you actually run finance.
                 </p>
 
-                <ul className="mt-7 grid sm:grid-cols-2 gap-x-4 gap-y-2.5 max-w-xl" data-testid="pricing-quote-includes">
-                  {QUOTE_INCLUDES.map(({ icon: Icon, label }) => (
-                    <li key={label} className="flex items-start gap-2.5 text-[13px] text-[#0A0A0A]/80">
-                      <span className="h-7 w-7 shrink-0 rounded-md border border-line bg-[#F5F0E8] grid place-items-center">
-                        <Icon size={13} />
-                      </span>
-                      <span className="leading-snug">{label}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-8 max-w-xl" data-testid="pricing-quote-includes">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/50">Reach out for</span>
+                    <span className="h-px flex-1 bg-line" />
+                  </div>
+                  <ul className="mt-4 divide-y divide-line/70 border-y border-line/70">
+                    {QUOTE_INCLUDES.map(({ icon: Icon, label }, i) => (
+                      <li
+                        key={label}
+                        className="group flex items-center gap-4 py-3.5 transition-colors hover:bg-[#F5F0E8]/40 -mx-2 px-2 rounded-sm"
+                      >
+                        <span className="font-serif-display text-[15px] tabular-nums text-[#0A0A0A]/35 w-6 shrink-0">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="h-8 w-8 shrink-0 rounded-md border border-line bg-white grid place-items-center text-[#0A0A0A] group-hover:bg-[#0A0A0A] group-hover:text-white transition-colors">
+                          <Icon size={14} strokeWidth={1.75} />
+                        </span>
+                        <span className="text-[13.5px] leading-snug text-[#0A0A0A]/85 flex-1">
+                          {label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <AiTrustRow className="mt-6" />
 
