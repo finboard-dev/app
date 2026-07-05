@@ -17,6 +17,7 @@ import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
+import IndustryCollage from "@/components/landing/IndustryCollage";
 
 export default function Landing() {
   const [demoOpen, setDemoOpen] = React.useState(false);
@@ -33,6 +34,7 @@ export default function Landing() {
         <TrustBar />
         <AudienceFork onBookDemo={openDemo} />
         <UseCases />
+        <IndustryCollage />
         <ForwardDeployed />
         <HowItWorks />
         <CaseStudies />
