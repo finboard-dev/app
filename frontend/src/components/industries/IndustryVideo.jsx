@@ -15,7 +15,7 @@ export function hasIndustryVideo(slug) {
   return Boolean(INDUSTRY_VIDEOS[slug]);
 }
 
-export default function IndustryVideo({ slug, label, accent, tint, variant = "card" }) {
+export default function IndustryVideo({ slug, label, accent, tint, variant = "card", fill = false }) {
   const src = INDUSTRY_VIDEOS[slug];
   const videoRef = React.useRef(null);
 
@@ -37,7 +37,7 @@ export default function IndustryVideo({ slug, label, accent, tint, variant = "ca
       data-testid={`industry-video-${slug}`}
       className={
         isHero
-          ? "relative overflow-hidden bg-[#0A0A0A]"
+          ? `relative overflow-hidden bg-[#0A0A0A] ${fill ? "h-full min-h-[420px]" : ""}`
           : "card-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]"
       }
     >
@@ -59,8 +59,8 @@ export default function IndustryVideo({ slug, label, accent, tint, variant = "ca
 
       {/* Video */}
       <div
-        className="relative bg-[#0A0A0A]"
-        style={{ aspectRatio: isHero ? "21 / 9" : "16 / 10" }}
+        className={`relative bg-[#0A0A0A] ${fill ? "h-full" : ""}`}
+        style={fill ? undefined : { aspectRatio: isHero ? "21 / 9" : "16 / 10" }}
       >
         <video
           ref={videoRef}

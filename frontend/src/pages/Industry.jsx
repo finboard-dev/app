@@ -55,20 +55,38 @@ export default function Industry() {
                     </span>{" "}
                     {headlineTail}
                   </h1>
+                  <p
+                    className="mt-4 max-w-3xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
+                    data-testid="industry-subhead"
+                  >
+                    {subhead}
+                  </p>
+                </div>
+              </div>
 
-                  <div className="mt-4 grid lg:grid-cols-12 gap-6 items-start">
-                    <p
-                      className="lg:col-span-7 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
-                      data-testid="industry-subhead"
-                    >
-                      {subhead}
-                    </p>
+              {/* Full-width row: video (75%) + sidebar (25%) — both stretch to same height */}
+              <div
+                className="w-full grid grid-cols-1 lg:grid-cols-4 items-stretch animate-fade-up"
+                style={{ animationDelay: "120ms" }}
+              >
+                <div className="lg:col-span-3 min-h-[420px] lg:min-h-0">
+                  <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" fill />
+                </div>
+                <aside
+                  className="lg:col-span-1 flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-8 border-t lg:border-t-0 lg:border-l border-line bg-[#F9F6F0]"
+                  data-testid="industry-hero-sidebar"
+                >
+                  {/* Capabilities */}
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-[#0A0A0A]/50">
+                      What you get
+                    </div>
                     <ul
-                      className="lg:col-span-5 flex flex-wrap gap-x-4 gap-y-2"
+                      className="mt-3 flex flex-col gap-2"
                       data-testid="industry-capabilities"
                     >
                       {capabilities.map(({ icon: CapIcon, label }) => (
-                        <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
+                        <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/85">
                           <span
                             className="h-6 w-6 shrink-0 rounded-md border grid place-items-center"
                             style={{ backgroundColor: tint, borderColor: `${accent}33`, color: accent }}
@@ -80,19 +98,11 @@ export default function Industry() {
                       ))}
                     </ul>
                   </div>
-                </div>
-              </div>
 
-              {/* Full-width row: video (75%) + sidebar (25%) */}
-              <div className="w-full grid grid-cols-1 lg:grid-cols-4 animate-fade-up" style={{ animationDelay: "120ms" }}>
-                <div className="lg:col-span-3">
-                  <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" />
-                </div>
-                <aside
-                  className="lg:col-span-1 flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-8 border-t lg:border-t-0 lg:border-l border-line bg-[#F9F6F0]"
-                  data-testid="industry-hero-sidebar"
-                >
+                  {/* AI trust row */}
                   <AiTrustRow />
+
+                  {/* CTAs */}
                   <div className="flex flex-col gap-2.5">
                     <button
                       onClick={openDemo}
