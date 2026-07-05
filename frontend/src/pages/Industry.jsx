@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
-import { ArrowRight, X, Plug } from "lucide-react";
+import { ArrowRight, X, Plug, Check } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -39,11 +39,14 @@ export default function Industry() {
             HERO
         ============================================================ */}
         {slug === "restaurants" ? (
-          <section className="relative overflow-hidden">
-            <div className="grain absolute inset-0" />
-            <div className="relative">
-              {/* Copy block — top row */}
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-6 lg:pb-8">
+          <section
+            className="relative overflow-hidden bg-sand flex flex-col"
+            style={{ minHeight: "calc(100vh - 68px)" }}
+          >
+            <div className="grain absolute inset-0 pointer-events-none" />
+            {/* Copy block — top row (fixed height) */}
+            <div className="relative shrink-0">
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-10 pb-4 lg:pb-6">
                 <div className="animate-fade-up">
                   <h1
                     className="font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-[#0A0A0A] lg:whitespace-nowrap"
@@ -56,79 +59,111 @@ export default function Industry() {
                     {headlineTail}
                   </h1>
                   <p
-                    className="mt-4 max-w-3xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
+                    className="mt-3 max-w-3xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
                     data-testid="industry-subhead"
                   >
                     {subhead}
                   </p>
                 </div>
               </div>
+            </div>
 
-              {/* Full-width row: video (75%) + sidebar (25%) — both stretch to same height */}
-              <div
-                className="w-full grid grid-cols-1 lg:grid-cols-4 items-stretch animate-fade-up"
-                style={{ animationDelay: "120ms" }}
+            {/* Video row — fills remaining vertical space */}
+            <div
+              className="relative w-full grid grid-cols-1 lg:grid-cols-4 items-stretch flex-1 min-h-[520px] animate-fade-up"
+              style={{ animationDelay: "120ms" }}
+            >
+              <div className="lg:col-span-3 relative">
+                <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" fill />
+              </div>
+
+              {/* Dark contrast sidebar */}
+              <aside
+                className="lg:col-span-1 relative flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-10 bg-[#0A0A0A] text-white overflow-hidden"
+                data-testid="industry-hero-sidebar"
               >
-                <div className="lg:col-span-3 min-h-[420px] lg:min-h-0">
-                  <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" fill />
+                {/* subtle dot pattern for texture */}
+                <div
+                  className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                  style={{
+                    backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                  }}
+                  aria-hidden
+                />
+
+                {/* Capabilities */}
+                <div className="relative">
+                  <div className="inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.18em] font-semibold text-white/50">
+                    What you get
+                  </div>
+                  <ul
+                    className="mt-3 flex flex-col gap-2.5"
+                    data-testid="industry-capabilities"
+                  >
+                    {capabilities.map(({ icon: CapIcon, label }) => (
+                      <li key={label} className="flex items-center gap-2.5 text-[13.5px] text-white/90">
+                        <span
+                          className="h-6 w-6 shrink-0 rounded-md grid place-items-center"
+                          style={{ backgroundColor: `${accent}22`, color: accent }}
+                        >
+                          <CapIcon size={12} strokeWidth={2} />
+                        </span>
+                        <span>{label}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <aside
-                  className="lg:col-span-1 flex flex-col justify-between gap-6 px-6 lg:pl-8 lg:pr-10 py-6 lg:py-8 border-t lg:border-t-0 lg:border-l border-line bg-[#F9F6F0]"
-                  data-testid="industry-hero-sidebar"
-                >
-                  {/* Capabilities */}
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-[#0A0A0A]/50">
-                      What you get
-                    </div>
-                    <ul
-                      className="mt-3 flex flex-col gap-2"
-                      data-testid="industry-capabilities"
-                    >
-                      {capabilities.map(({ icon: CapIcon, label }) => (
-                        <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/85">
-                          <span
-                            className="h-6 w-6 shrink-0 rounded-md border grid place-items-center"
-                            style={{ backgroundColor: tint, borderColor: `${accent}33`, color: accent }}
-                          >
-                            <CapIcon size={12} strokeWidth={1.75} />
-                          </span>
-                          <span>{label}</span>
-                        </li>
-                      ))}
-                    </ul>
+
+                {/* AI trust row (dark variant) */}
+                <div className="relative">
+                  <div className="inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.18em] font-semibold text-white/50">
+                    Enterprise-safe AI
                   </div>
-
-                  {/* AI trust row */}
-                  <AiTrustRow />
-
-                  {/* CTAs */}
-                  <div className="flex flex-col gap-2.5">
-                    <button
-                      onClick={openDemo}
-                      data-testid="industry-book-demo-button"
-                      className="btn-primary justify-center w-full"
-                    >
-                      Book consultation <ArrowRight size={16} />
-                    </button>
-                    <a
-                      href="#pains"
-                      data-testid="industry-how-link"
-                      className="btn-secondary justify-center w-full"
-                    >
-                      See what you get
-                    </a>
+                  <div className="mt-3 grid grid-cols-2 gap-1.5" data-testid="ai-trust-row">
+                    {["Auditable", "Human approval", "Explainable", "Fully traceable"].map((t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.06] px-2 py-1 text-[11px] text-white/85"
+                      >
+                        <Check size={10} className="text-emerald-400 shrink-0" /> {t}
+                      </span>
+                    ))}
                   </div>
-                </aside>
-              </div>
+                </div>
 
-              {/* IndustryScene below */}
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-12 pb-10 lg:pb-14">
-                <IndustryScene slug={slug} />
-              </div>
+                {/* CTAs */}
+                <div className="relative flex flex-col gap-2.5">
+                  <button
+                    onClick={openDemo}
+                    data-testid="industry-book-demo-button"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[#0A0A0A] px-4 py-3 text-[14px] font-medium hover:bg-white/90 transition-colors w-full"
+                  >
+                    Book consultation <ArrowRight size={15} />
+                  </button>
+                  <a
+                    href="#pains"
+                    data-testid="industry-how-link"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-transparent text-white px-4 py-3 text-[14px] font-medium hover:bg-white/10 transition-colors w-full"
+                  >
+                    See what you get
+                  </a>
+                </div>
+              </aside>
             </div>
           </section>
-        ) : (
+        ) : null}
+
+        {/* IndustryScene supporting card (restaurants only, below viewport hero) */}
+        {slug === "restaurants" && (
+          <section className="border-t border-line">
+            <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-14">
+              <IndustryScene slug={slug} />
+            </div>
+          </section>
+        )}
+
+        {slug !== "restaurants" && (
           <section className="relative overflow-hidden">
             <div className="grain absolute inset-0" />
             <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-12 lg:pb-20">
