@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, Check, Sparkles, ShieldCheck, Users, Database,
-  Layers, Building2, Timer, MessageSquare,
+  ArrowRight, Check, Sparkles, Database,
+  Layers, Timer, MessageSquare,
 } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -11,72 +11,26 @@ import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import { PRODUCT_NAV } from "@/data/products";
 
-// Groups of modules for the "Platform > Modules" narrative.
-// Kept intentionally price-free — everything is quote-based.
-const CATEGORIES = [
+// Flat module list — each links to the matching product page.
+// Platform is the shared foundation and has no dedicated product page.
+const MODULES = [
   {
-    id: "platform",
-    kicker: "The platform",
-    title: "The finance workspace",
-    lede: "The governed core every FinBoard customer starts with. One workspace, every entity, every user, one audit trail.",
-    items: [
-      {
-        icon: Layers,
-        title: "FinBoard Platform",
-        body: "The workspace that unifies every ledger, connector and person, with a single governed data model underneath.",
-        bullets: [
-          "Unified multi-entity workspace",
-          "ERP, CRM & HRIS connectors",
-          "Governed semantic layer",
-          "Full audit trail & lineage",
-          "Role-based access & SSO",
-          "Forward-deployed onboarding",
-        ],
-        cta: null, // platform, no dedicated page
-      },
-    ],
+    slug: "platform",
+    icon: Layers,
+    tag: "Platform",
+    title: "FinBoard Platform",
+    body: "The workspace that unifies every ledger, connector and person, with one governed data model, audit trail and role-based access.",
+    to: null,
   },
-  {
-    id: "close",
-    kicker: "Close & Consolidation",
-    title: "Close the group",
-    lede: "Ingest every subsidiary, auto-match inter-company, post eliminations and translate currencies.",
-    items: [
-      pickProduct("consolidation"),
-    ],
-  },
-  {
-    id: "reporting",
-    kicker: "Reporting & Planning",
-    title: "Report and plan on one truth",
-    lede: "Live board-ready dashboards and driver-based plans, built on the same governed data as your actuals.",
-    items: [
-      pickProduct("analytics"),
-      pickProduct("fpa"),
-    ],
-  },
-  {
-    id: "spend",
-    kicker: "Spend & Cash",
-    title: "Move money on autopilot",
-    lede: "AI agents that read vendor documents, run 3-way match, chase invoices and land the cash — traceable end-to-end.",
-    items: [
-      pickProduct("p2p"),
-      pickProduct("o2c"),
-    ],
-  },
-];
-
-function pickProduct(slug) {
-  const p = PRODUCT_NAV.find((x) => x.slug === slug);
-  return {
+  ...PRODUCT_NAV.map((p) => ({
+    slug: p.slug,
     icon: p.icon,
+    tag: p.eyebrow,
     title: p.nav,
     body: p.subhead,
-    bullets: p.capabilities.map((c) => c.label),
-    cta: { label: "Explore module", to: `/products/${p.slug}` },
-  };
-}
+    to: `/products/${p.slug}`,
+  })),
+];
 
 const FAQS = [
   {
@@ -125,11 +79,7 @@ export default function Pricing() {
           <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 lg:pt-20 pb-14 lg:pb-24">
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               <div className="lg:col-span-7 animate-fade-up">
-                <div className="font-serif-display italic text-xl sm:text-2xl text-[#0A0A0A]/60" data-testid="pricing-kicker">
-                  Pricing
-                </div>
-
-                <h1 className="mt-2 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
+                <h1 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
                   The finance platform for <span className="italic">multi-entity operators</span>.
                 </h1>
 
@@ -161,8 +111,6 @@ export default function Pricing() {
                     ))}
                   </ul>
                 </div>
-
-                <AiTrustRow className="mt-6" />
 
                 <div className="mt-8 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="pricing-hero-cta" className="btn-primary">
@@ -217,100 +165,63 @@ export default function Pricing() {
                     Get my quote <ArrowRight size={15} />
                   </button>
                 </div>
+
+                <AiTrustRow className="mt-6" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Jump nav */}
-        <section className="border-y border-line bg-[#F5F0E8]/60" data-testid="pricing-jumpnav">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-2 text-[13px]">
-            <span className="text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/45 mr-2">What&apos;s included</span>
-            {CATEGORIES.map((c) => (
-              <a
-                key={c.id}
-                href={`#${c.id}`}
-                data-testid={`pricing-jump-${c.id}`}
-                className="text-[#0A0A0A]/75 hover:text-[#0A0A0A] transition-colors"
-              >
-                {c.kicker}
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* Modules */}
-        <section id="modules" className="scroll-mt-24">
-          {CATEGORIES.map((cat, idx) => (
-            <div
-              key={cat.id}
-              id={cat.id}
-              className={`scroll-mt-24 border-b border-line ${idx % 2 === 1 ? "bg-white" : ""}`}
-              data-testid={`pricing-category-${cat.id}`}
-            >
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
-                <div className="grid lg:grid-cols-12 gap-10">
-                  <div className="lg:col-span-4">
-                    <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">{cat.kicker}</div>
-                    <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">{cat.title}</h2>
-                    <p className="mt-4 text-[14.5px] leading-relaxed text-[#0A0A0A]/70 max-w-md">{cat.lede}</p>
-                    <button
-                      onClick={openDemo}
-                      data-testid={`pricing-category-cta-${cat.id}`}
-                      className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#0A0A0A] hover:opacity-70 transition-opacity"
-                    >
-                      Add to my quote <ArrowRight size={13} />
-                    </button>
-                  </div>
-
-                  <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
-                    {cat.items.map((it) => {
-                      const Icon = it.icon;
-                      return (
-                        <div
-                          key={it.title}
-                          className="card-white p-6 flex flex-col hover:-translate-y-0.5 transition-transform"
-                          data-testid={`pricing-module-${it.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                        >
-                          <div className="flex items-start gap-3">
-                            <span className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center shrink-0">
-                              <Icon size={18} strokeWidth={1.75} />
-                            </span>
-                            <div className="leading-tight">
-                              <div className="font-serif-display text-xl">{it.title}</div>
-                            </div>
-                          </div>
-
-                          <p className="mt-3 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{it.body}</p>
-
-                          <ul className="mt-4 space-y-2 text-[13px] text-[#0A0A0A]/80 flex-1">
-                            {it.bullets.map((b) => (
-                              <li key={b} className="flex items-start gap-2">
-                                <Check size={13} className="mt-1 text-emerald-600 shrink-0" />
-                                <span>{b}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          {it.cta ? (
-                            <Link
-                              to={it.cta.to}
-                              data-testid={`pricing-module-learn-${it.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                              className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors"
-                            >
-                              {it.cta.label} <ArrowRight size={12} />
-                            </Link>
-                          ) : (
-                            <div className="mt-5 text-[11px] uppercase tracking-[0.2em] text-[#0A0A0A]/45">Included with every plan</div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+        {/* Modules — compact card grid, each linked to its product page */}
+        <section id="modules" className="scroll-mt-24 border-t border-line bg-white">
+          <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+            <div className="max-w-2xl">
+              <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">What&apos;s included</div>
+              <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
+                Explore the modules.
+              </h2>
+              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/70">
+                Every plan starts with the FinBoard platform. Turn on the modules your group actually runs — swap them in and out as you scale.
+              </p>
             </div>
-          ))}
+
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="pricing-modules-grid">
+              {MODULES.map((m) => {
+                const Icon = m.icon;
+                const cardBody = (
+                  <div
+                    className={`card-white p-6 flex flex-col h-full ${m.to ? "group cursor-pointer hover:-translate-y-0.5 transition-transform" : ""}`}
+                    data-testid={`pricing-module-${m.slug}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center shrink-0">
+                        <Icon size={18} strokeWidth={1.75} />
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]/40">
+                        {m.tag}
+                      </span>
+                    </div>
+                    <div className="mt-4 font-serif-display text-xl leading-tight">{m.title}</div>
+                    <p className="mt-2 text-[13px] leading-relaxed text-[#0A0A0A]/65 flex-1">{m.body}</p>
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#0A0A0A]/70 group-hover:text-[#0A0A0A] transition-colors">
+                      {m.to ? (
+                        <>Explore module <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" /></>
+                      ) : (
+                        <span className="text-[11px] uppercase tracking-[0.2em] text-[#0A0A0A]/45">Included with every plan</span>
+                      )}
+                    </div>
+                  </div>
+                );
+                return m.to ? (
+                  <Link key={m.slug} to={m.to} className="block h-full">
+                    {cardBody}
+                  </Link>
+                ) : (
+                  <div key={m.slug} className="h-full">{cardBody}</div>
+                );
+              })}
+            </div>
+          </div>
         </section>
 
         {/* Comparison-style trust strip */}
