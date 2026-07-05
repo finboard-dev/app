@@ -88,8 +88,8 @@ export default function Outcomes() {
           {/* Left, heading + guarantee */}
           <div className="lg:col-span-4">
             <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
-              The solution that<br />
-              <span className="italic">drives your P&amp;L.</span>
+              Performance Accounting<br />
+              <span className="italic">that drives your P&amp;L.</span>
             </h2>
             <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70 max-w-md">
               Every workflow moves a real line on your financials.

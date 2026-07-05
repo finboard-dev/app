@@ -20,6 +20,18 @@ export default function Hero({ onBookDemo }) {
   const cap = CAP_BY_VIEW[viewId] || CAP_BY_VIEW.warehouse;
   const CapIcon = cap.icon;
 
+  // Rotating audience word — cycles every 3s
+  const AUDIENCES = React.useMemo(
+    () => ["high-growth businesses", "multi-entity operators"],
+    []
+  );
+  const [audIdx, setAudIdx] = React.useState(0);
+  React.useEffect(() => {
+    const id = setInterval(() => setAudIdx((i) => (i + 1) % AUDIENCES.length), 3000);
+    return () => clearInterval(id);
+  }, [AUDIENCES.length]);
+  const audience = AUDIENCES[audIdx];
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="grain absolute inset-0" />
@@ -36,8 +48,15 @@ export default function Hero({ onBookDemo }) {
             </div>
 
             <h1 className="mt-6 font-serif-display text-4xl sm:text-5xl lg:text-[2.35rem] xl:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
-              AI-native finance for<br />
-              <span className="italic">multi-entity</span> operators.
+              Performance Accounting for<br />
+              <span
+                key={audience}
+                className="italic inline-block animate-fade-up"
+                data-testid="hero-audience-rotator"
+              >
+                {audience}
+              </span>
+              .
             </h1>
 
             <div className="mt-6 flex items-start gap-2.5 min-h-[2.5rem]" data-testid="hero-capabilities">
