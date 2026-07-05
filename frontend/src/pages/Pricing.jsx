@@ -129,7 +129,7 @@ export default function Pricing() {
                   Pricing
                 </div>
 
-                <h1 className="mt-2 font-serif-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
+                <h1 className="mt-2 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
                   The finance platform for <span className="italic">multi-entity operators</span>.
                 </h1>
 
