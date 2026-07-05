@@ -14,6 +14,7 @@ const resourceLinks = [
   { href: "/engagement#how-it-works", label: "How it works" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#case-studies", label: "Case studies" },
+  { href: "/testimonials", label: "Testimonials", route: true },
   { href: "/manifesto", label: "Manifesto", route: true },
 ];
 

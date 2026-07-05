@@ -8,7 +8,6 @@ import TrustBar from "@/components/landing/TrustBar";
 import UseCases from "@/components/landing/UseCases";
 import CaseStudies from "@/components/landing/CaseStudies";
 import Team from "@/components/landing/Team";
-import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
@@ -31,7 +30,6 @@ export default function Landing() {
         <AudienceFork onBookDemo={openDemo} />
         <UseCases />
         <CaseStudies />
-        <Testimonials />
         <Team />
         <FAQ />
         <CTABand onBookDemo={openDemo} />
