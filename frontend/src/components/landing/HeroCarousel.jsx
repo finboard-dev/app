@@ -38,7 +38,7 @@ export default function HeroCarousel({ onViewChange }) {
 
   // Report the active view up so the hero copy can stay in sync.
   React.useEffect(() => {
-    if (onViewChange) onViewChange(VIEWS[idx].id);
+    if (onViewChange) onViewChange(VIEWS[idx].id, idx, VIEWS.length);
   }, [idx, onViewChange]);
 
   // Determine slide direction. New view (larger idx) enters from the right;

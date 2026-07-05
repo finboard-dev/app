@@ -12,7 +12,7 @@ const CAP_BY_VIEW = {
   recon:     { icon: Layers,            text: "Inter-company eliminations and consolidation" },
   people:    { icon: Users,             text: "Manager and individual scorecards" },
   p2p:       { icon: Receipt,           text: "Procure-to-pay operations" },
-  o2c:       { icon: CircleDollarSign,  text: "Order-to-cash · usage-based billing · revenue recognition" },
+  o2c:       { icon: CircleDollarSign,  text: "Order-to-cash operations" },
 };
 
 export default function Hero({ onBookDemo }) {
@@ -20,16 +20,24 @@ export default function Hero({ onBookDemo }) {
   const cap = CAP_BY_VIEW[viewId] || CAP_BY_VIEW.warehouse;
   const CapIcon = cap.icon;
 
-  // Rotating audience word — cycles every 3s
+  // Rotating audience word — synced to the carousel so the H1 tail flips
+  // at exactly the halfway point of the carousel's full loop.
   const AUDIENCES = React.useMemo(
     () => ["high-growth businesses", "multi-entity operators"],
     []
   );
   const [audIdx, setAudIdx] = React.useState(0);
-  React.useEffect(() => {
-    const id = setInterval(() => setAudIdx((i) => (i + 1) % AUDIENCES.length), 3000);
-    return () => clearInterval(id);
-  }, [AUDIENCES.length]);
+  const handleViewChange = React.useCallback(
+    (id, carouselIdx, carouselLen) => {
+      setViewId(id);
+      if (typeof carouselIdx === "number" && typeof carouselLen === "number") {
+        // Split the carousel loop into `AUDIENCES.length` equal halves.
+        const half = carouselLen / AUDIENCES.length;
+        setAudIdx(Math.floor(carouselIdx / half) % AUDIENCES.length);
+      }
+    },
+    [AUDIENCES.length]
+  );
   const audience = AUDIENCES[audIdx];
 
   return (
@@ -129,7 +137,7 @@ export default function Hero({ onBookDemo }) {
           </div>
 
           <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <HeroCarousel onViewChange={setViewId} />
+            <HeroCarousel onViewChange={handleViewChange} />
           </div>
         </div>
       </div>
