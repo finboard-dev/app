@@ -34,15 +34,12 @@ export default function IndustryCollage() {
         {/* Header */}
         <div className="flex items-end justify-between flex-wrap gap-6 mb-8 lg:mb-10">
           <div>
-            <div className="text-[10.5px] uppercase tracking-[0.22em] text-white/50">
-              Industries we serve
-            </div>
-            <h2 className="mt-3 font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight max-w-2xl">
-              Finance, live in <span className="italic text-white/85">every industry</span>.
+            <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight max-w-3xl">
+              Finance for <span className="italic text-white/85">multi-entity operators</span>.
             </h2>
           </div>
           <p className="max-w-md text-[13.5px] leading-relaxed text-white/60">
-            One platform, four focus verticals. Tap any tile to see how FinBoard runs the numbers for that industry.
+            Accounting that improves Business and People performance.
           </p>
         </div>
 
