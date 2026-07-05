@@ -7,6 +7,7 @@ import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import IndustryScene from "@/components/industries/IndustryScene";
 import IndustryArt from "@/components/industries/IndustryArt";
+import IndustryVideo, { hasIndustryVideo } from "@/components/industries/IndustryVideo";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import { INDUSTRIES_BY_SLUG, INDUSTRY_NAV } from "@/data/industries";
 import { PRODUCT_NAV } from "@/data/products";
@@ -37,72 +38,151 @@ export default function Industry() {
         {/* ============================================================
             HERO
         ============================================================ */}
-        <section className="relative overflow-hidden">
-          <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-12 lg:pb-20">
-            <div className="grid lg:grid-cols-12 gap-10 items-start">
-              <div className="lg:col-span-5 animate-fade-up">
-                <h1
-                  className="font-serif-display text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]"
-                  data-testid="industry-heading"
-                >
-                  {headlineLead}{" "}
-                  <span className="italic" style={{ color: accent }}>
-                    {headlineItalic}
-                  </span>{" "}
-                  {headlineTail}
-                </h1>
+        {slug === "restaurants" ? (
+          <section className="relative overflow-hidden">
+            <div className="grain absolute inset-0" />
+            <div className="relative">
+              {/* Copy block — top row, centered container */}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-8 lg:pb-10">
+                <div className="grid lg:grid-cols-12 gap-8 items-start animate-fade-up">
+                  <div className="lg:col-span-7">
+                    <h1
+                      className="font-serif-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.1] tracking-tight text-[#0A0A0A] lg:whitespace-nowrap"
+                      data-testid="industry-heading"
+                    >
+                      {headlineLead}{" "}
+                      <span className="italic" style={{ color: accent }}>
+                        {headlineItalic}
+                      </span>{" "}
+                      {headlineTail}
+                    </h1>
 
-                <p
-                  className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
-                  data-testid="industry-subhead"
-                >
-                  {subhead}
-                </p>
+                    <p
+                      className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
+                      data-testid="industry-subhead"
+                    >
+                      {subhead}
+                    </p>
 
-                <ul
-                  className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-w-xl"
-                  data-testid="industry-capabilities"
-                >
-                  {capabilities.map(({ icon: CapIcon, label }) => (
-                    <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
-                      <span
-                        className="h-6 w-6 shrink-0 rounded-md border grid place-items-center"
-                        style={{ backgroundColor: tint, borderColor: `${accent}33`, color: accent }}
+                    <ul
+                      className="mt-5 flex flex-wrap gap-x-4 gap-y-2 max-w-3xl"
+                      data-testid="industry-capabilities"
+                    >
+                      {capabilities.map(({ icon: CapIcon, label }) => (
+                        <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
+                          <span
+                            className="h-6 w-6 shrink-0 rounded-md border grid place-items-center"
+                            style={{ backgroundColor: tint, borderColor: `${accent}33`, color: accent }}
+                          >
+                            <CapIcon size={12} strokeWidth={1.75} />
+                          </span>
+                          <span>{label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="lg:col-span-5 lg:pt-2 flex flex-col lg:items-end gap-4">
+                    <AiTrustRow className="lg:justify-end" />
+                    <div className="flex flex-wrap items-center gap-3">
+                      <button
+                        onClick={openDemo}
+                        data-testid="industry-book-demo-button"
+                        className="btn-primary"
                       >
-                        <CapIcon size={12} strokeWidth={1.75} />
-                      </span>
-                      <span>{label}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <AiTrustRow className="mt-5" />
-
-                <div className="mt-7 flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={openDemo}
-                    data-testid="industry-book-demo-button"
-                    className="btn-primary"
-                  >
-                    Book consultation <ArrowRight size={16} />
-                  </button>
-                  <a href="#pains" data-testid="industry-how-link" className="btn-secondary">
-                    See what you get
-                  </a>
+                        Book consultation <ArrowRight size={16} />
+                      </button>
+                      <a href="#pains" data-testid="industry-how-link" className="btn-secondary">
+                        See what you get
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div
-                className="lg:col-span-7 animate-fade-up space-y-4"
-                style={{ animationDelay: "120ms" }}
-              >
-                <IndustryArt slug={slug} accent={accent} tint={tint} label={nav} />
+              {/* Full-width video — edge to edge */}
+              <div className="w-full animate-fade-up" style={{ animationDelay: "120ms" }}>
+                <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} variant="hero" />
+              </div>
+
+              {/* IndustryScene below */}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-12 pb-10 lg:pb-14">
                 <IndustryScene slug={slug} />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="relative overflow-hidden">
+            <div className="grain absolute inset-0" />
+            <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-8 lg:pt-12 pb-12 lg:pb-20">
+              <div className="grid lg:grid-cols-12 gap-10 items-start">
+                <div className="lg:col-span-5 animate-fade-up">
+                  <h1
+                    className="font-serif-display text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]"
+                    data-testid="industry-heading"
+                  >
+                    {headlineLead}{" "}
+                    <span className="italic" style={{ color: accent }}>
+                      {headlineItalic}
+                    </span>{" "}
+                    {headlineTail}
+                  </h1>
+
+                  <p
+                    className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75"
+                    data-testid="industry-subhead"
+                  >
+                    {subhead}
+                  </p>
+
+                  <ul
+                    className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-w-xl"
+                    data-testid="industry-capabilities"
+                  >
+                    {capabilities.map(({ icon: CapIcon, label }) => (
+                      <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/80">
+                        <span
+                          className="h-6 w-6 shrink-0 rounded-md border grid place-items-center"
+                          style={{ backgroundColor: tint, borderColor: `${accent}33`, color: accent }}
+                        >
+                          <CapIcon size={12} strokeWidth={1.75} />
+                        </span>
+                        <span>{label}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <AiTrustRow className="mt-5" />
+
+                  <div className="mt-7 flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={openDemo}
+                      data-testid="industry-book-demo-button"
+                      className="btn-primary"
+                    >
+                      Book consultation <ArrowRight size={16} />
+                    </button>
+                    <a href="#pains" data-testid="industry-how-link" className="btn-secondary">
+                      See what you get
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  className="lg:col-span-7 animate-fade-up space-y-4"
+                  style={{ animationDelay: "120ms" }}
+                >
+                  {hasIndustryVideo(slug) ? (
+                    <IndustryVideo slug={slug} label={nav} accent={accent} tint={tint} />
+                  ) : (
+                    <IndustryArt slug={slug} accent={accent} tint={tint} label={nav} />
+                  )}
+                  <IndustryScene slug={slug} />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ============================================================
             PAINS
