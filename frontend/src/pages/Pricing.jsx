@@ -32,29 +32,6 @@ const MODULES = [
   })),
 ];
 
-const FAQS = [
-  {
-    q: "Do you publish list prices?",
-    a: "No. Every group we work with has a different entity count, close cadence and module mix, so we quote per engagement. Tell us your setup — we'll send a tailored quote back within one business day.",
-  },
-  {
-    q: "How is pricing structured?",
-    a: "A platform base plus the modules you turn on. The platform gives you the workspace, connectors, users and governance layer; each module (Consolidation, Analytics, FP&A, Procure-to-Pay, Order-to-Cash) is added on top based on what you actually run.",
-  },
-  {
-    q: "Can I start with one module and expand?",
-    a: "Yes. Most customers start with the module that hurts the most — usually Consolidation or a P2P/O2C workflow — and layer the rest in as the workspace matures. Every module reuses the same governed data model.",
-  },
-  {
-    q: "What's included in every quote?",
-    a: "Forward-deployed onboarding, connector setup, SSO, audit trail, unlimited data sources on the platform tier, and a named point of contact. Enterprise engagements add SAML SSO, SCIM and a dedicated success manager.",
-  },
-  {
-    q: "Do you offer firm / advisory pricing?",
-    a: "Yes. Fractional CFOs, CAS practices and fund admins get per-client and per-seat pricing built for resale margin. See the For Firms page or ask us on the quote call.",
-  },
-];
-
 const QUOTE_INCLUDES = [
   { icon: Timer,       label: "Tailored quote in 1 business day" },
   { icon: MessageSquare, label: "Answers to close, reporting & spend questions" },
@@ -249,36 +226,6 @@ export default function Pricing() {
               >
                 See For Firms <ArrowRight size={16} />
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="bg-[#F5F0E8] border-y border-line">
-          <div className="max-w-4xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
-            <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Pricing FAQ</div>
-            <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">Common questions.</h2>
-            <div className="mt-10 divide-y divide-line border-t border-line" data-testid="pricing-faq">
-              {FAQS.map((f, i) => (
-                <details
-                  key={f.q}
-                  className="group py-5"
-                  data-testid={`pricing-faq-item-${i}`}
-                  open={i === 0}
-                >
-                  <summary className="flex items-start justify-between gap-6 cursor-pointer list-none">
-                    <span className="font-serif-display text-xl sm:text-2xl leading-snug tracking-tight text-[#0A0A0A]">
-                      {f.q}
-                    </span>
-                    <span className="mt-2 h-6 w-6 rounded-full border border-line bg-white grid place-items-center text-[#0A0A0A] transition-transform group-open:rotate-45 shrink-0">
-                      <span className="text-lg leading-none pb-0.5">+</span>
-                    </span>
-                  </summary>
-                  <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75">
-                    {f.a}
-                  </p>
-                </details>
-              ))}
             </div>
           </div>
         </section>
