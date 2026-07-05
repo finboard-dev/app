@@ -43,7 +43,7 @@ export default function Hero({ onBookDemo }) {
                 <Sparkles size={12} /> For the Office of the CFO
               </span>
               <span className="kbd-chip" data-testid="hero-eyebrow-managed-services">
-                <ShieldCheck size={12} /> Managed services
+                <ShieldCheck size={12} /> Advisory firms
               </span>
             </div>
 
