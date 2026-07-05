@@ -207,40 +207,57 @@ export default function Product() {
         {/* ============================================================
             EXPLORE OTHER PRODUCTS
         ============================================================ */}
-        <section className="border-t border-line bg-[#F5F0E8]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-16">
-            <div className="flex items-end justify-between flex-wrap gap-3">
-              <div>
-                <div className="text-[10.5px] uppercase tracking-[0.22em] text-[#0A0A0A]/55">
-                  Explore the platform
-                </div>
-                <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
-                  One workspace, every finance workflow.
-                </h2>
-              </div>
+        <section className="border-t border-line bg-[#0A0A0A] text-white overflow-hidden relative">
+          <div
+            className="absolute inset-0 opacity-[0.05] pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+            }}
+            aria-hidden
+          />
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
+            <div className="max-w-2xl">
+              <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight">
+                One workspace, <span className="italic text-white/80">every finance workflow</span>.
+              </h2>
+              <p className="mt-3 text-[14px] leading-relaxed text-white/60">
+                Every module shares the same ledger, drills the same numbers, and speaks the same language.
+              </p>
             </div>
 
-            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" data-testid="product-cross-links">
-              {others.map((p) => {
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" data-testid="product-cross-links">
+              {others.map((p, i) => {
                 const OIcon = p.icon;
                 return (
                   <Link
                     key={p.slug}
                     to={`/products/${p.slug}`}
                     data-testid={`product-cross-link-${p.slug}`}
-                    className="card-white p-4 flex items-center gap-3 hover:-translate-y-0.5 transition-transform group"
+                    className="group relative rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 p-5 transition-all overflow-hidden"
+                    style={{ animationDelay: `${i * 60}ms` }}
                   >
-                    <span className="h-9 w-9 rounded-md border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
-                      <OIcon size={16} strokeWidth={1.75} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="font-medium text-[13.5px] truncate">{p.nav}</div>
-                      <div className="text-[11.5px] text-[#0A0A0A]/55 truncate">{p.eyebrow}</div>
+                    <div className="flex items-start justify-between">
+                      <span className="h-11 w-11 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+                        <OIcon size={19} strokeWidth={1.75} />
+                      </span>
+                      <span className="text-[9.5px] font-mono uppercase tracking-[0.14em] text-white/40">
+                        0{i + 1}
+                      </span>
                     </div>
-                    <ArrowRight
-                      size={14}
-                      className="shrink-0 text-[#0A0A0A]/30 group-hover:text-[#0A0A0A] transition-colors"
-                    />
+                    <div className="mt-6 text-[10.5px] uppercase tracking-[0.22em] text-white/55">
+                      {p.eyebrow}
+                    </div>
+                    <div className="mt-1.5 font-serif-display text-xl leading-tight">
+                      {p.nav}
+                    </div>
+                    <div className="mt-6 inline-flex items-center gap-1.5 text-[12px] text-white/70 group-hover:text-white transition-colors">
+                      Explore
+                      <ArrowRight
+                        size={13}
+                        className="group-hover:translate-x-0.5 transition-transform"
+                      />
+                    </div>
                   </Link>
                 );
               })}

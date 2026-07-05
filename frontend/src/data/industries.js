@@ -2,6 +2,7 @@ import {
   Utensils, HardHat, ShoppingBag, ShoppingCart, Stethoscope,
   Layers, LineChart, CircleDollarSign, Boxes, Users,
   Percent, ClipboardList, Building2, Truck, HeartPulse,
+  Code, Clock, Briefcase, Zap,
 } from "lucide-react";
 
 /**
@@ -192,6 +193,43 @@ export const INDUSTRIES = [
       { value: "Per clinic", label: "P&L" },
       { value: "Payer mix", label: "visibility" },
       { value: "Days in AR", label: "tracked live" },
+    ],
+  },
+  {
+    slug: "software-and-services",
+    order: 6,
+    nav: "Software & Services",
+    icon: Code,
+    accent: "#4F46E5",
+    tint: "#EEF2FF",
+    eyebrow: "SaaS & professional services",
+    headlineLead: "Recurring revenue and",
+    headlineItalic: "utilization",
+    headlineTail: "as one story.",
+    subhead:
+      "SaaS metrics and services margin in one workspace. ARR, NRR, magic number, and utilization by team all consolidated back to the ledger — no more juggling Stripe, Xero and Google Sheets.",
+    pains: [
+      "ARR waterfalls rebuilt from scratch every board cycle.",
+      "Services margin only surfacing after the quarter has closed.",
+      "Utilization and revenue tracked in three different systems.",
+    ],
+    capabilities: [
+      { icon: Zap,              label: "ARR & NRR" },
+      { icon: Clock,            label: "Utilization by team" },
+      { icon: Briefcase,        label: "Services margin" },
+      { icon: CircleDollarSign, label: "Deferred revenue" },
+    ],
+    features: [
+      { icon: Zap,       title: "Live SaaS metrics", body: "ARR waterfall, net revenue retention, gross churn and magic number reconciled to your subscription ledger, no rebuild required." },
+      { icon: Clock,     title: "Utilization & margin", body: "Billable hours, bench and utilization by team roll into services margin and revenue per FTE, live across every entity." },
+      { icon: Briefcase, title: "Bookings to cash", body: "From closed-won to invoice to cash — bookings, billings, deferred revenue and collections tied together in one view." },
+    ],
+    integrations: ["Stripe", "Salesforce", "HubSpot", "Xero", "Rippling"],
+    metric: { value: "Per team", label: "utilization & margin" },
+    metrics: [
+      { value: "ARR & NRR", label: "reconciled" },
+      { value: "Per team", label: "utilization" },
+      { value: "Services", label: "margin live" },
     ],
   },
 ];

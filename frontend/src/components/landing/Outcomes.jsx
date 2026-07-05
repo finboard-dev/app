@@ -92,18 +92,67 @@ export default function Outcomes() {
               <span className="italic">drives your P&amp;L.</span>
             </h2>
             <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70 max-w-md">
-              Watch every FinBoard workflow improve your financial statements, across multiple lines.
+              Every workflow moves a real line on your financials.
             </p>
 
-            {/* Pay on value, called out first */}
-            <div className="mt-6 rounded-2xl bg-[#0A0A0A] text-white p-5 flex items-start gap-3.5" data-testid="outcomes-guarantee">
-              <span className="h-9 w-9 shrink-0 rounded-lg bg-emerald-600 text-white grid place-items-center">
+            {/* Live impact ticker */}
+            <div className="mt-6 rounded-2xl border border-line bg-white p-4" data-testid="outcomes-ticker">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/50 font-semibold">
+                  What's moving right now
+                </div>
+                <span className="text-[9.5px] font-mono px-1.5 py-0.5 rounded bg-[#F5F0E8] border border-line text-[#0A0A0A]/60">
+                  live
+                </span>
+              </div>
+              <div className="space-y-2">
+                {IMPACTS.map((im, i) => {
+                  const on = i === active;
+                  const DirIcon = im.dir === "down" ? TrendingDown : TrendingUp;
+                  return (
+                    <div
+                      key={im.id}
+                      onClick={() => setActive(i)}
+                      className={`flex items-center gap-2.5 py-1.5 px-2 rounded-md cursor-pointer transition-colors ${
+                        on ? "bg-[#0A0A0A] text-white" : "hover:bg-[#F5F0E8]"
+                      }`}
+                    >
+                      <DirIcon
+                        size={13}
+                        className={on ? "text-emerald-400" : "text-emerald-600"}
+                      />
+                      <span className={`text-[12.5px] flex-1 ${on ? "" : "text-[#0A0A0A]/80"}`}>
+                        {im.label}
+                      </span>
+                      <span className={`font-mono tabular-nums text-[12px] font-semibold ${on ? "text-white" : "text-[#0A0A0A]"}`}>
+                        {im.value}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Pay on value, tighter */}
+            <div
+              className="mt-4 rounded-2xl bg-[#0A0A0A] text-white p-5 flex items-start gap-3.5 overflow-hidden relative"
+              data-testid="outcomes-guarantee"
+            >
+              <div
+                className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                style={{
+                  backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+                  backgroundSize: "14px 14px",
+                }}
+                aria-hidden
+              />
+              <span className="relative h-9 w-9 shrink-0 rounded-lg bg-emerald-600 text-white grid place-items-center">
                 <ShieldCheck size={17} />
               </span>
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-400">Pay on value</div>
-                <p className="mt-1.5 font-serif-display text-lg leading-snug tracking-tight">
-                  A FinBoard partnership is an investment, guaranteed to justify itself on your financials. If it doesn&apos;t, <span className="italic">we don&apos;t get paid.</span>
+              <div className="relative">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-400 font-semibold">Pay on value</div>
+                <p className="mt-1.5 font-serif-display text-[15.5px] leading-snug tracking-tight">
+                  If FinBoard doesn&apos;t improve your financials, <span className="italic">we don&apos;t get paid.</span>
                 </p>
               </div>
             </div>

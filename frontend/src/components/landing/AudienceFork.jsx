@@ -2,118 +2,175 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Landmark, Rocket } from "lucide-react";
 
-/**
- * Audience fork, lets visitors self-segment into the CFO story (this page),
- * the founder story (book a call), or the advisory-firm story (/advisory).
- * Slight lean to the CFO path, which stays the homepage default.
- */
+const PATHS = [
+  {
+    id: "cfo",
+    tone: "dark",
+    kicker: "Multi-entity operators",
+    icon: Landmark,
+    title: "I run finance for a group.",
+    tags: ["Consolidate", "Close", "Board pack"],
+    ctaLabel: "Book consultation",
+    external: false,
+  },
+  {
+    id: "founder",
+    tone: "light",
+    kicker: "Founders & operators",
+    icon: Rocket,
+    title: "I'm a founder.",
+    tags: ["Runway", "Burn", "Investor packs"],
+    ctaLabel: "Founder call",
+    external: false,
+  },
+  {
+    id: "advisory",
+    tone: "light",
+    kicker: "Advisory firms & CAS",
+    icon: Building2,
+    title: "I advise multiple clients.",
+    tags: ["One workspace", "White-label", "Partner pricing"],
+    ctaLabel: "See firm workspace",
+    external: "/advisory",
+  },
+];
+
 export default function AudienceFork({ onBookDemo }) {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-12" data-testid="audience-fork">
-      <div className="text-center max-w-2xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Which are you?</div>
-        <h2 className="mt-3 font-serif-display text-3xl sm:text-4xl tracking-tight">
-          One platform, three ways in.
+    <section
+      className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20"
+      data-testid="audience-fork"
+    >
+      <div className="max-w-3xl">
+        <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight">
+          One platform, <span className="italic">three ways in</span>.
         </h2>
-        <p className="mt-3 text-[14px] text-[#0A0A0A]/70">
-          Whether you run a multi-entity group, you're a founder wearing the finance hat, or you advise a book of clients, FinBoard runs the consolidation, close and reporting underneath.
-        </p>
       </div>
 
-      <div className="mt-10 grid md:grid-cols-3 gap-4">
-        {/* CFO path, primary */}
-        <div
-          data-testid="fork-cfo"
-          className="rounded-2xl bg-[#0A0A0A] text-white p-7 flex flex-col"
-        >
-          <span className="h-11 w-11 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
-            <Landmark size={20} />
-          </span>
-          <div className="mt-5 text-xs uppercase tracking-[0.2em] text-white/55">Multi-entity operators</div>
-          <div className="mt-2 font-serif-display text-2xl">I run finance for a group.</div>
-          <p className="mt-3 text-[14px] leading-relaxed text-white/70 flex-1">
-            You own the numbers for a company with many entities. Consolidate, close and plan in one intelligent workspace, built for the Office of the CFO.
-          </p>
-          <ul className="mt-4 space-y-1.5 text-[13px] text-white/75">
-            {["50+ entity consolidation", "Month-end close", "Board-ready analytics"].map((x) => (
-              <li key={x} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-white/60 shrink-0" /> {x}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <button
-              onClick={onBookDemo}
-              data-testid="fork-cfo-cta"
-              className="inline-flex items-center gap-2 bg-white text-[#0A0A0A] rounded-full px-5 py-3 text-sm font-medium hover:bg-[#F5F0E8] transition-colors"
-            >
-              Book consultation <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
+      <div className="mt-10 grid md:grid-cols-3 gap-3">
+        {PATHS.map((p) => {
+          const Icon = p.icon;
+          const isDark = p.tone === "dark";
 
-        {/* Founder path */}
-        <div
-          data-testid="fork-founder"
-          className="rounded-2xl card-white p-7 flex flex-col"
-        >
-          <span className="h-11 w-11 rounded-xl border border-line bg-[#F5F0E8] grid place-items-center">
-            <Rocket size={20} />
-          </span>
-          <div className="mt-5 text-xs uppercase tracking-[0.2em] text-[#0A0A0A]/50">Founders & operators</div>
-          <div className="mt-2 font-serif-display text-2xl">I'm a founder.</div>
-          <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70 flex-1">
-            You're wearing the finance hat yourself. Get investor-ready reporting, runway and burn, long before you hire a finance team.
-          </p>
-          <ul className="mt-4 space-y-1.5 text-[13px] text-[#0A0A0A]/75">
-            {["Runway & burn", "Investor-ready board packs", "No finance team needed"].map((x) => (
-              <li key={x} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]/40 shrink-0" /> {x}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <button
-              onClick={onBookDemo}
-              data-testid="fork-founder-cta"
-              className="inline-flex items-center gap-2 border border-line-strong rounded-full px-5 py-3 text-sm font-medium hover:bg-black/5 transition-colors"
-            >
-              Book a founder call <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
+          const cardBase =
+            "group relative rounded-2xl p-6 lg:p-7 flex flex-col overflow-hidden transition-all hover:-translate-y-0.5";
+          const cardTone = isDark
+            ? "bg-[#0A0A0A] text-white shadow-[0_10px_30px_-15px_rgba(0,0,0,0.4)]"
+            : "card-white hover:border-line-strong";
 
-        {/* Advisory path */}
-        <Link
-          to="/advisory"
-          data-testid="fork-advisory"
-          aria-label="I advise multiple clients, open the advisory workspace"
-          className="group rounded-2xl card-white p-7 flex flex-col hover:-translate-y-0.5 hover:border-line-strong transition-all cursor-pointer"
-        >
-          <span className="h-11 w-11 rounded-xl border border-line bg-[#F5F0E8] grid place-items-center">
-            <Building2 size={20} />
-          </span>
-          <div className="mt-5 text-xs uppercase tracking-[0.2em] text-[#0A0A0A]/50">Advisory firms & CAS</div>
-          <div className="mt-2 font-serif-display text-2xl group-hover:underline underline-offset-4 decoration-[#0A0A0A]/30">I advise multiple clients.</div>
-          <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70 flex-1">
-            You run finance for a book of clients. Manage every engagement from one workspace with standardized templates and white-label deliverables.
-          </p>
-          <ul className="mt-4 space-y-1.5 text-[13px] text-[#0A0A0A]/75">
-            {["One workspace, all clients", "White-label board packs", "Partner pricing"].map((x) => (
-              <li key={x} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]/40 shrink-0" /> {x}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <span
-              data-testid="fork-advisory-cta"
-              className="inline-flex items-center gap-2 border border-line-strong rounded-full px-5 py-3 text-sm font-medium group-hover:bg-black/5 transition-colors"
-            >
-              See the firm workspace <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </div>
-        </Link>
+          const content = (
+            <>
+              {isDark && (
+                <div
+                  className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                  style={{
+                    backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+                    backgroundSize: "16px 16px",
+                  }}
+                  aria-hidden
+                />
+              )}
+
+              <div className="relative flex items-start justify-between">
+                <span
+                  className={
+                    isDark
+                      ? "h-11 w-11 rounded-xl bg-white/10 border border-white/15 grid place-items-center"
+                      : "h-11 w-11 rounded-xl border border-line bg-[#F5F0E8] grid place-items-center"
+                  }
+                >
+                  <Icon size={19} strokeWidth={1.75} />
+                </span>
+                <ArrowRight
+                  size={16}
+                  className={
+                    isDark
+                      ? "text-white/40 group-hover:text-white transition-colors"
+                      : "text-[#0A0A0A]/30 group-hover:text-[#0A0A0A] transition-colors"
+                  }
+                />
+              </div>
+
+              <div
+                className={
+                  isDark
+                    ? "relative mt-6 text-[10.5px] uppercase tracking-[0.22em] text-white/55"
+                    : "relative mt-6 text-[10.5px] uppercase tracking-[0.22em] text-[#0A0A0A]/50"
+                }
+              >
+                {p.kicker}
+              </div>
+
+              <div className="relative mt-2 font-serif-display text-2xl leading-tight tracking-tight">
+                {p.title}
+              </div>
+
+              <div className="relative mt-5 flex flex-wrap gap-1.5">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className={
+                      isDark
+                        ? "inline-flex items-center rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[11px] text-white/85"
+                        : "inline-flex items-center rounded-full border border-line bg-white px-2.5 py-1 text-[11px] text-[#0A0A0A]/75"
+                    }
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <div className="relative flex-1" />
+
+              <div className="relative mt-6">
+                {p.external ? (
+                  <span
+                    data-testid={`fork-${p.id}-cta`}
+                    className="inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2.5 text-[13px] font-medium group-hover:bg-black/5 transition-colors"
+                  >
+                    {p.ctaLabel}{" "}
+                    <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                ) : isDark ? (
+                  <button
+                    onClick={onBookDemo}
+                    data-testid={`fork-${p.id}-cta`}
+                    className="inline-flex items-center gap-2 bg-white text-[#0A0A0A] rounded-full px-4 py-2.5 text-[13px] font-medium hover:bg-[#F5F0E8] transition-colors"
+                  >
+                    {p.ctaLabel} <ArrowRight size={14} />
+                  </button>
+                ) : (
+                  <button
+                    onClick={onBookDemo}
+                    data-testid={`fork-${p.id}-cta`}
+                    className="inline-flex items-center gap-2 border border-line-strong rounded-full px-4 py-2.5 text-[13px] font-medium hover:bg-black/5 transition-colors"
+                  >
+                    {p.ctaLabel} <ArrowRight size={14} />
+                  </button>
+                )}
+              </div>
+            </>
+          );
+
+          if (p.external) {
+            return (
+              <Link
+                key={p.id}
+                to={p.external}
+                data-testid={`fork-${p.id}`}
+                aria-label={p.title}
+                className={`${cardBase} ${cardTone} cursor-pointer`}
+              >
+                {content}
+              </Link>
+            );
+          }
+          return (
+            <div key={p.id} data-testid={`fork-${p.id}`} className={`${cardBase} ${cardTone}`}>
+              {content}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

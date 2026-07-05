@@ -9,6 +9,7 @@ const INDUSTRY_VIDEOS = {
   construction: "/videos/construction.mp4",
   ecommerce: "/videos/ecommerce.mp4",
   restaurants: "/videos/restaurants.mp4",
+  "software-and-services": "/videos/software-and-services.mp4",
 };
 
 export function hasIndustryVideo(slug) {

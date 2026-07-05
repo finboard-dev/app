@@ -52,34 +52,17 @@ export default function Advisory() {
         <section className="relative overflow-hidden">
           <div className="grain absolute inset-0" />
           <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-14 lg:pb-24">
-            <Link
-              to="/"
-              data-testid="advisory-back-link"
-              className="inline-flex items-center gap-1.5 text-[13px] text-[#0A0A0A]/60 hover:text-[#0A0A0A] transition-colors"
-            >
-              <ArrowLeft size={14} /> Back to overview
-            </Link>
-
-            <div className="mt-6 grid lg:grid-cols-12 gap-10 items-start">
+            <div className="grid lg:grid-cols-12 gap-10 items-start">
               <div className="lg:col-span-5 animate-fade-up">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="kbd-chip" data-testid="advisory-eyebrow">
-                    <Building2 size={12} /> For advisory firms &amp; CAS practices
-                  </span>
-                  <span className="kbd-chip">
-                    <ShieldCheck size={12} /> Managed services
-                  </span>
-                </div>
-
-                <div className="mt-5 font-serif-display italic text-xl sm:text-2xl text-[#0A0A0A]/60" data-testid="advisory-kicker">
+                <div className="font-serif-display italic text-xl sm:text-2xl text-[#0A0A0A]/60" data-testid="advisory-kicker">
                   Fractional CFO, CAS or fund admin?
                 </div>
 
-                <h1 className="mt-2 font-serif-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[0.98] tracking-tight text-[#0A0A0A]" data-testid="advisory-heading">
+                <h1 className="mt-2 font-serif-display text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="advisory-heading">
                   Run every client&apos;s finance from <span className="italic">one workspace</span>.
                 </h1>
 
-                <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/75" data-testid="advisory-subhead">
+                <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75" data-testid="advisory-subhead">
                   Consolidation, close, FP&amp;A and reporting for your entire client book, standardized templates, white-label deliverables and a portfolio view of your whole practice. Add clients without adding headcount.
                 </p>
 
@@ -96,7 +79,7 @@ export default function Advisory() {
 
                 <AiTrustRow className="mt-5" />
 
-                <div className="mt-8 flex flex-wrap items-center gap-3">
+                <div className="mt-7 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="advisory-book-demo-button" className="btn-primary">
                     Book a partner call <ArrowRight size={16} />
                   </button>
@@ -107,7 +90,36 @@ export default function Advisory() {
               </div>
 
               <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "120ms" }}>
-                <AdvisoryVisual />
+                <div
+                  className="relative overflow-hidden rounded-2xl bg-[#0A0A0A] shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]"
+                  data-testid="advisory-hero-video"
+                  style={{ aspectRatio: "16 / 10" }}
+                >
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    controls={false}
+                    onLoadedData={(e) => e.currentTarget.play().catch(() => {})}
+                    onCanPlay={(e) => e.currentTarget.play().catch(() => {})}
+                    aria-label="For firms preview"
+                  >
+                    <source src="/videos/for-firms.mp4" type="video/mp4" />
+                  </video>
+                  <div
+                    className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0))" }}
+                    aria-hidden
+                  />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
+                      <Building2 size={11} /> For firms
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
