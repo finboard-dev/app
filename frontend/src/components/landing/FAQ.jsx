@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, ChevronDown } from "lucide-react";
 
 const items = [
   {
@@ -34,6 +34,10 @@ const items = [
 ];
 
 export default function FAQ() {
+  const [expanded, setExpanded] = React.useState(false);
+  const visible = expanded ? items : items.slice(0, 3);
+  const remaining = items.length - 3;
+
   return (
     <section id="faq" className="bg-white border-y border-line">
       <div className="max-w-4xl mx-auto px-6 lg:px-10 py-10 lg:py-12">
@@ -43,7 +47,7 @@ export default function FAQ() {
         </h2>
 
         <Accordion type="single" collapsible className="mt-10" data-testid="faq-accordion">
-          {items.map((it, i) => (
+          {visible.map((it, i) => (
             <AccordionItem key={i} value={`item-${i}`} className="border-b border-line">
               <AccordionTrigger
                 data-testid={`faq-trigger-${i}`}
@@ -60,6 +64,22 @@ export default function FAQ() {
             </AccordionItem>
           ))}
         </Accordion>
+
+        {items.length > 3 && (
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              data-testid="faq-toggle"
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium border border-line bg-white text-[#0A0A0A] hover:bg-[#F5F0E8] transition-colors"
+            >
+              {expanded ? "Show less" : `Show ${remaining} more question${remaining === 1 ? "" : "s"}`}
+              <ChevronDown
+                size={15}
+                className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

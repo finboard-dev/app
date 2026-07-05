@@ -2,7 +2,7 @@ import React from "react";
 import {
   Landmark, BarChart3, CircleDollarSign, Receipt,
   ArrowUp, ArrowDown, RefreshCw, Zap, CheckCircle2, Sparkles, ShieldCheck,
-  ClipboardCheck, Clock,
+  ClipboardCheck, Clock, Compass,
 } from "lucide-react";
 
 /**
@@ -130,11 +130,13 @@ export default function UseCases() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
         {/* Editorial header, inverted */}
         <div className="max-w-3xl">
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] uppercase tracking-[0.28em] text-white/60">
+          <div className="inline-flex items-center gap-2">
+            <span className="h-7 w-7 rounded-md grid place-items-center bg-white/[0.06] border border-white/15 text-white/85">
+              <Compass size={13} strokeWidth={1.75} />
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.28em] text-white/70">
               Product studio
             </span>
-            <span className="h-px flex-1 bg-white/20 max-w-[220px]" />
           </div>
           <h2
             className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-white"
@@ -159,23 +161,26 @@ export default function UseCases() {
                 data-testid={`explorer-top-${t.id}`}
                 className={`group relative text-left rounded-2xl p-5 border transition-all overflow-hidden ${
                   active
-                    ? "bg-[#F5F0E8] text-[#0A0A0A] border-[#F5F0E8] shadow-[0_20px_50px_-24px_rgba(245,240,232,0.35)]"
-                    : "bg-white/[0.055] text-white/90 border-white/15 hover:border-white/30 hover:bg-white/[0.09] hover:-translate-y-0.5"
+                    ? "bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.7)] ring-1 ring-emerald-400/40"
+                    : "bg-[#F5F0E8] text-[#0A0A0A] border-[#EDE4D2] hover:border-[#DDD1B8] hover:bg-[#EFE7D6] hover:-translate-y-0.5"
                 }`}
               >
+                {active && (
+                  <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-emerald-400" />
+                )}
                 <div className="flex items-start justify-between gap-3">
                   <span
                     className={`h-10 w-10 rounded-lg grid place-items-center transition-colors ${
                       active
-                        ? "bg-[#0A0A0A] text-white"
-                        : "bg-white/[0.08] text-white group-hover:bg-white/[0.15] border border-white/15"
+                        ? "bg-white/10 text-white border border-white/15"
+                        : "bg-white text-[#0A0A0A] border border-[#EDE4D2] group-hover:bg-white"
                     }`}
                   >
                     <TIcon size={16} strokeWidth={1.75} />
                   </span>
                   <span
                     className={`font-serif-display text-[13px] tabular-nums ${
-                      active ? "text-[#0A0A0A]/40" : "text-white/45"
+                      active ? "text-white/45" : "text-[#0A0A0A]/35"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -186,20 +191,20 @@ export default function UseCases() {
                 </div>
                 <div
                   className={`mt-1 text-[12.5px] leading-snug ${
-                    active ? "text-[#0A0A0A]/65" : "text-white/70"
+                    active ? "text-white/70" : "text-[#0A0A0A]/65"
                   }`}
                 >
                   {t.headline}
                 </div>
                 <div
                   className={`mt-4 pt-3 border-t flex items-center justify-between text-[10.5px] uppercase tracking-[0.2em] ${
-                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/55" : "border-white/15 text-white/55"
+                    active ? "border-white/15 text-white/55" : "border-[#EDE4D2] text-[#0A0A0A]/55"
                   }`}
                 >
                   <span>{t.subs.length} workflows</span>
                   {active && (
-                    <span className="inline-flex items-center gap-1.5 text-emerald-700">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       Selected
                     </span>
                   )}
