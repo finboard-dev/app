@@ -96,71 +96,52 @@ export default function UseCases() {
   };
 
   return (
-    <section id="use-cases" className="relative bg-[#0A0A0A] text-white overflow-hidden">
-      {/* Ambient depth: grain + soft radial highlights */}
-      <div className="grain absolute inset-0 opacity-40" aria-hidden />
+    <section id="use-cases" className="relative bg-[#171310] text-white overflow-hidden">
+      {/* Warm-charcoal base with layered ambience */}
+      {/* Blueprint-style grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.35] pointer-events-none"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
+        }}
+      />
+      {/* Warm sand radial + subtle emerald */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            "radial-gradient(60% 40% at 15% 0%, rgba(255,255,255,0.06), transparent 60%), radial-gradient(50% 40% at 85% 100%, rgba(16,185,129,0.06), transparent 60%)",
+            "radial-gradient(70% 50% at 20% 0%, rgba(245,240,232,0.08), transparent 65%), radial-gradient(60% 45% at 80% 100%, rgba(16,185,129,0.09), transparent 60%), radial-gradient(45% 30% at 50% 55%, rgba(255,255,255,0.05), transparent 70%)",
         }}
       />
+      {/* Grain layer */}
+      <div className="grain absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" aria-hidden />
       {/* Subtle top/bottom hairline separators */}
-      <div className="absolute inset-x-0 top-0 h-px bg-white/10" aria-hidden />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" aria-hidden />
+      <div className="absolute inset-x-0 top-0 h-px bg-white/15" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/15" aria-hidden />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
         {/* Editorial header, inverted */}
-        <div className="grid lg:grid-cols-12 gap-8 items-end">
-          <div className="lg:col-span-8">
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] uppercase tracking-[0.28em] text-white/40">
-                Product studio
-              </span>
-              <span className="h-px flex-1 bg-white/15 max-w-[220px]" />
-            </div>
-            <h2
-              className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-white"
-              data-testid="use-cases-heading"
-            >
-              One workspace, <span className="italic text-white/90">every finance workflow</span>.
-            </h2>
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-white/60">
+              Product studio
+            </span>
+            <span className="h-px flex-1 bg-white/20 max-w-[220px]" />
           </div>
-
-          {/* Stat trio */}
-          <div className="lg:col-span-4 flex lg:justify-end">
-            <div className="flex gap-6 text-[12px]">
-              <div>
-                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
-                  {TABS.length}
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5">
-                  modules
-                </div>
-              </div>
-              <div className="w-px bg-white/15" />
-              <div>
-                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
-                  {TABS.reduce((n, t) => n + t.subs.length, 0)}
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5">
-                  workflows
-                </div>
-              </div>
-              <div className="w-px bg-white/15" />
-              <div>
-                <div className="font-serif-display text-3xl tracking-tight tabular-nums">
-                  Live
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-0.5 inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  data
-                </div>
-              </div>
-            </div>
-          </div>
+          <h2
+            className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-white"
+            data-testid="use-cases-heading"
+          >
+            One workspace, <span className="italic text-[#F5F0E8]">every finance workflow</span>.
+          </h2>
         </div>
 
         {/* Module rail — four rich cards, filmstrip style */}
@@ -178,8 +159,8 @@ export default function UseCases() {
                 data-testid={`explorer-top-${t.id}`}
                 className={`group relative text-left rounded-2xl p-5 border transition-all overflow-hidden ${
                   active
-                    ? "bg-white text-[#0A0A0A] border-white shadow-[0_20px_50px_-24px_rgba(255,255,255,0.4)]"
-                    : "bg-white/[0.03] text-white/85 border-white/10 hover:border-white/25 hover:bg-white/[0.06] hover:-translate-y-0.5"
+                    ? "bg-[#F5F0E8] text-[#0A0A0A] border-[#F5F0E8] shadow-[0_20px_50px_-24px_rgba(245,240,232,0.35)]"
+                    : "bg-white/[0.055] text-white/90 border-white/15 hover:border-white/30 hover:bg-white/[0.09] hover:-translate-y-0.5"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -187,14 +168,14 @@ export default function UseCases() {
                     className={`h-10 w-10 rounded-lg grid place-items-center transition-colors ${
                       active
                         ? "bg-[#0A0A0A] text-white"
-                        : "bg-white/10 text-white/90 group-hover:bg-white/20 border border-white/10"
+                        : "bg-white/[0.08] text-white group-hover:bg-white/[0.15] border border-white/15"
                     }`}
                   >
                     <TIcon size={16} strokeWidth={1.75} />
                   </span>
                   <span
                     className={`font-serif-display text-[13px] tabular-nums ${
-                      active ? "text-[#0A0A0A]/35" : "text-white/30"
+                      active ? "text-[#0A0A0A]/40" : "text-white/45"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -205,19 +186,19 @@ export default function UseCases() {
                 </div>
                 <div
                   className={`mt-1 text-[12.5px] leading-snug ${
-                    active ? "text-[#0A0A0A]/60" : "text-white/55"
+                    active ? "text-[#0A0A0A]/65" : "text-white/70"
                   }`}
                 >
                   {t.headline}
                 </div>
                 <div
                   className={`mt-4 pt-3 border-t flex items-center justify-between text-[10.5px] uppercase tracking-[0.2em] ${
-                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/50" : "border-white/10 text-white/40"
+                    active ? "border-[#0A0A0A]/10 text-[#0A0A0A]/55" : "border-white/15 text-white/55"
                   }`}
                 >
                   <span>{t.subs.length} workflows</span>
                   {active && (
-                    <span className="inline-flex items-center gap-1.5 text-emerald-600">
+                    <span className="inline-flex items-center gap-1.5 text-emerald-700">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       Selected
                     </span>
@@ -230,7 +211,7 @@ export default function UseCases() {
 
         {/* Workflow chip row */}
         <div className="mt-10 flex flex-wrap items-center gap-2" data-testid="explorer-sub-tabs">
-          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 mr-2">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/60 mr-2">
             Workflow
           </span>
           {top.subs.map((s, i) => {
@@ -242,13 +223,13 @@ export default function UseCases() {
                 data-testid={`explorer-sub-${s.id}`}
                 className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium border transition-all ${
                   active
-                    ? "bg-white text-[#0A0A0A] border-white"
-                    : "bg-white/[0.03] text-white/70 border-white/15 hover:text-white hover:border-white/30 hover:bg-white/[0.06]"
+                    ? "bg-[#F5F0E8] text-[#0A0A0A] border-[#F5F0E8]"
+                    : "bg-white/[0.05] text-white/80 border-white/20 hover:text-white hover:border-white/40 hover:bg-white/[0.1]"
                 }`}
               >
                 <span
                   className={`font-serif-display text-[11px] tabular-nums ${
-                    active ? "text-[#0A0A0A]/40" : "text-white/40"
+                    active ? "text-[#0A0A0A]/45" : "text-white/50"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -266,38 +247,48 @@ export default function UseCases() {
           data-testid="explorer-title"
         >
           <div>
-            <div className="text-[11px] text-white/40 font-mono tracking-tight">
-              {top.label} <span className="opacity-40">/</span> {sub.label}
+            <div className="text-[11px] text-white/55 font-mono tracking-tight">
+              {top.label} <span className="opacity-50">/</span> {sub.label}
             </div>
             <div className="mt-1 font-serif-display text-2xl sm:text-3xl leading-tight tracking-tight text-white">
               {top.headline}
             </div>
-            <div className="mt-1 text-[13px] text-white/60 max-w-xl">{sub.desc}</div>
+            <div className="mt-1 text-[13px] text-white/70 max-w-xl">{sub.desc}</div>
           </div>
-          <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-white/40 shrink-0">
+          <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-white/60 shrink-0">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Live preview
           </div>
         </div>
 
-        {/* Big light-card mockup floating on the dark canvas */}
-        <div
-          key={`${topId}-${subId}`}
-          className="rounded-2xl overflow-hidden bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgba(0,0,0,0.2),0_40px_80px_-24px_rgba(0,0,0,0.55)] animate-fade-up"
-          data-testid="explorer-visual"
-        >
-          <Mockup />
+        {/* Big light-card mockup floating on the dark canvas — with warm glow */}
+        <div className="relative">
+          <div
+            aria-hidden
+            className="absolute -inset-6 sm:-inset-10 rounded-[32px] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(50% 60% at 50% 50%, rgba(245,240,232,0.12), transparent 70%)",
+            }}
+          />
+          <div
+            key={`${topId}-${subId}`}
+            className="relative rounded-2xl overflow-hidden bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgba(0,0,0,0.25),0_50px_100px_-30px_rgba(0,0,0,0.75)] ring-1 ring-white/10 animate-fade-up"
+            data-testid="explorer-visual"
+          >
+            <Mockup />
+          </div>
         </div>
 
         {/* Editorial footer strip */}
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-white/45" data-testid="explorer-footer">
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-white/60" data-testid="explorer-footer">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Streaming from your governed ledger
           </span>
-          <span className="hidden sm:inline text-white/25">·</span>
+          <span className="hidden sm:inline text-white/30">·</span>
           <span>ERP · CRM · HRIS unified</span>
-          <span className="hidden sm:inline text-white/25">·</span>
+          <span className="hidden sm:inline text-white/30">·</span>
           <span>Every number traceable to source</span>
         </div>
       </div>
