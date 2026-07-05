@@ -20,20 +20,26 @@ export default function Hero({ onBookDemo }) {
   const cap = CAP_BY_VIEW[viewId] || CAP_BY_VIEW.warehouse;
   const CapIcon = cap.icon;
 
-  // Rotating audience word — synced to the carousel so the H1 tail flips
-  // at exactly the halfway point of the carousel's full loop.
+  // Rotating audience word — flips every SECOND sub-title (carousel) rotation.
   const AUDIENCES = React.useMemo(
     () => ["high-growth businesses", "multi-entity operators"],
     []
   );
   const [audIdx, setAudIdx] = React.useState(0);
+  const rotationCountRef = React.useRef(0);
+  const skipFirstRef = React.useRef(true);
   const handleViewChange = React.useCallback(
-    (id, carouselIdx, carouselLen) => {
+    (id) => {
       setViewId(id);
-      if (typeof carouselIdx === "number" && typeof carouselLen === "number") {
-        // Split the carousel loop into `AUDIENCES.length` equal halves.
-        const half = carouselLen / AUDIENCES.length;
-        setAudIdx(Math.floor(carouselIdx / half) % AUDIENCES.length);
+      // Ignore the initial mount call — count only real rotations.
+      if (skipFirstRef.current) {
+        skipFirstRef.current = false;
+        return;
+      }
+      rotationCountRef.current += 1;
+      // Flip audience on every 2nd sub-title rotation (rotations 2, 4, 6, ...).
+      if (rotationCountRef.current % 2 === 0) {
+        setAudIdx((i) => (i + 1) % AUDIENCES.length);
       }
     },
     [AUDIENCES.length]
