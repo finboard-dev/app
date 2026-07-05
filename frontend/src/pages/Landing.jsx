@@ -30,7 +30,6 @@ export default function Landing() {
         <Hero onBookDemo={openDemo} />
         <IndustryCollage />
         <WhyWeExist />
-        <Team />
         <Outcomes />
         <TrustBar />
         <AudienceFork onBookDemo={openDemo} />
@@ -38,9 +37,10 @@ export default function Landing() {
         <ForwardDeployed />
         <HowItWorks />
         <CaseStudies />
-        <Manifesto />
-        <Testimonials />
         <Pricing onBookDemo={openDemo} />
+        <Testimonials />
+        <Manifesto />
+        <Team />
         <FAQ />
         <CTABand onBookDemo={openDemo} />
       </main>
