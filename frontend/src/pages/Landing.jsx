@@ -28,13 +28,13 @@ export default function Landing() {
       <Navbar onBookDemo={openDemo} />
       <main>
         <Hero onBookDemo={openDemo} />
+        <IndustryCollage />
         <WhyWeExist />
         <Team />
         <Outcomes />
         <TrustBar />
         <AudienceFork onBookDemo={openDemo} />
         <UseCases />
-        <IndustryCollage />
         <ForwardDeployed />
         <HowItWorks />
         <CaseStudies />
