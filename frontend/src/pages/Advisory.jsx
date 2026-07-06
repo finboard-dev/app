@@ -18,16 +18,10 @@ const CAPABILITIES = [
   { icon: Gauge,       label: "Practice & staff economics" },
 ];
 
-const FEATURES = [
-  { icon: LayoutGrid,  title: "Multi-client workspace", body: "Manage every client's entities from one place. Switch clients in a click; each one stays cleanly separated and governed." },
-  { icon: Repeat,      title: "Standardized templates", body: "Build a close, consolidation or FP&A template once, then deploy it across clients. Onboard new engagements in days, not weeks." },
-  { icon: Gauge,       title: "Practice economics", body: "See utilization, realization and margin across engagements, run your firm on the same live data you give clients." },
-];
-
 const STEPS = [
-  { title: "Onboard clients", body: "Connect each client's QuickBooks, NetSuite or ERP. We do the forward-deployed build once; you reuse it everywhere." },
-  { title: "Standardize delivery", body: "Roll your templates for close, consolidation and reporting across the whole client book for consistent output." },
-  { title: "Deliver & scale", body: "Ship board packs and advisory insight, add clients without adding headcount." },
+  { title: "Onboard clients", body: "Connect each client's ERP. We do the forward-deployed build once, you reuse it everywhere." },
+  { title: "Standardize delivery", body: "Roll close, consolidation and reporting templates across the whole book." },
+  { title: "Deliver & scale", body: "Ship board packs. Add clients without adding headcount." },
 ];
 
 const METRICS = [
@@ -61,7 +55,7 @@ export default function Advisory() {
                 </h1>
 
                 <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75" data-testid="advisory-subhead">
-                  Consolidation, close, FP&amp;A and reporting for your entire client book, standardized templates and a portfolio view of your whole practice. Add clients without adding headcount.
+                  Consolidation, close, FP&amp;A and reporting for your entire client book. Add clients without adding headcount.
                 </p>
 
                 <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 max-w-xl" data-testid="advisory-capabilities">
@@ -183,27 +177,8 @@ export default function Advisory() {
                     Big 4 talent, <span className="italic text-[#F5F0E8]">without the back office</span>.
                   </h3>
                   <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-white/70">
-                    Deloitte, EY, PwC and KPMG run 25–33% of their global workforce out of India, 90k+ people per firm. Tap the same talent pool without an entity, an office or an HR team.
+                    Deloitte, EY, PwC and KPMG run 25–33% of their global workforce out of India. Tap the same talent pool, without setting up an entity, an office, or an HR team.
                   </p>
-
-                  {/* Deliverables list */}
-                  <ul className="mt-6 divide-y divide-white/10 border-y border-white/10 max-w-xl">
-                    {[
-                      { k: "01", l: "Recruiting pipelines & vetted hires" },
-                      { k: "02", l: "HR ops, payroll & compliance handled" },
-                      { k: "03", l: "Managerial supervision that bridges time zones" },
-                    ].map((it) => (
-                      <li key={it.k} className="flex items-center gap-3 py-3">
-                        <span className="font-serif-display text-[13px] tabular-nums text-white/40 w-6">
-                          {it.k}
-                        </span>
-                        <span className="h-6 w-6 rounded-md border border-white/15 bg-white/[0.05] grid place-items-center text-white">
-                          <Check size={12} strokeWidth={2} />
-                        </span>
-                        <span className="text-[13.5px] text-white/85">{it.l}</span>
-                      </li>
-                    ))}
-                  </ul>
 
                   <div className="mt-6 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.22em] text-emerald-400">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -262,14 +237,13 @@ export default function Advisory() {
                     </div>
                   </div>
                   <p className="mt-4 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">
-                    The AI-native workspace: close, consolidation, analytics, FP&amp;A, procure-to-pay and order-to-cash on one governed data model, running across every client.
+                    One AI-native workspace for close, consolidation, analytics, FP&amp;A and spend — across every client.
                   </p>
                   <ul className="mt-5 space-y-2 flex-1">
                     {[
                       "Multi-client workspace",
                       "Governed semantic layer",
                       "Full audit trail & lineage",
-                      "SSO, roles & permissions",
                     ].map((x) => (
                       <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/80">
                         <Check size={13} className="mt-1 text-emerald-600 shrink-0" />
@@ -297,14 +271,13 @@ export default function Advisory() {
                     </div>
                   </div>
                   <p className="mt-4 text-[13.5px] leading-relaxed text-white/75">
-                    India-based CPA-grade talent, running <em>on</em> the FinBoard Platform. Every keystroke is powered by our proprietary AI stack, so your pod ships <span className="text-white font-medium">5× faster</span>, more reliably, and easier for you to review.
+                    India-based CPA talent, running on the FinBoard Platform. AI-augmented output that ships <span className="text-white font-medium">5× faster</span> and is easier to review.
                   </p>
                   <ul className="mt-5 space-y-2 flex-1">
                     {[
                       { i: Zap,         l: "5× throughput per pod member" },
-                      { i: ShieldCheck, l: "Reliable, low-variance output through peak cycles" },
-                      { i: Check,       l: "AI-drafted work, structured for one-click review" },
-                      { i: Timer,       l: "Recruiting, HR, payroll & supervision handled" },
+                      { i: ShieldCheck, l: "Low-variance output through peak cycles" },
+                      { i: Timer,       l: "Recruiting, HR & supervision handled" },
                     ].map((it) => {
                       const Icon = it.i;
                       return (
@@ -329,9 +302,8 @@ export default function Advisory() {
                     <ul className="mt-4 space-y-2.5">
                       {[
                         "Manual Excel & email loops",
-                        "Peak-cycle bottlenecks and rework",
-                        "Reviewer time equal to preparer time",
-                        "You manage recruiting & retention",
+                        "Peak-cycle bottlenecks & rework",
+                        "Reviewer time = preparer time",
                       ].map((x) => (
                         <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/70">
                           <XCircle size={13} className="mt-0.5 text-[#0A0A0A]/40 shrink-0" strokeWidth={2} />
@@ -350,7 +322,6 @@ export default function Advisory() {
                         "Every task runs on FinBoard's AI-native workflows",
                         "AI absorbs peak-cycle spikes — no variance",
                         "Review time cut ~70% with structured AI output",
-                        "We recruit, manage & supervise the pod",
                       ].map((x) => (
                         <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/85">
                           <Check size={13} className="mt-0.5 text-emerald-600 shrink-0" strokeWidth={2.5} />
@@ -363,26 +334,7 @@ export default function Advisory() {
               </div>
             </div>
 
-            {/* Existing 3 features — editorial strip */}
-            <div className="mt-10 grid md:grid-cols-3 gap-4" data-testid="advisory-features">
-              {FEATURES.map(({ icon: FIcon, title, body }, i) => (
-                <div
-                  key={title}
-                  className="relative card-white p-6 flex flex-col hover:-translate-y-0.5 transition-transform"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center">
-                      <FIcon size={17} strokeWidth={1.75} />
-                    </span>
-                    <span className="font-serif-display text-[13px] tabular-nums text-[#0A0A0A]/30">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="mt-6 font-serif-display text-xl leading-tight">{title}</div>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[#0A0A0A]/65 flex-1">{body}</p>
-                </div>
-              ))}
-            </div>
+            {/* Existing 3 features — removed to reduce redundancy; covered by Platform card above */}
           </div>
         </section>
 
@@ -447,7 +399,7 @@ export default function Advisory() {
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Partner program</div>
               <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">Firm-friendly economics.</h2>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/70">
-                Per-client and per-seat pricing built for resale margin, and a dedicated forward-deployed team for your practice. Land one firm, serve a whole portfolio.
+                Per-client and per-seat pricing built for resale margin. Land one firm, serve a whole portfolio.
               </p>
               <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-[#0A0A0A]/75">
                 {["Per-client pricing", "Reseller margin", "Dedicated onboarding"].map((x) => (
