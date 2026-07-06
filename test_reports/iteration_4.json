@@ -1,0 +1,63 @@
+{
+  "summary": "Verified BackOfficeLeverage text-spillover fix on /advisory. All 6 requested checks pass on desktop 1440x900 and mobile 375x812.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/tests/test_backoffice_layout.py"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "None. Component is small, self-contained, uses tailwind grid-cols-1 sm:grid-cols-2 for pointers, lg:grid-cols-2 for outer layout, and flex flex-col justify-center so text column vertically centres relative to the 16:10 video. Copy is tight and does not overflow at either viewport."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Layout fix verified. Standalone script at /app/tests/test_backoffice_layout.py can be rerun with /opt/plugins-venv/bin/python. Note: the MCP browser_automation tool has a Python-parser quirk where JS `{}` literals inside evaluate() strings and dict literals like `clip={...}` on the same line as a call cause 'closing parenthesis does not match opening parenthesis' pre-parse errors -- workaround is to store JS strings in module-level constants and use a plain playwright script (as done here).",
+  "detailed_verification_results": {
+    "desktop_1440x900": {
+      "side_by_side_layout": true,
+      "video_wrap_bbox": {"x": 120, "y": 336.9, "width": 580, "height": 481.8},
+      "text_col_start_x": 740,
+      "text_col_within_video_vertical_bounds": true,
+      "vwrap_top_bottom": [336.9, 818.7],
+      "heading_top": 384.9,
+      "cta_bottom": 817.7,
+      "pointers_count": 5,
+      "pointers_rows_y_to_count": {"650": 2, "685": 2, "720": 1},
+      "pointers_grid_template_columns": "280px 280px",
+      "pointers_two_per_row_on_lg": true,
+      "stats_single_row_of_3": true,
+      "stat_values_visible": ["25-33%", "90k+", "40-60%"],
+      "heading_italic_tail_text": "at a fraction of the cost",
+      "heading_italic_font_style": "italic",
+      "doc_scroll_width": 1440,
+      "doc_client_width": 1440,
+      "section_scroll_width": 1440,
+      "section_client_width": 1440,
+      "no_horizontal_overflow": true,
+      "cta_opens_bookdemo_dialog": true,
+      "link_href": "#advisory-leverage-block",
+      "link_navigates_to_anchor": true,
+      "url_after_link_click": "https://landing-page-demo-21.preview.emergentagent.com/advisory#advisory-leverage-block"
+    },
+    "mobile_375x812": {
+      "stacked_vertically": true,
+      "video_wrap_width": 327,
+      "heading_below_video": true,
+      "pointers_grid_template_columns": "327px",
+      "pointers_single_column": true,
+      "doc_scroll_width": 375,
+      "doc_client_width": 375,
+      "no_horizontal_overflow": true
+    }
+  }
+}

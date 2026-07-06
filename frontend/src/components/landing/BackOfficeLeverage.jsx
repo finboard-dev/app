@@ -6,16 +6,16 @@ import {
 
 const POINTS = [
   { icon: Users,          label: "Embedded in your team" },
-  { icon: ClipboardCheck, label: "Recruitment & payroll, handled" },
+  { icon: ClipboardCheck, label: "Recruitment & payroll" },
   { icon: Briefcase,      label: "Admin work off your plate" },
-  { icon: Clock,          label: "In-house manager for time zones" },
+  { icon: Clock,          label: "Manager bridges time zones" },
   { icon: UserRoundCog,   label: "Engagement-friendly contracts" },
 ];
 
 const STATS = [
-  { v: "25–33%", l: "of Big 4 headcount in India" },
-  { v: "90k+",   l: "per firm at D · EY · PwC · KPMG" },
-  { v: "40–60%", l: "cost delta vs onshore" },
+  { v: "25–33%", l: "Big 4 India headcount" },
+  { v: "90k+",   l: "per firm · D/EY/PwC/KPMG" },
+  { v: "40–60%", l: "cheaper vs onshore" },
 ];
 
 export default function BackOfficeLeverage({ onBookDemo }) {
@@ -26,9 +26,9 @@ export default function BackOfficeLeverage({ onBookDemo }) {
       data-testid="backoffice-section"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {/* Left — cinematic video, matches the hero video frame above */}
-          <div className="lg:col-span-7 animate-fade-up" data-testid="backoffice-video-wrap">
+          <div className="animate-fade-up" data-testid="backoffice-video-wrap">
             <div
               className="relative overflow-hidden rounded-2xl bg-[#0A0A0A] shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]"
               style={{ aspectRatio: "16 / 10" }}
@@ -62,7 +62,7 @@ export default function BackOfficeLeverage({ onBookDemo }) {
           </div>
 
           {/* Right — punchy narrative */}
-          <div className="lg:col-span-5">
+          <div className="flex flex-col justify-center">
             <div className="inline-flex items-center gap-2">
               <span className="h-7 w-7 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
                 <Sparkles size={13} strokeWidth={1.75} />
@@ -94,10 +94,10 @@ export default function BackOfficeLeverage({ onBookDemo }) {
               ))}
             </div>
 
-            {/* 5-point offer */}
-            <ul className="mt-7 space-y-2.5" data-testid="backoffice-points">
+            {/* 5-point offer — 2 per line */}
+            <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2.5" data-testid="backoffice-points">
               {POINTS.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-2.5 text-[13.5px] text-[#0A0A0A]/85">
+                <li key={label} className="flex items-center gap-2.5 text-[13px] text-[#0A0A0A]/85">
                   <span className="h-6 w-6 shrink-0 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
                     <Icon size={12} strokeWidth={1.75} />
                   </span>
