@@ -59,6 +59,9 @@ export default function Hero({ onBookDemo }) {
               <span className="kbd-chip whitespace-nowrap" data-testid="hero-eyebrow-managed-services">
                 <ShieldCheck size={12} /> Advisory firms
               </span>
+              <span className="kbd-chip whitespace-nowrap" data-testid="hero-eyebrow-ai-native">
+                <Sparkles size={12} /> AI Native
+              </span>
             </div>
 
             <h1 className="mt-6 font-serif-display text-4xl sm:text-5xl lg:text-[2.35rem] xl:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
