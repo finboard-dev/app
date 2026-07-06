@@ -285,7 +285,7 @@ export default function Advisory() {
                   data-testid="offering-backoffice"
                 >
                   <span className="absolute -top-3 left-6 inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-[#0A0A0A] text-[10px] uppercase tracking-[0.2em] font-semibold px-2.5 py-1">
-                    <Sparkles size={11} strokeWidth={2} /> AI-augmented
+                    <Sparkles size={11} strokeWidth={2} /> AI-augmented · Exclusive for accounting firms
                   </span>
                   <div className="flex items-center gap-2">
                     <span className="h-9 w-9 rounded-lg bg-white/[0.08] border border-white/15 grid place-items-center">
