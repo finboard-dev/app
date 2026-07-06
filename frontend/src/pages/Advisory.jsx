@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, ArrowLeft, Check, Sparkles, Timer, ShieldCheck,
-  Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase,
+  Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase, Globe2,
 } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -122,22 +122,137 @@ export default function Advisory() {
           </div>
         </section>
 
-        {/* Feature grid */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24 border-t border-line">
-          <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Built for firms that serve many clients</div>
-          <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight max-w-2xl">
-            The leverage layer for your practice.
-          </h2>
-          <div className="mt-10 grid sm:grid-cols-2 gap-4" data-testid="advisory-features">
-            {FEATURES.map(({ icon: FIcon, title, body }) => (
-              <div key={title} className="card-white p-6 hover:-translate-y-0.5 transition-transform">
-                <div className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center">
-                  <FIcon size={18} />
+        {/* Feature grid — leverage layer + India back-office marquee */}
+        <section className="relative border-t border-line" data-testid="advisory-leverage">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+            <div className="inline-flex items-center gap-2">
+              <span className="h-7 w-7 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
+                <Briefcase size={13} strokeWidth={1.75} />
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/60">
+                Built for firms that serve many clients
+              </span>
+            </div>
+            <h2 className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight max-w-3xl">
+              The leverage layer for your <span className="italic">practice</span>.
+            </h2>
+
+            {/* India Back Office marquee card — cinematic dark showcase */}
+            <div
+              className="mt-10 relative overflow-hidden rounded-3xl bg-[#171310] text-white"
+              data-testid="advisory-india"
+            >
+              {/* Ambient depth */}
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.35] pointer-events-none"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
+                  backgroundSize: "48px 48px",
+                  maskImage:
+                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(60% 45% at 10% 0%, rgba(255,153,51,0.10), transparent 65%), radial-gradient(60% 45% at 90% 100%, rgba(19,136,8,0.10), transparent 65%)",
+                }}
+              />
+              <div className="grain absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" aria-hidden />
+
+              <div className="relative grid lg:grid-cols-12 gap-10 p-8 lg:p-12">
+                {/* Left — narrative */}
+                <div className="lg:col-span-7">
+                  <div className="inline-flex items-center gap-2">
+                    <span className="h-7 w-7 rounded-md grid place-items-center bg-white/[0.08] border border-white/15">
+                      <Globe2 size={13} strokeWidth={1.75} />
+                    </span>
+                    <span className="text-[10px] uppercase tracking-[0.28em] text-white/70">
+                      India back-office support
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-white">
+                    Big 4 talent, <span className="italic text-[#F5F0E8]">without the back office</span>.
+                  </h3>
+                  <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-white/70">
+                    Deloitte, EY, PwC and KPMG run 25–33% of their global workforce out of India, 90k+ people per firm. Tap the same talent pool without an entity, an office or an HR team.
+                  </p>
+
+                  {/* Deliverables list */}
+                  <ul className="mt-6 divide-y divide-white/10 border-y border-white/10 max-w-xl">
+                    {[
+                      { k: "01", l: "Recruiting pipelines & vetted hires" },
+                      { k: "02", l: "HR ops, payroll & compliance handled" },
+                      { k: "03", l: "Managerial supervision that bridges time zones" },
+                    ].map((it) => (
+                      <li key={it.k} className="flex items-center gap-3 py-3">
+                        <span className="font-serif-display text-[13px] tabular-nums text-white/40 w-6">
+                          {it.k}
+                        </span>
+                        <span className="h-6 w-6 rounded-md border border-white/15 bg-white/[0.05] grid place-items-center text-white">
+                          <Check size={12} strokeWidth={2} />
+                        </span>
+                        <span className="text-[13.5px] text-white/85">{it.l}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.22em] text-emerald-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Live pod ready in 2 weeks
+                  </div>
                 </div>
-                <div className="mt-4 font-serif-display text-2xl leading-tight">{title}</div>
-                <p className="mt-2 text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+
+                {/* Right — stat panel */}
+                <div className="lg:col-span-5 lg:pl-6 lg:border-l lg:border-white/10">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-4">By the numbers</div>
+                  <div className="space-y-5">
+                    {[
+                      { v: "25–33%", l: "of global Big 4 headcount, based in India" },
+                      { v: "90k+",   l: "people per firm at Deloitte · EY · PwC · KPMG" },
+                      { v: "0",      l: "entity, office or HR team you have to set up" },
+                    ].map((s) => (
+                      <div key={s.l} className="border-t border-white/10 pt-4 first:border-0 first:pt-0">
+                        <div className="font-serif-display text-4xl sm:text-5xl leading-none tracking-tight tabular-nums text-white">
+                          {s.v}
+                        </div>
+                        <div className="mt-2 text-[12px] leading-snug text-white/60">
+                          {s.l}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Existing 3 features — editorial strip */}
+            <div className="mt-10 grid md:grid-cols-3 gap-4" data-testid="advisory-features">
+              {FEATURES.map(({ icon: FIcon, title, body }, i) => (
+                <div
+                  key={title}
+                  className="relative card-white p-6 flex flex-col hover:-translate-y-0.5 transition-transform"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center">
+                      <FIcon size={17} strokeWidth={1.75} />
+                    </span>
+                    <span className="font-serif-display text-[13px] tabular-nums text-[#0A0A0A]/30">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="mt-6 font-serif-display text-xl leading-tight">{title}</div>
+                  <p className="mt-2 text-[13px] leading-relaxed text-[#0A0A0A]/65 flex-1">{body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
