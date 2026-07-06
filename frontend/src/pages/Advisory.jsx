@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight, ArrowLeft, Check, Sparkles, Timer, ShieldCheck,
   Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase, Globe2,
+  Layers, Zap, XCircle, Cpu,
 } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -228,6 +229,135 @@ export default function Advisory() {
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Two offerings: Platform × BackOffice — differentiator vs traditional */}
+            <div className="mt-10" data-testid="advisory-offerings">
+              <div className="flex items-end justify-between flex-wrap gap-4">
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/50">The offering</div>
+                  <h3 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.05] tracking-tight max-w-3xl">
+                    Two products. One <span className="italic">leverage system</span>.
+                  </h3>
+                </div>
+                <div className="hidden sm:inline-flex items-center gap-2 text-[11px] text-[#0A0A0A]/60">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Buy one or bundle both
+                </div>
+              </div>
+
+              <div className="mt-6 grid md:grid-cols-2 gap-4">
+                {/* FinBoard Platform */}
+                <div className="relative rounded-2xl border border-line bg-white p-6 lg:p-8 flex flex-col" data-testid="offering-platform">
+                  <div className="flex items-center gap-2">
+                    <span className="h-9 w-9 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center">
+                      <Layers size={16} strokeWidth={1.75} />
+                    </span>
+                    <div className="leading-tight">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/45">Product 01</div>
+                      <div className="font-serif-display text-xl">FinBoard Platform</div>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">
+                    The AI-native workspace: close, consolidation, analytics, FP&amp;A, procure-to-pay and order-to-cash on one governed data model, running across every client.
+                  </p>
+                  <ul className="mt-5 space-y-2 flex-1">
+                    {[
+                      "Multi-client workspace",
+                      "Governed semantic layer",
+                      "Full audit trail & lineage",
+                      "SSO, roles & permissions",
+                    ].map((x) => (
+                      <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/80">
+                        <Check size={13} className="mt-1 text-emerald-600 shrink-0" />
+                        <span>{x}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* FinBoard BackOffice — highlighted */}
+                <div
+                  className="relative rounded-2xl border-2 border-[#0A0A0A]/85 bg-[#0A0A0A] text-white p-6 lg:p-8 flex flex-col shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)]"
+                  data-testid="offering-backoffice"
+                >
+                  <span className="absolute -top-3 left-6 inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-[#0A0A0A] text-[10px] uppercase tracking-[0.2em] font-semibold px-2.5 py-1">
+                    <Sparkles size={11} strokeWidth={2} /> AI-augmented
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="h-9 w-9 rounded-lg bg-white/[0.08] border border-white/15 grid place-items-center">
+                      <Users size={16} strokeWidth={1.75} />
+                    </span>
+                    <div className="leading-tight">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-white/55">Product 02</div>
+                      <div className="font-serif-display text-xl">FinBoard BackOffice</div>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-[13.5px] leading-relaxed text-white/75">
+                    India-based CPA-grade talent, running <em>on</em> the FinBoard Platform. Every keystroke is powered by our proprietary AI stack, so your pod ships <span className="text-white font-medium">5× faster</span>, more reliably, and easier for you to review.
+                  </p>
+                  <ul className="mt-5 space-y-2 flex-1">
+                    {[
+                      { i: Zap,         l: "5× throughput per pod member" },
+                      { i: ShieldCheck, l: "Reliable, low-variance output through peak cycles" },
+                      { i: Check,       l: "AI-drafted work, structured for one-click review" },
+                      { i: Timer,       l: "Recruiting, HR, payroll & supervision handled" },
+                    ].map((it) => {
+                      const Icon = it.i;
+                      return (
+                        <li key={it.l} className="flex items-start gap-2 text-[13px] text-white/85">
+                          <Icon size={13} className="mt-1 text-emerald-400 shrink-0" strokeWidth={2} />
+                          <span>{it.l}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Comparison strip — Traditional vs FinBoard BackOffice */}
+              <div className="mt-8 rounded-2xl border border-line bg-[#F5F0E8] overflow-hidden" data-testid="advisory-vs">
+                <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-line">
+                  <div className="p-6">
+                    <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/50">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]/30" />
+                      Traditional India back-office
+                    </div>
+                    <ul className="mt-4 space-y-2.5">
+                      {[
+                        "Manual Excel & email loops",
+                        "Peak-cycle bottlenecks and rework",
+                        "Reviewer time equal to preparer time",
+                        "You manage recruiting & retention",
+                      ].map((x) => (
+                        <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/70">
+                          <XCircle size={13} className="mt-0.5 text-[#0A0A0A]/40 shrink-0" strokeWidth={2} />
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="p-6 bg-white">
+                    <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]">
+                      <Cpu size={12} strokeWidth={2} />
+                      FinBoard BackOffice
+                    </div>
+                    <ul className="mt-4 space-y-2.5">
+                      {[
+                        "Every task runs on FinBoard's AI-native workflows",
+                        "AI absorbs peak-cycle spikes — no variance",
+                        "Review time cut ~70% with structured AI output",
+                        "We recruit, manage & supervise the pod",
+                      ].map((x) => (
+                        <li key={x} className="flex items-start gap-2 text-[13px] text-[#0A0A0A]/85">
+                          <Check size={13} className="mt-0.5 text-emerald-600 shrink-0" strokeWidth={2.5} />
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
