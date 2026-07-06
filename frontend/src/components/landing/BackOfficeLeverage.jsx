@@ -4,24 +4,18 @@ import {
   UserRoundCog, ClipboardCheck, Briefcase, Clock,
 } from "lucide-react";
 
-/**
- * BackOfficeLeverage — landing-page section placed directly under the hero.
- * Left: looping cinematic video. Right: title, description, and 5-point
- * offer with an "India talent pool" stat callout that explains why this
- * matters for CPA and advisory firms.
- */
 const POINTS = [
   { icon: Users,          label: "Embedded in your team" },
-  { icon: ClipboardCheck, label: "Managed recruitment and payroll" },
-  { icon: Briefcase,      label: "Managed admin work" },
-  { icon: Clock,          label: "In-house manager to coordinate time zones" },
+  { icon: ClipboardCheck, label: "Recruitment & payroll, handled" },
+  { icon: Briefcase,      label: "Admin work off your plate" },
+  { icon: Clock,          label: "In-house manager for time zones" },
   { icon: UserRoundCog,   label: "Engagement-friendly contracts" },
 ];
 
 const STATS = [
-  { v: "25–33%", l: "of Big 4 global headcount is India-based" },
-  { v: "90k+",   l: "people per firm at Deloitte, EY, PwC, KPMG" },
-  { v: "40–60%", l: "typical cost delta vs. onshore hires" },
+  { v: "25–33%", l: "of Big 4 headcount in India" },
+  { v: "90k+",   l: "per firm at D · EY · PwC · KPMG" },
+  { v: "40–60%", l: "cost delta vs onshore" },
 ];
 
 export default function BackOfficeLeverage({ onBookDemo }) {
@@ -32,63 +26,65 @@ export default function BackOfficeLeverage({ onBookDemo }) {
       data-testid="backoffice-section"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left — cinematic video */}
-          <div className="lg:col-span-6" data-testid="backoffice-video-wrap">
-            <div className="relative rounded-2xl overflow-hidden bg-[#0A0A0A] shadow-[0_1px_2px_rgba(10,10,10,0.06),0_30px_60px_-20px_rgba(10,10,10,0.35)] ring-1 ring-black/5">
-              <div className="aspect-[4/5] lg:aspect-[5/6]">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
-                  data-testid="backoffice-video"
-                >
-                  <source src="/videos/backoffice.mp4" type="video/mp4" />
-                </video>
-              </div>
-              {/* Subtle vignette + label */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Left — cinematic video, matches the hero video frame above */}
+          <div className="lg:col-span-7 animate-fade-up" data-testid="backoffice-video-wrap">
+            <div
+              className="relative overflow-hidden rounded-2xl bg-[#0A0A0A] shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)]"
+              style={{ aspectRatio: "16 / 10" }}
+            >
+              <video
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                controls={false}
+                onLoadedData={(e) => e.currentTarget.play().catch(() => {})}
+                onCanPlay={(e) => e.currentTarget.play().catch(() => {})}
+                aria-label="FinBoard BackOffice preview"
+                data-testid="backoffice-video"
+              >
+                <source src="/videos/backoffice.mp4" type="video/mp4" />
+              </video>
               <div
+                className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0))" }}
                 aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.35) 100%)",
-                }}
               />
-              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-sm text-white/95 text-[10.5px] uppercase tracking-[0.22em] px-3 py-1.5 border border-white/15">
-                <Globe2 size={11} strokeWidth={1.75} />
-                <span>India · FinBoard BackOffice</span>
+              <div className="absolute bottom-4 left-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
+                  <Globe2 size={11} /> India · BackOffice
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Right — narrative */}
-          <div className="lg:col-span-6">
+          {/* Right — punchy narrative */}
+          <div className="lg:col-span-5">
             <div className="inline-flex items-center gap-2">
               <span className="h-7 w-7 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
                 <Sparkles size={13} strokeWidth={1.75} />
               </span>
               <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/60">
-                FinBoard BackOffice · for accounting firms
+                FinBoard BackOffice
               </span>
             </div>
 
             <h2 className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight" data-testid="backoffice-heading">
-              Leverage <span className="italic">Big 4-grade talent</span> at a fraction of the cost.
+              Big 4 talent, <span className="italic">at a fraction of the cost</span>.
             </h2>
 
-            <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75">
-              The Big 4 quietly run their global delivery out of India — Deloitte, EY, PwC and KPMG each employ 90k+ people there. Tap the same talent pool for your firm, without the entity, the HR team or the recruiting overhead.
+            <p className="mt-4 text-[14.5px] leading-relaxed text-[#0A0A0A]/75">
+              Deloitte, EY, PwC and KPMG run global delivery from India, 90k+ people each. Tap the same pool for your firm. No entity. No HR. No recruiting.
             </p>
 
-            {/* Stat trio — the "why now" */}
-            <div className="mt-6 grid grid-cols-3 gap-4 max-w-xl" data-testid="backoffice-stats">
+            {/* Stat trio */}
+            <div className="mt-6 grid grid-cols-3 gap-4" data-testid="backoffice-stats">
               {STATS.map((s) => (
                 <div key={s.l} className="border-t border-line pt-3">
-                  <div className="font-serif-display text-2xl sm:text-[26px] leading-none tracking-tight tabular-nums text-[#0A0A0A]">
+                  <div className="font-serif-display text-2xl leading-none tracking-tight tabular-nums text-[#0A0A0A]">
                     {s.v}
                   </div>
                   <div className="mt-1 text-[10.5px] uppercase tracking-[0.15em] text-[#0A0A0A]/55 leading-snug">
@@ -99,9 +95,9 @@ export default function BackOfficeLeverage({ onBookDemo }) {
             </div>
 
             {/* 5-point offer */}
-            <ul className="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-2.5 max-w-xl" data-testid="backoffice-points">
+            <ul className="mt-7 space-y-2.5" data-testid="backoffice-points">
               {POINTS.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-start gap-2.5 text-[13.5px] text-[#0A0A0A]/85 leading-snug">
+                <li key={label} className="flex items-center gap-2.5 text-[13.5px] text-[#0A0A0A]/85">
                   <span className="h-6 w-6 shrink-0 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
                     <Icon size={12} strokeWidth={1.75} />
                   </span>
@@ -111,20 +107,20 @@ export default function BackOfficeLeverage({ onBookDemo }) {
             </ul>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <button
                 onClick={onBookDemo}
                 data-testid="backoffice-cta"
                 className="btn-primary"
               >
-                Get a pod ready in 2 weeks <ArrowRight size={16} />
+                Get a pod in 2 weeks <ArrowRight size={16} />
               </button>
               <a
-                href="/advisory#advisory-leverage-block"
+                href="#advisory-leverage-block"
                 data-testid="backoffice-link"
                 className="btn-secondary"
               >
-                See how it works <Check size={14} />
+                How it works <Check size={14} />
               </a>
             </div>
           </div>
