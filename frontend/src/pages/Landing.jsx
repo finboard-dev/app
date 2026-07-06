@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
-import BackOfficeLeverage from "@/components/landing/BackOfficeLeverage";
 import WhyWeExist from "@/components/landing/WhyWeExist";
 import Outcomes from "@/components/landing/Outcomes";
 import TrustBar from "@/components/landing/TrustBar";
@@ -23,7 +22,6 @@ export default function Landing() {
       <Navbar onBookDemo={openDemo} />
       <main>
         <Hero onBookDemo={openDemo} />
-        <BackOfficeLeverage onBookDemo={openDemo} />
         <IndustryCollage />
         <WhyWeExist />
         <Outcomes />

@@ -10,6 +10,7 @@ import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import AiTrustRow from "@/components/landing/AiTrustRow";
+import BackOfficeLeverage from "@/components/landing/BackOfficeLeverage";
 import { PRODUCT_NAV } from "@/data/products";
 
 const CAPABILITIES = [
@@ -116,6 +117,8 @@ export default function Advisory() {
             </div>
           </div>
         </section>
+
+        <BackOfficeLeverage onBookDemo={openDemo} />
 
         {/* Feature grid — leverage layer + India back-office marquee */}
         <section className="relative border-t border-line" data-testid="advisory-leverage">
