@@ -3,7 +3,6 @@ import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import WhyWeExist from "@/components/landing/WhyWeExist";
 import Outcomes from "@/components/landing/Outcomes";
-import AudienceFork from "@/components/landing/AudienceFork";
 import TrustBar from "@/components/landing/TrustBar";
 import UseCases from "@/components/landing/UseCases";
 import CaseStudies from "@/components/landing/CaseStudies";
@@ -27,7 +26,6 @@ export default function Landing() {
         <WhyWeExist />
         <Outcomes />
         <TrustBar />
-        <AudienceFork onBookDemo={openDemo} />
         <UseCases />
         <CaseStudies />
         <Team />
