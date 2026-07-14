@@ -1,33 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
-import axios from "axios";
 import { PRODUCT_NAV } from "@/data/products";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const CALENDLY_URL = "https://calendly.com/vaishnav-finboard/30min?month=2026-07";
 
 export default function Footer() {
-  const [email, setEmail] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email");
-      return;
-    }
-    setLoading(true);
-    try {
-      await axios.post(`${API}/contacts`, { email, source: "footer" });
-      toast.success("You're on the list. We'll be in touch.");
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <footer className="bg-[#0A0A0A] text-[#F5F0E8]" data-testid="site-footer">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-10">
@@ -40,24 +17,6 @@ export default function Footer() {
               The AI-native business operations platform for multi-entity groups. Consolidate, report, plan and review, in one place.
             </p>
 
-            <form onSubmit={submit} className="mt-8 flex gap-2 max-w-md" data-testid="footer-newsletter-form">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                data-testid="footer-newsletter-input"
-                className="flex-1 bg-transparent border border-[#F5F0E8]/25 rounded-full px-4 py-3 text-sm placeholder-[#F5F0E8]/40 focus:outline-none focus:border-[#F5F0E8]/60"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                data-testid="footer-newsletter-submit"
-                className="bg-[#F5F0E8] text-[#0A0A0A] rounded-full px-5 py-3 text-sm font-medium hover:bg-white transition-colors disabled:opacity-60"
-              >
-                {loading ? "…" : "Notify me"}
-              </button>
-            </form>
           </div>
 
           <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-8">
@@ -86,7 +45,7 @@ export default function Footer() {
             <FooterCol title="Company" links={[
               { l: "About", href: "/manifesto" },
               { l: "Customers", href: "/testimonials" },
-              { l: "Contact", href: "mailto:support@finboard.ai" },
+              { l: "Contact", href: CALENDLY_URL },
             ]} />
             <FooterCol title="Legal" links={[
               { l: "Privacy", href: "/privacy" },
@@ -114,6 +73,7 @@ function FooterCol({ title, links }) {
           <li key={l.l}>
             <a
               href={l.href}
+              {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
               data-testid={`footer-link-${title.toLowerCase()}-${l.l.toLowerCase().replace(/\s+/g, "-")}`}
               className="text-sm text-[#F5F0E8]/80 hover:text-white transition-colors"
             >
