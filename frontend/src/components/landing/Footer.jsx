@@ -91,9 +91,8 @@ export default function Footer() {
             ]} />
             <FooterCol title="Legal" links={[
               { l: "Privacy", href: "#" },
-              { l: "Terms", href: "#" },
+              { l: "Terms", href: "/terms" },
               { l: "Security", href: "#" },
-              { l: "SOC 2", href: "#" },
             ]} />
           </div>
         </div>

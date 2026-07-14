@@ -37,6 +37,7 @@ const ROUTES = [
   "/pricing",
   "/manifesto",
   "/testimonials",
+  "/terms",
   "/products/month-end-close",
   "/products/consolidation",
   "/products/analytics",

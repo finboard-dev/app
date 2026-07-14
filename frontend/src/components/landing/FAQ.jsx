@@ -53,8 +53,8 @@ export const FAQ_ITEMS = [
     a: "A forward-deployed engineer and finance architect embed with your team. Typical onboarding is 2-4 weeks: discovery, custom pipeline build, historical validation, then go-live. We stay embedded to iterate models and dashboards every quarter.",
   },
   {
-    q: "Where is my data stored?",
-    a: "In SOC 2 Type II-audited infrastructure. Data is encrypted in transit and at rest. Enterprise plans support customer-managed encryption keys.",
+    q: "How is my data handled?",
+    a: "Your data stays yours. We host and process it only to provide the service, encrypted in transit and at rest, and we never use it for AI model training unless you explicitly opt in. Full details are in our Terms.",
   },
 ];
 
