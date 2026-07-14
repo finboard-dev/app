@@ -120,7 +120,7 @@ export default function BackOfficeLeverage({ onBookDemo }) {
                 Get a pod in 2 weeks <ArrowRight size={16} />
               </button>
               <a
-                href="#advisory-leverage-block"
+                href="#how"
                 data-testid="backoffice-link"
                 className="btn-secondary"
               >

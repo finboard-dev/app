@@ -78,16 +78,15 @@ export default function Footer() {
               </ul>
             </div>
             <FooterCol title="Product" links={[
-              { l: "Use cases", href: "#use-cases" },
-              { l: "How it works", href: "#how-it-works" },
+              { l: "Use cases", href: "/#use-cases" },
+              { l: "How it works", href: "/engagement#how-it-works" },
               { l: "Pricing", href: "/pricing" },
-              { l: "FAQ", href: "#faq" },
+              { l: "FAQ", href: "/#faq" },
             ]} />
             <FooterCol title="Company" links={[
-              { l: "About", href: "#" },
-              { l: "Customers", href: "#testimonials" },
-              { l: "Careers", href: "#" },
-              { l: "Contact", href: "#book-demo" },
+              { l: "About", href: "/manifesto" },
+              { l: "Customers", href: "/testimonials" },
+              { l: "Contact", href: "mailto:support@finboard.ai" },
             ]} />
             <FooterCol title="Legal" links={[
               { l: "Privacy", href: "/privacy" },
