@@ -1,7 +1,10 @@
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "@/index.css";
 import "@/App.css";
 import Providers from "./providers";
+
+const GA_MEASUREMENT_ID = "G-YDZCD9VQJS";
 
 // Mirror the Google Fonts Inter (weight 600) that public/index.html loaded.
 // The full Inter weight/italic range is still loaded via the @import in
@@ -70,6 +73,17 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}
         />
         <script dangerouslySetInnerHTML={{ __html: DATA_CLONE_SUPPRESS }} />
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`}
+        </Script>
       </head>
       <body>
         <Providers>
