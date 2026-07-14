@@ -1,22 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, ArrowLeft, Check, Sparkles, Timer, ShieldCheck,
-  Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase, Globe2,
-  Layers, Zap, XCircle, Cpu,
+  ArrowRight, Check, Sparkles, Timer,
+  Users, LayoutGrid, Repeat, Gauge, Building2, Briefcase, Headset,
 } from "lucide-react";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import BackOfficeLeverage from "@/components/landing/BackOfficeLeverage";
+import ClientLogos from "@/components/landing/ClientLogos";
 import { PRODUCT_NAV } from "@/data/products";
 
 const CAPABILITIES = [
   { icon: LayoutGrid,  label: "One workspace, every client" },
   { icon: Repeat,      label: "Standardized close templates" },
   { icon: Gauge,       label: "Practice & staff economics" },
+  { icon: Headset,     label: "Back-office support included" },
 ];
 
 const STEPS = [
@@ -26,9 +28,20 @@ const STEPS = [
 ];
 
 const METRICS = [
-  { value: "1", label: "workspace, all clients" },
-  { value: "30 days", label: "to onboard a client" },
+  { value: "1", label: "shared workspace" },
+  { value: "<30 days", label: "to onboard" },
+  { value: "2×", label: "productivity" },
 ];
+
+// Distinct icon color per module (matches the finance-stack treatment site-wide).
+const MODULE_ACCENT = {
+  "Month-end close": "#7C3AED",
+  "Consolidation":   "#2563EB",
+  "Analytics":       "#0891B2",
+  "FP&A":            "#059669",
+  "Procure-to-Pay":  "#D97706",
+  "Order-to-Cash":   "#E11D48",
+};
 
 export default function Advisory() {
   const [demoOpen, setDemoOpen] = React.useState(false);
@@ -38,6 +51,11 @@ export default function Advisory() {
 
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="advisory-page">
+      <Seo
+        title="FinBoard for Advisory Firms | One Workspace, Every Client"
+        description="Run close, consolidation and reporting for every client from one governed workspace. Standardized templates, 30-day onboarding, resale-friendly pricing."
+        path="/advisory"
+      />
       <Navbar onBookDemo={openDemo} />
 
       <main>
@@ -51,7 +69,7 @@ export default function Advisory() {
                   Fractional CFO, CAS or fund admin?
                 </div>
 
-                <h1 className="mt-2 font-serif-display text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="advisory-heading">
+                <h1 className="mt-2 font-serif-display text-xl sm:text-2xl leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="advisory-heading">
                   Run every client&apos;s finance from <span className="italic">one workspace</span>.
                 </h1>
 
@@ -118,176 +136,18 @@ export default function Advisory() {
           </div>
         </section>
 
+        <ClientLogos variant="firms" testid="advisory-client-logos" />
+
         <BackOfficeLeverage onBookDemo={openDemo} />
-
-        {/* Feature grid — leverage layer + India back-office marquee */}
-        <section className="relative border-t border-line" data-testid="advisory-leverage">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
-            <div className="inline-flex items-center gap-2">
-              <span className="h-7 w-7 rounded-md grid place-items-center bg-white border border-line text-[#0A0A0A]">
-                <Briefcase size={13} strokeWidth={1.75} />
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.28em] text-[#0A0A0A]/60">
-                Built for firms that serve many clients
-              </span>
-            </div>
-            <h2 className="mt-5 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight max-w-3xl">
-              The leverage layer for your <span className="italic">practice</span>.
-            </h2>
-
-            {/* Unified leverage block — India stats + Two offerings + delta comparison */}
-            <div
-              className="mt-10 relative overflow-hidden rounded-3xl bg-[#171310] text-white"
-              data-testid="advisory-leverage-block"
-            >
-              {/* Ambient depth */}
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-[0.35] pointer-events-none"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-                  backgroundSize: "48px 48px",
-                  maskImage:
-                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
-                  WebkitMaskImage:
-                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,1), rgba(0,0,0,0.35) 70%, transparent)",
-                }}
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(60% 45% at 10% 0%, rgba(255,153,51,0.10), transparent 65%), radial-gradient(60% 45% at 90% 100%, rgba(19,136,8,0.10), transparent 65%)",
-                }}
-              />
-              <div className="grain absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" aria-hidden />
-
-              <div className="relative p-6 lg:p-10">
-                {/* ROW 1 — India stats strip */}
-                <div className="flex items-start justify-between flex-wrap gap-6">
-                  <div className="max-w-xl">
-                    <div className="inline-flex items-center gap-2">
-                      <span className="h-6 w-6 rounded-md grid place-items-center bg-white/[0.08] border border-white/15">
-                        <Globe2 size={12} strokeWidth={1.75} />
-                      </span>
-                      <span className="text-[10px] uppercase tracking-[0.28em] text-white/70">
-                        India back-office · big 4 talent pool
-                      </span>
-                    </div>
-                    <div className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.05] tracking-tight text-white">
-                      Big 4 talent, <span className="italic text-[#F5F0E8]">without the back office</span>.
-                    </div>
-                  </div>
-                  <div className="flex gap-6 lg:gap-10">
-                    {[
-                      { v: "25–33%", l: "Big 4 India headcount" },
-                      { v: "90k+",   l: "per firm (D/EY/PwC/KPMG)" },
-                      { v: "0",      l: "entity to set up" },
-                    ].map((s) => (
-                      <div key={s.l}>
-                        <div className="font-serif-display text-2xl sm:text-3xl leading-none tracking-tight tabular-nums text-white">
-                          {s.v}
-                        </div>
-                        <div className="mt-1 text-[10.5px] uppercase tracking-[0.15em] text-white/50 max-w-[120px] leading-snug">
-                          {s.l}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="my-8 h-px bg-white/10" aria-hidden />
-
-                {/* ROW 2 — Two offerings side-by-side */}
-                <div className="grid md:grid-cols-2 gap-4" data-testid="advisory-offerings">
-                  {/* Platform */}
-                  <div className="rounded-2xl bg-white/[0.04] border border-white/10 p-5" data-testid="offering-platform">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="h-8 w-8 rounded-md bg-white/[0.06] border border-white/15 grid place-items-center">
-                          <Layers size={14} strokeWidth={1.75} />
-                        </span>
-                        <div className="leading-tight">
-                          <div className="text-[9.5px] uppercase tracking-[0.22em] text-white/45">Product 01</div>
-                          <div className="font-serif-display text-lg">FinBoard Platform</div>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-3 text-[12.5px] leading-relaxed text-white/70">
-                      AI-native workspace: close, consolidation, analytics, FP&amp;A and spend — one governed data model across every client.
-                    </p>
-                  </div>
-
-                  {/* BackOffice */}
-                  <div className="relative rounded-2xl bg-white text-[#0A0A0A] p-5 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)]" data-testid="offering-backoffice">
-                    <span className="absolute -top-3 left-5 inline-flex items-center gap-1.5 rounded-full bg-emerald-500 text-[#0A0A0A] text-[9.5px] uppercase tracking-[0.2em] font-semibold px-2.5 py-1">
-                      <Sparkles size={10} strokeWidth={2} /> AI-augmented · Exclusive for accounting firms
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className="h-8 w-8 rounded-md bg-[#F5F0E8] border border-line grid place-items-center">
-                        <Users size={14} strokeWidth={1.75} />
-                      </span>
-                      <div className="leading-tight">
-                        <div className="text-[9.5px] uppercase tracking-[0.22em] text-[#0A0A0A]/45">Product 02</div>
-                        <div className="font-serif-display text-lg">FinBoard BackOffice</div>
-                      </div>
-                    </div>
-                    <p className="mt-3 text-[12.5px] leading-relaxed text-[#0A0A0A]/70">
-                      India-based CPA talent, running on the FinBoard Platform. AI-augmented output that ships <span className="font-medium">5× faster</span> and easier to review.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="my-8 h-px bg-white/10" aria-hidden />
-
-                {/* ROW 3 — Delta comparison (traditional vs FinBoard) */}
-                <div className="grid sm:grid-cols-3 gap-6" data-testid="advisory-delta">
-                  {[
-                    { label: "Throughput",    trad: "1× baseline",           us: "5× per pod member",       icon: Zap },
-                    { label: "Peak cycles",   trad: "Bottlenecks & rework",  us: "AI absorbs the spike",    icon: ShieldCheck },
-                    { label: "Review time",   trad: "= preparer time",       us: "Cut ~70%, structured",    icon: Cpu },
-                  ].map((d) => {
-                    const Icon = d.icon;
-                    return (
-                      <div key={d.label} className="relative">
-                        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">
-                          <Icon size={11} strokeWidth={1.75} />
-                          {d.label}
-                        </div>
-                        <div className="flex items-center gap-2 text-[12.5px] text-white/55">
-                          <XCircle size={12} strokeWidth={2} className="text-white/30 shrink-0" />
-                          <span className="line-through decoration-white/25">{d.trad}</span>
-                        </div>
-                        <div className="mt-1.5 flex items-center gap-2 text-[13px] font-medium text-white">
-                          <Check size={13} strokeWidth={2.5} className="text-emerald-400 shrink-0" />
-                          <span>{d.us}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Live indicator */}
-                <div className="mt-8 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.22em] text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Live pod ready in 2 weeks
-                </div>
-              </div>
-            </div>
-
-            {/* Existing 3 features — removed to reduce redundancy; covered above */}
-          </div>
-        </section>
 
         {/* Modules across every client */}
         <section className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 lg:pt-24">
           <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Every module, across every client</div>
-          <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">The same stack your clients need, at scale.</h2>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-3" data-testid="advisory-modules">
+          <h2 className="mt-4 font-serif-display text-xl sm:text-2xl leading-[1.02] tracking-tight">The same stack your clients need, at scale.</h2>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-3" data-testid="advisory-modules">
             {PRODUCT_NAV.map((p) => {
               const PIcon = p.icon;
+              const c = MODULE_ACCENT[p.nav] || p.accent;
               return (
                 <Link
                   key={p.slug}
@@ -295,7 +155,7 @@ export default function Advisory() {
                   data-testid={`advisory-module-${p.slug}`}
                   className="card-white p-5 hover:-translate-y-0.5 transition-transform group"
                 >
-                  <span className="h-10 w-10 rounded-lg border border-line bg-[#F5F0E8] grid place-items-center">
+                  <span className="h-10 w-10 rounded-lg border grid place-items-center" style={{ backgroundColor: `${c}e6`, borderColor: `${c}3d`, color: "#fff" }}>
                     <PIcon size={18} />
                   </span>
                   <div className="mt-3 font-medium text-[14px]">{p.nav}</div>
@@ -313,7 +173,7 @@ export default function Advisory() {
         <section id="how" className="bg-[#F5F0E8] border-y border-line scroll-mt-20 mt-16 lg:mt-24">
           <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
             <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">How firms roll it out</div>
-            <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">Build once. Deploy across the book.</h2>
+            <h2 className="mt-4 font-serif-display text-xl sm:text-2xl leading-[1.02] tracking-tight">Build once. Deploy across the book.</h2>
             <div className="mt-10 grid md:grid-cols-3 gap-4" data-testid="advisory-steps">
               {STEPS.map((s, i) => (
                 <div key={s.title} className="card-white p-6">
@@ -324,13 +184,15 @@ export default function Advisory() {
               ))}
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-4" data-testid="advisory-metrics">
-              {METRICS.map((m) => (
-                <div key={m.label} className="card-white p-6 text-center">
-                  <div className="font-serif-display text-4xl sm:text-5xl tracking-tight">{m.value}</div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#0A0A0A]/50">{m.label}</div>
-                </div>
-              ))}
+            <div className="mt-4 rounded-2xl border border-line bg-white overflow-hidden" data-testid="advisory-metrics">
+              <div className="grid grid-cols-3 divide-x divide-line">
+                {METRICS.map((m) => (
+                  <div key={m.label} className="p-6 text-center">
+                    <div className="font-serif-display text-3xl sm:text-4xl tracking-tight">{m.value}</div>
+                    <div className="mt-1.5 text-[10px] uppercase tracking-[0.15em] text-[#0A0A0A]/50 whitespace-nowrap">{m.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -340,7 +202,7 @@ export default function Advisory() {
           <div className="rounded-3xl border border-line bg-white p-8 lg:p-14 grid md:grid-cols-12 gap-8 items-center" data-testid="advisory-partner">
             <div className="md:col-span-8">
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Partner program</div>
-              <h2 className="mt-4 font-serif-display text-4xl sm:text-5xl leading-[1.02] tracking-tight">Firm-friendly economics.</h2>
+              <h2 className="mt-4 font-serif-display text-xl sm:text-2xl leading-[1.02] tracking-tight">Firm-friendly economics.</h2>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/70">
                 Per-client and per-seat pricing built for resale margin. Land one firm, serve a whole portfolio.
               </p>

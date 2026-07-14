@@ -134,6 +134,38 @@
 }
 .animate-fade-up { animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) both; }
 
+/* Pronounced swap used when the Product-studio mockup changes on toggle */
+@keyframes mockSwap {
+    0%   { opacity: 0; transform: translateX(18px) scale(.985); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+.animate-mock-swap { animation: mockSwap .42s cubic-bezier(.2,.7,.2,1) both; }
+
+/* Hide scrollbar but keep horizontal scroll (mockup chrome tab row) */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Full-bleed navbar mega-menu: pin edge-to-edge under the 64px navbar.
+   Radix positions a popper WRAPPER (with a transform) around the content, so
+   we must neutralise the wrapper itself, not just the panel. left/right:0 with
+   width:auto fills the viewport minus the scrollbar (no horizontal overflow). */
+[data-radix-popper-content-wrapper]:has(> .nav-mega) {
+    position: fixed !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    transform: none !important;
+}
+.nav-mega {
+    width: 100% !important;
+    transform: none !important;
+}
+
 @keyframes iconBob {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-2.5px); }

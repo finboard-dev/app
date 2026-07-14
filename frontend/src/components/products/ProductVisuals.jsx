@@ -3,6 +3,7 @@ import {
   Landmark, BarChart3, LineChart, Receipt, CircleDollarSign,
   Building2, ArrowRight, Check, FileText, ShieldCheck, Users,
   Mail, Database, Layers, Target, RefreshCw, Wallet, Briefcase,
+  ClipboardCheck, Loader,
 } from "lucide-react";
 
 /**
@@ -11,6 +12,7 @@ import {
  */
 export default function ProductVisual({ slug }) {
   switch (slug) {
+    case "month-end-close": return <CloseVisual />;
     case "consolidation": return <ConsolidationVisual />;
     case "analytics":     return <AnalyticsVisual />;
     case "fpa":           return <FpaVisual />;
@@ -42,7 +44,118 @@ function Frame({ url, title, children }) {
 }
 
 /* ================================================================ */
-/* 1. Consolidation — entity roll-up tree                            */
+/* 0. Month-end close - close cockpit / task checklist               */
+/* ================================================================ */
+function CloseVisual() {
+  const tasks = [
+    { l: "GL accounting & journal entries", n: "42 posted", state: "done" },
+    { l: "Bank & credit-card recs",         n: "8 accounts", state: "done" },
+    { l: "Prepaid, accruals & fixed assets", n: "reconciled", state: "done" },
+    { l: "Inter-company eliminations",       n: "4 matched", state: "review" },
+    { l: "Group consolidation · FX",         n: "running", state: "running" },
+    { l: "Board reporting pack",             n: "queued", state: "queued" },
+  ];
+  const done = 3, total = tasks.length;
+  const pct = Math.round((done / total) * 100);
+  const R = 26, C = 2 * Math.PI * R;
+
+  return (
+    <Frame url="month-end-close" title="Month-end close · June 2026">
+      <div className="p-5">
+        {/* Progress header */}
+        <div className="flex items-center gap-4 rounded-lg border border-line bg-[#0A0A0A] text-white px-4 py-3">
+          <div className="relative shrink-0" style={{ width: 64, height: 64 }}>
+            <svg viewBox="0 0 64 64" className="w-16 h-16 -rotate-90">
+              <circle cx="32" cy="32" r={R} stroke="rgba(255,255,255,0.15)" strokeWidth="6" fill="none" />
+              <circle
+                cx="32" cy="32" r={R}
+                stroke="#fff" strokeWidth="6" fill="none" strokeLinecap="round"
+                strokeDasharray={C}
+                strokeDashoffset={C - (C * pct) / 100}
+              />
+            </svg>
+            <div className="absolute inset-0 grid place-items-center">
+              <span className="font-serif-display text-[15px] tabular-nums leading-none">{pct}%</span>
+            </div>
+          </div>
+          <div className="min-w-0">
+            <div className="text-[10px] uppercase tracking-[0.18em] text-white/55">Day 3 of 5</div>
+            <div className="text-[15px] font-serif-display leading-tight">Closing in 5 days, on track</div>
+            <div className="mt-1 text-[10.5px] text-white/60">{done} of {total} workstreams complete</div>
+          </div>
+        </div>
+
+        {/* Task checklist */}
+        <div className="mt-3 space-y-1.5">
+          {tasks.map((t, i) => (
+            <div
+              key={t.l}
+              className="flex items-center gap-3 rounded-md border border-line bg-white px-3 py-2 animate-fade-up"
+              style={{ animationDelay: `${i * 70}ms` }}
+            >
+              <CloseStatusDot state={t.state} />
+              <span className="flex-1 min-w-0 text-[11.5px] leading-tight truncate">{t.l}</span>
+              <span className="text-[9.5px] font-mono text-[#0A0A0A]/50 shrink-0">{t.n}</span>
+              <CloseStatusChip state={t.state} />
+            </div>
+          ))}
+        </div>
+
+        {/* Footer strip */}
+        <div className="mt-4 grid grid-cols-3 gap-1.5 text-[10px]">
+          {[
+            { l: "Reconciled", v: "100%" },
+            { l: "Unmatched", v: "0 items" },
+            { l: "Adj. entries", v: "6" },
+          ].map((s) => (
+            <div key={s.l} className="rounded border border-line bg-[#F9F6F0] px-2 py-1.5">
+              <div className="text-[9px] uppercase tracking-wider text-[#0A0A0A]/45">{s.l}</div>
+              <div className="font-mono tabular-nums font-medium">{s.v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Frame>
+  );
+}
+
+function CloseStatusDot({ state }) {
+  if (state === "done") {
+    return (
+      <span className="h-5 w-5 shrink-0 rounded-full bg-emerald-600 text-white grid place-items-center">
+        <Check size={11} strokeWidth={2.5} />
+      </span>
+    );
+  }
+  if (state === "running") {
+    return (
+      <span className="h-5 w-5 shrink-0 rounded-full border-2 border-[#0A0A0A] text-[#0A0A0A] grid place-items-center">
+        <Loader size={11} className="animate-spin" />
+      </span>
+    );
+  }
+  if (state === "review") {
+    return (
+      <span className="h-5 w-5 shrink-0 rounded-full border-2 border-amber-500 text-amber-600 grid place-items-center text-[10px] font-bold">
+        !
+      </span>
+    );
+  }
+  return <span className="h-5 w-5 shrink-0 rounded-full border-2 border-[#E5E0D8]" />;
+}
+
+function CloseStatusChip({ state }) {
+  const map = {
+    done:    { c: "bg-emerald-50 text-emerald-700", t: "Done" },
+    review:  { c: "bg-amber-50 text-amber-700",     t: "In review" },
+    running: { c: "bg-[#F5F0E8] text-[#0A0A0A]/70", t: "Running" },
+    queued:  { c: "bg-white text-[#0A0A0A]/40 border border-line", t: "Queued" },
+  }[state];
+  return <span className={`shrink-0 text-[8.5px] px-1.5 py-0.5 rounded ${map.c}`}>{map.t}</span>;
+}
+
+/* ================================================================ */
+/* 1. Consolidation - entity roll-up tree                            */
 /* ================================================================ */
 function ConsolidationVisual() {
   const entities = [
@@ -125,7 +238,7 @@ function ConsolidationVisual() {
 }
 
 /* ================================================================ */
-/* 2. Analytics — dashboard with charts                              */
+/* 2. Analytics - dashboard with charts                              */
 /* ================================================================ */
 function AnalyticsVisual() {
   const bars = [
@@ -211,7 +324,7 @@ function TrendLine() {
 }
 
 /* ================================================================ */
-/* 3. FP&A — driver model with scenarios                             */
+/* 3. FP&A - driver model with scenarios                             */
 /* ================================================================ */
 function FpaVisual() {
   const drivers = [
@@ -299,7 +412,7 @@ function ScenarioBars() {
 }
 
 /* ================================================================ */
-/* 4. P2P — 3-column pipeline                                        */
+/* 4. P2P - 3-column pipeline                                        */
 /* ================================================================ */
 function P2pVisual() {
   return (
@@ -357,7 +470,7 @@ function P2pVisual() {
 }
 
 /* ================================================================ */
-/* 5. O2C — 3-column pipeline (revenue side)                         */
+/* 5. O2C - 3-column pipeline (revenue side)                         */
 /* ================================================================ */
 function O2cVisual() {
   return (

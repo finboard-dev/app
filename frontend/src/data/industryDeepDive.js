@@ -1,0 +1,393 @@
+import {
+  Scale, RefreshCw, BarChart3, Lock, GitBranch, Building2,
+  TrendingUp, Boxes, Percent, Gift, Wallet, Layers,
+  Target, MapPin, Repeat, Globe2, PieChart, Clock,
+  Stethoscope, Activity, GitCompare, Coins, Briefcase, Receipt,
+} from "lucide-react";
+
+/**
+ * Research-backed "deep dive" content per industry, mirroring the restaurant benchmark.
+ * Each pain's `viz` maps to a reusable graphic primitive (see IndustryDeepDive.jsx):
+ *   ladder | segbar | bars | progress | compare | rank | flow
+ */
+
+export const DEEP_DIVE = {
+  /* ============================== CONSTRUCTION ============================== */
+  construction: {
+    block1: {
+      eyebrow: "When one job becomes ten",
+      heading: "Finance problems that show up when jobs multiply",
+      subhead: "Running many jobs across many entities turns over/under-billing, POC revenue and retainage into a monthly fire drill.",
+    },
+    pains: [
+      { icon: Scale, t: "Overbilling masks a cash cliff", viz: "compare",
+        d: { aLabel: "Billed", bLabel: "Earned", unit: "$M", note: "Net over/under +$0.1M",
+          rows: [ { l: "Job A", a: 3.2, b: 2.7 }, { l: "Job B", a: 1.8, b: 2.3 }, { l: "Job C", a: 4.6, b: 4.4 }, { l: "Job D", a: 2.1, b: 2.6 } ] } },
+      { icon: RefreshCw, t: "POC revenue never ties out", viz: "ladder",
+        d: { rows: [ { l: "Estimated revenue", v: "$12.0M", kind: "base" }, { l: "WIP true-up adjustment", v: "($0.1M)", kind: "minus" }, { l: "Adjusted group revenue", v: "$11.9M", kind: "result" } ] } },
+      { icon: BarChart3, t: "Job cost blows past budget", viz: "bars",
+        d: { suffix: "%", items: [ { l: "A", v: 62 }, { l: "B", v: 88 }, { l: "C", v: 45 }, { l: "D", v: 103, over: true }, { l: "E", v: 71 } ] } },
+      { icon: Lock, t: "Retainage locks up working capital", viz: "progress",
+        d: { note: "$1.06M retainage receivable",
+          rows: [ { l: "Job C · 10%", v: "$460K", pct: 100 }, { l: "Job A · 8%", v: "$256K", pct: 56 }, { l: "Job D · 7%", v: "$147K", pct: 32 }, { l: "Job B · 5%", v: "$90K", pct: 20 } ] } },
+      { icon: GitBranch, t: "Change orders stall in limbo", viz: "flow",
+        d: { steps: [ { l: "Requested", v: "$1.4M" }, { l: "Pending", v: "$820K" }, { l: "Submitted", v: "$540K" }, { l: "Approved", v: "$310K" } ] } },
+      { icon: Building2, t: "Inter-company eats the month", viz: "rank",
+        d: { note: "Eliminations -$4.9M -> $33.4M consolidated",
+          rows: [ { l: "GC Holdings", v: "$18.4M", pct: 100 }, { l: "Concrete Div.", v: "$9.2M", pct: 50 }, { l: "Mechanical LLC", v: "$7.6M", pct: 41 }, { l: "Equipment Co.", v: "$3.1M", pct: 17 } ] } },
+    ],
+    block2: {
+      eyebrow: "Built for the standards",
+      heading: "Reporting standards construction runs on",
+      subhead: "FinBoard speaks ASC 606 over-time revenue, WIP schedules, AIA billing and surety-ready working capital natively.",
+    },
+    pnl: {
+      title: "Group P&L · contracts", right: "4 entities · to GL",
+      cols: { a: "Contract P&L", b: "Amount", c: "% rev" },
+      rows: [
+        { l: "Contract revenue", v: "$33.4M", p: "100%" },
+        { l: "Direct job costs", v: "$28.1M", p: "84.1%" },
+        { l: "Gross profit on contracts", v: "$5.3M", p: "15.9%", hi: true },
+        { l: "G&A overhead", v: "$3.1M", p: "9.3%" },
+        { l: "Net over-billings", v: "$1.4M", p: "4.2%", hi: true },
+        { l: "Backlog (signed)", v: "$41.2M", p: "-" },
+        { l: "Interest & other", v: "$0.5M", p: "1.5%" },
+        { l: "Net income", v: "$1.7M", p: "5.1%", total: true },
+      ],
+      footnote: "Gross margin and net over/under-billings are the two rows a contractor manages to.",
+    },
+    byUnit: {
+      title: "Jobs · this period", right: "Margin focus",
+      cols: { name: "Job", metric: "Contract", head: "Margin" },
+      rows: [
+        { l: "Riverside Medical", v: "$8.4M", m: "17%", status: "good" },
+        { l: "Metro Transit Deck", v: "$5.2M", m: "9%", status: "warn" },
+        { l: "Eastgate Warehouse", v: "$12.6M", m: "14%", status: "good" },
+        { l: "Harbor Point", v: "$6.1M", m: "-0.5M", status: "bad" },
+        { l: "Lakeshore Retail", v: "$2.2M", m: "21%", status: "good" },
+      ],
+      summary: { l: "Group over/under-billing", v: "+$0.1M", t: "target ±2% of earned" },
+    },
+    standards: [
+      { n: "01", name: "ASC 606 · over-time revenue", body: "Cost-to-cost recognition means one estimate change ripples across every entity's revenue." },
+      { n: "02", name: "WIP schedule", body: "Reconciles cost, billings and earned revenue per job to surface over/under-billings and drive bonding capacity." },
+      { n: "03", name: "AIA G702 / G703 billing", body: "Standardized pay applications bill each schedule-of-values line by % complete, holding 5-10% retainage." },
+      { n: "04", name: "Surety & working capital", body: "Sureties cap bonding at ~10-15x adjusted working capital, so the consolidated balance sheet limits new work." },
+    ],
+    footnote: "Bonding and lender covenants read straight off the consolidated WIP and balance sheet. FinBoard keeps them audit-ready.",
+    stack: {
+      subhead: "Two-way sync with Procore, your Sage or Viewpoint GL, and QuickBooks. We sit on top of the systems you already run, no rip-and-replace.",
+      connectors: [
+        { name: "Procore", bg: "#F47E42", label: "p" },
+        { name: "Sage 300 CRE", bg: "#007A33", label: "s3" },
+        { name: "Foundation", bg: "#005EB8", label: "f" },
+        { name: "Viewpoint Vista", bg: "#0063A3", label: "vp" },
+        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+      ],
+    },
+  },
+
+  /* ================================ RETAIL ================================ */
+  retail: {
+    block1: {
+      eyebrow: "When one store becomes many",
+      heading: "Finance problems when one store becomes many",
+      subhead: "Every new store multiplies the reconciliations and the ways your numbers drift. FinBoard keeps comps, inventory and margin comparable.",
+    },
+    pains: [
+      { icon: TrendingUp, t: "Comp sales aren't comparable", viz: "segbar",
+        d: { value: "+12.4% group",
+          segs: [ { l: "Comp stores +2.1%", pct: 40, tone: "s1" }, { l: "New stores +9.8%", pct: 52, tone: "accent" }, { l: "Closed -0.5%", pct: 8, tone: "s3" } ] } },
+      { icon: Boxes, t: "Shrink hides in valuation", viz: "ladder",
+        d: { rows: [ { l: "Book inventory", v: "$9.20M", kind: "base" }, { l: "Physical count", v: "$9.05M", kind: "minus" }, { l: "Shrink reserve (1.6%)", v: "($147K)", kind: "minus" }, { l: "Valued inventory", v: "$9.05M", kind: "result" } ] } },
+      { icon: Percent, t: "Markdowns erode margin", viz: "compare",
+        d: { aLabel: "Initial markup", bLabel: "Maintained", unit: "%", note: "7.5-pt markdown gap",
+          rows: [ { l: "Blended", a: 54, b: 46.5 } ] } },
+      { icon: Gift, t: "Gift cards are a group liability", viz: "progress",
+        d: { note: "Redeemed YTD 68% · breakage $121K",
+          rows: [ { l: "Gift-card liability", v: "$1.84M", pct: 100 }, { l: "Loyalty points", v: "$340K", pct: 18 } ] } },
+      { icon: Wallet, t: "Store payouts arrive net", viz: "ladder",
+        d: { rows: [ { l: "Gross sales", v: "$412K", kind: "base" }, { l: "Card + BNPL fees", v: "($12.5K)", kind: "minus" }, { l: "Refunds netted", v: "($6.8K)", kind: "minus" }, { l: "Rolling reserve", v: "($2.1K)", kind: "minus" }, { l: "Net deposit", v: "$390.6K", kind: "result" } ] } },
+      { icon: Layers, t: "Consolidation on close day", viz: "rank",
+        d: { note: "14 of 18 entities closed · eliminations $2.3M",
+          rows: [ { l: "Flagship LLC", v: "$6.8M", pct: 100 }, { l: "Mall Group", v: "$4.1M", pct: 60 }, { l: "Plaza Stores", v: "$3.6M", pct: 53 }, { l: "Airport Co.", v: "$2.2M", pct: 32 } ] } },
+    ],
+    block2: {
+      eyebrow: "Built on retail's rulebook",
+      heading: "Reporting standards retail runs on",
+      subhead: "From the NRF 4-5-4 calendar to RIM, ASC 842 leases and ASC 606 gift-card breakage, FinBoard speaks what your auditors and buyers expect.",
+    },
+    pnl: {
+      title: "Group P&L · 18 stores", right: "Four-wall view",
+      cols: { a: "Store P&L", b: "Amount", c: "% sales" },
+      rows: [
+        { l: "Net sales", v: "$58.4M", p: "100%" },
+        { l: "Cost of goods sold", v: "$32.7M", p: "56.0%" },
+        { l: "Gross margin", v: "$25.7M", p: "44.0%", hi: true },
+        { l: "Shrink & markdowns", v: "$2.34M", p: "4.0%" },
+        { l: "Store payroll", v: "$9.05M", p: "15.5%" },
+        { l: "Occupancy (ASC 842)", v: "$5.26M", p: "9.0%" },
+        { l: "Four-wall EBITDA", v: "$6.42M", p: "11.0%", hi: true },
+        { l: "Group operating income", v: "$3.21M", p: "5.5%", total: true },
+      ],
+      footnote: "Gross margin and four-wall EBITDA are the two rows an operator manages to.",
+    },
+    byUnit: {
+      title: "Stores · comp sales", right: "Same-store YoY",
+      cols: { name: "Store", metric: "Net sales", head: "Comp" },
+      rows: [
+        { l: "Downtown Flagship", v: "$6.8M", m: "+4.2%", status: "good" },
+        { l: "Riverside Mall", v: "$4.1M", m: "+1.1%", status: "good" },
+        { l: "Westgate Center", v: "$3.6M", m: "-0.8%", status: "warn" },
+        { l: "Airport Kiosk", v: "$2.2M", m: "-3.4%", status: "warn" },
+        { l: "Eastside Plaza", v: "$1.9M", m: "-7.9%", status: "bad" },
+      ],
+      summary: { l: "Group comp sales", v: "+2.1%", t: "target ≥ +3.0%" },
+    },
+    standards: [
+      { n: "01", name: "NRF 4-5-4 retail calendar", body: "Fiscal periods hold the same weekend mix, so sales compare truly year-over-year across every store." },
+      { n: "02", name: "Retail inventory method", body: "Estimates ending inventory and COGS from a cost-to-retail ratio across large SKU counts." },
+      { n: "03", name: "ASC 842 · store leases", body: "Nearly every store lease carries a right-of-use asset and lease liability on the balance sheet." },
+      { n: "04", name: "ASC 606 · gift-card breakage", body: "Cards are a contract liability until redeemed; breakage is recognized on the redemption pattern." },
+    ],
+    footnote: "Comparable-store-sales, inventory valuation and lease schedules roll up automatically. FinBoard keeps them buyer-ready.",
+    stack: {
+      subhead: "FinBoard reads from Shopify, Lightspeed, Square and your GL and writes back clean. A two-way sync that layers on top of your stack.",
+      connectors: [
+        { name: "Shopify POS", bg: "#5E8E3E", label: "S" },
+        { name: "Lightspeed", bg: "#F5312E", label: "LS" },
+        { name: "Square", bg: "#0A0A0A", label: null },
+        { name: "NetSuite", bg: "#1F5EA9", label: "NS" },
+        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+      ],
+    },
+  },
+
+  /* ============================== E-COMMERCE ============================== */
+  ecommerce: {
+    block1: {
+      eyebrow: "When one channel becomes many",
+      heading: "Finance problems when one brand or channel becomes many",
+      subhead: "Every new marketplace and entity adds a fee waterfall, a reserve and a state to file in. The bank deposit stops meaning anything.",
+    },
+    pains: [
+      { icon: Wallet, t: "Payouts arrive net of fees", viz: "ladder",
+        d: { rows: [ { l: "Gross product sales", v: "$1.00M", kind: "base" }, { l: "Referral + FBA fees", v: "($245K)", kind: "minus" }, { l: "Sponsored ads", v: "($70K)", kind: "minus" }, { l: "Refunds & reserve", v: "($95K)", kind: "minus" }, { l: "Net deposit (59%)", v: "$590K", kind: "result" } ] } },
+      { icon: Layers, t: "Contribution hides by channel", viz: "compare",
+        d: { aLabel: "Shopify CM4", bLabel: "Amazon CM4", unit: "%", note: "Same SKU, 12-pt gap",
+          rows: [ { l: "Contribution", a: 34, b: 22 } ] } },
+      { icon: Target, t: "Blended MER masks acquisition", viz: "compare",
+        d: { aLabel: "Blended MER", bLabel: "New-cust MER", unit: "x", note: "Breakeven 3.3x",
+          rows: [ { l: "Brand A", a: 4.8, b: 2.9 }, { l: "Brand B", a: 3.6, b: 3.4 }, { l: "Brand C", a: 2.4, b: 1.6 } ] } },
+      { icon: MapPin, t: "Sales-tax nexus tripping", viz: "progress",
+        d: { note: "Registered where crossed · Wayfair thresholds",
+          rows: [ { l: "California", v: "$742K", pct: 100, tone: "accent" }, { l: "Texas", v: "$610K", pct: 100, tone: "accent" }, { l: "New York", v: "$430K", pct: 86 }, { l: "New Jersey · 214 txns", v: "$88K", pct: 70, tone: "warn" } ] } },
+      { icon: Repeat, t: "Subscription revenue booked early", viz: "flow",
+        d: { steps: [ { l: "Cash billed", v: "$1.4M" }, { l: "Deferred", v: "$1.28M" }, { l: "Recognized/mo", v: "$117K" } ] } },
+      { icon: Globe2, t: "Multi-currency by spreadsheet", viz: "rank",
+        d: { note: "Eliminations -$3.7M -> $32.4M group",
+          rows: [ { l: "US entity", v: "$22.4M", pct: 100 }, { l: "UK (GBP)", v: "$7.8M", pct: 35 }, { l: "EU (EUR)", v: "$5.9M", pct: 26 } ] } },
+    ],
+    block2: {
+      eyebrow: "The rules of the game",
+      heading: "Reporting standards e-commerce runs on",
+      subhead: "ASC 606, Wayfair economic nexus, contribution-margin accounting and ASC 330 landed cost decide whether your numbers are real.",
+    },
+    pnl: {
+      title: "Group P&L · contribution", right: "All channels · to GL",
+      cols: { a: "DTC P&L", b: "Amount", c: "% rev" },
+      rows: [
+        { l: "Gross revenue (GMV)", v: "$38.4M", p: "100%" },
+        { l: "Discounts, returns, chargebacks", v: "$6.1M", p: "15.9%" },
+        { l: "Net revenue", v: "$32.3M", p: "84.1%", hi: true },
+        { l: "Landed COGS", v: "$12.6M", p: "32.8%" },
+        { l: "Fulfillment & platform fees", v: "$7.4M", p: "19.3%" },
+        { l: "Payment processing", v: "$1.3M", p: "3.4%" },
+        { l: "Variable marketing (4.7x MER)", v: "$6.8M", p: "17.7%", hi: true },
+        { l: "Contribution margin", v: "$4.2M", p: "10.9%", total: true },
+      ],
+      footnote: "Net revenue and variable marketing are the two rows a DTC operator manages to.",
+    },
+    byUnit: {
+      title: "Channels · contribution", right: "CM % of net",
+      cols: { name: "Channel", metric: "Revenue", head: "CM" },
+      rows: [
+        { l: "Shopify DTC", v: "$14.2M", m: "34%", status: "good" },
+        { l: "Subscription", v: "$5.1M", m: "41%", status: "good" },
+        { l: "Wholesale", v: "$6.4M", m: "28%", status: "good" },
+        { l: "Amazon FBA", v: "$9.6M", m: "22%", status: "warn" },
+        { l: "TikTok Shop", v: "$3.1M", m: "9%", status: "bad" },
+      ],
+      summary: { l: "Blended contribution margin", v: "13%", t: "target ≥ 30%" },
+    },
+    standards: [
+      { n: "01", name: "ASC 606 · revenue recognition", body: "Prepaid subscriptions sit in deferred revenue; marketplace principal-vs-agent decides gross vs net." },
+      { n: "02", name: "Economic nexus (Wayfair)", body: "Every state can require collection once you cross ~$100K sales or 200 transactions." },
+      { n: "03", name: "Contribution-margin accounting", body: "Fees, fulfillment, returns and ads stack into a CM ladder so erosion is visible by channel." },
+      { n: "04", name: "ASC 330 · landed cost", body: "Inventory carries full landed cost; outbound shipping is a selling expense below gross profit." },
+    ],
+    footnote: "Deferred-revenue schedules release themselves and nexus alerts fire before you trip a threshold. FinBoard keeps it clean.",
+    stack: {
+      subhead: "FinBoard sits on top of Shopify, Amazon, Stripe and your GL, decomposing every settlement into gross sales, fees, refunds and reserves.",
+      connectors: [
+        { name: "Shopify", bg: "#5E8E3E", label: "S" },
+        { name: "Amazon", bg: "#E47911", label: "a" },
+        { name: "Stripe", bg: "#635BFF", label: "st" },
+        { name: "NetSuite", bg: "#1F74BA", label: "NS" },
+        { name: "Avalara", bg: "#E8590C", label: "av" },
+      ],
+    },
+  },
+
+  /* ============================== HEALTHCARE ============================== */
+  healthcare: {
+    block1: {
+      eyebrow: "Built for multi-site healthcare",
+      heading: "Finance problems when one clinic becomes many",
+      subhead: "Gross charges, payer mix, denials and net patient revenue move differently at every location. FinBoard reconciles them into one view.",
+    },
+    pains: [
+      { icon: Receipt, t: "Gross is fiction, net is reality", viz: "ladder",
+        d: { rows: [ { l: "Gross patient charges", v: "$112.0M", kind: "base" }, { l: "Contractual allowances", v: "($58.2M)", kind: "minus" }, { l: "Implicit price concessions", v: "($6.5M)", kind: "minus" }, { l: "Net patient revenue", v: "$47.3M", kind: "result" } ] } },
+      { icon: PieChart, t: "Every clinic's payer mix differs", viz: "segbar",
+        d: { value: "Downtown clinic",
+          segs: [ { l: "Commercial 55%", pct: 55, tone: "accent" }, { l: "Medicare 25%", pct: 25, tone: "s1" }, { l: "Medicaid 10%", pct: 10, tone: "s2" }, { l: "Self-pay 10%", pct: 10, tone: "s3" } ] } },
+      { icon: Clock, t: "Days-in-AR and denials drift", viz: "compare",
+        d: { aLabel: "Days in AR", bLabel: "Denial %", unit: "", note: "Target <35 days / <5%",
+          rows: [ { l: "Downtown", a: 31, b: 4.2 }, { l: "Riverside", a: 41, b: 7.5 }, { l: "Southpoint", a: 58, b: 11.0 } ] } },
+      { icon: Stethoscope, t: "Revenue is an estimate, not a bill", viz: "flow",
+        d: { steps: [ { l: "Gross charge", v: "" }, { l: "Est. collectible", v: "" }, { l: "Allowances", v: "" }, { l: "Net revenue", v: "" } ] } },
+      { icon: Activity, t: "Cost per visit isn't comparable", viz: "bars",
+        d: { suffix: "", prefix: "$", items: [ { l: "Dtwn", v: 41 }, { l: "Nrth", v: 46 }, { l: "Rvsd", v: 52 }, { l: "Estd", v: 55 }, { l: "Sthp", v: 61, over: true } ] } },
+      { icon: Building2, t: "MSO consolidation & bad debt", viz: "rank",
+        d: { note: "Self-pay + bad debt as % of gross",
+          rows: [ { l: "Southpoint", v: "7.8%", pct: 100 }, { l: "Eastside", v: "5.1%", pct: 65 }, { l: "Riverside", v: "4.4%", pct: 56 }, { l: "Downtown", v: "2.6%", pct: 33 } ] } },
+    ],
+    block2: {
+      eyebrow: "Standards, handled",
+      heading: "Reporting standards healthcare runs on",
+      subhead: "ASC 606 net patient service revenue, contractual allowances, revenue-cycle KPIs and ASC 842 leases, computed the way payers expect.",
+    },
+    pnl: {
+      title: "Group P&L · 5 clinics", right: "% of net revenue",
+      cols: { a: "Gross-to-net", b: "Amount", c: "% net" },
+      rows: [
+        { l: "Gross patient charges", v: "$112.0M", p: "237%" },
+        { l: "Contractual allowances", v: "$58.2M", p: "123%" },
+        { l: "Price concessions & bad debt", v: "$6.5M", p: "14%" },
+        { l: "Net patient revenue", v: "$47.3M", p: "100%", hi: true },
+        { l: "Provider & staff comp", v: "$26.0M", p: "55%" },
+        { l: "Supplies & occupancy", v: "$9.9M", p: "21%" },
+        { l: "G&A + MSO fee", v: "$6.6M", p: "14%" },
+        { l: "Operating income", v: "$4.8M", p: "10%", hi: true, total: true },
+      ],
+      footnote: "Net patient revenue and operating margin are the two rows an MSO manages to.",
+    },
+    byUnit: {
+      title: "Clinics · this period", right: "Operating focus",
+      cols: { name: "Clinic", metric: "Net rev", head: "Margin" },
+      rows: [
+        { l: "Downtown Internal", v: "$12.4M", m: "13%", status: "good" },
+        { l: "Northgate Family", v: "$9.8M", m: "34d AR", status: "good" },
+        { l: "Riverside Multi", v: "$11.2M", m: "7%", status: "warn" },
+        { l: "Eastside Peds", v: "$7.1M", m: "4%", status: "warn" },
+        { l: "Southpoint Urgent", v: "$6.8M", m: "58d AR", status: "bad" },
+      ],
+      summary: { l: "Group days in AR", v: "39 days", t: "target < 35 days" },
+    },
+    standards: [
+      { n: "01", name: "ASC 606 · net patient revenue", body: "Revenue is recognized at the amount expected to collect, with implicit price concessions up front." },
+      { n: "02", name: "Gross-to-net allowances", body: "Net revenue equals gross charges minus payer-negotiated contractual allowances and bad debt." },
+      { n: "03", name: "Revenue-cycle KPIs", body: "Days in AR (<35) and denial rate (<5%) benchmark the cash health of every site." },
+      { n: "04", name: "ASC 842 · leases", body: "Medical-office and equipment leases over 12 months capitalize onto the balance sheet." },
+    ],
+    footnote: "Days in AR, denial rate, cost per wRVU and payer mix roll up across every entity, so a struggling clinic surfaces early.",
+    stack: {
+      subhead: "From Epic, athenahealth and Tebra to NetSuite and QuickBooks, FinBoard sits on top of your EHR and GL stack, no rip-and-replace.",
+      connectors: [
+        { name: "Epic", bg: "#B01E28", label: "E" },
+        { name: "athenahealth", bg: "#5B8C2A", label: "ah" },
+        { name: "Tebra", bg: "#7A2E8E", label: "tb" },
+        { name: "NetSuite", bg: "#1F5FA6", label: "NS" },
+        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+      ],
+    },
+  },
+
+  /* ========================= SOFTWARE & SERVICES ========================= */
+  "software-and-services": {
+    block1: {
+      eyebrow: "The scale problem",
+      heading: "Finance problems when one entity becomes many",
+      subhead: "Deferred revenue, capitalized commissions and ratable recognition don't roll up cleanly across a dozen entities and three currencies.",
+    },
+    pains: [
+      { icon: Repeat, t: "Ratable revenue lags cash", viz: "ladder",
+        d: { rows: [ { l: "Cash collected / billed", v: "$4.2M", kind: "base" }, { l: "Increase in deferred revenue", v: "($1.6M)", kind: "minus" }, { l: "GAAP revenue recognized", v: "$2.6M", kind: "result" } ] } },
+      { icon: GitCompare, t: "Bookings, billings, ARR won't tie", viz: "compare",
+        d: { aLabel: "Value", bLabel: "", unit: "$M", single: true, note: "RPO $18.3M = deferred + backlog",
+          rows: [ { l: "Bookings", a: 9.8 }, { l: "Billings", a: 6.4 }, { l: "Revenue", a: 5.1 }, { l: "ARR (run-rate)", a: 22.0 } ] } },
+      { icon: Coins, t: "Commissions capitalized, not expensed", viz: "bars",
+        d: { suffix: "K", prefix: "$", items: [ { l: "Paid Q1", v: 480 }, { l: "Yr1 exp", v: 160 }, { l: "Cap. asset", v: 320 } ] } },
+      { icon: Globe2, t: "Multi-currency consolidation", viz: "flow",
+        d: { steps: [ { l: "US · UK · EU", v: "" }, { l: "Translate 830", v: "" }, { l: "Eliminate $3.4M", v: "" }, { l: "Consolidated", v: "" } ] } },
+      { icon: Briefcase, t: "Services on % completion", viz: "progress",
+        d: { note: "Billable utilization 66% vs 75% target",
+          rows: [ { l: "Implementation A", v: "$180K / $250K", pct: 72 }, { l: "Migration B", v: "$60K / $150K", pct: 40 }, { l: "Billable utilization", v: "66%", pct: 66, tone: "warn" } ] } },
+      { icon: BarChart3, t: "Metrics not comparable across BUs", viz: "rank",
+        d: { note: "Median NRR 101% · CAC payback ~20mo",
+          rows: [ { l: "Core SaaS", v: "NRR 114%", pct: 100 }, { l: "Platform BU", v: "NRR 108%", pct: 82 }, { l: "Acquired unit", v: "NRR 97%", pct: 55 }, { l: "Services", v: "n/a", pct: 20, tone: "warn" } ] } },
+    ],
+    block2: {
+      eyebrow: "Built on the standards",
+      heading: "Reporting standards software & services run on",
+      subhead: "ASC 606 performance obligations, ASC 340-40 commission capitalization, RPO disclosure and ASC 830 consolidation, enforced automatically.",
+    },
+    pnl: {
+      title: "Group P&L · SaaS + services", right: "$48M ARR · to GL",
+      cols: { a: "Consolidated", b: "Amount", c: "% rev" },
+      rows: [
+        { l: "Total revenue", v: "$44.6M", p: "100%" },
+        { l: "Subscription revenue", v: "$36.1M", p: "81%" },
+        { l: "Services revenue", v: "$8.5M", p: "19%" },
+        { l: "Cost of revenue", v: "$12.9M", p: "29%" },
+        { l: "Gross profit", v: "$31.7M", p: "71%", hi: true },
+        { l: "Sales & marketing", v: "$16.5M", p: "37%" },
+        { l: "Deferred revenue / RPO", v: "$18.3M", p: "-", hi: true },
+        { l: "Operating income", v: "$4.9M", p: "11%", total: true },
+      ],
+      footnote: "Gross margin and RPO are the two rows a SaaS operator manages to. Rule of 40 = 29% + 11% = 40.",
+    },
+    byUnit: {
+      title: "Entities · this quarter", right: "NRR focus",
+      cols: { name: "Entity", metric: "ARR / rev", head: "Metric" },
+      rows: [
+        { l: "Core SaaS (US)", v: "$26.4M", m: "NRR 114%", status: "good" },
+        { l: "Platform BU (US)", v: "$11.2M", m: "NRR 108%", status: "good" },
+        { l: "International (UK)", v: "$6.8M", m: "GM 73%", status: "good" },
+        { l: "Prof. Services", v: "$8.5M", m: "Util 66%", status: "warn" },
+        { l: "Acquired (EU)", v: "$4.1M", m: "NRR 97%", status: "bad" },
+      ],
+      summary: { l: "Group NRR", v: "111%", t: "target ≥ 110%" },
+    },
+    standards: [
+      { n: "01", name: "ASC 606 · performance obligations", body: "SaaS access recognizes ratably; onboarding and support are separate obligations allocated by SSP." },
+      { n: "02", name: "Deferred revenue & RPO", body: "RPO captures all contracted-but-unrecognized revenue, including multi-year unbilled backlog." },
+      { n: "03", name: "ASC 340-40 · commissions", body: "Incremental commissions capitalize and amortize over the ~36-month expected customer life." },
+      { n: "04", name: "ASC 830 · consolidation", body: "Subsidiaries translate at period rates with FX flowing to a cumulative translation adjustment." },
+    ],
+    footnote: "NRR, CAC payback, Rule of 40 and utilization are defined once and comparable everywhere. FinBoard keeps them board-ready.",
+    stack: {
+      subhead: "Connect Stripe, Salesforce, HubSpot, NetSuite and Rippling. FinBoard maps every booking, invoice and commission to the right entity and obligation.",
+      connectors: [
+        { name: "Stripe", bg: "#635BFF", label: "st" },
+        { name: "Salesforce", bg: "#00A1E0", label: "sf" },
+        { name: "HubSpot", bg: "#FF7A59", label: "hs" },
+        { name: "NetSuite", bg: "#125740", label: "NS" },
+        { name: "Rippling", bg: "#F4356F", label: "rp" },
+      ],
+    },
+  },
+};
+
+export const DEEP_DIVE_SLUGS = Object.keys(DEEP_DIVE);

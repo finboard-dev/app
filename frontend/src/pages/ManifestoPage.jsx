@@ -1,4 +1,5 @@
 import React from "react";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -13,6 +14,11 @@ export default function ManifestoPage() {
 
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="manifesto-page">
+      <Seo
+        title="The FinBoard Manifesto | Why We Exist"
+        description="Finance teams deserve real-time, governed numbers instead of stitched-together spreadsheets. This is why we built FinBoard."
+        path="/manifesto"
+      />
       <Navbar onBookDemo={openDemo} />
       <main>
         <Manifesto />

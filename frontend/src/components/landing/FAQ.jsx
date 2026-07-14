@@ -2,7 +2,8 @@ import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, ChevronDown } from "lucide-react";
 
-const items = [
+// Exported so the landing page can emit a matching FAQPage schema.
+export const FAQ_ITEMS = [
   {
     q: "How is FinBoard different from a generic BI or FP&A tool?",
     a: "Off-the-shelf tools force your business into their schema. FinBoard is a product plus a forward-deployed engineering team: we build custom pipelines around your entities, chart of accounts and systems, then the platform runs them in real time.",
@@ -25,7 +26,7 @@ const items = [
   },
   {
     q: "How does implementation work?",
-    a: "A forward-deployed engineer and finance architect embed with your team. Typical onboarding is 2–4 weeks: discovery, custom pipeline build, historical validation, then go-live. We stay embedded to iterate models and dashboards every quarter.",
+    a: "A forward-deployed engineer and finance architect embed with your team. Typical onboarding is 2-4 weeks: discovery, custom pipeline build, historical validation, then go-live. We stay embedded to iterate models and dashboards every quarter.",
   },
   {
     q: "Where is my data stored?",
@@ -35,8 +36,8 @@ const items = [
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState(false);
-  const visible = expanded ? items : items.slice(0, 3);
-  const remaining = items.length - 3;
+  const visible = expanded ? FAQ_ITEMS : FAQ_ITEMS.slice(0, 3);
+  const remaining = FAQ_ITEMS.length - 3;
 
   return (
     <section id="faq" className="bg-white border-y border-line">
@@ -65,7 +66,7 @@ export default function FAQ() {
           ))}
         </Accordion>
 
-        {items.length > 3 && (
+        {FAQ_ITEMS.length > 3 && (
           <div className="mt-6 flex justify-center">
             <button
               onClick={() => setExpanded((v) => !v)}

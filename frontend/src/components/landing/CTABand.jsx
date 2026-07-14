@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, MessageSquareQuote } from "lucide-react";
 
 export default function CTABand({ onBookDemo }) {
   return (
@@ -24,11 +24,11 @@ export default function CTABand({ onBookDemo }) {
               Book consultation <ArrowRight size={16} />
             </button>
             <a
-              href="#case-studies"
+              href="/testimonials"
               data-testid="cta-watch-tour"
               className="inline-flex items-center gap-2 border border-white/30 rounded-full px-5 py-3 text-sm font-medium hover:bg-white/10 transition-colors"
             >
-              <PlayCircle size={16} /> Read case studies
+              <MessageSquareQuote size={16} /> Hear from our customers
             </a>
           </div>
         </div>

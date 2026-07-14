@@ -1,13 +1,15 @@
 import React from "react";
-import { Hexagon, Triangle, Circle, Square, Diamond, Aperture } from "lucide-react";
+import { LogoMark } from "@/components/landing/ClientLogos";
 
 const logos = [
-  { icon: Hexagon, name: "Hexon Group" },
-  { icon: Triangle, name: "Northwind Holdings" },
-  { icon: Circle, name: "Orbital Health" },
-  { icon: Square, name: "Meridian Retail" },
-  { icon: Diamond, name: "Sable Ventures" },
-  { icon: Aperture, name: "Lumen Foods" },
+  { name: "Old World Coffee", src: "/logos/old-world-coffee.svg" },
+  { name: "Three Wide Brewing", src: "/logos/three-wide-brewing.svg" },
+  { name: "TreeHouse Health", src: null },
+  { name: "Kindbridge Behavioral Health", src: "/logos/kindbridge.webp" },
+  { name: "AVL Growth Partners", src: "/logos/avl-growth.webp" },
+  { name: "Parker Clay", src: "/logos/parker-clay.png" },
+  { name: "SPRCHRGR", src: "/logos/sprchrgr.svg" },
+  { name: "VAAS CPA", src: "/logos/vaas-cpa.png" },
 ];
 
 export default function TrustBar() {
@@ -23,16 +25,12 @@ export default function TrustBar() {
           Trusted by finance teams at
         </div>
         <div className="relative w-full overflow-hidden">
-          <div className="flex gap-12 animate-marquee whitespace-nowrap">
-            {items.map((L, i) => {
-              const Icon = L.icon;
-              return (
-                <div key={i} className="flex items-center gap-2 text-[#0A0A0A]/60">
-                  <Icon size={16} strokeWidth={1.5} />
-                  <span className="font-serif-display text-[17px] tracking-tight">{L.name}</span>
-                </div>
-              );
-            })}
+          <div className="flex items-center gap-14 animate-marquee whitespace-nowrap">
+            {items.map((l, i) => (
+              <div key={`${l.name}-${i}`} className="flex items-center shrink-0" title={l.name}>
+                <LogoMark {...l} imgClass="h-6" />
+              </div>
+            ))}
           </div>
         </div>
       </div>

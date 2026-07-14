@@ -261,6 +261,10 @@ const SCENES = {
   healthcare: HealthcareScene,
 };
 
+export function hasIndustryScene(slug) {
+  return Boolean(SCENES[slug]);
+}
+
 export default function IndustryScene({ slug }) {
   const Scene = SCENES[slug];
   return Scene ? <Scene /> : null;

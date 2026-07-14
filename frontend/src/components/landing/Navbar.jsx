@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,13 +10,68 @@ import {
 import { PRODUCT_NAV } from "@/data/products";
 import { INDUSTRY_NAV } from "@/data/industries";
 
+// Distinct icon color per module (matches the "Your full finance stack" tiles).
+const MODULE_ACCENT = {
+  "Month-end close": "#7C3AED",
+  "Consolidation":   "#2563EB",
+  "Analytics":       "#0891B2",
+  "FP&A":            "#059669",
+  "Procure-to-Pay":  "#D97706",
+  "Order-to-Cash":   "#E11D48",
+};
+
 const resourceLinks = [
-  { href: "/engagement#how-it-works", label: "How it works" },
-  { href: "/#use-cases", label: "Use cases" },
-  { href: "/#case-studies", label: "Case studies" },
-  { href: "/testimonials", label: "Testimonials", route: true },
-  { href: "/manifesto", label: "Manifesto", route: true },
+  { href: "/engagement#how-it-works", label: "How it works", desc: "The 30-day engagement model", icon: Route, accent: "#2563EB" },
+  { href: "/#use-cases", label: "Use cases", desc: "Explore the product studio", icon: Compass, accent: "#0891B2" },
+  { href: "/testimonials", label: "Testimonials", route: true, desc: "What finance leaders say", icon: MessageSquareQuote, accent: "#059669" },
+  { href: "/manifesto", label: "Manifesto", route: true, desc: "Why FinBoard exists", icon: Sparkles, accent: "#D97706" },
 ];
+
+// Full-screen-width mega-menu panel wrapper (edge-to-edge, content aligned to page gutters).
+const MEGA_CONTENT = "nav-mega max-w-none rounded-none border-x-0 border-t-0 bg-[#F5F0E8] border-line p-0 shadow-[0_24px_50px_-24px_rgba(10,10,10,0.25)]";
+
+// One colorful tile, matching the "Your full finance stack" cards.
+function MegaTile({ testid, icon: Icon, color, title, desc, onSelect }) {
+  return (
+    <DropdownMenuItem
+      data-testid={testid}
+      onSelect={onSelect}
+      className="cursor-pointer flex-col items-center text-center gap-3 p-4 rounded-xl bg-white border border-line hover:border-line-strong hover:-translate-y-0.5 focus:bg-white focus:text-[#0A0A0A] transition-all"
+    >
+      <span
+        className="h-10 w-10 shrink-0 rounded-sm border grid place-items-center"
+        style={{ backgroundColor: `${color}e6`, borderColor: `${color}3d`, color: "#fff" }}
+      >
+        <Icon size={17} strokeWidth={1.75} />
+      </span>
+      <span className="w-full">
+        <span className="block font-medium text-[13px] leading-tight text-[#0A0A0A]">{title}</span>
+        <span className="block text-[11px] text-[#0A0A0A]/50 mt-1 leading-tight">{desc}</span>
+      </span>
+    </DropdownMenuItem>
+  );
+}
+
+// Left-hand heading column for a mega-menu: vertically centered, editorial.
+function MegaHeading({ eyebrow, title, desc, accent, count }) {
+  return (
+    <div className="w-56 shrink-0 self-center pr-9 border-r border-line">
+      <div className="text-[10px] uppercase tracking-[0.28em] font-semibold mb-3" style={{ color: accent }}>
+        {eyebrow}
+      </div>
+      <div className="font-serif-display text-[2rem] leading-[1.02] tracking-tight text-[#0A0A0A]">
+        {title}<span style={{ color: accent }}>.</span>
+      </div>
+      <p className="mt-3 text-[13px] leading-relaxed text-[#0A0A0A]/55">{desc}</p>
+      {count && (
+        <div className="mt-5 inline-flex items-center gap-2 text-[10.5px] uppercase tracking-[0.18em] text-[#0A0A0A]/45">
+          <span className="h-1.5 w-1.5 rounded-full" style={{ background: accent }} />
+          {count}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Navbar({ onBookDemo }) {
   const [scrolled, setScrolled] = React.useState(false);
@@ -61,27 +116,40 @@ export default function Navbar({ onBookDemo }) {
             <DropdownMenuContent
               align="start"
               data-testid="nav-products-menu"
-              className="min-w-[240px] bg-white border-line"
+              className={MEGA_CONTENT}
             >
-              {PRODUCT_NAV.map((p) => {
-                const PIcon = p.icon;
-                return (
-                  <DropdownMenuItem
-                    key={p.slug}
-                    data-testid={`nav-product-${p.slug}`}
-                    className="cursor-pointer text-sm gap-2.5 py-2"
-                    onSelect={() => navigate(`/products/${p.slug}`)}
-                  >
-                    <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
-                      <PIcon size={13} strokeWidth={1.75} />
-                    </span>
-                    <span className="flex-1">{p.nav}</span>
-                    <span className="text-[11px] text-[#0A0A0A]/45">{p.eyebrow}</span>
-                  </DropdownMenuItem>
-                );
-              })}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex gap-10">
+                <MegaHeading
+                  eyebrow="The stack"
+                  title="Products"
+                  desc="The full finance stack, one governed workspace."
+                  accent="#7C3AED"
+                  count={`${PRODUCT_NAV.length} modules`}
+                />
+                <div className="flex-1 grid grid-cols-3 gap-2">
+                  {PRODUCT_NAV.map((p) => (
+                    <MegaTile
+                      key={p.slug}
+                      testid={`nav-product-${p.slug}`}
+                      icon={p.icon}
+                      color={MODULE_ACCENT[p.nav] || p.accent}
+                      title={p.nav}
+                      desc={p.eyebrow}
+                      onSelect={() => navigate(`/products/${p.slug}`)}
+                    />
+                  ))}
+                </div>
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <Link
+            to="/operators"
+            data-testid="nav-link-for-operators"
+            className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
+          >
+            For Operators
+          </Link>
 
           <Link
             to="/advisory"
@@ -109,21 +177,33 @@ export default function Navbar({ onBookDemo }) {
             <DropdownMenuContent
               align="start"
               data-testid="nav-resources-menu"
-              className="min-w-[200px] bg-white border-line"
+              className={MEGA_CONTENT}
             >
-              {resourceLinks.map((l) => (
-                <DropdownMenuItem
-                  key={l.href}
-                  data-testid={`nav-resource-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="cursor-pointer text-sm"
-                  onSelect={() => {
-                    if (l.route) navigate(l.href);
-                    else window.location.href = l.href;
-                  }}
-                >
-                  {l.label}
-                </DropdownMenuItem>
-              ))}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex gap-10">
+                <MegaHeading
+                  eyebrow="Learn"
+                  title="Resources"
+                  desc="Guides, stories and the FinBoard playbook."
+                  accent="#2563EB"
+                  count={`${resourceLinks.length} guides`}
+                />
+                <div className="flex-1 grid grid-cols-3 gap-2">
+                  {resourceLinks.map((l) => (
+                    <MegaTile
+                      key={l.href}
+                      testid={`nav-resource-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                      icon={l.icon}
+                      color={l.accent}
+                      title={l.label}
+                      desc={l.desc}
+                      onSelect={() => {
+                        if (l.route) navigate(l.href);
+                        else window.location.href = l.href;
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -145,24 +225,30 @@ export default function Navbar({ onBookDemo }) {
             <DropdownMenuContent
               align="end"
               data-testid="nav-industries-menu"
-              className="min-w-[240px] bg-white border-line"
+              className={MEGA_CONTENT}
             >
-              {INDUSTRY_NAV.map((ind) => {
-                const IIcon = ind.icon;
-                return (
-                  <DropdownMenuItem
-                    key={ind.slug}
-                    data-testid={`nav-industry-${ind.slug}`}
-                    className="cursor-pointer text-sm gap-2.5 py-2"
-                    onSelect={() => navigate(`/industries/${ind.slug}`)}
-                  >
-                    <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
-                      <IIcon size={13} strokeWidth={1.75} />
-                    </span>
-                    <span className="flex-1">{ind.nav}</span>
-                  </DropdownMenuItem>
-                );
-              })}
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex gap-10">
+                <MegaHeading
+                  eyebrow="By sector"
+                  title="Industries"
+                  desc="Finance tuned to how your sector runs."
+                  accent="#C2410C"
+                  count={`${INDUSTRY_NAV.length} industries`}
+                />
+                <div className="flex-1 grid grid-cols-3 gap-2">
+                  {INDUSTRY_NAV.map((ind) => (
+                    <MegaTile
+                      key={ind.slug}
+                      testid={`nav-industry-${ind.slug}`}
+                      icon={ind.icon}
+                      color={ind.accent}
+                      title={ind.nav}
+                      desc={ind.eyebrow}
+                      onSelect={() => navigate(`/industries/${ind.slug}`)}
+                    />
+                  ))}
+                </div>
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -212,6 +298,14 @@ export default function Navbar({ onBookDemo }) {
                 })}
               </div>
             </div>
+            <Link
+              to="/operators"
+              onClick={() => setOpen(false)}
+              data-testid="mobile-nav-link-for-operators"
+              className="text-base"
+            >
+              For Operators
+            </Link>
             <Link
               to="/advisory"
               onClick={() => setOpen(false)}

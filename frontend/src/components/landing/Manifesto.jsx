@@ -32,12 +32,12 @@ export default function Manifesto() {
           <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.22em] text-[#F5F0E8]/50" data-testid="manifesto-eyebrow">
             <ScrollText size={12} /> Manifesto
           </div>
-          <h2
+          <h1
             className="mt-4 font-serif-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] tracking-tight"
             data-testid="manifesto-heading"
           >
             This is what we <span className="italic">believe.</span>
-          </h2>
+          </h1>
           <p className="mt-6 text-[#F5F0E8]/70 leading-relaxed text-lg">
             The office of the CFO deserves better than stitched-together spreadsheets. These are the convictions behind everything we build.
           </p>

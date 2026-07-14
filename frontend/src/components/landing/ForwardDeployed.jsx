@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 
 /**
- * Forward-deployed engineering — sand-toned editorial section featuring
+ * Forward-deployed engineering - sand-toned editorial section featuring
  * a "pod card" showpiece (3 named roles + live-in-slack indicator),
  * then a numbered 4-pillar strip, then an integration source strip.
  */

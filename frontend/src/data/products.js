@@ -40,7 +40,7 @@ export const PRODUCTS = [
       { title: "Publish the pack", body: "Board-ready packs generate automatically with narrative, every figure drills back to source." },
     ],
     metrics: [
-      { value: "3 days", label: "typical close" },
+      { value: "5 days", label: "typical close" },
       { value: "100%", label: "reconciled" },
       { value: "Auto", label: "board pack" },
     ],
@@ -77,7 +77,7 @@ export const PRODUCTS = [
     ],
     metrics: [
       { value: "50+", label: "entities consolidated" },
-      { value: "10 days", label: "typical close" },
+      { value: "5 days", label: "typical close" },
       { value: "100%", label: "lineage tracked" },
     ],
   },
@@ -202,6 +202,8 @@ export const PRODUCTS = [
     headlineTail: "collects itself.",
     subhead:
       "From quote to collected cash: credit checks, invoicing, dunning and DSO tracking, an AI agent that moves receivables while keeping every customer's full context in view.",
+    metaDescription:
+      "From quote to collected cash: credit checks, invoicing, dunning and DSO tracking. An AI agent that moves receivables with full customer context in view.",
     capabilities: [
       { icon: FileText,        label: "Quote → order capture" },
       { icon: ShieldCheck,     label: "Automated credit checks" },

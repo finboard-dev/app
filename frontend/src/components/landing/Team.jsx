@@ -15,7 +15,7 @@ const team = [
       { icon: Award,         text: "10+ years advising CFOs" },
     ],
     brands: ["PwC", "Rippling"],
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/vaishnav-gupta-07b1b218/",
   },
   {
     name: "Ujjwal Singh",
@@ -31,7 +31,7 @@ const team = [
       { icon: Award,         text: "Published: search algorithms" },
     ],
     brands: ["MindTickle", "Samsung"],
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/ujjwal-singh-87617637",
   },
 ];
 
@@ -55,7 +55,21 @@ export default function Team() {
               One finance operator who&apos;s lived the multi-entity close. One systems engineer who ships production-grade software. Together, embedded with your team.
             </p>
 
-            <div className="mt-6 border-t border-line pt-4 space-y-2 text-[12px] text-[#0A0A0A]/70">
+            <div className="mt-6 border-t border-line pt-4" data-testid="team-pedigree">
+              <div className="uppercase tracking-[0.18em] text-[#0A0A0A]/45 text-[10px]">Built by a team from</div>
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {["PwC", "Google", "Rippling", "ThoughtWorks", "Samsung"].map((b) => (
+                  <span
+                    key={b}
+                    className="px-2.5 py-1 rounded-full border border-line bg-[#F5F0E8] text-[11.5px] font-medium text-[#0A0A0A]/75"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 border-t border-line pt-4 space-y-2 text-[12px] text-[#0A0A0A]/70">
               <div className="uppercase tracking-[0.18em] text-[#0A0A0A]/45 text-[10px]">Combined experience</div>
               <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" /> 20+ years finance transformation</div>
               <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[#0A0A0A]" /> Product & engineering at scale</div>
@@ -131,6 +145,8 @@ export default function Team() {
 
                     <a
                       href={p.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
                       data-testid={`team-card-${i}-linkedin`}
                       className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium border-b border-[#0A0A0A] pb-0.5 hover:opacity-70 transition-opacity"
                     >

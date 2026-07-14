@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { ArrowRight, Check, Timer, ShieldCheck, Sparkles } from "lucide-react";
+import Seo, { breadcrumbs } from "@/components/Seo";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -8,6 +9,29 @@ import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import ProductVisual from "@/components/products/ProductVisuals";
 import { PRODUCTS_BY_SLUG, PRODUCT_NAV } from "@/data/products";
+import { INDUSTRY_NAV } from "@/data/industries";
+
+// Distinct icon color per module (matches the "Your full finance stack" section on industry pages).
+const MODULE_ACCENT = {
+  "Month-end close": "#7C3AED",
+  "Consolidation":   "#2563EB",
+  "Analytics":       "#0891B2",
+  "FP&A":            "#059669",
+  "Procure-to-Pay":  "#D97706",
+  "Order-to-Cash":   "#E11D48",
+};
+
+// Vibrant per-feature accent cycle for the "What you get" cards.
+const FEATURE_ACCENTS = ["#7C3AED", "#2563EB", "#0891B2", "#059669", "#D97706", "#E11D48"];
+
+const INDUSTRY_DESC = {
+  "Restaurants": "Multi-location restaurant groups",
+  "Construction": "Contractors & project accounting",
+  "Retail": "Multi-store operations",
+  "E-commerce": "DTC brands & marketplaces",
+  "Healthcare": "Clinics & multi-site practices",
+  "Software & Services": "SaaS & professional services",
+};
 
 export default function Product() {
   const { slug } = useParams();
@@ -26,10 +50,18 @@ export default function Product() {
     capabilities, features, steps, metrics,
   } = product;
 
-  const others = PRODUCT_NAV.filter((p) => p.slug !== slug);
-
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid={`product-page-${slug}`}>
+      <Seo
+        title={`${nav} Software for Multi-Entity Groups | FinBoard`}
+        description={product.metaDescription || subhead}
+        path={`/products/${slug}`}
+        jsonLd={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Products", path: "/" },
+          { name: nav, path: `/products/${slug}` },
+        ])}
+      />
       <Navbar onBookDemo={openDemo} />
 
       <main>
@@ -105,34 +137,50 @@ export default function Product() {
           <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
             <div className="grid lg:grid-cols-12 gap-6 items-end">
               <div className="lg:col-span-7">
-                <div className="text-[10.5px] uppercase tracking-[0.22em] text-[#0A0A0A]/55">
+                <div className="inline-flex items-center gap-2 text-[10.5px] uppercase tracking-[0.22em] text-[#0A0A0A]/55">
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: FEATURE_ACCENTS[0] }} />
                   What you get
                 </div>
                 <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight max-w-2xl">
-                  {nav}, built for multi-entity groups.
+                  {nav}, <span className="italic">built for multi-entity groups</span>.
                 </h2>
               </div>
               <div className="lg:col-span-5 text-[13.5px] text-[#0A0A0A]/60 lg:text-right">
-                Every capability sits on the same governed data as your ledgers — everything traceable, everything auditable.
+                Every capability sits on the same governed data as your ledgers - everything traceable, everything auditable.
               </div>
             </div>
 
-            <div className="mt-8 grid sm:grid-cols-2 gap-3" data-testid="product-features">
-              {features.map(({ icon: FIcon, title, body }, i) => (
-                <div
-                  key={title}
-                  className="card-white p-5 flex gap-4 hover:-translate-y-0.5 transition-transform animate-fade-up"
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <div className="h-10 w-10 rounded-md border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
-                    <FIcon size={17} strokeWidth={1.75} />
+            <div className="mt-10 grid sm:grid-cols-2 gap-4" data-testid="product-features">
+              {features.map(({ icon: FIcon, title, body }, i) => {
+                const c = FEATURE_ACCENTS[i % FEATURE_ACCENTS.length];
+                return (
+                  <div
+                    key={title}
+                    className="group card-white p-6 relative overflow-hidden hover:-translate-y-1 hover:border-line-strong transition-all animate-fade-up"
+                    style={{ animationDelay: `${i * 80}ms` }}
+                  >
+                    {/* accent wash that reveals on hover */}
+                    <div
+                      className="absolute inset-x-0 top-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ background: c }}
+                      aria-hidden
+                    />
+                    <div className="flex items-start justify-between">
+                      <span
+                        className="h-12 w-12 rounded-xl border grid place-items-center shadow-sm"
+                        style={{ backgroundColor: `${c}e6`, borderColor: `${c}3d`, color: "#fff" }}
+                      >
+                        <FIcon size={20} strokeWidth={1.75} />
+                      </span>
+                      <span className="font-serif-display text-[15px] tabular-nums text-[#0A0A0A]/25">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="mt-5 font-serif-display text-xl leading-tight">{title}</div>
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
                   </div>
-                  <div className="min-w-0">
-                    <div className="font-serif-display text-lg leading-tight">{title}</div>
-                    <p className="mt-1 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -205,59 +253,87 @@ export default function Product() {
         </section>
 
         {/* ============================================================
-            EXPLORE OTHER PRODUCTS
+            YOUR FULL FINANCE STACK
         ============================================================ */}
-        <section className="border-t border-line bg-[#0A0A0A] text-white overflow-hidden relative">
-          <div
-            className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{
-              backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-              backgroundSize: "20px 20px",
-            }}
-            aria-hidden
-          />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
-            <div className="max-w-2xl">
-              <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight">
-                One workspace, <span className="italic text-white/80">every finance workflow</span>.
-              </h2>
-              <p className="mt-3 text-[14px] leading-relaxed text-white/60">
-                Every module shares the same ledger, drills the same numbers, and speaks the same language.
-              </p>
-            </div>
+        <section className="border-t border-line bg-[#F5F0E8]" data-testid="product-stack">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
+            <h2 className="font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
+              Your full finance stack.
+            </h2>
 
-            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" data-testid="product-cross-links">
-              {others.map((p, i) => {
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" data-testid="product-cross-links">
+              {PRODUCT_NAV.map((p) => {
                 const OIcon = p.icon;
+                const c = MODULE_ACCENT[p.nav] || p.accent;
+                const isCurrent = p.slug === slug;
                 return (
                   <Link
                     key={p.slug}
                     to={`/products/${p.slug}`}
                     data-testid={`product-cross-link-${p.slug}`}
-                    className="group relative rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 p-5 transition-all overflow-hidden"
+                    aria-current={isCurrent ? "page" : undefined}
+                    className={`group card-white p-4 flex items-center gap-3 transition-all ${
+                      isCurrent ? "border-line-strong ring-1 ring-[#0A0A0A]/10" : "hover:-translate-y-0.5 hover:border-line-strong"
+                    }`}
+                  >
+                    <span
+                      className="h-10 w-10 shrink-0 rounded-lg border grid place-items-center"
+                      style={{ backgroundColor: `${c}e6`, borderColor: `${c}3d`, color: "#fff" }}
+                    >
+                      <OIcon size={17} strokeWidth={1.75} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium text-[13.5px] leading-tight">{p.nav}</div>
+                      <div className="text-[11.5px] text-[#0A0A0A]/55">{p.eyebrow}</div>
+                    </div>
+                    {isCurrent ? (
+                      <span className="shrink-0 text-[9px] uppercase tracking-[0.14em] font-semibold text-[#0A0A0A]/40">You&apos;re here</span>
+                    ) : (
+                      <ArrowRight size={15} className="shrink-0 text-[#0A0A0A]/25 group-hover:text-[#0A0A0A] group-hover:translate-x-0.5 transition-all" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            TUNED FOR YOUR INDUSTRY
+        ============================================================ */}
+        <section className="border-t border-line" data-testid="product-industries">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
+            <div className="text-[11px] tracking-[0.01em]" style={{ color: product.accent }}>Tuned for your industry</div>
+            <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight max-w-3xl">
+              Built for how your industry runs.
+            </h2>
+            <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70 max-w-2xl">
+              The same close, consolidate and report engine, reshaped to exactly how your industry books revenue, tracks jobs, and runs its month.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" data-testid="product-industry-links">
+              {INDUSTRY_NAV.map((ind, i) => {
+                const IIcon = ind.icon;
+                const desc = INDUSTRY_DESC[ind.nav] || ind.eyebrow;
+                return (
+                  <Link
+                    key={ind.slug}
+                    to={`/industries/${ind.slug}`}
+                    data-testid={`product-industry-${ind.slug}`}
+                    className="group card-white p-5 hover:-translate-y-0.5 hover:border-line-strong transition-all animate-fade-up"
                     style={{ animationDelay: `${i * 60}ms` }}
                   >
-                    <div className="flex items-start justify-between">
-                      <span className="h-11 w-11 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
-                        <OIcon size={19} strokeWidth={1.75} />
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="h-11 w-11 rounded-lg border grid place-items-center"
+                        style={{ backgroundColor: `${ind.accent}e6`, borderColor: `${ind.accent}3d`, color: "#fff" }}
+                      >
+                        <IIcon size={18} strokeWidth={1.75} />
                       </span>
-                      <span className="text-[9.5px] font-mono uppercase tracking-[0.14em] text-white/40">
-                        0{i + 1}
-                      </span>
+                      <ArrowRight size={16} className="text-[#0A0A0A]/25 group-hover:text-[#0A0A0A] group-hover:translate-x-0.5 transition-all" />
                     </div>
-                    <div className="mt-6 text-[10.5px] uppercase tracking-[0.22em] text-white/55">
-                      {p.eyebrow}
-                    </div>
-                    <div className="mt-1.5 font-serif-display text-xl leading-tight">
-                      {p.nav}
-                    </div>
-                    <div className="mt-6 inline-flex items-center gap-1.5 text-[12px] text-white/70 group-hover:text-white transition-colors">
-                      Explore
-                      <ArrowRight
-                        size={13}
-                        className="group-hover:translate-x-0.5 transition-transform"
-                      />
-                    </div>
+                    <div className="mt-4 font-medium text-[15px] leading-tight">{ind.nav}</div>
+                    <div className="mt-1 text-[12.5px] text-[#0A0A0A]/55">{desc}</div>
                   </Link>
                 );
               })}

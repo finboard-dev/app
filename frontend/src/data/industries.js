@@ -23,6 +23,8 @@ export const INDUSTRIES = [
     headlineTail: "finance, consolidated.",
     subhead:
       "Roll up every location into one P&L. Track food and labor cost as a % of sales, compare stores side by side, and close the month across the whole group without chasing spreadsheets.",
+    metaDescription:
+      "Roll up every location into one P&L. Track food and labor cost as a % of sales, compare stores side by side, and close the month across the whole group.",
     pains: [
       "Stitching together four POS exports by hand every month-end.",
       "Not knowing which location is actually profitable until weeks later.",
@@ -207,7 +209,9 @@ export const INDUSTRIES = [
     headlineItalic: "utilization",
     headlineTail: "as one story.",
     subhead:
-      "SaaS metrics and services margin in one workspace. ARR, NRR, magic number, and utilization by team all consolidated back to the ledger — no more juggling Stripe, Xero and Google Sheets.",
+      "SaaS metrics and services margin in one workspace. ARR, NRR, magic number, and utilization by team all consolidated back to the ledger - no more juggling Stripe, Xero and Google Sheets.",
+    metaDescription:
+      "SaaS metrics and services margin in one workspace. ARR, NRR, magic number and utilization by team, all consolidated back to the ledger.",
     pains: [
       "ARR waterfalls rebuilt from scratch every board cycle.",
       "Services margin only surfacing after the quarter has closed.",
@@ -222,7 +226,7 @@ export const INDUSTRIES = [
     features: [
       { icon: Zap,       title: "Live SaaS metrics", body: "ARR waterfall, net revenue retention, gross churn and magic number reconciled to your subscription ledger, no rebuild required." },
       { icon: Clock,     title: "Utilization & margin", body: "Billable hours, bench and utilization by team roll into services margin and revenue per FTE, live across every entity." },
-      { icon: Briefcase, title: "Bookings to cash", body: "From closed-won to invoice to cash — bookings, billings, deferred revenue and collections tied together in one view." },
+      { icon: Briefcase, title: "Bookings to cash", body: "From closed-won to invoice to cash - bookings, billings, deferred revenue and collections tied together in one view." },
     ],
     integrations: ["Stripe", "Salesforce", "HubSpot", "Xero", "Rippling"],
     metric: { value: "Per team", label: "utilization & margin" },

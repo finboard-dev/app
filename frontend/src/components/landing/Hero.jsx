@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, PlayCircle, Sparkles, Layers, LineChart, Users, ShieldCheck, Building2, Database, Receipt, CircleDollarSign } from "lucide-react";
+import { ArrowRight, Sparkles, Layers, LineChart, Users, ShieldCheck, Building2, Database, Receipt, CircleDollarSign } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import { INDUSTRY_NAV } from "@/data/industries";
@@ -20,31 +20,19 @@ export default function Hero({ onBookDemo }) {
   const cap = CAP_BY_VIEW[viewId] || CAP_BY_VIEW.warehouse;
   const CapIcon = cap.icon;
 
-  // Rotating audience word — flips every SECOND sub-title (carousel) rotation.
+  // Rotating audience word - derived from the hero-carousel view index so it stays
+  // perfectly in sync (and always starts on the first entry). Order:
+  // multi-entity operators -> advisory firms -> high-growth businesses.
   const AUDIENCES = React.useMemo(
-    () => ["high-growth businesses", "multi-entity operators"],
+    () => ["multi-entity operators", "advisory firms", "high-growth businesses"],
     []
   );
-  const [audIdx, setAudIdx] = React.useState(0);
-  const rotationCountRef = React.useRef(0);
-  const skipFirstRef = React.useRef(true);
-  const handleViewChange = React.useCallback(
-    (id) => {
-      setViewId(id);
-      // Ignore the initial mount call — count only real rotations.
-      if (skipFirstRef.current) {
-        skipFirstRef.current = false;
-        return;
-      }
-      rotationCountRef.current += 1;
-      // Flip audience on every 2nd sub-title rotation (rotations 2, 4, 6, ...).
-      if (rotationCountRef.current % 2 === 0) {
-        setAudIdx((i) => (i + 1) % AUDIENCES.length);
-      }
-    },
-    [AUDIENCES.length]
-  );
-  const audience = AUDIENCES[audIdx];
+  const [viewIdx, setViewIdx] = React.useState(0);
+  const handleViewChange = React.useCallback((id, idx) => {
+    setViewId(id);
+    if (typeof idx === "number") setViewIdx(idx);
+  }, []);
+  const audience = AUDIENCES[viewIdx % AUDIENCES.length];
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -65,7 +53,7 @@ export default function Hero({ onBookDemo }) {
             </div>
 
             <h1 className="mt-6 font-serif-display text-4xl sm:text-5xl lg:text-[2.35rem] xl:text-[2.6rem] leading-[1.02] tracking-tight text-[#0A0A0A]" data-testid="hero-heading">
-              Performance Accounting for<br />
+              AI Native Finance for<br />
               <span
                 key={audience}
                 className="italic inline-block animate-fade-up"
@@ -100,13 +88,6 @@ export default function Hero({ onBookDemo }) {
               >
                 Book consultation <ArrowRight size={16} />
               </button>
-              <a
-                href="#tour"
-                data-testid="hero-watch-tour-button"
-                className="btn-secondary"
-              >
-                <PlayCircle size={16} /> Watch product tour
-              </a>
             </div>
 
             <Link

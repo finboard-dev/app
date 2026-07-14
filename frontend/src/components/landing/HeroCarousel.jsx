@@ -27,7 +27,7 @@ export default function HeroCarousel({ onViewChange }) {
   const [prevIdx, setPrevIdx] = React.useState(0);
 
   React.useEffect(() => {
-    // Auto-rotate every 2.8s — never pauses so the visual keeps moving.
+    // Auto-rotate every 2.8s - never pauses so the visual keeps moving.
     const duration = 2800;
     const t = setTimeout(() => {
       setPrevIdx(idx);

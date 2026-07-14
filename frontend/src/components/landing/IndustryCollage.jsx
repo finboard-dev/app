@@ -35,7 +35,7 @@ export default function IndustryCollage() {
         <div className="flex items-end justify-between flex-wrap gap-6 mb-8 lg:mb-10">
           <div>
             <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.1] tracking-tight max-w-3xl">
-              Finance for <span className="italic text-white/85">multi-entity operators</span>.
+              Real-time visibility into your <span className="italic text-white/85">business and operations</span>.
             </h2>
           </div>
           <p className="max-w-md text-[13.5px] leading-relaxed text-white/60">
@@ -58,7 +58,7 @@ export default function IndustryCollage() {
               to="/"
               data-testid="collage-logo"
               className="pointer-events-auto group relative flex items-center gap-3 rounded-full bg-white text-[#0A0A0A] pl-2 pr-5 py-2 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-black/5 hover:-translate-y-0.5 transition-transform"
-              aria-label="FinBoard — home"
+              aria-label="FinBoard - home"
             >
               <img
                 src="/brand/finboard-mark-dark.png"

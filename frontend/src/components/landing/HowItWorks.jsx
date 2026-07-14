@@ -4,13 +4,13 @@ import {
 } from "lucide-react";
 
 /**
- * The 8-week build — cinematic dark timeline with 4 phase stations
+ * The 8-week build - cinematic dark timeline with 4 phase stations
  * connected by an emerald rail. Matches the UseCases dark palette so
  * both dark sections share a family of aesthetics.
  */
 const PHASES = [
   {
-    weeks: "Week 1–2",
+    weeks: "Week 1-2",
     icon: Plug,
     title: "Discovery",
     body:
@@ -18,7 +18,7 @@ const PHASES = [
     deliverables: ["Systems map", "Entity graph", "Close blueprint"],
   },
   {
-    weeks: "Week 3–4",
+    weeks: "Week 3-4",
     icon: Sparkles,
     title: "Custom pipelines",
     body:
@@ -26,7 +26,7 @@ const PHASES = [
     deliverables: ["Semantic layer", "IC auto-match", "Governance"],
   },
   {
-    weeks: "Week 5–6",
+    weeks: "Week 5-6",
     icon: Layers,
     title: "Consolidation live",
     body:
@@ -34,7 +34,7 @@ const PHASES = [
     deliverables: ["Group P&L / BS / CF", "Audit trail", "Historicals"],
   },
   {
-    weeks: "Week 7–8",
+    weeks: "Week 7-8",
     icon: BarChart3,
     title: "Reports & reviews",
     body:
@@ -108,7 +108,7 @@ export default function HowItWorks() {
 
         {/* Timeline rail */}
         <div className="mt-14 relative" data-testid="how-timeline">
-          {/* Horizontal rail — desktop only */}
+          {/* Horizontal rail - desktop only */}
           <div
             aria-hidden
             className="hidden lg:block absolute top-[54px] left-6 right-6 h-px"

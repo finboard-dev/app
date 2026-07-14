@@ -5,6 +5,7 @@ import {
   Phone, MessageSquare, Video, ShieldCheck, CalendarClock, Sparkles, Timer,
   ChevronDown,
 } from "lucide-react";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -13,7 +14,7 @@ import ForwardDeployed from "@/components/landing/ForwardDeployed";
 import HowItWorks from "@/components/landing/HowItWorks";
 
 /**
- * Engagement — redesigned.
+ * Engagement - redesigned.
  * Content preserved; layout rethought:
  *  - Asymmetric hero with a "schedule preview" card and inline stats strip
  *  - Phase-coded Gantt with lanes and a legend
@@ -39,7 +40,7 @@ const PHASE_META = {
   },
   "build-roll-out": {
     label: "Build & roll out",
-    weeks: "Weeks 3–7",
+    weeks: "Weeks 3-7",
     tone: "indigo",
     bar: "linear-gradient(90deg, #8CA0EA 0%, #4C63C7 100%)",
     chip: "bg-[#DDE3F7] text-[#243377] border-[#B9C2E9]",
@@ -48,7 +49,7 @@ const PHASE_META = {
   },
   "prove-expand": {
     label: "Prove & expand",
-    weeks: "Weeks 8–9",
+    weeks: "Weeks 8-9",
     tone: "emerald",
     bar: "linear-gradient(90deg, #79C7A6 0%, #2E9668 100%)",
     chip: "bg-[#D1E9DE] text-[#124E33] border-[#A8D3C0]",
@@ -453,7 +454,7 @@ function CheckinRow() {
         <span className="text-[12.5px] text-[#0A0A0A]/80">
           <span className="font-semibold">Weekly check-in</span>{" "}
           <span className="text-[#0A0A0A]/60">
-            — every week, whichever fits your team.
+            - every week, whichever fits your team.
           </span>
         </span>
         <span className="ml-auto flex flex-wrap gap-1.5">
@@ -539,7 +540,7 @@ function SpreadsheetRow({ step, expanded, onToggle, rowIndex }) {
               {detailCount}
             </span>
           ) : (
-            <span className="text-[#0A0A0A]/30 font-mono text-[11px]">—</span>
+            <span className="text-[#0A0A0A]/30 font-mono text-[11px]">-</span>
           )}
         </div>
       </div>
@@ -640,11 +641,16 @@ export default function Engagement() {
 
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="engagement-page">
+      <Seo
+        title="How FinBoard Works | Live in 30 Days"
+        description="A forward-deployed team builds your finance stack on your governed ledger and gets you live in 30 days. Pay on value, not a two-year migration."
+        path="/engagement"
+      />
       <Navbar onBookDemo={openDemo} />
 
       <main>
         {/* ============================================================
-            HERO — fills viewport, stacked layout with dashboard feel
+            HERO - fills viewport, stacked layout with dashboard feel
         ============================================================ */}
         <section className="relative overflow-hidden" style={{ minHeight: "calc(100vh - 68px)" }}>
           <div className="grain absolute inset-0" />
@@ -701,7 +707,7 @@ export default function Engagement() {
               </div>
             </div>
 
-            {/* Gantt — visual hero, fills remaining vertical space */}
+            {/* Gantt - visual hero, fills remaining vertical space */}
             <div
               id="timeline"
               className="scroll-mt-20 mt-6 lg:mt-8 animate-fade-up flex-1 flex flex-col"
@@ -733,7 +739,7 @@ export default function Engagement() {
                   </div>
                 </div>
 
-                {/* Gantt body — grows */}
+                {/* Gantt body - grows */}
                 <div className="p-4 lg:p-6 flex-1">
                   <GanttChart />
                 </div>
@@ -745,14 +751,14 @@ export default function Engagement() {
                       <span className="h-6 w-6 rounded-full bg-white border border-line grid place-items-center">
                         <ShieldCheck size={12} className="text-emerald-600" />
                       </span>
-                      <span><span className="font-semibold text-[#0A0A0A]">Pay on deploy</span> — nothing upfront</span>
+                      <span><span className="font-semibold text-[#0A0A0A]">Pay on deploy</span> - nothing upfront</span>
                     </div>
                     <div className="hidden sm:block h-4 w-px bg-line" />
                     <div className="flex items-center gap-2">
                       <span className="h-6 w-6 rounded-full bg-white border border-line grid place-items-center">
                         <CalendarClock size={12} />
                       </span>
-                      <span><span className="font-semibold text-[#0A0A0A]">Weekly check-in</span> — call, Slack, or Loom</span>
+                      <span><span className="font-semibold text-[#0A0A0A]">Weekly check-in</span> - call, Slack, or Loom</span>
                     </div>
                     <div className="hidden sm:block h-4 w-px bg-line" />
                     <div className="flex items-center gap-2">
@@ -778,7 +784,7 @@ export default function Engagement() {
         <ForwardDeployed />
 
         {/* ============================================================
-            CLOSING — dark card
+            CLOSING - dark card
         ============================================================ */}
         <section className="max-w-6xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
           <div

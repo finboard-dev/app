@@ -29,13 +29,12 @@ const TABS = [
     icon: ClipboardCheck,
     headline: "Close the books in days, not weeks",
     subs: [
-      { id: "gl",        label: "GL Accounting",         desc: "Journal entries & ledger tie-out",  Mockup: () => <CloseMockup activeIdx={0} /> },
-      { id: "recon",     label: "Reconciliation",        desc: "Bank & subledger reconciliations",  Mockup: () => <CloseMockup activeIdx={1} /> },
-      { id: "consol",    label: "Consolidation",         desc: "Multi-entity roll-up & FX",         Mockup: () => <CloseMockup activeIdx={2} /> },
-      { id: "prepaid",   label: "Prepaid",               desc: "Prepaid amortization schedule",     Mockup: () => <CloseMockup activeIdx={3} /> },
-      { id: "accruals",  label: "Accruals",              desc: "Recognition & auto-reversal",       Mockup: () => <CloseMockup activeIdx={4} /> },
-      { id: "fa",        label: "Fixed Asset Register",  desc: "Depreciation & FA schedule",        Mockup: () => <CloseMockup activeIdx={5} /> },
-      { id: "board",     label: "Board Reporting Packs", desc: "Board-ready packs & narrative",     Mockup: () => <CloseMockup activeIdx={6} /> },
+      { id: "gl",        label: "GL Accounting",         desc: "Journal entries & ledger tie-out",  Mockup: (p) => <CloseMockup activeIdx={0} {...p} /> },
+      { id: "recon",     label: "Reconciliation",        desc: "Bank & subledger reconciliations",  Mockup: (p) => <CloseMockup activeIdx={1} {...p} /> },
+      { id: "consol",    label: "Consolidation",         desc: "Multi-entity roll-up & FX",         Mockup: (p) => <CloseMockup activeIdx={2} {...p} /> },
+      { id: "prepaid",   label: "Prepaid",               desc: "Prepaid amortization schedule",     Mockup: (p) => <CloseMockup activeIdx={3} {...p} /> },
+      { id: "accruals",  label: "Accruals",              desc: "Recognition & auto-reversal",       Mockup: (p) => <CloseMockup activeIdx={4} {...p} /> },
+      { id: "fa",        label: "Fixed Asset Register",  desc: "Depreciation & FA schedule",        Mockup: (p) => <CloseMockup activeIdx={5} {...p} /> },
     ],
   },
   {
@@ -146,7 +145,7 @@ export default function UseCases() {
           </h2>
         </div>
 
-        {/* Module rail — four rich cards, filmstrip style */}
+        {/* Module rail - four rich cards, filmstrip style */}
         <div
           className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-3"
           data-testid="explorer-top-tabs"
@@ -248,28 +247,19 @@ export default function UseCases() {
           })}
         </div>
 
-        {/* Title strip above the mockup */}
+        {/* Live-preview label above the mockup */}
         <div
           key={`title-${topId}-${subId}`}
-          className="mt-8 mb-4 flex items-end justify-between gap-4 animate-fade-up"
+          className="mt-8 mb-4 flex items-center justify-end animate-fade-up"
           data-testid="explorer-title"
         >
-          <div>
-            <div className="text-[11px] text-white/55 font-mono tracking-tight">
-              {top.label} <span className="opacity-50">/</span> {sub.label}
-            </div>
-            <div className="mt-1 font-serif-display text-2xl sm:text-3xl leading-tight tracking-tight text-white">
-              {top.headline}
-            </div>
-            <div className="mt-1 text-[13px] text-white/70 max-w-xl">{sub.desc}</div>
-          </div>
           <div className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-white/60 shrink-0">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Live preview
           </div>
         </div>
 
-        {/* Big light-card mockup floating on the dark canvas — with warm glow */}
+        {/* Big light-card mockup floating on the dark canvas - with warm glow */}
         <div className="relative">
           <div
             aria-hidden
@@ -281,10 +271,10 @@ export default function UseCases() {
           />
           <div
             key={`${topId}-${subId}`}
-            className="relative rounded-2xl overflow-hidden bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgba(0,0,0,0.25),0_50px_100px_-30px_rgba(0,0,0,0.75)] ring-1 ring-white/10 animate-fade-up"
+            className="relative rounded-2xl overflow-hidden bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgba(0,0,0,0.25),0_50px_100px_-30px_rgba(0,0,0,0.75)] ring-1 ring-white/10 animate-mock-swap"
             data-testid="explorer-visual"
           >
-            <Mockup />
+            <Mockup tabs={top.subs.map((s) => s.label)} tabActive={sub.label} />
           </div>
         </div>
 
@@ -304,17 +294,21 @@ export default function UseCases() {
   );
 }
 
-/* ---------- Mockup chrome ---------- */
-function MockChrome({ title, tabActive = "Overview", right, phaseLabel }) {
-  const tabs = ["Overview", "Consolidation", "Reports"];
+/* ---------- Mockup chrome ----------
+   `tabs` reflects the selected module's workflows and `tabActive` the current
+   workflow, so the browser-chrome tab bar visibly changes on every toggle. */
+const DEFAULT_TABS = ["Overview", "Consolidation", "Reports"];
+function MockChrome({ title, tabs = DEFAULT_TABS, tabActive, right, phaseLabel }) {
+  const list = tabs && tabs.length ? tabs : DEFAULT_TABS;
+  const active = list.includes(tabActive) ? tabActive : list[0];
   return (
     <>
       <div className="flex items-center gap-1.5 px-4 py-3 border-b border-line bg-[#F5F0E8]">
         <span className="h-2.5 w-2.5 rounded-full bg-[#E5E0D8]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#E5E0D8]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#E5E0D8]" />
-        <div className="ml-4 text-[11px] text-[#0A0A0A]/50">finboard.app · {title}</div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-4 text-[11px] text-[#0A0A0A]/50 truncate">finboard.app · {title}</div>
+        <div className="ml-auto flex items-center gap-2 shrink-0">
           {phaseLabel && (
             <div key={phaseLabel} className="text-[10px] px-2 py-1 rounded-full bg-white border border-line inline-flex items-center gap-1 animate-fade-up">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -326,9 +320,14 @@ function MockChrome({ title, tabActive = "Overview", right, phaseLabel }) {
           )}
         </div>
       </div>
-      <div className="flex items-center gap-6 px-5 pt-3 text-[12px] border-b border-line bg-white">
-        {tabs.map((t) => (
-          <div key={t} className={`pb-2 ${t === tabActive ? "border-b-2 border-[#0A0A0A] font-medium" : "text-[#0A0A0A]/50"}`}>{t}</div>
+      <div className="flex items-center gap-5 px-5 pt-3 text-[12px] border-b border-line bg-white overflow-x-auto whitespace-nowrap no-scrollbar">
+        {list.map((t) => (
+          <div
+            key={t}
+            className={`pb-2 shrink-0 transition-colors ${t === active ? "border-b-2 border-[#0A0A0A] font-medium text-[#0A0A0A]" : "text-[#0A0A0A]/45"}`}
+          >
+            {t}
+          </div>
         ))}
       </div>
     </>
@@ -342,7 +341,7 @@ const CONSOL_PHASES = [
   { label: "Consolidation ready", cleared: 12, ready: true, dot: "emerald" },
 ];
 
-function ConsolidationMockup() {
+function ConsolidationMockup({ tabs, tabActive }) {
   const phase = useCycle(CONSOL_PHASES.length, 2800);
   const p = CONSOL_PHASES[phase];
 
@@ -355,7 +354,7 @@ function ConsolidationMockup() {
 
   return (
     <>
-      <MockChrome title="consolidation" tabActive="Consolidation" phaseLabel={p.label} />
+      <MockChrome title="consolidation" tabs={tabs} tabActive={tabActive} phaseLabel={p.label} />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -419,7 +418,7 @@ function ConsolidationMockup() {
 }
 
 /* ---------- Consolidated P&L ---------- */
-function GroupPnLMockup() {
+function GroupPnLMockup({ tabs, tabActive }) {
   const cols = ["North", "South", "Clinical", "Elim", "Group"];
   const rows = [
     { l: "Revenue",       v: ["1.82", "1.24", "0.96", "(0.14)", "3.88"] },
@@ -431,7 +430,7 @@ function GroupPnLMockup() {
   const grid = "grid-cols-[1.4fr_repeat(5,0.8fr)]";
   return (
     <>
-      <MockChrome title="consolidated-p&l" tabActive="Consolidation" phaseLabel="Consolidated · Jun 2026" />
+      <MockChrome title="consolidated-p&l" tabs={tabs} tabActive={tabActive} phaseLabel="Consolidated · Jun 2026" />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -469,7 +468,7 @@ function GroupPnLMockup() {
 }
 
 /* ---------- FX translation ---------- */
-function FxMockup() {
+function FxMockup({ tabs, tabActive }) {
   const rows = [
     { e: "UK · Ltd",  loc: "£1.20M",  rate: "1.27", usd: "$1.52M" },
     { e: "EU · GmbH", loc: "€0.98M",  rate: "1.08", usd: "$1.06M" },
@@ -479,7 +478,7 @@ function FxMockup() {
   const grid = "grid-cols-[1.3fr_0.9fr_0.7fr_0.9fr]";
   return (
     <>
-      <MockChrome title="fx-translation" tabActive="Consolidation" phaseLabel="Month-end rates" />
+      <MockChrome title="fx-translation" tabs={tabs} tabActive={tabActive} phaseLabel="Month-end rates" />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -541,14 +540,14 @@ const BUDGET_SETS = [
 ];
 const LABELS = ["North", "South", "Clinical", "Holdings"];
 
-function ReportingMockup() {
+function ReportingMockup({ tabs, tabActive }) {
   const idx = useCycle(KPI_SETS.length, 2400);
   const kpis = KPI_SETS[idx];
   const budget = BUDGET_SETS[idx];
 
   return (
     <>
-      <MockChrome title="reports" tabActive="Reports" phaseLabel="Refreshing · YTD 2026" />
+      <MockChrome title="reports" tabs={tabs} tabActive={tabActive} phaseLabel="Refreshing · YTD 2026" />
       <div className="p-5 bg-white">
         <div className="grid grid-cols-4 gap-3">
           {kpis.map((k) => (
@@ -596,7 +595,7 @@ function ReportingMockup() {
 }
 
 /* ---------- Analytics · Planning: bars grow, forecast reveals ---------- */
-function PlanningMockup() {
+function PlanningMockup({ tabs, tabActive }) {
   const bars = [10, 12, 14, 13, 16, 18, 17, 20, 22, 21, 24, 27];
   const forecast = [null, null, null, null, null, null, null, null, 22, 25, 28, 31];
   const scenarios = [
@@ -613,7 +612,7 @@ function PlanningMockup() {
 
   return (
     <>
-      <MockChrome title="planning" tabActive="Overview" phaseLabel={`Scenario · ${scenarios[s].label}`} />
+      <MockChrome title="planning" tabs={tabs} tabActive={tabActive} phaseLabel={`Scenario · ${scenarios[s].label}`} />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -677,7 +676,7 @@ const PEOPLE_BASE = [
 ];
 const SYSTEMS = ["Workday", "Salesforce", "Zendesk", "NetSuite", "Rippling"];
 
-function PeopleMockup() {
+function PeopleMockup({ tabs, tabActive }) {
   const idx = useCycle(3, 2500);
   const [pinged, setPinged] = React.useState(0);
   React.useEffect(() => {
@@ -687,7 +686,7 @@ function PeopleMockup() {
 
   return (
     <>
-      <MockChrome title="people" tabActive="Overview" phaseLabel="Live · Q2 2026" />
+      <MockChrome title="people" tabs={tabs} tabActive={tabActive} phaseLabel="Live · Q2 2026" />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -738,10 +737,10 @@ function PeopleMockup() {
 }
 
 /* ---------- Shared 3-stage flow board (O2C / P2P) ---------- */
-function FlowBoard({ chromeTitle, phase, stages }) {
+function FlowBoard({ chromeTitle, phase, stages, tabs, tabActive }) {
   return (
     <>
-      <MockChrome title={chromeTitle} tabActive="Overview" phaseLabel={phase} />
+      <MockChrome title={chromeTitle} tabs={tabs} tabActive={tabActive} phaseLabel={phase} />
       <div className="p-5 bg-white">
         <div className="grid grid-cols-3 gap-3">
           {stages.map((st, i) => (
@@ -769,11 +768,13 @@ function FlowBoard({ chromeTitle, phase, stages }) {
 }
 
 /* ---------- O2C · Quote → Cash ---------- */
-function O2CFlowMockup() {
+function O2CFlowMockup({ tabs, tabActive }) {
   return (
     <FlowBoard
       chromeTitle="order-to-cash"
       phase="AR agent · live"
+      tabs={tabs}
+      tabActive={tabActive}
       stages={[
         { title: "1 · Ingest quote", items: [
           { a: "Quote Q-2214", b: "Meridian Retail · $32,900" },
@@ -794,11 +795,13 @@ function O2CFlowMockup() {
 }
 
 /* ---------- P2P · Capture → Pay ---------- */
-function P2PFlowMockup() {
+function P2PFlowMockup({ tabs, tabActive }) {
   return (
     <FlowBoard
       chromeTitle="procure-to-pay"
       phase="AP agent · live"
+      tabs={tabs}
+      tabActive={tabActive}
       stages={[
         { title: "1 · Capture invoice", items: [
           { a: "Quote_88421.pdf", b: "Orbital Supplies · $18,420" },
@@ -819,17 +822,17 @@ function P2PFlowMockup() {
 }
 
 /* ---------- O2C · Collections (AR aging) ---------- */
-function CollectionsMockup() {
+function CollectionsMockup({ tabs, tabActive }) {
   const buckets = [
     { l: "Current", v: 182, p: 100 },
-    { l: "1–30", v: 96, p: 53 },
-    { l: "31–60", v: 54, p: 30 },
-    { l: "61–90", v: 28, p: 16 },
+    { l: "1-30", v: 96, p: 53 },
+    { l: "31-60", v: 54, p: 30 },
+    { l: "61-90", v: 28, p: 16 },
     { l: "90+", v: 14, p: 8 },
   ];
   return (
     <>
-      <MockChrome title="collections" tabActive="Overview" phaseLabel="AR · live" />
+      <MockChrome title="collections" tabs={tabs} tabActive={tabActive} phaseLabel="AR · live" />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -866,7 +869,7 @@ function CollectionsMockup() {
 }
 
 /* ---------- P2P · 3-way match ---------- */
-function MatchMockup() {
+function MatchMockup({ tabs, tabActive }) {
   const rows = [
     { d: "Purchase order", ref: "PO-8842", v: "$18,420.00" },
     { d: "Goods receipt", ref: "GRN-8842", v: "$18,420.00" },
@@ -874,7 +877,7 @@ function MatchMockup() {
   ];
   return (
     <>
-      <MockChrome title="3-way-match" tabActive="Overview" phaseLabel="Matched" />
+      <MockChrome title="3-way-match" tabs={tabs} tabActive={tabActive} phaseLabel="Matched" />
       <div className="p-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
@@ -915,7 +918,6 @@ const CLOSE_STEPS = [
   { id: "prepaid",  label: "Prepaid",               status: "wip"  },
   { id: "accruals", label: "Accruals",              status: "pending" },
   { id: "fa",       label: "Fixed Asset Register",  status: "pending" },
-  { id: "board",    label: "Board Reporting Packs", status: "pending" },
 ];
 
 const CLOSE_DETAIL = {
@@ -926,11 +928,11 @@ const CLOSE_DETAIL = {
     cols: ["JE #", "Description", "Debit", "Credit"],
     grid: "grid-cols-[0.7fr_2fr_0.8fr_0.8fr]",
     rows: [
-      { c: ["JE-4412", "Payroll accrual · Ops",     "18,400", "—"],       tag: "Posted",  tone: "ok"   },
-      { c: ["JE-4413", "Payroll accrual · Ops",     "—",       "18,400"], tag: "Posted",  tone: "ok"   },
-      { c: ["JE-4418", "Revenue cutoff · NA",       "22,150", "—"],       tag: "Posted",  tone: "ok"   },
-      { c: ["JE-4419", "Deferred rev · NA",         "—",       "22,150"], tag: "Posted",  tone: "ok"   },
-      { c: ["JE-4426", "FX gain · EU · GmbH",       "1,820",  "—"],       tag: "Review",  tone: "warn" },
+      { c: ["JE-4412", "Payroll accrual · Ops",     "18,400", "-"],       tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4413", "Payroll accrual · Ops",     "-",       "18,400"], tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4418", "Revenue cutoff · NA",       "22,150", "-"],       tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4419", "Deferred rev · NA",         "-",       "22,150"], tag: "Posted",  tone: "ok"   },
+      { c: ["JE-4426", "FX gain · EU · GmbH",       "1,820",  "-"],       tag: "Review",  tone: "warn" },
     ],
     summary: "12 posted · 3 pending review",
   },
@@ -990,7 +992,7 @@ const CLOSE_DETAIL = {
       { c: ["Audit · YE prep",           "22,000", "22,000", "Sep 2026"], tag: "Booked", tone: "ok"   },
       { c: ["Payroll · variable comp",   "48,500", "48,500", "Jul 2026"], tag: "Booked", tone: "ok"   },
       { c: ["Utilities · Jun est",       "6,800",  "6,800",  "Jul 2026"], tag: "Booked", tone: "ok"   },
-      { c: ["Marketing · agency",        "9,200",  "—",      "—"],        tag: "Draft",  tone: "warn" },
+      { c: ["Marketing · agency",        "9,200",  "-",      "-"],        tag: "Draft",  tone: "warn" },
     ],
     summary: "9 accruals · auto-reversed next period",
   },
@@ -1026,13 +1028,13 @@ const CLOSE_DETAIL = {
   },
 };
 
-function CloseMockup({ activeIdx = 0 }) {
+function CloseMockup({ activeIdx = 0, tabs, tabActive }) {
   const d = CLOSE_DETAIL[activeIdx];
   const activeId = CLOSE_STEPS[activeIdx].id;
 
   return (
     <>
-      <MockChrome title="month-end-close" tabActive="Overview" phaseLabel="Close · Jun 2026" />
+      <MockChrome title="month-end-close" tabs={tabs} tabActive={tabActive} phaseLabel="Close · Jun 2026" />
       <div className="p-5 bg-white">
         {/* Progress strip */}
         <div className="flex items-center justify-between">
