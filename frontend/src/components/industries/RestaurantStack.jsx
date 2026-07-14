@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Square as SquareIcon } from "lucide-react";
 import { PRODUCT_NAV } from "@/data/products";
 
@@ -115,7 +117,7 @@ export default function RestaurantStack({ accent = "#C2410C", integrations = [],
                 return (
                   <Link
                     key={p.slug}
-                    to={`/products/${p.slug}`}
+                    href={`/products/${p.slug}`}
                     data-testid={`industry-module-${p.slug}`}
                     className="group card-white p-4 flex items-center gap-3 hover:-translate-y-0.5 hover:border-line-strong transition-all"
                   >
@@ -163,7 +165,7 @@ export default function RestaurantStack({ accent = "#C2410C", integrations = [],
               return (
                 <Link
                   key={ind.slug}
-                  to={`/industries/${ind.slug}`}
+                  href={`/industries/${ind.slug}`}
                   data-testid={`industry-cross-link-${ind.slug}`}
                   className="group card-white p-5 hover:-translate-y-0.5 hover:border-line-strong transition-all animate-fade-up"
                   style={{ animationDelay: `${i * 60}ms` }}

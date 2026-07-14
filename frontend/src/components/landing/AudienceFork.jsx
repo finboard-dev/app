@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Building2, Landmark, Rocket } from "lucide-react";
 
 const PATHS = [
@@ -156,7 +158,7 @@ export default function AudienceFork({ onBookDemo }) {
             return (
               <Link
                 key={p.id}
-                to={p.external}
+                href={p.external}
                 data-testid={`fork-${p.id}`}
                 aria-label={p.title}
                 className={`${cardBase} ${cardTone} cursor-pointer`}

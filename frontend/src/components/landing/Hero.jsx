@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Sparkles, Layers, LineChart, Users, ShieldCheck, Building2, Database, Receipt, CircleDollarSign } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
 import AiTrustRow from "@/components/landing/AiTrustRow";
@@ -91,7 +93,7 @@ export default function Hero({ onBookDemo }) {
             </div>
 
             <Link
-              to="/advisory"
+              href="/advisory"
               data-testid="hero-advisory-shortcut"
               className="mt-6 group inline-flex items-center gap-2 text-[13px] text-[#0A0A0A]/60 hover:text-[#0A0A0A] transition-colors"
             >
@@ -113,7 +115,7 @@ export default function Hero({ onBookDemo }) {
                 {INDUSTRY_NAV.map((ind, idx) => (
                   <React.Fragment key={ind.slug}>
                     <Link
-                      to={`/industries/${ind.slug}`}
+                      href={`/industries/${ind.slug}`}
                       data-testid={`hero-industry-${ind.slug}`}
                       className="font-medium text-[#0A0A0A]/75 underline underline-offset-2 decoration-[#0A0A0A]/20 hover:text-[#0A0A0A] hover:decoration-[#0A0A0A] transition-colors"
                     >
