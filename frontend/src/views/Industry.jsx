@@ -325,7 +325,7 @@ export default function Industry({ slug }) {
                   >
                     <FIcon size={17} strokeWidth={1.75} />
                   </div>
-                  <div className="font-serif-display text-lg leading-tight">{title}</div>
+                  <h3 className="font-serif-display text-lg leading-tight">{title}</h3>
                   <p className="text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
                 </div>
               ))}

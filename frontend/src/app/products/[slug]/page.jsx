@@ -23,17 +23,33 @@ export default async function Page({ params }) {
   const product = PRODUCTS_BY_SLUG[slug];
   if (!product) notFound();
 
-  const jsonLd = breadcrumbs([
+  // No /products index route exists, so go straight Home -> product. (A middle
+  // "Products" crumb pointing at "/" duplicates Home's URL and invalidates the
+  // BreadcrumbList.)
+  const breadcrumbJsonLd = breadcrumbs([
     { name: "Home", path: "/" },
-    { name: "Products", path: "/" },
     { name: product.nav, path: `/products/${slug}` },
   ]);
+
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `https://finboard.ai/products/${slug}#service`,
+    name: product.nav,
+    description: product.metaDescription || product.subhead,
+    url: `https://finboard.ai/products/${slug}`,
+    serviceType: "Financial software",
+    provider: { "@id": "https://finboard.ai/#organization" },
+    areaServed: "Worldwide",
+  };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([breadcrumbJsonLd, serviceJsonLd]),
+        }}
       />
       <Product slug={slug} />
     </>

@@ -23,9 +23,11 @@ export default async function Page({ params }) {
   const industry = INDUSTRIES_BY_SLUG[slug];
   if (!industry) notFound();
 
+  // No /industries index route exists, so go straight Home -> industry. (A
+  // middle "Industries" crumb pointing at "/" duplicates Home's URL and
+  // invalidates the BreadcrumbList.)
   const jsonLd = breadcrumbs([
     { name: "Home", path: "/" },
-    { name: "Industries", path: "/" },
     { name: industry.nav, path: `/industries/${slug}` },
   ]);
 

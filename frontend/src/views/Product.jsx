@@ -164,7 +164,7 @@ export default function Product({ slug }) {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <div className="mt-5 font-serif-display text-xl leading-tight">{title}</div>
+                    <h3 className="mt-5 font-serif-display text-xl leading-tight">{title}</h3>
                     <p className="mt-2 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
                   </div>
                 );

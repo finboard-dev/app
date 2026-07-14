@@ -34,30 +34,61 @@ export const viewport = {
   themeColor: "#0A0A0A",
 };
 
-// Site-wide organization / software schema (from public/index.html).
-const ORG_JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "FinBoard",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  description:
-    "AI-native finance platform for multi-entity operators: consolidation, month-end close, FP&A, reporting and spend in one governed workspace.",
-  url: "https://finboard.ai/",
-  image: "https://finboard.ai/brand/finboard-landscape.png",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-    description: "Custom-quoted per group",
-  },
-  publisher: {
-    "@type": "Organization",
+// Site-wide structured data: the software product, the publishing
+// organization, and the website entity, emitted as one JSON-LD graph.
+// Nodes are cross-linked by @id so search/AI engines resolve a single entity.
+const SITE_URL = "https://finboard.ai";
+const LOGO_URL = `${SITE_URL}/brand/finboard-mark-dark.png`;
+const SITE_DESCRIPTION =
+  "AI-native finance platform for multi-entity operators: consolidation, month-end close, FP&A, reporting and spend in one governed workspace.";
+
+const SITE_JSON_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}/#software`,
     name: "FinBoard",
-    url: "https://finboard.ai/",
-    logo: "https://finboard.ai/brand/finboard-mark-dark.png",
+    // FinanceApplication is a more precise category than BusinessApplication.
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/`,
+    image: [LOGO_URL, `${SITE_URL}/brand/finboard-landscape.png`],
+    // Custom-quoted product: describe the pricing model rather than declaring a
+    // literal price (a `price: "0"` would be parsed as "free" — factually wrong).
+    offers: {
+      "@type": "Offer",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "USD",
+        description:
+          "Custom-quoted per group. Pricing varies by entity count, modules and seats.",
+      },
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   },
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "FinBoard",
+    url: `${SITE_URL}/`,
+    logo: { "@type": "ImageObject", url: LOGO_URL },
+    // TODO: add company social profiles once live, e.g.
+    // sameAs: ["https://www.linkedin.com/company/finboard-ai", "https://x.com/..."]
+    // to strengthen entity resolution for Google Knowledge Graph and AI engines.
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: `${SITE_URL}/`,
+    name: "FinBoard",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  },
+];
 
 // Suppress a benign DataCloneError from PerformanceServerTiming (ported verbatim
 // from public/index.html).
@@ -70,7 +101,7 @@ export default function RootLayout({ children }) {
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_JSON_LD) }}
         />
         <script dangerouslySetInnerHTML={{ __html: DATA_CLONE_SUPPRESS }} />
         {/* Google tag (gtag.js) */}
