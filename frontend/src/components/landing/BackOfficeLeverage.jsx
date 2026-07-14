@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Users, Globe2, Sparkles, ArrowRight, Check,

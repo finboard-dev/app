@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 /**
@@ -55,7 +57,7 @@ export default function IndustryCollage() {
           {/* Center logo badge */}
           <div className="absolute inset-0 grid place-items-center pointer-events-none">
             <Link
-              to="/"
+              href="/"
               data-testid="collage-logo"
               className="pointer-events-auto group relative flex items-center gap-3 rounded-full bg-white text-[#0A0A0A] pl-2 pr-5 py-2 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] ring-1 ring-black/5 hover:-translate-y-0.5 transition-transform"
               aria-label="FinBoard - home"
@@ -82,7 +84,7 @@ export default function IndustryCollage() {
           {CELLS.map((c) => (
             <Link
               key={c.slug}
-              to={`/industries/${c.slug}`}
+              href={`/industries/${c.slug}`}
               data-testid={`collage-link-${c.slug}`}
               className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 hover:bg-white/[0.06] transition-colors"
             >
@@ -121,7 +123,7 @@ function CollageCell({ slug, label, accent, src, origin }) {
 
   return (
     <Link
-      to={`/industries/${slug}`}
+      href={`/industries/${slug}`}
       data-testid={`collage-cell-${slug}`}
       className="relative block overflow-hidden group focus:outline-none"
     >

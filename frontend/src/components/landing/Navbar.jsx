@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles } from "lucide-react";
 import {
   DropdownMenu,
@@ -76,7 +79,7 @@ function MegaHeading({ eyebrow, title, desc, accent, count }) {
 export default function Navbar({ onBookDemo }) {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -95,7 +98,7 @@ export default function Navbar({ onBookDemo }) {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <Link to="/" data-testid="brand-logo" className="flex items-center gap-2">
+        <Link href="/" data-testid="brand-logo" className="flex items-center gap-2">
           <img
             src="/brand/finboard-mark-dark.png"
             alt=""
@@ -135,7 +138,7 @@ export default function Navbar({ onBookDemo }) {
                       color={MODULE_ACCENT[p.nav] || p.accent}
                       title={p.nav}
                       desc={p.eyebrow}
-                      onSelect={() => navigate(`/products/${p.slug}`)}
+                      onSelect={() => router.push(`/products/${p.slug}`)}
                     />
                   ))}
                 </div>
@@ -144,7 +147,7 @@ export default function Navbar({ onBookDemo }) {
           </DropdownMenu>
 
           <Link
-            to="/operators"
+            href="/operators"
             data-testid="nav-link-for-operators"
             className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
           >
@@ -152,7 +155,7 @@ export default function Navbar({ onBookDemo }) {
           </Link>
 
           <Link
-            to="/advisory"
+            href="/advisory"
             data-testid="nav-link-for-firms"
             className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
           >
@@ -160,7 +163,7 @@ export default function Navbar({ onBookDemo }) {
           </Link>
 
           <Link
-            to="/engagement"
+            href="/engagement"
             data-testid="nav-link-engagement"
             className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
           >
@@ -197,7 +200,7 @@ export default function Navbar({ onBookDemo }) {
                       title={l.label}
                       desc={l.desc}
                       onSelect={() => {
-                        if (l.route) navigate(l.href);
+                        if (l.route) router.push(l.href);
                         else window.location.href = l.href;
                       }}
                     />
@@ -208,7 +211,7 @@ export default function Navbar({ onBookDemo }) {
           </DropdownMenu>
 
           <Link
-            to="/pricing"
+            href="/pricing"
             data-testid="nav-link-pricing"
             className="text-sm text-[#0A0A0A]/80 hover:text-[#0A0A0A] transition-colors"
           >
@@ -244,7 +247,7 @@ export default function Navbar({ onBookDemo }) {
                       color={ind.accent}
                       title={ind.nav}
                       desc={ind.eyebrow}
-                      onSelect={() => navigate(`/industries/${ind.slug}`)}
+                      onSelect={() => router.push(`/industries/${ind.slug}`)}
                     />
                   ))}
                 </div>
@@ -284,7 +287,7 @@ export default function Navbar({ onBookDemo }) {
                   return (
                     <Link
                       key={p.slug}
-                      to={`/products/${p.slug}`}
+                      href={`/products/${p.slug}`}
                       onClick={() => setOpen(false)}
                       data-testid={`mobile-nav-product-${p.slug}`}
                       className="flex items-center gap-2.5 py-1.5 text-base"
@@ -299,7 +302,7 @@ export default function Navbar({ onBookDemo }) {
               </div>
             </div>
             <Link
-              to="/operators"
+              href="/operators"
               onClick={() => setOpen(false)}
               data-testid="mobile-nav-link-for-operators"
               className="text-base"
@@ -307,7 +310,7 @@ export default function Navbar({ onBookDemo }) {
               For Operators
             </Link>
             <Link
-              to="/advisory"
+              href="/advisory"
               onClick={() => setOpen(false)}
               data-testid="mobile-nav-link-for-firms"
               className="text-base"
@@ -315,7 +318,7 @@ export default function Navbar({ onBookDemo }) {
               For Firms
             </Link>
             <Link
-              to="/engagement"
+              href="/engagement"
               onClick={() => setOpen(false)}
               data-testid="mobile-nav-link-engagement"
               className="text-base"
@@ -339,7 +342,7 @@ export default function Navbar({ onBookDemo }) {
               </div>
             </div>
             <Link
-              to="/pricing"
+              href="/pricing"
               onClick={() => setOpen(false)}
               data-testid="mobile-nav-link-pricing"
               className="text-base"
@@ -354,7 +357,7 @@ export default function Navbar({ onBookDemo }) {
                   return (
                     <Link
                       key={ind.slug}
-                      to={`/industries/${ind.slug}`}
+                      href={`/industries/${ind.slug}`}
                       onClick={() => setOpen(false)}
                       data-testid={`mobile-nav-industry-${ind.slug}`}
                       className="flex items-center gap-2.5 py-1.5 text-base"

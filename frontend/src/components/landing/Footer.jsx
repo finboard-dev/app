@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { PRODUCT_NAV } from "@/data/products";
 
 const CALENDLY_URL = "https://calendly.com/vaishnav-finboard/30min?month=2026-07";
@@ -26,7 +28,7 @@ export default function Footer() {
                 {PRODUCT_NAV.map((p) => (
                   <li key={p.slug}>
                     <Link
-                      to={`/products/${p.slug}`}
+                      href={`/products/${p.slug}`}
                       data-testid={`footer-product-${p.slug}`}
                       className="text-sm text-[#F5F0E8]/80 hover:text-white transition-colors"
                     >
