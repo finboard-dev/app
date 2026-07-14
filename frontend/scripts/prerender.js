@@ -38,6 +38,8 @@ const ROUTES = [
   "/manifesto",
   "/testimonials",
   "/terms",
+  "/privacy",
+  "/refund-policy",
   "/products/month-end-close",
   "/products/consolidation",
   "/products/analytics",

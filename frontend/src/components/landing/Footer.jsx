@@ -90,9 +90,9 @@ export default function Footer() {
               { l: "Contact", href: "#book-demo" },
             ]} />
             <FooterCol title="Legal" links={[
-              { l: "Privacy", href: "#" },
+              { l: "Privacy", href: "/privacy" },
               { l: "Terms", href: "/terms" },
-              { l: "Security", href: "#" },
+              { l: "Refund Policy", href: "/refund-policy" },
             ]} />
           </div>
         </div>

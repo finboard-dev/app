@@ -11,6 +11,8 @@ import ManifestoPage from "@/pages/ManifestoPage";
 import Pricing from "@/pages/Pricing";
 import TestimonialsPage from "@/pages/TestimonialsPage";
 import TermsPage from "@/pages/TermsPage";
+import PrivacyPage from "@/pages/PrivacyPage";
+import RefundPage from "@/pages/RefundPage";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/refund-policy" element={<RefundPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" richColors closeButton />
