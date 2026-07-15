@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "@/index.css";
 import "@/App.css";
 import Providers from "./providers";
@@ -120,6 +121,7 @@ gtag('config', '${GA_MEASUREMENT_ID}');`}
         <Providers>
           <div className="App">{children}</div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
