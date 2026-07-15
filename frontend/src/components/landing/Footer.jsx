@@ -45,7 +45,7 @@ export default function Footer() {
               { l: "FAQ", href: "/#faq" },
             ]} />
             <FooterCol title="Company" links={[
-              { l: "About", href: "/manifesto" },
+              { l: "About", href: "/about" },
               { l: "Customers", href: "/testimonials" },
               { l: "Contact", href: CALENDLY_URL },
             ]} />

@@ -56,6 +56,7 @@ export default async function Page({ params }) {
 
   // Prefer the CMS-authored structured data (rich @graph). Otherwise synthesize
   // an Article. Always add our BreadcrumbList.
+  const author = frontmatter.author;
   const generatedArticle = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -64,7 +65,17 @@ export default async function Page({ params }) {
     ...(frontmatter.date
       ? { datePublished: frontmatter.date, dateModified: frontmatter.date }
       : {}),
-    author: { "@type": "Organization", name: frontmatter.author, url: `${SITE_URL}/` },
+    author: {
+      "@type": "Person",
+      name: author.name,
+      jobTitle: author.role,
+      url: `${SITE_URL}/about`,
+      sameAs: [author.linkedin],
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      ...(author.alumniOf
+        ? { alumniOf: author.alumniOf.map((n) => ({ "@type": "Organization", name: n })) }
+        : {}),
+    },
     publisher: { "@id": `${SITE_URL}/#organization` },
     image: absoluteImage(frontmatter.coverImage),
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,

@@ -6,18 +6,23 @@ import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import Manifesto from "@/components/landing/Manifesto";
+import Team from "@/components/landing/Team";
 
-export default function ManifestoPage() {
+// /about = the manifesto (what "About" pointed to) + the team section, same theme.
+export default function AboutPage() {
   const [demoOpen, setDemoOpen] = React.useState(false);
   const openDemo = () => setDemoOpen(true);
 
-  React.useEffect(() => { window.scrollTo({ top: 0 }); }, []);
+  React.useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return (
-    <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="manifesto-page">
+    <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="about-page">
       <Navbar onBookDemo={openDemo} />
       <main>
         <Manifesto />
+        <Team />
         <CTABand onBookDemo={openDemo} />
       </main>
       <Footer />

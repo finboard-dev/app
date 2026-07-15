@@ -27,7 +27,7 @@ const resourceLinks = [
   { href: "/engagement#how-it-works", label: "How it works", desc: "The 30-day engagement model", icon: Route, accent: "#2563EB" },
   { href: "/#use-cases", label: "Use cases", desc: "Explore the product studio", icon: Compass, accent: "#0891B2" },
   { href: "/testimonials", label: "Testimonials", route: true, desc: "What finance leaders say", icon: MessageSquareQuote, accent: "#059669" },
-  { href: "/manifesto", label: "Manifesto", route: true, desc: "Why FinBoard exists", icon: Sparkles, accent: "#D97706" },
+  { href: "/about", label: "About", route: true, desc: "Our manifesto & team", icon: Sparkles, accent: "#D97706" },
   { href: "/blog", label: "Blog", route: true, desc: "Guides, playbooks & benchmarks", icon: Newspaper, accent: "#7C3AED" },
   { href: "/templates", label: "Templates", route: true, desc: "Free QuickBooks-ready spreadsheets", icon: LayoutGrid, accent: "#E11D48" },
 ];

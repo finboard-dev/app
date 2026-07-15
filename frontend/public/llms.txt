@@ -5,11 +5,11 @@
 ## Core Pages
 
 - [Home](https://finboard.ai/) — Platform overview: AI agents for multi-entity financial close, consolidation, and analytics.
+- [About](https://finboard.ai/about) — FinBoard's mission and team: finance and engineering leaders from PwC, Rippling, Samsung and more.
 - [For Operators](https://finboard.ai/operators) — How FinBoard serves multi-entity operators managing 5–200+ entities across complex org structures.
 - [Advisory](https://finboard.ai/advisory) — FinBoard for fractional CFOs, CAS firms, and fund admins: run every client's finance in one workspace.
 - [Pricing](https://finboard.ai/pricing) — Custom-quoted per group; pricing varies by entity count, modules, and seats.
 - [Engagement Model](https://finboard.ai/engagement) — How FinBoard onboards and delivers: discovery, implementation, and ongoing cadence.
-- [Manifesto](https://finboard.ai/manifesto) — FinBoard's founding philosophy on why finance infrastructure for operators has been underserved.
 - [Testimonials](https://finboard.ai/testimonials) — Customer stories and outcomes from operators who use FinBoard for financial close and reporting.
 
 ## Blog

@@ -28,6 +28,10 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },
+  async redirects() {
+    // The manifesto now lives on /about (manifesto + team).
+    return [{ source: "/manifesto", destination: "/about", permanent: true }];
+  },
 };
 
 module.exports = nextConfig;

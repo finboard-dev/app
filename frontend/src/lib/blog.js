@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { resolveAuthor } from "@/lib/authors";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -79,7 +80,7 @@ export function getPostBySlug(slug) {
         title: data.title ?? slug,
         date: normalizeDate(data.date),
         excerpt: data.excerpt ?? "",
-        author: data.author ?? "FinBoard",
+        author: resolveAuthor(normalizeCategory(data.category), data.authorId),
         category: normalizeCategory(data.category),
         tags: Array.isArray(data.tags) ? data.tags : [],
         coverImage: data.coverImage ?? null,
@@ -101,7 +102,7 @@ export function getPostBySlug(slug) {
       title: data.title ?? slug,
       date: normalizeDate(data.date),
       excerpt: data.excerpt ?? "",
-      author: data.author ?? "FinBoard",
+      author: resolveAuthor(normalizeCategory(data.category), data.authorId),
       category: normalizeCategory(data.category),
       tags: Array.isArray(data.tags) ? data.tags : [],
       coverImage: data.coverImage ?? null,

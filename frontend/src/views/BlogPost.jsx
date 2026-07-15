@@ -59,7 +59,19 @@ export default function BlogPost({
             </h1>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-[#0A0A0A]/55">
-              <span>{frontmatter.author}</span>
+              <span>
+                By{" "}
+                <a
+                  href={frontmatter.author.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0A0A0A]/75 hover:text-[#0A0A0A] underline underline-offset-2"
+                  data-testid="blog-author"
+                >
+                  {frontmatter.author.name}
+                </a>
+                {frontmatter.author.role ? `, ${frontmatter.author.role}` : ""}
+              </span>
               {frontmatter.date ? (
                 <>
                   <span aria-hidden>·</span>
@@ -88,6 +100,40 @@ export default function BlogPost({
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             )}
           </div>
+
+          <aside
+            className="mt-12 rounded-2xl border border-line bg-white p-5 flex items-start gap-4"
+            data-testid="blog-author-card"
+          >
+            {frontmatter.author.photo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={frontmatter.author.photo}
+                alt={frontmatter.author.name}
+                className="h-14 w-14 rounded-full object-cover border border-line shrink-0"
+              />
+            ) : null}
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-[#0A0A0A]/45">
+                Written by
+              </div>
+              <div className="mt-0.5 font-serif-display text-lg leading-tight text-[#0A0A0A]">
+                {frontmatter.author.name}
+              </div>
+              <div className="text-[12.5px] text-[#0A0A0A]/55">{frontmatter.author.role}</div>
+              <p className="mt-2 text-[13px] leading-relaxed text-[#0A0A0A]/70">
+                {frontmatter.author.bio}
+              </p>
+              <a
+                href={frontmatter.author.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 text-[12px] font-medium border-b border-[#0A0A0A] pb-0.5 hover:opacity-70 transition-opacity"
+              >
+                Connect on LinkedIn
+              </a>
+            </div>
+          </aside>
         </article>
 
         {related.length > 0 ? (

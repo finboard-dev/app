@@ -10,12 +10,12 @@ import { SITE_URL } from "@/lib/seo";
 const STATIC_ROUTES = [
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/operators", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/about", changeFrequency: "monthly", priority: 0.7 },
   { path: "/advisory", changeFrequency: "monthly", priority: 0.9 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
   { path: "/engagement", changeFrequency: "monthly", priority: 0.8 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/templates", changeFrequency: "weekly", priority: 0.8 },
-  { path: "/manifesto", changeFrequency: "monthly", priority: 0.6 },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.6 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
