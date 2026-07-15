@@ -1,0 +1,72 @@
+{
+  "slug": "styling-studio",
+  "title": "Styling Studio Profit & Loss Template",
+  "category": "Profit and loss",
+  "shortDescription": "Streamline your inventory management with our free QuickBooks Inventory Excel Template. Sync live data, automate reports, and optimize stock control effortlessly.",
+  "about": "This Profit and Loss (P&L) template is tailored for styling studios and salons, providing a comprehensive view of financial performance. The template includes a visual chart that highlights the quarterly profit margin analysis, showcasing trends in EBITDA, Gross Profit, and their respective margins over each quarter. The chart effectively illustrates how profitability evolves throughout the year, helping owners and managers identify periods of stronger or weaker financial performance.  Below the chart, the P&L table details key financial metrics, including revenue sources, cost of goods sold, and other operating expenses. Categories such as Gross Profit and EBITDA are prominently featured, offering insights into core profitability drivers and overall financial health. The accompanying data provides a clear breakdown of earnings and expenses, enabling users to monitor financial performance and make informed business decisions.  This template is an invaluable tool for salon and styling studio owners, managers, and financial analysts who need to track and improve their business’s profitability. By analyzing quarterly trends, studios can optimize their operations, adjust pricing strategies, and manage expenses effectively to enhance overall profitability.",
+  "excerpt": "Track salon financial performance with Styling Studio P&L Template. Customized for quarterly profit margin analysis. Perfect for salon accounting.",
+  "link": "https://docs.google.com/spreadsheets/d/1SZDD5nsuNIZXxbayy1cTLWPQnrjal6yB/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/gMmB1T7VyajgvjKlJTX4KC4ook.png",
+  "imageAlt": "Excel accounting template 'Styling Studio P&L Template' with income and expense categories neatly organized.",
+  "order": 83,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Styling Studio P&L Template",
+    "description": "Styling Studio P&L Template:\nThis Profit and Loss (P&L) template is tailored for styling studios and salons, providing a comprehensive view of financial performance. The template includes a visual chart that highlights the quarterly profit margin analysis, showcasing trends in EBITDA, Gross Profit, and their respective margins over each quarter. The chart effectively illustrates how profitability evolves throughout the year, helping owners and managers identify periods of stronger or weaker financial performance.\nBelow the chart, the P&L table details key financial metrics, including revenue sources, cost of goods sold, and other operating expenses. Categories such as Gross Profit and EBITDA are prominently featured, offering insights into core profitability drivers and overall financial health. The accompanying data provides a clear breakdown of earnings and expenses, enabling users to monitor financial performance and make informed business decisions.\nThis template is an invaluable tool for salon and styling studio owners, managers, and financial analysts who need to track and improve their business’s profitability. By analyzing quarterly trends, studios can optimize their operations, adjust pricing strategies, and manage expenses effectively to enhance overall profitability.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Tailored financial performance tracker for salons with quarterly profit margin analysis."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "\"Excel accounting template 'Styling Studio P&L Template' with income and expense categories neatly organized.\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1SZDD5nsuNIZXxbayy1cTLWPQnrjal6yB/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "operating expenses, financial performance, revenue sources, styling studio, profitability, profit margin, P&L template, EBITDA, salon, Gross Profit",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

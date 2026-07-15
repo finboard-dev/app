@@ -1,0 +1,77 @@
+---
+title: "When the Model Becomes a Commodity"
+date: "2026-07-15"
+category: "tech"
+excerpt: "The AI labs stopped competing on intelligence and started competing on price. The discounts admit what the benchmarks won't: the model itself is turning into a commodity — and the moat has moved."
+author: "FinBoard Engineering"
+tags: ["AI", "Engineering"]
+coverImage: "/blog/model-commoditization-cover.png"
+---
+
+In late 2025, the AI labs quietly stopped competing on how smart their models were and started competing on price. Anthropic cut Claude Opus pricing by 67% at a single launch. OpenAI floated deeper token cuts to defend its enterprise base. Google slashed its consumer plan to undercut everyone.
+
+Price wars do not happen when you have something rare. They happen when buyers stop seeing the difference between you and the next option. So the more interesting story is not the discounts. It is what the discounts admit: the model itself is turning into a commodity.
+
+## What commoditization actually means
+
+A commodity is anything buyers treat as interchangeable. Wheat, crude oil, electricity, memory chips. Nobody asks which farm their wheat came from. They buy on price and availability, and nothing else.
+
+When a product commoditizes, three things happen at once. The brand stops mattering. Switching becomes trivial. And prices get squeezed down toward the raw cost of producing the thing.
+
+"Commoditizing models" is just this idea pointed at AI. The claim is that GPT, Claude, Gemini, and the open-weight models are drifting toward interchangeable intelligence that you buy by the token, where you no longer pay a premium for whose name is on the box.
+
+The word doing the heavy lifting is "good enough." Commoditization does not require the models to be identical. It only requires them to be close enough that the differences stop mattering for most real work.
+
+## Four forces pushing in that direction
+
+The first is open-weight models catching up. Free models you can download and run yourself, from Meta's Llama to Mistral to DeepSeek, have climbed toward the frontier. On some benchmarks the gap between open and closed models fell from around 8% to 1.7% in a single year. Once a free version does most of what the paid one does, the premium is hard to defend. It is the Linux effect applied to intelligence.
+
+The second is low switching costs, and this is the quiet one that matters most. You talk to every model in plain English, through nearly identical APIs. Swapping one for another can be a few lines of config. There is no data trapped inside, no proprietary language to relearn. Low switching costs mean no lock-in. No lock-in means no pricing power. No pricing power is the definition of a commodity.
+
+The third is benchmark convergence. New flagships keep bunching up near the same scores, so on paper they look substitutable. This is the visible, quotable evidence, the chart someone points at to say the models have reached parity.
+
+The fourth is the price war itself. The cost of running a model at a fixed quality level has collapsed. A capability that cost around $20 per million tokens in late 2022 cost about seven cents two years later. That is not a discount. That is a category repricing itself toward the cost of compute.
+
+## The twist nobody expects
+
+Here is where the obvious intuition breaks. Prices are cratering, and total AI spending is going up anyway.
+
+Token costs roughly halved across 2025, while tokens consumed grew around 450% in the same window. Cheaper per unit, far larger total bill.
+
+This is Jevons paradox, the old observation that making a resource cheaper and more useful causes people to consume far more of it, not less. Reasoning models make it sharper, because they burn thousands of hidden tokens thinking before they answer. Agents make it sharper still, because one task becomes dozens of calls. The model gets cheaper, the usage gets heavier, and the bill stays stubbornly high.
+
+This matters because it kills the lazy version of the commoditization story. The unit is commoditizing. The market is exploding. Both are true.
+
+## The honest counterargument
+
+It would be too clean to declare the model dead and move on. The pushback is real.
+
+Benchmark convergence may be a mirage. Benchmarks test bounded puzzles with known answers. Real work is cumulative: holding architecture together across a large codebase, managing complexity as a system grows, recovering when something breaks deep inside. Two models can score identically and still feel completely different in daily use. The scores converge while the practical gap persists.
+
+And the revenue does not look like a commodity. Anthropic's annualized run rate reached roughly $30 billion in early 2026, about a 14x jump in a year. Commodities do not grow like that.
+
+So the real shape is a split, not a verdict. The low end, everyday chat and simple tasks, is commoditizing hard, and "good enough" open models win there on price. The frontier, the hardest reasoning and the newest agentic work, stays differentiated and oligopolistic, at least for now. Commodity at the floor. Oligopoly at the ceiling. And the line between them keeps moving up.
+
+## The model is not the moat
+
+If the model is becoming a commodity, then whatever makes money has to live somewhere else. This is the sentence the whole topic collapses into: the model is not the moat.
+
+Strip a real AI product down and you find four parts. A model. A retrieval layer over your data. A set of tools it can call. A prompt telling it what to do. Three of those four are commodities. Anyone can rent the model and wire up the rest.
+
+What is not copyable is the harness and the data. The harness is the orchestration, memory, and workflow logic that turns a raw model into something that survives in production. A raw model takes text in and puts text out. It cannot hold state, run itself in a loop, or recover when it stalls. The harness does all of that, and two teams on the identical model can ship wildly different products because of it.
+
+The data is the deeper moat, because it compounds. A general-purpose model cannot reproduce ten thousand of your real incidents, your private evaluations tied to your business outcomes, your institutional memory made queryable. That asset gets stronger the longer you run. It cannot be bought off a shelf, and no model release erases it.
+
+The engine is for sale to everyone. The vehicle you build around it is not. And the road only you have driven is yours alone.
+
+## What to actually do about it
+
+The strategic mistake is welding your product to one model. If the model is a commodity, treat it like one.
+
+Build model-agnostic. Put a clean boundary between the model and your product, the way you would build on a database abstraction layer instead of hardcoding Postgres. Your product logic should not care whether Claude, GPT, or an open model is answering.
+
+This is not tidiness. It is leverage. When DeepSeek arrived with near-frontier quality at a fraction of the cost, the companies that had hardcoded one model faced painful migrations. The ones with an abstraction layer tested it in production in hours. In a market where a cheaper or better model can appear any month, the ability to swap in hours instead of quarters is itself the edge.
+
+So route by task, cheap model for the simple calls and the frontier model for the hard reasoning, and pour your scarce effort into the layers a model release cannot touch.
+
+The raw intelligence is racing toward commodity economics. Build so the model can change underneath you, and invest everything you have in the harness and the proprietary data that a swappable model can never reproduce.

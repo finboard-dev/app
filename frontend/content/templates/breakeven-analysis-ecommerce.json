@@ -1,0 +1,72 @@
+{
+  "slug": "breakeven-analysis-ecommerce",
+  "title": "Breakeven analysis (Ecommerce)",
+  "category": "Financial Planning",
+  "shortDescription": "Breakeven Analysis template",
+  "about": "The Breakeven Analysis template is a tool used to determine the point at which a business breaks even and starts making a profit. It calculates the sales volume needed to cover all costs and provides insights into the profitability of a product or service. The template includes variables such as sales price per unit, sales volume per period, variable costs per unit, fixed costs per period, and net profit. By analyzing different sales volumes, the template helps businesses make informed decisions about pricing, cost management, and profit optimization. With the Breakeven Analysis template, businesses can effectively plan their pricing strategies, identify cost-saving opportunities, and understand the financial viability of their products or services.",
+  "excerpt": "Download the Breakeven Analysis (Ecommerce) Excel template for accurate financial insights. Optimize your business profitability with this handy tool.",
+  "link": "https://docs.google.com/spreadsheets/d/1gJ7ore6P470YZ1SwfQYoy0SHbgDUL8sj/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/kCPJ4n6o5hZBLTualvqmRkl12k.png",
+  "imageAlt": "Image of Breakeven analysis (Ecommerce) Excel template with financial data and calculations for business analysis.",
+  "order": 59,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Breakeven analysis (Ecommerce)",
+    "description": "The Breakeven Analysis template is a tool used to determine the point at which a business breaks even and starts making a profit. It calculates the sales volume needed to cover all costs and provides insights into the profitability of a product or service. The template includes variables such as sales price per unit, sales volume per period, variable costs per unit, fixed costs per period, and net profit. By analyzing different sales volumes, the template helps businesses make informed decisions about pricing, cost management, and profit optimization. With the Breakeven Analysis template, businesses can effectively plan their pricing strategies, identify cost-saving opportunities, and understand the financial viability of their products or services.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Breakeven Analysis template"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "breakeven",
+      "caption": "\"Image of Breakeven analysis (Ecommerce) Excel template with financial data and calculations for business analysis.\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1gJ7ore6P470YZ1SwfQYoy0SHbgDUL8sj/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Net profit, Template, Breakeven analysis, Fixed costs, Pricing strategies, Sales volume, Ecommerce, Sales price, Variable costs, Profitability",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

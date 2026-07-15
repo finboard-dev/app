@@ -1,0 +1,72 @@
+{
+  "slug": "general-profit-loss-template",
+  "title": "General Profit&Loss Template",
+  "category": "Profit and loss",
+  "shortDescription": "Versatile P&L statement with Net Income Bridge for small and medium enterprises to track financial performance.",
+  "about": "This template serves as a general Profit and Loss (P&L) statement for small and medium enterprises, tracking month-on-month trends in revenue, costs, and various other expenses. At the top of the template, a Net Income Bridge provides a clear illustration of how the net income evolves from the prior year to the current year. The bridge begins with the starting net income, and it details the contributions and deductions that lead to the current net income. Key contributors such as total income, cost of goods sold (COGS), and total expenses are prominently displayed, allowing for a comprehensive understanding of what drives changes in profitability. By breaking down each component, the template helps identify areas of growth and concern, enabling more informed decision-making. The P&L template, therefore, not only offers a snapshot of financial performance but also provides insights into the factors influencing net income over time. This makes it an essential tool for maintaining financial health and guiding strategic planning.",
+  "excerpt": "Track financial performance with ease using the General Profit&Loss Template. This versatile P&L statement includes a Net Income Bridge for small and medium ent",
+  "link": "https://docs.google.com/spreadsheets/d/1buS1tQBFRL1Dl17wbFPo3ZpdzmdNlH2K/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/4Q2LpNoQcNtPmQQIYoHKsj4WSI.png",
+  "imageAlt": "Image of 'General Profit&Loss Template' in Excel, featuring detailed accounting categories and calculations",
+  "order": 76,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "General Profit&Loss Template",
+    "description": "General Profit&Loss Template\nThis template serves as a general Profit and Loss (P&L) statement for small and medium enterprises, tracking month-on-month trends in revenue, costs, and various other expenses. At the top of the template, a Net Income Bridge provides a clear illustration of how the net income evolves from the prior year to the current year.\nThe bridge begins with the starting net income, and it details the contributions and deductions that lead to the current net income. Key contributors such as total income, cost of goods sold (COGS), and total expenses are prominently displayed, allowing for a comprehensive understanding of what drives changes in profitability.\nBy breaking down each component, the template helps identify areas of growth and concern, enabling more informed decision-making. The P&L template, therefore, not only offers a snapshot of financial performance but also provides insights into the factors influencing net income over time. This makes it an essential tool for maintaining financial health and guiding strategic planning.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Versatile P&L statement with Net Income Bridge for small and medium enterprises to track financial performance."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Image of 'General Profit&Loss Template' in Excel, featuring detailed accounting categories and calculations for fi"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1buS1tQBFRL1Dl17wbFPo3ZpdzmdNlH2K/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Profit & Loss, expenses, net income, financial performance, revenue, Net Income Bridge, small and medium enterprises, profitability, costs, strategic planning",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

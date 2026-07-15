@@ -1,0 +1,72 @@
+{
+  "slug": "beverage-stock-tracking-inventory",
+  "title": "Beverage Stock tracking (Inventory)",
+  "category": "Inventory Management",
+  "shortDescription": "This Excel template is for managing company settings and inventory for a beverage business.",
+  "about": "This Excel template is designed to help beverage businesses manage their company settings and inventory. It includes various features and settings that can be customized to suit the specific needs of the business. The template allows users to input their company details, including the company name and slogan. It also provides options for selecting relevant sales tax rates and currency symbols, ensuring accurate calculations and reporting.One of the key features of the template is the ability to define units of measure for different types of beverages. Users can specify the measures for alcoholic spirits, fortified wines, bottled and canned beer/cider, and bottled and canned minerals/juices/mixers. This ensures consistency and accuracy in inventory management and sales reporting.The template also includes options for specifying the volume of spirits and wine bottles, as well as bottled and canned beer/cider and minerals/juices/mixers. This information is crucial for tracking inventory levels and making informed purchasing decisions.In addition, the template provides options for managing draught lager/beer, including different keg sizes. This feature is particularly useful for businesses that serve draught beer, as it allows for accurate tracking of inventory and sales.Another important feature of the template is the ability to define case/box sizes. Users can specify the number of units in each case/box, which is essential for efficient inventory management and ordering.The template also includes a section for managing beverage stocktake. Users can input details such as the name, package, single unit volume, cost, and retail price of different spirits. This information can be used to track inventory levels, calculate profit margins, and make pricing decisions.Overall, this Excel template provides a comprehensive solution for managing company settings and inventory for beverage businesses. It offers a range of features and settings that can be customized to suit the specific needs of the business, ensuring accurate inventory management and streamlined operations.",
+  "excerpt": "Track beverage stock inventory efficiently with this Excel template designed for managing company settings and inventory in a beverage business.",
+  "link": "https://docs.google.com/spreadsheets/d/1vJDAyAU8cy3Krr2MmHVX5te1We_A49ge/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/BtlZpRygYER3bsfDFjjBOma2c4Y.png",
+  "imageAlt": "Excel accounting template for Beverage Stock tracking (Inventory) with organized columns and formulas for tracking",
+  "order": 60,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Beverage Stock tracking (Inventory)",
+    "description": "This Excel template is designed to help beverage businesses manage their company settings and inventory. It includes various features and settings that can be customized to suit the specific needs of the business. The template allows users to input their company details, including the company name and slogan. It also provides options for selecting relevant sales tax rates and currency symbols, ensuring accurate calculations and reporting.One of the key features of the template is the ability to define units of measure for different types of beverages. Users can specify the measures for alcoholic spirits, fortified wines, bottled and canned beer/cider, and bottled and canned minerals/juices/mixers. This ensures consistency and accuracy in inventory management and sales reporting.The template also includes options for specifying the volume of spirits and wine bottles, as well as bottled and canned beer/cider and minerals/juices/mixers. This information is crucial for tracking inventory levels and making informed purchasing decisions.In addition, the template provides options for managing draught lager/beer, including different keg sizes. This feature is particularly useful for businesses that serve draught beer, as it allows for accurate tracking of inventory and sales.Another important feature of the template is the ability to define case/box sizes. Users can specify the number of units in each case/box, which is essential for efficient inventory management and ordering.The template also includes a section for managing beverage stocktake. Users can input details such as the name, package, single unit volume, cost, and retail price of different spirits. This information can be used to track inventory levels, calculate profit margins, and make pricing decisions.Overall, this Excel template provides a comprehensive solution for managing company settings and inventory for beverage businesses. It offers a range of features and settings that can be customized to suit the specific needs of the business, ensuring accurate inventory management and streamlined operations.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "This Excel template is for managing company settings and inventory for a beverage business."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "settings",
+      "caption": "Alt text: \"Excel accounting template for Beverage Stock tracking (Inventory) with organized columns and formulas for tracking"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Inventory Management",
+    "url": "https://docs.google.com/spreadsheets/d/1vJDAyAU8cy3Krr2MmHVX5te1We_A49ge/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "accounting, currency symbols, sales tax rates, finance, inventory levels, profit margins, Excel template, units of measure, inventory management, beverage business",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

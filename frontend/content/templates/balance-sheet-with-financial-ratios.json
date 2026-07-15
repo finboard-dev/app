@@ -1,0 +1,72 @@
+{
+  "slug": "balance-sheet-with-financial-ratios",
+  "title": "Balance sheet with financial ratios",
+  "category": "Balance Sheet",
+  "shortDescription": "Balance Sheet template for the Period Ending",
+  "about": "The [Company Name]] Balance Sheet template is a comprehensive tool for analyzing the financial health of a company. It provides a detailed overview of the company's assets, liabilities, and owners' equity, allowing stakeholders to assess its financial position and make informed decisions. The template includes key financial ratios such as the current ratio, quick ratio, debt-to-equity ratio, and cash ratio, which provide insights into the company's liquidity, solvency, and ability to meet its short-term and long-term obligations. It also presents a breakdown of current assets, current liabilities, fixed assets, other liabilities, and other assets, giving a clear picture of the company's asset composition and its sources of financing. With this template, users can easily track changes in the company's financial position over time, identify areas of strength and weakness, and make strategic financial decisions to drive growth and profitability.",
+  "excerpt": "Download Excel balance sheet template with financial ratios for accurate period-ending accounting. Simplify financial analysis efficiently.",
+  "link": "https://docs.google.com/spreadsheets/d/1Ot4ZnikawE1Gt30v7VA8GWzmLZ5Tocq5/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/b0U8dWQDKZVAjwUI5fj3BMjRv4.png",
+  "imageAlt": "Excel accounting template displaying a balance sheet with financial ratios for financial analysis and reporting purpose",
+  "order": 63,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Balance sheet with financial ratios",
+    "description": "The [[Company Name]] Balance Sheet template is a comprehensive tool for analyzing the financial health of a company. It provides a detailed overview of the company's assets, liabilities, and owners' equity, allowing stakeholders to assess its financial position and make informed decisions. The template includes key financial ratios such as the current ratio, quick ratio, debt-to-equity ratio, and cash ratio, which provide insights into the company's liquidity, solvency, and ability to meet its short-term and long-term obligations. It also presents a breakdown of current assets, current liabilities, fixed assets, other liabilities, and other assets, giving a clear picture of the company's asset composition and its sources of financing. With this template, users can easily track changes in the company's financial position over time, identify areas of strength and weakness, and make strategic financial decisions to drive growth and profitability.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Balance Sheet template for the Period Ending"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "balance-sheet-1",
+      "caption": "Alt text: \"Excel accounting template displaying a balance sheet with financial ratios for financial analysis and reporting pu"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Balance Sheet",
+    "url": "https://docs.google.com/spreadsheets/d/1Ot4ZnikawE1Gt30v7VA8GWzmLZ5Tocq5/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "financial ratios, quick ratio, liabilities., assets, balance sheet, debt-to-equity ratio, liquidity, solvency, current ratio, cash ratio",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

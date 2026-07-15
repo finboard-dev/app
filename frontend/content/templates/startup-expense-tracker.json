@@ -1,0 +1,72 @@
+{
+  "slug": "startup-expense-tracker",
+  "title": "Startup expense tracker",
+  "category": "Financial Planning",
+  "shortDescription": "The Startup Expense Tracker template is designed to track and analyze the budget, actual expenses, and funding for a startup.",
+  "about": "The Startup Expense Tracker template is a comprehensive tool for startups to manage their budget, track actual expenses, and monitor funding. With a user-friendly interface and easy-to-use features, this template provides startups with an efficient way to stay organized and make informed financial decisions.  Key features of the template include:  - Summary section: The summary section provides an overview of the total funding, total expenses, and the difference between them. This allows startups to quickly assess their financial status.  - Funding section: The funding section allows startups to input the details of their investors, loans, and other sources of funding. It tracks the budgeted amount, actual amount, and the difference between them for each funding source.  - Expenses section: The expenses section enables startups to enter their budgeted expenses and track the actual expenses incurred. It provides a detailed breakdown of fixed expenses and variable expenses, allowing startups to monitor their spending.  - Difference calculation: The template automatically calculates the difference between the budgeted amount and the actual amount for both funding and expenses. This helps startups identify areas where they are over or under budget.  Benefits of using the Startup Expense Tracker template:  - Financial visibility: The template provides startups with a clear view of their financial situation by tracking funding and expenses. This helps them make informed decisions and avoid financial pitfalls.  - Budget control: By comparing budgeted expenses with actual expenses, startups can identify areas where they are overspending or underspending. This allows them to adjust their budget and allocate resources more effectively.  - Investor management: The template allows startups to keep track of their investors and their contributions. This helps startups maintain transparency and build trust with their investors.  - Time-saving: The template eliminates the need for manual calculations and provides startups with ready-to-use financial reports. This saves time and effort, allowing startups to focus on other important aspects of their business.  In conclusion, the Startup Expense Tracker template is a valuable tool for startups to manage their finances effectively. With its features and benefits, it empowers startups to stay on top of their budget, track expenses, and make informed financial decisions.",
+  "excerpt": "Track and analyze your startup's budget, actual expenses, and funding with the Startup Expense Tracker template. Stay organized and make informed financial decisions.",
+  "link": "https://docs.google.com/spreadsheets/d/16d5Zmyi_F2oqufkVeBajW2M8J1CRlOkU/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/IEORw4XsKvV0jharY3TvogPZe8.png",
+  "imageAlt": "Screenshot of the Startup Expense Tracker template",
+  "order": 21,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Startup expense tracker",
+    "description": "The Startup Expense Tracker template is a comprehensive tool for startups to manage their budget, track actual expenses, and monitor funding. With a user-friendly interface and easy-to-use features, this template provides startups with an efficient way to stay organized and make informed financial decisions.\n\nKey features of the template include:\n\n- Summary section: The summary section provides an overview of the total funding, total expenses, and the difference between them. This allows startups to quickly assess their financial status.\n\n- Funding section: The funding section allows startups to input the details of their investors, loans, and other sources of funding. It tracks the budgeted amount, actual amount, and the difference between them for each funding source.\n\n- Expenses section: The expenses section enables startups to enter their budgeted expenses and track the actual expenses incurred. It provides a detailed breakdown of fixed expenses and variable expenses, allowing startups to monitor their spending.\n\n- Difference calculation: The template automatically calculates the difference between the budgeted amount and the actual amount for both funding and expenses. This helps startups identify areas where they are over or under budget.\n\nBenefits of using the Startup Expense Tracker template:\n\n- Financial visibility: The template provides startups with a clear view of their financial situation by tracking funding and expenses. This helps them make informed decisions and avoid financial pitfalls.\n\n- Budget control: By comparing budgeted expenses with actual expenses, startups can identify areas where they are overspending or underspending. This allows them to adjust their budget and allocate resources more effectively.\n\n- Investor management: The template allows startups to keep track of their investors and their contributions. This helps startups maintain transparency and build trust with their investors.\n\n- Time-saving: The template eliminates the need for manual calculations and provides startups with ready-to-use financial reports. This saves time and effort, allowing startups to focus on other important aspects of their business.\n\nIn conclusion, the Startup Expense Tracker template is a valuable tool for startups to manage their finances effectively. With its features and benefits, it empowers startups to stay on top of their budget, track expenses, and make informed financial decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Startup Expense Tracker template is designed to track and analyze the budget, actual expenses, and funding for a startup."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Startup Expense Tracker template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/16d5Zmyi_F2oqufkVeBajW2M8J1CRlOkU/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "financial decisions, budget, expense tracker, loans, actual expenses, investors, variable expenses, startup, fixed expenses, funding",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

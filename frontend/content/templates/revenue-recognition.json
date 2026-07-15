@@ -1,0 +1,127 @@
+{
+  "slug": "revenue-recognition",
+  "title": "Revenue Recognition calculator",
+  "category": "Calculator",
+  "shortDescription": "The revenue recogntion calculator helps to caluclate the accurate revenue to be recognised on a periodic basis",
+  "about": "This Revenue Recognition Template is designed to simplify and automate the process of recognizing revenue accurately under ASC 606 / IFRS 15 standards. It helps businesses, accountants, and project managers determine the correct revenue to be recognized in the profit and loss account for a specific project or contract on a monthly or periodic basis. By capturing key contract details such as contract value, billing milestones, performance obligations, and completion percentage, this template ensures that revenue is recognized in a compliant, consistent, and auditable manner.  The template calculates revenue based on the selected recognition method, whether it is over time (percentage of completion) or point-in-time, allowing companies to align accounting entries with the underlying contract terms. With simple inputs like invoicing schedule, payments received, and contract modifications, the template automatically generates accurate journal entries for your accounting system, including QuickBooks Online, Xero, or other ERP platforms. This ensures that monthly or periodic reporting reflects the true financial performance of projects and contracts.  Additionally, the template provides a comprehensive schedule for tracking recognized revenue, deferred revenue, and unbilled amounts. This makes it easier to reconcile revenue in the general ledger, prepare financial statements, and maintain a clear audit trail. By using this revenue recognition template, companies can reduce manual errors, improve reporting efficiency, and maintain compliance with US GAAP or IFRS standards.  This tool is ideal for businesses managing multiple contracts, long-term projects, or subscription services. It is especially useful for accountants, controllers, and finance teams who need a reliable and auditable way to calculate revenue recognition for every period. The template also supports proper documentation for internal reviews, audits, and financial disclosures, ensuring transparent and accurate revenue reporting across the organization.",
+  "excerpt": "Automate ASC 606/IFRS 15 revenue recognition with a monthly template that tracks milestones, completion %, deferred/unbilled revenue, and generates audit-ready journal entries.",
+  "link": "https://docs.google.com/spreadsheets/d/1T7BkOIjhrCNf4tQmv8fmiERWNo4zJ1-B/edit?usp=sharing&ouid=106901949079348346817&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/FNI8Jm0TtdLS77GGpcAmPTLroSE.png",
+  "imageAlt": "Revenue Recognition calculator",
+  "order": 4,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "#organization",
+        "name": "FinBoard.ai"
+      },
+      {
+        "@type": "Article",
+        "@id": "#article",
+        "headline": "Revenue Recognition Template for ASC 606 / IFRS 15",
+        "description": "Automate ASC 606/IFRS 15 revenue recognition with a monthly template that tracks milestones, completion %, deferred/unbilled revenue, and generates audit-ready journal entries.",
+        "datePublished": "2025-12-12",
+        "dateModified": "2025-12-12",
+        "inLanguage": "en",
+        "genre": "Educational Guide",
+        "publisher": {
+          "@id": "#organization"
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Revenue recognition"
+          },
+          {
+            "@type": "Thing",
+            "name": "ASC 606"
+          },
+          {
+            "@type": "Thing",
+            "name": "IFRS 15"
+          },
+          {
+            "@type": "Thing",
+            "name": "Percentage of completion"
+          },
+          {
+            "@type": "Thing",
+            "name": "Point-in-time revenue recognition"
+          },
+          {
+            "@type": "Thing",
+            "name": "Deferred revenue"
+          },
+          {
+            "@type": "Thing",
+            "name": "Unbilled revenue"
+          },
+          {
+            "@type": "Thing",
+            "name": "Journal entries"
+          },
+          {
+            "@type": "Thing",
+            "name": "US GAAP"
+          },
+          {
+            "@type": "Thing",
+            "name": "IFRS"
+          }
+        ],
+        "audience": [
+          {
+            "@type": "Audience",
+            "audienceType": "Businesses"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Accountants"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Controllers"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Finance teams"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Project managers"
+          }
+        ],
+        "mentions": [
+          {
+            "@type": "SoftwareApplication",
+            "name": "QuickBooks Online"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Xero"
+          },
+          {
+            "@type": "Thing",
+            "name": "ERP platforms"
+          }
+        ],
+        "keywords": [
+          "revenue recognition template",
+          "ASC 606",
+          "IFRS 15",
+          "percentage of completion",
+          "point-in-time revenue",
+          "billing milestones",
+          "performance obligations",
+          "deferred revenue",
+          "unbilled revenue",
+          "journal entries",
+          "audit trail",
+          "financial reporting"
+        ]
+      }
+    ]
+  }
+}

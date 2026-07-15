@@ -1,0 +1,72 @@
+{
+  "slug": "catering-invoice-template",
+  "title": "Catering-Invoice-Template",
+  "category": "Invoice",
+  "shortDescription": "The Catering-Invoice-Template is designed to generate professional invoices for catering services.",
+  "about": "The Catering-Invoice-Template is a comprehensive tool that allows catering businesses to create professional invoices quickly and efficiently. With its user-friendly interface and customizable features, this template streamlines the invoicing process, saving time and ensuring accuracy. Key features include pre-filled invoice details, itemized billing, automatic calculations, and space for special notes and instructions. By using this template, catering businesses can benefit from improved organization, reduced errors, and enhanced professionalism. Overall, the Catering-Invoice-Template is an essential tool for any catering business looking to simplify their invoicing process and provide a seamless experience for their clients.",
+  "excerpt": "Generate professional invoices for catering services with the Catering-Invoice-Template. Streamline your invoicing process and maintain a professional image.",
+  "link": "https://docs.google.com/spreadsheets/d/19oI1r1eIO1Y_Pc09tCr3fj5CcqFORJMv/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ULabGCRskkl0CyyBXRHUdOsraY.png",
+  "imageAlt": "Screenshot image of the Catering-Invoice-Template",
+  "order": 51,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Catering-Invoice-Template",
+    "description": "The Catering-Invoice-Template is a comprehensive tool that allows catering businesses to create professional invoices quickly and efficiently. With its user-friendly interface and customizable features, this template streamlines the invoicing process, saving time and ensuring accuracy. Key features include pre-filled invoice details, itemized billing, automatic calculations, and space for special notes and instructions. By using this template, catering businesses can benefit from improved organization, reduced errors, and enhanced professionalism. Overall, the Catering-Invoice-Template is an essential tool for any catering business looking to simplify their invoicing process and provide a seamless experience for their clients.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Catering-Invoice-Template is designed to generate professional invoices for catering services."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Catering-Invoice-Template",
+      "caption": "Screenshot image of the Catering-Invoice-Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/19oI1r1eIO1Y_Pc09tCr3fj5CcqFORJMv/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "calculations, invoices, professionalism, template, invoice, errors, professional, organization, billing, catering",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "general-budget-vs-actual",
+  "title": "General Budget Vs Actual",
+  "category": "Budget",
+  "shortDescription": "Detailed financial performance comparator with month-by-month income and expense variance analysis.",
+  "about": "The budget vs. actual template is designed to compare the actual financial performance of a business against its budgeted targets, highlighting variances that help in financial analysis and decision-making. The purpose of this template is to track income and expenses, providing insights into areas where the business is overperforming or underperforming compared to its plans. The graphs illustrate a month-by-month comparison of actual results against budgeted figures. The first graph shows the income performance, with blue bars representing actual income and the dotted line indicating the budgeted amounts. It helps visualize trends, identifying months where income exceeded or fell short of expectations. The second graph does the same for expenses, with grey bars showing actual expenses and the dotted red line showing the budget, helping to identify months of cost overruns or savings. The tables below the graphs provide a detailed breakdown of the financial data. For both income and expenses, the tables display the actual amounts, budgeted figures, the difference between them, and the percentage of the budget achieved for each month. This detailed view helps in understanding specific areas of financial performance, enabling businesses to adjust strategies, manage cash flow, and make informed financial decisions.",
+  "excerpt": "Maximize financial insight with the General Budget Vs Actual Excel template. Track monthly income and expenses to analyze variances effectively.",
+  "link": "https://docs.google.com/spreadsheets/d/1e0lcWTeLxSTj86YA51WqBRHpKoLGJFTt/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/h8fz7ENRXLTbxoJuvfWymPsM.png",
+  "imageAlt": "Excel spreadsheet showing 'General Budget Vs Actual' comparison for accounting purposes",
+  "order": 66,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "General Budget Vs Actual",
+    "description": "General Budget Vs Actual\nThe budget vs. actual template is designed to compare the actual financial performance of a business against its budgeted targets, highlighting variances that help in financial analysis and decision-making. The purpose of this template is to track income and expenses, providing insights into areas where the business is overperforming or underperforming compared to its plans.\nThe graphs illustrate a month-by-month comparison of actual results against budgeted figures. The first graph shows the income performance, with blue bars representing actual income and the dotted line indicating the budgeted amounts. It helps visualize trends, identifying months where income exceeded or fell short of expectations. The second graph does the same for expenses, with grey bars showing actual expenses and the dotted red line showing the budget, helping to identify months of cost overruns or savings.\nThe tables below the graphs provide a detailed breakdown of the financial data. For both income and expenses, the tables display the actual amounts, budgeted figures, the difference between them, and the percentage of the budget achieved for each month. This detailed view helps in understanding specific areas of financial performance, enabling businesses to adjust strategies, manage cash flow, and make informed financial decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Detailed financial performance comparator with month-by-month income and expense variance analysis."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "\"Excel spreadsheet showing 'General Budget Vs Actual' comparison for accounting purposes\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1e0lcWTeLxSTj86YA51WqBRHpKoLGJFTt/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "expenses, budget, financial performance, income, graphs, actual, tables, financial decisions, variance analysis, comparison",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

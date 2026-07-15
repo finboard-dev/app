@@ -1,0 +1,72 @@
+{
+  "slug": "loan-amortization-schedule",
+  "title": "Loan amortization schedule",
+  "category": "Financial Planning",
+  "shortDescription": "The Loan Amortization Schedule template helps track and visualize the repayment schedule for a loan.",
+  "about": "The Loan Amortization Schedule template is a useful tool for individuals or businesses that have taken out a loan and want to track and visualize the repayment schedule. This template allows users to input relevant loan details such as the loan amount, annual interest rate, length of the loan in years, and the first payment date. It then generates a comprehensive schedule that includes the date of each payment, the beginning balance, the scheduled payment amount, any additional payment made, the interest amount, and the principal balance after each payment.  Key features of the Loan Amortization Schedule template include:  - Easy input of loan details: Users can easily input their loan details such as loan amount, annual interest rate, and length of the loan in years. - Automatic calculation of payment schedule: The template automatically generates a payment schedule based on the inputted loan details and the first payment date. - Clear visualization of repayment progress: The template provides a clear and organized table that allows users to track the repayment progress over time.  Using the Loan Amortization Schedule template offers several benefits:  - Financial planning: The template helps users plan their finances by providing a clear overview of the repayment schedule, allowing them to budget and manage their cash flow effectively. - Interest savings: By visualizing the impact of additional payments on the principal balance, users can see how making extra payments can save them money on interest over the life of the loan. - Easy comparison: Users can easily compare different loan options by inputting different loan details and seeing how they affect the repayment schedule.  In conclusion, the Loan Amortization Schedule template is a valuable tool for anyone with a loan, providing an easy and organized way to track and visualize the repayment schedule, plan finances, and potentially save money on interest.",
+  "excerpt": "Track and visualize the repayment schedule for a loan with the Loan Amortization Schedule template. Easily input loan details and see a comprehensive payment schedule.",
+  "link": "https://docs.google.com/spreadsheets/d/1Dc_B_tnXw3g9uI3V7PAX_4wKBCUvIrsI/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/m27FGfYZRoB892WL7qKrDvlnyIg.png",
+  "imageAlt": "Screenshot of Loan Amortization Schedule template",
+  "order": 17,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Loan amortization schedule",
+    "description": "The Loan Amortization Schedule template is a useful tool for individuals or businesses that have taken out a loan and want to track and visualize the repayment schedule. This template allows users to input relevant loan details such as the loan amount, annual interest rate, length of the loan in years, and the first payment date. It then generates a comprehensive schedule that includes the date of each payment, the beginning balance, the scheduled payment amount, any additional payment made, the interest amount, and the principal balance after each payment.\n\nKey features of the Loan Amortization Schedule template include:\n\n- Easy input of loan details: Users can easily input their loan details such as loan amount, annual interest rate, and length of the loan in years.\n- Automatic calculation of payment schedule: The template automatically generates a payment schedule based on the inputted loan details and the first payment date.\n- Clear visualization of repayment progress: The template provides a clear and organized table that allows users to track the repayment progress over time.\n\nUsing the Loan Amortization Schedule template offers several benefits:\n\n- Financial planning: The template helps users plan their finances by providing a clear overview of the repayment schedule, allowing them to budget and manage their cash flow effectively.\n- Interest savings: By visualizing the impact of additional payments on the principal balance, users can see how making extra payments can save them money on interest over the life of the loan.\n- Easy comparison: Users can easily compare different loan options by inputting different loan details and seeing how they affect the repayment schedule.\n\nIn conclusion, the Loan Amortization Schedule template is a valuable tool for anyone with a loan, providing an easy and organized way to track and visualize the repayment schedule, plan finances, and potentially save money on interest.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Loan Amortization Schedule template helps track and visualize the repayment schedule for a loan."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of Loan Amortization Schedule template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1Dc_B_tnXw3g9uI3V7PAX_4wKBCUvIrsI/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "loan details, principal balance, payment date, loan, amortization schedule, financial planning, interest amount, annual interest rate, length of the loan, repayment schedule",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

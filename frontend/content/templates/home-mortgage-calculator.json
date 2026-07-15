@@ -1,0 +1,72 @@
+{
+  "slug": "home-mortgage-calculator",
+  "title": "Home Mortgage calculator",
+  "category": "Calculator",
+  "shortDescription": "A template for calculating home mortgage payments and balances over time.",
+  "about": "The Home Mortgage Calculator template is a comprehensive tool that allows users to calculate their mortgage payments and track the balance over time. With features such as adjustable interest rates, extra payments, and tax deductions, this template provides a detailed analysis of the mortgage terms and helps users make informed decisions. By inputting the loan amount, annual interest rate, term length, and other relevant information, users can generate a payment schedule that includes the principal and interest payments for each period. The template also calculates the total payments, total interest, and tax deductions based on the provided tax bracket. With its user-friendly interface and accurate calculations, the Home Mortgage Calculator template is an essential tool for anyone considering a home mortgage or looking to manage their existing mortgage effectively.Key features of the template:- Adjustable interest rates- Extra payments- Tax deductions- Payment schedule with principal and interest breakdownBenefits of using the template:1. Accurate calculations: The template uses the provided information to accurately calculate mortgage payments, balances, and interest over time.2. Comprehensive analysis: Users can analyze the impact of adjustable interest rates, extra payments, and tax deductions on their mortgage terms.3. Financial planning: By providing a payment schedule, the template helps users plan their finances and make informed decisions about their mortgage.4. Time-saving: The template eliminates the need for manual calculations and provides instant results, saving users time and effort.5. User-friendly interface: The template is easy to use, with clear instructions and organized sections that make it accessible to users of all levels of expertise.In conclusion, the Home Mortgage Calculator template is a valuable tool for anyone involved in the home mortgage process. It simplifies complex calculations, provides a comprehensive analysis of mortgage terms, and helps users make informed decisions about their mortgage. Whether you are a first-time homebuyer or looking to refinance your existing mortgage, this template is an essential resource.",
+  "excerpt": "Calculate mortgage payments and track balances with the Home Mortgage Calculator template. Adjust interest rates, make extra payments, and analyze tax deductions.",
+  "link": "https://docs.google.com/spreadsheets/d/1kEIv9aJtYqRh7fNkSlqOuHU-jazZY7oC/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/EsXjvJ2I6C91hU6fTIIMI2quEgA.png",
+  "imageAlt": "Screenshot of the Home Mortgage Calculator template",
+  "order": 32,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Home Mortgage calculator",
+    "description": "The Home Mortgage Calculator template is a comprehensive tool that allows users to calculate their mortgage payments and track the balance over time. With features such as adjustable interest rates, extra payments, and tax deductions, this template provides a detailed analysis of the mortgage terms and helps users make informed decisions. By inputting the loan amount, annual interest rate, term length, and other relevant information, users can generate a payment schedule that includes the principal and interest payments for each period. The template also calculates the total payments, total interest, and tax deductions based on the provided tax bracket. With its user-friendly interface and accurate calculations, the Home Mortgage Calculator template is an essential tool for anyone considering a home mortgage or looking to manage their existing mortgage effectively.\n\nKey features of the template:\n\n- Adjustable interest rates\n- Extra payments\n- Tax deductions\n- Payment schedule with principal and interest breakdown\n\nBenefits of using the template:\n\n1. Accurate calculations: The template uses the provided information to accurately calculate mortgage payments, balances, and interest over time.\n\n2. Comprehensive analysis: Users can analyze the impact of adjustable interest rates, extra payments, and tax deductions on their mortgage terms.\n\n3. Financial planning: By providing a payment schedule, the template helps users plan their finances and make informed decisions about their mortgage.\n\n4. Time-saving: The template eliminates the need for manual calculations and provides instant results, saving users time and effort.\n\n5. User-friendly interface: The template is easy to use, with clear instructions and organized sections that make it accessible to users of all levels of expertise.\n\nIn conclusion, the Home Mortgage Calculator template is a valuable tool for anyone involved in the home mortgage process. It simplifies complex calculations, provides a comprehensive analysis of mortgage terms, and helps users make informed decisions about their mortgage. Whether you are a first-time homebuyer or looking to refinance your existing mortgage, this template is an essential resource.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A template for calculating home mortgage payments and balances over time."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Home Mortgage Calculator template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1kEIv9aJtYqRh7fNkSlqOuHU-jazZY7oC/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "extra payments, home mortgage, payments, tax deductions, calculator, financial planning, payment schedule, interest rates, principal, balances",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

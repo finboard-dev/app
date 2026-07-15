@@ -12,6 +12,18 @@
 - [Manifesto](https://finboard.ai/manifesto) — FinBoard's founding philosophy on why finance infrastructure for operators has been underserved.
 - [Testimonials](https://finboard.ai/testimonials) — Customer stories and outcomes from operators who use FinBoard for financial close and reporting.
 
+## Blog
+
+- [Blog](https://finboard.ai/blog) — 45+ practical guides on US GAAP accounting, month-end close, multi-entity consolidation, FP&A and QuickBooks Online workflows, plus engineering notes.
+- [How to Run a Multi-Entity Month-End Close in Under 5 Days](https://finboard.ai/blog/multi-entity-month-end-close-in-5-days) — The four bottlenecks that stretch a multi-entity close, and how to remove them to close in five days.
+- [Accrued Expenses for Month-End Close: A Complete Guide](https://finboard.ai/blog/accrued-expenses-for-month-end-close-a-complete-guide) — US GAAP accrual recognition, high-risk areas, cutoff procedures and reversing entries.
+- [Crypto Accounting under US GAAP (ASU 2023-08)](https://finboard.ai/blog/navigating-crypto-accounting-in-quickbooks-online-making-fair-value-work-after-asu-2023-08) — Fair-value crypto remeasurement, journal entries and disclosures in QuickBooks Online.
+- [When the Model Becomes a Commodity](https://finboard.ai/blog/when-the-model-becomes-a-commodity) — Why AI models are commoditizing and why the moat is the harness and proprietary data, not the model.
+
+## Templates
+
+- [Finance Templates](https://finboard.ai/templates) — 80+ free, QuickBooks Online–ready Google Sheets templates: budgets, cash-flow forecasts, P&L, balance sheet, invoices, calculators (ASC 842 lease, ARR/MRR) and more.
+
 ## Products
 
 - [Month-End Close](https://finboard.ai/products/month-end-close) — AI-assisted close checklists and automated reconciliation cutting close time to under 5 business days.

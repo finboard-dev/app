@@ -1,0 +1,72 @@
+{
+  "slug": "rental-property-income-statement-template",
+  "title": "Rental Property Income statement Template",
+  "category": "Profit and loss",
+  "shortDescription": "Detailed financial tracker for property owners with month-on-month trends chart for multiple properties.",
+  "about": "The \"Rental Property Income Statement Template\" is a tool designed to help owners and property managers track the financial performance of rental properties. It includes detailed sections for recording monthly rental revenue, operating expenses, and net income across various properties. The key feature is the Month-on-Month Trends chart, which visually tracks the rental revenue, operating expenses, and net income throughout the year. The blue line shows the monthly rental income, the orange line represents operating expenses, and the gray line highlights the net income, providing a clear picture of profitability trends over time. This template also includes a detailed table that breaks down the rental income by property and month, giving a comprehensive view of each unit’s contribution to overall revenue. The data in this table feeds into the overall profit and loss summary, ensuring accurate financial tracking. In summary, this template offers a clear and organized way to manage and analyze the financial performance of rental properties, with visual insights that make it easier to identify trends and make informed decisions.",
+  "excerpt": "Track rental property finances easily with this Excel accounting template. Monitor income and expenses across multiple properties with trend charts.",
+  "link": "https://docs.google.com/spreadsheets/d/1UVI_ujCp6yEP_KiJC5W1G1MyuIPHoR5ExxZZbUQztgU/edit?usp=drive_link",
+  "image": "https://framerusercontent.com/images/hm8uhizrKbCHYVhNV9Sf0dgTGhM.png",
+  "imageAlt": "Image of 'Rental Property Income Statement Template' in Excel with detailed financial data and categories",
+  "order": 69,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Rental Property Income statement Template;",
+    "description": "Rental Property Income statement Template;\nThe \"Rental Property Income Statement Template\" is a tool designed to help landlords and property managers track the financial performance of rental properties. It includes detailed sections for recording monthly rental revenue, operating expenses, and net income across various properties.\nThe key feature is the Month-on-Month Trends chart, which visually tracks the rental revenue, operating expenses, and net income throughout the year. The blue line shows the monthly rental income, the orange line represents operating expenses, and the gray line highlights the net income, providing a clear picture of profitability trends over time.\nThis template also includes a detailed table that breaks down the rental income by property and month, giving a comprehensive view of each unit’s contribution to overall revenue. The data in this table feeds into the overall profit and loss summary, ensuring accurate financial tracking.\nIn summary, this template offers a clear and organized way to manage and analyze the financial performance of rental properties, with visual insights that make it easier to identify trends and make informed decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Detailed financial tracker for landlords with month-on-month trends chart for multiple properties."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Image of 'Rental Property Income Statement Template' in Excel with detailed financial data and categories for trac"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1UVI_ujCp6yEP_KiJC5W1G1MyuIPHoR5ExxZZbUQztgU/edit?usp=drive_link",
+    "keywords": "month-on-month trends, chart, operating expenses, income statement, net income, rental property, rental revenue, landlords, profitability trends, financial tracker",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "restaurant-profit-loss-template",
+  "title": "Restaurant Profit & Loss Template",
+  "category": "Profit and loss",
+  "shortDescription": "Comprehensive financial overview for restaurants with revenue vs. COGS and OPEX comparisons.",
+  "about": "This template is designed to provide a detailed financial overview of a restaurant business, helping to track performance and manage costs effectively. The chart displays a month-on-month comparison of Total Revenue (blue bars) against COGS (Cost of Goods Sold) and Operating Expenses (OPEX) (represented by lines). This visual representation helps identify trends in revenue and costs, allowing the restaurant to see which months were more profitable and when expenses spiked. By comparing revenue with costs, restaurant managers can quickly assess the efficiency of their operations and identify periods requiring cost control measures. The bottom table breaks down income by category (e.g., Food Sales, Beverage Sales), COGS, and OPEX month by month. This level of detail helps in pinpointing specific revenue streams that are performing well or need improvement and allows for precise tracking of costs associated with each revenue type. The table's insights are crucial for inventory management, pricing strategies, and budgeting, ensuring the restaurant remains profitable and sustainable The overall template serves as a crucial tool for financial monitoring and decision-making in a restaurant business. It helps owners and managers understand the relationship between revenue, costs, and profitability, providing insights into the financial health of the business. This information is essential for setting sales targets, managing expenses, and planning for growth.",
+  "excerpt": "Easily track restaurant finances with our Excel template. Includes revenue vs. COGS, OPEX comparisons for a comprehensive financial overview.",
+  "link": "https://docs.google.com/spreadsheets/d/1zzI8TpiC6r4g9mxlneINRTGdOvOOsGIB/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/vsTosfzUvCOqqCUpv4VWAoJaYg.png",
+  "imageAlt": "Excel spreadsheet titled 'Restaurant Profit & Loss Template' with financial data and calculations for restaurant accounting.",
+  "order": 67,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Restaurant Profit & Loss Template",
+    "description": "Restaurant Profit & Loss Template\nThis template is designed to provide a detailed financial overview of a restaurant business, helping to track performance and manage costs effectively.\nThe chart displays a month-on-month comparison of Total Revenue (blue bars) against COGS (Cost of Goods Sold) and Operating Expenses (OPEX) (represented by lines). This visual representation helps identify trends in revenue and costs, allowing the restaurant to see which months were more profitable and when expenses spiked. By comparing revenue with costs, restaurant managers can quickly assess the efficiency of their operations and identify periods requiring cost control measures.\nThe bottom table breaks down income by category (e.g., Food Sales, Beverage Sales), COGS, and OPEX month by month. This level of detail helps in pinpointing specific revenue streams that are performing well or need improvement and allows for precise tracking of costs associated with each revenue type. The table's insights are crucial for inventory management, pricing strategies, and budgeting, ensuring the restaurant remains profitable and sustainable\nThe overall template serves as a crucial tool for financial monitoring and decision-making in a restaurant business. It helps owners and managers understand the relationship between revenue, costs, and profitability, providing insights into the financial health of the business. This information is essential for setting sales targets, managing expenses, and planning for growth.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Comprehensive financial overview for restaurants with revenue vs. COGS and OPEX comparisons."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "\"Excel spreadsheet titled 'Restaurant Profit & Loss Template' with financial data and calculations for restaurant accounting."
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1zzI8TpiC6r4g9mxlneINRTGdOvOOsGIB/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Profit & Loss, OPEX, Template, Performance, Financial Overview, Efficiency., Restaurant, Revenue, Costs, COGS",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

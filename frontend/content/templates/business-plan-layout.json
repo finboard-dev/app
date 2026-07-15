@@ -1,0 +1,72 @@
+{
+  "slug": "business-plan-layout",
+  "title": "Business plan layout",
+  "category": "Financial Planning",
+  "shortDescription": "A business plan layout template for organizing and tracking the different phases and tasks of a new business project.",
+  "about": "\"The Business Plan Layout template is designed to help users organize and track the different phases and tasks involved in a new business project. It provides a structured layout with pre-defined sections for each phase, allowing users to easily outline their strategic plan, define the business, evaluate potential risks, and define the market. The template also includes a timeline with start and end dates for each task, making it easy to visualize the project's timeline and identify any potential delays or bottlenecks.  Key features of the template include:  - Clearly defined sections for each phase of the business plan - Pre-defined tasks and subtasks for each phase - Timeline with start and end dates for each task - Ability to track progress and completion status for each task  By using the Business Plan Layout template, users can benefit in the following ways:  1. Organization: The template provides a clear and structured layout, making it easy for users to organize their thoughts and ideas for each phase of the business plan.  2. Efficiency: With pre-defined tasks and subtasks, users can save time by not having to start from scratch when creating their business plan. They can simply fill in the necessary details for each task.  3. Visualization: The timeline feature allows users to visualize the project's timeline and identify any potential delays or bottlenecks. This helps in better project management and resource allocation.  4. Collaboration: The template can be easily shared with team members, allowing for collaborative editing and real-time updates. This promotes better communication and coordination among team members.  In conclusion, the Business Plan Layout template is a comprehensive tool for organizing and tracking the different phases and tasks of a new business project. With its structured layout, timeline feature, and collaborative capabilities, it provides users with an efficient and effective way to create and manage their business plan.\"",
+  "excerpt": "A business plan layout template for organizing and tracking the different phases and tasks of a new business project.",
+  "link": "https://docs.google.com/spreadsheets/d/1wcloGA1uexTTCGQrmiOfCAh7kQhCxOE4/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/iCXQFbguRWN7KVBzelVJuhx9QLc.png",
+  "imageAlt": "Screenshot of the Business Plan Layout template",
+  "order": 24,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Business plan layout",
+    "description": "The Business Plan Layout template is designed to help users organize and track the different phases and tasks involved in a new business project. It provides a structured layout with pre-defined sections for each phase, allowing users to easily outline their strategic plan, define the business, evaluate potential risks, and define the market. The template also includes a timeline with start and end dates for each task, making it easy to visualize the project's timeline and identify any potential delays or bottlenecks.\n\nKey features of the template include:\n\n- Clearly defined sections for each phase of the business plan\n- Pre-defined tasks and subtasks for each phase\n- Timeline with start and end dates for each task\n- Ability to track progress and completion status for each task\n\nBy using the Business Plan Layout template, users can benefit in the following ways:\n\n1. Organization: The template provides a clear and structured layout, making it easy for users to organize their thoughts and ideas for each phase of the business plan.\n\n2. Efficiency: With pre-defined tasks and subtasks, users can save time by not having to start from scratch when creating their business plan. They can simply fill in the necessary details for each task.\n\n3. Visualization: The timeline feature allows users to visualize the project's timeline and identify any potential delays or bottlenecks. This helps in better project management and resource allocation.\n\n4. Collaboration: The template can be easily shared with team members, allowing for collaborative editing and real-time updates. This promotes better communication and coordination among team members.\n\nIn conclusion, the Business Plan Layout template is a comprehensive tool for organizing and tracking the different phases and tasks of a new business project. With its structured layout, timeline feature, and collaborative capabilities, it provides users with an efficient and effective way to create and manage their business plan.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A business plan layout template for organizing and tracking the different phases and tasks of a new business project."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Business Plan Layout template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1wcloGA1uexTTCGQrmiOfCAh7kQhCxOE4/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "strategic plan, phases, timeline, tasks, template, market, progress, layout, risks, business plan",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

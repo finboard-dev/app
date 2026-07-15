@@ -1,0 +1,72 @@
+{
+  "slug": "construction-p-l",
+  "title": "Construction P&L",
+  "category": "Profit and loss",
+  "shortDescription": "Comprehensive monthly and yearly financial tracker for construction companies with trend analysis and YTD figures.",
+  "about": "Construction P&L Template with Trend Lines: This Construction Profit and Loss (P&L) Template is designed to provide a comprehensive overview of a construction company's financial performance on a monthly and yearly basis. The template features a detailed breakdown of revenues, costs, and expenses, allowing users to track and analyze profitability trends over time. The template begins with an input section where the company name and relevant fiscal year can be entered. Following this, the \"Summary\" and \"Trends\" sections display key financial metrics such as Gross Profit, providing a quick snapshot of the company's financial health. The main body of the template is organized into monthly columns, enabling a clear view of financial data for each month, including revenue, cost of goods sold, operating expenses, and net profit. Trend lines are incorporated into the template to visually represent financial performance across the year, highlighting peaks, troughs, and overall trends. The year-to-date (YTD) figures are also included, offering a cumulative view of the company’s financial standing. This template is ideal for construction companies seeking to maintain accurate financial records, monitor trends, and make informed decisions based on monthly and yearly financial performance.",
+  "excerpt": "Track monthly and yearly finances effectively with Construction P&L Excel template. Includes trend analysis and YTD figures for construction companies.",
+  "link": "https://docs.google.com/spreadsheets/d/1-M_0ahR-EE46_3VT68STas63vcvT38JW/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/DPDGyZHuDC6AGLlDo2iGNEg3tqc.png",
+  "imageAlt": "Excel spreadsheet displaying 'Construction P&L' template with financial data columns and formulas",
+  "order": 82,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Construction P&L",
+    "description": "Construction P&L Template with Trend Lines:\nThis Construction Profit and Loss (P&L) Template is designed to provide a comprehensive overview of a construction company's financial performance on a monthly and yearly basis. The template features a detailed breakdown of revenues, costs, and expenses, allowing users to track and analyze profitability trends over time.\nThe template begins with an input section where the company name and relevant fiscal year can be entered. Following this, the \"Summary\" and \"Trends\" sections display key financial metrics such as Gross Profit, providing a quick snapshot of the company's financial health. The main body of the template is organized into monthly columns, enabling a clear view of financial data for each month, including revenue, cost of goods sold, operating expenses, and net profit.\nTrend lines are incorporated into the template to visually represent financial performance across the year, highlighting peaks, troughs, and overall trends. The year-to-date (YTD) figures are also included, offering a cumulative view of the company’s financial standing.\nThis template is ideal for construction companies seeking to maintain accurate financial records, monitor trends, and make informed decisions based on monthly and yearly financial performance.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Comprehensive monthly and yearly financial tracker for construction companies with trend analysis and YTD figures."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel spreadsheet displaying 'Construction P&L' template with financial data columns and formulas for profit and l"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1-M_0ahR-EE46_3VT68STas63vcvT38JW/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Template, Construction, Operating Expenses, Profit and Loss, YTD Figures, P&L, Revenues, Financial Tracker, Financial Performance., Trend Analysis",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

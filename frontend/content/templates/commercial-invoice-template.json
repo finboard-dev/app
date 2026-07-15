@@ -1,0 +1,72 @@
+{
+  "slug": "commercial-invoice-template",
+  "title": "Commercial Invoice Template",
+  "category": "Invoice",
+  "shortDescription": "The Commercial Invoice Template is a tool for creating invoices for international shipments.",
+  "about": "The Commercial Invoice Template is a comprehensive tool that allows businesses to create professional invoices for commercial transactions. It is specifically designed to streamline the invoicing process and ensure accuracy and compliance. With a user-friendly interface and customizable features, this template offers numerous benefits for businesses of all sizes.Key features of the Commercial Invoice Template:- Forwarding agent and invoice details: The template includes fields to input the forwarding agent's name and the invoice number, ensuring easy tracking and reference.- Tracking number and order details: It provides a section to enter the tracking number and the order ID, making it convenient to link the invoice to specific shipments or orders.- Sold by and bill to information: The template allows users to input the details of the selling entity and the billing address, ensuring accurate and clear communication.- Product details: It includes sections to enter product information such as HS code, units, unit price, and total, making it easy to itemize and calculate the invoice.- Insurance, shipping charges, and taxes: The template provides fields to specify insurance coverage, shipping charges, and taxes, ensuring transparency and compliance with financial regulations.Benefits of using the Commercial Invoice Template:1. Time-saving: The template eliminates the need to create invoices from scratch, saving valuable time for businesses.2. Professional appearance: It ensures that invoices have a polished and professional look, enhancing the company's image.3. Accuracy and consistency: The template's structured format reduces the chances of errors and ensures consistent information across invoices.4. Compliance with regulations: It includes all necessary fields and information required for commercial invoices, ensuring compliance with international trade regulations.5. Customizability: The template can be easily customized to match the branding and specific requirements of the business.In conclusion, the Commercial Invoice Template is a powerful tool that simplifies the invoicing process for commercial transactions. Its features and benefits make it an essential resource for businesses that want to streamline their financial operations and maintain professionalism in their transactions.",
+  "excerpt": "Create professional commercial invoices for international shipments with the Commercial Invoice Template. Easily customizable and compatible with Excel.",
+  "link": "https://docs.google.com/spreadsheets/d/1V24nK9Yr0yFXglljyZruxrUCnwzyP09D/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/FLVjl8y2ak2bpBoiUgLYyjX57E.png",
+  "imageAlt": "Screenshot of the Commercial Invoice Template",
+  "order": 44,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Commercial Invoice Template",
+    "description": "The Commercial Invoice Template is a comprehensive tool that allows businesses to create professional invoices for commercial transactions. It is specifically designed to streamline the invoicing process and ensure accuracy and compliance. With a user-friendly interface and customizable features, this template offers numerous benefits for businesses of all sizes.\n\nKey features of the Commercial Invoice Template:\n\n- Forwarding agent and invoice details: The template includes fields to input the forwarding agent's name and the invoice number, ensuring easy tracking and reference.\n- Tracking number and order details: It provides a section to enter the tracking number and the order ID, making it convenient to link the invoice to specific shipments or orders.\n- Sold by and bill to information: The template allows users to input the details of the selling entity and the billing address, ensuring accurate and clear communication.\n- Product details: It includes sections to enter product information such as HS code, units, unit price, and total, making it easy to itemize and calculate the invoice.\n- Insurance, shipping charges, and taxes: The template provides fields to specify insurance coverage, shipping charges, and taxes, ensuring transparency and compliance with financial regulations.\n\nBenefits of using the Commercial Invoice Template:\n\n1. Time-saving: The template eliminates the need to create invoices from scratch, saving valuable time for businesses.\n2. Professional appearance: It ensures that invoices have a polished and professional look, enhancing the company's image.\n3. Accuracy and consistency: The template's structured format reduces the chances of errors and ensures consistent information across invoices.\n4. Compliance with regulations: It includes all necessary fields and information required for commercial invoices, ensuring compliance with international trade regulations.\n5. Customizability: The template can be easily customized to match the branding and specific requirements of the business.\n\nIn conclusion, the Commercial Invoice Template is a powerful tool that simplifies the invoicing process for commercial transactions. Its features and benefits make it an essential resource for businesses that want to streamline their financial operations and maintain professionalism in their transactions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Commercial Invoice Template is a tool for creating invoices for international shipments."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Commercial Invoice Template",
+      "caption": "Screenshot of the Commercial Invoice Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/1V24nK9Yr0yFXglljyZruxrUCnwzyP09D/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "professional invoices, accuracy and consistency, professionalism., compliance with regulations, commercial invoice template, product details, tracking number, time-saving, forwarding agent, professional appearance, compliance, insurance, shipping charges, taxes, invoicing process, order details, accuracy, customizability, international shipments, financial operations",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

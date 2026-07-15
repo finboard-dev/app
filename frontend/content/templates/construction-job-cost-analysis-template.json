@@ -1,0 +1,72 @@
+{
+  "slug": "construction-job-cost-analysis-template",
+  "title": "Construction Job Cost analysis template",
+  "category": "Financial Planning",
+  "shortDescription": "The Construction Job Cost analysis template is designed to calculate the cost and benefit of a construction project over a period of time.",
+  "about": "The Construction Job Cost analysis template is a comprehensive tool for tracking and analyzing the costs and benefits of a construction project over multiple years. It allows project managers to monitor and evaluate the financial aspects of the project, helping them make informed decisions and ensure the project's profitability. The template features various sections and calculations to provide a detailed breakdown of costs and benefits, including capital costs, operating costs, financing costs, and cash inflows. Key features of the template include:- Detailed cost breakdown: The template includes separate sections for capital costs, operating costs, and financing costs, allowing users to track and analyze each expense category individually.- Yearly breakdown: The template provides a yearly breakdown of costs and benefits, allowing project managers to analyze the financial performance of the project over time.- Net Cash inflow calculation: The template automatically calculates the net cash inflow by subtracting the total cash outflow from the total cash inflow, providing a clear indicator of the project's financial viability.- Net Present Value calculation: The template includes a calculation for the net present value at a specified interest rate, helping project managers assess the project's profitability.Using the Construction Job Cost analysis template offers several benefits:- Financial visibility: The template provides a comprehensive overview of the project's financial aspects, allowing project managers to identify areas of cost savings and potential revenue streams.- Decision-making support: By analyzing the costs and benefits, project managers can make informed decisions regarding resource allocation, budget adjustments, and project scope.- Profitability assessment: The template's calculations, such as net cash inflow and net present value, enable project managers to assess the project's profitability and make adjustments if necessary.- Cost control: By tracking costs in detail, the template helps project managers identify cost overruns and take necessary measures to control expenses.In conclusion, the Construction Job Cost analysis template is a powerful tool for project managers in the construction industry. It provides a comprehensive breakdown of costs and benefits, enabling financial analysis and informed decision-making throughout the project's lifecycle.",
+  "excerpt": "The Construction Job Cost analysis template is a comprehensive tool for analyzing the cost and benefit of construction projects over time.",
+  "link": "https://docs.google.com/spreadsheets/d/111aoxMaXKYxccjoa3NXdB5zi4dSkqIPm/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/WX3eXHUEdVE8x4I2PWgM6Yb33k.png",
+  "imageAlt": "Screenshot of the Construction Job Cost analysis template",
+  "order": 50,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Construction Job Cost analysis template",
+    "description": "The Construction Job Cost analysis template is a comprehensive tool for tracking and analyzing the costs and benefits of a construction project over multiple years. It allows project managers to monitor and evaluate the financial aspects of the project, helping them make informed decisions and ensure the project's profitability. The template features various sections and calculations to provide a detailed breakdown of costs and benefits, including capital costs, operating costs, financing costs, and cash inflows. Key features of the template include:- Detailed cost breakdown: The template includes separate sections for capital costs, operating costs, and financing costs, allowing users to track and analyze each expense category individually.- Yearly breakdown: The template provides a yearly breakdown of costs and benefits, allowing project managers to analyze the financial performance of the project over time.- Net Cash inflow calculation: The template automatically calculates the net cash inflow by subtracting the total cash outflow from the total cash inflow, providing a clear indicator of the project's financial viability.- Net Present Value calculation: The template includes a calculation for the net present value at a specified interest rate, helping project managers assess the project's profitability.Using the Construction Job Cost analysis template offers several benefits:- Financial visibility: The template provides a comprehensive overview of the project's financial aspects, allowing project managers to identify areas of cost savings and potential revenue streams.- Decision-making support: By analyzing the costs and benefits, project managers can make informed decisions regarding resource allocation, budget adjustments, and project scope.- Profitability assessment: The template's calculations, such as net cash inflow and net present value, enable project managers to assess the project's profitability and make adjustments if necessary.- Cost control: By tracking costs in detail, the template helps project managers identify cost overruns and take necessary measures to control expenses.In conclusion, the Construction Job Cost analysis template is a powerful tool for project managers in the construction industry. It provides a comprehensive breakdown of costs and benefits, enabling financial analysis and informed decision-making throughout the project's lifecycle.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Construction Job Cost analysis template is designed to calculate the cost and benefit of a construction project over a period of time."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Construction",
+      "caption": "Screenshot of the Construction Job Cost analysis template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/111aoxMaXKYxccjoa3NXdB5zi4dSkqIPm/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "profitability, cash inflows, net present value, operating costs, financial aspects, capital costs, project managers, cost analysis, construction project, financing costs",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

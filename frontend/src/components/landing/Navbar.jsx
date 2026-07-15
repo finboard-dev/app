@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles, Newspaper, LayoutGrid } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,6 +28,8 @@ const resourceLinks = [
   { href: "/#use-cases", label: "Use cases", desc: "Explore the product studio", icon: Compass, accent: "#0891B2" },
   { href: "/testimonials", label: "Testimonials", route: true, desc: "What finance leaders say", icon: MessageSquareQuote, accent: "#059669" },
   { href: "/manifesto", label: "Manifesto", route: true, desc: "Why FinBoard exists", icon: Sparkles, accent: "#D97706" },
+  { href: "/blog", label: "Blog", route: true, desc: "Guides, playbooks & benchmarks", icon: Newspaper, accent: "#7C3AED" },
+  { href: "/templates", label: "Templates", route: true, desc: "Free QuickBooks-ready spreadsheets", icon: LayoutGrid, accent: "#E11D48" },
 ];
 
 // Full-screen-width mega-menu panel wrapper (edge-to-edge, content aligned to page gutters).

@@ -1,0 +1,72 @@
+{
+  "slug": "indirect-cash-flow-template",
+  "title": "INDIRECT CASH FLOW TEMPLATE",
+  "category": "Cash Flow Forecasting/Projections",
+  "shortDescription": "Comprehensive cash flow analyzer using the indirect method with visual breakdown of operating, investing, and financing activities.",
+  "about": "This Indirect Cash Flow template is a widely used financial tool by businesses to track their cash flow activities. It begins with Net Income, which is the starting point for determining the cash generated or used by the company's core operations. Unlike the direct method, the indirect method adjusts net income for changes in non-cash items and working capital to calculate the cash flow from operating activities. In the first section, the template makes adjustments for non-cash expenses like Depreciation, Provision for Doubtful Accounts, and Unrealized Gains/Losses, followed by changes in working capital such as Accounts Receivable and Accounts Payable. These adjustments give a clearer picture of the actual cash generated from operations. The chart on the right visually illustrates the key cash flow components. The green bar represents Net Cash Flow from Operating Activities, showing the business's cash generation from its operations. The red bar signifies a negative cash flow from investing activities, driven by capital expenditures and purchases. The green bar for Financing Activities shows positive cash inflows from activities like issuing debt. The final subtotal, in orange, displays the net cash increase, summarizing how cash flows from these three activities combine to reflect the company's overall cash movement. This template helps businesses monitor liquidity and financial health by analyzing how different activities contribute to cash flow.",
+  "excerpt": "Indirect Cash Flow Template: Analyze cash flow using indirect method with visual breakdown of operating, investing, and financing activities in Excel.",
+  "link": "https://docs.google.com/spreadsheets/d/1xFtxoOJWNgRewxC7nUWoa1DzVRfMFwI_/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/FdSUjZKHK0eIP6UFVXAH255Fp4.png",
+  "imageAlt": "Excel accounting template titled 'INDIRECT CASH FLOW TEMPLATE' with detailed financial data and formulas for analysis",
+  "order": 75,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "INDIRECT CASH FLOW TEMPLATE",
+    "description": "INDIRECT CASH FLOW TEMPLATE\nThis Indirect Cash Flow template is a widely used financial tool by businesses to track their cash flow activities. It begins with Net Income, which is the starting point for determining the cash generated or used by the company's core operations. Unlike the direct method, the indirect method adjusts net income for changes in non-cash items and working capital to calculate the cash flow from operating activities.\nIn the first section, the template makes adjustments for non-cash expenses like Depreciation, Provision for Doubtful Accounts, and Unrealized Gains/Losses, followed by changes in working capital such as Accounts Receivable and Accounts Payable. These adjustments give a clearer picture of the actual cash generated from operations.\nThe chart on the right visually illustrates the key cash flow components. The green bar represents Net Cash Flow from Operating Activities, showing the business's cash generation from its operations. The red bar signifies a negative cash flow from investing activities, driven by capital expenditures and purchases. The green bar for Financing Activities shows positive cash inflows from activities like issuing debt. The final subtotal, in orange, displays the net cash increase, summarizing how cash flows from these three activities combine to reflect the company's overall cash movement.\nThis template helps businesses monitor liquidity and financial health by analyzing how different activities contribute to cash flow.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Comprehensive cash flow analyzer using the indirect method with visual breakdown of operating, investing, and financing activities."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel accounting template titled 'INDIRECT CASH FLOW TEMPLATE' with detailed financial data and formulas for analy"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Cash Flow Forecasting/Projections",
+    "url": "https://docs.google.com/spreadsheets/d/1xFtxoOJWNgRewxC7nUWoa1DzVRfMFwI_/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Accounts receivable, Depreciation, Net income, Non-cash items, Accounts payable, Working capital, Financing activities, Indirect method, Financial health, Cash flow analyzer",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

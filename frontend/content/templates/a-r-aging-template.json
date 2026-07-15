@@ -1,0 +1,72 @@
+{
+  "slug": "a-r-aging-template",
+  "title": "Account receivable Aging Template",
+  "category": "Ageing",
+  "shortDescription": "Accounts Receivable analyzer with aging brackets and customer-wise invoice listing for effective receivables management.",
+  "about": "This template is an essential tool for businesses to track their Accounts Receivable (A/R) as of a specific date. It presents the aging of outstanding receivables, showing how long invoices have remained unpaid, which is crucial for effective cash flow management. The template provides a summary of the A/R balances in various aging categories, including \"Not overdue,\" \"0-30 days,\" \"31-60 days,\" \"91-120 days,\" and \"More than 120 days.\" The total A/R amount is clearly highlighted, helping businesses monitor overdue payments. The chart on the right offers a graphical representation of this aging data, allowing for a quick and visual understanding of where the balances fall across different aging brackets. It provides a summary view of how much of the receivables are overdue and how long they’ve been outstanding. Below the chart is a detailed customer-wise and invoice-wise listing, categorizing the outstanding amounts for each customer in the appropriate aging category. This breakdown helps businesses prioritize follow-ups based on the aging status of invoices.",
+  "excerpt": "Track and manage Accounts Receivable efficiently with A/R AGING TEMPLATE. Analyze aging brackets and customer invoice details for effective receivables management",
+  "link": "https://docs.google.com/spreadsheets/d/1KeS1Xas5X_2Z5yja5X9QQaJ5rsgSj0Sq/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/vpwbPeS8QpfemogCJ4drNAhVko.png",
+  "imageAlt": "Excel accounting template titled 'A/R AGING TEMPLATE' with columns for invoice numbers, due dates, and outstanding payments",
+  "order": 64,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "A/R AGING TEMPLATE",
+    "description": "A/R AGING TEMPLATE\nThis template is an essential tool for businesses to track their Accounts Receivable (A/R) as of a specific date. It presents the aging of outstanding receivables, showing how long invoices have remained unpaid, which is crucial for effective cash flow management. The template provides a summary of the A/R balances in various aging categories, including \"Not overdue,\" \"0-30 days,\" \"31-60 days,\" \"91-120 days,\" and \"More than 120 days.\" The total A/R amount is clearly highlighted, helping businesses monitor overdue payments.\nThe chart on the right offers a graphical representation of this aging data, allowing for a quick and visual understanding of where the balances fall across different aging brackets. It provides a summary view of how much of the receivables are overdue and how long they’ve been outstanding.\nBelow the chart is a detailed customer-wise and invoice-wise listing, categorizing the outstanding amounts for each customer in the appropriate aging category. This breakdown helps businesses prioritize follow-ups based on the aging status of invoices.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Accounts Receivable analyzer with aging brackets and customer-wise invoice listing for effective receivables management."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel accounting template titled 'A/R AGING TEMPLATE' with columns for invoice numbers, due dates, and outstanding"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Ageing",
+    "url": "https://docs.google.com/spreadsheets/d/1KeS1Xas5X_2Z5yja5X9QQaJ5rsgSj0Sq/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "receivables management, aging template, customer-wise listing, graphical representation, overdue payments, aging categories, A/R balances, invoice-wise listing, Accounts Receivable, cash flow management",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

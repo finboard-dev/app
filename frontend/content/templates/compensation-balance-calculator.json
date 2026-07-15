@@ -1,0 +1,72 @@
+{
+  "slug": "compensation-balance-calculator",
+  "title": "Compensation balance Calculator",
+  "category": "Calculator",
+  "shortDescription": "The Compensation Balance Calculator is an Excel template designed to calculate the required compensating balance for a loan and analyze the effective annual rate.",
+  "about": "The Compensation Balance Calculator is an Excel template that provides a comprehensive analysis of the required compensating balance for a loan and calculates the effective annual rate. This template is useful for financial professionals and individuals who want to understand the impact of compensating balance requirements on their loans.  Key features of the Compensation Balance Calculator template include:  - Input fields for the total line of credit, commitment fee on the unused portion of the credit line, loan principal, nominal interest rate, and compensating balance requirement - Automatic calculation of the funds available to meet the compensating requirement, required compensating balance, annual interest, commitment fee, and total usable funds - Calculation of the effective annual cost of the compensating balance  By using the Compensation Balance Calculator template, users can benefit in several ways:  - Gain a clear understanding of the required compensating balance for a loan - Analyze the impact of the compensating balance requirement on the effective annual rate - Make informed decisions regarding loan terms and conditions - Save time and effort by automating the calculation process  In conclusion, the Compensation Balance Calculator is a powerful tool for analyzing compensating balance requirements and understanding the true cost of a loan. With its user-friendly interface and comprehensive calculations, this template is essential for financial professionals and individuals managing loans.",
+  "excerpt": "Calculate the required compensating balance for a loan and analyze the effective annual rate with the Compensation Balance Calculator Excel template.",
+  "link": "https://docs.google.com/spreadsheets/d/1Q-5k3EC2NJRSrqEsTQPIOv1pJi1wDM87/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/YsuJ1RdfXOgVsJm9CDaehoY1pFQ.png",
+  "imageAlt": "Screenshot of the Compensation Balance Calculator Excel template",
+  "order": 22,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Compensation balance Calculator",
+    "description": "The Compensation Balance Calculator is an Excel template that provides a comprehensive analysis of the required compensating balance for a loan and calculates the effective annual rate. This template is useful for financial professionals and individuals who want to understand the impact of compensating balance requirements on their loans.\n\nKey features of the Compensation Balance Calculator template include:\n\n- Input fields for the total line of credit, commitment fee on the unused portion of the credit line, loan principal, nominal interest rate, and compensating balance requirement\n- Automatic calculation of the funds available to meet the compensating requirement, required compensating balance, annual interest, commitment fee, and total usable funds\n- Calculation of the effective annual cost of the compensating balance\n\nBy using the Compensation Balance Calculator template, users can benefit in several ways:\n\n- Gain a clear understanding of the required compensating balance for a loan\n- Analyze the impact of the compensating balance requirement on the effective annual rate\n- Make informed decisions regarding loan terms and conditions\n- Save time and effort by automating the calculation process\n\nIn conclusion, the Compensation Balance Calculator is a powerful tool for analyzing compensating balance requirements and understanding the true cost of a loan. With its user-friendly interface and comprehensive calculations, this template is essential for financial professionals and individuals managing loans.\n",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Compensation Balance Calculator is an Excel template designed to calculate the required compensating balance for a loan and analyze the effective annual rate."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Compensation Balance Calculator Excel template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1Q-5k3EC2NJRSrqEsTQPIOv1pJi1wDM87/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "nominal interest rate, line of credit, compensating balance requirement, commitment fee, calculator, effective annual rate, loan, financial professionals, compensation balance, excel template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

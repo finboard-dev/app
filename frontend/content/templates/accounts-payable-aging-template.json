@@ -1,0 +1,72 @@
+{
+  "slug": "accounts-payable-aging-template",
+  "title": "Accounts Payable AGING TEMPLATE",
+  "category": "Ageing",
+  "shortDescription": "Accounts Payable tracker with aging categories and supplier-specific invoice breakdown for better cash flow management.",
+  "about": "This Accounts Payable (A/P) Aging Template provides a summary of outstanding invoices over two periods. The table categorizes the outstanding balances into aging brackets: Not overdue, 0-30 days, 31-60 days, 61-90 days, 91-120 days, and over 120 days. The chart on the right compares the amounts for both periods, visually displaying the increase or decrease in each aging category. The detailed invoice breakdown at the bottom shows individual invoice amounts, due dates, and aging status for each supplier, helping businesses track specific obligations. This template helps monitor overdue payments, manage cash flow effectively, and identify potential supplier relationships that need attention. It also provides insights into the company’s payment performance over time, enabling better financial decision-making and improving supplier management.",
+  "excerpt": "Track accounts payable efficiently with A/P AGING TEMPLATE. Organize by aging categories and supplier-specific invoice breakdown for improved cash flow management",
+  "link": "https://docs.google.com/spreadsheets/d/1QzLhPdeaVaJGPoQAGevSAZ0H1Q9A-CJk/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/B3WsyhKjoGbHfOSZRrjL71NosFQ.png",
+  "imageAlt": "Image of an Excel accounting template titled 'A/P AGING TEMPLATE' with rows and columns for tracking accounts payable balance sheet",
+  "order": 65,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "A/P AGING TEMPLATE",
+    "description": "A/P AGING TEMPLATE\nThis Accounts Payable (A/P) Aging Template provides a summary of outstanding invoices over two periods. The table categorizes the outstanding balances into aging brackets: Not overdue, 0-30 days, 31-60 days, 61-90 days, 91-120 days, and over 120 days. The chart on the right compares the amounts for both periods, visually displaying the increase or decrease in each aging category.\nThe detailed invoice breakdown at the bottom shows individual invoice amounts, due dates, and aging status for each supplier, helping businesses track specific obligations.\nThis template helps monitor overdue payments, manage cash flow effectively, and identify potential supplier relationships that need attention. It also provides insights into the company’s payment performance over time, enabling better financial decision-making and improving supplier management.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Accounts Payable tracker with aging categories and supplier-specific invoice breakdown for better cash flow management."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "\"Image of an Excel accounting template titled 'A/P AGING TEMPLATE' with rows and columns for tracking accounts payable balanc"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Ageing",
+    "url": "https://docs.google.com/spreadsheets/d/1QzLhPdeaVaJGPoQAGevSAZ0H1Q9A-CJk/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Invoices, Supplier-specific, Aging Template, Aging Categories, Invoice Breakdown, Cash Flow Management, Due Dates, Financial Decision-making, Overdue Payments, Accounts Payable",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "consulting-invoice-template",
+  "title": "Consulting-Invoice Template",
+  "category": "Invoice",
+  "shortDescription": "The Consulting-Invoice Template is designed to create professional invoices for consulting services.",
+  "about": "The Consulting-Invoice Template is a comprehensive Excel template that enables consultants to create professional and detailed invoices. With a user-friendly interface and customizable features, this template streamlines the invoicing process, saving time and ensuring accuracy.Key features of the template include:- Easy customization: Users can easily personalize the template by adding their company name, address, and contact information.- Automatic calculations: The template includes formulas that automatically calculate the total amount based on the hours worked and hourly rates.- Detailed breakdown: The template provides a clear breakdown of the services provided, hours worked, hourly rates, and corresponding amounts.- Tax calculation: The template automatically calculates taxes based on the specified tax rate.- Additional charges: Users can add any additional services or charges, such as travel expenses or printing services, and the template will calculate the subtotal and tax for these charges.- Professional appearance: The template is designed with a clean and professional layout, ensuring that the resulting invoice looks polished and presentable.By using the Consulting-Invoice Template, consultants can enjoy several benefits:- Time-saving: The template eliminates the need to create invoices from scratch, saving consultants valuable time.- Accuracy: The automatic calculations and detailed breakdown ensure accurate and error-free invoicing.- Professionalism: The professional appearance of the template helps consultants present a polished image to clients.- Customizability: Consultants can easily personalize the template to match their branding and requirements.In conclusion, the Consulting-Invoice Template is a valuable tool for consultants, offering a user-friendly and customizable solution for creating professional invoices. By using this template, consultants can streamline their invoicing process, save time, and present a polished and accurate image to clients.",
+  "excerpt": "Create professional invoices for consulting services with the Consulting-Invoice Template. Easily itemize services, calculate totals, and include additional charges.",
+  "link": "https://docs.google.com/spreadsheets/d/1W26IzbakEIC3k-8sOWXC_Ks1K2fbw9DI/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ULERj1GkzHdyN6Ed8Uam9kgaLvw.png",
+  "imageAlt": "Screenshot of the Consulting-Invoice Template",
+  "order": 46,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Consulting-Invoice Template",
+    "description": "The Consulting-Invoice Template is a comprehensive Excel template that enables consultants to create professional and detailed invoices. With a user-friendly interface and customizable features, this template streamlines the invoicing process, saving time and ensuring accuracy.\n\nKey features of the template include:\n\n- Easy customization: Users can easily personalize the template by adding their company name, address, and contact information.\n- Automatic calculations: The template includes formulas that automatically calculate the total amount based on the hours worked and hourly rates.\n- Detailed breakdown: The template provides a clear breakdown of the services provided, hours worked, hourly rates, and corresponding amounts.\n- Tax calculation: The template automatically calculates taxes based on the specified tax rate.\n- Additional charges: Users can add any additional services or charges, such as travel expenses or printing services, and the template will calculate the subtotal and tax for these charges.\n- Professional appearance: The template is designed with a clean and professional layout, ensuring that the resulting invoice looks polished and presentable.\n\nBy using the Consulting-Invoice Template, consultants can enjoy several benefits:\n\n- Time-saving: The template eliminates the need to create invoices from scratch, saving consultants valuable time.\n- Accuracy: The automatic calculations and detailed breakdown ensure accurate and error-free invoicing.\n- Professionalism: The professional appearance of the template helps consultants present a polished image to clients.\n- Customizability: Consultants can easily personalize the template to match their branding and requirements.\n\nIn conclusion, the Consulting-Invoice Template is a valuable tool for consultants, offering a user-friendly and customizable solution for creating professional invoices. By using this template, consultants can streamline their invoicing process, save time, and present a polished and accurate image to clients.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Consulting-Invoice Template is designed to create professional invoices for consulting services."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Consulting-Invoice Template",
+      "caption": "Screenshot of the Consulting-Invoice Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/1W26IzbakEIC3k-8sOWXC_Ks1K2fbw9DI/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "professional invoices, invoice template, consulting, consultants, time-saving, hourly rates, automatic calculations, professional appearance, detailed breakdown, customizable, branding, invoicing process, user-friendly, accuracy, excel template, professionalism, customizability, tax calculation, services, additional charges",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

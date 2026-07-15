@@ -1,0 +1,72 @@
+{
+  "slug": "cashflow-template-period-end-1-year-3-year",
+  "title": "Cashflow template (Period end, 1 year, 3 year)",
+  "category": "Cashflow",
+  "shortDescription": "A cash flow statement template for tracking and analyzing cash flows over a specified period.",
+  "about": "The Cashflow template (Period end, 1 year, 3 year) is a comprehensive tool for businesses to track and analyze their cash flows over a specified period. This template allows users to input their financial data and automatically calculates the net cash from operating, investing, and financing activities, as well as the net increase or decrease in cash and cash equivalents. With its user-friendly interface and customizable features, this template is designed to provide businesses with a clear and accurate picture of their cash flow position.  Key features of the template include:  - Easy data input: Users only need to complete the non-shaded fields, making it simple and efficient to input their financial data. - Automatic calculations: The template automatically calculates the net cash from operating, investing, and financing activities, as well as the net increase or decrease in cash and cash equivalents. - Multiple periods: The template includes sections for 1-year and 3-year cash flow statements, allowing businesses to analyze and compare their cash flows over different timeframes.  By using the Cashflow template, businesses can benefit in the following ways:  - Improved financial management: The template provides a clear and organized overview of cash flows, helping businesses make informed financial decisions and effectively manage their resources. - Better forecasting: By analyzing cash flows over different periods, businesses can identify trends and patterns, enabling them to make more accurate financial forecasts. - Enhanced communication: The template can be easily shared with stakeholders, such as investors and lenders, to provide a transparent and comprehensive view of the company's cash flow position.  In conclusion, the Cashflow template (Period end, 1 year, 3 year) is a valuable tool for businesses to track, analyze, and communicate their cash flows. With its user-friendly interface, automatic calculations, and multiple period options, this template provides businesses with the necessary insights to make informed financial decisions and achieve their financial goals.",
+  "excerpt": "Track and analyze cash flows over a specified period with the Cashflow template (Period end, 1 year, 3 year). Input financial data and automatically calculate net cash from operating, investing, and…",
+  "link": "https://docs.google.com/spreadsheets/d/1x8HkrMDFpOcJbu4iqhxUzU2MaXdOUovz/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/AqKtcNW0G29VRSuG3S1Mrq3Fj4.png",
+  "imageAlt": "Screenshot image of the Cashflow template (Period end, 1 year, 3 year)",
+  "order": 7,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Cashflow template (Period end, 1 year, 3 year)",
+    "description": "The Cashflow template (Period end, 1 year, 3 year) is a comprehensive tool for businesses to track and analyze their cash flows over a specified period. This template allows users to input their financial data and automatically calculates the net cash from operating, investing, and financing activities, as well as the net increase or decrease in cash and cash equivalents. With its user-friendly interface and customizable features, this template is designed to provide businesses with a clear and accurate picture of their cash flow position.\n\nKey features of the template include:\n\n- Easy data input: Users only need to complete the non-shaded fields, making it simple and efficient to input their financial data.\n- Automatic calculations: The template automatically calculates the net cash from operating, investing, and financing activities, as well as the net increase or decrease in cash and cash equivalents.\n- Multiple periods: The template includes sections for 1-year and 3-year cash flow statements, allowing businesses to analyze and compare their cash flows over different timeframes.\n\nBy using the Cashflow template, businesses can benefit in the following ways:\n\n- Improved financial management: The template provides a clear and organized overview of cash flows, helping businesses make informed financial decisions and effectively manage their resources.\n- Better forecasting: By analyzing cash flows over different periods, businesses can identify trends and patterns, enabling them to make more accurate financial forecasts.\n- Enhanced communication: The template can be easily shared with stakeholders, such as investors and lenders, to provide a transparent and comprehensive view of the company's cash flow position.\n\nIn conclusion, the Cashflow template (Period end, 1 year, 3 year) is a valuable tool for businesses to track, analyze, and communicate their cash flows. With its user-friendly interface, automatic calculations, and multiple period options, this template provides businesses with the necessary insights to make informed financial decisions and achieve their financial goals.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A cash flow statement template for tracking and analyzing cash flows over a specified period."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot image of the Cashflow template (Period end, 1 year, 3 year)"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Cashflow",
+    "url": "https://docs.google.com/spreadsheets/d/1x8HkrMDFpOcJbu4iqhxUzU2MaXdOUovz/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "forecasting, financing activities, cash equivalents, financial data, investing activities, cash flows, net cash, operating activities, cash flow statement, financial management",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

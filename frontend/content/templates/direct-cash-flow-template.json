@@ -1,0 +1,72 @@
+{
+  "slug": "direct-cash-flow-template",
+  "title": "DIRECT CASH FLOW TEMPLATE",
+  "category": "Cash Flow Forecasting/Projections",
+  "shortDescription": "Detailed cash movement tracker using the direct method with waterfall chart for visualizing net cash flow.",
+  "about": "This Direct Cash Flow Template is a financial tool commonly used by businesses to report their cash movements over a specific period, focusing on actual cash inflows and outflows. Unlike the indirect method, which adjusts net income, the direct method captures cash transactions as they occur in the company's operations, investments, and financing activities. The Operating Activities section includes cash receipts from customers and payments made to suppliers, employees, and for expenses like interest and taxes. It gives a direct view of the cash generated or used in the core business. The Investing Activities track cash flows related to the acquisition or disposal of long-term assets, like equipment or securities, while the Financing Activities involve raising or repaying capital, such as issuing debt or repurchasing stock. This template helps businesses effectively monitor liquidity by showing how cash is generated and used across different parts of the business. It aids in cash flow management, allowing stakeholders to make better decisions about operations, investments, and financing. The waterfall chart on the right illustrates the net cash movements. The green bar reflects positive cash flow from operations, while the red bar shows cash outflows from investing activities. The final gray bar summarizes the net increase or decrease in cash, offering a clear visualization of cash movement.",
+  "excerpt": "Track cash movements with the Direct Cash Flow Template. Detailed tracker using direct method & waterfall chart for visualizing net cash flow.",
+  "link": "https://docs.google.com/spreadsheets/d/1lenxT9oQbTBhB0rNMo8mN6fYPbncY5wH/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/vzrbSbB004ta3lOzzesEEOOslTg.png",
+  "imageAlt": "Excel accounting template titled 'DIRECT CASH FLOW TEMPLATE' with columns and formulas for tracking financial transactions",
+  "order": 72,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "DIRECT CASH FLOW TEMPLATE",
+    "description": "DIRECT CASH FLOW TEMPLATE\nThis Direct Cash Flow Template is a financial tool commonly used by businesses to report their cash movements over a specific period, focusing on actual cash inflows and outflows. Unlike the indirect method, which adjusts net income, the direct method captures cash transactions as they occur in the company's operations, investments, and financing activities.\nThe Operating Activities section includes cash receipts from customers and payments made to suppliers, employees, and for expenses like interest and taxes. It gives a direct view of the cash generated or used in the core business. The Investing Activities track cash flows related to the acquisition or disposal of long-term assets, like equipment or securities, while the Financing Activities involve raising or repaying capital, such as issuing debt or repurchasing stock.\nThis template helps businesses effectively monitor liquidity by showing how cash is generated and used across different parts of the business. It aids in cash flow management, allowing stakeholders to make better decisions about operations, investments, and financing.\nThe waterfall chart on the right illustrates the net cash movements. The green bar reflects positive cash flow from operations, while the red bar shows cash outflows from investing activities. The final gray bar summarizes the net increase or decrease in cash, offering a clear visualization of cash movement.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Detailed cash movement tracker using the direct method with waterfall chart for visualizing net cash flow."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel accounting template titled 'DIRECT CASH FLOW TEMPLATE' with columns and formulas for tracking financial tran"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Cash Flow Forecasting/Projections",
+    "url": "https://docs.google.com/spreadsheets/d/1lenxT9oQbTBhB0rNMo8mN6fYPbncY5wH/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "direct method, financing activities, operating activities, cash flow, waterfall chart, liquidity, cash flow management, net cash flow, investing activities, template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

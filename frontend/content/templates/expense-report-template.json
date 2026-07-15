@@ -1,0 +1,72 @@
+{
+  "slug": "expense-report-template",
+  "title": "Expense report template",
+  "category": "Financial Planning",
+  "shortDescription": "The Expense Report Template is a tool for employees to track and submit their expenses for reimbursement.",
+  "about": "The Expense Report Template is a comprehensive tool designed to help employees track and submit their expenses for reimbursement. With its user-friendly interface and pre-built formulas, this template simplifies the process of recording and calculating expenses, ensuring accuracy and efficiency. Key features of the template include:  - Easy-to-use layout: The template is structured with clear headings and organized columns, making it simple for employees to enter their expense details. - Automated calculations: Built-in formulas automatically calculate subtotals and totals, eliminating the need for manual calculations. - Expense categorization: The template includes predefined expense categories such as air and transportation, lodging, fuel/mileage, phone, meals and tips, entertainment, and other, allowing employees to accurately categorize their expenses. - Receipt attachment reminder: A prominent reminder prompts employees to attach receipts, ensuring compliance with reimbursement policies.  By using the Expense Report Template, employees can enjoy several benefits:  - Time-saving: The template streamlines the expense reporting process, saving employees valuable time and effort. - Accuracy: The automated calculations minimize the risk of errors, ensuring accurate reimbursement calculations. - Compliance: The predefined expense categories and receipt attachment reminder help employees comply with company policies and reimbursement guidelines. - Professional presentation: The template provides a neat and organized format for submitting expense reports, enhancing professionalism.  In conclusion, the Expense Report Template is a valuable tool for employees to manage and submit their expenses. Its user-friendly interface, automated calculations, and adherence to reimbursement policies make it an essential resource for efficient expense reporting.",
+  "excerpt": "Streamline expense reporting with the Expense Report Template. Track and submit expenses easily, ensure accuracy and compliance, and save time and effort.",
+  "link": "https://docs.google.com/spreadsheets/d/1SqakBf2YWgvxPAw8RboeZWx-yrk0dNU8/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/eh5RncnzwhY0ue4OMQ1x5iiNeCE.png",
+  "imageAlt": "Screenshot of Expense Report Template",
+  "order": 10,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Expense report template",
+    "description": "The Expense Report Template is a comprehensive tool designed to help employees track and submit their expenses for reimbursement. With its user-friendly interface and pre-built formulas, this template simplifies the process of recording and calculating expenses, ensuring accuracy and efficiency. Key features of the template include:\n\n- Easy-to-use layout: The template is structured with clear headings and organized columns, making it simple for employees to enter their expense details.\n- Automated calculations: Built-in formulas automatically calculate subtotals and totals, eliminating the need for manual calculations.\n- Expense categorization: The template includes predefined expense categories such as air and transportation, lodging, fuel/mileage, phone, meals and tips, entertainment, and other, allowing employees to accurately categorize their expenses.\n- Receipt attachment reminder: A prominent reminder prompts employees to attach receipts, ensuring compliance with reimbursement policies.\n\nBy using the Expense Report Template, employees can enjoy several benefits:\n\n- Time-saving: The template streamlines the expense reporting process, saving employees valuable time and effort.\n- Accuracy: The automated calculations minimize the risk of errors, ensuring accurate reimbursement calculations.\n- Compliance: The predefined expense categories and receipt attachment reminder help employees comply with company policies and reimbursement guidelines.\n- Professional presentation: The template provides a neat and organized format for submitting expense reports, enhancing professionalism.\n\nIn conclusion, the Expense Report Template is a valuable tool for employees to manage and submit their expenses. Its user-friendly interface, automated calculations, and adherence to reimbursement policies make it an essential resource for efficient expense reporting.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Expense Report Template is a tool for employees to track and submit their expenses for reimbursement."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of Expense Report Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1SqakBf2YWgvxPAw8RboeZWx-yrk0dNU8/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "automated calculations, pre-built formulas, receipt attachment, professional presentation, expenses, expense report template, compliance, expense categorization, reimbursement, user-friendly interface",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

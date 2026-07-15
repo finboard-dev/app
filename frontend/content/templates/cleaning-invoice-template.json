@@ -1,0 +1,72 @@
+{
+  "slug": "cleaning-invoice-template",
+  "title": "Cleaning-Invoice-Template",
+  "category": "Invoice",
+  "shortDescription": "The Cleaning-Invoice-Template is a comprehensive tool for generating professional invoices for cleaning services.",
+  "about": "The Cleaning-Invoice-Template is a comprehensive tool designed to assist cleaning service providers in creating professional invoices. With its user-friendly interface and pre-designed format, the template simplifies the invoicing process and ensures accuracy and efficiency. Key features of the template include customizable fields for invoice number, date of issue, cleaning period, client information, and service details. It also includes a section for terms and conditions and payment instructions. By using this template, cleaning service providers can benefit from streamlined invoicing, improved organization, and enhanced professionalism. The template allows for easy customization to adapt to specific business needs and branding. With its clear and structured layout, it ensures that all essential information is included in the invoice, minimizing the risk of errors or omissions. By providing a professional and well-designed invoice, cleaning service providers can enhance their reputation and build trust with clients. The template also facilitates prompt payment by clearly stating the payment terms and providing detailed payment instructions. Overall, the Cleaning-Invoice-Template is a valuable tool for cleaning service providers, offering convenience, accuracy, and professionalism in the invoicing process.",
+  "excerpt": "Generate professional invoices for cleaning services with the Cleaning-Invoice-Template. Streamline your invoicing process and improve efficiency.",
+  "link": "https://docs.google.com/spreadsheets/d/1mKt7wmp71ZEoDVGzlzMF0wtxu3tA65Ju/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/yZ3nolCmjClX2Vue6PSguwr38.png",
+  "imageAlt": "Screenshot of the Cleaning-Invoice-Template",
+  "order": 54,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Cleaning-Invoice-Template",
+    "description": "The Cleaning-Invoice-Template is a comprehensive tool designed to assist cleaning service providers in creating professional invoices. With its user-friendly interface and pre-designed format, the template simplifies the invoicing process and ensures accuracy and efficiency. Key features of the template include customizable fields for invoice number, date of issue, cleaning period, client information, and service details. It also includes a section for terms and conditions and payment instructions. By using this template, cleaning service providers can benefit from streamlined invoicing, improved organization, and enhanced professionalism. The template allows for easy customization to adapt to specific business needs and branding. With its clear and structured layout, it ensures that all essential information is included in the invoice, minimizing the risk of errors or omissions. By providing a professional and well-designed invoice, cleaning service providers can enhance their reputation and build trust with clients. The template also facilitates prompt payment by clearly stating the payment terms and providing detailed payment instructions. Overall, the Cleaning-Invoice-Template is a valuable tool for cleaning service providers, offering convenience, accuracy, and professionalism in the invoicing process.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Cleaning-Invoice-Template is a comprehensive tool for generating professional invoices for cleaning services."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Cleaning-Invoice-Template",
+      "caption": "Screenshot of the Cleaning-Invoice-Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/1mKt7wmp71ZEoDVGzlzMF0wtxu3tA65Ju/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "professional invoices, terms and conditions, cleaning service providers, streamlined invoicing, payment terms, cleaning invoice template, branding, payment instructions, customizable fields, invoicing process",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

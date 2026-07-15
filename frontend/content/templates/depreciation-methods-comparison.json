@@ -1,0 +1,72 @@
+{
+  "slug": "depreciation-methods-comparison",
+  "title": "Depreciation methods comparison",
+  "category": "Financial Planning",
+  "shortDescription": "The Depreciation Methods Comparison template allows users to compare different depreciation methods for calculating the depreciation of an asset.",
+  "about": "The Depreciation Methods Comparison template is a useful tool for businesses and individuals who need to compare different methods of calculating depreciation for an asset. This template provides a clear and organized overview of the depreciation calculations using three popular methods: straight line, sum-of-years' digits, and declining balance.Key features of the template include:- Automatic calculations: The template includes pre-built formulas that automatically calculate the depreciation amounts for each year using the selected method.- Customizable inputs: Users can easily input the cost of the property, recovery period, declining balance type, declining balance rate, number of months in the first year of service, and salvage value.- Comparison table: The template displays a comparison table that shows the depreciation amounts and accumulated depreciation for each year using each method.Using the Depreciation Methods Comparison template offers several benefits:- Easy comparison: By using this template, users can quickly compare the depreciation amounts and accumulated depreciation for each year using different methods, allowing them to make informed decisions about which method is most suitable for their needs.- Time-saving: The automatic calculations in the template save users time and effort, eliminating the need for manual calculations.- Accurate results: The template ensures accurate depreciation calculations by using pre-built formulas and eliminating human error.In conclusion, the Depreciation Methods Comparison template is a valuable tool for anyone who needs to compare different depreciation methods. It provides a clear and organized overview of depreciation calculations, saving time and ensuring accurate results.",
+  "excerpt": "Compare different depreciation methods for calculating the depreciation of an asset using the Depreciation Methods Comparison template.",
+  "link": "https://docs.google.com/spreadsheets/d/1gFOdlEO4BsVX781m-gR_IeeXYtscMqbK/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/cx5KO26L9MWkczk2m67WVlUc8.png",
+  "imageAlt": "Screenshot of the Depreciation Methods Comparison template",
+  "order": 27,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Depreciation methods comparison",
+    "description": "The Depreciation Methods Comparison template is a useful tool for businesses and individuals who need to compare different methods of calculating depreciation for an asset. This template provides a clear and organized overview of the depreciation calculations using three popular methods: straight line, sum-of-years' digits, and declining balance.\n\nKey features of the template include:\n\n- Automatic calculations: The template includes pre-built formulas that automatically calculate the depreciation amounts for each year using the selected method.\n- Customizable inputs: Users can easily input the cost of the property, recovery period, declining balance type, declining balance rate, number of months in the first year of service, and salvage value.\n- Comparison table: The template displays a comparison table that shows the depreciation amounts and accumulated depreciation for each year using each method.\n\nUsing the Depreciation Methods Comparison template offers several benefits:\n\n- Easy comparison: By using this template, users can quickly compare the depreciation amounts and accumulated depreciation for each year using different methods, allowing them to make informed decisions about which method is most suitable for their needs.\n- Time-saving: The automatic calculations in the template save users time and effort, eliminating the need for manual calculations.\n- Accurate results: The template ensures accurate depreciation calculations by using pre-built formulas and eliminating human error.\n\nIn conclusion, the Depreciation Methods Comparison template is a valuable tool for anyone who needs to compare different depreciation methods. It provides a clear and organized overview of depreciation calculations, saving time and ensuring accurate results.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Depreciation Methods Comparison template allows users to compare different depreciation methods for calculating the depreciation of an asset."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Depreciation Methods Comparison template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1gFOdlEO4BsVX781m-gR_IeeXYtscMqbK/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "asset, declining balance, comparison table, depreciation, comparison, methods, automatic calculations, customizable inputs, straight line, sum-of-years' digits",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

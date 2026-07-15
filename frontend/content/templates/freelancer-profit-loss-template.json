@@ -1,0 +1,72 @@
+{
+  "slug": "freelancer-profit-loss-template",
+  "title": "Freelancer Profit & Loss Template",
+  "category": "Profit and loss",
+  "shortDescription": "Essential profit analysis tool for freelancers with interactive charts for income and expense breakdown.",
+  "about": "This Freelancer Profit & Loss (P&L) template is an essential tool designed specifically for freelancers and independent contractors to analyze their net profit efficiently. Whether you are managing your business independently or working on various projects, this template provides a clear view of your financial performance by tracking your income and expenses. The template includes an interactive pie chart that visually represents your total revenue and expenses, making it easy to see how much of your income is consumed by costs. The chart provides a quick glance at the proportion of income and expenses, helping you understand the financial balance in your freelance business. Additionally, the template features a bar chart that breaks down total income and expenses, offering detailed insights into your earnings from different clients and categories of expenditures. This visual representation allows you to identify which clients contribute the most to your revenue and which expense categories have the most significant impact on your net profit. Using this P&L template, freelancers and independent contractors can make informed decisions about their business, identify areas for cost-cutting, and optimize revenue streams to maximize profitability. It’s a straightforward, effective way to keep your freelance business on track financially.",
+  "excerpt": "Track your freelance income and expenses with the Freelancer P&L Template. Interactive charts for detailed profit analysis. Ideal for freelancers.",
+  "link": "https://docs.google.com/spreadsheets/d/1mOHG1a3Kda-4MLX6k10a1H5jGcyyS6v6/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/T4q2m87uJXXXvsRORfqvW7lJI.png",
+  "imageAlt": "Image of a Freelancer Profit and Loss Template in Excel, displaying financial data and categories for tracking inc",
+  "order": 78,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Freelancer P&L Template",
+    "description": "Freelancer Profit & Loss Template: A Tool for Analyzing Net Profit\nThis Freelancer Profit & Loss (P&L) template is an essential tool designed specifically for freelancers and independent contractors to analyze their net profit efficiently. Whether you are managing your business independently or working on various projects, this template provides a clear view of your financial performance by tracking your income and expenses.\nThe template includes an interactive pie chart that visually represents your total revenue and expenses, making it easy to see how much of your income is consumed by costs. The chart provides a quick glance at the proportion of income and expenses, helping you understand the financial balance in your freelance business.\nAdditionally, the template features a bar chart that breaks down total income and expenses, offering detailed insights into your earnings from different clients and categories of expenditures. This visual representation allows you to identify which clients contribute the most to your revenue and which expense categories have the most significant impact on your net profit.\nUsing this P&L template, freelancers and independent contractors can make informed decisions about their business, identify areas for cost-cutting, and optimize revenue streams to maximize profitability. It’s a straightforward, effective way to keep your freelance business on track financially.\n",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Essential profit analysis tool for freelancers with interactive charts for income and expense breakdown."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Image of a Freelancer Profit and Loss Template in Excel, displaying financial data and categories for tracking inc"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1mOHG1a3Kda-4MLX6k10a1H5jGcyyS6v6/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "expenses, financial performance, income, revenue, profit analysis, freelancer, profitability, P&L template, net profit, expense breakdown",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

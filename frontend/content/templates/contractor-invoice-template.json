@@ -1,0 +1,72 @@
+{
+  "slug": "contractor-invoice-template",
+  "title": "Contractor-Invoice-Template",
+  "category": "Invoice",
+  "shortDescription": "The Contractor-Invoice-Template is designed to create professional invoices for contractors, including itemized lists of materials, labor, and total costs.",
+  "about": "The Contractor-Invoice-Template is a comprehensive tool designed to assist contractors in creating detailed and professional invoices. With its user-friendly interface and customizable features, this template streamlines the invoicing process, saving contractors time and ensuring accuracy. Key features of the Contractor-Invoice-Template include:- Materials and labor tracking: The template allows contractors to input the quantity, price, and total cost of materials, as well as track labor hours and rates.- Tax calculation: The template automatically calculates tax based on a specified rate, eliminating the need for manual calculations.- Payment terms and options: Contractors can specify payment due dates and include information about payment options, such as check payments or PayPal.- Project notes: The template provides space to include relevant project notes, such as warranty information or additional payment details.By using the Contractor-Invoice-Template, contractors can benefit in several ways:- Professional appearance: The template creates polished and well-organized invoices, enhancing the contractor's professional image.- Time-saving: With pre-built formulas and automated calculations, contractors can quickly generate accurate invoices, reducing administrative tasks.- Financial accuracy: The template ensures accurate tracking of materials, labor costs, and taxes, minimizing the risk of errors and discrepancies.- Improved communication: Contractors can provide detailed project notes, ensuring that clients have all the necessary information related to payment and project specifics.In conclusion, the Contractor-Invoice-Template is a valuable tool for contractors, offering a convenient and efficient way to create professional invoices. By utilizing its features, contractors can streamline their invoicing process, improve accuracy, and enhance client communication.",
+  "excerpt": "Create professional invoices for contractors with the Contractor-Invoice-Template. Easily list materials, labor, and total costs. Save time and improve accuracy.",
+  "link": "https://docs.google.com/spreadsheets/d/1SbaPsGBi6Y1e9hUZhvNjhbkNs7nHWjeP/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/HfmnuG5Nm1aDpr1HzcfVf1Iur7k.png",
+  "imageAlt": "Screenshot of the Contractor-Invoice-Template",
+  "order": 40,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Contractor-Invoice-Template",
+    "description": "The Contractor-Invoice-Template is a comprehensive tool designed to assist contractors in creating detailed and professional invoices. With its user-friendly interface and customizable features, this template streamlines the invoicing process, saving contractors time and ensuring accuracy. Key features of the Contractor-Invoice-Template include:- Materials and labor tracking: The template allows contractors to input the quantity, price, and total cost of materials, as well as track labor hours and rates.- Tax calculation: The template automatically calculates tax based on a specified rate, eliminating the need for manual calculations.- Payment terms and options: Contractors can specify payment due dates and include information about payment options, such as check payments or PayPal.- Project notes: The template provides space to include relevant project notes, such as warranty information or additional payment details.By using the Contractor-Invoice-Template, contractors can benefit in several ways:- Professional appearance: The template creates polished and well-organized invoices, enhancing the contractor's professional image.- Time-saving: With pre-built formulas and automated calculations, contractors can quickly generate accurate invoices, reducing administrative tasks.- Financial accuracy: The template ensures accurate tracking of materials, labor costs, and taxes, minimizing the risk of errors and discrepancies.- Improved communication: Contractors can provide detailed project notes, ensuring that clients have all the necessary information related to payment and project specifics.In conclusion, the Contractor-Invoice-Template is a valuable tool for contractors, offering a convenient and efficient way to create professional invoices. By utilizing its features, contractors can streamline their invoicing process, improve accuracy, and enhance client communication.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Contractor-Invoice-Template is designed to create professional invoices for contractors, including itemized lists of materials, labor, and total costs."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Contractor-Invoice-Template",
+      "caption": "Screenshot of the Contractor-Invoice-Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/1SbaPsGBi6Y1e9hUZhvNjhbkNs7nHWjeP/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "total costs, project notes, payment terms, template, materials, invoice, contractor, tax calculation, labor, financial accuracy",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

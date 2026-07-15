@@ -1,0 +1,72 @@
+{
+  "slug": "convertible-bonds-calculator",
+  "title": "Convertible Bonds Calculator",
+  "category": "Calculator",
+  "shortDescription": "The Convertible Bonds Calculator is an Excel template that helps users calculate the valuation of convertible bonds and warrants.",
+  "about": "The Convertible Bonds Calculator is a comprehensive Excel template designed to assist users in calculating the valuation of convertible bonds and warrants. It provides a range of features and benefits to streamline the valuation process and make it more efficient.  Key features of the Convertible Bonds Calculator include:  - Input fields for the par value of the bond, call or sale value of the bond, annual coupon rate, coupon periods per year, years to maturity, required rate of return, conversion price, market value of the firm's common stock, and current market price of the convertible bond. - Calculation of the stock/bond conversion ratio, conversion value, straight bond value, minimum market value of the convertible bond, and premium over the minimum market value. - Input fields for the exercise price per share, common stock market price, number of shares one warrant buys, and market value of one warrant. - Calculation of the formula value of the warrant and premium over market value.  By using the Convertible Bonds Calculator, users can benefit from:  - Time savings: The template automates complex calculations, eliminating the need for manual calculations and reducing the time required for valuation. - Accuracy: The template ensures accurate calculations by following established formulas and providing a structured framework for inputting data. - Efficiency: Users can quickly input the required data and obtain the valuation results, allowing for efficient decision-making.  In conclusion, the Convertible Bonds Calculator is a valuable tool for individuals and professionals involved in the valuation of convertible bonds and warrants. It simplifies the process, saves time, and enhances accuracy and efficiency.",
+  "excerpt": "Calculate the valuation of convertible bonds and warrants with the Convertible Bonds Calculator Excel template. Streamline your valuation process and make accurate decisions.",
+  "link": "https://docs.google.com/spreadsheets/d/1p23nsPiJbCXsxhL6v1kBDm0Co0CVgjaY/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/Q1egX77cXYLXiYGlbiM7gapfkic.png",
+  "imageAlt": "Screenshot of the Convertible Bonds Calculator template in Excel",
+  "order": 5,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Convertible Bonds Calculator",
+    "description": "The Convertible Bonds Calculator is a comprehensive Excel template designed to assist users in calculating the valuation of convertible bonds and warrants. It provides a range of features and benefits to streamline the valuation process and make it more efficient.\n\nKey features of the Convertible Bonds Calculator include:\n\n- Input fields for the par value of the bond, call or sale value of the bond, annual coupon rate, coupon periods per year, years to maturity, required rate of return, conversion price, market value of the firm's common stock, and current market price of the convertible bond.\n- Calculation of the stock/bond conversion ratio, conversion value, straight bond value, minimum market value of the convertible bond, and premium over the minimum market value.\n- Input fields for the exercise price per share, common stock market price, number of shares one warrant buys, and market value of one warrant.\n- Calculation of the formula value of the warrant and premium over market value.\n\nBy using the Convertible Bonds Calculator, users can benefit from:\n\n- Time savings: The template automates complex calculations, eliminating the need for manual calculations and reducing the time required for valuation.\n- Accuracy: The template ensures accurate calculations by following established formulas and providing a structured framework for inputting data.\n- Efficiency: Users can quickly input the required data and obtain the valuation results, allowing for efficient decision-making.\n\nIn conclusion, the Convertible Bonds Calculator is a valuable tool for individuals and professionals involved in the valuation of convertible bonds and warrants. It simplifies the process, saves time, and enhances accuracy and efficiency.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Convertible Bonds Calculator is an Excel template that helps users calculate the valuation of convertible bonds and warrants."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Convertible Bonds Calculator template in Excel"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1p23nsPiJbCXsxhL6v1kBDm0Co0CVgjaY/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "conversion price, calculator, par value, stock/bond conversion ratio, valuation, warrants, coupon rate, convertible bonds, market value, excel template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

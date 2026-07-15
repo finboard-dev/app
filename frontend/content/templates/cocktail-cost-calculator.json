@@ -1,0 +1,72 @@
+{
+  "slug": "cocktail-cost-calculator",
+  "title": "Cocktail Cost calculator",
+  "category": "Calculator",
+  "shortDescription": "The Cocktail Cost calculator is an Excel template that helps calculate the cost and profit margin of cocktails.",
+  "about": "The Cocktail Cost calculator is a comprehensive Excel template designed for bars and restaurants to calculate the cost and profit margin of cocktails. It includes features such as country-specific settings, volume conversion table, and a beverage price list. Users can enter the name of the cocktail, retail price, and portion costs of the ingredients to calculate the total cost and gross profit. The template also provides a list of regular and mixing beverages with their respective sizes, unit of measure, and costs per milliliter, centiliter, liter, ounce, and pint. This template is a valuable tool for businesses in the hospitality industry to accurately track costs and maximize profitability.",
+  "excerpt": "The Cocktail Cost calculator is an Excel template that helps bars and restaurants calculate the cost and profit margin of cocktails. Track costs and maximize profitability with this comprehensive…",
+  "link": "https://docs.google.com/spreadsheets/d/1YXhfcZL67um9RvGyxSpqxFxkR94x2A64/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/gIJojH0qf6PEqRAOnPQRA3uRvbw.png",
+  "imageAlt": "Screenshot of the Cocktail Cost calculator Excel template",
+  "order": 42,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Cocktail Cost calculator",
+    "description": "The Cocktail Cost calculator is a comprehensive Excel template designed for bars and restaurants to calculate the cost and profit margin of cocktails. It includes features such as country-specific settings, volume conversion table, and a beverage price list. Users can enter the name of the cocktail, retail price, and portion costs of the ingredients to calculate the total cost and gross profit. The template also provides a list of regular and mixing beverages with their respective sizes, unit of measure, and costs per milliliter, centiliter, liter, ounce, and pint. This template is a valuable tool for businesses in the hospitality industry to accurately track costs and maximize profitability.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Cocktail Cost calculator is an Excel template that helps calculate the cost and profit margin of cocktails."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Cocktail Cost calculator",
+      "caption": "Screenshot of the Cocktail Cost calculator Excel template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1YXhfcZL67um9RvGyxSpqxFxkR94x2A64/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "profitability, excel template, cocktail cost calculator, profit margin, ingredients, cost, hospitality industry, bars, restaurants, gross profit",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

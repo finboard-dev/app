@@ -1,0 +1,99 @@
+{
+  "slug": "arr-mrr-template",
+  "title": "ARR & MRR Template",
+  "category": "ARR & MRR template for SaaS",
+  "shortDescription": "This template helps you to calculate and arrive at Monthly recurring revenue and annual recurring revenue. Tailor made for everyone who are using QuickBooks Online and struggling to create a ARR & MRR numbers.",
+  "about": "This Monthly and Annual Recurring Revenue (MRR & ARR) Calculator Template is a powerful tool designed to help you quickly and accurately calculate your business’s recurring revenue metrics. It’s tailor-made for QuickBooks Online users who want to gain clear financial insights but struggle to extract or build proper MRR and ARR figures directly within QuickBooks.  With this easy-to-use template, you can automatically calculate your Monthly Recurring Revenue (MRR) and Annual Recurring Revenue (ARR) based on your subscription or service-based income. Whether you manage a SaaS business, membership platform, or any recurring billing model, this template simplifies complex calculations and helps you visualize your revenue growth over time.  Unlike manual spreadsheets or complicated reports, this template is structured for accuracy and efficiency. It syncs seamlessly with your QuickBooks Online data, saving hours of manual work and reducing the risk of human error. You’ll be able to identify trends, track customer retention, and forecast revenue with confidence.  This ARR and MRR template for QuickBooks Online is ideal for business owners, accountants, and financial analysts who want actionable insights without the technical hassle. Use it to enhance your financial reporting, strengthen investor presentations, and make data-driven decisions that accelerate business growth.  In short, this is your go-to solution for simplifying revenue analysis and achieving clarity in your recurring income metrics—all while integrating effortlessly with QuickBooks Online.",
+  "excerpt": "Use this QuickBooks Online–ready MRR & ARR calculator template to automate recurring revenue calculations, visualize growth trends, track retention, and forecast with confidence.",
+  "link": "https://docs.google.com/spreadsheets/d/1dxAgYHV-sCkm05NX8d4eWrdE1ZtJPHPKjKfo6m5Wjqk/edit?usp=drive_link",
+  "image": "https://framerusercontent.com/images/GpoWQ4FnFPUEddvbXDqOFcYl1r8.png",
+  "imageAlt": "ARR & MRR Template",
+  "order": 0,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://schema.org/Organization/FinBoard.ai",
+        "name": "FinBoard.ai"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://schema.org/Article/mrr-arr-calculator-template-quickbooks-online",
+        "headline": "Monthly and Annual Recurring Revenue (MRR & ARR) Calculator Template",
+        "description": "A template for QuickBooks Online users to automatically calculate Monthly Recurring Revenue (MRR) and Annual Recurring Revenue (ARR) from subscription or service-based income, visualize revenue growth, identify trends, track customer retention, and forecast revenue.",
+        "datePublished": "2025-12-12",
+        "dateModified": "2025-12-12",
+        "inLanguage": "en",
+        "genre": "Educational Guide",
+        "publisher": {
+          "@id": "https://schema.org/Organization/FinBoard.ai"
+        },
+        "keywords": [
+          "MRR",
+          "ARR",
+          "Monthly Recurring Revenue",
+          "Annual Recurring Revenue",
+          "QuickBooks Online",
+          "recurring revenue",
+          "subscription revenue",
+          "SaaS",
+          "membership platform",
+          "revenue forecasting",
+          "financial reporting",
+          "investor presentations"
+        ],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Monthly Recurring Revenue (MRR)"
+          },
+          {
+            "@type": "Thing",
+            "name": "Annual Recurring Revenue (ARR)"
+          },
+          {
+            "@type": "Thing",
+            "name": "QuickBooks Online"
+          },
+          {
+            "@type": "Thing",
+            "name": "Recurring revenue metrics"
+          }
+        ],
+        "mentions": [
+          {
+            "@type": "Thing",
+            "name": "QuickBooks Online"
+          },
+          {
+            "@type": "Thing",
+            "name": "SaaS business"
+          },
+          {
+            "@type": "Thing",
+            "name": "Subscription billing model"
+          },
+          {
+            "@type": "Thing",
+            "name": "Customer retention"
+          }
+        ],
+        "audience": [
+          {
+            "@type": "Audience",
+            "audienceType": "Business owners"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Accountants"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Financial analysts"
+          }
+        ]
+      }
+    ]
+  }
+}

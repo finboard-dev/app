@@ -1,0 +1,72 @@
+{
+  "slug": "hardware-repair-invoice",
+  "title": "Hardware Repair Invoice",
+  "category": "Invoice",
+  "shortDescription": "The Hardware Repair Invoice template is designed to create professional invoices for hardware repair services.",
+  "about": "The Hardware Repair Invoice template is a comprehensive tool for creating invoices for hardware repair services. It includes features such as customizable company details, customer information, computer details, job performed, parts used, subtotal calculation, sales tax calculation, and total amount due. The template also provides space for comments, payment terms, and contact information. By using this template, hardware repair businesses can easily generate accurate and professional invoices, saving time and ensuring proper documentation of services rendered.",
+  "excerpt": "Generate professional hardware repair invoices with the Hardware Repair Invoice template. Easily customize company details, customer information, job performed, and more.",
+  "link": "https://docs.google.com/spreadsheets/d/18ipqPJWhorlPRKlPBrwBshKqqY349U_J/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/Ag2EwSxiQFLEmHumwXjfwSbhs.png",
+  "imageAlt": "Screenshot of the Hardware Repair Invoice template",
+  "order": 47,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Hardware Repair Invoice",
+    "description": "The Hardware Repair Invoice template is a comprehensive tool for creating invoices for hardware repair services. It includes features such as customizable company details, customer information, computer details, job performed, parts used, subtotal calculation, sales tax calculation, and total amount due. The template also provides space for comments, payment terms, and contact information. By using this template, hardware repair businesses can easily generate accurate and professional invoices, saving time and ensuring proper documentation of services rendered.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Hardware Repair Invoice template is designed to create professional invoices for hardware repair services."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Hardware",
+      "caption": "Screenshot of the Hardware Repair Invoice template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/18ipqPJWhorlPRKlPBrwBshKqqY349U_J/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "hardware repair, parts used, template, invoice, customer information, professional, sales tax, job performed, services, company details",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

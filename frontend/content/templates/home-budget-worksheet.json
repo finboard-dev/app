@@ -1,0 +1,72 @@
+{
+  "slug": "home-budget-worksheet",
+  "title": "Home Budget Worksheet",
+  "category": "Budget",
+  "shortDescription": "A template for creating a comprehensive home budget for an entire year.",
+  "about": "The Home Budget Worksheet is a comprehensive template designed to help users create a budget for an entire year. It allows users to edit, create, and delete categories and subcategories, and provides subtotal formulas that automatically sum the correct cells. Users can modify the month headings as needed and enter their beginning balance. By using this template, users can make predictions about their financial standing in the future and effectively plan for major life changes.",
+  "excerpt": "Create a comprehensive home budget for an entire year with the Home Budget Worksheet template. Edit categories, track expenses, and make predictions about your financial standing.",
+  "link": "https://docs.google.com/spreadsheets/d/1hFqYaqJjRWDgGCYBiOjFHCFPySyZv2_0/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/2Beu2s9cXRwEtG3PnCv7suJkNPs.png",
+  "imageAlt": "Screenshot of the Home Budget Worksheet template",
+  "order": 19,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Home Budget Worksheet",
+    "description": "The Home Budget Worksheet is a comprehensive template designed to help users create a budget for an entire year. It allows users to edit, create, and delete categories and subcategories, and provides subtotal formulas that automatically sum the correct cells. Users can modify the month headings as needed and enter their beginning balance. By using this template, users can make predictions about their financial standing in the future and effectively plan for major life changes.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A template for creating a comprehensive home budget for an entire year."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Home Budget Worksheet template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1hFqYaqJjRWDgGCYBiOjFHCFPySyZv2_0/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "worksheet, template, financial standing, categories, budget, subtotal formulas, planning, predictions, accounting, subcategories",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

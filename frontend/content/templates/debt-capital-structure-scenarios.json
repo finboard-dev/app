@@ -1,0 +1,72 @@
+{
+  "slug": "debt-capital-structure-scenarios",
+  "title": "Debt - Capital structure scenarios",
+  "category": "Financial Planning",
+  "shortDescription": "This template helps calculate the weighted average cost of capital (WACC) for different debt scenarios in a company's capital structure.",
+  "about": "The Debt - Capital structure scenarios template is a powerful tool that allows users to analyze and evaluate different capital structure scenarios for a company. It provides a comprehensive overview of the impact of debt on the company's financials, including the weighted average cost of capital (WACC) and various financial ratios. With this template, users can make informed decisions regarding the optimal capital structure for their business.Key features of the template include:- Input fields for debt levels and tax rate- Automatic calculation of interest expense, profit before and after taxes, dividends, and total payments to security holders- Calculation of required return on debt and equity- Calculation of market value and book value of debt, equity, and the firm- Calculation of return on total capital, return on equity, number of shares outstanding, price per share, earnings per share, and price-earnings ratio- Calculation of book value debt ratio and market value debt ratio- Calculation of weighted average cost of capital (WACC) and free cash flowUsing this template offers several benefits:1. Comprehensive analysis: The template provides a comprehensive analysis of the impact of different debt levels on a company's financials, allowing users to understand the trade-offs and implications of different capital structures.2. Decision-making support: By using this template, users can make informed decisions regarding the optimal capital structure for their business, taking into account factors such as the cost of debt, cost of equity, and tax rate.3. Time-saving: The template automates complex calculations, saving users time and effort in manually calculating financial ratios and analyzing the impact of debt on the company's financials.In conclusion, the Debt - Capital structure scenarios template is a valuable tool for analyzing and evaluating different capital structure scenarios. It provides users with a comprehensive overview of the financial implications of different debt levels and supports informed decision-making regarding the optimal capital structure for a company.",
+  "excerpt": "Calculate the weighted average cost of capital (WACC) for different debt scenarios in a company's capital structure using the Debt - Capital structure scenarios template.",
+  "link": "https://docs.google.com/spreadsheets/d/154MUiRE9sVr--Cm0xfXZ-EyoIZd5s8d7/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ULERj1GkzHdyN6Ed8Uam9kgaLvw.png",
+  "imageAlt": "Screenshot of the Debt - Capital structure scenarios template",
+  "order": 38,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Debt - Capital structure scenarios",
+    "description": "The Debt - Capital structure scenarios template is a powerful tool that allows users to analyze and evaluate different capital structure scenarios for a company. It provides a comprehensive overview of the impact of debt on the company's financials, including the weighted average cost of capital (WACC) and various financial ratios. With this template, users can make informed decisions regarding the optimal capital structure for their business.\n\nKey features of the template include:\n\n- Input fields for debt levels and tax rate\n- Automatic calculation of interest expense, profit before and after taxes, dividends, and total payments to security holders\n- Calculation of required return on debt and equity\n- Calculation of market value and book value of debt, equity, and the firm\n- Calculation of return on total capital, return on equity, number of shares outstanding, price per share, earnings per share, and price-earnings ratio\n- Calculation of book value debt ratio and market value debt ratio\n- Calculation of weighted average cost of capital (WACC) and free cash flow\n\nUsing this template offers several benefits:\n\n1. Comprehensive analysis: The template provides a comprehensive analysis of the impact of different debt levels on a company's financials, allowing users to understand the trade-offs and implications of different capital structures.\n2. Decision-making support: By using this template, users can make informed decisions regarding the optimal capital structure for their business, taking into account factors such as the cost of debt, cost of equity, and tax rate.\n3. Time-saving: The template automates complex calculations, saving users time and effort in manually calculating financial ratios and analyzing the impact of debt on the company's financials.\n\nIn conclusion, the Debt - Capital structure scenarios template is a valuable tool for analyzing and evaluating different capital structure scenarios. It provides users with a comprehensive overview of the financial implications of different debt levels and supports informed decision-making regarding the optimal capital structure for a company.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "This template helps calculate the weighted average cost of capital (WACC) for different debt scenarios in a company's capital structure."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Debt - Capital structure scenarios template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/154MUiRE9sVr--Cm0xfXZ-EyoIZd5s8d7/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "wacc, financial ratios, weighted average cost of capital, book value, capital structure, debt, return on equity, interest expense, market value, free cash flow",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

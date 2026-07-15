@@ -1,0 +1,72 @@
+{
+  "slug": "adjustable-rate-mortgage-calculator",
+  "title": "Adjustable Rate Mortgage Calculator",
+  "category": "Calculator",
+  "shortDescription": "The Adjustable Rate Mortgage Calculator template helps users calculate the monthly payments and other financial information for an adjustable rate mortgage.",
+  "about": "The Adjustable Rate Mortgage Calculator template is a tool designed to help users calculate their loan payments and track the amortization schedule for an adjustable rate mortgage. With this template, users can input their loan amount, term, starting interest rate, and first payment date to determine their monthly payments. The template also provides a summary of total payments, total interest, total principal, and the internal rate of return. Additionally, users can access an amortization schedule that includes payment dates, interest rates, payment amounts, extra payments, interest paid, principal paid, and the remaining balance. This template is useful for individuals or professionals in the mortgage industry who need to analyze and manage adjustable rate mortgages effectively.",
+  "excerpt": "Calculate monthly payments and track mortgage payments with the Adjustable Rate Mortgage Calculator template.",
+  "link": "https://docs.google.com/spreadsheets/d/1mGezHUdU2H8p7642j3ntBjXagYLvxRRY/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/SZSxhd7CBfIC2Tr369nCpwBPSKY.png",
+  "imageAlt": "Screenshot of the Adjustable Rate Mortgage Calculator template in Excel",
+  "order": 53,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Adjustable Rate Mortgage Calculator",
+    "description": "The Adjustable Rate Mortgage Calculator template is a tool designed to help users calculate their loan payments and track the amortization schedule for an adjustable rate mortgage. With this template, users can input their loan amount, term, starting interest rate, and first payment date to determine their monthly payments. The template also provides a summary of total payments, total interest, total principal, and the internal rate of return. Additionally, users can access an amortization schedule that includes payment dates, interest rates, payment amounts, extra payments, interest paid, principal paid, and the remaining balance. This template is useful for individuals or professionals in the mortgage industry who need to analyze and manage adjustable rate mortgages effectively.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Adjustable Rate Mortgage Calculator template helps users calculate the monthly payments and other financial information for an adjustable rate mortgage."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Adjustable Rate",
+      "caption": "Screenshot of the Adjustable Rate Mortgage Calculator template in Excel"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1mGezHUdU2H8p7642j3ntBjXagYLvxRRY/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "loan amount, loan payments, internal rate of return, calculator, total payments, financial information, interest rate, amortization schedule, monthly payments, adjustable rate mortgage",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

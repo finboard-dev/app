@@ -1,0 +1,72 @@
+{
+  "slug": "family-budget-planner",
+  "title": "Family Budget Planner",
+  "category": "Financial Planning",
+  "shortDescription": "The Family Budget Planner template helps track income, expenses, and savings to manage finances effectively.",
+  "about": "The Family Budget Planner template is a comprehensive tool designed to help families track and manage their finances effectively. With features such as income and expense tracking, savings planning, and expense categorization, this template provides a clear overview of the family's financial situation. By using this template, families can easily create a budget, set financial goals, and make informed decisions about their spending habits.Key features of the Family Budget Planner template include:- Income and expense tracking: The template allows users to enter their monthly income from various sources and track their expenses across different categories.- Savings planning: Users can set savings goals and track their progress towards achieving them. The template provides a dedicated section for savings expenses, allowing users to allocate funds for emergency funds, retirement, investments, and more.- Expense categorization: The template provides predefined expense categories such as home expenses, daily living expenses, children's expenses, transportation expenses, health expenses, insurance expenses, education expenses, charity/gifts, obligations, and business expenses.Benefits of using the Family Budget Planner template:- Clear overview: The template provides a clear overview of the family's income, expenses, and savings, making it easier to understand the financial situation.- Budget creation: By tracking income and expenses, users can create a budget that aligns with their financial goals and priorities.- Financial goal setting: The template allows users to set savings goals and track their progress, helping them achieve their financial objectives.- Expense management: With predefined expense categories, users can easily categorize their expenses, making it easier to identify areas where they can cut back or optimize spending.In conclusion, the Family Budget Planner template is a valuable tool for families looking to manage their finances effectively. By providing a clear overview, facilitating budget creation, and enabling financial goal setting, this template helps families make informed decisions about their finances and work towards financial stability.",
+  "excerpt": "Track income, expenses, and savings with the Family Budget Planner template. Create a budget, set goals, and manage your finances effectively.",
+  "link": "https://docs.google.com/spreadsheets/d/1QmMjE97b5AiNC9bpw4oh_AX6aItjPp9B/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/BqB9QtyOd5Oks3ZAUsWgV0YRQq0.png",
+  "imageAlt": "Screenshot of the Family Budget Planner template",
+  "order": 33,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Family Budget Planner",
+    "description": "The Family Budget Planner template is a comprehensive tool designed to help families track and manage their finances effectively. With features such as income and expense tracking, savings planning, and expense categorization, this template provides a clear overview of the family's financial situation. By using this template, families can easily create a budget, set financial goals, and make informed decisions about their spending habits.\n\nKey features of the Family Budget Planner template include:\n\n- Income and expense tracking: The template allows users to enter their monthly income from various sources and track their expenses across different categories.\n- Savings planning: Users can set savings goals and track their progress towards achieving them. The template provides a dedicated section for savings expenses, allowing users to allocate funds for emergency funds, retirement, investments, and more.\n- Expense categorization: The template provides predefined expense categories such as home expenses, daily living expenses, children's expenses, transportation expenses, health expenses, insurance expenses, education expenses, charity/gifts, obligations, and business expenses.\n\nBenefits of using the Family Budget Planner template:\n\n- Clear overview: The template provides a clear overview of the family's income, expenses, and savings, making it easier to understand the financial situation.\n- Budget creation: By tracking income and expenses, users can create a budget that aligns with their financial goals and priorities.\n- Financial goal setting: The template allows users to set savings goals and track their progress, helping them achieve their financial objectives.\n- Expense management: With predefined expense categories, users can easily categorize their expenses, making it easier to identify areas where they can cut back or optimize spending.\n\nIn conclusion, the Family Budget Planner template is a valuable tool for families looking to manage their finances effectively. By providing a clear overview, facilitating budget creation, and enabling financial goal setting, this template helps families make informed decisions about their finances and work towards financial stability.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Family Budget Planner template helps track income, expenses, and savings to manage finances effectively."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Family Budget Planner template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1QmMjE97b5AiNC9bpw4oh_AX6aItjPp9B/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "expense tracking, expenses, savings, budget planner, financial management, expense categorization, financial goals, budget creation, income, savings planning",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "hotel-profit-and-loss-template",
+  "title": "Hotel Profit and loss template",
+  "category": "Profit and loss",
+  "shortDescription": "Comprehensive hotel financial tracker with occupancy rate vs. average room revenue analysis.",
+  "about": "This Hotel Property Profit and Loss Template provides a comprehensive visual representation of a hotel's financial performance. The template includes a \"\"Revenue Mix Breakdown\"\" pie chart that visually demonstrates the proportion of different revenue streams, including Room Revenue, Food & Beverage, Other Department Revenue, and Miscellaneous Income. This chart gives a clear view of the hotel's earnings distribution. Adjacent to the revenue mix chart, the \"\"Occupancy Rate % Vs. Average Room Revenue (ARR)\"\" graph compares the monthly trend of ARR with the occupancy rate. This graph helps identify how the ARR fluctuates in relation to the occupancy rate, highlighting critical periods where room rates and occupancy intersect, influencing overall profitability. Below these visualizations, the template includes key metrics for each month, such as the number of rooms in the hotel, rooms sold, occupancy rate, and average room revenue. Further down, detailed month-on-month financial data is displayed, including revenue, cost of goods sold (COGS), operating expenses (OPEX), and total income. This layout provides a clear financial snapshot, aiding hotel managers in understanding performance trends and making informed decisions.",
+  "excerpt": "Track hotel finances with this Excel accounting template. Analyze occupancy rates and average room revenue for a comprehensive profit and loss overview.",
+  "link": "https://docs.google.com/spreadsheets/d/1QyxIJcmEHOnz5BB7D_eSxnlIFSuEvE2x/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/Md0GC45mM2VtwBGVdIBlWYStI.png",
+  "imageAlt": "Hotel Profit and Loss Excel template with detailed financial data and calculations for accounting purposes.",
+  "order": 73,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Hotel Profit and loss template",
+    "description": "Hotel Profit and loss template\nThis Hotel Property Profit and Loss Template provides a comprehensive visual representation of a hotel's financial performance. The template includes a \"Revenue Mix Breakdown\" pie chart that visually demonstrates the proportion of different revenue streams, including Room Revenue, Food & Beverage, Other Department Revenue, and Miscellaneous Income. This chart gives a clear view of the hotel's earnings distribution.\nAdjacent to the revenue mix chart, the \"Occupancy Rate % Vs. Average Room Revenue (ARR)\" graph compares the monthly trend of ARR with the occupancy rate. This graph helps identify how the ARR fluctuates in relation to the occupancy rate, highlighting critical periods where room rates and occupancy intersect, influencing overall profitability.\nBelow these visualizations, the template includes key metrics for each month, such as the number of rooms in the hotel, rooms sold, occupancy rate, and average room revenue. Further down, detailed month-on-month financial data is displayed, including revenue, cost of goods sold (COGS), operating expenses (OPEX), and total income. This layout provides a clear financial snapshot, aiding hotel managers in understanding performance trends and making informed decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Comprehensive hotel financial tracker with occupancy rate vs. average room revenue analysis."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Hotel Profit and Loss Excel template with detailed financial data and calculations for accounting purposes.\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1QyxIJcmEHOnz5BB7D_eSxnlIFSuEvE2x/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "revenue mix breakdown, room revenue, average room revenue, miscellaneous income, financial performance, profit and loss template, hotel, financial tracker, food & beverage, occupancy rate",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "balance-sheet-cy-and-py",
+  "title": "Balance-Sheet CY and PY",
+  "category": "Balance Sheet",
+  "shortDescription": "This Excel template is a balance sheet that provides a snapshot of a company's financial position.",
+  "about": "The Balance Sheet Excel template is a powerful tool for analyzing a company's financial position. It provides a snapshot of a company's assets, liabilities, and owner's equity at a specific point in time. The template includes various categories of assets, such as cash and cash equivalents, short-term marketable securities, accounts receivable, inventory, and property, plant, and equipment. It also includes liabilities, such as notes payable, accounts payable, other current liabilities, current liabilities, mortgages, long-term loans, long-term debt, and bonds. Additionally, it provides information on owner's equity, including capital, retained earnings, and the result of the current year.The template calculates important financial ratios that can help evaluate a company's financial health. These ratios include the Debt Ratio, which measures the proportion of total liabilities to total assets. A lower debt ratio indicates a lower risk for the company. The Current Ratio measures the company's ability to cover its short-term liabilities with its short-term assets. A higher current ratio indicates better liquidity. The Working Capital is the difference between current assets and current liabilities and represents the company's short-term financial health. The Assets-to-Equity Ratio measures the proportion of total assets to owner's equity, reflecting the company's leverage. Finally, the Debt-to-Equity Ratio compares total liabilities to owner's equity, indicating the company's financial leverage.Using this template, financial analysts and managers can gain insights into a company's financial position, identify trends, and make informed decisions. It is a valuable tool for financial planning, budgeting, and forecasting. With its user-friendly interface and comprehensive calculations, the Balance Sheet Excel template is an essential resource for financial analysis.",
+  "excerpt": "Balance-Sheet CY and PY Excel template for analyzing financial position with current year and previous year comparison. Simplify accounting tasks efficiently.",
+  "link": "https://docs.google.com/spreadsheets/d/15K7pnB52oEfsJwVhvuG7f8mZPr2HcDNQ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/tSR9wotmZimKUnKIUUyttURftc.png",
+  "imageAlt": "Excel spreadsheet displaying a balance sheet for current year (CY) and previous year (PY) financial data",
+  "order": 58,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Balance-Sheet CY and PY",
+    "description": "The Balance Sheet Excel template is a powerful tool for analyzing a company's financial position. It provides a snapshot of a company's assets, liabilities, and owner's equity at a specific point in time. The template includes various categories of assets, such as cash and cash equivalents, short-term marketable securities, accounts receivable, inventory, and property, plant, and equipment. It also includes liabilities, such as notes payable, accounts payable, other current liabilities, current liabilities, mortgages, long-term loans, long-term debt, and bonds. Additionally, it provides information on owner's equity, including capital, retained earnings, and the result of the current year.The template calculates important financial ratios that can help evaluate a company's financial health. These ratios include the Debt Ratio, which measures the proportion of total liabilities to total assets. A lower debt ratio indicates a lower risk for the company. The Current Ratio measures the company's ability to cover its short-term liabilities with its short-term assets. A higher current ratio indicates better liquidity. The Working Capital is the difference between current assets and current liabilities and represents the company's short-term financial health. The Assets-to-Equity Ratio measures the proportion of total assets to owner's equity, reflecting the company's leverage. Finally, the Debt-to-Equity Ratio compares total liabilities to owner's equity, indicating the company's financial leverage.Using this template, financial analysts and managers can gain insights into a company's financial position, identify trends, and make informed decisions. It is a valuable tool for financial planning, budgeting, and forecasting. With its user-friendly interface and comprehensive calculations, the Balance Sheet Excel template is an essential resource for financial analysis.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "This Excel template is a balance sheet that provides a snapshot of a company's financial position."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "balance-sheet",
+      "caption": "\"Excel spreadsheet displaying a balance sheet for current year (CY) and previous year (PY) financial data\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Balance Sheet",
+    "url": "https://docs.google.com/spreadsheets/d/15K7pnB52oEfsJwVhvuG7f8mZPr2HcDNQ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "financial position, debt ratio, financial analysis., financial ratios, assets, working capital, current ratio, Balance sheet, liabilities, owner's equity",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

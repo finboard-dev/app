@@ -1,0 +1,72 @@
+{
+  "slug": "balance-sheet-py-cy-template-with-financial-ratio",
+  "title": "Balance Sheet PY CY template with Financial ratio",
+  "category": "Balance Sheet",
+  "shortDescription": "The template is designed to create a balance sheet for a company, including financial ratios.",
+  "about": "The Balance Sheet PY CY template with Financial ratio is a comprehensive Excel tool designed to help users analyze a company's financial position and performance. It provides a detailed breakdown of a company's assets, liabilities, and owner's equity, along with key financial ratios. The template is suitable for both small and large businesses and offers several features and benefits.Key features of the template include:- Detailed breakdown of current assets, fixed assets, and other assets- Calculation of current liabilities, long-term liabilities, and owner's equity- Calculation of key financial ratios such as debt ratio, current ratio, working capital, assets-to-equity ratio, and debt-to-equity ratio- Easy-to-use interface with pre-populated formulas- Customizable date field for analyzing different time periodsBy using this template, users can benefit in the following ways:- Gain a clear understanding of a company's financial position and performance- Identify trends and patterns in a company's financial data- Assess the liquidity, solvency, and efficiency of a company- Make informed financial decisions based on accurate and reliable dataIn conclusion, the Balance Sheet PY CY template with Financial ratio is a powerful tool for financial analysis. It simplifies the process of analyzing a company's balance sheet and provides valuable insights into its financial health. Whether you are a business owner, financial analyst, or investor, this template can help you make informed decisions and drive financial success.",
+  "excerpt": "Generate a balance sheet and analyze financial ratios with the Balance Sheet PY CY template. Easily input your company's financial data and make informed decisions.",
+  "link": "https://docs.google.com/spreadsheets/d/1vwqis8tBLw30q8V0H5BfsPiL17hVT23j/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/S0xm9AxWSVDbr3fK6VbcvPowQEw.png",
+  "imageAlt": "Screenshot of the Balance Sheet PY CY template",
+  "order": 48,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Balance Sheet PY CY template with Financial ratio",
+    "description": "The Balance Sheet PY CY template with Financial ratio is a comprehensive Excel tool designed to help users analyze a company's financial position and performance. It provides a detailed breakdown of a company's assets, liabilities, and owner's equity, along with key financial ratios. The template is suitable for both small and large businesses and offers several features and benefits.\n\nKey features of the template include:\n\n- Detailed breakdown of current assets, fixed assets, and other assets\n- Calculation of current liabilities, long-term liabilities, and owner's equity\n- Calculation of key financial ratios such as debt ratio, current ratio, working capital, assets-to-equity ratio, and debt-to-equity ratio\n- Easy-to-use interface with pre-populated formulas\n- Customizable date field for analyzing different time periods\n\nBy using this template, users can benefit in the following ways:\n\n- Gain a clear understanding of a company's financial position and performance\n- Identify trends and patterns in a company's financial data\n- Assess the liquidity, solvency, and efficiency of a company\n- Make informed financial decisions based on accurate and reliable data\n\nIn conclusion, the Balance Sheet PY CY template with Financial ratio is a powerful tool for financial analysis. It simplifies the process of analyzing a company's balance sheet and provides valuable insights into its financial health. Whether you are a business owner, financial analyst, or investor, this template can help you make informed decisions and drive financial success.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The template is designed to create a balance sheet for a company, including financial ratios."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Balance Sheet PY CY template with Financial ratio",
+      "caption": "Screenshot of the Balance Sheet PY CY template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Balance Sheet",
+    "url": "https://docs.google.com/spreadsheets/d/1vwqis8tBLw30q8V0H5BfsPiL17hVT23j/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "owner's equity, current ratio, balance sheet, debt ratio, solvency, liabilities, assets, working capital, financial ratio, liquidity",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

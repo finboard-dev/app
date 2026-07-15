@@ -1,0 +1,72 @@
+{
+  "slug": "general-cash-flow-forecasting-template",
+  "title": "General Cash flow forecasting Template",
+  "category": "Cash Flow Forecasting/Projections",
+  "shortDescription": "Monthly cash inflow and outflow projector with cumulative balance tracking for improved liquidity management.",
+  "about": "This cash flow projection template provides a clear monthly overview of cash inflows and outflows, helping businesses track their liquidity over time. The table at the bottom outlines the specific cash inflows (green bars) and outflows (orange bars) for each month, starting from January through December. These values reflect the movement of cash into and out of the business, highlighting whether more cash is being earned or spent each month. The accompanying chart visually presents these inflows and outflows, with the bars clearly representing positive (green) or negative (orange) cash flow. The green bars signify cash received or revenue, while the orange bars indicate cash spent or expenses. The red dotted line tracks the closing balance for each month, showing the cumulative effect of these cash movements. As inflows and outflows fluctuate, the closing cash balance (marked with red triangles) adjusts accordingly, indicating how the business's cash position evolves month by month. This template is an essential tool for managing cash flow and ensuring that a business maintains enough liquidity to cover its expenses, allowing for better financial planning and decision-making throughout the year.",
+  "excerpt": "Improve liquidity management with our General Cash Flow Forecasting Template. Track monthly inflow, outflow, and cumulative balance in Excel.",
+  "link": "https://docs.google.com/spreadsheets/d/1nJiY3h8edDDVtP0rL3zkkACq4KetZKHQ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/nI1UOcwRJET9opKcHFJLSU8dY.png",
+  "imageAlt": "Excel accounting template titled 'General Cash flow forecasting Template' with columns for income, expenses",
+  "order": 74,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "General Cash flow forecasting Template",
+    "description": "General Cash flow forecasting Template\nThis cash flow projection template provides a clear monthly overview of cash inflows and outflows, helping businesses track their liquidity over time. The table at the bottom outlines the specific cash inflows (green bars) and outflows (orange bars) for each month, starting from January through December. These values reflect the movement of cash into and out of the business, highlighting whether more cash is being earned or spent each month.\nThe accompanying chart visually presents these inflows and outflows, with the bars clearly representing positive (green) or negative (orange) cash flow. The green bars signify cash received or revenue, while the orange bars indicate cash spent or expenses. The red dotted line tracks the closing balance for each month, showing the cumulative effect of these cash movements. As inflows and outflows fluctuate, the closing cash balance (marked with red triangles) adjusts accordingly, indicating how the business's cash position evolves month by month.\nThis template is an essential tool for managing cash flow and ensuring that a business maintains enough liquidity to cover its expenses, allowing for better financial planning and decision-making throughout the year.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Monthly cash inflow and outflow projector with cumulative balance tracking for improved liquidity management."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel accounting template titled 'General Cash flow forecasting Template' with columns for income, expenses, and f"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Cash Flow Forecasting/Projections",
+    "url": "https://docs.google.com/spreadsheets/d/1nJiY3h8edDDVtP0rL3zkkACq4KetZKHQ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "cash flow forecasting, financial planning, monthly, inflow, outflow, cash outflows, liquidity management, cash inflows, balance tracking, template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

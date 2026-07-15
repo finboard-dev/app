@@ -1,0 +1,123 @@
+{
+  "slug": "bi-weekly-cash-forecast-template",
+  "title": "Bi-Weekly cash forecast template",
+  "category": "Bi-Weekly Cash forecast",
+  "shortDescription": "This template helps you to calculate the Bi-weekly cash funding requirement via investment, / loans. Tailor made for everyone who are using QuickBooks Online and struggling to create a forecase template.",
+  "about": "This template is designed to simplify one of the most common yet challenging tasks faced by finance teams and business owners: calculating the bi-weekly cash funding requirement through investments or loans. For many small and mid-sized businesses running on QuickBooks Online, the biggest hurdle is not recording historical transactions, but looking ahead and planning for upcoming cash shortfalls or funding needs. Payroll often hits every two weeks, major vendor payments follow fixed cycles, and customer collections may not always align with these outflows. Without a structured framework, it is easy to misjudge how much additional funding is required and when.  The template bridges this gap by giving you a clear and repeatable way to project inflows and outflows on a bi-weekly basis. Unlike static spreadsheets that often break with complex formulas, this tool is specifically built with QuickBooks Online users in mind. It connects seamlessly with your accounting data, allowing you to roll forward balances, incorporate open receivables and payables, and then estimate how much cash injection—either via equity investment or short-term loans—you will need to maintain liquidity.  It is tailor-made for entrepreneurs, CFOs, controllers, and accountants who spend countless hours trying to build forecast models from scratch. Whether you are preparing for a board meeting, investor update, or bank covenant test, the template gives you confidence in your numbers. By laying out the funding gap bi-weekly, you avoid surprises, reduce reliance on gut feel, and ensure decision-makers act on accurate and timely insights.  In short, this template transforms QuickBooks Online from a backward-looking system into a forward-looking financial planning tool, giving businesses the clarity they need to sustain growth while managing liquidity responsibly.",
+  "excerpt": "Bi-weekly cash funding requirement template for QuickBooks Online that forecasts inflows/outflows, reveals funding gaps, and plans equity or short-term loan injections.",
+  "link": "https://docs.google.com/spreadsheets/d/1GoluuJtFtnGDwOdPwDxlhsL3SurcGthD/edit?usp=drive_link&ouid=114105760205530647421&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ZJzUW0L01OaxNPrqmPMgr0qHe7E.png",
+  "imageAlt": "Bi-Weekly cash forecast template",
+  "order": 1,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "#organization",
+        "name": "FinBoard.ai"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "#quickbooks-online",
+        "name": "QuickBooks Online",
+        "applicationCategory": "BusinessApplication"
+      },
+      {
+        "@type": "Article",
+        "@id": "#article",
+        "headline": "Bi-Weekly Cash Funding Requirement Template for QuickBooks Online",
+        "description": "A template that helps finance teams and business owners project bi-weekly cash inflows and outflows, identify liquidity gaps, and estimate funding needs via investments or short-term loans using QuickBooks Online data.",
+        "inLanguage": "en",
+        "datePublished": "2025-12-12",
+        "dateModified": "2025-12-12",
+        "genre": "Educational Guide",
+        "publisher": {
+          "@id": "#organization"
+        },
+        "keywords": [
+          "bi-weekly cash funding requirement",
+          "cash flow forecasting",
+          "liquidity planning",
+          "QuickBooks Online",
+          "open receivables",
+          "open payables",
+          "payroll cycle",
+          "vendor payments",
+          "equity investment",
+          "short-term loans",
+          "cash shortfall planning"
+        ],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Cash flow forecasting"
+          },
+          {
+            "@type": "Thing",
+            "name": "Liquidity management"
+          },
+          {
+            "@type": "Thing",
+            "name": "Payroll planning"
+          },
+          {
+            "@type": "Thing",
+            "name": "Vendor payment cycles"
+          },
+          {
+            "@type": "Thing",
+            "name": "Accounts receivable"
+          },
+          {
+            "@type": "Thing",
+            "name": "Accounts payable"
+          },
+          {
+            "@type": "Thing",
+            "name": "Short-term borrowing"
+          },
+          {
+            "@type": "Thing",
+            "name": "Equity investment funding"
+          }
+        ],
+        "mentions": [
+          {
+            "@id": "#quickbooks-online"
+          },
+          {
+            "@type": "Thing",
+            "name": "Board meeting preparation"
+          },
+          {
+            "@type": "Thing",
+            "name": "Investor updates"
+          },
+          {
+            "@type": "Thing",
+            "name": "Bank covenant testing"
+          }
+        ],
+        "audience": [
+          {
+            "@type": "Audience",
+            "audienceType": "Entrepreneurs"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "CFOs"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Controllers"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "Accountants"
+          }
+        ]
+      }
+    ]
+  }
+}

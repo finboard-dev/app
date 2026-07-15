@@ -1,0 +1,72 @@
+{
+  "slug": "annuity-calculator",
+  "title": "Annuity Calculator",
+  "category": "Calculator",
+  "shortDescription": "Annuity investment template",
+  "about": "The Annuity investment template is a tool that helps individuals calculate the future value of an investment made at regular intervals. This template takes into account factors such as the present value, interest rate, term, and contribution each month. By inputting these values, users can determine the value of their investment after a specified number of years and the interest earned over that period. The template also provides a month-by-month breakdown of the investment, showing the balance, interest earned, interest + balance, amount paid to the investor, and new balance for each month. This comprehensive breakdown allows users to track the growth of their investment over time and make informed decisions about their financial future. With the Annuity investment template, individuals can plan for their long-term financial goals and make strategic investment decisions.",
+  "excerpt": "Calculate annuity investments efficiently with this Excel template. Easily track payments and interest for financial planning.",
+  "link": "https://docs.google.com/spreadsheets/d/1COoirBfY8xaJ-ZNW8dyHMd3GAt4ETFRv/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/InMLFRBSFUshGcb9YcJ6sJNdMg.png",
+  "imageAlt": "Annuity Calculator Excel template with columns for calculations and formulas, organized layout for financial plan",
+  "order": 57,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "DigitalDocument",
+    "name": "Annuity Calculator",
+    "description": "The Annuity investment template is a tool that helps individuals calculate the future value of an investment made at regular intervals. This template takes into account factors such as the present value, interest rate, term, and contribution each month. By inputting these values, users can determine the value of their investment after a specified number of years and the interest earned over that period. The template also provides a month-by-month breakdown of the investment, showing the balance, interest earned, interest + balance, amount paid to the investor, and new balance for each month. This comprehensive breakdown allows users to track the growth of their investment over time and make informed decisions about their financial future. With the Annuity investment template, individuals can plan for their long-term financial goals and make strategic investment decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "url": "https://finboard.ai/templates/annuity-calculator",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://framerusercontent.com/images/InMLFRBSFUshGcb9YcJ6sJNdMg.png",
+      "caption": "Annuity Calculator Excel template with columns for calculations and formulas, organized layout for financial planning"
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Annuity investment template for calculating future value of investments"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "keywords": "Calculator, Interest rate, Future value, Regular intervals, Investment, Term, Financial goals, Contribution, Annuity, Present value",
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    },
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ]
+  }
+}

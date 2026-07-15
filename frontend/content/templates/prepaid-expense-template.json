@@ -1,0 +1,72 @@
+{
+  "slug": "prepaid-expense-template",
+  "title": "PREPAID EXPENSE TEMPLATE",
+  "category": "Other",
+  "shortDescription": "FinBoard Template Content FinBoard Template Content 100% 10 C21  Efficient prepaid expense manager with automatic monthly allocation and visual representation of expense durations.      \t Efficient prepaid expense manager with automatic monthly allocation and visual representation of expense durations. Turn on screen reader support   To enable screen reader support, press Ctrl+Alt+Z To learn about keyboard shortcuts, press Ctrl+slashUjjwal Singh has joined the document.",
+  "about": "This is a Prepaid Schedule Template designed for businesses to manage and calculate their prepaid expenses efficiently throughout the fiscal year. The template requires the user to input details such as the expense category, start date, and end date of the prepaid expense. Based on these inputs, the schedule automatically computes the monthly expense allocation and displays the prepaid balance at the end of each month. The chart visually represents the duration of each expense category, illustrating how long the expenses extend over time. This helps businesses track and manage the allocation of prepaid amounts systematically. The grey cells in the schedule are automatically calculated fields, ensuring that businesses do not alter or manually update these sections, reducing the risk of errors. This structured approach aids in maintaining accurate financial records and ensures that prepaid expenses are properly expensed over the relevant periods. This tool is adaptable to various types of businesses, providing a clear overview of their prepaid expense structure and fiscal year expense totals.",
+  "excerpt": "Track prepaid expenses easily with the PREPAID EXPENSE TEMPLATE. Automate monthly allocations and visualize expense durations for efficient accounting.",
+  "link": "https://docs.google.com/spreadsheets/d/17NME8G3fLx51cz9Tf8NMsuHX-NtblAip/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/LJhW5DpboFuLRX5OInFg7BFQvPM.png",
+  "imageAlt": "Excel spreadsheet titled 'PREPAID EXPENSE TEMPLATE' with columns for date, description, amount, and balance for accounting",
+  "order": 79,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "PREPAID EXPENSE TEMPLATE",
+    "description": "PREPAID EXPENSE TEMPLATE\nThis is a Prepaid Schedule Template designed for businesses to manage and calculate their prepaid expenses efficiently throughout the fiscal year. The template requires the user to input details such as the expense category, start date, and end date of the prepaid expense. Based on these inputs, the schedule automatically computes the monthly expense allocation and displays the prepaid balance at the end of each month.\nThe chart visually represents the duration of each expense category, illustrating how long the expenses extend over time. This helps businesses track and manage the allocation of prepaid amounts systematically.\nThe grey cells in the schedule are automatically calculated fields, ensuring that businesses do not alter or manually update these sections, reducing the risk of errors. This structured approach aids in maintaining accurate financial records and ensures that prepaid expenses are properly expensed over the relevant periods. This tool is adaptable to various types of businesses, providing a clear overview of their prepaid expense structure and fiscal year expense totals.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Efficient prepaid expense manager with automatic monthly allocation and visual representation of expense durations."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel spreadsheet titled 'PREPAID EXPENSE TEMPLATE' with columns for date, description, amount, and balance for ac"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Other",
+    "url": "https://docs.google.com/spreadsheets/d/17NME8G3fLx51cz9Tf8NMsuHX-NtblAip/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "expense structure, prepaid expense, duration, allocation, financial records, schedule, manager, calculation, fiscal year, template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

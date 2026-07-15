@@ -1,0 +1,46 @@
+---
+title: "How to Run a Multi-Entity Month-End Close in Under 5 Days"
+date: "2026-07-12"
+category: "accounting"
+excerpt: "Most multi-entity groups take two to three weeks to close. The ones that close in five days aren't working harder — they've removed the four bottlenecks that quietly stretch every close."
+author: "FinBoard"
+tags: ["Month-End Close", "Multi-Entity"]
+coverImage: "/blog/multi-entity-month-end-close-cover.svg"
+coverAlt: "Multi-entity month-end close in five days"
+---
+
+Ask a controller at a single-entity company how long month-end takes and you'll hear "a few days." Ask the same question at a group with eight entities across three systems and the answer stretches to two or three weeks. The work didn't get eight times harder. The *coordination* did.
+
+A five-day close across a multi-entity group is achievable, but not by asking the team to move faster. It comes from removing four bottlenecks that quietly stretch every close — most of which have nothing to do with accounting skill and everything to do with how the data moves.
+
+## Bottleneck 1: Data that arrives late and in different shapes
+
+The close can't start until every entity's ledger is in. In practice, one entity is always three days behind, another exports to a slightly different chart of accounts, and a third lives in a system the others don't touch. The team spends the first week just *assembling* — before a single reconciliation happens.
+
+The fix is to stop treating assembly as a monthly event. Entity ledgers should sync continuously into one governed workspace, mapped to a single chart of accounts as they land — not hand-exported and re-keyed at period end. When day one of close arrives, the data is already there, already normalized, already tied out. You start the close from the finish line of assembly, not the start.
+
+## Bottleneck 2: Intercompany that never nets to zero
+
+Intercompany eliminations are where multi-entity closes go to die. Entity A books a receivable from Entity B; Entity B books the payable in a different period, at a different amount, against a different account. Now the group balance is off by the difference, and someone spends a day hunting a $4,000 mismatch across two ledgers.
+
+The teams that close fast don't hunt — they *match*. Every intercompany transaction is matched to its counterparty as it posts, and breaks are flagged immediately, while the context is fresh and the person who booked it still remembers why. By period end, eliminations are a review step, not an investigation. The rule of thumb: if you're discovering intercompany breaks during close, you're discovering them a month too late.
+
+## Bottleneck 3: The consolidation that lives in one person's spreadsheet
+
+In a surprising number of groups, the actual consolidation — the roll-up of every entity into a group P&L and balance sheet, with eliminations and any currency translation — lives in a single workbook that one person maintains. It works, until a tab breaks, a formula silently drops an entity, or that person is on vacation during close.
+
+A spreadsheet consolidation is fragile in a specific, dangerous way: it produces a number that *looks* authoritative but can't be traced. When the group net income moves, nobody can drill from the consolidated figure back to the transactions that drove it. The fix is a consolidation where every group-level number traces back to entity-level ledger detail on demand — one definition of each measure, computed once, drillable to the transaction. When the CFO asks "why did consolidated margin drop," the answer is a click, not a two-hour spelunk through a workbook.
+
+## Bottleneck 4: A close checklist nobody can see
+
+The final bottleneck is coordination itself. Who has closed? What's blocking the roll-up? Which reconciliations are still open? If that state lives in someone's head or a stale shared doc, the close is run by status-chasing — Slack messages, "are you done yet," and the quiet risk that something was missed because everyone assumed someone else had it.
+
+A visible close checklist — every task, owner, and status in one place — turns close from a series of interruptions into a process. It sounds mundane. It is the single highest-leverage change most teams can make, because it converts "I think we're done" into "here is exactly what's left."
+
+## Putting it together
+
+None of these four fixes is exotic. What they share is a principle: **move the work out of the close.** Assembly, matching, and consolidation logic should happen continuously, as transactions post, so that period-end is verification rather than construction. The five-day close isn't five days of heroics — it's five days of *checking work that was already done correctly the first time.*
+
+For most multi-entity groups, the sequence to get there is: unify the ledgers into one mapped workspace, automate intercompany matching, make the consolidation traceable to the transaction, and put the checklist where everyone can see it. Do those four, and the calendar takes care of itself.
+
+FinBoard was built to close exactly this gap for multi-entity operators. If your close is measured in weeks, [book a consultation](/pricing) and we'll walk through where your five days are going.

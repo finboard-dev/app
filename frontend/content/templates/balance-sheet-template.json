@@ -1,0 +1,72 @@
+{
+  "slug": "balance-sheet-template",
+  "title": "Balance Sheet template",
+  "category": "Balance Sheet",
+  "shortDescription": "The Balance Sheet template is a tool for tracking and analyzing a company's financial position.",
+  "about": "The Balance Sheet template is a comprehensive tool designed to help businesses track and analyze their financial position. It allows users to input data for various assets, liabilities, and owner's equity, and automatically calculates key financial ratios. The template features a user-friendly interface and pre-built formulas that make it easy to update and analyze financial data.  Key features of the Balance Sheet template include:  - Automatic calculations: The template includes pre-built formulas that automatically calculate totals and financial ratios based on the input data. - Comprehensive asset and liability tracking: Users can input data for various current and fixed assets, current and long-term liabilities, and owner's equity. - Financial ratio analysis: The template automatically calculates common financial ratios such as debt ratio, current ratio, working capital, assets-to-equity ratio, and debt-to-equity ratio. - User-friendly interface: The template is designed with a clear and organized layout, making it easy to input data and navigate.  Using the Balance Sheet template offers several benefits:  - Improved financial analysis: The template provides a clear overview of a company's financial position, allowing users to identify trends, strengths, and areas for improvement. - Time-saving: The pre-built formulas and automatic calculations save time and reduce the risk of errors. - Easy customization: The template can be customized to fit the specific needs of a business, such as adding or removing categories. - Data visualization: The template includes charts and graphs that visually represent the financial data, making it easier to understand and communicate.  In conclusion, the Balance Sheet template is a powerful tool for businesses to track and analyze their financial position. With its user-friendly interface, automatic calculations, and comprehensive features, it provides valuable insights and saves time in financial analysis.",
+  "excerpt": "Track and analyze your company's financial position with the Balance Sheet template. Input data for assets, liabilities, and equity, and get automatic calculations and financial ratios.",
+  "link": "https://docs.google.com/spreadsheets/d/1NX9NcxLzDm5g-rDYabofkiujsaZNWJ9X/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/f3covL2UKabROmEN3Y9epyuXbXE.png",
+  "imageAlt": "Screenshot of the Balance Sheet template",
+  "order": 11,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Balance Sheet template",
+    "description": "The Balance Sheet template is a comprehensive tool designed to help businesses track and analyze their financial position. It allows users to input data for various assets, liabilities, and owner's equity, and automatically calculates key financial ratios. The template features a user-friendly interface and pre-built formulas that make it easy to update and analyze financial data.\n\nKey features of the Balance Sheet template include:\n\n- Automatic calculations: The template includes pre-built formulas that automatically calculate totals and financial ratios based on the input data.\n- Comprehensive asset and liability tracking: Users can input data for various current and fixed assets, current and long-term liabilities, and owner's equity.\n- Financial ratio analysis: The template automatically calculates common financial ratios such as debt ratio, current ratio, working capital, assets-to-equity ratio, and debt-to-equity ratio.\n- User-friendly interface: The template is designed with a clear and organized layout, making it easy to input data and navigate.\n\nUsing the Balance Sheet template offers several benefits:\n\n- Improved financial analysis: The template provides a clear overview of a company's financial position, allowing users to identify trends, strengths, and areas for improvement.\n- Time-saving: The pre-built formulas and automatic calculations save time and reduce the risk of errors.\n- Easy customization: The template can be customized to fit the specific needs of a business, such as adding or removing categories.\n- Data visualization: The template includes charts and graphs that visually represent the financial data, making it easier to understand and communicate.\n\nIn conclusion, the Balance Sheet template is a powerful tool for businesses to track and analyze their financial position. With its user-friendly interface, automatic calculations, and comprehensive features, it provides valuable insights and saves time in financial analysis.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Balance Sheet template is a tool for tracking and analyzing a company's financial position."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Balance Sheet template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Balance Sheet",
+    "url": "https://docs.google.com/spreadsheets/d/1NX9NcxLzDm5g-rDYabofkiujsaZNWJ9X/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "financial ratios, balance sheet template, liabilities, calculations, financial position, asset tracking, owner's equity, liability tracking, ratio analysis, assets",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "it-budget-template",
+  "title": "IT Budget Template",
+  "category": "Budget",
+  "shortDescription": "The IT Budget Template is a tool for estimating and tracking costs related to IT operations.",
+  "about": "The IT Budget Template is a comprehensive tool designed to help organizations estimate and track costs related to IT operations. With this template, users can easily create and manage budgets for various IT cost elements, such as application support, network support, software licenses, hardware maintenance, and office expenses. The template provides a clear and organized structure for recording costs, allowing users to input costs on a monthly basis and automatically calculate the total costs for each cost element and overall budget. Additionally, the template includes a proposal budget form for capturing expenses related to specific projects or initiatives. By using the IT Budget Template, organizations can effectively plan and manage their IT budgets, ensuring that resources are allocated efficiently and costs are controlled.",
+  "excerpt": "Estimate and track costs related to IT operations with the IT Budget Template. Easily manage budgets for application support, network support, software licenses, hardware maintenance, and office…",
+  "link": "https://docs.google.com/spreadsheets/d/1dH9ySHePzK14c9rvd3C_8jzEiNPCAmkG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/fv48xLL4D00qSFyBevYnG5knVzA.png",
+  "imageAlt": "Screenshot of the IT Budget Template",
+  "order": 14,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "IT Budget Template",
+    "description": "The IT Budget Template is a comprehensive tool designed to help organizations estimate and track costs related to IT operations. With this template, users can easily create and manage budgets for various IT cost elements, such as application support, network support, software licenses, hardware maintenance, and office expenses. The template provides a clear and organized structure for recording costs, allowing users to input costs on a monthly basis and automatically calculate the total costs for each cost element and overall budget. Additionally, the template includes a proposal budget form for capturing expenses related to specific projects or initiatives. By using the IT Budget Template, organizations can effectively plan and manage their IT budgets, ensuring that resources are allocated efficiently and costs are controlled.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The IT Budget Template is a tool for estimating and tracking costs related to IT operations."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the IT Budget Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1dH9ySHePzK14c9rvd3C_8jzEiNPCAmkG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "it operations, estimating, it budget template, organizations, budgets, network support, software licenses, tracking costs, hardware maintenance, application support",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

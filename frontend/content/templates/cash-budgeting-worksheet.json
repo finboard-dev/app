@@ -1,0 +1,72 @@
+{
+  "slug": "cash-budgeting-worksheet",
+  "title": "Cash budgeting worksheet",
+  "category": "Budget",
+  "shortDescription": "Cash Budgeting Worksheet",
+  "about": "The Cash Budgeting Worksheet is a comprehensive tool designed to help individuals and businesses effectively manage their cash flow. It allows users to plan and track their estimated sales, cash receipts, credit purchases, and disbursements over a specified period of time, typically up to 17 months. By providing a detailed overview of projected cash balances, the worksheet enables users to make informed decisions regarding their financial activities and ensure that they have sufficient cash on hand to meet their obligations and maintain a desired cash balance.The Cash Budgeting Worksheet offers a range of features and benefits. It allows users to estimate their total sales and credit sales, taking into account factors such as bad-debt loss percentage and credit policy. Users can also input information related to cash discounts, including the discount percentage, the percentage of customers taking the discount, and the discount period in days. This information helps users forecast their cash receipts accurately.Additionally, the worksheet provides a section for estimating credit materials purchases based on next month's sales or the month after. Users can input the percentage of credit materials purchases and the projected sales figures to determine their purchasing needs. The worksheet also includes a section for tracking payments on credit purchases, allowing users to manage their accounts payable effectively.The Cash Budgeting Worksheet offers a comprehensive overview of cash inflows and outflows, including cash sales, receivables collections, non-operating cash receipts, cash from the sale of assets, and cash from financing operations. It also provides a breakdown of various disbursements, such as payment on credit purchases, cash purchases, labor costs, general and administrative salaries, rent and utilities, other expenses, taxes, purchase of assets, interest, dividends paid, repayment of loans, and sinking fund payments.By using the Cash Budgeting Worksheet, individuals and businesses can gain valuable insights into their cash flow, identify potential cash shortages or surpluses, and make informed financial decisions. It serves as a powerful tool for budgeting, forecasting, and ensuring financial stability.",
+  "excerpt": "Optimize your cash management with our Excel Cash Budgeting Worksheet template. Track and plan your finances efficiently.",
+  "link": "https://docs.google.com/spreadsheets/d/1Ypwd6eREVnCp1xIat42qev4CoACoXLK-/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/bPfYmaHs3mr0aMEdLBcrigIuU.png",
+  "imageAlt": "Image of a Cash Budgeting Worksheet in Excel with detailed financial data and calculation",
+  "order": 62,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Cash budgeting worksheet",
+    "description": "The Cash Budgeting Worksheet is a comprehensive tool designed to help individuals and businesses effectively manage their cash flow. It allows users to plan and track their estimated sales, cash receipts, credit purchases, and disbursements over a specified period of time, typically up to 17 months. By providing a detailed overview of projected cash balances, the worksheet enables users to make informed decisions regarding their financial activities and ensure that they have sufficient cash on hand to meet their obligations and maintain a desired cash balance.\n\nThe Cash Budgeting Worksheet offers a range of features and benefits. It allows users to estimate their total sales and credit sales, taking into account factors such as bad-debt loss percentage and credit policy. Users can also input information related to cash discounts, including the discount percentage, the percentage of customers taking the discount, and the discount period in days. This information helps users forecast their cash receipts accurately.\n\nAdditionally, the worksheet provides a section for estimating credit materials purchases based on next month's sales or the month after. Users can input the percentage of credit materials purchases and the projected sales figures to determine their purchasing needs. The worksheet also includes a section for tracking payments on credit purchases, allowing users to manage their accounts payable effectively.\n\nThe Cash Budgeting Worksheet offers a comprehensive overview of cash inflows and outflows, including cash sales, receivables collections, non-operating cash receipts, cash from the sale of assets, and cash from financing operations. It also provides a breakdown of various disbursements, such as payment on credit purchases, cash purchases, labor costs, general and administrative salaries, rent and utilities, other expenses, taxes, purchase of assets, interest, dividends paid, repayment of loans, and sinking fund payments.\n\nBy using the Cash Budgeting Worksheet, individuals and businesses can gain valuable insights into their cash flow, identify potential cash shortages or surpluses, and make informed financial decisions. It serves as a powerful tool for budgeting, forecasting, and ensuring financial stability.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Cash Budgeting Worksheet"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "cash-budgeting",
+      "caption": "\"Image of a Cash Budgeting Worksheet in Excel with detailed financial data and calculations\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1Ypwd6eREVnCp1xIat42qev4CoACoXLK-/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "credit policy, sales, worksheet, financial activities, cash flow, accounts payable, credit purchases, disbursements, cash budgeting, cash receipts",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

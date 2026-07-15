@@ -1,0 +1,72 @@
+{
+  "slug": "general-loan-amortization",
+  "title": "General Loan Amortization",
+  "category": "Other",
+  "shortDescription": "Customizable loan payment calculator with detailed amortization schedule and interest vs. principal visualization.",
+  "about": "This Loan Amortization Template is designed to help businesses and individuals manage their loan payments efficiently by calculating the EMI (Equated Monthly Installment), principal, and interest over the tenure of the loan. The template allows users to input the loan amount, annual interest rate, and loan period, while automatically calculating the monthly installment, total number of months, and monthly interest rate. The amortization schedule is broken down into detailed rows that show how each payment is applied over time. For each payment, the template provides the breakdown between the interest and principal amounts, along with the remaining balance after each installment. One of the key features of this template is the accompanying graph, which visualizes how the interest and principal amounts change throughout the loan term. As shown in the graph, the interest portion of each payment is initially higher and gradually decreases over time, while the principal portion of each payment increases. This reflects the typical structure of an amortizing loan, where more interest is paid upfront, and as the outstanding loan balance decreases, a larger portion of each payment goes toward reducing the principal. Overall, this template is a valuable tool for understanding how loan repayments progress over time, helping users plan their finances and manage their debt effectively.",
+  "excerpt": "Track loan payments with ease using the General Loan Amortization template. Customize calculations and visualize interest vs. principal breakdown.",
+  "link": "https://docs.google.com/spreadsheets/d/1BUbSdMD-RQFU7DRfAUgj6UmW2HGen_8V/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/lGmcO05yof8VDY6YU0rpvlqZhw.png",
+  "imageAlt": "Excel spreadsheet showing a General Loan Amortization template, with rows and columns for loan details and payment schedule.",
+  "order": 77,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "General Loan Amortization",
+    "description": "General Loan Amortization:\nThis Loan Amortization Template is designed to help businesses and individuals manage their loan payments efficiently by calculating the EMI (Equated Monthly Installment), principal, and interest over the tenure of the loan. The template allows users to input the loan amount, annual interest rate, and loan period, while automatically calculating the monthly installment, total number of months, and monthly interest rate.\nThe amortization schedule is broken down into detailed rows that show how each payment is applied over time. For each payment, the template provides the breakdown between the interest and principal amounts, along with the remaining balance after each installment.\nOne of the key features of this template is the accompanying graph, which visualizes how the interest and principal amounts change throughout the loan term. As shown in the graph, the interest portion of each payment is initially higher and gradually decreases over time, while the principal portion of each payment increases. This reflects the typical structure of an amortizing loan, where more interest is paid upfront, and as the outstanding loan balance decreases, a larger portion of each payment goes toward reducing the principal.\nOverall, this template is a valuable tool for understanding how loan repayments progress over time, helping users plan their finances and manage their debt effectively.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Customizable loan payment calculator with detailed amortization schedule and interest vs. principal visualization."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "\"Excel spreadsheet showing a General Loan Amortization template, with rows and columns for loan details and payment schedule."
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Other",
+    "url": "https://docs.google.com/spreadsheets/d/1BUbSdMD-RQFU7DRfAUgj6UmW2HGen_8V/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "amortization, finance, loan, installment, principal, schedule, balance, interest rate, calculator, EMI",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

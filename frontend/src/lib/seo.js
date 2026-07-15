@@ -38,6 +38,13 @@ export function buildMetadata({
   };
 }
 
+/** Clamp a meta description to ~155 chars on a word boundary (SERP-safe). */
+export function clampDescription(text, max = 155) {
+  const t = String(text || "").trim();
+  if (t.length <= max) return t;
+  return t.slice(0, max).replace(/\s+\S*$/, "").replace(/[,;:]$/, "") + "…";
+}
+
 /** Helper: BreadcrumbList schema from [{name, path}] pairs. */
 export function breadcrumbs(items) {
   return {

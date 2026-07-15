@@ -1,0 +1,72 @@
+{
+  "slug": "amortization-calculator",
+  "title": "Amortization calculator",
+  "category": "Calculator",
+  "shortDescription": "The Amortization Calculator template helps calculate the payment per period and total interest paid for a loan.",
+  "about": "The Amortization Calculator template in Excel is a powerful tool that helps users calculate loan amortization schedules. It provides an easy and efficient way to determine the monthly payment amount, total interest paid, and the remaining balance for each period of the loan. With its user-friendly interface and comprehensive features, this template simplifies the process of managing and tracking loan payments.Key features of the Amortization Calculator template include:- Input fields for loan amount, interest rate, and number of periods- Automatic calculation of payment per period, total interest paid, and remaining balance- Amortization chart displaying payment amount, interest, cumulative interest, principal, principal paid, and balance for each periodBy using the Amortization Calculator template, users can benefit in several ways:1. Easy loan management: The template allows users to input their loan details and instantly generate an amortization schedule, eliminating the need for manual calculations.2. Financial planning: Users can analyze the impact of different loan terms and interest rates on their monthly payments and total interest paid, helping them make informed financial decisions.3. Tracking payments: The template provides a clear overview of each payment made, including the amount applied to principal and interest, making it easier to track and reconcile loan payments.4. Time-saving: With its automated calculations, the template saves users time and effort, enabling them to focus on other important tasks.In conclusion, the Amortization Calculator template in Excel is a valuable tool for individuals and businesses alike. Its intuitive interface, comprehensive features, and time-saving capabilities make it an essential resource for managing and tracking loan payments effectively.",
+  "excerpt": "Calculate loan payment per period and total interest paid using the Amortization Calculator template in Excel.",
+  "link": "https://docs.google.com/spreadsheets/d/1UiZMtCTHZQjHFntW494YfChUDb9Zx8bJ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/0e3C8pDkpUpZQLEAxpZxqseM1M.png",
+  "imageAlt": "Screenshot of the Amortization Calculator template in Excel",
+  "order": 43,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Amortization calculator",
+    "description": "The Amortization Calculator template in Excel is a powerful tool that helps users calculate loan amortization schedules. It provides an easy and efficient way to determine the monthly payment amount, total interest paid, and the remaining balance for each period of the loan. With its user-friendly interface and comprehensive features, this template simplifies the process of managing and tracking loan payments.\n\nKey features of the Amortization Calculator template include:\n\n- Input fields for loan amount, interest rate, and number of periods\n- Automatic calculation of payment per period, total interest paid, and remaining balance\n- Amortization chart displaying payment amount, interest, cumulative interest, principal, principal paid, and balance for each period\n\nBy using the Amortization Calculator template, users can benefit in several ways:\n\n1. Easy loan management: The template allows users to input their loan details and instantly generate an amortization schedule, eliminating the need for manual calculations.\n\n2. Financial planning: Users can analyze the impact of different loan terms and interest rates on their monthly payments and total interest paid, helping them make informed financial decisions.\n\n3. Tracking payments: The template provides a clear overview of each payment made, including the amount applied to principal and interest, making it easier to track and reconcile loan payments.\n\n4. Time-saving: With its automated calculations, the template saves users time and effort, enabling them to focus on other important tasks.\n\nIn conclusion, the Amortization Calculator template in Excel is a valuable tool for individuals and businesses alike. Its intuitive interface, comprehensive features, and time-saving capabilities make it an essential resource for managing and tracking loan payments effectively.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Amortization Calculator template helps calculate the payment per period and total interest paid for a loan."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Amortization calculator",
+      "caption": "Screenshot of the Amortization Calculator template in Excel"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/1UiZMtCTHZQjHFntW494YfChUDb9Zx8bJ/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "loan amount, excel, payment per period, monthly payment amount, total interest paid, interest rate, amortization calculator, loan, loan amortization schedules, remaining balance",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

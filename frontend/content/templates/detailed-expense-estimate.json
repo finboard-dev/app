@@ -1,0 +1,72 @@
+{
+  "slug": "detailed-expense-estimate",
+  "title": "Detailed expense estimate",
+  "category": "Budget",
+  "shortDescription": "A template for creating a detailed expense estimate in Excel",
+  "about": "The Detailed Expense Estimate template is designed to help businesses create a comprehensive breakdown of their planned expenses for each month of the year. It includes sections for employee costs, office costs, marketing costs, and training/travel expenses. Users can input their projected expenses for each category, and the template will automatically calculate the total planned expenses for the year. This template provides a clear overview of expected costs and allows businesses to make informed financial decisions.",
+  "excerpt": "Create a detailed expense estimate for your business with this Excel template. Input projected expenses for each category and calculate the total planned expenses for the year.",
+  "link": "https://docs.google.com/spreadsheets/d/19m4mzx42GRN3NiWp1MYmz69y46ltJrKn/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/KcJ9veyhVykOBPIcgrbnvYiGY.png",
+  "imageAlt": "Screenshot of the Detailed Expense Estimate template in Excel",
+  "order": 28,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Detailed expense estimate",
+    "description": "The Detailed Expense Estimate template is designed to help businesses create a comprehensive breakdown of their planned expenses for each month of the year. It includes sections for employee costs, office costs, marketing costs, and training/travel expenses. Users can input their projected expenses for each category, and the template will automatically calculate the total planned expenses for the year. This template provides a clear overview of expected costs and allows businesses to make informed financial decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A template for creating a detailed expense estimate in Excel"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Detailed Expense Estimate template in Excel"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/19m4mzx42GRN3NiWp1MYmz69y46ltJrKn/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "office costs, excel template, planned expenses, marketing costs, training expenses, employee costs, financial decisions, expense estimate, travel expenses, accounting",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

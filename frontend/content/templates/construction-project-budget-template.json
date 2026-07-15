@@ -1,0 +1,72 @@
+{
+  "slug": "construction-project-budget-template",
+  "title": "Construction Project Budget template",
+  "category": "Budget",
+  "shortDescription": "The Construction Project Budget template is designed to track and manage the expenses related to a construction project.",
+  "about": "The Construction Project Budget template is a comprehensive tool for managing and tracking the budget of a construction project. It includes features such as categorizing expenses, calculating variances, and providing a summary of the net amount and excess amount spent. With this template, users can easily keep track of their project's financials and ensure that they stay within budget. <br/> Key features of the Construction Project Budget template include:- Categorization of expenses into major investments, off-site investments, on-site investments, others investments, and material investments- Budget and actual columns for each expense category- Calculation of advance and variance for each expense category- Sub-total calculations for each expense category- Calculation of the net amount and excess amount spentUsing this template offers several benefits for construction project budget management:- Easy organization and categorization of expenses- Clear visibility into the budget versus actual expenses- Identification of areas where the budget is exceeded or underutilized- Efficient tracking of project financialsIn conclusion, the Construction Project Budget template is a valuable tool for construction project managers, builders, and owners to effectively manage and track the budget of their projects. It simplifies the budgeting process, provides insights into financial performance, and helps ensure that projects stay within budget.",
+  "excerpt": "Track and manage construction project expenses with the Construction Project Budget template. Easily monitor costs and stay within budget.",
+  "link": "https://docs.google.com/spreadsheets/d/17Jnth-rLllo9-5daYoSRFPGR5TmhP9dP/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/DFEFRencEejt7LiDptMkUe1dfYs.png",
+  "imageAlt": "Screenshot of the Construction Project Budget template",
+  "order": 39,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Construction Project Budget template",
+    "description": "The Construction Project Budget template is a comprehensive tool for managing and tracking the budget of a construction project. It includes features such as categorizing expenses, calculating variances, and providing a summary of the net amount and excess amount spent. With this template, users can easily keep track of their project's financials and ensure that they stay within budget.\n\nKey features of the Construction Project Budget template include:\n\n- Categorization of expenses into major investments, off-site investments, on-site investments, others investments, and material investments\n- Budget and actual columns for each expense category\n- Calculation of advance and variance for each expense category\n- Sub-total calculations for each expense category\n- Calculation of the net amount and excess amount spent\n\nUsing this template offers several benefits for construction project budget management:\n\n- Easy organization and categorization of expenses\n- Clear visibility into the budget versus actual expenses\n- Identification of areas where the budget is exceeded or underutilized\n- Efficient tracking of project financials\n\nIn conclusion, the Construction Project Budget template is a valuable tool for construction project managers, builders, and owners to effectively manage and track the budget of their projects. It simplifies the budgeting process, provides insights into financial performance, and helps ensure that projects stay within budget.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Construction Project Budget template is designed to track and manage the expenses related to a construction project."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Contractor-Invoice-Template",
+      "caption": "Screenshot of the Construction Project Budget template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/17Jnth-rLllo9-5daYoSRFPGR5TmhP9dP/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "categorizing, budget template, net amount, variances, financials, tracking, managing, excess amount, construction project, expenses",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

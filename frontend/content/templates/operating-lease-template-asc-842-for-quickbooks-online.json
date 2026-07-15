@@ -1,0 +1,67 @@
+{
+  "slug": "operating-lease-template-asc-842-for-quickbooks-online",
+  "title": "Operating lease accounitng template ASC 842 - for QuickBooks Online",
+  "category": "Operating lease calculcator - ASC 842",
+  "shortDescription": "This template helps you to calculate the PV of lease payments, ROU asset, lease liability and cash payments. Tailor made for everyone who are using QuickBooks Online and struggling to comply with ASC 842.",
+  "about": "This ASC 842 lease accounting template for QuickBooks Online is designed to simplify lease management and ensure compliance with the latest U.S. GAAP standards. The template helps businesses and accountants calculate the initial recognition amount for both the Right-of-Use (ROU) asset and the corresponding Lease Liability under ASC 842. At the start of a lease, companies are required to record the ROU asset and lease liability at the present value (PV) of future lease payments, and this template makes that process straightforward. By entering key lease details—such as payment amounts, payment frequency, discount rate, and lease term—you can quickly calculate the PV and generate accurate initial journal entries for QuickBooks Online or other accounting systems. In addition to initial recognition, this template supports subsequent measurement of operating leases as required under ASC 842. Each lease payment is split into interest expense on the outstanding lease liability and the reduction of principal, while the ROU asset is amortized systematically, often on a straight-line basis. The built-in amortization schedule ensures proper lease expense recognition, accurate liability reduction, and transparent ROU asset amortization, making it easier to comply with ASC 842 reporting requirements. This finance lease template for QuickBooks is especially useful for small and mid-market companies that lack a dedicated lease accounting module. By automating PV calculations, journal entry schedules, and monthly posting requirements, it reduces manual errors and saves significant time. The template also provides clear documentation for audits, financial disclosures, and reconciliations, making lease accounting easier and fully auditable. Whether you are an accountant, controller, or small business owner, this ASC 842 lease accounting tool ensures accurate, compliant, and streamlined management of Operating leases.",
+  "excerpt": "Automate ASC 842 lease accounting in QuickBooks Online with a template that calculates present value for initial ROU asset and lease liability, builds an amortization schedule, and generates…",
+  "link": "https://docs.google.com/spreadsheets/d/1XVmXPp1kYdmEMgLaUV5wxfZOtpFv4OyL/edit?usp=drive_link&ouid=114105760205530647421&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/u0z2lfsmKSaxnfTVC1QT1AhvOQ.png",
+  "imageAlt": "Operating lease accounitng template ASC 842 - for QuickBooks Online",
+  "order": 2,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://finboard.ai/#organization",
+        "name": "FinBoard.ai",
+        "url": "https://finboard.ai"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://finboard.ai/#article",
+        "headline": "ASC 842 Lease Accounting Template for QuickBooks Online",
+        "description": "Automate ASC 842 lease accounting in QuickBooks Online with a template that calculates present value for initial ROU asset and lease liability, builds an amortization schedule, and generates auditable journal entries for compliant operating lease reporting.",
+        "datePublished": "2025-12-12",
+        "dateModified": "2025-12-12",
+        "inLanguage": "en",
+        "genre": "Educational Guide",
+        "publisher": {
+          "@id": "https://finboard.ai/#organization"
+        },
+        "about": [
+          "ASC 842",
+          "Lease accounting",
+          "U.S. GAAP",
+          "Operating leases",
+          "Right-of-Use (ROU) asset",
+          "Lease liability",
+          "Present value (PV) of lease payments",
+          "Amortization schedule",
+          "Journal entries",
+          "QuickBooks Online"
+        ],
+        "keywords": [
+          "ASC 842",
+          "lease accounting template",
+          "QuickBooks Online",
+          "ROU asset",
+          "lease liability",
+          "present value",
+          "discount rate",
+          "lease term",
+          "amortization schedule",
+          "operating lease",
+          "journal entries",
+          "U.S. GAAP compliance"
+        ],
+        "audience": [
+          "Accountants",
+          "Controllers",
+          "Small business owners"
+        ]
+      }
+    ]
+  }
+}

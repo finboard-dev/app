@@ -1,0 +1,72 @@
+{
+  "slug": "employee-leave-tracker",
+  "title": "Employee leave tracker",
+  "category": "Human Resources",
+  "shortDescription": "The Employee Leave Tracker template is a tool for tracking and managing employee leave requests and balances.",
+  "about": "\"The Employee Leave Tracker template is a comprehensive tool designed to help businesses track and manage employee leave requests and balances. With this template, you can easily keep track of employee leave data, including vacation, sick, personal, disability, other paid, and unpaid leave. The template provides a clear and organized format that allows you to input and view employee leave information for each month of the year.  Key features of the Employee Leave Tracker template include:  - Clear and organized format: The template is designed with a clear and organized format that makes it easy to input and view employee leave information. - Leave categories: The template includes predefined leave categories such as vacation, sick, personal, disability, other paid, and unpaid leave. - Monthly view: The template provides a monthly view, allowing you to track employee leave for each month of the year. - Employee totals: The template calculates and displays the total amount of leave taken by each employee.  By using the Employee Leave Tracker template, businesses can enjoy several benefits:  - Efficient leave management: The template helps businesses efficiently manage employee leave by providing a centralized and organized system for tracking and recording leave requests. - Accurate leave balances: With the template, businesses can accurately calculate and maintain employee leave balances, ensuring accurate payroll processing and compliance with leave policies. - Improved transparency: The template promotes transparency by providing a clear overview of employee leave data, allowing managers and HR personnel to easily access and review leave information.  In conclusion, the Employee Leave Tracker template is a valuable tool for businesses looking to streamline and improve their employee leave management process. With its user-friendly features and benefits, the template provides an efficient and effective solution for tracking and managing employee leave.\"",
+  "excerpt": "Track and manage employee leave requests and balances with the Employee Leave Tracker template. Streamline your leave management process and improve transparency.",
+  "link": "https://docs.google.com/spreadsheets/d/1xMNaf6E7iJxd4D8Vmfp67acDJOqawf_F/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/IqJDLfdkZqBslvesOeGuNcVAIE.png",
+  "imageAlt": "Tracker Template",
+  "order": 26,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Employee leave tracker",
+    "description": "The Employee Leave Tracker template is a comprehensive tool designed to help businesses track and manage employee leave requests and balances. With this template, you can easily keep track of employee leave data, including vacation, sick, personal, disability, other paid, and unpaid leave. The template provides a clear and organized format that allows you to input and view employee leave information for each month of the year.\n\nKey features of the Employee Leave Tracker template include:\n\n- Clear and organized format: The template is designed with a clear and organized format that makes it easy to input and view employee leave information.\n- Leave categories: The template includes predefined leave categories such as vacation, sick, personal, disability, other paid, and unpaid leave.\n- Monthly view: The template provides a monthly view, allowing you to track employee leave for each month of the year.\n- Employee totals: The template calculates and displays the total amount of leave taken by each employee.\n\nBy using the Employee Leave Tracker template, businesses can enjoy several benefits:\n\n- Efficient leave management: The template helps businesses efficiently manage employee leave by providing a centralized and organized system for tracking and recording leave requests.\n- Accurate leave balances: With the template, businesses can accurately calculate and maintain employee leave balances, ensuring accurate payroll processing and compliance with leave policies.\n- Improved transparency: The template promotes transparency by providing a clear overview of employee leave data, allowing managers and HR personnel to easily access and review leave information.\n\nIn conclusion, the Employee Leave Tracker template is a valuable tool for businesses looking to streamline and improve their employee leave management process. With its user-friendly features and benefits, the template provides an efficient and effective solution for tracking and managing employee leave.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Employee Leave Tracker template is a tool for tracking and managing employee leave requests and balances."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Employee Leave Tracker template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Human Resources",
+    "url": "https://docs.google.com/spreadsheets/d/1xMNaf6E7iJxd4D8Vmfp67acDJOqawf_F/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "efficient leave management, monthly view, disability, employee totals, accurate leave balances, vacation, unpaid leave, compliance, paid leave, template, payroll processing, personal, hr personnel, transparency, managing, tracking, employee leave tracker, leave requests, sick, balances",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

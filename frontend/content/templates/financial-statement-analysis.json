@@ -1,0 +1,72 @@
+{
+  "slug": "financial-statement-analysis",
+  "title": "Financial statement analysis",
+  "category": "Financial Planning",
+  "shortDescription": "The Financial Statement Analysis template is designed to analyze and evaluate a company's financial performance based on its balance sheet and income statement.",
+  "about": "The Financial Statement Analysis template is a comprehensive tool that allows users to analyze and evaluate a company's financial performance based on its balance sheet and income statement. This template provides a structured format for organizing financial data and calculating key financial ratios, making it easier to assess the company's financial health and identify areas of strength and weakness. Key features of the Financial Statement Analysis template include:- Balance Sheet Analysis: The template includes a balance sheet section where users can input the company's assets, liabilities, and net worth for multiple years. This allows for a comparison of the company's financial position over time and helps identify trends and changes in key financial metrics.- Income Statement Analysis: The template also includes an income statement section where users can input the company's sales, expenses, and net income for multiple years. This enables users to analyze the company's revenue and expense trends, calculate important financial ratios, and assess the company's profitability.- Financial Ratio Calculation: The template automatically calculates important financial ratios, such as current ratio, quick ratio, debt-to-equity ratio, gross margin, net margin, and return on equity. These ratios provide valuable insights into the company's liquidity, solvency, profitability, and efficiency.- Graphical Representation: The template includes graphical representations, such as charts and graphs, to visually present the financial data and trends. This makes it easier to interpret and communicate the financial analysis results to stakeholders.Benefits of using the Financial Statement Analysis template:1. Efficient Analysis: The template streamlines the process of analyzing financial statements by providing a structured format and automated calculations. This saves time and effort compared to manual analysis.2. Comprehensive Assessment: The template enables users to assess various aspects of a company's financial performance, including liquidity, solvency, profitability, and efficiency. This comprehensive analysis helps identify strengths, weaknesses, and areas for improvement.3. Data Visualization: The graphical representations in the template make it easier to understand and communicate the financial analysis results. Visualizing the data enhances clarity and facilitates decision-making.In conclusion, the Financial Statement Analysis template is a powerful tool for analyzing and evaluating a company's financial performance. Its key features, such as balance sheet and income statement analysis, financial ratio calculation, and graphical representation, provide a comprehensive and efficient way to assess a company's financial health and make informed decisions.",
+  "excerpt": "The Financial Statement Analysis template is a comprehensive tool for analyzing and evaluating a company's financial performance based on its balance sheet and income statement. It includes features…",
+  "link": "https://docs.google.com/spreadsheets/d/1rxIL82ItAhRj5OzmnLxMDiM4eSqhwYsa/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/0W3qmQhDLoiaKd7XgRX10kD3Q.png",
+  "imageAlt": "Screenshot of the Financial Statement Analysis template in Excel",
+  "order": 36,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Financial statement analysis",
+    "description": "The Financial Statement Analysis template is a comprehensive tool that allows users to analyze and evaluate a company's financial performance based on its balance sheet and income statement. This template provides a structured format for organizing financial data and calculating key financial ratios, making it easier to assess the company's financial health and identify areas of strength and weakness. Key features of the Financial Statement Analysis template include:- Balance Sheet Analysis: The template includes a balance sheet section where users can input the company's assets, liabilities, and net worth for multiple years. This allows for a comparison of the company's financial position over time and helps identify trends and changes in key financial metrics.- Income Statement Analysis: The template also includes an income statement section where users can input the company's sales, expenses, and net income for multiple years. This enables users to analyze the company's revenue and expense trends, calculate important financial ratios, and assess the company's profitability.- Financial Ratio Calculation: The template automatically calculates important financial ratios, such as current ratio, quick ratio, debt-to-equity ratio, gross margin, net margin, and return on equity. These ratios provide valuable insights into the company's liquidity, solvency, profitability, and efficiency.- Graphical Representation: The template includes graphical representations, such as charts and graphs, to visually present the financial data and trends. This makes it easier to interpret and communicate the financial analysis results to stakeholders.Benefits of using the Financial Statement Analysis template:1. Efficient Analysis: The template streamlines the process of analyzing financial statements by providing a structured format and automated calculations. This saves time and effort compared to manual analysis.2. Comprehensive Assessment: The template enables users to assess various aspects of a company's financial performance, including liquidity, solvency, profitability, and efficiency. This comprehensive analysis helps identify strengths, weaknesses, and areas for improvement.3. Data Visualization: The graphical representations in the template make it easier to understand and communicate the financial analysis results. Visualizing the data enhances clarity and facilitates decision-making.In conclusion, the Financial Statement Analysis template is a powerful tool for analyzing and evaluating a company's financial performance. Its key features, such as balance sheet and income statement analysis, financial ratio calculation, and graphical representation, provide a comprehensive and efficient way to assess a company's financial health and make informed decisions.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Financial Statement Analysis template is designed to analyze and evaluate a company's financial performance based on its balance sheet and income statement."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Financial Statement Analysis template in Excel"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1rxIL82ItAhRj5OzmnLxMDiM4eSqhwYsa/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "financial ratios, graphical representation, solvency, profitability, efficiency, balance sheet, financial statement analysis, liquidity, income statement, financial performance",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

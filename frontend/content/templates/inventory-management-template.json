@@ -1,0 +1,72 @@
+{
+  "slug": "inventory-management-template",
+  "title": "Inventory management template",
+  "category": "Inventory Management",
+  "shortDescription": "An inventory management template for tracking stock levels, reordering, and stock value.",
+  "about": "The inventory management template is a comprehensive tool designed to help businesses efficiently manage their inventory. With features such as tracking stock levels, reordering notifications, and calculating stock value, this template provides a clear overview of the inventory status. The template is easy to use and customizable to fit the specific needs of different businesses.  Key features of the template: - ID: Unique identifier for each product - Product Description: Description of the product - Product Group: Categorization of products into different groups - Unit Price: Price per unit of the product - Optimal Qty: Ideal quantity of the product to maintain - MIN Qty: Minimum quantity of the product to avoid stockouts - Current Stock: Current quantity of the product in stock - Stock Value: Total value of the stock - Min to Reorder: Minimum quantity needed to trigger a reorder - Status: Indicates whether the stock level is below optimal or okay - Percentage of Optimal: Percentage of optimal quantity achieved  Benefits of using the template: - Efficient inventory management: The template provides a centralized platform to track and manage inventory, ensuring optimal stock levels and avoiding stockouts. - Cost savings: By maintaining optimal stock levels and receiving reordering notifications, businesses can avoid overstocking or understocking, reducing unnecessary costs. - Data-driven decision-making: The template provides valuable insights into stock levels, stock value, and reordering needs, enabling informed decision-making.  In conclusion, the inventory management template is a valuable tool for businesses to streamline their inventory management processes, optimize stock levels, and improve overall efficiency.",
+  "excerpt": "Efficiently manage inventory with the inventory management template. Track stock levels, reordering, and stock value for optimal inventory control.",
+  "link": "https://docs.google.com/spreadsheets/d/1XoKzTp3HJ31HCIJ4VNy2m_rnTf_owvhG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/9vGIjkrOP9fBrS6U9otBipa7IIw.png",
+  "imageAlt": "Screenshot of the Inventory Management Template",
+  "order": 9,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Inventory management template",
+    "description": "The inventory management template is a comprehensive tool designed to help businesses efficiently manage their inventory. With features such as tracking stock levels, reordering notifications, and calculating stock value, this template provides a clear overview of the inventory status. The template is easy to use and customizable to fit the specific needs of different businesses.\n\nKey features of the template:\n- ID: Unique identifier for each product\n- Product Description: Description of the product\n- Product Group: Categorization of products into different groups\n- Unit Price: Price per unit of the product\n- Optimal Qty: Ideal quantity of the product to maintain\n- MIN Qty: Minimum quantity of the product to avoid stockouts\n- Current Stock: Current quantity of the product in stock\n- Stock Value: Total value of the stock\n- Min to Reorder: Minimum quantity needed to trigger a reorder\n- Status: Indicates whether the stock level is below optimal or okay\n- Percentage of Optimal: Percentage of optimal quantity achieved\n\nBenefits of using the template:\n- Efficient inventory management: The template provides a centralized platform to track and manage inventory, ensuring optimal stock levels and avoiding stockouts.\n- Cost savings: By maintaining optimal stock levels and receiving reordering notifications, businesses can avoid overstocking or understocking, reducing unnecessary costs.\n- Data-driven decision-making: The template provides valuable insights into stock levels, stock value, and reordering needs, enabling informed decision-making.\n\nIn conclusion, the inventory management template is a valuable tool for businesses to streamline their inventory management processes, optimize stock levels, and improve overall efficiency.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "An inventory management template for tracking stock levels, reordering, and stock value."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Inventory Management Template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Inventory Management",
+    "url": "https://docs.google.com/spreadsheets/d/1XoKzTp3HJ31HCIJ4VNy2m_rnTf_owvhG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "inventory management, unit price, stock levels, optimal quantity, tool, stockouts, stock value, businesses, reordering, data-driven decision-making",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

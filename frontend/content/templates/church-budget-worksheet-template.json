@@ -1,0 +1,72 @@
+{
+  "slug": "church-budget-worksheet-template",
+  "title": "Church Budget Worksheet Template",
+  "category": "Budget",
+  "shortDescription": "The Church Budget Worksheet is a tool to track and manage staff wages and funds received by the church.",
+  "about": "The Church Budget Worksheet is a comprehensive tool designed to help churches track and manage their staff wages and funds. It provides a detailed breakdown of staff allotments for pastors, ministry members, major staff members, supporting staff, and non-working staff. The worksheet also includes columns for the current year's allotments, previous year's allotments, variance, and percentage variance. This allows church administrators to easily compare and analyze the changes in staff wages over time. In addition to staff wages, the worksheet also includes a section for tracking funds and earnings received by the church. It provides a breakdown of funds received by different departments such as missionary, education, marriage arrangement troop, musical troops, children, pastors, ministry, food court, church management, and government grants. Similar to the staff wages section, the worksheet includes columns for the current month's fund amount, previous month's fund amount, variance, and percentage variance. This helps church administrators monitor the financial health of different departments and make informed decisions regarding fund allocation.The Church Budget Worksheet is a valuable tool for churches as it allows them to effectively manage their financial resources. By providing a clear overview of staff wages and funds received, it enables church administrators to identify areas of improvement, make informed decisions, and ensure financial stability. With its user-friendly format and comprehensive features, this worksheet is a must-have for any church seeking to streamline its budgeting process and enhance financial transparency.",
+  "excerpt": "Track and manage church staff wages and funds with the Church Budget Worksheet Template. A useful tool for efficient accounting in Excel.",
+  "link": "https://docs.google.com/spreadsheets/d/1upml7vKxX7rtJFpCZ99fCnBnxDimL9Vj/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/iAVPD0AOAFFWyhPSzDafw6anw.png",
+  "imageAlt": "Image of a Church Budget Worksheet Template in Excel, featuring columns for income, expenses, and budget tracking",
+  "order": 55,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Church Budget Worksheet Template",
+    "description": "The Church Budget Worksheet is a comprehensive tool designed to help churches track and manage their staff wages and funds. It provides a detailed breakdown of staff allotments for pastors, ministry members, major staff members, supporting staff, and non-working staff. The worksheet also includes columns for the current year's allotments, previous year's allotments, variance, and percentage variance. This allows church administrators to easily compare and analyze the changes in staff wages over time. In addition to staff wages, the worksheet also includes a section for tracking funds and earnings received by the church. It provides a breakdown of funds received by different departments such as missionary, education, marriage arrangement troop, musical troops, children, pastors, ministry, food court, church management, and government grants. Similar to the staff wages section, the worksheet includes columns for the current month's fund amount, previous month's fund amount, variance, and percentage variance. This helps church administrators monitor the financial health of different departments and make informed decisions regarding fund allocation.The Church Budget Worksheet is a valuable tool for churches as it allows them to effectively manage their financial resources. By providing a clear overview of staff wages and funds received, it enables church administrators to identify areas of improvement, make informed decisions, and ensure financial stability. With its user-friendly format and comprehensive features, this worksheet is a must-have for any church seeking to streamline its budgeting process and enhance financial transparency.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Church Budget Worksheet is a tool to track and manage staff wages and funds received by the church."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "church-budget",
+      "caption": "Alt text: \"Image of a Church Budget Worksheet Template in Excel, featuring columns for income, expenses, and budget tracking\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1upml7vKxX7rtJFpCZ99fCnBnxDimL9Vj/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "worksheet template, percentage variance, staff wages, church budget, funds received, breakdown, financial stability, financial resources, variance, allotments",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

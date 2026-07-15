@@ -1,0 +1,72 @@
+{
+  "slug": "intangibles-15-year-amortization",
+  "title": "Intangibles 15 year Amortization",
+  "category": "Financial Planning",
+  "shortDescription": "The Intangibles 15 year Amortization template helps track and calculate the amortization of intangible assets over a 15-year period.",
+  "about": "The Intangibles 15 year Amortization template is designed to assist businesses in tracking and calculating the amortization of intangible assets over a 15-year period. This template provides a structured format for recording key information such as the initial cost, date of acquisition, monthly amortization, date of disposition, and months held for each intangible asset. Key Features:- Easy-to-use template for tracking and calculating the amortization of intangible assets.- Clearly labeled columns for recording the initial cost, date of acquisition, monthly amortization, date of disposition, and months held for each asset.- Automatically calculates the amortization for each period and updates the accumulated amortization and net book value.- Includes a total row to summarize the amortization for all periods.- Example and shading features to guide users on how to fill in the template correctly.Benefits of Using the Template:- Efficiently track and manage the amortization of intangible assets over a 15-year period.- Ensure accurate and consistent calculations by using a structured template.- Easily identify the net book value of each asset at any given period.- Save time and effort by automating the calculation process.- Provides a clear overview of the total amortization for all periods.In conclusion, the Intangibles 15 year Amortization template is a valuable tool for businesses to effectively track and calculate the amortization of intangible assets over a 15-year period. By using this template, businesses can streamline their asset management process, ensure accurate calculations, and have a comprehensive overview of the net book value of their intangible assets.",
+  "excerpt": "Track and calculate the amortization of intangible assets over a 15-year period with the Intangibles 15 year Amortization template.",
+  "link": "https://docs.google.com/spreadsheets/d/1kFN_aXiZLZOYQK9olScUdQqIhNYLL7X1/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/Lzcb3xl2GcAKVsX931vCir4iX8.png",
+  "imageAlt": "Screenshot of the Intangibles 15 year Amortization template",
+  "order": 18,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Intangibles 15 year Amortization",
+    "description": "The Intangibles 15 year Amortization template is designed to assist businesses in tracking and calculating the amortization of intangible assets over a 15-year period. This template provides a structured format for recording key information such as the initial cost, date of acquisition, monthly amortization, date of disposition, and months held for each intangible asset. Key Features:- Easy-to-use template for tracking and calculating the amortization of intangible assets.- Clearly labeled columns for recording the initial cost, date of acquisition, monthly amortization, date of disposition, and months held for each asset.- Automatically calculates the amortization for each period and updates the accumulated amortization and net book value.- Includes a total row to summarize the amortization for all periods.- Example and shading features to guide users on how to fill in the template correctly.Benefits of Using the Template:- Efficiently track and manage the amortization of intangible assets over a 15-year period.- Ensure accurate and consistent calculations by using a structured template.- Easily identify the net book value of each asset at any given period.- Save time and effort by automating the calculation process.- Provides a clear overview of the total amortization for all periods.In conclusion, the Intangibles 15 year Amortization template is a valuable tool for businesses to effectively track and calculate the amortization of intangible assets over a 15-year period. By using this template, businesses can streamline their asset management process, ensure accurate calculations, and have a comprehensive overview of the net book value of their intangible assets.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Intangibles 15 year Amortization template helps track and calculate the amortization of intangible assets over a 15-year period."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Intangibles 15 year Amortization template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1kFN_aXiZLZOYQK9olScUdQqIhNYLL7X1/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "amortization, structured, net book value, template, calculation, intangibles, finance, period, accounting, assets",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "ar-credit-terms-analysis",
+  "title": "AR Credit Terms Analysis",
+  "category": "Ageing",
+  "shortDescription": "The AR Credit Terms Analysis template is designed to analyze the credit terms and policies of a company's accounts receivable management.",
+  "about": "The AR Credit Terms Analysis template is a comprehensive tool that allows businesses to analyze and evaluate their credit terms and policies for accounts receivable management. With this template, businesses can assess the impact of different credit terms on their profitability and cash flow, and make informed decisions to optimize their credit policies.  Key features of the template include:  - Summary of Cost Ratios: Provides a clear overview of the variable cost ratios, including the opportunity cost of cash balances, accounts receivable, and inventory investment. - Summary of Current Receivables Policy: Summarizes the current credit policy, including the discount period, credit period, cash discount percentage, and the percentage of customers taking cash discount. - Results Under the Current Credit Policy: Calculates the profitability of sales and the average investment in receivables, along with the cost of receivables investment, cash balance, inventory investment, cash discounts, and bad-debt losses. - Impact of Average Collection Period Differing from the Credit Period: Analyzes the impact of the average collection period differing from the credit period, including the additional average receivables investment and the cost of additional receivables investment. - Impact of the Proposed Change in Credit Terms: Assesses the forecasted impact on operations, including the expected change in credit sales, average collection period, bad-debt loss ratio, additional cash balance required, and additional inventory required. - Impact of Changes on Pre-Tax Profits: Evaluates the impact of changes in credit terms on pre-tax profits, considering marginal sales, profitability of marginal sales, decreased investment in receivables, additional cash balance, additional inventory investment, earnings on released receivables investment, and the cost of additional cash balance, inventory investment, cash discounts, and bad-debt losses.  Using the AR Credit Terms Analysis template offers several benefits:  - Improved Decision Making: By providing a comprehensive analysis of credit terms and policies, the template enables businesses to make data-driven decisions to optimize their credit management. - Enhanced Profitability: The template helps businesses identify the most profitable credit terms and policies, leading to increased profitability and financial success. - Cash Flow Optimization: By analyzing the impact of credit terms on cash flow, businesses can optimize their cash balance and inventory investment, ensuring efficient use of resources.  In conclusion, the AR Credit Terms Analysis template is a powerful tool for businesses to evaluate and optimize their credit terms and policies, leading to improved profitability and cash flow.",
+  "excerpt": "Analyze and optimize credit terms and policies with the AR Credit Terms Analysis template. Evaluate profitability, cash flow, and make data-driven decisions.",
+  "link": "https://docs.google.com/spreadsheets/d/1QZHJhE2WLJV1MXIuZLaGWrNHKDUYFCIc/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/lN6BEsxrdrWc3bhLVPnANfASKQ.png",
+  "imageAlt": "Screenshot of the AR Credit Terms Analysis template",
+  "order": 16,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "AR Credit Terms Analysis",
+    "description": "The AR Credit Terms Analysis template is a comprehensive tool that allows businesses to analyze and evaluate their credit terms and policies for accounts receivable management. With this template, businesses can assess the impact of different credit terms on their profitability and cash flow, and make informed decisions to optimize their credit policies.\n\nKey features of the template include:\n\n- Summary of Cost Ratios: Provides a clear overview of the variable cost ratios, including the opportunity cost of cash balances, accounts receivable, and inventory investment.\n- Summary of Current Receivables Policy: Summarizes the current credit policy, including the discount period, credit period, cash discount percentage, and the percentage of customers taking cash discount.\n- Results Under the Current Credit Policy: Calculates the profitability of sales and the average investment in receivables, along with the cost of receivables investment, cash balance, inventory investment, cash discounts, and bad-debt losses.\n- Impact of Average Collection Period Differing from the Credit Period: Analyzes the impact of the average collection period differing from the credit period, including the additional average receivables investment and the cost of additional receivables investment.\n- Impact of the Proposed Change in Credit Terms: Assesses the forecasted impact on operations, including the expected change in credit sales, average collection period, bad-debt loss ratio, additional cash balance required, and additional inventory required.\n- Impact of Changes on Pre-Tax Profits: Evaluates the impact of changes in credit terms on pre-tax profits, considering marginal sales, profitability of marginal sales, decreased investment in receivables, additional cash balance, additional inventory investment, earnings on released receivables investment, and the cost of additional cash balance, inventory investment, cash discounts, and bad-debt losses.\n\nUsing the AR Credit Terms Analysis template offers several benefits:\n\n- Improved Decision Making: By providing a comprehensive analysis of credit terms and policies, the template enables businesses to make data-driven decisions to optimize their credit management.\n- Enhanced Profitability: The template helps businesses identify the most profitable credit terms and policies, leading to increased profitability and financial success.\n- Cash Flow Optimization: By analyzing the impact of credit terms on cash flow, businesses can optimize their cash balance and inventory investment, ensuring efficient use of resources.\n\nIn conclusion, the AR Credit Terms Analysis template is a powerful tool for businesses to evaluate and optimize their credit terms and policies, leading to improved profitability and cash flow.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The AR Credit Terms Analysis template is designed to analyze the credit terms and policies of a company's accounts receivable management."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the AR Credit Terms Analysis template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Ageing",
+    "url": "https://docs.google.com/spreadsheets/d/1QZHJhE2WLJV1MXIuZLaGWrNHKDUYFCIc/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "template, analysis, decision making, accounts receivable, cash balance, inventory investment, cash flow, profitability, policies, credit terms",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

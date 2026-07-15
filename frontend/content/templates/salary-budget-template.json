@@ -1,0 +1,72 @@
+{
+  "slug": "salary-budget-template",
+  "title": "Salary Budget Template",
+  "category": "Budget",
+  "shortDescription": "Department-wise salary budget vs. actual comparator with headcount tracking and variance analysis.",
+  "about": "This template illustrates a salary budget vs. actual comparison on a department-wise basis. The table on the right displays the budgeted salaries and headcount for each department, while the table on the left shows the actual salaries and headcount for the same departments. At the top, we see key summary metrics, including the total salary budget, the increase in employee numbers, and the total salary over/under the budget for the year. Below these tables, the graphical representation highlights the variance between budgeted and actual salaries for various departments, making it easier to visualize discrepancies. Businesses can use this template to track how closely their salary expenditures align with their initial budget across different departments. By comparing actual numbers against the budgeted figures, companies can quickly identify which departments have overspent or underspent. This tool is essential for financial planning and analysis, helping businesses make informed decisions on hiring, resource allocation, and managing overall salary expenses. It can also aid in forecasting future budgets, ensuring better cost control, and maintaining financial health across the organization.",
+  "excerpt": "Track departmental salary budgets accurately with the Salary Budget Template. Compare budgets to actuals, monitor headcount, and analyze variances effectively.",
+  "link": "https://docs.google.com/spreadsheets/d/1I-xMCRhq8BwXl0qFRpoUjxTufqzCTf1v/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/OYet6bmndvETD8DsojVar5sJpfQ.png",
+  "imageAlt": "Image of a 'Salary Budget Template' in Excel, featuring columns for expenses, budget amounts, and totals",
+  "order": 70,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Salary Budget Template",
+    "description": "Salary Budget Template\nThis template illustrates a salary budget vs. actual comparison on a department-wise basis. The table on the right displays the budgeted salaries and headcount for each department, while the table on the left shows the actual salaries and headcount for the same departments. At the top, we see key summary metrics, including the total salary budget, the increase in employee numbers, and the total salary over/under the budget for the year. Below these tables, the graphical representation highlights the variance between budgeted and actual salaries for various departments, making it easier to visualize discrepancies.\nBusinesses can use this template to track how closely their salary expenditures align with their initial budget across different departments. By comparing actual numbers against the budgeted figures, companies can quickly identify which departments have overspent or underspent. This tool is essential for financial planning and analysis, helping businesses make informed decisions on hiring, resource allocation, and managing overall salary expenses. It can also aid in forecasting future budgets, ensuring better cost control, and maintaining financial health across the organization.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Department-wise salary budget vs. actual comparator with headcount tracking and variance analysis."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Image of a 'Salary Budget Template' in Excel, featuring columns for expenses, budget amounts, and totals\""
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1I-xMCRhq8BwXl0qFRpoUjxTufqzCTf1v/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "department-wise, actual salaries, resource allocation, salary budget, headcount tracking, budgeted salaries, cost control, actual comparison, variance analysis, financial planning",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

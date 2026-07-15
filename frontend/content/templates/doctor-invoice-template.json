@@ -1,0 +1,72 @@
+{
+  "slug": "doctor-invoice-template",
+  "title": "Doctor invoice template",
+  "category": "Invoice",
+  "shortDescription": "The Doctor invoice template is designed to create professional invoices for medical services.",
+  "about": "The Doctor invoice template is a comprehensive tool that allows doctors and medical professionals to easily create professional invoices for their services. With this template, doctors can input patient information, services provided, and payment details to generate accurate and organized invoices. The template includes features such as automatic calculation of amounts, payment tracking, and reminders for balance due. By using this template, doctors can streamline their billing process, improve accuracy, and ensure timely payments from patients.Key features of the Doctor invoice template include:- Easy input of patient information, including name, address, contact details, and diagnosis- Ability to add multiple services provided, with individual amounts and payment details- Automatic calculation of total amounts, payments, and balance due- Option to include personalized notes for each service- Reminder for patients to include the receipt number on their checksUsing the Doctor invoice template offers several benefits for doctors and medical professionals:1. Time-saving: The template eliminates the need to manually create invoices, saving valuable time for doctors.2. Accuracy: With automatic calculations and organized formatting, the template ensures accurate invoicing and reduces errors.3. Professionalism: The template creates polished and professional-looking invoices, enhancing the doctor's reputation.4. Payment tracking: Doctors can easily track payments and outstanding balances, ensuring timely follow-ups.5. Convenience: The template can be customized and reused for multiple patients, providing convenience and consistency.In conclusion, the Doctor invoice template is a valuable tool for doctors and medical professionals to streamline their billing process, improve accuracy, and ensure timely payments from patients.",
+  "excerpt": "Create professional invoices for medical services with the Doctor invoice template. Streamline billing, improve accuracy, and ensure timely payments.",
+  "link": "https://docs.google.com/spreadsheets/d/1VCKidzdiog9Tle1pZu7epdBEnMmdj2pg/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/SDFvDGZzxP91qBG4kj0e6Rnj0Q.png",
+  "imageAlt": "Screenshot of Doctor invoice template",
+  "order": 30,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Doctor invoice template",
+    "description": "The Doctor invoice template is a comprehensive tool that allows doctors and medical professionals to easily create professional invoices for their services. With this template, doctors can input patient information, services provided, and payment details to generate accurate and organized invoices. The template includes features such as automatic calculation of amounts, payment tracking, and reminders for balance due. By using this template, doctors can streamline their billing process, improve accuracy, and ensure timely payments from patients.\n\nKey features of the Doctor invoice template include:\n\n- Easy input of patient information, including name, address, contact details, and diagnosis\n- Ability to add multiple services provided, with individual amounts and payment details\n- Automatic calculation of total amounts, payments, and balance due\n- Option to include personalized notes for each service\n- Reminder for patients to include the receipt number on their checks\n\nUsing the Doctor invoice template offers several benefits for doctors and medical professionals:\n\n1. Time-saving: The template eliminates the need to manually create invoices, saving valuable time for doctors.\n2. Accuracy: With automatic calculations and organized formatting, the template ensures accurate invoicing and reduces errors.\n3. Professionalism: The template creates polished and professional-looking invoices, enhancing the doctor's reputation.\n4. Payment tracking: Doctors can easily track payments and outstanding balances, ensuring timely follow-ups.\n5. Convenience: The template can be customized and reused for multiple patients, providing convenience and consistency.\n\nIn conclusion, the Doctor invoice template is a valuable tool for doctors and medical professionals to streamline their billing process, improve accuracy, and ensure timely payments from patients.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Doctor invoice template is designed to create professional invoices for medical services."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of Doctor invoice template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Invoice",
+    "url": "https://docs.google.com/spreadsheets/d/1VCKidzdiog9Tle1pZu7epdBEnMmdj2pg/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "medical services, balance due, doctor, professional invoices, payment tracking, payment details, patient information, services provided, automatic calculation, invoice template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

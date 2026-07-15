@@ -1,0 +1,72 @@
+{
+  "slug": "education-community-building-profit-and-loss",
+  "title": "Education, Community Building Profit and Loss",
+  "category": "Profit and loss",
+  "shortDescription": "Multi-stream revenue tracker for ed-tech and community-building companies with year-over-year comparison.",
+  "about": "This template is a comprehensive Profit & Loss (P&L) statement designed for ed-tech and community-building companies to track their revenues across different streams effectively. It provides a clear overview of various income sources, such as Subscription Revenue, Course Sales, Premium Content Revenue, Enterprise Plans, Transaction Fees, Affiliate Programs, Merchandise Sales, Advertisements, and Interest Income. The chart at the top of the template visually represents a \"Revenue Comparison by Year,\" showing revenue growth or decline for each income stream across two consecutive years (Year 1 and Year 2) The detailed income statement below the chart presents a comprehensive breakdown of revenues, costs, and expenses on a monthly and yearly basis. It shows revenue streams, costs of goods sold (COGS), and operating expenses, including hosting/server costs, payment processing fees, wages & salaries, marketing expenses, research & development, and other operational expenses. Key financial metrics such as Gross Profit, EBITDA, EBIT, and Net Income are calculated, providing a holistic view of the company's financial health. This template allows for detailed financial analysis, helping companies monitor their performance, control costs, and identify key revenue and expense drivers for strategic planning and decision-making. It is versatile and highly adaptable for any business model, especially for startups in education and community-building sectors.",
+  "excerpt": "Track revenue streams for ed-tech and community-building companies with this Excel accounting template. Includes year-over-year comparison.",
+  "link": "https://docs.google.com/spreadsheets/d/1nCoXMqG0V5sGiZPdS8BmLWeI32XojAVV/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/wwHB24iRX7DGPzXOUBuNX4dMZDQ.png",
+  "imageAlt": "Excel accounting template titled 'Education, Community building P&L' with detailed financial data and calculations",
+  "order": 80,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Education, Community building P&L",
+    "description": "Education, Community Building P&L\nThis template is a comprehensive Profit & Loss (P&L) statement designed for ed-tech and community-building companies to track their revenues across different streams effectively. It provides a clear overview of various income sources, such as Subscription Revenue, Course Sales, Premium Content Revenue, Enterprise Plans, Transaction Fees, Affiliate Programs, Merchandise Sales, Advertisements, and Interest Income. The chart at the top of the template visually represents a \"Revenue Comparison by Year,\" showing revenue growth or decline for each income stream across two consecutive years (Year 1 and Year 2)\nThe detailed income statement below the chart presents a comprehensive breakdown of revenues, costs, and expenses on a monthly and yearly basis. It shows revenue streams, costs of goods sold (COGS), and operating expenses, including hosting/server costs, payment processing fees, wages & salaries, marketing expenses, research & development, and other operational expenses. Key financial metrics such as Gross Profit, EBITDA, EBIT, and Net Income are calculated, providing a holistic view of the company's financial health. This template allows for detailed financial analysis, helping companies monitor their performance, control costs, and identify key revenue and expense drivers for strategic planning and decision-making. It is versatile and highly adaptable for any business model, especially for startups in education and community-building sectors.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "Multi-stream revenue tracker for ed-tech and community-building companies with year-over-year comparison."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Excel accounting template titled 'Education, Community building P&L' with detailed financial data and calculations"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1nCoXMqG0V5sGiZPdS8BmLWeI32XojAVV/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "Profit & Loss, operating expenses, financial analysis, income sources, Subscription Revenue, revenue streams, Gross Profit, EBITDA, community-building, ed-tech",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

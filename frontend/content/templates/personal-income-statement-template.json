@@ -1,0 +1,72 @@
+{
+  "slug": "personal-income-statement-template",
+  "title": "Personal Income statement Template",
+  "category": "Profit and loss",
+  "shortDescription": "User-friendly monthly finance manager for individuals with income source and expense category visualizations.",
+  "about": "This Personal Profit & Loss Template is a user-friendly financial tool designed for individuals to manage their finances on a monthly basis. It helps track income from various sources, including salary, freelance work, business income, rental income, dividends, and more. The income section lists these streams, and their contributions are visually represented in a pie chart, making it easy to see which sources make up the largest proportion of total income. The template also categorizes expenses, such as rent/mortgage, utilities, groceries, and other expenditures, displaying them in a bar chart that highlights the distribution of spending across different categories. This visual representation aids in quickly identifying the most significant areas of expense. At the top, the summary section provides a clear overview of the total income, total expenses, and the net disposable income—showing how much money is left after all expenses have been accounted for. This comprehensive summary allows individuals to effectively manage their monthly finances, make informed budgeting decisions, and identify opportunities to save or adjust spending to improve their financial health.",
+  "excerpt": "Track your personal finances easily with our user-friendly Excel accounting template. Visualize income sources and expense categories monthly.",
+  "link": "https://docs.google.com/spreadsheets/d/1l5cQmrYLw9w0Zfa5wsdcWJQ7UNCqRhhD/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/FFhLlwHzHoSlZOnHW699wl2dSg.png",
+  "imageAlt": "Personal Income Statement Excel template with detailed financial categories and calculations",
+  "order": 71,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Personal Income statement Template",
+    "description": "Personal Income statement Template\nThis Personal Profit & Loss Template is a user-friendly financial tool designed for individuals to manage their finances on a monthly basis. It helps track income from various sources, including salary, freelance work, business income, rental income, dividends, and more. The income section lists these streams, and their contributions are visually represented in a pie chart, making it easy to see which sources make up the largest proportion of total income.\nThe template also categorizes expenses, such as rent/mortgage, utilities, groceries, and other expenditures, displaying them in a bar chart that highlights the distribution of spending across different categories. This visual representation aids in quickly identifying the most significant areas of expense.\nAt the top, the summary section provides a clear overview of the total income, total expenses, and the net disposable income—showing how much money is left after all expenses have been accounted for. This comprehensive summary allows individuals to effectively manage their monthly finances, make informed budgeting decisions, and identify opportunities to save or adjust spending to improve their financial health.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "User-friendly monthly finance manager for individuals with income source and expense category visualizations."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://drive.google.com/drive/u/1/folders/1XAjaGl2oY-vXbTeQfern_QDhudNPdz-K",
+      "caption": "Alt text: \"Personal Income Statement Excel template with detailed financial categories and calculations for tracking individu"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Profit and Loss",
+    "url": "https://docs.google.com/spreadsheets/d/1l5cQmrYLw9w0Zfa5wsdcWJQ7UNCqRhhD/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "salary, freelance work, expenses, income statement, business income, financial tool, dividends, budgeting decisions, profit & loss template, rental income",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

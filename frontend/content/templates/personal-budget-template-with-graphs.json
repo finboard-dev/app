@@ -1,0 +1,72 @@
+{
+  "slug": "personal-budget-template-with-graphs",
+  "title": "Personal Budget template with graphs",
+  "category": "Budget",
+  "shortDescription": "A template for creating a personal budget with graphs",
+  "about": "The Personal Budget template with graphs is a comprehensive tool for managing personal finances. It includes features such as income tracking, expense categorization, savings goal monitoring, and graphical representation of financial data. With this template, users can easily track their income, expenses, and savings throughout the year, enabling them to make informed financial decisions. The template also provides a summary section that gives an overview of the total income, savings, and expenses. It is designed to be user-friendly and customizable, allowing users to adapt it to their specific financial needs. By using this template, individuals can gain better control over their finances, save money, and work towards their financial goals.",
+  "excerpt": "Manage your personal finances effectively with the Personal Budget template with graphs. Track income, expenses, and savings, and make informed financial decisions.",
+  "link": "https://docs.google.com/spreadsheets/d/1v5OEK7GUd-2FK6QSYmBuqdneEOTsa1N2/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ZzwjsB4GbfhCq3o5vHYl8hpsknI.png",
+  "imageAlt": "Screenshot of the Personal Budget template with graphs",
+  "order": 12,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Personal Budget template with graphs",
+    "description": "The Personal Budget template with graphs is a comprehensive tool for managing personal finances. It includes features such as income tracking, expense categorization, savings goal monitoring, and graphical representation of financial data. With this template, users can easily track their income, expenses, and savings throughout the year, enabling them to make informed financial decisions. The template also provides a summary section that gives an overview of the total income, savings, and expenses. It is designed to be user-friendly and customizable, allowing users to adapt it to their specific financial needs. By using this template, individuals can gain better control over their finances, save money, and work towards their financial goals.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "A template for creating a personal budget with graphs"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Personal Budget template with graphs"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1v5OEK7GUd-2FK6QSYmBuqdneEOTsa1N2/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "personal budget, savings goal monitoring, financial decisions, financial goals, income tracking, financial data, user-friendly, expense categorization, graphs, summary section",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

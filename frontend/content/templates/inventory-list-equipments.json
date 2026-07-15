@@ -1,0 +1,72 @@
+{
+  "slug": "inventory-list-equipments",
+  "title": "Inventory list - Equipments",
+  "category": "Inventory Management",
+  "shortDescription": "The template is designed to track and manage inventory of equipments.",
+  "about": "The 'Inventory list - Equipments' template is a comprehensive tool that allows businesses to effectively track and manage their inventory of equipments. With features such as asset or serial number tracking, location management, financial status monitoring, and depreciation calculation, this template provides a complete solution for inventory management.Key features of the template include:- Asset or serial number tracking: Easily keep track of each equipment item by assigning a unique identifier.- Location management: Record the physical location of each equipment item for easy retrieval.- Financial status monitoring: Keep tabs on the financial aspects of each equipment item, such as initial value, deposit, loan terms, loan rate, monthly payment, and operating costs.- Depreciation calculation: Automatically calculate the expected value at the end of the loan term, annual straight line depreciation, monthly straight line depreciation, and current value.By using the 'Inventory list - Equipments' template, businesses can benefit in the following ways:- Improved inventory control: Easily track and manage equipment inventory, ensuring accurate records and reducing the risk of loss or misplacement.- Financial visibility: Monitor the financial status of equipment items, enabling better budgeting and decision-making.- Cost optimization: Analyze monthly operating costs and total monthly cost to identify areas for cost optimization.- Asset valuation: Calculate the expected value at the end of the loan term and track depreciation to accurately assess the value of equipment assets.In conclusion, the 'Inventory list - Equipments' template is a valuable tool for businesses looking to efficiently manage their equipment inventory, track financial status, and optimize costs.",
+  "excerpt": "Track and manage equipment inventory with the 'Inventory list - Equipments' template. Monitor financial status and optimize costs.",
+  "link": "https://docs.google.com/spreadsheets/d/12r2IwaV2p0bbCAWWUC40Gu-DShOnDqOG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ntw3L3QWr8D3Cch5R46QGpyJ4hI.png",
+  "imageAlt": "Screenshot of the 'Inventory list - Equipments' template",
+  "order": 35,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Inventory list - Equipments",
+    "description": "The 'Inventory list - Equipments' template is a comprehensive tool that allows businesses to effectively track and manage their inventory of equipments. With features such as asset or serial number tracking, location management, financial status monitoring, and depreciation calculation, this template provides a complete solution for inventory management.\n\nKey features of the template include:\n\n- Asset or serial number tracking: Easily keep track of each equipment item by assigning a unique identifier.\n- Location management: Record the physical location of each equipment item for easy retrieval.\n- Financial status monitoring: Keep tabs on the financial aspects of each equipment item, such as initial value, deposit, loan terms, loan rate, monthly payment, and operating costs.\n- Depreciation calculation: Automatically calculate the expected value at the end of the loan term, annual straight line depreciation, monthly straight line depreciation, and current value.\n\nBy using the 'Inventory list - Equipments' template, businesses can benefit in the following ways:\n\n- Improved inventory control: Easily track and manage equipment inventory, ensuring accurate records and reducing the risk of loss or misplacement.\n- Financial visibility: Monitor the financial status of equipment items, enabling better budgeting and decision-making.\n- Cost optimization: Analyze monthly operating costs and total monthly cost to identify areas for cost optimization.\n- Asset valuation: Calculate the expected value at the end of the loan term and track depreciation to accurately assess the value of equipment assets.\n\nIn conclusion, the 'Inventory list - Equipments' template is a valuable tool for businesses looking to efficiently manage their equipment inventory, track financial status, and optimize costs.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The template is designed to track and manage inventory of equipments."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the 'Inventory list - Equipments' template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Inventory Management",
+    "url": "https://docs.google.com/spreadsheets/d/12r2IwaV2p0bbCAWWUC40Gu-DShOnDqOG/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "asset, manage, location management, inventory, serial number, depreciation calculation, template, financial status, track, equipments",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

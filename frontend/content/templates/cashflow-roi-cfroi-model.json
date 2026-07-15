@@ -1,0 +1,72 @@
+{
+  "slug": "cashflow-roi-cfroi-model",
+  "title": "Cashflow ROI (CFROI) Model",
+  "category": "Cash Flow",
+  "shortDescription": "The Cashflow ROI (CFROI) Model is an Excel template used to calculate the cash flow return on investment for a project.",
+  "about": "The Cashflow ROI (CFROI) Model is a comprehensive Excel template that allows users to perform detailed analysis and valuation of investment projects. The template is designed to calculate and analyze the return on investment (ROI) based on cash flow data. It provides a simplified yet powerful tool for evaluating the financial viability of a project. Key features of the CFROI Model include:- Input section: The template allows users to input the cost of capital, growth rate, and project ROI. These inputs are essential for calculating the cash flows and determining the CFROI.- Cash flow projection: The template provides a section for projecting the cash flows of the project over a specified period. Users can input the cash flows for each year, and the template automatically calculates the gross cash flow.- Investment analysis: The CFROI Model includes sections for analyzing the investment in net working capital (NWC) and capital expenditures (CAPEX). It calculates the net change in NWC and the net cash requirement (NCR) by subtracting the net change in NWC and CAPEX from the gross cash flow.- Balance sheet analysis: The template includes sections for analyzing the balance sheet, including the NWC and gross assets. It calculates the percentage of non-depreciating assets and the CFROI based on the NWC and gross assets.- Valuation: The CFROI Model allows users to calculate the present value (PV) of the net cash requirement (NCR) and the PV of total receipts from existing assets. It also includes sections for analyzing future investments, calculating the PV of investments, and determining the incremental wealth created.- Shareholder return: The template calculates the shareholder return based on the value of the project and the NCR.Using the CFROI Model offers several benefits:- Accurate ROI calculation: The template uses comprehensive cash flow data to calculate the ROI, providing a more accurate measure of the project's financial performance.- Easy analysis: The CFROI Model simplifies the analysis process by automating calculations and providing clear sections for inputting and analyzing data.- Financial decision-making: By providing detailed financial analysis and valuation, the template enables users to make informed decisions about investing in a project.- Time-saving: The CFROI Model eliminates the need for manual calculations and complex spreadsheets, saving time and effort.In conclusion, the Cashflow ROI (CFROI) Model is a powerful Excel template that simplifies the analysis and valuation of investment projects. With its comprehensive features and benefits, it provides a valuable tool for financial decision-making and accurate ROI calculation.",
+  "excerpt": "The Cashflow ROI (CFROI) Model is an Excel template that calculates the cash flow return on investment for a project, providing a comprehensive analysis of financial viability.",
+  "link": "https://docs.google.com/spreadsheets/d/138GUJ4JRZzbAIf7Za8nbQXMi1x7YUV0z/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/BVfBgDM8OOaCFUi6hOQjdnUEgFg.png",
+  "imageAlt": "Screenshot of the Cashflow ROI (CFROI) Model Excel template",
+  "order": 52,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Cashflow ROI (CFROI) Model",
+    "description": "The Cashflow ROI (CFROI) Model is a comprehensive Excel template that allows users to perform detailed analysis and valuation of investment projects. The template is designed to calculate and analyze the return on investment (ROI) based on cash flow data. It provides a simplified yet powerful tool for evaluating the financial viability of a project. Key features of the CFROI Model include:- Input section: The template allows users to input the cost of capital, growth rate, and project ROI. These inputs are essential for calculating the cash flows and determining the CFROI.- Cash flow projection: The template provides a section for projecting the cash flows of the project over a specified period. Users can input the cash flows for each year, and the template automatically calculates the gross cash flow.- Investment analysis: The CFROI Model includes sections for analyzing the investment in net working capital (NWC) and capital expenditures (CAPEX). It calculates the net change in NWC and the net cash requirement (NCR) by subtracting the net change in NWC and CAPEX from the gross cash flow.- Balance sheet analysis: The template includes sections for analyzing the balance sheet, including the NWC and gross assets. It calculates the percentage of non-depreciating assets and the CFROI based on the NWC and gross assets.- Valuation: The CFROI Model allows users to calculate the present value (PV) of the net cash requirement (NCR) and the PV of total receipts from existing assets. It also includes sections for analyzing future investments, calculating the PV of investments, and determining the incremental wealth created.- Shareholder return: The template calculates the shareholder return based on the value of the project and the NCR.Using the CFROI Model offers several benefits:- Accurate ROI calculation: The template uses comprehensive cash flow data to calculate the ROI, providing a more accurate measure of the project's financial performance.- Easy analysis: The CFROI Model simplifies the analysis process by automating calculations and providing clear sections for inputting and analyzing data.- Financial decision-making: By providing detailed financial analysis and valuation, the template enables users to make informed decisions about investing in a project.- Time-saving: The CFROI Model eliminates the need for manual calculations and complex spreadsheets, saving time and effort.In conclusion, the Cashflow ROI (CFROI) Model is a powerful Excel template that simplifies the analysis and valuation of investment projects. With its comprehensive features and benefits, it provides a valuable tool for financial decision-making and accurate ROI calculation.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Cashflow ROI (CFROI) Model is an Excel template used to calculate the cash flow return on investment for a project."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "Cashflow ROI",
+      "caption": "Screenshot of the Cashflow ROI (CFROI) Model Excel template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Cash Flow",
+    "url": "https://docs.google.com/spreadsheets/d/138GUJ4JRZzbAIf7Za8nbQXMi1x7YUV0z/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "cfroi model, project roi, net working capital, capital expenditures, time-saving, cash flow, financial analysis, valuation, roi, present value, growth rate, financial viability, excel template, cash flow projection, investment projects, cost of capital, balance sheet analysis, financial decision-making, shareholder return",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

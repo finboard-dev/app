@@ -1,0 +1,72 @@
+{
+  "slug": "eps-calculator-m-a",
+  "title": "EPS calculator - M&A",
+  "category": "Calculator",
+  "shortDescription": "This template calculates the effects of an acquisition involving stock exchange.",
+  "about": "The Effect of Acquisition Involving Stock Exchange template is designed to help users analyze the impact of an acquisition on the earnings, stock price, and EPS of the acquiring and target companies. The template requires input values such as the earnings available for common stock, number of common shares outstanding, market price per share, earnings per share, price/earnings ratio (P/E), assumed rate of earnings growth, assumed stock price premium paid by the acquiring company to the target company, assumed ratio of exchange, and assumed P/E ratio of the new firm. The template then calculates the effects of the combination of the two firms on EPS, the number of shares for each B share, new EPS for A shareholders, stock price of the new firm, new equivalent EPS for B shareholders, earnings from A, earnings from B, total earnings of the new firm, total number of shares for A shareholders, and total number of shares for B shareholders. Additionally, the template provides a performance projection for the new firm in future years, including the new firm's total earnings and stock price for each year. It also calculates the initial EPS change after 5 years for former A shareholders and the equivalent EPS change for former B shareholders.This template is useful for financial analysts, investors, and companies considering an acquisition involving stock exchange. It allows users to evaluate the potential financial impact of the acquisition and make informed decisions based on the calculated results. With this template, users can assess the effects on earnings, stock price, and EPS, and plan for the future performance of the new firm.",
+  "excerpt": "Efficiently calculate EPS impact in M&A stock exchange deals with this Excel accounting template. Simplify your accounting process today!",
+  "link": "https://docs.google.com/spreadsheets/d/17LXsABygcQb27NaZlZZCtAYrk7V0JgDd/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/ESJqgiNMvBjKOO6suqOBpCT70d8.png",
+  "imageAlt": "Screenshot of Excel accounting template 'EPS calculator - M&A' showing financial calculations for merger and acquisition",
+  "order": 56,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "EPS calculator - M&A",
+    "description": "The Effect of Acquisition Involving Stock Exchange template is designed to help users analyze the impact of an acquisition on the earnings, stock price, and EPS of the acquiring and target companies. The template requires input values such as the earnings available for common stock, number of common shares outstanding, market price per share, earnings per share, price/earnings ratio (P/E), assumed rate of earnings growth, assumed stock price premium paid by the acquiring company to the target company, assumed ratio of exchange, and assumed P/E ratio of the new firm. The template then calculates the effects of the combination of the two firms on EPS, the number of shares for each B share, new EPS for A shareholders, stock price of the new firm, new equivalent EPS for B shareholders, earnings from A, earnings from B, total earnings of the new firm, total number of shares for A shareholders, and total number of shares for B shareholders. Additionally, the template provides a performance projection for the new firm in future years, including the new firm's total earnings and stock price for each year. It also calculates the initial EPS change after 5 years for former A shareholders and the equivalent EPS change for former B shareholders.This template is useful for financial analysts, investors, and companies considering an acquisition involving stock exchange. It allows users to evaluate the potential financial impact of the acquisition and make informed decisions based on the calculated results. With this template, users can assess the effects on earnings, stock price, and EPS, and plan for the future performance of the new firm.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "This template calculates the effects of an acquisition involving stock exchange."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "eps-cal",
+      "caption": "Alt text: \"Screenshot of Excel accounting template 'EPS calculator - M&A' showing financial calculations for merger and acqui"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Calculator",
+    "url": "https://docs.google.com/spreadsheets/d/17LXsABygcQb27NaZlZZCtAYrk7V0JgDd/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "acquisition, P/E ratio, common shares, financial impact, M&A, EPS, stock exchange, EPS calculator, earnings, stock price",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

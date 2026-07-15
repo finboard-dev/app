@@ -1,0 +1,72 @@
+{
+  "slug": "budget-template-events-conferences",
+  "title": "Budget template_ Events & conferences",
+  "category": "Financial Planning",
+  "shortDescription": "The Budget template_ Events & conferences is a comprehensive Excel template designed to help plan and track expenses and income for events and conferences.",
+  "about": "The Budget template_ Events & conferences is a powerful tool for event planners and organizers to effectively manage their budgets. With a user-friendly interface and comprehensive features, this template streamlines the budgeting process and provides valuable insights into the financial aspects of events and conferences.Key features of the template include:- Expense tracking: The template allows users to input estimated and actual expenses for various categories such as site fees, refreshments, decorations, publicity, and miscellaneous costs.- Income management: Users can record estimated and actual income from sources like admissions, ads in program, exhibitors/vendors, and sale of items.- Profit and loss summary: The template automatically calculates the total income, total expenses, and the resulting profit or loss for the event.Benefits of using the Budget template_ Events & conferences:1. Efficient budget planning: The template provides a structured format to plan and allocate funds for different aspects of the event, ensuring that all expenses are accounted for.2. Real-time tracking: By recording actual expenses and income, the template enables users to track their financial progress throughout the event planning process.3. Financial analysis: With the profit and loss summary, users can quickly assess the financial viability of the event and make informed decisions to optimize revenue and minimize costs.4. Time-saving: The pre-designed categories and formulas in the template save time and effort in creating a budget from scratch, allowing event planners to focus on other crucial tasks.In conclusion, the Budget template_ Events & conferences is a valuable resource for event planners, providing a comprehensive and user-friendly solution for budget management. By utilizing this template, event organizers can ensure financial success and make informed decisions to create memorable and successful events.",
+  "excerpt": "The Budget template_ Events & conferences is a comprehensive Excel template designed to help plan and track expenses and income for events and conferences.",
+  "link": "https://docs.google.com/spreadsheets/d/1hUZ_YyBpUfi-izpREKVNbNhKs0_rT8cw/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/CSCKVqnbIiAxK6rt6O5KJ0vzdYs.png",
+  "imageAlt": "Screenshot of the Budget template_ Events & conferences Excel sheet",
+  "order": 31,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "Budget template_ Events & conferences",
+    "description": "The Budget template_ Events & conferences is a powerful tool for event planners and organizers to effectively manage their budgets. With a user-friendly interface and comprehensive features, this template streamlines the budgeting process and provides valuable insights into the financial aspects of events and conferences.\n\nKey features of the template include:\n\n- Expense tracking: The template allows users to input estimated and actual expenses for various categories such as site fees, refreshments, decorations, publicity, and miscellaneous costs.\n\n- Income management: Users can record estimated and actual income from sources like admissions, ads in program, exhibitors/vendors, and sale of items.\n\n- Profit and loss summary: The template automatically calculates the total income, total expenses, and the resulting profit or loss for the event.\n\nBenefits of using the Budget template_ Events & conferences:\n\n1. Efficient budget planning: The template provides a structured format to plan and allocate funds for different aspects of the event, ensuring that all expenses are accounted for.\n\n2. Real-time tracking: By recording actual expenses and income, the template enables users to track their financial progress throughout the event planning process.\n\n3. Financial analysis: With the profit and loss summary, users can quickly assess the financial viability of the event and make informed decisions to optimize revenue and minimize costs.\n\n4. Time-saving: The pre-designed categories and formulas in the template save time and effort in creating a budget from scratch, allowing event planners to focus on other crucial tasks.\n\nIn conclusion, the Budget template_ Events & conferences is a valuable resource for event planners, providing a comprehensive and user-friendly solution for budget management. By utilizing this template, event organizers can ensure financial success and make informed decisions to create memorable and successful events.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The Budget template_ Events & conferences is a comprehensive Excel template designed to help plan and track expenses and income for events and conferences."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the Budget template_ Events & conferences Excel sheet"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Financial Planning",
+    "url": "https://docs.google.com/spreadsheets/d/1hUZ_YyBpUfi-izpREKVNbNhKs0_rT8cw/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "expenses, budget planning, financial analysis, profit and loss, events, conferences, income, budget template, finance, accounting",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}

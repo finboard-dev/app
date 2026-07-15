@@ -1,0 +1,72 @@
+{
+  "slug": "macrs-capital-budgeting-model",
+  "title": "MACRS Capital budgeting model",
+  "category": "Budget",
+  "shortDescription": "The MACRS Capital budgeting model is an Excel template for analyzing capital budgeting investments and calculating net cash flow.",
+  "about": "The MACRS Capital budgeting model is a comprehensive Excel template designed to assist in the analysis of capital budgeting investments and the calculation of net cash flow. It provides a range of features and benefits that make it a valuable tool for financial professionals and businesses.  Key features of the template include:  - Calculation of net cash flow based on various investment parameters - Integration of MACRS (Modified Accelerated Cost Recovery System) depreciation methods - Calculation of incremental revenue and cost - Consideration of investment tax credits and tax effects - Calculation of capital gains tax and recapture of ITC - Analysis of the impact of different depreciation methods on net cash flow  By utilizing the MACRS Capital budgeting model, users can benefit from:  - Accurate and efficient analysis of capital budgeting investments - Quick calculation of net cash flow and evaluation of project profitability - Optimization of investment decisions by considering tax implications and depreciation methods - Enhanced financial planning and forecasting through comprehensive financial analysis  In conclusion, the MACRS Capital budgeting model is a powerful Excel template that provides financial professionals and businesses with a comprehensive tool for analyzing capital budgeting investments and calculating net cash flow. Its features and benefits enable users to make informed investment decisions and optimize financial planning.",
+  "excerpt": "The MACRS Capital budgeting model is an Excel template for analyzing capital budgeting investments and calculating net cash flow.",
+  "link": "https://docs.google.com/spreadsheets/d/1vOAsOdl42VhDuXzZRJY2S4gdppvR94fp/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+  "image": "https://framerusercontent.com/images/nbza4RJpg4DAeSeRYs95Zbevxb0.png",
+  "imageAlt": "Screenshot of the MACRS Capital budgeting model Excel template",
+  "order": 8,
+  "structuredData": {
+    "@context": "https://schema.org/",
+    "@type": "DigitalDocument",
+    "name": "MACRS Capital budgeting model",
+    "description": "The MACRS Capital budgeting model is a comprehensive Excel template designed to assist in the analysis of capital budgeting investments and the calculation of net cash flow. It provides a range of features and benefits that make it a valuable tool for financial professionals and businesses.\n\nKey features of the template include:\n\n- Calculation of net cash flow based on various investment parameters\n- Integration of MACRS (Modified Accelerated Cost Recovery System) depreciation methods\n- Calculation of incremental revenue and cost\n- Consideration of investment tax credits and tax effects\n- Calculation of capital gains tax and recapture of ITC\n- Analysis of the impact of different depreciation methods on net cash flow\n\nBy utilizing the MACRS Capital budgeting model, users can benefit from:\n\n- Accurate and efficient analysis of capital budgeting investments\n- Quick calculation of net cash flow and evaluation of project profitability\n- Optimization of investment decisions by considering tax implications and depreciation methods\n- Enhanced financial planning and forecasting through comprehensive financial analysis\n\nIn conclusion, the MACRS Capital budgeting model is a powerful Excel template that provides financial professionals and businesses with a comprehensive tool for analyzing capital budgeting investments and calculating net cash flow. Its features and benefits enable users to make informed investment decisions and optimize financial planning.",
+    "fileFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "about": {
+      "@type": "Thing",
+      "name": "Accounting",
+      "description": "The MACRS Capital budgeting model is an Excel template for analyzing capital budgeting investments and calculating net cash flow."
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "caption": "Screenshot of the MACRS Capital budgeting model Excel template"
+    },
+    "educationalUse": "Template",
+    "inLanguage": "en",
+    "genre": "Budget",
+    "url": "https://docs.google.com/spreadsheets/d/1vOAsOdl42VhDuXzZRJY2S4gdppvR94fp/edit?usp=drive_link&ouid=116118700909397329072&rtpof=true&sd=true",
+    "keywords": "investment parameters, cost, project profitability, tax implications, net cash flow, capital gains tax, macrs depreciation, capital budgeting model, depreciation methods, financial analysis, itc recapture, financial planning, tax effects, macrs, incremental revenue, investment tax credits, excel template",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Accountants"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Bookkeepers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Professionals"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Small Business Owners"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Entrepreneurs"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Finance Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Tax Preparers"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Financial Analysts"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "FinBoard"
+    }
+  }
+}
