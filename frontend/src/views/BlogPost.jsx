@@ -110,6 +110,7 @@ export default function BlogPost({
               <img
                 src={frontmatter.author.photo}
                 alt={frontmatter.author.name}
+                style={{ objectPosition: frontmatter.author.photoPos || "center 20%" }}
                 className="h-14 w-14 rounded-full object-cover border border-line shrink-0"
               />
             ) : null}

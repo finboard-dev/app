@@ -1,0 +1,276 @@
+{
+  "slug": "accounting-conferences-2026-2027",
+  "title": "Accounting Conferences 2026–2027: The Global Calendar for Finance Teams",
+  "category": "accounting",
+  "excerpt": "A curated calendar of the major accounting and finance conferences worldwide — dates, locations and focus — from today through 2027, with links to register.",
+  "author": "FinBoard",
+  "date": "2026-07-16",
+  "coverImage": "/blog/accounting-conferences-2026-2027-cover.svg",
+  "coverAlt": "Accounting conferences 2026–2027 global calendar",
+  "tags": [
+    "Conferences",
+    "Community"
+  ],
+  "format": "html",
+  "order": -1,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://finboard.ai/blog/accounting-conferences-2026-2027",
+        "headline": "Accounting Conferences 2026–2027: The Global Calendar",
+        "description": "A curated calendar of the major accounting and finance conferences worldwide, from July 2026 through 2027 — dates, locations, focus and registration links.",
+        "datePublished": "2026-07-16",
+        "dateModified": "2026-07-16",
+        "author": {
+          "@type": "Person",
+          "name": "Vaishnav Gupta",
+          "jobTitle": "Co-founder, Finance",
+          "url": "https://finboard.ai/about",
+          "sameAs": [
+            "https://www.linkedin.com/in/vaishnav-gupta-07b1b218/"
+          ],
+          "worksFor": {
+            "@id": "https://finboard.ai/#organization"
+          }
+        },
+        "publisher": {
+          "@id": "https://finboard.ai/#organization"
+        },
+        "image": "https://finboard.ai/blog/accounting-conferences-2026-2027-cover.svg",
+        "mainEntityOfPage": "https://finboard.ai/blog/accounting-conferences-2026-2027",
+        "about": "Accounting and finance conferences"
+      },
+      {
+        "@type": "ItemList",
+        "name": "Upcoming accounting conferences 2026–2027",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Event",
+              "name": "Bridging the Gap 2026",
+              "startDate": "2026-07-28",
+              "endDate": "2026-07-30",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Charlotte, NC, USA",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Charlotte",
+                  "addressCountry": "US",
+                  "addressRegion": "NC"
+                }
+              },
+              "url": "https://www.btgconference.com/",
+              "description": "The Unique CPA's signature event pairs technical sessions with a strong focus on culture, leadership and building an advisory-first practice.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Bridging the Gap"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Event",
+              "name": "Intuit Connect 2026",
+              "startDate": "2026-10-26",
+              "endDate": "2026-10-28",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "ARIA Resort & Casino, Las Vegas, NV, USA",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Las Vegas",
+                  "addressCountry": "US",
+                  "addressRegion": "NV"
+                }
+              },
+              "url": "https://www.intuit.com/intuitconnect/",
+              "description": "Intuit's flagship event for accounting firms — deep dives on QuickBooks, the Intuit Accountant and Enterprise suites, and AI-powered workflows for multi-service firms.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Intuit Connect"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Event",
+              "name": "AFP 2026",
+              "startDate": "2026-11-08",
+              "endDate": "2026-11-11",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Mandalay Bay, Las Vegas, NV, USA",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Las Vegas",
+                  "addressCountry": "US",
+                  "addressRegion": "NV"
+                }
+              },
+              "url": "https://conference.financialprofessionals.org/",
+              "description": "The Association for Financial Professionals' annual conference draws 7,000+ treasury, FP&A and payments professionals — the biggest gathering on the corporate-finance side of the house.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "AFP"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Event",
+              "name": "Thomson Reuters SYNERGY 2026",
+              "startDate": "2026-11-16",
+              "endDate": "2026-11-19",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Fontainebleau, Las Vegas, NV, USA",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Las Vegas",
+                  "addressCountry": "US",
+                  "addressRegion": "NV"
+                }
+              },
+              "url": "https://tax.thomsonreuters.com/en/synergy",
+              "description": "Thomson Reuters' user conference for tax and accounting professionals, centred on its product ecosystem, automation and the future of tax workflow.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Thomson Reuters SYNERGY"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Event",
+              "name": "World Congress of Accountants (WCOA) 2026",
+              "startDate": "2026-11-17",
+              "endDate": "2026-11-19",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Seoul, South Korea",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Seoul",
+                  "addressCountry": "KR"
+                }
+              },
+              "url": "https://www.ifac.org/wcoa",
+              "description": "Held every few years, WCOA is the profession's premier global summit. The 2026 edition — jointly hosted by IFAC and KICPA — moves to a new biennial format. (In-person attendance is invitation-only.)",
+              "organizer": {
+                "@type": "Organization",
+                "name": "World Congress of Accountants (WCOA)"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Event",
+              "name": "Digital CPA Conference 2026",
+              "startDate": "2026-12-06",
+              "endDate": "2026-12-09",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "San Diego, CA, USA (+ online)",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "San Diego",
+                  "addressCountry": "US",
+                  "addressRegion": "CA"
+                }
+              },
+              "url": "https://www.cpa.com/digital-cpa",
+              "description": "Organised by CPA.com and the AICPA, Digital CPA is the go-to event for firms building a technology-forward CAS practice, with a live-online option for remote attendees.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Digital CPA Conference"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "Event",
+              "name": "Accountex London 2027",
+              "startDate": "2027-05-12",
+              "endDate": "2027-05-13",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "ExCeL London, UK",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "London",
+                  "addressCountry": "GB"
+                }
+              },
+              "url": "https://www.accountex.co.uk/london/",
+              "description": "Europe's biggest accounting show — 17,000+ attendees, hundreds of exhibitors and dozens of theatres covering practice tech, fintech and the future of the profession.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Accountex London"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "Event",
+              "name": "Scaling New Heights 2027",
+              "startDate": "2027-06-27",
+              "endDate": "2027-06-30",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Orlando, FL, USA",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Orlando",
+                  "addressCountry": "US",
+                  "addressRegion": "FL"
+                }
+              },
+              "url": "https://www.scalingnewheights.com/",
+              "description": "A practitioner-focused conference for firm owners building profitable, scalable, advisory-led practices, with a heavy emphasis on AI and automation.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "Scaling New Heights"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "content": "<p>Conferences are where the accounting profession decides what comes next — which tools to adopt, how AI reshapes the close, and how firms and finance teams should structure advisory work. Below is a running calendar of the major accounting and finance conferences happening <strong>around the world from today through 2027</strong>, with dates, locations, focus and links to register.</p><p>Dates and venues are taken from official sources as of July 2026 and are subject to change — always confirm on the event's official site before booking travel. This page is curated by the FinBoard team and updated as new dates are announced.</p><h2>The 2026–2027 accounting conference calendar</h2><table><thead><tr><th>Dates</th><th>Conference</th><th>Location</th><th>Focus</th></tr></thead><tbody><tr><td>July 28–30, 2026</td><td><a href=\"https://www.btgconference.com/\" target=\"_blank\" rel=\"noopener\">Bridging the Gap 2026</a></td><td>Charlotte, NC, USA</td><td>Firm growth, advisory and the human side of accounting</td></tr><tr><td>October 26–28, 2026</td><td><a href=\"https://www.intuit.com/intuitconnect/\" target=\"_blank\" rel=\"noopener\">Intuit Connect 2026</a></td><td>ARIA Resort & Casino, Las Vegas, NV, USA</td><td>QuickBooks & Intuit ecosystem, firm growth, AI tooling</td></tr><tr><td>November 8–11, 2026</td><td><a href=\"https://conference.financialprofessionals.org/\" target=\"_blank\" rel=\"noopener\">AFP 2026</a></td><td>Mandalay Bay, Las Vegas, NV, USA</td><td>Treasury, FP&A and payments</td></tr><tr><td>November 16–19, 2026</td><td><a href=\"https://tax.thomsonreuters.com/en/synergy\" target=\"_blank\" rel=\"noopener\">Thomson Reuters SYNERGY 2026</a></td><td>Fontainebleau, Las Vegas, NV, USA</td><td>Tax & accounting technology</td></tr><tr><td>November 17–19, 2026</td><td><a href=\"https://www.ifac.org/wcoa\" target=\"_blank\" rel=\"noopener\">World Congress of Accountants (WCOA) 2026</a></td><td>Seoul, South Korea</td><td>The global accountancy profession (IFAC & KICPA)</td></tr><tr><td>December 6–9, 2026</td><td><a href=\"https://www.cpa.com/digital-cpa\" target=\"_blank\" rel=\"noopener\">Digital CPA Conference 2026</a></td><td>San Diego, CA, USA (+ online)</td><td>Client Accounting Services (CAS), firm tech & automation</td></tr><tr><td>May 12–13, 2027</td><td><a href=\"https://www.accountex.co.uk/london/\" target=\"_blank\" rel=\"noopener\">Accountex London 2027</a></td><td>ExCeL London, UK</td><td>Europe's largest accounting & fintech exhibition</td></tr><tr><td>June 27–30, 2027</td><td><a href=\"https://www.scalingnewheights.com/\" target=\"_blank\" rel=\"noopener\">Scaling New Heights 2027</a></td><td>Orlando, FL, USA</td><td>Practice growth, technology and advisory</td></tr></tbody></table><h2>The conferences in detail</h2><h3>Bridging the Gap 2026 — July 28–30, 2026</h3><p><strong>Where:</strong> Charlotte, NC, USA &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> Firm growth, advisory and the human side of accounting</p><p>The Unique CPA's signature event pairs technical sessions with a strong focus on culture, leadership and building an advisory-first practice. <a href=\"https://www.btgconference.com/\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>Intuit Connect 2026 — October 26–28, 2026</h3><p><strong>Where:</strong> ARIA Resort & Casino, Las Vegas, NV, USA &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> QuickBooks & Intuit ecosystem, firm growth, AI tooling</p><p>Intuit's flagship event for accounting firms — deep dives on QuickBooks, the Intuit Accountant and Enterprise suites, and AI-powered workflows for multi-service firms. <a href=\"https://www.intuit.com/intuitconnect/\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>AFP 2026 — November 8–11, 2026</h3><p><strong>Where:</strong> Mandalay Bay, Las Vegas, NV, USA &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> Treasury, FP&A and payments</p><p>The Association for Financial Professionals' annual conference draws 7,000+ treasury, FP&A and payments professionals — the biggest gathering on the corporate-finance side of the house. <a href=\"https://conference.financialprofessionals.org/\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>Thomson Reuters SYNERGY 2026 — November 16–19, 2026</h3><p><strong>Where:</strong> Fontainebleau, Las Vegas, NV, USA &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> Tax & accounting technology</p><p>Thomson Reuters' user conference for tax and accounting professionals, centred on its product ecosystem, automation and the future of tax workflow. <a href=\"https://tax.thomsonreuters.com/en/synergy\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>World Congress of Accountants (WCOA) 2026 — November 17–19, 2026</h3><p><strong>Where:</strong> Seoul, South Korea &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> The global accountancy profession (IFAC & KICPA)</p><p>Held every few years, WCOA is the profession's premier global summit. The 2026 edition — jointly hosted by IFAC and KICPA — moves to a new biennial format. (In-person attendance is invitation-only.) <a href=\"https://www.ifac.org/wcoa\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>Digital CPA Conference 2026 — December 6–9, 2026</h3><p><strong>Where:</strong> San Diego, CA, USA (+ online) &nbsp;·&nbsp; <strong>Format:</strong> In-person + online &nbsp;·&nbsp; <strong>Focus:</strong> Client Accounting Services (CAS), firm tech & automation</p><p>Organised by CPA.com and the AICPA, Digital CPA is the go-to event for firms building a technology-forward CAS practice, with a live-online option for remote attendees. <a href=\"https://www.cpa.com/digital-cpa\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>Accountex London 2027 — May 12–13, 2027</h3><p><strong>Where:</strong> ExCeL London, UK &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> Europe's largest accounting & fintech exhibition</p><p>Europe's biggest accounting show — 17,000+ attendees, hundreds of exhibitors and dozens of theatres covering practice tech, fintech and the future of the profession. <a href=\"https://www.accountex.co.uk/london/\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h3>Scaling New Heights 2027 — June 27–30, 2027</h3><p><strong>Where:</strong> Orlando, FL, USA &nbsp;·&nbsp; <strong>Format:</strong> In-person &nbsp;·&nbsp; <strong>Focus:</strong> Practice growth, technology and advisory</p><p>A practitioner-focused conference for firm owners building profitable, scalable, advisory-led practices, with a heavy emphasis on AI and automation. <a href=\"https://www.scalingnewheights.com/\" target=\"_blank\" rel=\"noopener\">Official site &amp; registration →</a></p><h2>Also on the radar (dates to be confirmed)</h2><p>These recurring events hadn't confirmed their next dates at publication. Check their official pages for updates:</p><ul><li><a href=\"https://www.aicpaengage.com/\" target=\"_blank\" rel=\"noopener\">AICPA & CIMA ENGAGE 2027</a> — June 2027 (TBC), Las Vegas, USA</li><li><a href=\"https://www.xero.com/events/xerocon/\" target=\"_blank\" rel=\"noopener\">Xerocon 2027</a> — Dates TBC — Xero's partner event</li><li><a href=\"https://www.sage.com/en-us/\" target=\"_blank\" rel=\"noopener\">Sage Transform 2027</a> — Spring 2027 (TBC), USA</li><li><a href=\"https://www.cpaaustralia.com.au/\" target=\"_blank\" rel=\"noopener\">CPA Australia events</a> — Year-round across Australia & Asia-Pacific</li><li><a href=\"https://www.icai.org/category/events\" target=\"_blank\" rel=\"noopener\">ICAI national conferences (India)</a> — Year-round across Indian cities</li></ul><h2>Getting the most out of an accounting conference</h2><ul><li><strong>Pick by outcome, not brand.</strong> Going to adopt AI in your close? A product-ecosystem event (Intuit Connect, SYNERGY) beats a general one. Building an advisory practice? Bridging the Gap or Scaling New Heights.</li><li><strong>Book CPE-eligible sessions early</strong> — the high-value workshops fill first.</li><li><strong>Plan the vendor floor.</strong> Shortlist the tools you actually want to evaluate and book demos in advance.</li><li><strong>Bring one real problem</strong> (a messy multi-entity close, a consolidation that won't tie out) and use the hallway track to pressure-test solutions.</li></ul><hr><p>Running a multi-entity close and tired of stitching QuickBooks exports together between conferences? <a href=\"https://finboard.ai/pricing\" target=\"_blank\" rel=\"noopener\">FinBoard</a> brings consolidation, close, FP&amp;A and reporting into one governed, AI-native workspace. <a href=\"https://finboard.ai/pricing\" target=\"_blank\" rel=\"noopener\">Book a consultation</a> to see it on your own books.</p><p><em>Last updated: 16 July 2026. Spotted a missing conference or a changed date? Dates are confirmed on each event's official site linked above.</em></p>"
+}

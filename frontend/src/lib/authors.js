@@ -11,6 +11,7 @@ export const AUTHORS = {
     bio: "Led finance transformations for Fortune 500 groups at PwC, then ran tax & payroll product at Rippling. 10+ years advising CFOs on multi-entity accounting.",
     linkedin: "https://www.linkedin.com/in/vaishnav-gupta-07b1b218/",
     photo: "/team/vaishnav.webp",
+    photoPos: "center 20%",
     alumniOf: ["PwC", "Rippling"],
   },
   "ujjwal-singh": {
@@ -20,6 +21,7 @@ export const AUTHORS = {
     bio: "Built distributed learning systems at MindTickle and shipped R&D at Samsung. Published peer-reviewed work on search & ranking.",
     linkedin: "https://www.linkedin.com/in/ujjwal-singh-87617637",
     photo: "/team/ujjwal.webp",
+    photoPos: "center 20%",
     alumniOf: ["MindTickle", "Samsung"],
   },
 };
