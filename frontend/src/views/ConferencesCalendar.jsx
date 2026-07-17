@@ -74,14 +74,14 @@ function EventCard({ ev }) {
       data-testid={`conference-${ev.id}`}
       className="group grid grid-cols-[76px_1fr] sm:grid-cols-[88px_1fr_auto] gap-4 sm:gap-5 items-center bg-white border border-line rounded-2xl px-5 py-4 mb-3 transition-all hover:border-line-strong hover:-translate-y-px hover:shadow-[0_14px_30px_-18px_rgba(10,10,10,0.25)]"
     >
-      <span className="border border-line-strong rounded-xl overflow-hidden text-center bg-white">
-        <span className="block bg-[#2563EB] text-white text-[10px] font-bold tracking-[0.16em] py-0.5">
+      <span className="border border-line rounded-xl overflow-hidden text-center bg-white shadow-[0_6px_16px_-10px_rgba(10,10,10,0.25)]">
+        <span className="block bg-[#2563EB] text-white text-[9.5px] font-bold tracking-[0.18em] py-1">
           {monthAbbr(ev.startDate)}
         </span>
-        <span className="block text-[18px] font-bold tracking-tight pt-1.5 px-1">
+        <span className="block text-[18px] font-bold tracking-tight tabular-nums pt-2 px-1">
           {dayRange(ev.startDate, ev.endDate)}
         </span>
-        <span className="block text-[10px] text-[#0A0A0A]/45 pb-1.5">
+        <span className="block text-[10px] font-medium text-[#0A0A0A]/40 pb-2">
           {ev.startDate.slice(0, 4)}
         </span>
       </span>
@@ -148,20 +148,28 @@ export default function ConferencesCalendar({ events = [], updated }) {
   const updatedLabel = formatUpdated(updated);
 
   return (
-    <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="conferences-page">
+    <div className="min-h-screen bg-sand text-[#0A0A0A] scroll-smooth" data-testid="conferences-page">
       <Navbar onBookDemo={openDemo} />
       <main>
         <section className="max-w-6xl mx-auto px-6 lg:px-8 pt-9 pb-16">
-          <div className="flex items-center gap-4 flex-wrap">
-            <h1 className="font-serif-display text-2xl tracking-tight">
-              Conferences<span className="text-[#2563EB]">.</span>
-            </h1>
+          <div className="flex items-end justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.28em] font-semibold text-[#2563EB] mb-2.5">
+                Resources · Community
+              </div>
+              <h1 className="font-serif-display text-3xl sm:text-4xl tracking-tight leading-none">
+                Conferences<span className="text-[#2563EB]">.</span>
+              </h1>
+            </div>
             {updatedLabel ? (
-              <span className="text-[12.5px] text-[#0A0A0A]/45">Updated {updatedLabel}</span>
+              <span className="inline-flex items-center gap-2 text-[11.5px] font-medium text-[#0A0A0A]/60 bg-white border border-line rounded-full px-3.5 py-1.5 mb-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#059669]" />
+                Updated {updatedLabel}
+              </span>
             ) : null}
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2" data-testid="conference-filters">
+          <div className="mt-7 flex flex-wrap items-center gap-2" data-testid="conference-filters">
             <Chip
               testid="conf-filter-all"
               active={audience === ALL}
@@ -181,7 +189,7 @@ export default function ConferencesCalendar({ events = [], updated }) {
                 {meta.label}
               </Chip>
             ))}
-            <span className="w-px self-stretch my-1 bg-line-strong mx-1 hidden sm:block" style={{ backgroundColor: "var(--line-strong)" }} />
+            <span className="w-px self-stretch my-1 mx-1.5 hidden sm:block" style={{ backgroundColor: "var(--line-strong)" }} />
             {Object.entries(FORMATS).map(([key, meta]) => (
               <Chip
                 key={key}
@@ -195,20 +203,23 @@ export default function ConferencesCalendar({ events = [], updated }) {
           </div>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-[150px_1fr] gap-9">
-            <nav className="hidden md:block sticky top-24 self-start" data-testid="conference-month-rail">
+            <nav
+              className="hidden md:block sticky top-24 self-start bg-white/60 border border-line rounded-2xl px-3 py-4"
+              data-testid="conference-month-rail"
+            >
               {years.map(({ year, months: list }) => (
                 <div key={year}>
-                  <div className="text-[11px] font-bold tracking-[0.14em] text-[#0A0A0A]/45 mt-4 mb-1.5 first:mt-0">
+                  <div className="text-[10px] font-bold tracking-[0.18em] text-[#0A0A0A]/40 mt-4 mb-1.5 px-2 first:mt-0">
                     {year}
                   </div>
                   {list.map((m) => (
                     <a
                       key={m.key}
                       href={`#m-${m.key}`}
-                      className="flex items-center justify-between text-[13px] text-[#0A0A0A]/60 px-2.5 py-1 rounded-lg hover:bg-white hover:text-[#0A0A0A]"
+                      className="flex items-center justify-between text-[13px] text-[#0A0A0A]/65 px-2.5 py-1.5 rounded-lg hover:bg-sand hover:text-[#0A0A0A] transition-colors"
                     >
                       <span>{m.month}</span>
-                      <span className="text-[10.5px] bg-sand-hover border border-line rounded-full px-2 text-[#0A0A0A]/55">
+                      <span className="text-[10.5px] tabular-nums bg-sand border border-line rounded-full px-1.5 min-w-[20px] text-center text-[#0A0A0A]/55">
                         {m.events.length}
                       </span>
                     </a>
@@ -224,11 +235,14 @@ export default function ConferencesCalendar({ events = [], updated }) {
                 </p>
               ) : (
                 months.map((m) => (
-                  <section key={m.key} id={`m-${m.key}`} className="mb-9 scroll-mt-24">
-                    <div className="flex items-baseline gap-2.5 mb-3.5">
+                  <section key={m.key} id={`m-${m.key}`} className="mb-10 scroll-mt-24">
+                    <div className="flex items-baseline gap-2.5 mb-4">
                       <h2 className="font-serif-display text-[21px] tracking-tight">{m.month}</h2>
-                      <span className="text-[13px] font-semibold text-[#0A0A0A]/40">{m.year}</span>
-                      <span className="flex-1 self-center h-px bg-line-strong" style={{ backgroundColor: "var(--line-strong)" }} />
+                      <span className="text-[13px] font-semibold text-[#0A0A0A]/35">{m.year}</span>
+                      <span className="flex-1 self-center h-px" style={{ backgroundColor: "var(--line-strong)" }} />
+                      <span className="text-[11px] font-medium text-[#0A0A0A]/40">
+                        {m.events.length} {m.events.length === 1 ? "event" : "events"}
+                      </span>
                     </div>
                     {m.events.map((ev) => (
                       <EventCard key={ev.id} ev={ev} />
