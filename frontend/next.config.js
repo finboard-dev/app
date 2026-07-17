@@ -29,8 +29,16 @@ const nextConfig = {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },
   async redirects() {
-    // The manifesto now lives on /about (manifesto + team).
-    return [{ source: "/manifesto", destination: "/about", permanent: true }];
+    return [
+      // The manifesto now lives on /about (manifesto + team).
+      { source: "/manifesto", destination: "/about", permanent: true },
+      // The conference calendar graduated from a blog post to its own page.
+      {
+        source: "/blog/accounting-conferences-2026-2027",
+        destination: "/conferences",
+        permanent: true,
+      },
+    ];
   },
 };
 

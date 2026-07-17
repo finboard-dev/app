@@ -24,6 +24,10 @@
 
 - [Finance Templates](https://finboard.ai/templates) — 80+ free, QuickBooks Online–ready Google Sheets templates: budgets, cash-flow forecasts, P&L, balance sheet, invoices, calculators (ASC 842 lease, ARR/MRR) and more.
 
+## Conferences
+
+- [Accounting Conferences Calendar](https://finboard.ai/conferences) — The calendar of major conferences for accountants, firms, CFOs and CPAs, with dates, locations and registration links, updated as events are announced.
+
 ## Products
 
 - [Month-End Close](https://finboard.ai/products/month-end-close) — AI-assisted close checklists and automated reconciliation cutting close time to under 5 business days.
