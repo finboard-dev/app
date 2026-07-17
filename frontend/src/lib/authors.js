@@ -24,6 +24,13 @@ export const AUTHORS = {
     photoPos: "center 20%",
     alumniOf: ["MindTickle", "Samsung"],
   },
+  "finboard-team": {
+    id: "finboard-team",
+    name: "FinBoard Team",
+    role: "",
+    bio: "Written by the FinBoard team. We build multi-entity reporting and consolidation for QuickBooks Online, and we write from what we see across our customers' books.",
+    linkedin: "https://finboard.ai/about",
+  },
 };
 
 // Topic-based default: the finance co-founder (ex-PwC) fronts accounting/finance
