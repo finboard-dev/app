@@ -1,0 +1,153 @@
+{
+  "updated": "2026-07-17",
+  "events": [
+    {
+      "id": "bridging-the-gap-2026",
+      "name": "Bridging the Gap 2026",
+      "url": "https://www.btgconference.com/",
+      "startDate": "2026-07-28",
+      "endDate": "2026-07-30",
+      "venue": "",
+      "city": "Charlotte, NC",
+      "country": "USA",
+      "format": "in-person",
+      "audiences": [
+        "cpas-firms"
+      ],
+      "topics": [
+        "Advisory"
+      ],
+      "description": "The Unique CPA's signature event pairs technical sessions with a strong focus on culture, leadership and building an advisory-first practice. Official site & registration →"
+    },
+    {
+      "id": "intuit-connect-2026",
+      "name": "Intuit Connect 2026",
+      "url": "https://www.intuit.com/intuitconnect/",
+      "startDate": "2026-10-26",
+      "endDate": "2026-10-28",
+      "venue": "ARIA Resort & Casino",
+      "city": "Las Vegas, NV",
+      "country": "USA",
+      "format": "in-person",
+      "audiences": [
+        "quickbooks",
+        "cpas-firms"
+      ],
+      "topics": [
+        "AI tooling"
+      ],
+      "description": "Intuit's flagship event for accounting firms — deep dives on QuickBooks, the Intuit Accountant and Enterprise suites, and AI-powered workflows for multi-service firms. Official site & registration →"
+    },
+    {
+      "id": "afp-2026",
+      "name": "AFP 2026",
+      "url": "https://conference.financialprofessionals.org/",
+      "startDate": "2026-11-08",
+      "endDate": "2026-11-11",
+      "venue": "Mandalay Bay",
+      "city": "Las Vegas, NV",
+      "country": "USA",
+      "format": "in-person",
+      "audiences": [
+        "cfos-finance"
+      ],
+      "topics": [
+        "Treasury & FP&A"
+      ],
+      "description": "The Association for Financial Professionals' annual conference draws 7,000+ treasury, FP&A and payments professionals — the biggest gathering on the corporate-finance side of the house. Official site & registration →"
+    },
+    {
+      "id": "thomson-reuters-synergy-2026",
+      "name": "Thomson Reuters SYNERGY 2026",
+      "url": "https://tax.thomsonreuters.com/en/synergy",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-19",
+      "venue": "Fontainebleau",
+      "city": "Las Vegas, NV",
+      "country": "USA",
+      "format": "in-person",
+      "audiences": [
+        "tax",
+        "cpas-firms"
+      ],
+      "topics": [
+        "Tax technology"
+      ],
+      "description": "Thomson Reuters' user conference for tax and accounting professionals, centred on its product ecosystem, automation and the future of tax workflow. Official site & registration →"
+    },
+    {
+      "id": "wcoa-2026",
+      "name": "World Congress of Accountants 2026",
+      "url": "https://www.ifac.org/wcoa",
+      "startDate": "2026-11-17",
+      "endDate": "2026-11-19",
+      "venue": "",
+      "city": "Seoul",
+      "country": "South Korea",
+      "format": "in-person",
+      "audiences": [
+        "cpas-firms"
+      ],
+      "topics": [
+        "Global profession"
+      ],
+      "description": "Held every few years, WCOA is the profession's premier global summit. The 2026 edition — jointly hosted by IFAC and KICPA — moves to a new biennial format. (In-person attendance is invitation-only.) Official site & registration →"
+    },
+    {
+      "id": "digital-cpa-2026",
+      "name": "Digital CPA Conference 2026",
+      "url": "https://www.cpa.com/digital-cpa",
+      "startDate": "2026-12-06",
+      "endDate": "2026-12-09",
+      "venue": "",
+      "city": "San Diego, CA",
+      "country": "USA",
+      "format": "hybrid",
+      "audiences": [
+        "cpas-firms"
+      ],
+      "topics": [
+        "CAS & firm tech"
+      ],
+      "description": "Organised by CPA.com and the AICPA, Digital CPA is the go-to event for firms building a technology-forward CAS practice, with a live-online option for remote attendees. Official site & registration →"
+    },
+    {
+      "id": "accountex-london-2027",
+      "name": "Accountex London 2027",
+      "url": "https://www.accountex.co.uk/london/",
+      "startDate": "2027-05-12",
+      "endDate": "2027-05-13",
+      "venue": "ExCeL London",
+      "city": "London",
+      "country": "UK",
+      "format": "in-person",
+      "audiences": [
+        "cpas-firms",
+        "cfos-finance"
+      ],
+      "topics": [
+        "Accounting & fintech expo"
+      ],
+      "description": "Europe's biggest accounting show — 17,000+ attendees, hundreds of exhibitors and dozens of theatres covering practice tech, fintech and the future of the profession. Official site & registration →"
+    },
+    {
+      "id": "scaling-new-heights-2027",
+      "name": "Scaling New Heights 2027",
+      "url": "https://www.scalingnewheights.com/",
+      "startDate": "2027-06-27",
+      "endDate": "2027-06-30",
+      "venue": "",
+      "city": "Orlando, FL",
+      "country": "USA",
+      "format": "in-person",
+      "audiences": [
+        "cpas-firms",
+        "quickbooks"
+      ],
+      "topics": [
+        "Practice growth"
+      ],
+      "description": "A practitioner-focused conference for firm owners building profitable, scalable, advisory-led practices, with a heavy emphasis on AI and automation. Official site & registration →"
+    }
+  ]
+}

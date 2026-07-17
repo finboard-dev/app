@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles, Newspaper, LayoutGrid } from "lucide-react";
+import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles, Newspaper, LayoutGrid, CalendarDays } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +30,7 @@ const resourceLinks = [
   { href: "/about", label: "About", route: true, desc: "Our manifesto & team", icon: Sparkles, accent: "#D97706" },
   { href: "/blog", label: "Blog", route: true, desc: "Guides, playbooks & benchmarks", icon: Newspaper, accent: "#7C3AED" },
   { href: "/templates", label: "Templates", route: true, desc: "Free QuickBooks-ready spreadsheets", icon: LayoutGrid, accent: "#E11D48" },
+  { href: "/conferences", label: "Conferences", route: true, desc: "The accounting events calendar", icon: CalendarDays, accent: "#0EA5E9" },
 ];
 
 // Full-screen-width mega-menu panel wrapper (edge-to-edge, content aligned to page gutters).
@@ -190,9 +191,9 @@ export default function Navbar({ onBookDemo }) {
                   title="Resources"
                   desc="Guides, stories and the FinBoard playbook."
                   accent="#2563EB"
-                  count={`${resourceLinks.length} guides`}
+                  count={`${resourceLinks.length} resources`}
                 />
-                <div className="flex-1 grid grid-cols-3 gap-2">
+                <div className="flex-1 grid grid-cols-4 gap-2">
                   {resourceLinks.map((l) => (
                     <MegaTile
                       key={l.href}
