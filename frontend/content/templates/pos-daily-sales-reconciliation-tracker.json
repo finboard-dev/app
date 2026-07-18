@@ -1,0 +1,11 @@
+{
+  "slug": "pos-daily-sales-reconciliation-tracker",
+  "title": "POS Daily Sales Reconciliation Tracker (Toast/Square)",
+  "category": "Cash Flow",
+  "shortDescription": "Match Toast or Square daily sales to bank deposits, with fees, tips, refunds, and a running clearing balance.",
+  "about": "Bank deposits never equal POS sales because processors net out fees, tips ride with card batches, and settlement lags one to two business days. This tracker gives you one row per day per location for gross card sales, cash, tips, gift cards, refunds, tax, and fees, then computes the expected net deposit for each day. A deposit matching sheet ties every bank deposit back to its sales dates and keeps a running clearing balance so missed entries surface fast. It pairs with the FinBoard blog on POS reconciliation and comes prefilled with a sample week so every formula shows a working result.",
+  "link": "/template-files/pos-daily-sales-reconciliation-tracker.xlsx",
+  "order": 50,
+  "image": "/templates/covers/pos-daily-sales-reconciliation-tracker.png",
+  "imageAlt": "POS Daily Sales Reconciliation Tracker (Toast/Square)"
+}
