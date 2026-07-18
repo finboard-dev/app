@@ -1,0 +1,105 @@
+{
+  "date": "2026-07-18",
+  "status": "deploying",
+  "topics": [
+    {
+      "slug": "wip-reporting-in-quickbooks-online-why-it-does-not-exist-and-contractor-workarounds",
+      "title": "WIP Reporting in QuickBooks Online",
+      "persona": "construction",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "multi-location-restaurant-p-and-l-in-quickbooks-online-prime-cost-by-location",
+      "title": "Multi-Location Restaurant P&L in QuickBooks Online",
+      "persona": "restaurant",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "dental-and-medical-group-accounting-provider-location-profitability-quickbooks-online",
+      "title": "Dental & Medical Group Accounting",
+      "persona": "hospital",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026",
+      "title": "FinBoard.ai vs. LiveFlow (2026)",
+      "persona": "accounting-firm",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "qbo-custom-reports-moving-to-modern-view-june-2026-what-accounting-firms-must-do",
+      "title": "QBO Custom Reports Moving to Modern View",
+      "persona": "accounting-firm",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "the-cas-playbook-turning-month-end-close-into-advisory-revenue-with-ai",
+      "title": "The CAS Playbook",
+      "persona": "cpa",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "franchise-accounting-in-quickbooks-one-file-per-unit-or-classes-decision-framework",
+      "title": "Franchise Accounting in QuickBooks",
+      "persona": "restaurant",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    },
+    {
+      "slug": "solopreneur-to-first-hire-when-your-quickbooks-setup-stops-being-enough",
+      "title": "Solopreneur to First Hire",
+      "persona": "solopreneur",
+      "angle": "pre-drafted 2026-07-17 batch",
+      "keyword": "",
+      "rationale": "drafted+humanized, preview-reviewed"
+    }
+  ],
+  "selected": [
+    1,
+    3
+  ],
+  "drafted": [
+    {
+      "slug": "multi-location-restaurant-p-and-l-in-quickbooks-online-prime-cost-by-location",
+      "file": "frontend/content/blog/multi-location-restaurant-p-and-l-in-quickbooks-online-prime-cost-by-location.json",
+      "previewUrl": "https://frontend-94f08j10i-finboard.vercel.app/blog/multi-location-restaurant-p-and-l-in-quickbooks-online-prime-cost-by-location"
+    },
+    {
+      "slug": "finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026",
+      "file": "frontend/content/blog/finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026.json",
+      "previewUrl": "https://frontend-94f08j10i-finboard.vercel.app/blog/finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026"
+    }
+  ],
+  "deploy": {},
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "awaiting_content_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "deploying",
+      "at": "2026-07-18"
+    }
+  ]
+}
