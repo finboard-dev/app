@@ -7,5 +7,29 @@
   "link": "/template-files/construction-wip-schedule-template.xlsx",
   "order": 50,
   "image": "/templates/covers/construction-wip-schedule-template.png",
-  "imageAlt": "Construction WIP Schedule Template (Over/Under Billing)"
+  "imageAlt": "Construction WIP Schedule Template (Over/Under Billing)",
+  "leadQuestions": [
+    {
+      "id": "jobs",
+      "label": "How many active jobs do you run?",
+      "type": "select",
+      "options": [
+        "1 to 5",
+        "6 to 15",
+        "16 to 50",
+        "50+"
+      ]
+    },
+    {
+      "id": "software",
+      "label": "Accounting software",
+      "type": "select",
+      "options": [
+        "QuickBooks Online",
+        "QuickBooks Desktop",
+        "Sage",
+        "Other"
+      ]
+    }
+  ]
 }

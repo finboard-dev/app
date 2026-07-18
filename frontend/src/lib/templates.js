@@ -23,6 +23,7 @@ function readTemplate(slug) {
     imageAlt: data.imageAlt ?? data.title ?? "",
     order: typeof data.order === "number" ? data.order : 0,
     structuredData: data.structuredData ?? null,
+    leadQuestions: Array.isArray(data.leadQuestions) ? data.leadQuestions : null,
   };
 }
 

@@ -7,5 +7,29 @@
   "link": "/template-files/pos-daily-sales-reconciliation-tracker.xlsx",
   "order": 50,
   "image": "/templates/covers/pos-daily-sales-reconciliation-tracker.png",
-  "imageAlt": "POS Daily Sales Reconciliation Tracker (Toast/Square)"
+  "imageAlt": "POS Daily Sales Reconciliation Tracker (Toast/Square)",
+  "leadQuestions": [
+    {
+      "id": "pos",
+      "label": "Which POS do you use?",
+      "type": "select",
+      "options": [
+        "Toast",
+        "Square",
+        "Clover",
+        "Other"
+      ]
+    },
+    {
+      "id": "locations",
+      "label": "How many locations?",
+      "type": "select",
+      "options": [
+        "1",
+        "2 to 5",
+        "6 to 15",
+        "16+"
+      ]
+    }
+  ]
 }
