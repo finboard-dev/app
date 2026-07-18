@@ -173,5 +173,25 @@
     "script": "scripts/blog-deploy.sh",
     "remote": "origin",
     "target": "main"
+  },
+  "templatesTarget": {
+    "contentDir": "frontend/content/templates",
+    "filesDir": "frontend/public/template-files",
+    "categories": [
+      "Financial Planning",
+      "Budget",
+      "Profit and loss",
+      "Calculator",
+      "Invoice",
+      "Inventory Management",
+      "Balance Sheet",
+      "Cash Flow Forecasting/Projections",
+      "Ageing",
+      "Cash Flow",
+      "Human Resources",
+      "Other"
+    ],
+    "ideasPerRun": 10,
+    "templatesPerRun": 3
   }
 }
