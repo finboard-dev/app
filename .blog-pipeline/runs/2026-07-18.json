@@ -1,6 +1,6 @@
 {
   "date": "2026-07-18",
-  "status": "deploying",
+  "status": "published",
   "topics": [
     {
       "slug": "wip-reporting-in-quickbooks-online-why-it-does-not-exist-and-contractor-workarounds",
@@ -83,7 +83,14 @@
       "previewUrl": "https://frontend-94f08j10i-finboard.vercel.app/blog/finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026"
     }
   ],
-  "deploy": {},
+  "deploy": {
+    "branch": "main",
+    "commit": "c619385",
+    "prodUrls": [
+      "https://finboard.ai/blog/multi-location-restaurant-p-and-l-in-quickbooks-online-prime-cost-by-location",
+      "https://finboard.ai/blog/finboard-ai-vs-liveflow-live-quickbooks-reporting-compared-2026"
+    ]
+  },
   "history": [
     {
       "status": "awaiting_topic_approval",
@@ -99,6 +106,10 @@
     },
     {
       "status": "deploying",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "published",
       "at": "2026-07-18"
     }
   ]
