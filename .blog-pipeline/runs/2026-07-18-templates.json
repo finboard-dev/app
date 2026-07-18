@@ -1,6 +1,6 @@
 {
   "date": "2026-07-18-templates",
-  "status": "awaiting_topic_approval",
+  "status": "awaiting_content_approval",
   "topics": [
     {
       "slug": "construction-wip-schedule-template",
@@ -83,12 +83,40 @@
       "rationale": "templates pipeline day 1"
     }
   ],
-  "selected": [],
-  "drafted": [],
+  "selected": [
+    0,
+    4,
+    6
+  ],
+  "drafted": [
+    {
+      "slug": "construction-wip-schedule-template",
+      "file": "frontend/content/templates/construction-wip-schedule-template.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/construction-wip-schedule-template"
+    },
+    {
+      "slug": "pos-daily-sales-reconciliation-tracker",
+      "file": "frontend/content/templates/pos-daily-sales-reconciliation-tracker.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/pos-daily-sales-reconciliation-tracker"
+    },
+    {
+      "slug": "bonus-depreciation-section-179-planner-2026",
+      "file": "frontend/content/templates/bonus-depreciation-section-179-planner-2026.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/bonus-depreciation-section-179-planner-2026"
+    }
+  ],
   "deploy": {},
   "history": [
     {
       "status": "awaiting_topic_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "awaiting_content_approval",
       "at": "2026-07-18"
     }
   ],
