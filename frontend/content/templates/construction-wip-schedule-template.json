@@ -6,6 +6,6 @@
   "about": "This work in progress schedule tracks every open construction job under the percentage-of-completion method and is the report sureties, bonding agents, and lenders expect to see. Enter contract value, approved change orders, estimated total cost, cost to date, and billed to date for each job, and the template computes percent complete, earned revenue, over and under billings, and estimated gross profit with a totals row across all jobs. Over billing means billings in excess of earned revenue and sits as a liability, while under billing means costs and earnings in excess of billings and sits as an asset. It is built for contractors, controllers, and construction accountants who need a clean monthly WIP report without building one from scratch.",
   "link": "/template-files/construction-wip-schedule-template.xlsx",
   "order": 50,
-  "image": "https://framerusercontent.com/images/WX3eXHUEdVE8x4I2PWgM6Yb33k.png",
-  "imageAlt": "Construction WIP schedule template"
+  "image": "/templates/covers/construction-wip-schedule-template.png",
+  "imageAlt": "Construction WIP Schedule Template (Over/Under Billing)"
 }

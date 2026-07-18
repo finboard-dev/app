@@ -6,6 +6,6 @@
   "about": "OBBBA permanently restored 100% bonus depreciation for qualified property acquired and placed in service after January 19, 2025, and this planner turns that into working math for your 2025 or 2026 asset purchases. Enter each asset's cost, recovery period, business use percent, and election, and the workbook computes the first-year deduction and runs a Section 179 limit check with the year's inflation-indexed limit and phase-out threshold. It is built for CPAs, controllers, and business owners deciding how to split purchases between Section 179 and bonus before year end. The planner pairs with the FinBoard OBBBA blog, which walks through the law change in detail.",
   "link": "/template-files/bonus-depreciation-section-179-planner-2026.xlsx",
   "order": 50,
-  "image": "https://framerusercontent.com/images/cx5KO26L9MWkczk2m67WVlUc8.png",
-  "imageAlt": "Bonus depreciation and Section 179 planner"
+  "image": "/templates/covers/bonus-depreciation-section-179-planner-2026.png",
+  "imageAlt": "Bonus Depreciation and Section 179 Planner (OBBBA 2026)"
 }
