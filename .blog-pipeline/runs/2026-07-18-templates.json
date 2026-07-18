@@ -1,6 +1,6 @@
 {
   "date": "2026-07-18-templates",
-  "status": "awaiting_content_approval",
+  "status": "published",
   "topics": [
     {
       "slug": "construction-wip-schedule-template",
@@ -105,7 +105,15 @@
       "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/bonus-depreciation-section-179-planner-2026"
     }
   ],
-  "deploy": {},
+  "deploy": {
+    "branch": "main",
+    "commit": "7c86141",
+    "prodUrls": [
+      "https://finboard.ai/templates/construction-wip-schedule-template",
+      "https://finboard.ai/templates/pos-daily-sales-reconciliation-tracker",
+      "https://finboard.ai/templates/bonus-depreciation-section-179-planner-2026"
+    ]
+  },
   "history": [
     {
       "status": "awaiting_topic_approval",
@@ -117,6 +125,14 @@
     },
     {
       "status": "awaiting_content_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "deploying",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "published",
       "at": "2026-07-18"
     }
   ],
