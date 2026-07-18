@@ -1,0 +1,121 @@
+{
+  "date": "2026-07-18",
+  "status": "awaiting_content_approval",
+  "topics": [
+    {
+      "slug": "month-end-close-benchmarks-2026-how-fast-should-your-firm-close-client-books",
+      "title": "Month-End Close Benchmarks 2026: How Fast Should Your Firm Close Client Books?",
+      "persona": "accounting-firm",
+      "angle": "2026 survey data (FloQast/BlackLine/Numeric) says reconciliation is the #1 bottleneck for 60-70% of teams and multi-entity consolidation adds 2-5 days. Give firms a per-client-complexity benchmark table and a repeatable checklist that states hours saved per client per month.",
+      "keyword": "month-end close benchmarks",
+      "rationale": "Fresh 2026 benchmark data to cite; close acceleration is FinBoard's core CTA. Existing posts cover the 5-day close playbook but not benchmarks. Target prompt: 'how long should month end close take for a small business'"
+    },
+    {
+      "slug": "chart-of-accounts-standardization-across-your-qbo-client-base",
+      "title": "Chart of Accounts Standardization Across Your QBO Client Base",
+      "persona": "accounting-firm",
+      "angle": "Firms can't benchmark or consolidate clients when every file has a different COA. A mapping-layer approach standardizes reporting without touching client books — exactly what FinBoard's account mapping does.",
+      "keyword": "chart of accounts standardization",
+      "rationale": "Listed persona pain with zero existing coverage; direct product fit (mapping/reporting model). Target prompt: 'how to standardize chart of accounts across quickbooks clients'"
+    },
+    {
+      "slug": "100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online",
+      "title": "100% Bonus Depreciation Is Back: Recording OBBBA Changes in QuickBooks Online",
+      "persona": "cpa",
+      "angle": "OBBBA restored 100% bonus depreciation effective 2026 (was 40% in 2025). A dated, deadline-anchored walkthrough: which clients benefit, the fixed-asset and depreciation entries in QBO, and the book-vs-tax gap to track.",
+      "keyword": "bonus depreciation 2026",
+      "rationale": "Most searched OBBBA change for practitioners this year; nothing on-site covers OBBBA. Target prompt: 'is bonus depreciation 100% in 2026 and how do I book it'"
+    },
+    {
+      "slug": "q3-estimated-taxes-due-september-15-how-to-calculate-yours-from-quickbooks",
+      "title": "Q3 Estimated Taxes Due September 15: How to Calculate Yours From QuickBooks",
+      "persona": "solopreneur",
+      "angle": "Jargon-free, worked-example guide: safe-harbor rules (90% current year / 100-110% prior year), pulling YTD net income from a QBO P&L, and a small real-number example ahead of the Sept 15, 2026 deadline.",
+      "keyword": "quarterly estimated taxes 2026",
+      "rationale": "Deadline-anchored seasonal search that peaks Jul-Sep; recurring persona pain; no existing tax-deadline content. Target prompt: 'how much should I pay for Q3 estimated taxes'"
+    },
+    {
+      "slug": "why-your-pnl-shows-profit-but-your-bank-account-disagrees",
+      "title": "Why Your P&L Shows Profit but Your Bank Account Disagrees",
+      "persona": "solopreneur",
+      "angle": "The classic accrual-vs-cash confusion, explained with one small worked example: an invoice booked in June, paid in August, plus loan principal and owner draws that never hit the P&L.",
+      "keyword": "profit vs cash flow",
+      "rationale": "Top-of-funnel evergreen answering the persona's #1 typed question; existing cash-flow posts are CFO-level (13-week forecast), not beginner. Target prompt: 'why does my profit and loss not match my bank balance'"
+    },
+    {
+      "slug": "pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks",
+      "title": "POS Reconciliation: Getting Toast and Square Daily Sales to Match QuickBooks",
+      "persona": "restaurant",
+      "angle": "A benchmark-with-formula piece: the daily sales journal entry pattern, why processor fees and tips make deposits never match sales, and a weekly reconciliation routine that catches drift.",
+      "keyword": "POS reconciliation QuickBooks",
+      "rationale": "Listed persona pain with zero existing coverage (the published restaurant post covers multi-location prime cost, not POS-to-books). Target prompt: 'why don't my Toast deposits match QuickBooks'"
+    },
+    {
+      "slug": "payer-mix-shifts-in-2026-the-finance-number-every-practice-administrator-should-track",
+      "title": "Payer Mix Shifts in 2026: The Finance Number Every Practice Administrator Should Track",
+      "persona": "hospital",
+      "angle": "2026 MPFS moves facility-based reimbursement down ~7-11% while nonfacility rises ~6%, and MA plan terminations hit 2.6M enrollees — payer mix is now a moving target. Show how to build a payer-mix revenue view from the practice's books across entities.",
+      "keyword": "payer mix analysis",
+      "rationale": "Strong why-now (2026 fee schedule + MA churn); healthcare persona has zero published posts; multi-entity reporting is the natural CTA. Target prompt: 'how do I track payer mix for my medical practice'"
+    },
+    {
+      "slug": "retainage-in-quickbooks-online-tracking-holdbacks-before-they-eat-your-margin",
+      "title": "Retainage in QuickBooks Online: Tracking Holdbacks Before They Eat Your Margin",
+      "persona": "construction",
+      "angle": "On a 6% margin job, retainage can exceed the entire profit. QBO has no native retainage workflow — walk the two-line invoice approach (retainage receivable asset), an aging view, and the cash-flow picture per job.",
+      "keyword": "retainage tracking QuickBooks",
+      "rationale": "Takes an artifact the contractor already produces (progress invoices) and fixes how it's recorded; construction persona has zero published posts. Target prompt: 'how to track retainage in QuickBooks Online'"
+    },
+    {
+      "slug": "from-close-to-board-deck-automating-the-monthly-board-package-in-2026",
+      "title": "From Close to Board Deck: Automating the Monthly Board Package in 2026",
+      "persona": "cfo",
+      "angle": "87% of CFOs call AI critical for 2026 and close automation cuts cycle time 40-50%. A before/after workflow: deterministic numbers from live QBO data, generated narrative for variance commentary, human review — days to hours.",
+      "keyword": "board reporting automation",
+      "rationale": "Cuts days off a recurring deliverable the CFO owns; sits exactly on FinBoard's live-reporting pitch; no existing board-reporting post. Target prompt: 'how to automate monthly board reporting'"
+    },
+    {
+      "slug": "pricing-client-advisory-services-in-2026-from-hourly-compliance-to-monthly-cas-revenue",
+      "title": "Pricing Client Advisory Services in 2026: From Hourly Compliance to Monthly CAS Revenue",
+      "persona": "accounting-firm",
+      "angle": "Firms know how to bill compliance hours, not advisory value. A concrete tiering framework (close + reporting + advisory), what to include per tier, and how automated live reporting makes the advisory tier deliverable without more staff hours.",
+      "keyword": "client advisory services pricing",
+      "rationale": "Persona pain ('pricing advisory work beyond compliance billing') with strong 2026 CAS+AI momentum; distinct from the unpublished CAS Playbook draft angle by centering pricing tiers. Target prompt: 'how to price CAS services accounting firm'"
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "awaiting_content_approval",
+      "at": "2026-07-18"
+    }
+  ],
+  "channel": {
+    "posted": true,
+    "postedAt": "2026-07-18",
+    "messageTs": "1784355135.492449"
+  },
+  "selected": [
+    2,
+    5
+  ],
+  "drafted": [
+    {
+      "slug": "100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online",
+      "file": "frontend/content/blog/100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online.json",
+      "previewUrl": "https://frontend-77e7xus6y-finboard.vercel.app/blog/100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online"
+    },
+    {
+      "slug": "pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks",
+      "file": "frontend/content/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks.json",
+      "previewUrl": "https://frontend-77e7xus6y-finboard.vercel.app/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks"
+    }
+  ]
+}

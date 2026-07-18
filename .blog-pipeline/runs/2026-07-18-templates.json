@@ -1,0 +1,144 @@
+{
+  "date": "2026-07-18-templates",
+  "status": "published",
+  "topics": [
+    {
+      "slug": "construction-wip-schedule-template",
+      "title": "Construction WIP Schedule (Over/Under Billing)",
+      "persona": "construction",
+      "angle": "% complete, earned revenue, over/under billing per job; the report sureties and lenders demand",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "restaurant-prime-cost-weekly-tracker",
+      "title": "Restaurant Prime Cost Weekly Tracker",
+      "persona": "restaurant",
+      "angle": "food+bev COGS and labor as % of sales, weekly, per location, vs 65% target",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "13-week-cash-flow-forecast-template",
+      "title": "13-Week Rolling Cash Flow Forecast",
+      "persona": "cfo",
+      "angle": "the classic treasury artifact: weekly inflows/outflows, rolling refresh",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "construction-retainage-tracker",
+      "title": "Retainage Tracker by Job and Payment",
+      "persona": "construction",
+      "angle": "holdbacks receivable/payable, release milestones; pairs with pending retainage blog",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "pos-daily-sales-reconciliation-tracker",
+      "title": "POS Daily Sales Reconciliation Tracker (Toast/Square)",
+      "persona": "restaurant",
+      "angle": "daily sales entry vs deposits, clearing-account drift; cross-promotes tomorrow's POS blog",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "multi-entity-consolidation-workbook",
+      "title": "Multi-Entity Consolidation Workbook with Eliminations",
+      "persona": "accounting-firm",
+      "angle": "combine 2 to 5 entity P&Ls, intercompany eliminations column, consolidated view; core ICP",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "bonus-depreciation-section-179-planner-2026",
+      "title": "Bonus Depreciation and Section 179 Planner (OBBBA 2026)",
+      "persona": "cpa",
+      "angle": "asset-by-asset elections, 100% bonus vs 179 vs MACRS; cross-promotes tomorrow's OBBBA blog",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "medical-practice-payer-mix-tracker",
+      "title": "Medical Practice Payer Mix and Reimbursement Tracker",
+      "persona": "hospital",
+      "angle": "visits and revenue by payer, mix shift vs prior period, per provider",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "cas-pricing-calculator",
+      "title": "CAS Pricing Calculator for Accounting Firms",
+      "persona": "accounting-firm",
+      "angle": "turn hourly compliance into monthly advisory tiers; margin per client",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    },
+    {
+      "slug": "quarterly-estimated-tax-calculator-2026",
+      "title": "Quarterly Estimated Tax Calculator 2026",
+      "persona": "solopreneur",
+      "angle": "safe-harbor math from YTD profit, Sept 15 deadline driven",
+      "keyword": "",
+      "rationale": "templates pipeline day 1"
+    }
+  ],
+  "selected": [
+    0,
+    4,
+    6
+  ],
+  "drafted": [
+    {
+      "slug": "construction-wip-schedule-template",
+      "file": "frontend/content/templates/construction-wip-schedule-template.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/construction-wip-schedule-template"
+    },
+    {
+      "slug": "pos-daily-sales-reconciliation-tracker",
+      "file": "frontend/content/templates/pos-daily-sales-reconciliation-tracker.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/pos-daily-sales-reconciliation-tracker"
+    },
+    {
+      "slug": "bonus-depreciation-section-179-planner-2026",
+      "file": "frontend/content/templates/bonus-depreciation-section-179-planner-2026.json",
+      "previewUrl": "https://frontend-f0g281jet-finboard.vercel.app/templates/bonus-depreciation-section-179-planner-2026"
+    }
+  ],
+  "deploy": {
+    "branch": "main",
+    "commit": "7c86141",
+    "prodUrls": [
+      "https://finboard.ai/templates/construction-wip-schedule-template",
+      "https://finboard.ai/templates/pos-daily-sales-reconciliation-tracker",
+      "https://finboard.ai/templates/bonus-depreciation-section-179-planner-2026"
+    ]
+  },
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "awaiting_content_approval",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "deploying",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "published",
+      "at": "2026-07-18"
+    }
+  ],
+  "channel": {
+    "posted": true,
+    "postedAt": "2026-07-18",
+    "messageTs": "1784359904.496539"
+  }
+}
