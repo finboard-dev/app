@@ -7,5 +7,29 @@
   "link": "/template-files/bonus-depreciation-section-179-planner-2026.xlsx",
   "order": 50,
   "image": "/templates/covers/bonus-depreciation-section-179-planner-2026.png",
-  "imageAlt": "Bonus Depreciation and Section 179 Planner (OBBBA 2026)"
+  "imageAlt": "Bonus Depreciation and Section 179 Planner (OBBBA 2026)",
+  "leadQuestions": [
+    {
+      "id": "role",
+      "label": "Your role",
+      "type": "select",
+      "options": [
+        "CPA / tax preparer",
+        "Controller / CFO",
+        "Business owner",
+        "Bookkeeper"
+      ]
+    },
+    {
+      "id": "assets",
+      "label": "Planned 2026 asset purchases",
+      "type": "select",
+      "options": [
+        "Under $100k",
+        "$100k to $500k",
+        "$500k to $2.5M",
+        "Over $2.5M"
+      ]
+    }
+  ]
 }
