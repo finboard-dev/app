@@ -148,7 +148,7 @@
     }
   ],
   "topicsPerRun": 10,
-  "blogsPerRun": 3,
+  "blogsPerRun": 2,
   "frequency": "daily",
   "cron": "0 12 * * *",
   "scheduler": "crontab",
