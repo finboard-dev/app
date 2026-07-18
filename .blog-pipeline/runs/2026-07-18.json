@@ -1,6 +1,6 @@
 {
   "date": "2026-07-18",
-  "status": "awaiting_topic_approval",
+  "status": "awaiting_content_approval",
   "topics": [
     {
       "slug": "month-end-close-benchmarks-2026-how-fast-should-your-firm-close-client-books",
@@ -87,11 +87,35 @@
     {
       "status": "awaiting_topic_approval",
       "at": "2026-07-18"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-18"
+    },
+    {
+      "status": "awaiting_content_approval",
+      "at": "2026-07-18"
     }
   ],
   "channel": {
     "posted": true,
     "postedAt": "2026-07-18",
     "messageTs": "1784355135.492449"
-  }
+  },
+  "selected": [
+    2,
+    5
+  ],
+  "drafted": [
+    {
+      "slug": "100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online",
+      "file": "frontend/content/blog/100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online.json",
+      "previewUrl": "https://frontend-77e7xus6y-finboard.vercel.app/blog/100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online"
+    },
+    {
+      "slug": "pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks",
+      "file": "frontend/content/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks.json",
+      "previewUrl": "https://frontend-77e7xus6y-finboard.vercel.app/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks"
+    }
+  ]
 }
