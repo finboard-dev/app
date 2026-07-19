@@ -1,6 +1,6 @@
 {
   "date": "2026-07-19",
-  "status": "awaiting_topic_approval",
+  "status": "awaiting_content_approval",
   "topics": [
     {
       "slug": "booking-the-new-2026-tips-and-overtime-deductions-and-schedule-1-a-in-quickbooks-online",
@@ -87,9 +87,36 @@
     {
       "status": "awaiting_topic_approval",
       "at": "2026-07-19"
+    },
+    {
+      "status": "drafting",
+      "at": "2026-07-19"
+    },
+    {
+      "status": "awaiting_content_approval",
+      "at": "2026-07-19"
     }
   ],
   "channel": {
-    "posted": false
-  }
+    "posted": true,
+    "postedAt": "2026-07-19",
+    "via": "in-session (Slack connector down)"
+  },
+  "selected": [
+    0,
+    2
+  ],
+  "drafted": [
+    {
+      "slug": "booking-the-new-2026-tips-and-overtime-deductions-in-quickbooks-online",
+      "file": "frontend/content/blog/booking-the-new-2026-tips-and-overtime-deductions-in-quickbooks-online.json",
+      "previewUrl": "https://frontend-dqz6bl23j-finboard.vercel.app/blog/booking-the-new-2026-tips-and-overtime-deductions-in-quickbooks-online"
+    },
+    {
+      "slug": "why-construction-profit-and-cash-disagree-reading-a-wip-schedule",
+      "file": "frontend/content/blog/why-construction-profit-and-cash-disagree-reading-a-wip-schedule.json",
+      "previewUrl": "https://frontend-dqz6bl23j-finboard.vercel.app/blog/why-construction-profit-and-cash-disagree-reading-a-wip-schedule"
+    }
+  ],
+  "deploy": {}
 }
