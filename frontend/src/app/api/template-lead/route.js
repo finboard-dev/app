@@ -1,4 +1,5 @@
 import { getTemplateBySlug } from "@/lib/templates";
+import { validateWorkEmail } from "@/lib/workEmail.mjs";
 
 // Template download lead capture. Forwards the submission to a Slack webhook
 // (TEMPLATE_LEADS_SLACK_WEBHOOK) and returns the template link so the client
@@ -6,8 +7,6 @@ import { getTemplateBySlug } from "@/lib/templates";
 // download still proceeds: losing a lead beats breaking the gallery.
 
 export const dynamic = "force-dynamic";
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request) {
   let body;
@@ -22,8 +21,12 @@ export async function POST(request) {
   if (!template || !template.link) {
     return Response.json({ ok: false, error: "unknown template" }, { status: 404 });
   }
-  if (!email || !EMAIL_RE.test(String(email))) {
-    return Response.json({ ok: false, error: "valid email required" }, { status: 400 });
+  const emailValidation = validateWorkEmail(email);
+  if (!emailValidation.isValid) {
+    return Response.json(
+      { ok: false, error: emailValidation.message },
+      { status: 400 }
+    );
   }
 
   const webhook = process.env.TEMPLATE_LEADS_SLACK_WEBHOOK;

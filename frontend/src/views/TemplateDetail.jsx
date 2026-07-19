@@ -7,6 +7,7 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
+import { validateWorkEmail } from "@/lib/workEmail.mjs";
 
 const GENERIC_QUESTIONS = [
   { id: "role", label: "Your role", type: "text", placeholder: "Controller, owner, CPA..." },
@@ -21,13 +22,22 @@ function LeadGate({ template }) {
   const [open, setOpen] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState(null);
   const [done, setDone] = React.useState(false);
 
   async function submit(e) {
     e.preventDefault();
-    setBusy(true);
     setError(null);
     const form = new FormData(e.target);
+    const email = String(form.get("email") || "");
+    const emailValidation = validateWorkEmail(email);
+    if (!emailValidation.isValid) {
+      setEmailError(emailValidation.message);
+      return;
+    }
+
+    setEmailError(null);
+    setBusy(true);
     const answers = {};
     for (const q of questions) answers[q.label] = form.get(`q_${q.id}`) || "";
     try {
@@ -37,7 +47,7 @@ function LeadGate({ template }) {
         body: JSON.stringify({
           slug: template.slug,
           name: form.get("name"),
-          email: form.get("email"),
+          email: email.trim(),
           company: form.get("company"),
           answers,
         }),
@@ -94,6 +104,7 @@ function LeadGate({ template }) {
       ) : (
         <form
           onSubmit={submit}
+          noValidate
           className="rounded-xl border border-line bg-white p-5 max-w-md"
           data-testid="template-lead-form"
         >
@@ -105,7 +116,21 @@ function LeadGate({ template }) {
           </p>
           <div className="mt-4 grid gap-2.5">
             <input name="name" required placeholder="Your name" className={inputCls} />
-            <input name="email" type="email" required placeholder="Work email" className={inputCls} />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="Work email"
+              className={inputCls}
+              aria-invalid={Boolean(emailError)}
+              aria-describedby={emailError ? "template-email-error" : undefined}
+              onChange={() => setEmailError(null)}
+            />
+            {emailError ? (
+              <p id="template-email-error" className="text-xs text-red-600">
+                {emailError}
+              </p>
+            ) : null}
             <input name="company" placeholder="Company (optional)" className={inputCls} />
             {questions.map((q) =>
               q.type === "select" ? (

@@ -67,7 +67,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:unit": "node --test tests/work-email.test.mjs"
   },
   "browserslist": {
     "production": [
