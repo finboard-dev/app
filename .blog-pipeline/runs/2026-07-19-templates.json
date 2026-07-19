@@ -1,6 +1,6 @@
 {
   "date": "2026-07-19-templates",
-  "status": "awaiting_content_approval",
+  "status": "published",
   "topics": [
     {
       "slug": "budget-vs-actual-variance-bridge",
@@ -95,6 +95,14 @@
     {
       "status": "awaiting_content_approval",
       "at": "2026-07-19"
+    },
+    {
+      "status": "deploying",
+      "at": "2026-07-19"
+    },
+    {
+      "status": "published",
+      "at": "2026-07-19"
     }
   ],
   "channel": {
@@ -124,5 +132,12 @@
       "previewUrl": "https://frontend-8t7d2lsp4-finboard.vercel.app/templates/restaurant-menu-engineering-matrix"
     }
   ],
-  "deploy": {}
+  "deploy": {
+    "branch": "main",
+    "prodUrls": [
+      "https://finboard.ai/templates/multi-client-month-end-close-tracker",
+      "https://finboard.ai/templates/tip-and-overtime-deduction-estimator-2026",
+      "https://finboard.ai/templates/restaurant-menu-engineering-matrix"
+    ]
+  }
 }

@@ -118,5 +118,11 @@
       "previewUrl": "https://frontend-dqz6bl23j-finboard.vercel.app/blog/why-construction-profit-and-cash-disagree-reading-a-wip-schedule"
     }
   ],
-  "deploy": {}
+  "deploy": {},
+  "approval": {
+    "received": "2026-07-19",
+    "reply": "approve",
+    "via": "in-session",
+    "note": "daily blog cap (2) spent 2026-07-19 by the morning publish; deploy 2026-07-20 with dates re-stamped; also add estimator template about -> blog anchor at deploy"
+  }
 }
