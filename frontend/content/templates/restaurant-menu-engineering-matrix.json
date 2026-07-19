@@ -1,0 +1,35 @@
+{
+  "slug": "restaurant-menu-engineering-matrix",
+  "title": "Restaurant Menu Engineering Matrix (Stars, Plowhorses, Puzzles, Dogs)",
+  "category": "Profit and loss",
+  "shortDescription": "Classify every menu item as a Star, Plowhorse, Puzzle, or Dog by margin and popularity, with actions for each.",
+  "about": "This matrix runs the classic Kasavana-Smith menu engineering method on your menu. Enter each item's price, food cost, and units sold, and it scores every item against the weighted average contribution margin and the 70% popularity rule, then classifies it as a Star, Plowhorse, Puzzle, or Dog. A summary sheet totals margin by quadrant so you can see exactly where the money is made and which items to reprice, promote, or cut. It comes prefilled with 12 sample items spanning all four quadrants so every formula shows a working result on open.",
+  "link": "/template-files/restaurant-menu-engineering-matrix.xlsx",
+  "order": 50,
+  "image": "/templates/covers/restaurant-menu-engineering-matrix.png",
+  "imageAlt": "Restaurant menu engineering matrix",
+  "leadQuestions": [
+    {
+      "id": "locations",
+      "label": "How many locations?",
+      "type": "select",
+      "options": [
+        "1",
+        "2 to 5",
+        "6 to 15",
+        "16+"
+      ]
+    },
+    {
+      "id": "pos",
+      "label": "Which POS do you use?",
+      "type": "select",
+      "options": [
+        "Toast",
+        "Square",
+        "Clover",
+        "Other"
+      ]
+    }
+  ]
+}

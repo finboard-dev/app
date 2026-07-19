@@ -1,0 +1,35 @@
+{
+  "slug": "tip-and-overtime-deduction-estimator-2026",
+  "title": "2026 Tip and Overtime Deduction Estimator (OBBBA)",
+  "category": "Calculator",
+  "shortDescription": "Estimate OBBBA qualified tips and overtime deductions per client, with caps, MAGI phase-outs, and tax savings.",
+  "about": "OBBBA created two Schedule 1-A deductions for tax years 2025 to 2028: up to $25,000 of qualified tips and up to $12,500 ($25,000 married filing jointly) of FLSA overtime premium pay, both phasing out above $150,000 single or $300,000 joint MAGI. This estimator runs the whole calculation per client: enter filing status, MAGI, tips, overtime premium, and a marginal rate, and it applies the caps, the $100 per $1,000 phase-out, and the estimated federal tax saving. It is built for CPAs and payroll admins running quick client estimates, with a Settings sheet holding every parameter so you can update figures as IRS guidance evolves. It pairs with the FinBoard article on booking the 2026 tips and overtime deductions.",
+  "link": "/template-files/tip-and-overtime-deduction-estimator-2026.xlsx",
+  "order": 50,
+  "image": "/templates/covers/tip-and-overtime-deduction-estimator-2026.png",
+  "imageAlt": "2026 tip and overtime deduction estimator",
+  "leadQuestions": [
+    {
+      "id": "role",
+      "label": "Your role",
+      "type": "select",
+      "options": [
+        "CPA / tax preparer",
+        "Payroll admin",
+        "Business owner",
+        "Bookkeeper"
+      ]
+    },
+    {
+      "id": "tipped",
+      "label": "Clients or staff with tipped income",
+      "type": "select",
+      "options": [
+        "None yet",
+        "1 to 10",
+        "11 to 50",
+        "50+"
+      ]
+    }
+  ]
+}
