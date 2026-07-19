@@ -1,6 +1,6 @@
 {
   "date": "2026-07-18",
-  "status": "awaiting_content_approval",
+  "status": "published",
   "topics": [
     {
       "slug": "month-end-close-benchmarks-2026-how-fast-should-your-firm-close-client-books",
@@ -95,6 +95,14 @@
     {
       "status": "awaiting_content_approval",
       "at": "2026-07-18"
+    },
+    {
+      "status": "deploying",
+      "at": "2026-07-19"
+    },
+    {
+      "status": "published",
+      "at": "2026-07-19"
     }
   ],
   "channel": {
@@ -117,5 +125,18 @@
       "file": "frontend/content/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks.json",
       "previewUrl": "https://frontend-77e7xus6y-finboard.vercel.app/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks"
     }
-  ]
+  ],
+  "approval": {
+    "received": "2026-07-18",
+    "reply": "approve",
+    "threadTs": "1784355135.492449",
+    "note": "daily blog cap (2) spent 2026-07-18 by the morning publish; deploy on/after 2026-07-19 with dates re-stamped to the deploy day"
+  },
+  "deploy": {
+    "branch": "main",
+    "prodUrls": [
+      "https://finboard.ai/blog/100-percent-bonus-depreciation-is-back-recording-obbba-changes-in-quickbooks-online",
+      "https://finboard.ai/blog/pos-reconciliation-getting-toast-and-square-daily-sales-to-match-quickbooks"
+    ]
+  }
 }

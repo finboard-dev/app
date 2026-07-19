@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-19",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "booking-the-new-2026-tips-and-overtime-deductions-and-schedule-1-a-in-quickbooks-online",
+      "title": "Booking the New 2026 Tips and Overtime Deductions (and Schedule 1-A) in QuickBooks Online",
+      "persona": "cpa",
+      "angle": "The 2026 filing season adds above-the-line deductions for qualified tips and overtime, reported on the new Schedule 1-A, plus Form 1099-DA for digital assets. A dated walkthrough: which clients qualify, what payroll and 1099 data you must capture now, and how to tag it in QBO so the deduction is defensible at filing.",
+      "keyword": "2026 tip and overtime deduction",
+      "rationale": "Distinct from yesterday's bonus-depreciation/OBBBA post; centers the new Schedule 1-A + 1099-DA mechanics no on-site post covers. Deadline-anchored to the 2026 season. Target prompt: 'how do I report the new tip and overtime deduction for 2026'"
+    },
+    {
+      "slug": "explaining-budget-vs-actual-variance-a-price-volume-mix-playbook-for-2026-close",
+      "title": "Explaining Budget vs Actual Variance: A Price, Volume, Mix Playbook for 2026 Close",
+      "persona": "cfo",
+      "angle": "The slow part of variance analysis is the explanation, not the math. Decompose a revenue or margin variance into price, volume, and mix drivers with a worked example, so the commentary writes itself instead of taking three analysts five days.",
+      "keyword": "budget vs actual variance analysis",
+      "rationale": "Yesterday's CFO post was board-deck automation; this is the variance-decomposition method, uncovered on-site and squarely on FinBoard's live-reporting pitch. Target prompt: 'how to explain budget vs actual variance price volume mix'"
+    },
+    {
+      "slug": "why-your-construction-profit-and-cash-disagree-reading-a-wip-schedule-in-quickbooks-online",
+      "title": "Why Your Construction Profit and Cash Disagree: Reading a WIP Schedule in QuickBooks Online",
+      "persona": "construction",
+      "angle": "Underbilling is the quiet killer: earned-but-unbilled revenue is your cash financing the customer's job. Read a WIP schedule line by line, spot over/under billing, and catch the 'costs at 70% but only 50% complete' margin-fade signal before the money is gone.",
+      "keyword": "WIP schedule construction",
+      "rationale": "Yesterday's construction post was retainage; this is WIP over/under billing, a different artifact and search intent. Pairs with the published WIP template. Target prompt: 'why doesn't my construction profit match my cash flow'"
+    },
+    {
+      "slug": "department-level-p-and-l-for-multi-site-medical-practices-in-quickbooks-online",
+      "title": "Department-Level P&L for Multi-Site Medical Practices in QuickBooks Online",
+      "persona": "hospital",
+      "angle": "QBO gives you one practice P&L, not a per-department or per-site view, so administrators can't see which service line or location actually loses money. Use class/location tagging plus a consolidation layer to build department-level P&Ls across entities without re-keying.",
+      "keyword": "department level P&L medical practice",
+      "rationale": "Yesterday's healthcare post was payer mix; this targets the department-cost-visibility pain instead. Multi-entity reporting is the natural CTA. Target prompt: 'how to get a department level P&L for my medical practice'"
+    },
+    {
+      "slug": "what-should-your-restaurant-prime-cost-be-in-2026-a-weekly-number-by-service-type",
+      "title": "What Should Your Restaurant Prime Cost Be in 2026? A Weekly Number by Service Type",
+      "persona": "restaurant",
+      "angle": "2026 benchmarks: QSR 55-60%, full-service casual 60-65%, fine dining up to 68%, with profitable operators holding labor near 34%. Show how to compute prime cost weekly from POS and books, and what to adjust when the number drifts past target.",
+      "keyword": "restaurant prime cost 2026",
+      "rationale": "Distinct from the published multi-location prime-cost post (that is a consolidation/by-location angle); this is the single-unit 'what should my number be' benchmark with a weekly formula. Fresh 2026 data. Target prompt: 'what should my restaurant prime cost be'"
+    },
+    {
+      "slug": "surviving-staff-churn-a-standardized-client-review-workflow-for-accounting-firms",
+      "title": "Surviving Staff Churn: A Standardized Client Review Workflow for Accounting Firms",
+      "persona": "accounting-firm",
+      "angle": "When staff turn over, partner review becomes the bottleneck because review lives in people's heads. A standardized, checklist-driven review workflow with consistent reporting per client makes any reviewer interchangeable and cuts partner review time per client.",
+      "keyword": "accounting firm review workflow",
+      "rationale": "Targets the 'partner review bottlenecks when staff churn' pain, distinct from yesterday's close-benchmarks, COA-standardization, and CAS-pricing posts. Target prompt: 'how to standardize client review process accounting firm'"
+    },
+    {
+      "slug": "when-is-a-bookkeeper-worth-it-a-2026-decision-framework-for-solo-owners",
+      "title": "When Is a Bookkeeper Worth It? A 2026 Decision Framework for Solo Owners",
+      "persona": "solopreneur",
+      "angle": "A jargon-free framework: the hours you spend on books times your billable rate, the cost of errors (missed deductions, late estimated taxes), and the revenue thresholds where DIY stops paying. Worked example with small real numbers and a simple break-even.",
+      "keyword": "when to hire a bookkeeper",
+      "rationale": "Listed persona pain with no on-site coverage; distinct from yesterday's estimated-taxes and profit-vs-cash posts. Top-of-funnel evergreen. Target prompt: 'when should I hire a bookkeeper for my small business'"
+    },
+    {
+      "slug": "from-annual-budget-to-rolling-forecast-killing-the-stale-on-arrival-problem-in-2026",
+      "title": "From Annual Budget to Rolling Forecast: Killing the Stale-on-Arrival Problem in 2026",
+      "persona": "cfo",
+      "angle": "A budget set in December is wrong by February. Move to a rolling 12-month forecast that re-forecasts each month against actuals, so the number the board sees reflects reality. Before/after workflow the CFO can show their team.",
+      "keyword": "rolling forecast vs static budget",
+      "rationale": "Targets the 'forecasts stale on arrival' pain; distinct from the variance and board-deck posts. Strong product fit for live reporting. Target prompt: 'how to move from annual budget to rolling forecast'"
+    },
+    {
+      "slug": "4-week-accounting-periods-for-restaurants-comparing-locations-on-an-even-footing",
+      "title": "4-Week Accounting Periods for Restaurants: Comparing Locations on an Even Footing",
+      "persona": "restaurant",
+      "angle": "Calendar months hide performance: a five-Saturday month looks great next to a four-Saturday one. A 4-4-5 / 13-period calendar puts every period on equal weekend count so location and period-over-period comparisons are honest. How to set it up alongside QBO's monthly books.",
+      "keyword": "4-week accounting periods restaurant",
+      "rationale": "Targets the 'comparing locations on different reporting periods' pain; distinct from prime cost and POS posts. Target prompt: 'why do restaurants use 4 week accounting periods'"
+    },
+    {
+      "slug": "the-irs-is-ending-paper-refund-checks-in-2026-what-to-tell-every-client",
+      "title": "The IRS Is Ending Paper Refund Checks in 2026: What to Tell Every Client",
+      "persona": "cpa",
+      "angle": "For the 2026 season the IRS is phasing out paper refund checks in nearly all cases and pushing electronic funds transfer. A short advisory playbook: which clients are affected, how to collect bank details safely, and the client email a firm can send this week.",
+      "keyword": "IRS paper check elimination 2026",
+      "rationale": "Fresh, dated procedural change with real client impact; distinct from the tips/overtime and OBBBA posts. Positions the firm as proactive. Target prompt: 'is the IRS still sending paper refund checks in 2026'"
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-19"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}

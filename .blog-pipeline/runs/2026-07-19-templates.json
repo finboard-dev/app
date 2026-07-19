@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-19-templates",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "budget-vs-actual-variance-bridge",
+      "title": "Budget vs Actual Variance Bridge (Price/Volume/Mix)",
+      "persona": "cfo",
+      "angle": "A waterfall that decomposes each line's budget-to-actual gap into price, volume, and mix drivers with a generated plain-language commentary column. Goes beyond a plain BvA to explain WHY the variance happened.",
+      "keyword": "variance bridge template",
+      "rationale": "Distinct from the existing general-budget-vs-actual template; adds driver decomposition. Pairs with today's CFO variance blog. Not in existing files or yesterday's list."
+    },
+    {
+      "slug": "medical-practice-rcm-kpi-dashboard",
+      "title": "Medical Practice RCM KPI Dashboard",
+      "persona": "hospital",
+      "angle": "Days in A/R (target 30-40), denial rate (under 5%), net collection rate (95-97%), clean claim rate, and patient-responsibility collection, computed from claims data with vs-benchmark flags per MGMA 2026 figures.",
+      "keyword": "revenue cycle KPI dashboard",
+      "rationale": "Yesterday's healthcare template was a payer-mix tracker; this covers the A/R and denials side. Fresh 2026 benchmarks, distinct model."
+    },
+    {
+      "slug": "multi-client-month-end-close-tracker",
+      "title": "Multi-Client Month-End Close Tracker",
+      "persona": "accounting-firm",
+      "angle": "A status board across every client: close checklist per client, owner, status, days-to-close vs target, and a rollup of where the firm's close is stuck this month. Built for the multi-client close cadence.",
+      "keyword": "month-end close checklist tracker",
+      "rationale": "Distinct from yesterday's consolidation workbook and CAS pricing calculator; targets the close-management pain directly. Not in existing files."
+    },
+    {
+      "slug": "tip-and-overtime-deduction-estimator-2026",
+      "title": "2026 Tip and Overtime Deduction Estimator",
+      "persona": "cpa",
+      "angle": "Estimate the new above-the-line qualified tips and overtime deductions for a client, including phase-out thresholds and the Schedule 1-A summary, from wage and tip inputs. Deadline-driven for the 2026 season.",
+      "keyword": "tip overtime deduction calculator 2026",
+      "rationale": "Freshest 2026 tax change; distinct from yesterday's quarterly-estimated-tax calculator and bonus-depreciation planner. Pairs with today's CPA deductions blog."
+    },
+    {
+      "slug": "rolling-12-month-forecast-template",
+      "title": "Rolling 12-Month P&L Forecast",
+      "persona": "cfo",
+      "angle": "A re-forecasting P&L model: lock actuals as each month closes, roll the horizon forward 12 months, and track forecast-vs-original-budget drift. Different from a 13-week treasury cash forecast.",
+      "keyword": "rolling forecast template",
+      "rationale": "Distinct from yesterday's 13-week cash flow forecast (that is treasury cash; this is a P&L re-forecast). Pairs with today's rolling-forecast blog. Not in existing files."
+    },
+    {
+      "slug": "restaurant-menu-engineering-matrix",
+      "title": "Restaurant Menu Engineering Matrix",
+      "persona": "restaurant",
+      "angle": "Classify every menu item into stars, plowhorses, puzzles, and dogs by contribution margin and popularity, with recommended action per quadrant. Turns item cost and sales counts into pricing and menu decisions.",
+      "keyword": "menu engineering template",
+      "rationale": "No menu-engineering model in the library (cocktail cost calc is item-level costing only). Distinct restaurant model, distinct from yesterday's prime-cost tracker."
+    },
+    {
+      "slug": "construction-change-order-log",
+      "title": "Construction Change Order Log and Margin Impact Tracker",
+      "persona": "construction",
+      "angle": "Log every change order with approval status, added cost, added revenue, resulting margin, and schedule-day impact per job, rolling up to the revised contract value. Catches unapproved-but-in-progress change orders.",
+      "keyword": "change order log template",
+      "rationale": "Distinct from existing job-cost, WIP, and retainage templates; change-order tracking is uncovered. Not in yesterday's list."
+    },
+    {
+      "slug": "owner-compensation-tax-set-aside-tracker",
+      "title": "Owner Compensation and Tax Set-Aside Tracker",
+      "persona": "solopreneur",
+      "angle": "Track owner draws vs reasonable salary, the running percentage set aside for federal and self-employment tax, and the reserve balance heading into each quarterly due date. Keeps the tax money separate from operating cash.",
+      "keyword": "owner draw tax set aside tracker",
+      "rationale": "Distinct from yesterday's quarterly estimated tax calculator (that computes the payment; this manages the reserve and draws). Not in existing files."
+    },
+    {
+      "slug": "provider-productivity-wrvu-tracker",
+      "title": "Provider Productivity and wRVU Tracker",
+      "persona": "hospital",
+      "angle": "Track work RVUs, compensation per wRVU, and collections per provider vs benchmark, so a group can see which providers are under- or over-compensated relative to production.",
+      "keyword": "wRVU productivity tracker",
+      "rationale": "Second healthcare model on the productivity side, distinct from the RCM KPI dashboard and yesterday's payer-mix tracker. Not in existing files."
+    },
+    {
+      "slug": "client-profitability-realization-tracker",
+      "title": "Client Profitability and Realization Tracker",
+      "persona": "accounting-firm",
+      "angle": "Per-client fees vs hours worked, effective hourly rate, realization and write-downs, and margin ranking, so a firm can see which clients actually pay and which should be repriced or dropped.",
+      "keyword": "client profitability realization tracker",
+      "rationale": "Targets the advisory/pricing pain from the profitability side; distinct from yesterday's CAS pricing calculator (that prices tiers; this measures realized margin). Not in existing files."
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-19"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}
