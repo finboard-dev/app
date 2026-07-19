@@ -1,0 +1,35 @@
+{
+  "slug": "multi-client-month-end-close-tracker",
+  "title": "Multi-Client Month-End Close Tracker",
+  "category": "Financial Planning",
+  "shortDescription": "Track month-end close tasks across every client with status rollups, days-late flags, and per-client progress.",
+  "about": "Accounting firms juggle dozens of client closes at once, and status usually lives in someone's head. This tracker gives you one row per client per task, with dropdown statuses that roll up into a per-client summary showing percent complete, blocked items, and days to close versus each client's target. Fill in the yellow client list once, log tasks as you work, then duplicate the tracker tab each month. It ships with six sample clients and 31 tasks so every formula shows a working result on open.",
+  "link": "/template-files/multi-client-month-end-close-tracker.xlsx",
+  "order": 50,
+  "image": "/templates/covers/multi-client-month-end-close-tracker.png",
+  "imageAlt": "Multi-client month-end close tracker",
+  "leadQuestions": [
+    {
+      "id": "clients",
+      "label": "How many clients do you close monthly?",
+      "type": "select",
+      "options": [
+        "1 to 10",
+        "11 to 30",
+        "31 to 75",
+        "75+"
+      ]
+    },
+    {
+      "id": "software",
+      "label": "Practice management tool",
+      "type": "select",
+      "options": [
+        "None / spreadsheets",
+        "Karbon",
+        "Canopy",
+        "Other"
+      ]
+    }
+  ]
+}
