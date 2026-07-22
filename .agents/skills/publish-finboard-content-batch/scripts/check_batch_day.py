@@ -7,22 +7,52 @@ from zoneinfo import ZoneInfo
 
 
 TIME_ZONE = "Asia/Kolkata"
+PUBLICATION_ORDER = ["Blog 1", "Template 1", "Blog 2", "Template 2"]
 
 
-def load_publication_dates(runs_dir):
+def is_complete_batch_record(path: Path, data: object) -> bool:
+    if not isinstance(data, dict):
+        return False
+    publication_date = data.get("publicationDate")
+    if publication_date != path.stem:
+        return False
+    try:
+        date.fromisoformat(publication_date)
+    except (TypeError, ValueError):
+        return False
+    required_lists = ("researchSources", "candidateBlogs", "candidateTemplates")
+    if data.get("timeZone") != TIME_ZONE:
+        return False
+    if any(not isinstance(data.get(field), list) for field in required_lists):
+        return False
+    if not isinstance(data.get("selectedBlogs"), list) or len(data["selectedBlogs"]) != 2:
+        return False
+    if not isinstance(data.get("selectedTemplates"), list) or len(data["selectedTemplates"]) != 2:
+        return False
+    if data.get("publicationOrder") != PUBLICATION_ORDER:
+        return False
+    if data.get("batchId") != f"{publication_date}-finboard-content":
+        return False
+    if data.get("commitSubject") != f"content: publish FinBoard batch {publication_date}":
+        return False
+    return True
+
+
+def load_publication_dates(runs_dir: Path) -> list[date]:
     dates = []
     if not runs_dir.exists():
         return dates
     for path in sorted(runs_dir.glob("????-??-??.json")):
-        data = json.loads(path.read_text())
-        value = data.get("publicationDate")
-        if not isinstance(value, str):
-            raise ValueError(f"publicationDate is required in {path}")
-        dates.append(date.fromisoformat(value))
+        try:
+            data = json.loads(path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if is_complete_batch_record(path, data):
+            dates.append(date.fromisoformat(data["publicationDate"]))
     return dates
 
 
-def batch_decision(runs_dir, current_date):
+def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:
     dates = load_publication_dates(Path(runs_dir))
     if not dates:
         return {

@@ -4,6 +4,10 @@ import sys
 
 
 TRANSLATION = str.maketrans({
+    "\u2018": "'",
+    "\u2019": "'",
+    "\u201c": '"',
+    "\u201d": '"',
     "\u2014": " - ",
     "\u2013": " - ",
     "\u2022": " ",
@@ -16,9 +20,11 @@ TRANSLATION = str.maketrans({
 EMOJI = re.compile("[\U0001F300-\U0001FAFF\U00002600-\U000026FF]")
 
 
-def clean_plain_text(text):
+def clean_plain_text(text: str) -> str:
     cleaned = text.translate(TRANSLATION)
     cleaned = EMOJI.sub("", cleaned)
+    cleaned = re.sub(r"([!?])\1+", r"\1", cleaned)
+    cleaned = re.sub(r"\.{4,}", "...", cleaned)
     cleaned = re.sub(r"[ \t]+", " ", cleaned)
     cleaned = re.sub(r" *\n *", "\n", cleaned)
     cleaned = re.sub(r"\s+([,.;:!?])", r"\1", cleaned)

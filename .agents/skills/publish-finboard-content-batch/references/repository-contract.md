@@ -44,17 +44,21 @@ Create `content-pipeline/runs/YYYY-MM-DD.json` with:
   "researchSources": [],
   "candidateBlogs": [],
   "candidateTemplates": [],
-  "selectedBlogs": [],
-  "selectedTemplates": [],
+  "selectedBlogs": [{"slug": "blog-1"}, {"slug": "blog-2"}],
+  "selectedTemplates": [{"slug": "template-1"}, {"slug": "template-2"}],
   "publicationOrder": ["Blog 1", "Template 1", "Blog 2", "Template 2"]
 }
 ```
+
+The cadence success signal is a complete locally committed batch record. A record is complete only when its filename date matches `publicationDate`, `timeZone` is `Asia/Kolkata`, the research and candidate fields are lists, `selectedBlogs` contains exactly two entries, `selectedTemplates` contains exactly two entries, `publicationOrder` matches the four labels above, `batchId` is `YYYY-MM-DD-finboard-content`, and `commitSubject` is `content: publish FinBoard batch YYYY-MM-DD`. Malformed, incomplete, and unrelated dated JSON files do not count as successful batches.
 
 The record does not contain its own commit SHA. Report the actual SHA after push.
 
 ## Git publication
 
 Inspect the working tree before copying. Stop when user changes overlap selected final paths. Stage only the four items, their required assets, source files required to create the templates, and the batch record. Create one commit using the record commit subject. Push directly to `origin/main`.
+
+If the direct push fails after the local commit succeeds, retry the existing completed batch and its commit. Do not research or create a replacement batch, and do not create a second batch record for that publication date.
 
 ## No verification phase
 

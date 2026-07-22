@@ -14,6 +14,21 @@ CLEANER = SKILL / "scripts" / "clean_plain_text.py"
 FORBIDDEN = ("\u2014", "\u2013", "\u2022", "\u2192", "\u2605", "\u2713", "\u2705")
 
 
+def complete_record(publication_date):
+    return {
+        "publicationDate": publication_date,
+        "timeZone": "Asia/Kolkata",
+        "batchId": f"{publication_date}-finboard-content",
+        "commitSubject": f"content: publish FinBoard batch {publication_date}",
+        "researchSources": [],
+        "candidateBlogs": [],
+        "candidateTemplates": [],
+        "selectedBlogs": [{"slug": "blog-1"}, {"slug": "blog-2"}],
+        "selectedTemplates": [{"slug": "template-1"}, {"slug": "template-2"}],
+        "publicationOrder": ["Blog 1", "Template 1", "Blog 2", "Template 2"],
+    }
+
+
 def run_cadence(runs_dir, current_date):
     result = subprocess.run(
         [sys.executable, str(CADENCE), "--runs-dir", str(runs_dir), "--date", current_date],
@@ -55,6 +70,23 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         self.assertIn("Do not publish a partial batch", text)
         self.assertIn("Clean every visible field immediately before copying", text)
 
+    def test_declared_helper_type_annotations_are_present(self):
+        self.assertIn(
+            "def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:",
+            CADENCE.read_text(),
+        )
+        self.assertIn("def clean_plain_text(text: str) -> str:", CLEANER.read_text())
+
+    def test_research_contract_requires_keyword_demand_evidence(self):
+        text = (SKILL / "references" / "research-and-scoring.md").read_text()
+        self.assertIn("keyword demand", text.lower())
+        self.assertIn('"demandEvidence"', text)
+
+    def test_repository_contract_defines_success_signal_and_push_retry(self):
+        text = (SKILL / "references" / "repository-contract.md").read_text()
+        self.assertIn("complete locally committed batch record", text)
+        self.assertIn("retry the existing completed batch", text)
+
     def test_openai_metadata_has_required_interface(self):
         text = (SKILL / "agents" / "openai.yaml").read_text()
         self.assertIn('display_name: "Publish FinBoard Content Batch"', text)
@@ -65,7 +97,7 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             runs = Path(tmp)
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
-            (runs / "2026-07-20.json").write_text(json.dumps({"publicationDate": "2026-07-20"}))
+            (runs / "2026-07-20.json").write_text(json.dumps(complete_record("2026-07-20")))
             decision = run_cadence(runs, "2026-07-22")
             self.assertTrue(decision["eligible"])
             self.assertEqual(decision["reason"], "eligible_publish_day")
@@ -73,9 +105,26 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
     def test_cadence_stops_same_day_and_skip_day(self):
         with tempfile.TemporaryDirectory() as tmp:
             runs = Path(tmp)
-            (runs / "2026-07-22.json").write_text(json.dumps({"publicationDate": "2026-07-22"}))
+            (runs / "2026-07-22.json").write_text(json.dumps(complete_record("2026-07-22")))
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "already_published_today")
             self.assertEqual(run_cadence(runs, "2026-07-23")["reason"], "skip_day")
+
+    def test_cadence_ignores_malformed_records(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runs = Path(tmp)
+            (runs / "2026-07-22.json").write_text("not json")
+            self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
+
+    def test_cadence_ignores_incomplete_and_unrelated_records(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runs = Path(tmp)
+            incomplete = complete_record("2026-07-22")
+            incomplete["selectedTemplates"] = [{"slug": "template-1"}]
+            (runs / "2026-07-22.json").write_text(json.dumps(incomplete))
+            mismatched = complete_record("2026-07-21")
+            (runs / "2026-07-20.json").write_text(json.dumps(mismatched))
+            (runs / "2026-07-19.json").write_text(json.dumps({"date": "2026-07-19"}))
+            self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
 
     def test_plain_text_cleaner_removes_decorative_characters(self):
         source = "Review \u2014 Summary \u2022 Ready \u2192 publish \u2705"
@@ -87,6 +136,28 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
             check=True,
         )
         self.assertEqual(result.stdout.strip(), "Review - Summary Ready publish")
+
+    def test_plain_text_cleaner_normalizes_quotes_and_repeated_punctuation(self):
+        source = "\u201cReview\u201d isn\u2019t ready!!! Wait??? Value..."
+        result = subprocess.run(
+            [sys.executable, str(CLEANER)],
+            input=source,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertEqual(result.stdout, '"Review" isn\'t ready! Wait? Value...')
+
+    def test_plain_text_cleaner_preserves_required_technical_syntax(self):
+        source = "https://example.com/a?x=1&&y=2\n=SUM(A1:A3)\n$1,234.56"
+        result = subprocess.run(
+            [sys.executable, str(CLEANER)],
+            input=source,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertEqual(result.stdout, source)
 
     def test_skill_package_has_no_forbidden_characters_or_placeholders(self):
         for path in SKILL.rglob("*"):

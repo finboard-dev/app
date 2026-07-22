@@ -2,7 +2,7 @@
 
 ## Evidence
 
-Use current web research and available SEO capabilities. Collect direct URLs for competitor pages, current search results, AI answer patterns, and buyer questions. Inspect existing files in `frontend/content/blog` and `frontend/content/templates` before scoring.
+Use current web research and available SEO capabilities. Collect direct URLs for competitor pages, current search results, AI answer patterns, and buyer questions. Research keyword demand for every candidate and record a measurable demand signal with its source and observation date. Inspect existing files in `frontend/content/blog` and `frontend/content/templates` before scoring.
 
 Create separate blog and template candidate pools. Include at least six candidates in each pool before rejection.
 
@@ -14,6 +14,12 @@ Each candidate contains:
 {
   "topic": "Plain topic title",
   "primaryKeyword": "keyword",
+  "demandEvidence": {
+    "metric": "Monthly search volume, trend, or another named demand signal",
+    "value": "Measured value",
+    "sourceUrl": "https://example.com/demand-source",
+    "observedDate": "YYYY-MM-DD"
+  },
   "buyer": "CPA, accountant, controller, or multi entity finance team",
   "pain": "Specific operating problem",
   "competitorGap": "What existing results fail to answer",
