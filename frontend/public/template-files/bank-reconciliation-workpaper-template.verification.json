@@ -1,12 +1,12 @@
 {
   "slug": "bank-reconciliation-workpaper-template",
   "xlsx": {
-    "scratch_sha256": "7111ea1f7343eebd19748a71bb52724bb8e71560648d7a1d9fa3d6cfb75b9aaf",
-    "published_sha256": "7111ea1f7343eebd19748a71bb52724bb8e71560648d7a1d9fa3d6cfb75b9aaf"
+    "scratch_sha256": "58889a6f9c4086163b3938539f153f183a55ce1859718323229bc173cdd9c8a2",
+    "published_sha256": "58889a6f9c4086163b3938539f153f183a55ce1859718323229bc173cdd9c8a2"
   },
   "cover": {
-    "scratch_sha256": "4e01957ad60a893b00d96ac74f41d403e41144fe868fa3425705792952c1a713",
-    "published_sha256": "4e01957ad60a893b00d96ac74f41d403e41144fe868fa3425705792952c1a713"
+    "scratch_sha256": "8665be4497ead6097cb57a0bedf833e6ead99b5eb3b1f56f0248ff7663e94e58",
+    "published_sha256": "8665be4497ead6097cb57a0bedf833e6ead99b5eb3b1f56f0248ff7663e94e58"
   },
   "renders": {
     "Start Here": {
@@ -34,6 +34,6 @@
       "height": 1000
     }
   },
-  "formula_count": 1015,
+  "formula_count": 1016,
   "validation_count": 601
 }

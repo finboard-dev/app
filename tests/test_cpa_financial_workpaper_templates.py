@@ -1,5 +1,6 @@
 import hashlib
 import json
+import re
 import struct
 import unittest
 import xml.etree.ElementTree as ET
@@ -137,7 +138,131 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def workbook_strings(archive):
+    shared_strings = ET.fromstring(archive.read("xl/sharedStrings.xml"))
+    return [
+        "".join(node.text or "" for node in item.iter() if node.tag.endswith("}t"))
+        for item in shared_strings.findall("main:si", NS)
+    ]
+
+
+def evaluate_monthly_formula_graph(archive, mode):
+    """Deterministically evaluate the supported monthly Review/Summary formula graph.
+
+    This is a focused evaluator for the formulas emitted by this workbook builder; it
+    does not represent or claim a general Excel calculation engine.
+    """
+    self_reference = "'Start Here'!$B$8"
+    review = worksheet_xml(archive, "Review")
+    selected = []
+    for row in range(6, 106):
+        values = {}
+        for review_column, source_column in (("E", "E"), ("L", "H")):
+            address = f"{review_column}{row}"
+            expected_formula = (
+                f'IF({self_reference}="Paste Import",'
+                f"'Paste Import'!{source_column}{row},"
+                f"'Manual Input'!{source_column}{row})"
+            )
+            assert formula_text(review, address) == expected_formula, address
+            source = worksheet_xml(archive, mode)
+            values[review_column] = cell_value(archive, source, f"{source_column}{row}")
+        selected.append((float(values["E"] or 0), values["L"] or ""))
+
+    totals = {}
+    for value, category in selected:
+        totals[category] = totals.get(category, 0) + value
+    revenue = totals.get("Revenue", 0)
+    gross_profit = revenue - totals.get("Cost of Goods Sold", 0)
+    operating_income = gross_profit - totals.get("Operating Expense", 0)
+    net_income = (
+        operating_income
+        + totals.get("Other Income", 0)
+        - totals.get("Other Expense", 0)
+    )
+    return revenue, gross_profit, operating_income, net_income
+
+
 class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
+    def test_monthly_summary_formula_graph_is_exact_and_evaluates_both_modes(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            summary = worksheet_xml(archive, "Summary")
+            expected_formulas = {
+                "A9": 'SUMIFS(\'Review\'!$E$6:$E$105,\'Review\'!$L$6:$L$105,"Revenue")',
+                "C9": 'A9-SUMIFS(\'Review\'!$E$6:$E$105,\'Review\'!$L$6:$L$105,"Cost of Goods Sold")',
+                "E9": 'C9-SUMIFS(\'Review\'!$E$6:$E$105,\'Review\'!$L$6:$L$105,"Operating Expense")',
+                "G9": 'E9+SUMIFS(\'Review\'!$E$6:$E$105,\'Review\'!$L$6:$L$105,"Other Income")-SUMIFS(\'Review\'!$E$6:$E$105,\'Review\'!$L$6:$L$105,"Other Expense")',
+            }
+            for address, expected_formula in expected_formulas.items():
+                self.assertEqual(formula_text(summary, address), expected_formula, address)
+            for mode in ("Paste Import", "Manual Input"):
+                with self.subTest(mode=mode):
+                    self.assertEqual(
+                        evaluate_monthly_formula_graph(archive, mode),
+                        (303000, 212000, 90000, 90000),
+                    )
+            self.assertEqual(
+                tuple(float(cell_value(archive, summary, address)) for address in ("A9", "C9", "E9", "G9")),
+                (303000, 212000, 90000, 90000),
+            )
+
+    def test_monthly_period_end_is_a_real_date_with_display_format(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            summary = worksheet_xml(archive, "Summary")
+            self.assertEqual(formula_text(summary, "D5"), "'Start Here'!B5")
+            self.assertEqual(cell_value(archive, summary, "D5"), "46203")
+            self.assertEqual(cell_number_format(archive, summary, "D5"), "mmm d, yyyy")
+
+    def test_monthly_statement_values_and_visible_wording_match_design(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            lists = worksheet_xml(archive, "Lists")
+            self.assertEqual(
+                [cell_value(archive, lists, address) for address in ("A2", "A3")],
+                ["Profit and Loss", "Balance Sheet"],
+            )
+            for sheet_name in ("Paste Import", "Manual Input"):
+                sheet = worksheet_xml(archive, sheet_name)
+                statements = {
+                    cell_value(archive, sheet, f"A{row}")
+                    for row in range(6, 106)
+                    if cell_value(archive, sheet, f"A{row}")
+                }
+                self.assertEqual(statements, {"Profit and Loss", "Balance Sheet"}, sheet_name)
+            visible_copy = "\n".join(workbook_strings(archive)).lower()
+            self.assertNotIn("monthly trial balance", visible_copy)
+            self.assertNotIn("paste a trial balance", visible_copy)
+            self.assertIn("monthly financial statement", visible_copy)
+
+    def test_all_summaries_show_completion_date_from_start_here(self):
+        mappings = {
+            "monthly-financial-statement-review-template": ("B7", "46213"),
+            "bank-reconciliation-workpaper-template": ("B9", "46213"),
+            "trial-balance-review-workpaper-template": ("B7", "46213"),
+        }
+        for slug, (start_address, expected_serial) in mappings.items():
+            with self.subTest(slug=slug), zipfile.ZipFile(FILES / f"{slug}.xlsx") as archive:
+                start = worksheet_xml(archive, "Start Here")
+                summary = worksheet_xml(archive, "Summary")
+                self.assertEqual(cell_value(archive, start, f"A{start_address[1:]}") , "Completion Date")
+                self.assertEqual(cell_number_format(archive, start, start_address), "mmm d, yyyy")
+                self.assertEqual(cell_value(archive, summary, "A6"), "Completion Date")
+                self.assertEqual(formula_text(summary, "B6"), f"'Start Here'!{start_address}")
+                self.assertEqual(cell_value(archive, summary, "B6"), expected_serial)
+                self.assertEqual(cell_number_format(archive, summary, "B6"), "mmm d, yyyy")
+
+    def test_workbook_sources_and_artifacts_have_no_ornamental_characters(self):
+        forbidden = re.compile("[—•]")
+        source_dir = ROOT / "frontend" / "scripts" / "cpa-workpapers"
+        for path in source_dir.glob("*.mjs"):
+            self.assertIsNone(forbidden.search(path.read_text()), path)
+        for slug in WORKBOOKS:
+            with self.subTest(slug=slug), zipfile.ZipFile(FILES / f"{slug}.xlsx") as archive:
+                for text in workbook_strings(archive):
+                    self.assertIsNone(forbidden.search(text), text)
+
     def test_template_content_points_to_published_artifacts(self):
         for slug, expected in PAGE_EXPECTATIONS.items():
             with self.subTest(slug=slug):
@@ -227,7 +352,7 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 "'Lists'!$D$2:$D$3",
             )
             self.assertEqual(cell_value(archive, start, "A6"), "Statement Date")
-            self.assertEqual(cell_value(archive, start, "A9"), "Review Date")
+            self.assertEqual(cell_value(archive, start, "A9"), "Completion Date")
             self.assertEqual(cell_number_format(archive, start, "B6"), "mmm d, yyyy")
             self.assertEqual(cell_number_format(archive, start, "B9"), "mmm d, yyyy")
 

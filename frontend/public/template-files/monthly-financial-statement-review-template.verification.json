@@ -1,12 +1,12 @@
 {
   "slug": "monthly-financial-statement-review-template",
   "xlsx": {
-    "scratch_sha256": "fa59ef2569e8ce452e178cb9ecfec88c5f5fb076347ff6020579385cf75134dc",
-    "published_sha256": "fa59ef2569e8ce452e178cb9ecfec88c5f5fb076347ff6020579385cf75134dc"
+    "scratch_sha256": "42709cead4c47c842b15c3a23292a40438e42d9bc1d53e6d618027d7ed016627",
+    "published_sha256": "42709cead4c47c842b15c3a23292a40438e42d9bc1d53e6d618027d7ed016627"
   },
   "cover": {
-    "scratch_sha256": "2a53b88919c67b6a970d7c6f01d83a490ce3bc1523d01a6d12718da2fd79169c",
-    "published_sha256": "2a53b88919c67b6a970d7c6f01d83a490ce3bc1523d01a6d12718da2fd79169c"
+    "scratch_sha256": "e491bebf913ba3b6d2582cd9aafb2c4966714b57b032445c54e5bfb6f813251a",
+    "published_sha256": "e491bebf913ba3b6d2582cd9aafb2c4966714b57b032445c54e5bfb6f813251a"
   },
   "renders": {
     "Start Here": {
@@ -34,6 +34,6 @@
       "height": 1000
     }
   },
-  "formula_count": 1445,
+  "formula_count": 1446,
   "validation_count": 601
 }

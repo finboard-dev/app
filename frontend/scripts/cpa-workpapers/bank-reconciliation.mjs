@@ -22,8 +22,8 @@ const sampleData = [
   [statementDate, "FEE-0630", "Bank service fee", -50, "Bank", "Bank Adjustment", "Cleared", "Post fee to the ledger"],
   [statementDate, "JE-0630", "Book-side correction", 1650, "Books", "Book Adjustment", "Cleared", "Approved adjustment"],
   [statementDate, "UNR-0630", "Unidentified bank debit", 75, "Bank", "Unresolved", "Open", "Research in progress"],
-  [statementDate, "CLR-0021", "Cleared transfer — bank", 100, "Bank", "Cleared", "Cleared", "Matched item"],
-  [statementDate, "CLR-0021", "Cleared transfer — books", -100, "Books", "Cleared", "Cleared", "Matched item"],
+  [statementDate, "CLR-0021", "Cleared transfer - bank", 100, "Bank", "Cleared", "Cleared", "Matched item"],
+  [statementDate, "CLR-0021", "Cleared transfer - books", -100, "Books", "Cleared", "Cleared", "Matched item"],
 ];
 
 const border = { style: "thin", color: { argb: "FFD1D5DB" } };
@@ -47,7 +47,7 @@ function listRange(sheet, column, startRow, endRow) {
 }
 
 function buildInput(sheet) {
-  title(sheet, `${sheet.name} — Bank Reconciliation`, 8);
+  title(sheet, `${sheet.name} - Bank Reconciliation`, 8);
   sheet.getCell("A2").value = "Statement Balance";
   sheet.getCell("B2").value = sampleBalances.statement;
   sheet.getCell("A3").value = "Book Balance";
@@ -146,12 +146,15 @@ function buildReview(sheet) {
 }
 
 function buildSummary(sheet) {
-  title(sheet, "Bank Reconciliation — Summary", 8, 2);
+  title(sheet, "Bank Reconciliation - Summary", 8, 2);
   sheet.mergeCells("A3:H3");
   sheet.getCell("A3").value = "Printable reconciliation control and sign-off workpaper";
   sheet.getCell("A3").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = ["Client", formula("'Start Here'!B4", "Northstar Components LLC"), "Statement Date", formula(sourceFormula("B", 4).slice(1), statementDate), "Prepared By", formula("'Start Here'!B7", "Taylor Morgan"), "Status", ""];
   sheet.getCell("D5").numFmt = "mmm d, yyyy";
+  sheet.getCell("A6").value = "Completion Date";
+  sheet.getCell("B6").value = formula("'Start Here'!B9", new Date("2026-07-10T00:00:00Z"));
+  sheet.getCell("B6").numFmt = "mmm d, yyyy";
 
   const metrics = [
     ["A8", "Statement Balance", "B9", sourceFormula("B", 2).slice(1), 51200],
@@ -201,8 +204,8 @@ export async function buildBankReconciliation(workbook) {
   workbook.calcProperties.forceFullCalc = true;
   const sheets = createShell(workbook, {
     title: "Bank Reconciliation Workpaper",
-    startLabels: ["Client Name", "Bank Account", "Statement Date", "Prepared By", "Input Mode", "Review Date", "Currency", "Reconciliation Tolerance"],
-    startValues: ["Northstar Components LLC", "Operating Account ••4821", statementDate, "Taylor Morgan", "Paste Import", new Date("2026-07-10T00:00:00Z"), "USD", 0.01],
+    startLabels: ["Client Name", "Bank Account", "Statement Date", "Prepared By", "Input Mode", "Completion Date", "Currency", "Reconciliation Tolerance"],
+    startValues: ["Northstar Components LLC", "Operating Account 4821", statementDate, "Taylor Morgan", "Paste Import", new Date("2026-07-10T00:00:00Z"), "USD", 0.01],
     instructions: ["1. Confirm the client, bank account, dates, selected input mode, and tolerance.", "2. Paste bank reconciliation detail or enter reconciling items manually in blue cells.", "3. Classify each item and resolve duplicate, incomplete, and unresolved review flags.", "4. Print or export the Summary only after the difference is within tolerance and unresolved items are cleared."],
   });
   sheets.start.getCell("B6").numFmt = "mmm d, yyyy";

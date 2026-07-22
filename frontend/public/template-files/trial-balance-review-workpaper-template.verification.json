@@ -1,12 +1,12 @@
 {
   "slug": "trial-balance-review-workpaper-template",
   "xlsx": {
-    "scratch_sha256": "18d1143e1ad35d019f6698f90c46187769e3618b241a34f112bfef1942b0a5b6",
-    "published_sha256": "18d1143e1ad35d019f6698f90c46187769e3618b241a34f112bfef1942b0a5b6"
+    "scratch_sha256": "866355558d00b5b0600aa7498a6b4d8d0295068e69474423e5b8c61368df0bdc",
+    "published_sha256": "866355558d00b5b0600aa7498a6b4d8d0295068e69474423e5b8c61368df0bdc"
   },
   "cover": {
-    "scratch_sha256": "7ee7786faf86ba0ef692bce4fa0bef0e21994941cb9429d314d2386815653d10",
-    "published_sha256": "7ee7786faf86ba0ef692bce4fa0bef0e21994941cb9429d314d2386815653d10"
+    "scratch_sha256": "dc08841518f4f51e50b0beebaca0d6ac6d8e774d0854fb67934890a3db8740fe",
+    "published_sha256": "dc08841518f4f51e50b0beebaca0d6ac6d8e774d0854fb67934890a3db8740fe"
   },
   "renders": {
     "Start Here": {
@@ -34,6 +34,6 @@
       "height": 1000
     }
   },
-  "formula_count": 1917,
+  "formula_count": 1918,
   "validation_count": 401
 }

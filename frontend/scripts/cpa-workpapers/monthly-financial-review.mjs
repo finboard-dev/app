@@ -5,12 +5,12 @@ const reviewHeaders = ["Statement", "Account Number", "Account Name", "Account T
 const categories = ["Revenue", "Cost of Goods Sold", "Operating Expense", "Other Income", "Other Expense", "Cash", "Accounts Receivable", "Current Assets", "Accounts Payable", "Current Liabilities", "Other"];
 
 const sampleData = [
-  ["Income Statement", "4000", "Product Revenue", "Income", 245000, 210000, 230000, "Revenue"],
-  ["Income Statement", "4010", "Service Revenue", "Income", 58000, 0, 45000, "Revenue"],
-  ["Income Statement", "5000", "Materials", "Cost of Goods Sold", 91000, 78000, 85000, "Cost of Goods Sold"],
-  ["Income Statement", "6100", "Payroll", "Expense", 73000, 68000, 70000, "Operating Expense"],
-  ["Income Statement", "6200", "Marketing", "Expense", 31000, 19000, 20000, "Operating Expense"],
-  ["Income Statement", "6300", "Rent", "Expense", 18000, 18000, 18000, "Operating Expense"],
+  ["Profit and Loss", "4000", "Product Revenue", "Income", 245000, 210000, 230000, "Revenue"],
+  ["Profit and Loss", "4010", "Service Revenue", "Income", 58000, 0, 45000, "Revenue"],
+  ["Profit and Loss", "5000", "Materials", "Cost of Goods Sold", 91000, 78000, 85000, "Cost of Goods Sold"],
+  ["Profit and Loss", "6100", "Payroll", "Expense", 73000, 68000, 70000, "Operating Expense"],
+  ["Profit and Loss", "6200", "Marketing", "Expense", 31000, 19000, 20000, "Operating Expense"],
+  ["Profit and Loss", "6300", "Rent", "Expense", 18000, 18000, 18000, "Operating Expense"],
   ["Balance Sheet", "1000", "Operating Cash", "Bank", 122000, 96000, 110000, "Cash"],
   ["Balance Sheet", "1100", "Accounts Receivable", "Accounts Receivable", 87000, 72000, 76000, "Accounts Receivable"],
   ["Balance Sheet", "1200", "Prepaid Expenses", "Other Current Asset", 14000, 12000, 13000, "Current Assets"],
@@ -31,7 +31,7 @@ function title(sheet, text, endColumn) {
 }
 
 function buildInput(sheet) {
-  title(sheet, `${sheet.name} — Monthly Trial Balance`, 8);
+  title(sheet, `${sheet.name} - Monthly Financial Statement`, 8);
   sheet.getCell("A4").value = "Enter or paste values in blue cells. Do not add rows beyond row 105.";
   sheet.mergeCells("A4:H4"); sheet.getCell("A4").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = inputHeaders; sheet.getRow(5).height = 34;
@@ -46,7 +46,7 @@ function buildInput(sheet) {
 
 function buildLists(sheet) {
   sheet.getRow(1).values = ["Statement", "Account Type", "Review Category", "Input Mode"];
-  [["Income Statement", "Balance Sheet"], ["Income", "Cost of Goods Sold", "Expense", "Bank", "Accounts Receivable", "Other Current Asset", "Accounts Payable", "Other Current Liability", "Other"], categories, ["Paste Import", "Manual Input"]]
+  [["Profit and Loss", "Balance Sheet"], ["Income", "Cost of Goods Sold", "Expense", "Bank", "Accounts Receivable", "Other Current Asset", "Accounts Payable", "Other Current Liability", "Other"], categories, ["Paste Import", "Manual Input"]]
     .forEach((values, col) => values.forEach((value, index) => { sheet.getCell(2 + index, col + 1).value = value; }));
   sheet.getRow(1).font = { bold: true, color: { argb: "FFFFFFFF" } }; sheet.getRow(1).fill = fill(COLORS.ink); sheet.getRow(1).height = 30;
   [22, 27, 26, 18].forEach((width, index) => { sheet.getColumn(index + 1).width = width; });
@@ -88,18 +88,22 @@ function buildReview(sheet) {
 }
 
 function buildSummary(sheet) {
-  title(sheet, "Monthly Financial Review — Executive Summary", 8);
+  title(sheet, "Monthly Financial Review - Executive Summary", 8);
   sheet.mergeCells("A3:H3"); sheet.getCell("A3").value = "Decision-ready KPIs and the five largest exceptions"; sheet.getCell("A3").font = { italic: true, color: { argb: "FF6B7280" } };
-  sheet.getRow(5).values = ["Client", formula("'Start Here'!B4", "Northstar Components LLC"), "Period End", formula("'Start Here'!B5", "2026-06-30"), "Prepared By", formula("'Start Here'!B6", "Taylor Morgan"), "Status", ""];
+  sheet.getRow(5).values = ["Client", formula("'Start Here'!B4", "Northstar Components LLC"), "Period End", formula("'Start Here'!B5", new Date("2026-06-30T00:00:00Z")), "Prepared By", formula("'Start Here'!B6", "Taylor Morgan"), "Status", ""];
+  sheet.getCell("D5").numFmt = "mmm d, yyyy";
+  sheet.getCell("A6").value = "Completion Date";
+  sheet.getCell("B6").value = formula("'Start Here'!B7", new Date("2026-07-10T00:00:00Z"));
+  sheet.getCell("B6").numFmt = "mmm d, yyyy";
   const revenue = 303000; const cogs = 91000; const opEx = 122000; const gross = revenue - cogs; const operating = gross - opEx; const net = operating; const working = 122000 + 87000 + 20000 - 62000 - 37000;
   const incompleteItems = sampleData.filter((row) => !row[3] || !row[7]);
   const flags = sampleData.filter((row) => { if (!row[3] || !row[7]) return false; const ch = row[4] - row[5]; const bv = row[4] - row[6]; const cp = row[5] === 0 ? "New" : ch / Math.abs(row[5]); const bp = row[6] === 0 ? "New" : bv / Math.abs(row[6]); return (Math.abs(ch) >= 5000 && (cp === "New" || Math.abs(cp) >= .1)) || (Math.abs(bv) >= 5000 && (bp === "New" || Math.abs(bp) >= .1)); });
   const exceptionCount = flags.length + incompleteItems.length;
   const kpis = [
     ["Revenue", `SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Revenue")`, revenue],
-    ["Gross Profit", `B8-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Cost of Goods Sold")`, gross],
-    ["Operating Income", `D8-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Operating Expense")`, operating],
-    ["Net Income", `F8+SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Income")-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Expense")`, net],
+    ["Gross Profit", `A9-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Cost of Goods Sold")`, gross],
+    ["Operating Income", `C9-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Operating Expense")`, operating],
+    ["Net Income", `E9+SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Income")-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Expense")`, net],
     ["Working Capital", `SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Cash")+SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Accounts Receivable")+SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Current Assets")-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Accounts Payable")-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Current Liabilities")`, working],
     ["Exception Count", `COUNTIF('Review'!$M$6:$M$105,"Review")+COUNTIF('Review'!$M$6:$M$105,"Incomplete")`, exceptionCount],
   ];
@@ -130,9 +134,9 @@ export async function buildMonthlyFinancialReview(workbook) {
   workbook.calcProperties.fullCalcOnLoad = true; workbook.calcProperties.forceFullCalc = true;
   const sheets = createShell(workbook, {
     title: "Monthly Financial Statement Review",
-    startLabels: ["Client Name", "Period End", "Prepared By", "Review Date", "Input Mode", "Currency", "Materiality Amount", "Materiality Percentage"],
+    startLabels: ["Client Name", "Period End", "Prepared By", "Completion Date", "Input Mode", "Currency", "Materiality Amount", "Materiality Percentage"],
     startValues: ["Northstar Components LLC", new Date("2026-06-30T00:00:00Z"), "Taylor Morgan", new Date("2026-07-10T00:00:00Z"), "Paste Import", "USD", 5000, 0.10],
-    instructions: ["1. Confirm client, period, preparer, input mode, and materiality settings.", "2. Paste a trial balance or enter it manually in the blue input table.", "3. Review formula-driven period and budget variances; document exceptions.", "4. Print or export the Summary after all Review flags are resolved."],
+    instructions: ["1. Confirm client, period, preparer, input mode, and materiality settings.", "2. Paste a monthly financial statement or enter it manually in the blue input table.", "3. Review formula-driven period and budget variances; document exceptions.", "4. Print or export the Summary after all Review flags are resolved."],
   });
   buildInput(sheets.paste); buildInput(sheets.manual); buildReview(sheets.review); buildSummary(sheets.summary); buildLists(sheets.lists);
   return workbook;

@@ -52,7 +52,7 @@ function title(sheet, text, endColumn, endRow = 2) {
 }
 
 function buildInput(sheet) {
-  title(sheet, `${sheet.name} — Trial Balance`, 10);
+  title(sheet, `${sheet.name} - Trial Balance`, 10);
   sheet.mergeCells("A4:J4");
   sheet.getCell("A4").value = "Enter balanced debit and credit columns in blue cells. Proposed adjustments use positive debit and negative credit signs.";
   sheet.getCell("A4").font = { italic: true, color: { argb: "FF6B7280" } };
@@ -152,12 +152,15 @@ function metric(sheet, labelAddress, label, valueAddress, formulaText, result, c
 }
 
 function buildSummary(sheet) {
-  title(sheet, "Trial Balance Review — Summary", 8);
+  title(sheet, "Trial Balance Review - Summary", 8);
   sheet.mergeCells("A3:H3");
   sheet.getCell("A3").value = "Printable balance, adjustment, mapping, sign, and materiality controls";
   sheet.getCell("A3").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = ["Client", formula("'Start Here'!B4", "Northstar Components LLC"), "Period End", formula("'Start Here'!B5", new Date("2026-06-30T00:00:00Z")), "Prepared By", formula("'Start Here'!B6", "Taylor Morgan"), "Status", ""];
   sheet.getCell("D5").numFmt = "mmm d, yyyy";
+  sheet.getCell("A6").value = "Completion Date";
+  sheet.getCell("B6").value = formula("'Start Here'!B7", new Date("2026-07-10T00:00:00Z"));
+  sheet.getCell("B6").numFmt = "mmm d, yyyy";
   metric(sheet, "A8", "Current Debits", "B9", "SUM('Review'!$D$6:$D$105)", 450000);
   metric(sheet, "C8", "Current Credits", "D9", "SUM('Review'!$E$6:$E$105)", 450000);
   metric(sheet, "E8", "Current Difference", "F9", "B9-D9", 0);
@@ -198,7 +201,7 @@ export async function buildTrialBalanceReview(workbook) {
   workbook.calcProperties.forceFullCalc = true;
   const sheets = createShell(workbook, {
     title: "Trial Balance Review Workpaper",
-    startLabels: ["Client Name", "Period End", "Prepared By", "Review Date", "Input Mode", "Currency", "Materiality Amount", "Materiality Percentage"],
+    startLabels: ["Client Name", "Period End", "Prepared By", "Completion Date", "Input Mode", "Currency", "Materiality Amount", "Materiality Percentage"],
     startValues: ["Northstar Components LLC", new Date("2026-06-30T00:00:00Z"), "Taylor Morgan", new Date("2026-07-10T00:00:00Z"), "Paste Import", "USD", 5000, 0.10],
     instructions: ["1. Confirm the client, period, preparer, selected input mode, and materiality settings.", "2. Paste or manually enter a balanced trial balance and map each account to a review category.", "3. Review mapping, sign, and materiality flags; proposed adjustments use positive debit and negative credit signs.", "4. Print or export the Summary after all Review items are resolved."],
   });

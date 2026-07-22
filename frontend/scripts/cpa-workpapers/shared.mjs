@@ -174,7 +174,7 @@ async function renderWorksheet(sheet, filePath, fs) {
       ctx.font = `${cell.font?.bold ? "700" : "400"} ${Math.max(12, Math.min(24, (cell.font?.size || 10) * 1.35))}px Arial`;
       ctx.textBaseline = "middle"; const value = String(displayValue(cell));
       const clipped = !isDataSheet || row !== 5
-        ? value.length > Math.max(5, Math.floor(drawWidth / 7)) ? `${value.slice(0, Math.max(2, Math.floor(drawWidth / 7) - 1))}…` : value
+        ? value.length > Math.max(5, Math.floor(drawWidth / 7)) ? `${value.slice(0, Math.max(2, Math.floor(drawWidth / 7) - 3))}...` : value
         : value;
       ctx.fillText(clipped, x + 7, rowPositions[row - 1] + drawHeight / 2, drawWidth - 14);
       x += cellWidth;
@@ -204,19 +204,42 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
     kind: "key_range", range: `${sheetName}!${workbook.getWorksheet(sheetName).getCell(startRow, startCol).address}:${workbook.getWorksheet(sheetName).getCell(endRow, endCol).address}`,
     values: Array.from({ length: endRow - startRow + 1 }, (_, rowOffset) => Array.from({ length: endCol - startCol + 1 }, (_, colOffset) => displayValue(workbook.getWorksheet(sheetName).getCell(startRow + rowOffset, startCol + colOffset)))),
   });
-  const modeMetrics = (sheetName) => {
-    const sheet = workbook.getWorksheet(sheetName); let revenue = 0; let exceptionCount = 0;
+  const monthlyModeMetrics = (sheetName) => {
+    const sheet = workbook.getWorksheet(sheetName);
+    const review = workbook.getWorksheet("Review");
+    const summary = workbook.getWorksheet("Summary");
+    const categoryTotals = {};
+    let exceptionCount = 0;
+    const materialityAmount = Number(workbook.getWorksheet("Start Here").getCell("B10").value);
+    const materialityPercentage = Number(workbook.getWorksheet("Start Here").getCell("B11").value);
     for (let row = 6; row <= 105; row += 1) {
       const current = Number(sheet.getCell(row, 5).value || 0); const prior = Number(sheet.getCell(row, 6).value || 0); const budget = Number(sheet.getCell(row, 7).value || 0); const category = sheet.getCell(row, 8).value;
-      if (category === "Revenue") revenue += current;
+      const expectedCurrentFormula = sourceFormula("E", row).slice(1);
+      const expectedCategoryFormula = sourceFormula("H", row).slice(1);
+      if (review.getCell(row, 5).formula !== expectedCurrentFormula) throw new Error(`unexpected monthly Review!E${row} source formula`);
+      if (review.getCell(row, 12).formula !== expectedCategoryFormula) throw new Error(`unexpected monthly Review!L${row} source formula`);
+      categoryTotals[category] = (categoryTotals[category] || 0) + current;
       if (!sheet.getCell(row, 3).value) continue;
       if (!sheet.getCell(row, 4).value || !category) { exceptionCount += 1; continue; }
       const change = current - prior; const budgetVar = current - budget;
-      const changeMaterial = Math.abs(change) >= 5000 && (prior === 0 || Math.abs(change / Math.abs(prior)) >= 0.1);
-      const budgetMaterial = Math.abs(budgetVar) >= 5000 && (budget === 0 || Math.abs(budgetVar / Math.abs(budget)) >= 0.1);
+      const changeMaterial = Math.abs(change) >= materialityAmount && (prior === 0 || Math.abs(change / Math.abs(prior)) >= materialityPercentage);
+      const budgetMaterial = Math.abs(budgetVar) >= materialityAmount && (budget === 0 || Math.abs(budgetVar / Math.abs(budget)) >= materialityPercentage);
       if (changeMaterial || budgetMaterial) exceptionCount += 1;
     }
-    return { revenue, exceptionCount };
+    const expectedSummaryFormulas = {
+      A9: `SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Revenue")`,
+      C9: `A9-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Cost of Goods Sold")`,
+      E9: `C9-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Operating Expense")`,
+      G9: `E9+SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Income")-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Other Expense")`,
+    };
+    for (const [address, expectedFormula] of Object.entries(expectedSummaryFormulas)) {
+      if (summary.getCell(address).formula !== expectedFormula) throw new Error(`unexpected monthly Summary!${address} formula`);
+    }
+    const revenue = categoryTotals.Revenue || 0;
+    const grossProfit = revenue - (categoryTotals["Cost of Goods Sold"] || 0);
+    const operatingIncome = grossProfit - (categoryTotals["Operating Expense"] || 0);
+    const netIncome = operatingIncome + (categoryTotals["Other Income"] || 0) - (categoryTotals["Other Expense"] || 0);
+    return { evaluator: "deterministic supported formula graph", selectedSource: sheetName, revenue, grossProfit, operatingIncome, netIncome, exceptionCount };
   };
   const bankModeMetrics = (sheetName) => {
     const sheet = workbook.getWorksheet(sheetName);
@@ -248,13 +271,21 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
   };
   const calculateMode = slug === "bank-reconciliation-workpaper-template"
     ? bankModeMetrics
-    : slug === "trial-balance-review-workpaper-template" ? trialBalanceModeMetrics : modeMetrics;
+    : slug === "trial-balance-review-workpaper-template" ? trialBalanceModeMetrics : monthlyModeMetrics;
   const pasteMetrics = calculateMode("Paste Import"); const manualMetrics = calculateMode("Manual Input");
-  if (JSON.stringify(pasteMetrics) !== JSON.stringify(manualMetrics)) throw new Error("input modes do not reconcile");
+  const comparablePasteMetrics = { ...pasteMetrics }; const comparableManualMetrics = { ...manualMetrics };
+  delete comparablePasteMetrics.selectedSource; delete comparableManualMetrics.selectedSource;
+  if (JSON.stringify(comparablePasteMetrics) !== JSON.stringify(comparableManualMetrics)) throw new Error("input modes do not reconcile");
+  if (slug === "monthly-financial-statement-review-template") {
+    const expected = { revenue: 303000, grossProfit: 212000, operatingIncome: 90000, netIncome: 90000 };
+    for (const [metric, value] of Object.entries(expected)) {
+      if (pasteMetrics[metric] !== value || manualMetrics[metric] !== value) throw new Error(`monthly ${metric} formula graph mismatch`);
+    }
+  }
   records.unshift(
     { kind: "summary", sheets: workbook.worksheets.map((sheet) => sheet.name), formulaCount, validationCount },
     snapshot("Start Here", 1, 25, 1, 8), snapshot("Review", 1, 18, 1, slug === "trial-balance-review-workpaper-template" ? 19 : 15), snapshot("Summary", 1, 24, 1, 8),
-    { kind: "mode_check", pasteImport: pasteMetrics, manualInput: manualMetrics, equal: true },
+    { kind: "mode_check", method: "deterministic supported formula evaluator; no Excel engine recalculation performed", pasteImport: pasteMetrics, manualInput: manualMetrics, equal: true },
   );
   const inspectionPath = `${artifactDir}/${slug}-inspection.ndjson`;
   await fs.writeFile(inspectionPath, records.slice(0, 350).map((record) => JSON.stringify(record)).join("\n"));
