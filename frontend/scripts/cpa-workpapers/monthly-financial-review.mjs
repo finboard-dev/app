@@ -80,8 +80,8 @@ function buildReview(sheet) {
     [9, 11].forEach((col) => { sheet.getCell(row, col).numFmt = "0.0%"; });
   }
   sheet.addConditionalFormatting({ ref: "M6:M105", rules: [
-    { type: "containsText", operator: "containsText", text: "Review", style: { fill: fill(COLORS.redSoft), font: { color: { argb: "FFDC2626", bold: true } } } },
-    { type: "containsText", operator: "containsText", text: "Incomplete", style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
+    { type: "containsText", operator: "containsText", text: "Review", style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
+    { type: "containsText", operator: "containsText", text: "Incomplete", style: { fill: fill(COLORS.redSoft), font: { color: { argb: "FFDC2626", bold: true } } } },
     { type: "containsText", operator: "containsText", text: "OK", style: { fill: fill(COLORS.greenSoft), font: { color: { argb: "FF047857" } } } },
   ] });
   sheet.autoFilter = "A5:O105"; sheet.pageSetup = { orientation: "landscape", fitToPage: true, fitToWidth: 1, fitToHeight: 0 };

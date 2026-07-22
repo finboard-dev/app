@@ -100,6 +100,25 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
             ]
             self.assertIn("Incomplete", cached_flags)
 
+    def test_review_status_conditional_format_colors(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            review = worksheet_xml(archive, "Review")
+            styles = ET.fromstring(archive.read("xl/styles.xml"))
+            differential_styles = styles.findall("main:dxfs/main:dxf", NS)
+            status_colors = {}
+            for rule in review.findall(".//main:conditionalFormatting/main:cfRule", NS):
+                formula = rule.findtext("main:formula", namespaces=NS) or ""
+                for status in ("Review", "Incomplete", "OK"):
+                    if f'&quot;{status}&quot;' in formula or f'"{status}"' in formula:
+                        style = differential_styles[int(rule.attrib["dxfId"])]
+                        color = style.find("main:fill/main:patternFill/main:fgColor", NS)
+                        status_colors[status] = color.attrib["rgb"][-6:]
+            self.assertEqual(
+                status_colors,
+                {"Review": "FEF3C7", "Incomplete": "FEE2E2", "OK": "D1FAE5"},
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

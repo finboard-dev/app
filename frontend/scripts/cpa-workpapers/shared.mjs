@@ -152,8 +152,8 @@ async function renderWorksheet(sheet, filePath, fs) {
       const drawWidth = merge ? widths.slice(col - 1, Math.min(maxCol, merge.endColumn)).reduce((sum, value) => sum + value, 0) : cellWidth;
       const drawHeight = merge ? rowHeights.slice(row - 1, Math.min(maxRow, merge.endRow)).reduce((sum, value) => sum + value, 0) : rowHeight;
       let background = colorFromCell(cell, row % 2 === 0 ? "#FFFFFF" : "#F9FAFB");
-      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Review") background = COLORS.redSoft;
-      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Incomplete") background = COLORS.amberSoft;
+      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Review") background = COLORS.amberSoft;
+      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Incomplete") background = COLORS.redSoft;
       ctx.fillStyle = background; ctx.fillRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.strokeStyle = COLORS.line; ctx.strokeRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.fillStyle = cell.font?.color?.argb ? `#${cell.font.color.argb.slice(-6)}` : COLORS.ink;
