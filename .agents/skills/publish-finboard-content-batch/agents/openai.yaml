@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish FinBoard Content Batch"
+  short_description: "Research and publish four FinBoard content items"
+  default_prompt: "Use $publish-finboard-content-batch to research and publish the next eligible FinBoard content batch."
