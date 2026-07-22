@@ -19,6 +19,10 @@ WORKBOOKS = {
         "min_formulas": 500,
         "min_validations": 3,
     },
+    "bank-reconciliation-workpaper-template": {
+        "min_formulas": 400,
+        "min_validations": 4,
+    },
 }
 
 
