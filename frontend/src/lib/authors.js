@@ -1,3 +1,10 @@
+import {
+  FINBOARD_TEAM_AUTHOR,
+  resolveAuthor,
+} from "./blogAuthor.mjs";
+
+export { resolveAuthor };
+
 // Canonical author registry. Blog posts resolve to one of these named authors
 // (for YMYL E-E-A-T + Person structured data). Each carries a verifiable
 // LinkedIn used as sameAs. Kept in sync with the founders in
@@ -24,18 +31,5 @@ export const AUTHORS = {
     photoPos: "center 20%",
     alumniOf: ["MindTickle", "Samsung"],
   },
-  "finboard-team": {
-    id: "finboard-team",
-    name: "FinBoard Team",
-    role: "",
-    bio: "Written by the FinBoard team. We build multi-entity reporting and consolidation for QuickBooks Online, and we write from what we see across our customers' books.",
-    linkedin: "https://finboard.ai/about",
-  },
+  "finboard-team": FINBOARD_TEAM_AUTHOR,
 };
-
-// Topic-based default: the finance co-founder (ex-PwC) fronts accounting/finance
-// content; the engineering co-founder fronts engineering posts.
-export function resolveAuthor(category, explicitId) {
-  if (explicitId && AUTHORS[explicitId]) return AUTHORS[explicitId];
-  return category === "tech" ? AUTHORS["ujjwal-singh"] : AUTHORS["vaishnav-gupta"];
-}

@@ -7,6 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { resolveAuthor } from "@/lib/authors";
+import { normalizeBlogStructuredData } from "@/lib/blogAuthor.mjs";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -75,7 +76,9 @@ export function getPostBySlug(slug) {
       slug,
       format: "html",
       content: data.content ?? "",
-      structuredData: data.structuredData ?? null,
+      structuredData: data.structuredData
+        ? normalizeBlogStructuredData(data.structuredData)
+        : null,
       frontmatter: {
         title: data.title ?? slug,
         date: normalizeDate(data.date),

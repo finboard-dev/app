@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import BlogPost from "@/views/BlogPost";
 import { getAllPosts, getPostBySlug, categoryLabel } from "@/lib/blog";
+import { FINBOARD_TEAM_SCHEMA_AUTHOR } from "@/lib/blogAuthor.mjs";
 import { buildMetadata, breadcrumbs, clampDescription, SITE_URL, DEFAULT_IMAGE } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -56,7 +57,6 @@ export default async function Page({ params }) {
 
   // Prefer the CMS-authored structured data (rich @graph). Otherwise synthesize
   // an Article. Always add our BreadcrumbList.
-  const author = frontmatter.author;
   const generatedArticle = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -65,17 +65,7 @@ export default async function Page({ params }) {
     ...(frontmatter.date
       ? { datePublished: frontmatter.date, dateModified: frontmatter.date }
       : {}),
-    author: {
-      "@type": "Person",
-      name: author.name,
-      jobTitle: author.role,
-      url: `${SITE_URL}/about`,
-      sameAs: [author.linkedin],
-      worksFor: { "@id": `${SITE_URL}/#organization` },
-      ...(author.alumniOf
-        ? { alumniOf: author.alumniOf.map((n) => ({ "@type": "Organization", name: n })) }
-        : {}),
-    },
+    author: { ...FINBOARD_TEAM_SCHEMA_AUTHOR },
     publisher: { "@id": `${SITE_URL}/#organization` },
     image: absoluteImage(frontmatter.coverImage),
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
