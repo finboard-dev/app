@@ -97,6 +97,13 @@ export function addListValidation(range, listRange) {
   range.eachCell({ includeEmpty: true }, (cell) => { cell.dataValidation = { type: "list", allowBlank: true, formulae: [listRange] }; });
 }
 
+export function statusStyle(value) {
+  if (value === "Review") return { fill: COLORS.amberSoft, text: COLORS.amber };
+  if (value === "Incomplete") return { fill: COLORS.redSoft, text: COLORS.red };
+  if (value === "OK") return { fill: COLORS.greenSoft, text: COLORS.green };
+  return null;
+}
+
 function colorFromCell(cell, fallback = COLORS.white) {
   const color = cell.fill?.fgColor?.argb;
   return color ? `#${color.slice(-6)}` : fallback;
@@ -151,12 +158,11 @@ async function renderWorksheet(sheet, filePath, fs) {
       const cell = sheet.getCell(row, col);
       const drawWidth = merge ? widths.slice(col - 1, Math.min(maxCol, merge.endColumn)).reduce((sum, value) => sum + value, 0) : cellWidth;
       const drawHeight = merge ? rowHeights.slice(row - 1, Math.min(maxRow, merge.endRow)).reduce((sum, value) => sum + value, 0) : rowHeight;
-      let background = colorFromCell(cell, row % 2 === 0 ? "#FFFFFF" : "#F9FAFB");
-      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Review") background = COLORS.amberSoft;
-      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Incomplete") background = COLORS.redSoft;
+      const status = sheet.name === "Review" && col === 13 ? statusStyle(displayValue(cell)) : null;
+      const background = status?.fill ?? colorFromCell(cell, row % 2 === 0 ? "#FFFFFF" : "#F9FAFB");
       ctx.fillStyle = background; ctx.fillRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.strokeStyle = COLORS.line; ctx.strokeRect(x, rowPositions[row - 1], drawWidth, drawHeight);
-      ctx.fillStyle = cell.font?.color?.argb ? `#${cell.font.color.argb.slice(-6)}` : COLORS.ink;
+      ctx.fillStyle = status?.text ?? (cell.font?.color?.argb ? `#${cell.font.color.argb.slice(-6)}` : COLORS.ink);
       ctx.font = `${cell.font?.bold ? "700" : "400"} ${Math.max(12, Math.min(24, (cell.font?.size || 10) * 1.35))}px Arial`;
       ctx.textBaseline = "middle"; const value = String(displayValue(cell));
       const clipped = value.length > Math.max(5, Math.floor(drawWidth / 7)) ? `${value.slice(0, Math.max(2, Math.floor(drawWidth / 7) - 1))}…` : value;
