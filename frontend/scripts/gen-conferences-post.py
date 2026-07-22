@@ -9,6 +9,8 @@ post links each event to its official site.
 import json
 import os
 
+from blog_author import AUTHOR_ID, AUTHOR_NAME, SCHEMA_AUTHOR
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 FRONTEND = os.path.dirname(HERE)
 OUT = os.path.join(FRONTEND, "content", "blog", "accounting-conferences-2026-2027.json")
@@ -16,15 +18,6 @@ OUT = os.path.join(FRONTEND, "content", "blog", "accounting-conferences-2026-202
 SITE = "https://finboard.ai"
 TODAY = "2026-07-16"
 SLUG = "accounting-conferences-2026-2027"
-
-AUTHOR = {
-    "@type": "Person",
-    "name": "Vaishnav Gupta",
-    "jobTitle": "Co-founder, Finance",
-    "url": f"{SITE}/about",
-    "sameAs": ["https://www.linkedin.com/in/vaishnav-gupta-07b1b218/"],
-    "worksFor": {"@id": f"{SITE}/#organization"},
-}
 
 # Confirmed events (specific dates from official/primary sources). Each becomes
 # an Event in the JSON-LD and a row in the table.
@@ -235,7 +228,7 @@ def build_structured_data(content_html):
                 "description": "A curated calendar of the major accounting and finance conferences worldwide, from July 2026 through 2027 — dates, locations, focus and registration links.",
                 "datePublished": TODAY,
                 "dateModified": TODAY,
-                "author": AUTHOR,
+                "author": SCHEMA_AUTHOR,
                 "publisher": {"@id": f"{SITE}/#organization"},
                 "image": f"{SITE}/blog/{SLUG}-cover.svg",
                 "mainEntityOfPage": f"{SITE}/blog/{SLUG}",
@@ -257,7 +250,8 @@ def main():
         "title": "Accounting Conferences 2026–2027: The Global Calendar for Finance Teams",
         "category": "accounting",
         "excerpt": "A curated calendar of the major accounting and finance conferences worldwide — dates, locations and focus — from today through 2027, with links to register.",
-        "author": "FinBoard",
+        "author": AUTHOR_NAME,
+        "authorId": AUTHOR_ID,
         "date": TODAY,
         "coverImage": f"/blog/{SLUG}-cover.svg",
         "coverAlt": "Accounting conferences 2026–2027 global calendar",

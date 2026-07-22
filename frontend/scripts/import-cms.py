@@ -17,6 +17,8 @@ import re
 import sys
 from datetime import date, timedelta
 
+from blog_author import AUTHOR_ID, AUTHOR_NAME, normalize_structured_data
+
 # Deterministic, plausible publishing history for CMS blogs (the export had no
 # dates). Newest CMS post sits just under the hand-authored posts (2026-07-12),
 # spaced a few days apart going back through 2026.
@@ -147,13 +149,14 @@ def import_blogs(csv_path):
             "title": title,
             "category": "accounting",
             "excerpt": excerpt_from(meta, r["Content"]),
-            "author": "FinBoard",
+            "author": AUTHOR_NAME,
+            "authorId": AUTHOR_ID,
             "date": (BLOG_DATE_ANCHOR - timedelta(days=i * BLOG_DATE_STEP_DAYS)).isoformat(),
             "coverImage": (r.get("thumbnail") or "").strip() or None,
             "coverAlt": (r.get("thumbnail:alt") or "").strip() or title,
             "format": "html",
             "order": i,
-            "structuredData": ld,
+            "structuredData": normalize_structured_data(ld),
             "content": clean_content(r["Content"] or "", title),
         }
         write_json(os.path.join(BLOG_DIR, f"{slug}.json"), post)
