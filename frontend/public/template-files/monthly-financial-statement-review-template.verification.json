@@ -1,0 +1,39 @@
+{
+  "slug": "monthly-financial-statement-review-template",
+  "xlsx": {
+    "scratch_sha256": "fa59ef2569e8ce452e178cb9ecfec88c5f5fb076347ff6020579385cf75134dc",
+    "published_sha256": "fa59ef2569e8ce452e178cb9ecfec88c5f5fb076347ff6020579385cf75134dc"
+  },
+  "cover": {
+    "scratch_sha256": "2a53b88919c67b6a970d7c6f01d83a490ce3bc1523d01a6d12718da2fd79169c",
+    "published_sha256": "2a53b88919c67b6a970d7c6f01d83a490ce3bc1523d01a6d12718da2fd79169c"
+  },
+  "renders": {
+    "Start Here": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Paste Import": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Manual Input": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Review": {
+      "width": 2100,
+      "height": 1000
+    },
+    "Summary": {
+      "width": 1600,
+      "height": 900
+    },
+    "Lists": {
+      "width": 1400,
+      "height": 1000
+    }
+  },
+  "formula_count": 1445,
+  "validation_count": 601
+}

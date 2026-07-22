@@ -1,0 +1,39 @@
+{
+  "slug": "bank-reconciliation-workpaper-template",
+  "xlsx": {
+    "scratch_sha256": "7111ea1f7343eebd19748a71bb52724bb8e71560648d7a1d9fa3d6cfb75b9aaf",
+    "published_sha256": "7111ea1f7343eebd19748a71bb52724bb8e71560648d7a1d9fa3d6cfb75b9aaf"
+  },
+  "cover": {
+    "scratch_sha256": "4e01957ad60a893b00d96ac74f41d403e41144fe868fa3425705792952c1a713",
+    "published_sha256": "4e01957ad60a893b00d96ac74f41d403e41144fe868fa3425705792952c1a713"
+  },
+  "renders": {
+    "Start Here": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Paste Import": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Manual Input": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Review": {
+      "width": 2082,
+      "height": 1000
+    },
+    "Summary": {
+      "width": 1600,
+      "height": 900
+    },
+    "Lists": {
+      "width": 1400,
+      "height": 1000
+    }
+  },
+  "formula_count": 1015,
+  "validation_count": 601
+}

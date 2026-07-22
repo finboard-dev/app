@@ -37,16 +37,28 @@ PAGE_EXPECTATIONS = {
         "title": "Monthly Financial Statement Review Template",
         "category": "Financial Planning",
         "keywords": ("variance", "working capital", "Paste Import", "Manual Input"),
+        "lead_question_labels": (
+            "How many client financials do you review monthly?",
+            "Which accounting system do you use?",
+        ),
     },
     "bank-reconciliation-workpaper-template": {
         "title": "Bank Reconciliation Workpaper Template",
         "category": "Accounting Operations",
         "keywords": ("outstanding checks", "deposits in transit", "Paste Import", "Manual Input"),
+        "lead_question_labels": (
+            "How many bank accounts do you reconcile monthly?",
+            "Which accounting system do you use?",
+        ),
     },
     "trial-balance-review-workpaper-template": {
         "title": "Trial Balance Review Workpaper Template",
         "category": "Accounting Operations",
         "keywords": ("unusual", "proposed adjustments", "Paste Import", "Manual Input"),
+        "lead_question_labels": (
+            "How many client trial balances do you review monthly?",
+            "Which accounting system do you use?",
+        ),
     },
 }
 
@@ -137,7 +149,10 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 self.assertEqual(data["category"], expected["category"])
                 self.assertEqual(data["link"], f"/template-files/{slug}.xlsx")
                 self.assertEqual(data["image"], f"/templates/covers/{slug}.png")
-                self.assertEqual(len(data["leadQuestions"]), 2)
+                self.assertEqual(
+                    tuple(question["label"] for question in data["leadQuestions"]),
+                    expected["lead_question_labels"],
+                )
                 combined = f'{data["shortDescription"]} {data["about"]}'
                 for keyword in expected["keywords"]:
                     self.assertIn(keyword.lower(), combined.lower())
@@ -152,15 +167,13 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 self.assertGreaterEqual(formulas, expected["min_formulas"])
                 self.assertGreaterEqual(validations, expected["min_validations"])
 
-    def test_summary_covers_are_large_landscape_pngs(self):
+    def test_summary_covers_are_exact_card_dimensions(self):
         for slug in WORKBOOKS:
             with self.subTest(slug=slug):
                 path = COVERS / f"{slug}.png"
                 self.assertTrue(path.is_file(), path)
                 width, height = png_size(path)
-                self.assertGreater(width, height)
-                self.assertGreaterEqual(width, 1200)
-                self.assertGreaterEqual(height, 400)
+                self.assertEqual((width, height), (1600, 900))
 
     def test_input_mode_validation_references_lists_sheet(self):
         path = FILES / "monthly-financial-statement-review-template.xlsx"
@@ -387,6 +400,12 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 self.assertEqual(totals["D"], totals["E"], sheet_name)
                 self.assertEqual(totals["F"], totals["G"], sheet_name)
                 self.assertEqual(totals["I"], 0, sheet_name)
+                adjustments = [
+                    float(cell_value(archive, sheet, f"I{row}") or 0)
+                    for row in range(6, 106)
+                ]
+                self.assertTrue(any(value > 0 for value in adjustments), sheet_name)
+                self.assertTrue(any(value < 0 for value in adjustments), sheet_name)
 
     def test_trial_balance_all_review_formulas_are_filled_and_safe(self):
         path = FILES / "trial-balance-review-workpaper-template.xlsx"
@@ -464,6 +483,23 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
         self.assertEqual(manifest["cover"]["published_sha256"], sha256(cover_path))
         self.assertGreaterEqual(manifest["renders"]["Review"]["width"], 2600)
         self.assertGreaterEqual(manifest["renders"]["Review"]["height"], 900)
+
+    def test_all_review_renders_have_durable_natural_width_evidence(self):
+        minimum_widths = {
+            "monthly-financial-statement-review-template": 1900,
+            "bank-reconciliation-workpaper-template": 1700,
+            "trial-balance-review-workpaper-template": 2600,
+        }
+        for slug, minimum_width in minimum_widths.items():
+            with self.subTest(slug=slug):
+                manifest_path = FILES / f"{slug}.verification.json"
+                self.assertTrue(manifest_path.is_file(), manifest_path)
+                manifest = json.loads(manifest_path.read_text())
+                self.assertGreaterEqual(manifest["renders"]["Review"]["width"], minimum_width)
+                self.assertGreaterEqual(manifest["renders"]["Review"]["height"], 900)
+                if slug == "trial-balance-review-workpaper-template":
+                    self.assertGreaterEqual(manifest["renders"]["Paste Import"]["width"], 1600)
+                    self.assertGreaterEqual(manifest["renders"]["Manual Input"]["width"], 1600)
 
 
 if __name__ == "__main__":

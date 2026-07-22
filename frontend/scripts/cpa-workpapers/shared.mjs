@@ -139,16 +139,18 @@ async function renderWorksheet(sheet, filePath, fs) {
   const isSummary = sheet.name === "Summary";
   const maxCol = Math.min(sheet.columnCount || 8, isSummary ? 8 : 19);
   const maxRow = Math.min(sheet.rowCount || 25, isSummary ? 24 : 25);
-  const isWideReview = sheet.name === "Review" && maxCol === 19;
+  const isReview = sheet.name === "Review";
+  const isDataSheet = ["Paste Import", "Manual Input", "Review"].includes(sheet.name);
+  const isWideReview = isReview && maxCol === 19;
   const margin = 34;
   const rawWidths = Array.from({ length: maxCol }, (_, i) => Math.max(55, Math.min(isWideReview ? 360 : 230, (sheet.getColumn(i + 1).width || 12) * 8)));
   const naturalWidth = Math.ceil(rawWidths.reduce((sum, value) => sum + value, 0) + margin * 2);
-  const width = isSummary ? 1600 : isWideReview ? Math.max(2800, naturalWidth) : 1400;
+  const width = isSummary ? 1600 : isReview ? Math.max(isWideReview ? 2800 : 1800, naturalWidth) : isDataSheet ? Math.max(1400, naturalWidth) : 1400;
   const height = isSummary ? 900 : 1000;
   const canvas = createCanvas(width, height); const ctx = canvas.getContext("2d");
   ctx.fillStyle = COLORS.sand; ctx.fillRect(0, 0, width, height);
   const contentWidth = width - margin * 2;
-  const factor = isWideReview ? 1 : Math.min(1, contentWidth / rawWidths.reduce((a, b) => a + b, 0));
+  const factor = isDataSheet ? 1 : Math.min(1, contentWidth / rawWidths.reduce((a, b) => a + b, 0));
   const widths = rawWidths.map((value) => value * factor);
   const rowHeights = Array.from({ length: maxRow }, (_, i) => Math.max(28, Math.min(62, (sheet.getRow(i + 1).height || 20) * 1.45)));
   const rowPositions = []; let position = margin; rowHeights.forEach((rowHeight) => { rowPositions.push(position); position += rowHeight; });
@@ -171,7 +173,7 @@ async function renderWorksheet(sheet, filePath, fs) {
       ctx.fillStyle = status?.text ?? (cell.font?.color?.argb ? `#${cell.font.color.argb.slice(-6)}` : COLORS.ink);
       ctx.font = `${cell.font?.bold ? "700" : "400"} ${Math.max(12, Math.min(24, (cell.font?.size || 10) * 1.35))}px Arial`;
       ctx.textBaseline = "middle"; const value = String(displayValue(cell));
-      const clipped = !isWideReview || row !== 5
+      const clipped = !isDataSheet || row !== 5
         ? value.length > Math.max(5, Math.floor(drawWidth / 7)) ? `${value.slice(0, Math.max(2, Math.floor(drawWidth / 7) - 1))}…` : value
         : value;
       ctx.fillText(clipped, x + 7, rowPositions[row - 1] + drawHeight / 2, drawWidth - 14);
