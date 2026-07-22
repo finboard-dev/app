@@ -10,6 +10,17 @@ export const COLORS = Object.freeze({
 export const SHEET_NAMES = ["Start Here", "Paste Import", "Manual Input", "Review", "Summary", "Lists"];
 const thinBorder = { style: "thin", color: { argb: "FFD1D5DB" } };
 const argb = (hex) => `FF${hex.replace("#", "")}`;
+const parseRange = (address) => {
+  const [start, end = start] = address.split(":").map(decodeAddress);
+  return { startRow: start.row, endRow: end.row, startColumn: start.column, endColumn: end.column };
+};
+const eachCellInRange = (sheet, address, callback) => {
+  const range = parseRange(address);
+  for (let row = range.startRow; row <= range.endRow; row += 1) {
+    for (let column = range.startColumn; column <= range.endColumn; column += 1) callback(sheet.getCell(row, column));
+  }
+  return range;
+};
 
 export function createShell(workbook, config) {
   const sheets = Object.fromEntries(SHEET_NAMES.map((name) => [name, workbook.addWorksheet(name, { views: [{ showGridLines: false }] })]));
@@ -30,7 +41,7 @@ export function createShell(workbook, config) {
   });
   start.getCell("B5").numFmt = "mmm d, yyyy"; start.getCell("B7").numFmt = "mmm d, yyyy";
   start.getCell("B10").numFmt = '$#,##0;[Red]($#,##0);-'; start.getCell("B11").numFmt = "0.0%";
-  start.getCell("B8").dataValidation = { type: "list", allowBlank: false, formulae: ['"Paste Import,Manual Input"'] };
+  start.getCell("B8").dataValidation = { type: "list", allowBlank: false, formulae: ["'Lists'!$D$2:$D$3"] };
   start.mergeCells("A14:H14"); start.getCell("A14").value = "Workflow";
   start.getCell("A14").font = { bold: true, color: { argb: argb(COLORS.white) } };
   start.getCell("A14").fill = { type: "pattern", pattern: "solid", fgColor: { argb: argb(COLORS.blue) } };
@@ -52,18 +63,26 @@ export function sourceFormula(columnLetter, rowNumber) {
 }
 
 export function styleTable(sheet, address, headerAddress, currencyColumns = []) {
-  sheet.getCell(headerAddress.split(":")[0]);
-  sheet.getRow(5).eachCell((cell) => {
+  const bounds = eachCellInRange(sheet, address, (cell) => { cell.font = { name: "Aptos", size: 10, color: { argb: argb(COLORS.ink) } }; });
+  eachCellInRange(sheet, headerAddress, (cell) => {
     cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: argb(COLORS.ink) } };
     cell.font = { name: "Aptos", size: 10, bold: true, color: { argb: argb(COLORS.white) } };
     cell.alignment = { wrapText: true, vertical: "middle" }; cell.border = { bottom: thinBorder };
   });
-  for (const column of currencyColumns) sheet.getColumn(column).numFmt = '$#,##0;[Red]($#,##0);-';
+  for (const column of currencyColumns) {
+    const columnNumber = decodeAddress(`${column}1`).column;
+    for (let row = bounds.startRow; row <= bounds.endRow; row += 1) sheet.getCell(row, columnNumber).numFmt = '$#,##0;[Red]($#,##0);-';
+  }
 }
 
 export function styleInputTable(sheet, address, widths) {
-  widths.forEach((width, index) => { sheet.getColumn(index + 1).width = width; });
-  for (let row = 6; row <= 105; row += 1) styleInputRange(sheet.getRow(row));
+  const bounds = parseRange(address);
+  widths.forEach((width, index) => { sheet.getColumn(bounds.startColumn + index).width = width; });
+  eachCellInRange(sheet, address, (cell) => {
+    cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: argb(COLORS.blueSoft) } };
+    cell.font = { name: "Aptos", size: 10, color: { argb: argb(COLORS.blueText) } };
+    cell.border = { bottom: thinBorder };
+  });
 }
 
 export function styleInputRange(range) {
@@ -134,6 +153,7 @@ async function renderWorksheet(sheet, filePath, fs) {
       const drawHeight = merge ? rowHeights.slice(row - 1, Math.min(maxRow, merge.endRow)).reduce((sum, value) => sum + value, 0) : rowHeight;
       let background = colorFromCell(cell, row % 2 === 0 ? "#FFFFFF" : "#F9FAFB");
       if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Review") background = COLORS.redSoft;
+      if (sheet.name === "Review" && col === 13 && displayValue(cell) === "Incomplete") background = COLORS.amberSoft;
       ctx.fillStyle = background; ctx.fillRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.strokeStyle = COLORS.line; ctx.strokeRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.fillStyle = cell.font?.color?.argb ? `#${cell.font.color.argb.slice(-6)}` : COLORS.ink;
@@ -173,6 +193,7 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
       const current = Number(sheet.getCell(row, 5).value || 0); const prior = Number(sheet.getCell(row, 6).value || 0); const budget = Number(sheet.getCell(row, 7).value || 0); const category = sheet.getCell(row, 8).value;
       if (category === "Revenue") revenue += current;
       if (!sheet.getCell(row, 3).value) continue;
+      if (!sheet.getCell(row, 4).value || !category) { exceptionCount += 1; continue; }
       const change = current - prior; const budgetVar = current - budget;
       const changeMaterial = Math.abs(change) >= 5000 && (prior === 0 || Math.abs(change / Math.abs(prior)) >= 0.1);
       const budgetMaterial = Math.abs(budgetVar) >= 5000 && (budget === 0 || Math.abs(budgetVar / Math.abs(budget)) >= 0.1);

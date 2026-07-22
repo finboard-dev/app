@@ -14,6 +14,7 @@ const sampleData = [
   ["Balance Sheet", "1000", "Operating Cash", "Bank", 122000, 96000, 110000, "Cash"],
   ["Balance Sheet", "1100", "Accounts Receivable", "Accounts Receivable", 87000, 72000, 76000, "Accounts Receivable"],
   ["Balance Sheet", "1200", "Prepaid Expenses", "Other Current Asset", 14000, 12000, 13000, "Current Assets"],
+  ["Balance Sheet", "1300", "Inventory in Transit", "", 6000, 5000, 5500, "Current Assets"],
   ["Balance Sheet", "2000", "Accounts Payable", "Accounts Payable", 62000, 51000, 55000, "Accounts Payable"],
   ["Balance Sheet", "2100", "Accrued Payroll", "Other Current Liability", 28000, 24000, 26000, "Current Liabilities"],
   ["Balance Sheet", "2200", "Sales Tax Payable", "Other Current Liability", 9000, 8000, 8500, "Current Liabilities"],
@@ -34,8 +35,8 @@ function buildInput(sheet) {
   sheet.getCell("A4").value = "Enter or paste values in blue cells. Do not add rows beyond row 105.";
   sheet.mergeCells("A4:H4"); sheet.getCell("A4").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = inputHeaders; sheet.getRow(5).height = 34;
-  styleInputTable(sheet, "A6:H105", [18, 16, 27, 22, 17, 17, 17, 23]); styleTable(sheet, "A5:H105", "A5:H5", ["E", "F", "G"]);
   sampleData.forEach((values, index) => { sheet.getRow(6 + index).values = values; });
+  styleTable(sheet, "A5:H105", "A5:H5", ["E", "F", "G"]); styleInputTable(sheet, "A6:H105", [18, 16, 27, 22, 17, 17, 17, 23]);
   addListValidation({ eachCell: (opts, fn) => { for (let row = 6; row <= 105; row += 1) fn(sheet.getCell(row, 1)); } }, "'Lists'!$A$2:$A$3");
   addListValidation({ eachCell: (opts, fn) => { for (let row = 6; row <= 105; row += 1) fn(sheet.getCell(row, 4)); } }, "'Lists'!$B$2:$B$10");
   addListValidation({ eachCell: (opts, fn) => { for (let row = 6; row <= 105; row += 1) fn(sheet.getCell(row, 8)); } }, "'Lists'!$C$2:$C$12");
@@ -57,7 +58,7 @@ function buildReview(sheet) {
   title(sheet, "Monthly Financial Statement Review", 15); sheet.mergeCells("A4:O4");
   sheet.getCell("A4").value = "Formula-driven comparison. Add reviewer notes only in column N."; sheet.getCell("A4").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = reviewHeaders; sheet.getRow(5).height = 42;
-  [16, 14, 24, 20, 14, 14, 14, 14, 13, 14, 13, 22, 13, 27, 17].forEach((width, index) => { sheet.getColumn(index + 1).width = width; });
+  [16, 14, 24, 20, 14, 14, 14, 14, 13, 14, 13, 22, 18, 27, 17].forEach((width, index) => { sheet.getColumn(index + 1).width = width; });
   styleTable(sheet, "A5:O105", "A5:O5", ["E", "F", "G", "H", "J", "O"]);
   for (let row = 6; row <= 105; row += 1) {
     for (let col = 1; col <= 7; col += 1) sheet.getCell(row, col).value = formula(sourceFormula(String.fromCharCode(64 + col), row).slice(1), sourceResult(row, col));
@@ -66,7 +67,8 @@ function buildReview(sheet) {
     const change = current - prior; const budgetVar = current - budget;
     const changePct = prior === 0 ? (current === 0 ? "" : "New") : change / Math.abs(prior);
     const budgetPct = budget === 0 ? (current === 0 ? "" : "New") : budgetVar / Math.abs(budget);
-    const flag = !hasData ? "" : ((Math.abs(change) >= 5000 && (changePct === "New" || Math.abs(changePct) >= 0.1)) || (Math.abs(budgetVar) >= 5000 && (budgetPct === "New" || Math.abs(budgetPct) >= 0.1)) ? "Review" : "OK");
+    const incomplete = hasData && (!sourceResult(row, 4) || !sourceResult(row, 8));
+    const flag = !hasData ? "" : incomplete ? "Incomplete" : ((Math.abs(change) >= 5000 && (changePct === "New" || Math.abs(changePct) >= 0.1)) || (Math.abs(budgetVar) >= 5000 && (budgetPct === "New" || Math.abs(budgetPct) >= 0.1)) ? "Review" : "OK");
     sheet.getCell(row, 8).value = formula(`IF(C${row}="","",E${row}-F${row})`, hasData ? change : "");
     sheet.getCell(row, 9).value = formula(`IF(C${row}="","",IF(F${row}=0,IF(E${row}=0,"","New"),H${row}/ABS(F${row})))`, hasData ? changePct : "");
     sheet.getCell(row, 10).value = formula(`IF(C${row}="","",E${row}-G${row})`, hasData ? budgetVar : "");
@@ -89,9 +91,10 @@ function buildSummary(sheet) {
   title(sheet, "Monthly Financial Review — Executive Summary", 8);
   sheet.mergeCells("A3:H3"); sheet.getCell("A3").value = "Decision-ready KPIs and the five largest exceptions"; sheet.getCell("A3").font = { italic: true, color: { argb: "FF6B7280" } };
   sheet.getRow(5).values = ["Client", formula("'Start Here'!B4", "Northstar Components LLC"), "Period End", formula("'Start Here'!B5", "2026-06-30"), "Prepared By", formula("'Start Here'!B6", "Taylor Morgan"), "Status", ""];
-  const revenue = 303000; const cogs = 91000; const opEx = 122000; const gross = revenue - cogs; const operating = gross - opEx; const net = operating; const working = 122000 + 87000 + 14000 - 62000 - 37000;
-  const flags = sampleData.filter((row) => { const ch = row[4] - row[5]; const bv = row[4] - row[6]; const cp = row[5] === 0 ? "New" : ch / Math.abs(row[5]); const bp = row[6] === 0 ? "New" : bv / Math.abs(row[6]); return (Math.abs(ch) >= 5000 && (cp === "New" || Math.abs(cp) >= .1)) || (Math.abs(bv) >= 5000 && (bp === "New" || Math.abs(bp) >= .1)); });
-  const exceptionCount = flags.length;
+  const revenue = 303000; const cogs = 91000; const opEx = 122000; const gross = revenue - cogs; const operating = gross - opEx; const net = operating; const working = 122000 + 87000 + 20000 - 62000 - 37000;
+  const incompleteItems = sampleData.filter((row) => !row[3] || !row[7]);
+  const flags = sampleData.filter((row) => { if (!row[3] || !row[7]) return false; const ch = row[4] - row[5]; const bv = row[4] - row[6]; const cp = row[5] === 0 ? "New" : ch / Math.abs(row[5]); const bp = row[6] === 0 ? "New" : bv / Math.abs(row[6]); return (Math.abs(ch) >= 5000 && (cp === "New" || Math.abs(cp) >= .1)) || (Math.abs(bv) >= 5000 && (bp === "New" || Math.abs(bp) >= .1)); });
+  const exceptionCount = flags.length + incompleteItems.length;
   const kpis = [
     ["Revenue", `SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Revenue")`, revenue],
     ["Gross Profit", `B8-SUMIFS('Review'!$E$6:$E$105,'Review'!$L$6:$L$105,"Cost of Goods Sold")`, gross],

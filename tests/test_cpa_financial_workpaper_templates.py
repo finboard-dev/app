@@ -8,6 +8,11 @@ ROOT = Path(__file__).resolve().parents[1]
 FILES = ROOT / "frontend" / "public" / "template-files"
 COVERS = ROOT / "frontend" / "public" / "templates" / "covers"
 SHEETS = ["Start Here", "Paste Import", "Manual Input", "Review", "Summary", "Lists"]
+NS = {
+    "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
+    "rel": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
+    "pkg": "http://schemas.openxmlformats.org/package/2006/relationships",
+}
 
 WORKBOOKS = {
     "monthly-financial-statement-review-template": {
@@ -39,6 +44,21 @@ def png_size(path):
     return struct.unpack(">II", data[16:24])
 
 
+def worksheet_xml(archive, sheet_name):
+    workbook = ET.fromstring(archive.read("xl/workbook.xml"))
+    sheet = next(
+        node for node in workbook.findall("main:sheets/main:sheet", NS)
+        if node.attrib["name"] == sheet_name
+    )
+    relationship_id = sheet.attrib[f"{{{NS['rel']}}}id"]
+    relationships = ET.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
+    relationship = next(
+        node for node in relationships.findall("pkg:Relationship", NS)
+        if node.attrib["Id"] == relationship_id
+    )
+    return ET.fromstring(archive.read(f"xl/{relationship.attrib['Target']}"))
+
+
 class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
     def test_published_workbooks_have_required_structure(self):
         for slug, expected in WORKBOOKS.items():
@@ -59,6 +79,26 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 self.assertGreater(width, height)
                 self.assertGreaterEqual(width, 1200)
                 self.assertGreaterEqual(height, 400)
+
+    def test_input_mode_validation_references_lists_sheet(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            start = worksheet_xml(archive, "Start Here")
+            validations = start.findall(".//main:dataValidation", NS)
+            input_mode = next(item for item in validations if "B8" in item.attrib["sqref"].split())
+            formula = input_mode.findtext("main:formula1", namespaces=NS)
+            self.assertIn("Lists", formula)
+
+    def test_review_contains_cached_incomplete_sample(self):
+        path = FILES / "monthly-financial-statement-review-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            review = worksheet_xml(archive, "Review")
+            cached_flags = [
+                cell.findtext("main:v", namespaces=NS)
+                for cell in review.findall(".//main:c", NS)
+                if cell.attrib.get("r", "").startswith("M")
+            ]
+            self.assertIn("Incomplete", cached_flags)
 
 
 if __name__ == "__main__":
