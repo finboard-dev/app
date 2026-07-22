@@ -100,7 +100,7 @@ export function addListValidation(range, listRange) {
 export function statusStyle(value) {
   if (value === "Review") return { fill: COLORS.amberSoft, text: COLORS.amber };
   if (value === "Incomplete") return { fill: COLORS.redSoft, text: COLORS.red };
-  if (value === "OK") return { fill: COLORS.greenSoft, text: COLORS.green };
+  if (value === "OK" || value === "Complete") return { fill: COLORS.greenSoft, text: COLORS.green };
   return null;
 }
 
@@ -110,9 +110,12 @@ function colorFromCell(cell, fallback = COLORS.white) {
 }
 
 function displayValue(cell) {
-  const value = cell.value && typeof cell.value === "object" && "formula" in cell.value ? cell.value.result ?? "" : cell.value;
+  const value = cell.formula ? cell.result ?? "" : cell.value;
   if (typeof value === "number" && cell.numFmt?.includes("%")) return `${(value * 100).toFixed(1)}%`;
-  if (typeof value === "number" && cell.numFmt?.includes("$")) return value === 0 ? "-" : `${value < 0 ? "(" : ""}$${Math.abs(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}${value < 0 ? ")" : ""}`;
+  if (typeof value === "number" && cell.numFmt?.includes("$")) {
+    const zeroDisplay = cell.numFmt.split(";")[2] === "0" ? "0" : "-";
+    return value === 0 ? zeroDisplay : `${value < 0 ? "(" : ""}$${Math.abs(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}${value < 0 ? ")" : ""}`;
+  }
   if (value instanceof Date) return value.toISOString().slice(0, 10);
   if (value !== cell.value) return value;
   if (cell.value instanceof Date) return cell.value.toISOString().slice(0, 10);
@@ -158,7 +161,7 @@ async function renderWorksheet(sheet, filePath, fs) {
       const cell = sheet.getCell(row, col);
       const drawWidth = merge ? widths.slice(col - 1, Math.min(maxCol, merge.endColumn)).reduce((sum, value) => sum + value, 0) : cellWidth;
       const drawHeight = merge ? rowHeights.slice(row - 1, Math.min(maxRow, merge.endRow)).reduce((sum, value) => sum + value, 0) : rowHeight;
-      const status = sheet.name === "Review" && col === 13 ? statusStyle(displayValue(cell)) : null;
+      const status = statusStyle(displayValue(cell));
       const background = status?.fill ?? colorFromCell(cell, row % 2 === 0 ? "#FFFFFF" : "#F9FAFB");
       ctx.fillStyle = background; ctx.fillRect(x, rowPositions[row - 1], drawWidth, drawHeight);
       ctx.strokeStyle = COLORS.line; ctx.strokeRect(x, rowPositions[row - 1], drawWidth, drawHeight);
@@ -182,9 +185,9 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
   let formulaCount = 0; let validationCount = 0;
   for (const sheet of workbook.worksheets) {
     sheet.eachRow({ includeEmpty: true }, (row) => row.eachCell({ includeEmpty: true }, (cell) => {
-      if (cell.value && typeof cell.value === "object" && "formula" in cell.value) {
-        formulaCount += 1; records.push({ kind: "formula", sheet: sheet.name, address: cell.address, formula: cell.value.formula, result: cell.value.result ?? null });
-        if (/\#(?:REF!|DIV\/0!|VALUE!|NAME\?|N\/A)/.test(String(cell.value.result ?? ""))) throw new Error(`formula error ${sheet.name}!${cell.address}`);
+      if (cell.formula) {
+        formulaCount += 1; records.push({ kind: "formula", sheet: sheet.name, address: cell.address, formula: cell.formula, result: cell.result ?? null });
+        if (/\#(?:REF!|DIV\/0!|VALUE!|NAME\?|N\/A)/.test(String(cell.result ?? ""))) throw new Error(`formula error ${sheet.name}!${cell.address}`);
       }
       if (cell.dataValidation?.type) validationCount += 1;
     }));
@@ -207,8 +210,25 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
     }
     return { revenue, exceptionCount };
   };
-  const pasteMetrics = modeMetrics("Paste Import"); const manualMetrics = modeMetrics("Manual Input");
-  if (pasteMetrics.revenue !== manualMetrics.revenue || pasteMetrics.exceptionCount !== manualMetrics.exceptionCount) throw new Error("input modes do not reconcile");
+  const bankModeMetrics = (sheetName) => {
+    const sheet = workbook.getWorksheet(sheetName);
+    const totals = { outstandingChecks: 0, depositsInTransit: 0, bankAdjustments: 0, bookAdjustments: 0, unresolvedCount: 0, unresolvedAmount: 0 };
+    for (let row = 6; row <= 105; row += 1) {
+      const amount = Number(sheet.getCell(row, 4).value || 0); const type = sheet.getCell(row, 6).value;
+      if (type === "Outstanding Check") totals.outstandingChecks += amount;
+      if (type === "Deposit in Transit") totals.depositsInTransit += amount;
+      if (type === "Bank Adjustment") totals.bankAdjustments += amount;
+      if (type === "Book Adjustment") totals.bookAdjustments += amount;
+      if (type === "Unresolved") { totals.unresolvedCount += 1; totals.unresolvedAmount += amount; }
+    }
+    const statementBalance = Number(sheet.getCell("B2").value || 0); const bookBalance = Number(sheet.getCell("B3").value || 0);
+    const adjustedBank = statementBalance - totals.outstandingChecks + totals.depositsInTransit + totals.bankAdjustments;
+    const adjustedBooks = bookBalance + totals.bookAdjustments; const difference = adjustedBank - adjustedBooks;
+    return { statementBalance, bookBalance, ...totals, adjustedBank, adjustedBooks, difference, status: Math.abs(difference) <= 0.01 && totals.unresolvedCount === 0 ? "Complete" : "Review" };
+  };
+  const calculateMode = slug === "bank-reconciliation-workpaper-template" ? bankModeMetrics : modeMetrics;
+  const pasteMetrics = calculateMode("Paste Import"); const manualMetrics = calculateMode("Manual Input");
+  if (JSON.stringify(pasteMetrics) !== JSON.stringify(manualMetrics)) throw new Error("input modes do not reconcile");
   records.unshift(
     { kind: "summary", sheets: workbook.worksheets.map((sheet) => sheet.name), formulaCount, validationCount },
     snapshot("Start Here", 1, 25, 1, 8), snapshot("Review", 1, 18, 1, 15), snapshot("Summary", 1, 24, 1, 8),

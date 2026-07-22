@@ -162,7 +162,7 @@ function buildSummary(sheet) {
     ["G11", "Book Adjustments", "H12", `SUMIFS('Review'!$D$6:$D$105,'Review'!$F$6:$F$105,"Book Adjustment")`, 1650],
     ["A14", "Adjusted Bank", "B15", "B9-B12+D12+F12", 51650],
     ["C14", "Adjusted Books", "D15", "D9+H12", 51650],
-    ["E14", "Difference", "F15", "B15-D15", "0"],
+    ["E14", "Difference", "F15", "B15-D15", 0],
     ["A17", "Unresolved Count", "B18", `COUNTIF('Review'!$F$6:$F$105,"Unresolved")`, 1],
     ["C17", "Unresolved Amount", "D18", `SUMIFS('Review'!$D$6:$D$105,'Review'!$F$6:$F$105,"Unresolved")`, 75],
   ];
@@ -172,11 +172,14 @@ function buildSummary(sheet) {
     sheet.getCell(labelAddress).fill = fill(COLORS.blueSoft);
     sheet.getCell(valueAddress).value = formula(formulaText, result);
     sheet.getCell(valueAddress).font = { bold: true, size: 18, color: { argb: "FF111827" } };
-    sheet.getCell(valueAddress).numFmt = label === "Unresolved Count" ? "0" : '$#,##0;[Red]($#,##0);-';
+    sheet.getCell(valueAddress).numFmt = label === "Unresolved Count" ? "0" : label === "Difference" ? '$#,##0;[Red]($#,##0);0' : '$#,##0;[Red]($#,##0);-';
   }
   sheet.getCell("H5").value = formula(`IF(AND(ABS(F15)<='Start Here'!$B$11,B18=0),"Complete","Review")`, "Review");
-  sheet.getCell("H5").fill = fill(COLORS.amberSoft);
-  sheet.getCell("H5").font = { bold: true, color: { argb: "FFD97706" } };
+  sheet.getCell("H5").font = { bold: true };
+  sheet.addConditionalFormatting({ ref: "H5", rules: [
+    { type: "expression", formulae: ['H5="Review"'], style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
+    { type: "expression", formulae: ['H5="Complete"'], style: { fill: fill(COLORS.greenSoft), font: { color: { argb: "FF047857", bold: true } } } },
+  ] });
   sheet.mergeCells("A20:H20");
   sheet.getCell("A20").value = "Reviewer Notes";
   sheet.getCell("A20").fill = fill(COLORS.ink);
@@ -198,10 +201,12 @@ export async function buildBankReconciliation(workbook) {
   workbook.calcProperties.forceFullCalc = true;
   const sheets = createShell(workbook, {
     title: "Bank Reconciliation Workpaper",
-    startLabels: ["Client Name", "Bank Account", "Statement Date", "Prepared By", "Review Date", "Input Mode", "Currency", "Reconciliation Tolerance"],
-    startValues: ["Northstar Components LLC", "Operating Account ••4821", statementDate, "Taylor Morgan", new Date("2026-07-10T00:00:00Z"), "Paste Import", "USD", 0.01],
+    startLabels: ["Client Name", "Bank Account", "Statement Date", "Prepared By", "Input Mode", "Review Date", "Currency", "Reconciliation Tolerance"],
+    startValues: ["Northstar Components LLC", "Operating Account ••4821", statementDate, "Taylor Morgan", "Paste Import", new Date("2026-07-10T00:00:00Z"), "USD", 0.01],
     instructions: ["1. Confirm the client, bank account, dates, selected input mode, and tolerance.", "2. Paste bank reconciliation detail or enter reconciling items manually in blue cells.", "3. Classify each item and resolve duplicate, incomplete, and unresolved review flags.", "4. Print or export the Summary only after the difference is within tolerance and unresolved items are cleared."],
   });
+  sheets.start.getCell("B6").numFmt = "mmm d, yyyy";
+  sheets.start.getCell("B9").numFmt = "mmm d, yyyy";
   sheets.start.getCell("B10").numFmt = "General";
   sheets.start.getCell("B11").numFmt = "0.00";
   buildInput(sheets.paste);
