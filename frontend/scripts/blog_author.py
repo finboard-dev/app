@@ -8,12 +8,41 @@ SCHEMA_AUTHOR = {
     "name": AUTHOR_NAME,
     "url": "https://finboard.ai/about",
 }
-ARTICLE_TYPES = {"Article", "BlogPosting"}
+ARTICLE_TYPES = {
+    "Article",
+    "AdvertiserContentArticle",
+    "NewsArticle",
+    "AnalysisNewsArticle",
+    "AskPublicNewsArticle",
+    "BackgroundNewsArticle",
+    "OpinionNewsArticle",
+    "ReportageNewsArticle",
+    "ReviewNewsArticle",
+    "Report",
+    "SatiricalArticle",
+    "ScholarlyArticle",
+    "MedicalScholarlyArticle",
+    "SocialMediaPosting",
+    "BlogPosting",
+    "LiveBlogPosting",
+    "DiscussionForumPosting",
+    "TechArticle",
+    "APIReference",
+}
+
+
+def _schema_type_name(value):
+    if not isinstance(value, str):
+        return None
+    for prefix in ("http://schema.org/", "https://schema.org/"):
+        if value.startswith(prefix):
+            return value[len(prefix):]
+    return value
 
 
 def _is_article_type(value):
     values = value if isinstance(value, list) else [value]
-    return any(item in ARTICLE_TYPES for item in values)
+    return any(_schema_type_name(item) in ARTICLE_TYPES for item in values)
 
 
 def normalize_structured_data(value):

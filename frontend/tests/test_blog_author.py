@@ -38,8 +38,21 @@ class BlogAuthorPolicyTest(unittest.TestCase):
         self.assertNotIn("author", result["structuredData"]["@graph"][1])
 
     def test_normalizes_article_type_arrays(self):
-        result = normalize_structured_data({"@type": ["Article", "TechArticle"]})
+        result = normalize_structured_data({"@type": ["WebPage", "TechArticle"]})
         self.assertEqual(result["author"], SCHEMA_AUTHOR)
+
+    def test_normalizes_standalone_article_subtype(self):
+        result = normalize_structured_data({"@type": "NewsArticle"})
+        self.assertEqual(result["author"], SCHEMA_AUTHOR)
+
+    def test_normalizes_expanded_blog_posting_urls(self):
+        for schema_type in (
+            "http://schema.org/BlogPosting",
+            "https://schema.org/BlogPosting",
+        ):
+            with self.subTest(schema_type=schema_type):
+                result = normalize_structured_data({"@type": schema_type})
+                self.assertEqual(result["author"], SCHEMA_AUTHOR)
 
     def test_pipeline_exposes_only_finboard_team(self):
         config = json.loads((REPO / ".blog-pipeline" / "config.json").read_text())
