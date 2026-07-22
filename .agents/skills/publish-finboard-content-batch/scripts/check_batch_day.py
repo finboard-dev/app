@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import subprocess
 from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -38,23 +39,66 @@ def is_complete_batch_record(path: Path, data: object) -> bool:
     return True
 
 
-def load_publication_dates(runs_dir: Path) -> list[date]:
-    dates = []
+def git_output(repository: Path, *args: str) -> bytes | None:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repository), *args],
+            capture_output=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return result.stdout
+
+
+def find_git_root(path: Path) -> Path | None:
+    candidate = path.resolve()
+    while not candidate.exists() and candidate != candidate.parent:
+        candidate = candidate.parent
+    output = git_output(candidate, "rev-parse", "--show-toplevel")
+    if output is None:
+        return None
+    return Path(output.decode().strip()).resolve()
+
+
+def load_committed_records(runs_dir: Path) -> list[tuple[date, bool]]:
+    records = []
     if not runs_dir.exists():
-        return dates
+        return records
+    repository = find_git_root(runs_dir)
+    if repository is None:
+        return records
     for path in sorted(runs_dir.glob("????-??-??.json")):
         try:
-            data = json.loads(path.read_text())
-        except (OSError, json.JSONDecodeError):
+            relative_path = path.resolve().relative_to(repository).as_posix()
+            current_content = path.read_bytes()
+        except (OSError, ValueError):
+            continue
+        head_content = git_output(repository, "show", f"HEAD:{relative_path}")
+        if head_content != current_content:
+            continue
+        try:
+            data = json.loads(current_content)
+        except (UnicodeDecodeError, json.JSONDecodeError):
             continue
         if is_complete_batch_record(path, data):
-            dates.append(date.fromisoformat(data["publicationDate"]))
-    return dates
+            remote_content = git_output(
+                repository,
+                "show",
+                f"refs/remotes/origin/main:{relative_path}",
+            )
+            records.append(
+                (
+                    date.fromisoformat(data["publicationDate"]),
+                    remote_content == current_content,
+                )
+            )
+    return records
 
 
 def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:
-    dates = load_publication_dates(Path(runs_dir))
-    if not dates:
+    records = load_committed_records(Path(runs_dir))
+    if not records:
         return {
             "eligible": True,
             "reason": "no_previous_batch",
@@ -62,10 +106,24 @@ def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:
             "previousDate": None,
             "timeZone": TIME_ZONE,
         }
-    previous = max(dates)
+    previous = max(publication_date for publication_date, _ in records)
     delta = (current_date - previous).days
     if delta < 0:
         raise ValueError("latest publication date cannot be in the future")
+    retry_dates = [publication_date for publication_date, pushed in records if not pushed]
+    if retry_dates:
+        retry_date = max(retry_dates)
+        return {
+            "eligible": False,
+            "action": "retry_push",
+            "reason": "push_retry",
+            "currentDate": current_date.isoformat(),
+            "previousDate": retry_date.isoformat(),
+            "timeZone": TIME_ZONE,
+        }
+    published_dates = [publication_date for publication_date, pushed in records if pushed]
+    previous = max(published_dates)
+    delta = (current_date - previous).days
     reason = {
         0: "already_published_today",
         1: "skip_day",

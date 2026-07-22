@@ -39,6 +39,37 @@ def run_cadence(runs_dir, current_date):
     return json.loads(result.stdout)
 
 
+def run_git(repo, *args):
+    return subprocess.run(
+        ["git", "-C", str(repo), *args],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+
+
+def init_repository(tmp):
+    repo = Path(tmp)
+    runs = repo / "content-pipeline" / "runs"
+    runs.mkdir(parents=True)
+    run_git(repo, "init", "-q", "-b", "main")
+    run_git(repo, "config", "user.name", "Skill Test")
+    run_git(repo, "config", "user.email", "skill-test@example.com")
+    return repo, runs
+
+
+def commit_record(repo, runs, publication_date, data=None):
+    path = runs / f"{publication_date}.json"
+    path.write_text(json.dumps(data or complete_record(publication_date)))
+    run_git(repo, "add", str(path.relative_to(repo)))
+    run_git(repo, "commit", "-q", "-m", f"batch {publication_date}")
+    return path
+
+
+def mark_origin_main(repo):
+    run_git(repo, "update-ref", "refs/remotes/origin/main", "HEAD")
+
+
 class PublishFinboardContentBatchSkillTest(unittest.TestCase):
     def test_required_skill_files_exist(self):
         required = [
@@ -69,6 +100,10 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         self.assertIn("Do not run test suites", text)
         self.assertIn("Do not publish a partial batch", text)
         self.assertIn("Clean every visible field immediately before copying", text)
+        retry = text.index("If `action` is `retry_push`")
+        generic_stop = text.index("If `eligible` is false")
+        self.assertLess(retry, generic_stop)
+        self.assertIn("push the existing committed batch directly to origin/main", text)
 
     def test_declared_helper_type_annotations_are_present(self):
         self.assertIn(
@@ -86,6 +121,8 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         text = (SKILL / "references" / "repository-contract.md").read_text()
         self.assertIn("complete locally committed batch record", text)
         self.assertIn("retry the existing completed batch", text)
+        self.assertIn("exact file version is committed in local `HEAD`", text)
+        self.assertIn("absent from `refs/remotes/origin/main`", text)
 
     def test_openai_metadata_has_required_interface(self):
         text = (SKILL / "agents" / "openai.yaml").read_text()
@@ -95,36 +132,74 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
 
     def test_cadence_allows_first_and_two_day_batches(self):
         with tempfile.TemporaryDirectory() as tmp:
-            runs = Path(tmp)
+            repo, runs = init_repository(tmp)
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
-            (runs / "2026-07-20.json").write_text(json.dumps(complete_record("2026-07-20")))
+            commit_record(repo, runs, "2026-07-20")
+            mark_origin_main(repo)
             decision = run_cadence(runs, "2026-07-22")
             self.assertTrue(decision["eligible"])
             self.assertEqual(decision["reason"], "eligible_publish_day")
 
     def test_cadence_stops_same_day_and_skip_day(self):
         with tempfile.TemporaryDirectory() as tmp:
-            runs = Path(tmp)
-            (runs / "2026-07-22.json").write_text(json.dumps(complete_record("2026-07-22")))
+            repo, runs = init_repository(tmp)
+            commit_record(repo, runs, "2026-07-22")
+            mark_origin_main(repo)
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "already_published_today")
             self.assertEqual(run_cadence(runs, "2026-07-23")["reason"], "skip_day")
 
+    def test_cadence_retries_local_commit_absent_from_origin_main(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo, runs = init_repository(tmp)
+            marker = repo / "README.md"
+            marker.write_text("base")
+            run_git(repo, "add", "README.md")
+            run_git(repo, "commit", "-q", "-m", "base")
+            mark_origin_main(repo)
+            commit_record(repo, runs, "2026-07-22")
+            decision = run_cadence(runs, "2026-07-22")
+            self.assertFalse(decision["eligible"])
+            self.assertEqual(decision["action"], "retry_push")
+            self.assertEqual(decision["reason"], "push_retry")
+            self.assertEqual(decision["previousDate"], "2026-07-22")
+
     def test_cadence_ignores_malformed_records(self):
         with tempfile.TemporaryDirectory() as tmp:
-            runs = Path(tmp)
-            (runs / "2026-07-22.json").write_text("not json")
+            repo, runs = init_repository(tmp)
+            path = runs / "2026-07-22.json"
+            path.write_text("not json")
+            run_git(repo, "add", str(path.relative_to(repo)))
+            run_git(repo, "commit", "-q", "-m", "malformed record")
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
 
     def test_cadence_ignores_incomplete_and_unrelated_records(self):
         with tempfile.TemporaryDirectory() as tmp:
-            runs = Path(tmp)
+            repo, runs = init_repository(tmp)
             incomplete = complete_record("2026-07-22")
             incomplete["selectedTemplates"] = [{"slug": "template-1"}]
             (runs / "2026-07-22.json").write_text(json.dumps(incomplete))
             mismatched = complete_record("2026-07-21")
             (runs / "2026-07-20.json").write_text(json.dumps(mismatched))
             (runs / "2026-07-19.json").write_text(json.dumps({"date": "2026-07-19"}))
+            run_git(repo, "add", "content-pipeline/runs")
+            run_git(repo, "commit", "-q", "-m", "invalid records")
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
+
+    def test_cadence_ignores_uncommitted_record_states(self):
+        for state in ("untracked", "staged", "modified"):
+            with self.subTest(state=state), tempfile.TemporaryDirectory() as tmp:
+                repo, runs = init_repository(tmp)
+                path = runs / "2026-07-22.json"
+                path.write_text(json.dumps(complete_record("2026-07-22")))
+                if state == "staged":
+                    run_git(repo, "add", str(path.relative_to(repo)))
+                elif state == "modified":
+                    run_git(repo, "add", str(path.relative_to(repo)))
+                    run_git(repo, "commit", "-q", "-m", "complete record")
+                    changed = complete_record("2026-07-22")
+                    changed["researchSources"] = ["https://example.com/changed"]
+                    path.write_text(json.dumps(changed))
+                self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
 
     def test_plain_text_cleaner_removes_decorative_characters(self):
         source = "Review \u2014 Summary \u2022 Ready \u2192 publish \u2705"
@@ -158,6 +233,17 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
             check=True,
         )
         self.assertEqual(result.stdout, source)
+
+    def test_plain_text_cleaner_normalizes_mixed_ornamental_punctuation(self):
+        source = "Ready?!?! Really!!!??? Still?!?!!"
+        result = subprocess.run(
+            [sys.executable, str(CLEANER)],
+            input=source,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertEqual(result.stdout, "Ready! Really? Still!")
 
     def test_skill_package_has_no_forbidden_characters_or_placeholders(self):
         for path in SKILL.rglob("*"):

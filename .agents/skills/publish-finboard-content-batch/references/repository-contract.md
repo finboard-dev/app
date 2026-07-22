@@ -50,7 +50,11 @@ Create `content-pipeline/runs/YYYY-MM-DD.json` with:
 }
 ```
 
-The cadence success signal is a complete locally committed batch record. A record is complete only when its filename date matches `publicationDate`, `timeZone` is `Asia/Kolkata`, the research and candidate fields are lists, `selectedBlogs` contains exactly two entries, `selectedTemplates` contains exactly two entries, `publicationOrder` matches the four labels above, `batchId` is `YYYY-MM-DD-finboard-content`, and `commitSubject` is `content: publish FinBoard batch YYYY-MM-DD`. Malformed, incomplete, and unrelated dated JSON files do not count as successful batches.
+The cadence success signal is a complete locally committed batch record whose exact file version is committed in local `HEAD`. A record is complete only when its filename date matches `publicationDate`, `timeZone` is `Asia/Kolkata`, the research and candidate fields are lists, `selectedBlogs` contains exactly two entries, `selectedTemplates` contains exactly two entries, `publicationOrder` matches the four labels above, `batchId` is `YYYY-MM-DD-finboard-content`, and `commitSubject` is `content: publish FinBoard batch YYYY-MM-DD`.
+
+Use local Git inspection without fetching. Ignore malformed and incomplete records. Also ignore structurally complete records that are untracked, staged only, modified after their committed version, or otherwise absent in their exact current form from local `HEAD`.
+
+When a complete record is committed in local `HEAD` but that exact version is absent from `refs/remotes/origin/main`, the batch is waiting for push. Return `{"eligible": false, "action": "retry_push", "reason": "push_retry"}` instead of allowing research or a new batch. When the exact version exists on `refs/remotes/origin/main`, apply the same-day, yesterday, and two-or-more-day cadence rules normally.
 
 The record does not contain its own commit SHA. Report the actual SHA after push.
 

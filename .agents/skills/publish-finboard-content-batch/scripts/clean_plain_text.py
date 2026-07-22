@@ -23,7 +23,7 @@ EMOJI = re.compile("[\U0001F300-\U0001FAFF\U00002600-\U000026FF]")
 def clean_plain_text(text: str) -> str:
     cleaned = text.translate(TRANSLATION)
     cleaned = EMOJI.sub("", cleaned)
-    cleaned = re.sub(r"([!?])\1+", r"\1", cleaned)
+    cleaned = re.sub(r"[!?]{2,}", lambda match: match.group()[-1], cleaned)
     cleaned = re.sub(r"\.{4,}", "...", cleaned)
     cleaned = re.sub(r"[ \t]+", " ", cleaned)
     cleaned = re.sub(r" *\n *", "\n", cleaned)

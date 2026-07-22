@@ -28,6 +28,8 @@ From the repository root run:
 python3 .agents/skills/publish-finboard-content-batch/scripts/check_batch_day.py --runs-dir content-pipeline/runs
 ```
 
+If `action` is `retry_push`, do no research and create no files. Read the existing batch record, then push the existing committed batch directly to origin/main. Run no tests, builds, visual checks, HTTP checks, or other verification. Report the existing batch, commit SHA, and push result, then stop.
+
 If `eligible` is false, stop. Report `already_published_today` or `skip_day`. Do not research or change files.
 
 ## 2. Protect the workspace
