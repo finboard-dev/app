@@ -14,17 +14,66 @@ CLEANER = SKILL / "scripts" / "clean_plain_text.py"
 FORBIDDEN = ("\u2014", "\u2013", "\u2022", "\u2192", "\u2605", "\u2713", "\u2705")
 
 
+def candidate(kind, index):
+    return {
+        "candidateId": f"{kind}-{index}",
+        "topic": f"{kind.title()} topic {index}",
+        "primaryKeyword": f"{kind} keyword {index}",
+        "keywordDemandEvidence": {
+            "metric": "monthlySearchVolume",
+            "value": 100 + index,
+            "sourceUrl": "https://example.com/keyword-demand",
+            "observedDate": "2026-07-22",
+        },
+        "score": 80 + index,
+        "scoreBreakdown": {
+            "buyerPain": 20,
+            "searchIntent": 20,
+            "productRelevance": 20,
+            "competitorGap": 10,
+            "geoPotential": 10,
+            "practicalValue": index,
+        },
+    }
+
+
 def complete_record(publication_date):
+    blogs = [candidate("blog", index) for index in range(1, 7)]
+    templates = [candidate("template", index) for index in range(1, 7)]
     return {
         "publicationDate": publication_date,
         "timeZone": "Asia/Kolkata",
         "batchId": f"{publication_date}-finboard-content",
         "commitSubject": f"content: publish FinBoard batch {publication_date}",
-        "researchSources": [],
-        "candidateBlogs": [],
-        "candidateTemplates": [],
-        "selectedBlogs": [{"slug": "blog-1"}, {"slug": "blog-2"}],
-        "selectedTemplates": [{"slug": "template-1"}, {"slug": "template-2"}],
+        "researchSources": [
+            {"url": "https://example.com/research", "observedDate": publication_date}
+        ],
+        "candidateBlogs": blogs,
+        "candidateTemplates": templates,
+        "selectedBlogs": [
+            {
+                "candidateId": blogs[0]["candidateId"],
+                "slug": "blog-1",
+                "selectionReason": "Highest eligible blog score",
+            },
+            {
+                "candidateId": blogs[1]["candidateId"],
+                "slug": "blog-2",
+                "selectionReason": "Second highest eligible blog score",
+            },
+        ],
+        "selectedTemplates": [
+            {
+                "candidateId": templates[0]["candidateId"],
+                "slug": "template-1",
+                "selectionReason": "Highest eligible template score",
+            },
+            {
+                "candidateId": templates[1]["candidateId"],
+                "slug": "template-2",
+                "selectionReason": "Second highest eligible template score",
+            },
+        ],
         "publicationOrder": ["Blog 1", "Template 1", "Blog 2", "Template 2"],
     }
 
@@ -70,6 +119,16 @@ def mark_origin_main(repo):
     run_git(repo, "update-ref", "refs/remotes/origin/main", "HEAD")
 
 
+def commit_base(repo, update_origin=True):
+    marker = repo / "README.md"
+    marker.write_text("base")
+    run_git(repo, "add", "README.md")
+    run_git(repo, "commit", "-q", "-m", "base")
+    if update_origin:
+        mark_origin_main(repo)
+    return run_git(repo, "rev-parse", "HEAD").stdout.strip()
+
+
 class PublishFinboardContentBatchSkillTest(unittest.TestCase):
     def test_required_skill_files_exist(self):
         required = [
@@ -103,7 +162,25 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         retry = text.index("If `action` is `retry_push`")
         generic_stop = text.index("If `eligible` is false")
         self.assertLess(retry, generic_stop)
-        self.assertIn("push the existing committed batch directly to origin/main", text)
+        self.assertIn("git push origin HEAD:refs/heads/main", text)
+
+    def test_safe_direct_to_main_protocol_is_explicit(self):
+        skill = SKILL_MD.read_text()
+        repository = (SKILL / "references" / "repository-contract.md").read_text()
+        for text in (skill, repository):
+            self.assertIn("git fetch origin main", text)
+            self.assertIn("current branch is `main`", text)
+            self.assertIn("local `HEAD` exactly equals `refs/remotes/origin/main`", text)
+            self.assertIn("parent equals `refs/remotes/origin/main`", text)
+            self.assertIn("batch record was introduced or changed by that exact `HEAD` commit", text)
+            self.assertIn("git push origin HEAD:refs/heads/main", text)
+        self.assertLess(skill.index("git fetch origin main"), skill.index("## 3. Research candidates"))
+
+    def test_summary_cover_creation_is_not_post_publication_verification(self):
+        for path in (SKILL_MD, SKILL / "references" / "repository-contract.md"):
+            text = path.read_text()
+            self.assertIn("creation-time Summary generation and inspection", text)
+            self.assertIn("no post-publication visual verification", text)
 
     def test_declared_helper_type_annotations_are_present(self):
         self.assertIn(
@@ -115,7 +192,7 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
     def test_research_contract_requires_keyword_demand_evidence(self):
         text = (SKILL / "references" / "research-and-scoring.md").read_text()
         self.assertIn("keyword demand", text.lower())
-        self.assertIn('"demandEvidence"', text)
+        self.assertIn('"keywordDemandEvidence"', text)
 
     def test_repository_contract_defines_success_signal_and_push_retry(self):
         text = (SKILL / "references" / "repository-contract.md").read_text()
@@ -151,17 +228,45 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
     def test_cadence_retries_local_commit_absent_from_origin_main(self):
         with tempfile.TemporaryDirectory() as tmp:
             repo, runs = init_repository(tmp)
-            marker = repo / "README.md"
-            marker.write_text("base")
-            run_git(repo, "add", "README.md")
-            run_git(repo, "commit", "-q", "-m", "base")
-            mark_origin_main(repo)
+            commit_base(repo)
             commit_record(repo, runs, "2026-07-22")
+            batch_commit = run_git(repo, "rev-parse", "HEAD").stdout.strip()
             decision = run_cadence(runs, "2026-07-22")
             self.assertFalse(decision["eligible"])
             self.assertEqual(decision["action"], "retry_push")
             self.assertEqual(decision["reason"], "push_retry")
             self.assertEqual(decision["previousDate"], "2026-07-22")
+            self.assertEqual(decision["batchCommit"], batch_commit)
+
+    def test_cadence_stops_unsafe_local_only_push_states(self):
+        states = ("non_main", "unrelated_commit", "missing_origin", "divergent_origin")
+        for state in states:
+            with self.subTest(state=state), tempfile.TemporaryDirectory() as tmp:
+                repo, runs = init_repository(tmp)
+                base_commit = commit_base(repo, update_origin=state != "missing_origin")
+                if state == "non_main":
+                    run_git(repo, "checkout", "-q", "-b", "feature")
+                elif state == "divergent_origin":
+                    run_git(repo, "checkout", "-q", "-b", "divergent")
+                    divergent = repo / "divergent.txt"
+                    divergent.write_text("divergent")
+                    run_git(repo, "add", "divergent.txt")
+                    run_git(repo, "commit", "-q", "-m", "divergent")
+                    divergent_commit = run_git(repo, "rev-parse", "HEAD").stdout.strip()
+                    run_git(repo, "checkout", "-q", "main")
+                    run_git(repo, "update-ref", "refs/remotes/origin/main", divergent_commit)
+                commit_record(repo, runs, "2026-07-22")
+                if state == "unrelated_commit":
+                    extra = repo / "extra.txt"
+                    extra.write_text("unrelated")
+                    run_git(repo, "add", "extra.txt")
+                    run_git(repo, "commit", "-q", "-m", "unrelated")
+                decision = run_cadence(runs, "2026-07-22")
+                self.assertFalse(decision["eligible"])
+                self.assertEqual(decision["action"], "stop")
+                self.assertEqual(decision["reason"], "unsafe_push_state")
+                self.assertNotIn("batchCommit", decision)
+                self.assertTrue(base_commit)
 
     def test_cadence_ignores_malformed_records(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -185,6 +290,37 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
             run_git(repo, "commit", "-q", "-m", "invalid records")
             self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
 
+    def test_cadence_ignores_semantically_incomplete_records(self):
+        def empty_sources(data):
+            data["researchSources"] = []
+
+        def too_few_candidates(data):
+            data["candidateBlogs"] = data["candidateBlogs"][:5]
+
+        def malformed_candidate(data):
+            data["candidateTemplates"][0].pop("candidateId")
+
+        def missing_selection_fields(data):
+            data["selectedBlogs"][0].pop("selectionReason")
+
+        def selection_not_in_pool(data):
+            data["selectedTemplates"][0]["candidateId"] = "template-unknown"
+
+        cases = {
+            "empty_sources": empty_sources,
+            "too_few_candidates": too_few_candidates,
+            "malformed_candidate": malformed_candidate,
+            "missing_selection_fields": missing_selection_fields,
+            "selection_not_in_pool": selection_not_in_pool,
+        }
+        for name, mutate in cases.items():
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as tmp:
+                repo, runs = init_repository(tmp)
+                data = complete_record("2026-07-22")
+                mutate(data)
+                commit_record(repo, runs, "2026-07-22", data)
+                self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
+
     def test_cadence_ignores_uncommitted_record_states(self):
         for state in ("untracked", "staged", "modified"):
             with self.subTest(state=state), tempfile.TemporaryDirectory() as tmp:
@@ -197,7 +333,9 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
                     run_git(repo, "add", str(path.relative_to(repo)))
                     run_git(repo, "commit", "-q", "-m", "complete record")
                     changed = complete_record("2026-07-22")
-                    changed["researchSources"] = ["https://example.com/changed"]
+                    changed["researchSources"].append(
+                        {"url": "https://example.com/changed", "observedDate": "2026-07-22"}
+                    )
                     path.write_text(json.dumps(changed))
                 self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
 

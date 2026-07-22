@@ -22,19 +22,29 @@ Read these references before research:
 
 Use the Asia Kolkata calendar date.
 
-From the repository root run:
+Before cadence evaluation, require that the current branch is `main`, then run `git fetch origin main`. Stop without publishing if the branch check or fetch fails. From the repository root run:
 
 ```bash
 python3 .agents/skills/publish-finboard-content-batch/scripts/check_batch_day.py --runs-dir content-pipeline/runs
 ```
 
-If `action` is `retry_push`, do no research and create no files. Read the existing batch record, then push the existing committed batch directly to origin/main. Run no tests, builds, visual checks, HTTP checks, or other verification. Report the existing batch, commit SHA, and push result, then stop.
+If `action` is `retry_push`, do no research and create no files. Confirm current `HEAD` still equals the returned `batchCommit`, confirm the current branch is `main`, and run:
+
+```bash
+git push origin HEAD:refs/heads/main
+```
+
+Push only that exact commit. Run no tests, builds, visual checks, HTTP checks, or other verification. Report the existing batch, `batchCommit`, and push result, then stop.
+
+If `action` is `stop`, report `unsafe_push_state` and stop without pushing or changing files.
 
 If `eligible` is false, stop. Report `already_published_today` or `skip_day`. Do not research or change files.
 
 ## 2. Protect the workspace
 
 Read repository instructions and inspect Git status. Preserve unrelated changes. Stop if existing changes overlap a final content or asset path selected for this batch.
+
+For a new eligible batch, before research or writes, require that the current branch is `main` and local `HEAD` exactly equals `refs/remotes/origin/main` after the cadence fetch. Stop without publishing if either precondition fails. This prevents unrelated local commits from entering the batch push.
 
 Create the scratch root `/private/tmp/finboard-content-batch/YYYY-MM-DD`.
 
@@ -58,6 +68,8 @@ Create all four items in this order:
 For both blogs, use FinBoard Team and `https://www.linkedin.com/company/finboard-ai-native-finance`. Create complete articles, metadata, structured data, internal links, sources, and cover images.
 
 For both templates, create practical XLSX workbooks, Summary covers, landing page JSON, and two lead questions.
+
+The creation-time Summary generation and inspection needed to produce a usable workbook cover is allowed in scratch before the atomic copy. There is no post-publication visual verification.
 
 Clean visible copy with:
 
@@ -88,7 +100,9 @@ Stage only the complete batch and its record. Create one atomic batch commit usi
 content: publish FinBoard batch YYYY-MM-DD
 ```
 
-Then push directly to origin/main. Do not ask for topic approval or publication approval.
+Before pushing, require that the atomic batch commit parent equals `refs/remotes/origin/main` and that the batch record was introduced or changed by that exact `HEAD` commit. Record the exact `HEAD` SHA as the runtime batch commit output only. If either check fails, stop without publishing.
+
+Then push directly to origin/main with `git push origin HEAD:refs/heads/main`. Do not ask for topic approval or publication approval.
 
 Do not run test suites, production builds, visual verification, HTTP checks, or post publication verification.
 

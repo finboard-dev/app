@@ -21,6 +21,8 @@ Create a complete source backed article with unique search intent, metadata, int
 
 Create a useful accountant or CPA workbook with instructions, sample data, formulas, controls, and a printable Summary. Use the spreadsheet capability. Export XLSX to a scratch batch directory first. Use the verified Summary render as the cover. Create the template JSON with a unique slug, category, description, about text, local XLSX path, local cover path, the next available order, two lead questions, and `structuredData` set to null.
 
+The creation-time Summary generation and inspection needed to make a usable cover is allowed in scratch before the atomic copy. There is no post-publication visual verification.
+
 ## Scratch and atomic copy
 
 Build all four items under `/private/tmp/finboard-content-batch/YYYY-MM-DD`. Do not copy any item into the repository until both blogs, both blog covers, both XLSX files, both Summary covers, and both template JSON records exist.
@@ -33,7 +35,7 @@ Pass generated titles, descriptions, article copy, workbook labels, notes, image
 
 ## Batch record
 
-Create `content-pipeline/runs/YYYY-MM-DD.json` with:
+Create `content-pipeline/runs/YYYY-MM-DD.json` with these fixed fields, then populate the dynamic arrays under the precise schema below:
 
 ```json
 {
@@ -41,16 +43,21 @@ Create `content-pipeline/runs/YYYY-MM-DD.json` with:
   "timeZone": "Asia/Kolkata",
   "batchId": "YYYY-MM-DD-finboard-content",
   "commitSubject": "content: publish FinBoard batch YYYY-MM-DD",
-  "researchSources": [],
-  "candidateBlogs": [],
-  "candidateTemplates": [],
-  "selectedBlogs": [{"slug": "blog-1"}, {"slug": "blog-2"}],
-  "selectedTemplates": [{"slug": "template-1"}, {"slug": "template-2"}],
   "publicationOrder": ["Blog 1", "Template 1", "Blog 2", "Template 2"]
 }
 ```
 
-The cadence success signal is a complete locally committed batch record whose exact file version is committed in local `HEAD`. A record is complete only when its filename date matches `publicationDate`, `timeZone` is `Asia/Kolkata`, the research and candidate fields are lists, `selectedBlogs` contains exactly two entries, `selectedTemplates` contains exactly two entries, `publicationOrder` matches the four labels above, `batchId` is `YYYY-MM-DD-finboard-content`, and `commitSubject` is `content: publish FinBoard batch YYYY-MM-DD`.
+The cadence success signal is a complete locally committed batch record whose exact file version is committed in local `HEAD`.
+
+The precise record schema is:
+
+1. `publicationDate` is the ISO date in the filename and `timeZone` is `Asia/Kolkata`.
+2. `researchSources` contains at least one object. Every object has a nonempty HTTP or HTTPS `url` and ISO `observedDate`.
+3. `candidateBlogs` and `candidateTemplates` each contain at least six Candidate objects.
+4. Every Candidate has a unique nonempty `candidateId`, nonempty `topic`, nonempty `primaryKeyword`, `keywordDemandEvidence`, numeric `score`, and nonempty numeric `scoreBreakdown`. `keywordDemandEvidence` has a nonempty `metric`, numeric `value`, HTTP or HTTPS `sourceUrl`, and ISO `observedDate`.
+5. `selectedBlogs` and `selectedTemplates` each contain exactly two objects. Every selection has a `candidateId` present in its corresponding pool, a unique nonempty `slug`, and nonempty `selectionReason`.
+6. `publicationOrder` is exactly `Blog 1`, `Template 1`, `Blog 2`, `Template 2`.
+7. `batchId` is `YYYY-MM-DD-finboard-content` and `commitSubject` is `content: publish FinBoard batch YYYY-MM-DD`.
 
 Use local Git inspection without fetching. Ignore malformed and incomplete records. Also ignore structurally complete records that are untracked, staged only, modified after their committed version, or otherwise absent in their exact current form from local `HEAD`.
 
@@ -60,9 +67,11 @@ The record does not contain its own commit SHA. Report the actual SHA after push
 
 ## Git publication
 
-Inspect the working tree before copying. Stop when user changes overlap selected final paths. Stage only the four items, their required assets, source files required to create the templates, and the batch record. Create one commit using the record commit subject. Push directly to `origin/main`.
+Before cadence evaluation, require that the current branch is `main` and run `git fetch origin main`. Stop if the branch check or fetch fails. For a new batch, before research or writes, inspect the working tree and require that local `HEAD` exactly equals `refs/remotes/origin/main`. Stop without publishing if these preconditions fail. Stop when user changes overlap selected final paths.
 
-If the direct push fails after the local commit succeeds, retry the existing completed batch and its commit. Do not research or create a replacement batch, and do not create a second batch record for that publication date.
+Stage only the four items, their required assets, source files required to create the templates, and the batch record. Create one commit using the record commit subject. Before push, require that its parent equals `refs/remotes/origin/main` and that the batch record was introduced or changed by that exact `HEAD` commit. Record that exact SHA in runtime output only. Push with `git push origin HEAD:refs/heads/main`. Stop without publishing if any precondition fails.
+
+If the direct push fails after the local commit succeeds, retry the existing completed batch and its commit only when cadence returns `retry_push` and `batchCommit`. Confirm current `HEAD` still equals `batchCommit`, then use `git push origin HEAD:refs/heads/main`. Never push an arbitrary branch or unrelated ancestors. Do not research or create a replacement batch, and do not create a second batch record for that publication date.
 
 ## No verification phase
 

@@ -12,11 +12,12 @@ Each candidate contains:
 
 ```json
 {
+  "candidateId": "blog-or-template-stable-id",
   "topic": "Plain topic title",
   "primaryKeyword": "keyword",
-  "demandEvidence": {
-    "metric": "Monthly search volume, trend, or another named demand signal",
-    "value": "Measured value",
+  "keywordDemandEvidence": {
+    "metric": "monthlySearchVolume",
+    "value": 100,
     "sourceUrl": "https://example.com/demand-source",
     "observedDate": "YYYY-MM-DD"
   },
@@ -25,7 +26,8 @@ Each candidate contains:
   "competitorGap": "What existing results fail to answer",
   "finboardConnection": "Relevant FinBoard product or workflow",
   "sourceUrls": ["https://example.com/source"],
-  "scores": {
+  "score": 75,
+  "scoreBreakdown": {
     "buyerPain": 0,
     "searchIntent": 0,
     "productRelevance": 0,
@@ -33,11 +35,12 @@ Each candidate contains:
     "geoPotential": 0,
     "practicalValue": 0
   },
-  "total": 0,
   "eligible": true,
   "rejectionReason": null
 }
 ```
+
+`candidateId` is nonempty and unique within its pool. `score` and every `scoreBreakdown` value are numeric. The keyword demand evidence contains a named metric, numeric value, direct source URL, and ISO observation date.
 
 ## FinBoard buyer lens
 
