@@ -141,7 +141,7 @@ async function renderWorksheet(sheet, filePath, fs) {
   const height = isSummary ? 900 : 1000;
   const canvas = createCanvas(width, height); const ctx = canvas.getContext("2d");
   ctx.fillStyle = COLORS.sand; ctx.fillRect(0, 0, width, height);
-  const maxCol = Math.min(sheet.columnCount || 8, isSummary ? 8 : 15);
+  const maxCol = Math.min(sheet.columnCount || 8, isSummary ? 8 : 19);
   const maxRow = Math.min(sheet.rowCount || 25, isSummary ? 24 : 25);
   const margin = 34; const contentWidth = width - margin * 2;
   const rawWidths = Array.from({ length: maxCol }, (_, i) => Math.max(55, Math.min(230, (sheet.getColumn(i + 1).width || 12) * 8)));
@@ -226,12 +226,26 @@ export async function verifyAndExport({ workbook, slug, outputRoot, fs }) {
     const adjustedBooks = bookBalance + totals.bookAdjustments; const difference = adjustedBank - adjustedBooks;
     return { statementBalance, bookBalance, ...totals, adjustedBank, adjustedBooks, difference, status: Math.abs(difference) <= 0.01 && totals.unresolvedCount === 0 ? "Complete" : "Review" };
   };
-  const calculateMode = slug === "bank-reconciliation-workpaper-template" ? bankModeMetrics : modeMetrics;
+  const trialBalanceModeMetrics = (sheetName) => {
+    const sheet = workbook.getWorksheet(sheetName);
+    const totals = { currentDebits: 0, currentCredits: 0, priorDebits: 0, priorCredits: 0, proposedAdjustments: 0 };
+    for (let row = 6; row <= 105; row += 1) {
+      totals.currentDebits += Number(sheet.getCell(row, 4).value || 0);
+      totals.currentCredits += Number(sheet.getCell(row, 5).value || 0);
+      totals.priorDebits += Number(sheet.getCell(row, 6).value || 0);
+      totals.priorCredits += Number(sheet.getCell(row, 7).value || 0);
+      totals.proposedAdjustments += Number(sheet.getCell(row, 9).value || 0);
+    }
+    return { ...totals, currentDifference: totals.currentDebits - totals.currentCredits, priorDifference: totals.priorDebits - totals.priorCredits, adjustedDifference: totals.currentDebits - totals.currentCredits + totals.proposedAdjustments };
+  };
+  const calculateMode = slug === "bank-reconciliation-workpaper-template"
+    ? bankModeMetrics
+    : slug === "trial-balance-review-workpaper-template" ? trialBalanceModeMetrics : modeMetrics;
   const pasteMetrics = calculateMode("Paste Import"); const manualMetrics = calculateMode("Manual Input");
   if (JSON.stringify(pasteMetrics) !== JSON.stringify(manualMetrics)) throw new Error("input modes do not reconcile");
   records.unshift(
     { kind: "summary", sheets: workbook.worksheets.map((sheet) => sheet.name), formulaCount, validationCount },
-    snapshot("Start Here", 1, 25, 1, 8), snapshot("Review", 1, 18, 1, 15), snapshot("Summary", 1, 24, 1, 8),
+    snapshot("Start Here", 1, 25, 1, 8), snapshot("Review", 1, 18, 1, slug === "trial-balance-review-workpaper-template" ? 19 : 15), snapshot("Summary", 1, 24, 1, 8),
     { kind: "mode_check", pasteImport: pasteMetrics, manualInput: manualMetrics, equal: true },
   );
   const inspectionPath = `${artifactDir}/${slug}-inspection.ndjson`;

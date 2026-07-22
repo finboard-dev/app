@@ -23,6 +23,10 @@ WORKBOOKS = {
         "min_formulas": 400,
         "min_validations": 4,
     },
+    "trial-balance-review-workpaper-template": {
+        "min_formulas": 900,
+        "min_validations": 3,
+    },
 }
 
 
@@ -242,6 +246,71 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 status_colors,
                 {"Review": "FEF3C7", "Complete": "D1FAE5"},
             )
+
+    def test_trial_balance_review_uses_required_source_and_control_formulas(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        self.assertTrue(path.is_file(), path)
+        with zipfile.ZipFile(path) as archive:
+            review = worksheet_xml(archive, "Review")
+            expected = {
+                "H6": 'IF(B6="","",D6-E6)',
+                "I6": 'IF(B6="","",F6-G6)',
+                "J6": 'IF(B6="","",H6-I6)',
+                "K6": 'IF(B6="","",IF(I6=0,IF(H6=0,"","New"),J6/ABS(I6)))',
+                "N6": 'IF(B6="","",H6+M6)',
+                "O6": 'IF(B6="","",IF(OR(C6="",L6=""),"Unmapped","OK"))',
+                "P6": 'IF(B6="","",IF(OR(AND(OR(C6="Asset",C6="Expense"),H6<0),AND(OR(C6="Liability",C6="Equity",C6="Revenue"),H6>0)),"Unusual","OK"))',
+                "Q6": 'IF(B6="","",IF(AND(ABS(J6)>=\'Start Here\'!$B$10,IFERROR(ABS(K6)>=\'Start Here\'!$B$11,TRUE)),"Review","OK"))',
+                "R6": 'IF(B6="","",IF(OR(O6<>"OK",P6<>"OK",Q6<>"OK"),"Review","Complete"))',
+            }
+            for address, expected_formula in expected.items():
+                actual = worksheet_cell(review, address).findtext("main:f", namespaces=NS)
+                self.assertEqual(actual, expected_formula, address)
+            for row in range(6, 106):
+                for column in "ABCDEFGH":
+                    if column == "H":
+                        continue
+                    address = f"{column}{row}"
+                    formula = worksheet_cell(review, address).findtext("main:f", namespaces=NS)
+                    self.assertIn("'Start Here'!$B$8", formula, address)
+                for column in "LMS":
+                    address = f"{column}{row}"
+                    formula = worksheet_cell(review, address).findtext("main:f", namespaces=NS)
+                    self.assertIn("'Start Here'!$B$8", formula, address)
+
+    def test_trial_balance_input_modes_and_summary_controls_are_exact(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        self.assertTrue(path.is_file(), path)
+        with zipfile.ZipFile(path) as archive:
+            paste = worksheet_xml(archive, "Paste Import")
+            manual = worksheet_xml(archive, "Manual Input")
+            for row in range(6, 106):
+                for column in "ABCDEFGHIJ":
+                    address = f"{column}{row}"
+                    paste_cell = next((cell for cell in paste.findall(".//main:c", NS) if cell.attrib.get("r") == address), None)
+                    manual_cell = next((cell for cell in manual.findall(".//main:c", NS) if cell.attrib.get("r") == address), None)
+                    self.assertEqual(
+                        ET.tostring(paste_cell) if paste_cell is not None else None,
+                        ET.tostring(manual_cell) if manual_cell is not None else None,
+                        address,
+                    )
+            summary = worksheet_xml(archive, "Summary")
+            expected = {
+                "B9": (None, "450000"),
+                "D9": (None, "450000"),
+                "F9": (None, "0"),
+                "B12": (None, "0"),
+                "D12": (None, "0"),
+                "F12": (None, "9"),
+                "B15": (None, "1"),
+                "D15": (None, "1"),
+                "F15": (None, "9"),
+                "H5": ("str", "Review"),
+            }
+            for address, (cell_type, cached_value) in expected.items():
+                cell = worksheet_cell(summary, address)
+                self.assertEqual(cell.attrib.get("t"), cell_type, address)
+                self.assertEqual(cell.findtext("main:v", namespaces=NS), cached_value, address)
 
 
 if __name__ == "__main__":
