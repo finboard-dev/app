@@ -1,0 +1,17 @@
+{
+  "slug": "monthly-financial-statement-review-template",
+  "title": "Monthly Financial Statement Review Template",
+  "category": "Financial Planning",
+  "shortDescription": "Review monthly P&L and balance sheet movements with prior-period and budget variances, materiality flags, working capital checks, and accountant notes.",
+  "about": "<p>Built for CPAs, accountants, and bookkeepers who review recurring client financials. Choose Paste Import for QuickBooks-friendly exported rows or Manual Input for summarized balances. The workbook calculates prior-period and budget variances, flags material movements, summarizes working capital, and keeps review notes beside each account.</p><p>The file includes sample data, visible materiality thresholds, formula-driven controls, and a printable Summary. It does not replace professional judgment or automate account classification. Review the mapped categories and unresolved items before marking the period complete.</p>",
+  "excerpt": "Free monthly financial statement review workbook with dual input modes, materiality flags, variance analysis, working capital checks, and a printable accountant summary.",
+  "link": "/template-files/monthly-financial-statement-review-template.xlsx",
+  "image": "/templates/covers/monthly-financial-statement-review-template.png",
+  "imageAlt": "Monthly financial statement review workbook summary",
+  "order": 84,
+  "leadQuestions": [
+    {"id": "clients", "label": "How many client financials do you review monthly?", "type": "select", "options": ["1 to 10", "11 to 30", "31 to 75", "75+"]},
+    {"id": "software", "label": "Which accounting system do you use?", "type": "select", "options": ["QuickBooks Online", "QuickBooks Desktop", "Xero", "Other"]}
+  ],
+  "structuredData": null
+}

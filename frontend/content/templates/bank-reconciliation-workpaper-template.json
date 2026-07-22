@@ -1,0 +1,17 @@
+{
+  "slug": "bank-reconciliation-workpaper-template",
+  "title": "Bank Reconciliation Workpaper Template",
+  "category": "Accounting Operations",
+  "shortDescription": "Reconcile bank and book balances with outstanding checks, deposits in transit, signed adjustments, duplicate flags, and unresolved-item tracking.",
+  "about": "<p>Use this workpaper for monthly or period-end bank reconciliation review. Choose Paste Import for register or reconciliation-detail rows, or Manual Input for a compact balance and reconciling-item schedule. The workbook calculates adjusted bank and book balances, the remaining difference, unresolved amounts, and duplicate references.</p><p>This lightweight file does not perform fuzzy transaction matching. The preparer classifies outstanding checks, deposits in transit, bank adjustments, book adjustments, and unresolved items. The Summary can be printed or retained with the close file.</p>",
+  "excerpt": "Free bank reconciliation workpaper with paste and manual entry, adjusted balances, reconciliation difference, duplicate checks, and unresolved-item tracking.",
+  "link": "/template-files/bank-reconciliation-workpaper-template.xlsx",
+  "image": "/templates/covers/bank-reconciliation-workpaper-template.png",
+  "imageAlt": "Bank reconciliation workpaper summary",
+  "order": 85,
+  "leadQuestions": [
+    {"id": "accounts", "label": "How many bank accounts do you reconcile monthly?", "type": "select", "options": ["1 to 5", "6 to 15", "16 to 40", "40+"]},
+    {"id": "software", "label": "Which accounting system do you use?", "type": "select", "options": ["QuickBooks Online", "QuickBooks Desktop", "Xero", "Other"]}
+  ],
+  "structuredData": null
+}

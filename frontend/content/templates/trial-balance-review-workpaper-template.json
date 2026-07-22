@@ -1,0 +1,17 @@
+{
+  "slug": "trial-balance-review-workpaper-template",
+  "title": "Trial Balance Review Workpaper Template",
+  "category": "Accounting Operations",
+  "shortDescription": "Review current and prior trial balances with debit-credit controls, unusual-sign flags, material movements, mappings, and proposed adjustments.",
+  "about": "<p>Designed for accountants reviewing a client trial balance before financial statements or close completion. Use Paste Import for QuickBooks-friendly trial balance rows or Manual Input for account-level entry. The workbook calculates net balances and period changes, checks debit-credit equality, flags unusual signs and unmapped accounts, and tracks proposed adjustments.</p><p>Visible thresholds and account-type rules keep the review auditable. The workbook includes sample data and a printable Summary, but the preparer remains responsible for mapping accounts, validating signs, and supporting adjustments.</p>",
+  "excerpt": "Free trial balance review workpaper with dual input modes, debit-credit controls, unusual-sign flags, materiality review, and proposed adjustments.",
+  "link": "/template-files/trial-balance-review-workpaper-template.xlsx",
+  "image": "/templates/covers/trial-balance-review-workpaper-template.png",
+  "imageAlt": "Trial balance review workpaper summary",
+  "order": 86,
+  "leadQuestions": [
+    {"id": "clients", "label": "How many client trial balances do you review monthly?", "type": "select", "options": ["1 to 10", "11 to 30", "31 to 75", "75+"]},
+    {"id": "software", "label": "Which accounting system do you use?", "type": "select", "options": ["QuickBooks Online", "QuickBooks Desktop", "Xero", "Other"]}
+  ],
+  "structuredData": null
+}

@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ROOT / "frontend" / "public" / "template-files"
 COVERS = ROOT / "frontend" / "public" / "templates" / "covers"
+CONTENT = ROOT / "frontend" / "content" / "templates"
 SHEETS = ["Start Here", "Paste Import", "Manual Input", "Review", "Summary", "Lists"]
 NS = {
     "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
@@ -28,6 +29,24 @@ WORKBOOKS = {
     "trial-balance-review-workpaper-template": {
         "min_formulas": 900,
         "min_validations": 3,
+    },
+}
+
+PAGE_EXPECTATIONS = {
+    "monthly-financial-statement-review-template": {
+        "title": "Monthly Financial Statement Review Template",
+        "category": "Financial Planning",
+        "keywords": ("variance", "working capital", "Paste Import", "Manual Input"),
+    },
+    "bank-reconciliation-workpaper-template": {
+        "title": "Bank Reconciliation Workpaper Template",
+        "category": "Accounting Operations",
+        "keywords": ("outstanding checks", "deposits in transit", "Paste Import", "Manual Input"),
+    },
+    "trial-balance-review-workpaper-template": {
+        "title": "Trial Balance Review Workpaper Template",
+        "category": "Accounting Operations",
+        "keywords": ("unusual", "proposed adjustments", "Paste Import", "Manual Input"),
     },
 }
 
@@ -107,6 +126,22 @@ def sha256(path):
 
 
 class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
+    def test_template_content_points_to_published_artifacts(self):
+        for slug, expected in PAGE_EXPECTATIONS.items():
+            with self.subTest(slug=slug):
+                path = CONTENT / f"{slug}.json"
+                self.assertTrue(path.is_file(), path)
+                data = json.loads(path.read_text())
+                self.assertEqual(data["slug"], slug)
+                self.assertEqual(data["title"], expected["title"])
+                self.assertEqual(data["category"], expected["category"])
+                self.assertEqual(data["link"], f"/template-files/{slug}.xlsx")
+                self.assertEqual(data["image"], f"/templates/covers/{slug}.png")
+                self.assertEqual(len(data["leadQuestions"]), 2)
+                combined = f'{data["shortDescription"]} {data["about"]}'
+                for keyword in expected["keywords"]:
+                    self.assertIn(keyword.lower(), combined.lower())
+
     def test_published_workbooks_have_required_structure(self):
         for slug, expected in WORKBOOKS.items():
             with self.subTest(slug=slug):
