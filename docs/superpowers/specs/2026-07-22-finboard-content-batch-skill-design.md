@@ -45,9 +45,10 @@ On invocation:
 
 1. Read all tracked batch records.
 2. Find the newest successful publication date.
-3. If the newest batch was yesterday, stop and report that today is a skip day.
-4. If the newest batch was two or more days ago, continue.
-5. If no batch record exists, continue immediately.
+3. If the newest batch was published today, stop and report that the daily batch already exists.
+4. If the newest batch was yesterday, stop and report that today is a skip day.
+5. If the newest batch was two or more days ago, continue.
+6. If no batch record exists, continue immediately.
 
 The date check is based on calendar dates, not elapsed hours.
 
@@ -163,7 +164,10 @@ The tracked JSON record contains:
 6. Selected topics and selection reasons
 7. Final slugs
 8. Publication order
-9. Git commit
+9. Stable batch ID
+10. Batch commit subject
+
+The record cannot contain the SHA of the same atomic commit that contains the record because the SHA depends on the record contents. Report the actual commit SHA after the push instead of storing a self referential value.
 
 The batch record is the durable source for the next cadence check and duplication review.
 
