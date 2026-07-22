@@ -13,23 +13,6 @@ import {
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.join(TEST_DIR, "..", "content", "blog");
 
-function articleNodes(value, found = []) {
-  if (Array.isArray(value)) {
-    value.forEach((item) => articleNodes(item, found));
-    return found;
-  }
-  if (!value || typeof value !== "object") return found;
-
-  const types = Array.isArray(value["@type"])
-    ? value["@type"]
-    : [value["@type"]];
-  if (types.includes("Article") || types.includes("BlogPosting")) {
-    found.push(value);
-  }
-  Object.values(value).forEach((item) => articleNodes(item, found));
-  return found;
-}
-
 test("always resolves FinBoard Team for blog authorship", () => {
   assert.equal(resolveAuthor().name, "FinBoard Team");
   assert.equal(resolveAuthor("tech", "ujjwal-singh"), FINBOARD_TEAM_AUTHOR);
@@ -71,6 +54,26 @@ test("normalizes Article and BlogPosting authors recursively", () => {
   assert.notEqual(result, input);
 });
 
+test("source validation rejects article subtype and expanded URL author drift", () => {
+  const structuredData = [
+    {
+      "@type": "TechArticle",
+      author: { "@type": "Person", name: "Someone Else" },
+    },
+    {
+      "@type": "https://schema.org/NewsArticle",
+      author: { "@type": "Person", name: "Someone Else" },
+    },
+  ];
+
+  assert.throws(() => {
+    assert.deepEqual(
+      structuredData,
+      normalizeBlogStructuredData(structuredData),
+    );
+  }, assert.AssertionError);
+});
+
 test("every blog source identifies FinBoard Team", () => {
   const files = fs.readdirSync(BLOG_DIR)
     .filter((file) => /\.(json|md|mdx)$/.test(file));
@@ -83,9 +86,11 @@ test("every blog source identifies FinBoard Team", () => {
       const post = JSON.parse(raw);
       assert.equal(post.author, "FinBoard Team", file);
       assert.equal(post.authorId, "finboard-team", file);
-      for (const article of articleNodes(post.structuredData)) {
-        assert.deepEqual(article.author, FINBOARD_TEAM_SCHEMA_AUTHOR, file);
-      }
+      assert.deepEqual(
+        post.structuredData,
+        normalizeBlogStructuredData(post.structuredData),
+        file,
+      );
       continue;
     }
 
