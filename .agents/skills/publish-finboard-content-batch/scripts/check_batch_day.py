@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import math
 import subprocess
 from datetime import date, datetime
 from pathlib import Path
@@ -9,6 +10,15 @@ from zoneinfo import ZoneInfo
 
 TIME_ZONE = "Asia/Kolkata"
 PUBLICATION_ORDER = ["Blog 1", "Template 1", "Blog 2", "Template 2"]
+SCORE_DIMENSIONS = {
+    "buyerPain": 20,
+    "searchIntent": 20,
+    "productRelevance": 20,
+    "competitorGap": 15,
+    "geoPotential": 15,
+    "practicalValue": 10,
+}
+SCORE_TOLERANCE = 1e-6
 
 
 def is_nonempty_string(value: object) -> bool:
@@ -16,7 +26,11 @@ def is_nonempty_string(value: object) -> bool:
 
 
 def is_number(value: object) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool)
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
 
 
 def is_iso_date(value: object) -> bool:
@@ -60,13 +74,21 @@ def is_candidate(value: object) -> bool:
         return False
     if not is_iso_date(evidence.get("observedDate")):
         return False
-    if not is_number(value.get("score")):
+    score = value.get("score")
+    if not is_number(score) or not 0 <= score <= 100:
         return False
     breakdown = value.get("scoreBreakdown")
-    return (
-        isinstance(breakdown, dict)
-        and bool(breakdown)
-        and all(is_nonempty_string(key) and is_number(score) for key, score in breakdown.items())
+    if not isinstance(breakdown, dict) or set(breakdown) != set(SCORE_DIMENSIONS):
+        return False
+    for field, maximum in SCORE_DIMENSIONS.items():
+        dimension_score = breakdown[field]
+        if not is_number(dimension_score) or not 0 <= dimension_score <= maximum:
+            return False
+    return math.isclose(
+        score,
+        math.fsum(breakdown.values()),
+        rel_tol=0.0,
+        abs_tol=SCORE_TOLERANCE,
     )
 
 
@@ -153,7 +175,7 @@ def find_git_root(path: Path) -> Path | None:
     return Path(output.decode().strip()).resolve()
 
 
-def load_committed_records(runs_dir: Path) -> list[tuple[date, bool, str]]:
+def load_committed_records(runs_dir: Path) -> list[tuple[date, bool, str, str]]:
     records = []
     if not runs_dir.exists():
         return records
@@ -184,24 +206,35 @@ def load_committed_records(runs_dir: Path) -> list[tuple[date, bool, str]]:
                     date.fromisoformat(data["publicationDate"]),
                     remote_content == current_content,
                     relative_path,
+                    data["commitSubject"],
                 )
             )
     return records
 
 
-def safe_retry_commit(repository: Path, relative_path: str) -> str | None:
+def safe_retry_commit(
+    repository: Path,
+    relative_path: str,
+    expected_subject: str,
+) -> str | None:
     branch = git_output(repository, "symbolic-ref", "--quiet", "--short", "HEAD")
     head = git_output(repository, "rev-parse", "HEAD")
-    parent = git_output(repository, "rev-parse", "HEAD^")
+    parents = git_output(repository, "rev-list", "--parents", "-n", "1", "HEAD")
     origin_main = git_output(repository, "rev-parse", "refs/remotes/origin/main")
     record_commit = git_output(repository, "rev-list", "-1", "HEAD", "--", relative_path)
-    if None in (branch, head, parent, origin_main, record_commit):
+    actual_subject = git_output(repository, "log", "-1", "--format=%s", "HEAD")
+    if None in (branch, head, parents, origin_main, record_commit, actual_subject):
         return None
     if branch.strip() != b"main":
         return None
-    if parent.strip() != origin_main.strip():
+    parent_tokens = parents.split()
+    if len(parent_tokens) != 2:
+        return None
+    if parent_tokens[0] != head.strip() or parent_tokens[1] != origin_main.strip():
         return None
     if record_commit.strip() != head.strip():
+        return None
+    if actual_subject.decode().strip() != expected_subject:
         return None
     return head.decode().strip()
 
@@ -216,15 +249,22 @@ def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:
             "previousDate": None,
             "timeZone": TIME_ZONE,
         }
-    previous = max(publication_date for publication_date, _, _ in records)
+    previous = max(publication_date for publication_date, _, _, _ in records)
     delta = (current_date - previous).days
     if delta < 0:
         raise ValueError("latest publication date cannot be in the future")
     retry_records = [record for record in records if not record[1]]
     if retry_records:
-        retry_date, _, relative_path = max(retry_records, key=lambda record: record[0])
+        retry_date, _, relative_path, commit_subject = max(
+            retry_records,
+            key=lambda record: record[0],
+        )
         repository = find_git_root(Path(runs_dir))
-        batch_commit = safe_retry_commit(repository, relative_path) if repository else None
+        batch_commit = (
+            safe_retry_commit(repository, relative_path, commit_subject)
+            if repository
+            else None
+        )
         if batch_commit is None:
             return {
                 "eligible": False,
@@ -243,7 +283,11 @@ def batch_decision(runs_dir: Path, current_date: date) -> dict[str, object]:
             "previousDate": retry_date.isoformat(),
             "timeZone": TIME_ZONE,
         }
-    published_dates = [publication_date for publication_date, pushed, _ in records if pushed]
+    published_dates = [
+        publication_date
+        for publication_date, pushed, _, _ in records
+        if pushed
+    ]
     previous = max(published_dates)
     delta = (current_date - previous).days
     reason = {

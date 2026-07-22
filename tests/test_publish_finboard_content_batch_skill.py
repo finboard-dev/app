@@ -107,11 +107,12 @@ def init_repository(tmp):
     return repo, runs
 
 
-def commit_record(repo, runs, publication_date, data=None):
+def commit_record(repo, runs, publication_date, data=None, subject=None):
+    record = data if data is not None else complete_record(publication_date)
     path = runs / f"{publication_date}.json"
-    path.write_text(json.dumps(data or complete_record(publication_date)))
+    path.write_text(json.dumps(record))
     run_git(repo, "add", str(path.relative_to(repo)))
-    run_git(repo, "commit", "-q", "-m", f"batch {publication_date}")
+    run_git(repo, "commit", "-q", "-m", subject or record["commitSubject"])
     return path
 
 
@@ -173,6 +174,7 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
             self.assertIn("local `HEAD` exactly equals `refs/remotes/origin/main`", text)
             self.assertIn("parent equals `refs/remotes/origin/main`", text)
             self.assertIn("batch record was introduced or changed by that exact `HEAD` commit", text)
+            self.assertIn("actual `HEAD` commit subject equals the record `commitSubject`", text)
             self.assertIn("git push origin HEAD:refs/heads/main", text)
         self.assertLess(skill.index("git fetch origin main"), skill.index("## 3. Research candidates"))
 
@@ -193,6 +195,25 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
         text = (SKILL / "references" / "research-and-scoring.md").read_text()
         self.assertIn("keyword demand", text.lower())
         self.assertIn('"keywordDemandEvidence"', text)
+
+    def test_scoring_contract_defines_exact_finite_breakdown(self):
+        paths = (
+            SKILL / "references" / "research-and-scoring.md",
+            SKILL / "references" / "repository-contract.md",
+        )
+        for path in paths:
+            text = path.read_text()
+            for field in (
+                "buyerPain",
+                "searchIntent",
+                "productRelevance",
+                "competitorGap",
+                "geoPotential",
+                "practicalValue",
+            ):
+                self.assertIn(field, text)
+            self.assertIn("finite", text)
+            self.assertIn("equals the `scoreBreakdown` total", text)
 
     def test_repository_contract_defines_success_signal_and_push_retry(self):
         text = (SKILL / "references" / "repository-contract.md").read_text()
@@ -268,6 +289,39 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
                 self.assertNotIn("batchCommit", decision)
                 self.assertTrue(base_commit)
 
+    def test_cadence_stops_two_parent_merge_batch_commit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo, runs = init_repository(tmp)
+            commit_base(repo)
+            run_git(repo, "checkout", "-q", "-b", "side")
+            side_file = repo / "side.txt"
+            side_file.write_text("side")
+            run_git(repo, "add", "side.txt")
+            run_git(repo, "commit", "-q", "-m", "side")
+            run_git(repo, "checkout", "-q", "main")
+            run_git(repo, "merge", "--no-ff", "--no-commit", "side")
+            data = complete_record("2026-07-22")
+            path = runs / "2026-07-22.json"
+            path.write_text(json.dumps(data))
+            run_git(repo, "add", str(path.relative_to(repo)))
+            run_git(repo, "commit", "-q", "-m", data["commitSubject"])
+            parents = run_git(repo, "rev-list", "--parents", "-n", "1", "HEAD").stdout.split()
+            self.assertEqual(len(parents), 3)
+            decision = run_cadence(runs, "2026-07-22")
+            self.assertEqual(decision["action"], "stop")
+            self.assertEqual(decision["reason"], "unsafe_push_state")
+            self.assertNotIn("batchCommit", decision)
+
+    def test_cadence_stops_retry_with_mismatched_commit_subject(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo, runs = init_repository(tmp)
+            commit_base(repo)
+            commit_record(repo, runs, "2026-07-22", subject="wrong batch subject")
+            decision = run_cadence(runs, "2026-07-22")
+            self.assertEqual(decision["action"], "stop")
+            self.assertEqual(decision["reason"], "unsafe_push_state")
+            self.assertNotIn("batchCommit", decision)
+
     def test_cadence_ignores_malformed_records(self):
         with tempfile.TemporaryDirectory() as tmp:
             repo, runs = init_repository(tmp)
@@ -312,6 +366,41 @@ class PublishFinboardContentBatchSkillTest(unittest.TestCase):
             "malformed_candidate": malformed_candidate,
             "missing_selection_fields": missing_selection_fields,
             "selection_not_in_pool": selection_not_in_pool,
+        }
+        for name, mutate in cases.items():
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as tmp:
+                repo, runs = init_repository(tmp)
+                data = complete_record("2026-07-22")
+                mutate(data)
+                commit_record(repo, runs, "2026-07-22", data)
+                self.assertEqual(run_cadence(runs, "2026-07-22")["reason"], "no_previous_batch")
+
+    def test_cadence_ignores_invalid_candidate_scores(self):
+        def missing_dimension(data):
+            data["candidateBlogs"][0]["scoreBreakdown"].pop("practicalValue")
+
+        def extra_dimension(data):
+            data["candidateBlogs"][0]["scoreBreakdown"]["extra"] = 0
+
+        def out_of_range(data):
+            data["candidateBlogs"][0]["scoreBreakdown"]["buyerPain"] = 21
+
+        def nan_score(data):
+            data["candidateBlogs"][0]["score"] = float("nan")
+
+        def infinite_breakdown(data):
+            data["candidateBlogs"][0]["scoreBreakdown"]["buyerPain"] = float("inf")
+
+        def total_mismatch(data):
+            data["candidateBlogs"][0]["score"] = 99
+
+        cases = {
+            "missing_dimension": missing_dimension,
+            "extra_dimension": extra_dimension,
+            "out_of_range": out_of_range,
+            "nan_score": nan_score,
+            "infinite_breakdown": infinite_breakdown,
+            "total_mismatch": total_mismatch,
         }
         for name, mutate in cases.items():
             with self.subTest(name=name), tempfile.TemporaryDirectory() as tmp:

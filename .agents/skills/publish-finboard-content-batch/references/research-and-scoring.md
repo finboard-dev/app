@@ -28,11 +28,11 @@ Each candidate contains:
   "sourceUrls": ["https://example.com/source"],
   "score": 75,
   "scoreBreakdown": {
-    "buyerPain": 0,
-    "searchIntent": 0,
-    "productRelevance": 0,
-    "competitorGap": 0,
-    "geoPotential": 0,
+    "buyerPain": 20,
+    "searchIntent": 20,
+    "productRelevance": 20,
+    "competitorGap": 10,
+    "geoPotential": 5,
     "practicalValue": 0
   },
   "eligible": true,
@@ -40,7 +40,7 @@ Each candidate contains:
 }
 ```
 
-`candidateId` is nonempty and unique within its pool. `score` and every `scoreBreakdown` value are numeric. The keyword demand evidence contains a named metric, numeric value, direct source URL, and ISO observation date.
+`candidateId` is nonempty and unique within its pool. `scoreBreakdown` contains exactly `buyerPain` from 0 to 20, `searchIntent` from 0 to 20, `productRelevance` from 0 to 20, `competitorGap` from 0 to 15, `geoPotential` from 0 to 15, and `practicalValue` from 0 to 10. Every dimension and `score` is finite and numeric. `score` is from 0 to 100 and equals the `scoreBreakdown` total within 0.000001. The keyword demand evidence contains a named metric, numeric value, direct source URL, and ISO observation date.
 
 ## FinBoard buyer lens
 

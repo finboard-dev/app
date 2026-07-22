@@ -28,7 +28,7 @@ Before cadence evaluation, require that the current branch is `main`, then run `
 python3 .agents/skills/publish-finboard-content-batch/scripts/check_batch_day.py --runs-dir content-pipeline/runs
 ```
 
-If `action` is `retry_push`, do no research and create no files. Confirm current `HEAD` still equals the returned `batchCommit`, confirm the current branch is `main`, and run:
+If `action` is `retry_push`, do no research and create no files. Confirm current `HEAD` still equals the returned `batchCommit`, the current branch is `main`, `HEAD` has exactly one parent equal to `refs/remotes/origin/main`, and the actual `HEAD` commit subject equals the record `commitSubject`. Then run:
 
 ```bash
 git push origin HEAD:refs/heads/main
@@ -100,7 +100,7 @@ Stage only the complete batch and its record. Create one atomic batch commit usi
 content: publish FinBoard batch YYYY-MM-DD
 ```
 
-Before pushing, require that the atomic batch commit parent equals `refs/remotes/origin/main` and that the batch record was introduced or changed by that exact `HEAD` commit. Record the exact `HEAD` SHA as the runtime batch commit output only. If either check fails, stop without publishing.
+Before pushing, require that the atomic batch commit has exactly one parent, that parent equals `refs/remotes/origin/main`, the batch record was introduced or changed by that exact `HEAD` commit, and the actual `HEAD` commit subject equals the record `commitSubject`. Record the exact `HEAD` SHA as the runtime batch commit output only. If any check fails, stop without publishing.
 
 Then push directly to origin/main with `git push origin HEAD:refs/heads/main`. Do not ask for topic approval or publication approval.
 
