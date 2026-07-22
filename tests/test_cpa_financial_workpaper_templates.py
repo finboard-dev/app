@@ -1,3 +1,5 @@
+import hashlib
+import json
 import struct
 import unittest
 import xml.etree.ElementTree as ET
@@ -94,6 +96,14 @@ def cell_number_format(archive, sheet, address):
         for item in styles.findall("main:numFmts/main:numFmt", NS)
     }
     return custom_formats.get(number_format_id, number_format_id)
+
+
+def formula_text(sheet, address):
+    return worksheet_cell(sheet, address).findtext("main:f", namespaces=NS)
+
+
+def sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
@@ -258,10 +268,10 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 "J6": 'IF(B6="","",H6-I6)',
                 "K6": 'IF(B6="","",IF(I6=0,IF(H6=0,"","New"),J6/ABS(I6)))',
                 "N6": 'IF(B6="","",H6+M6)',
-                "O6": 'IF(B6="","",IF(OR(C6="",L6=""),"Unmapped","OK"))',
+                "O6": 'IF(B6="","",IF(L6="Unresolved","Unresolved",IF(OR(C6="",L6=""),"Unmapped","OK")))',
                 "P6": 'IF(B6="","",IF(OR(AND(OR(C6="Asset",C6="Expense"),H6<0),AND(OR(C6="Liability",C6="Equity",C6="Revenue"),H6>0)),"Unusual","OK"))',
                 "Q6": 'IF(B6="","",IF(AND(ABS(J6)>=\'Start Here\'!$B$10,IFERROR(ABS(K6)>=\'Start Here\'!$B$11,TRUE)),"Review","OK"))',
-                "R6": 'IF(B6="","",IF(OR(O6<>"OK",P6<>"OK",Q6<>"OK"),"Review","Complete"))',
+                "R6": 'IF(B6="","",IF(O6="Unresolved","Unresolved",IF(OR(O6<>"OK",P6<>"OK",Q6<>"OK"),"Review","Complete")))',
             }
             for address, expected_formula in expected.items():
                 actual = worksheet_cell(review, address).findtext("main:f", namespaces=NS)
@@ -299,18 +309,126 @@ class CpaFinancialWorkpaperTemplatesTest(unittest.TestCase):
                 "B9": (None, "450000"),
                 "D9": (None, "450000"),
                 "F9": (None, "0"),
-                "B12": (None, "0"),
-                "D12": (None, "0"),
-                "F12": (None, "9"),
-                "B15": (None, "1"),
-                "D15": (None, "1"),
+                "B12": (None, "395000"),
+                "D12": (None, "395000"),
+                "F12": (None, "0"),
+                "B15": (None, "0"),
+                "D15": (None, "0"),
                 "F15": (None, "9"),
+                "B18": (None, "1"),
+                "D18": (None, "1"),
+                "F18": (None, "1"),
+                "H18": (None, "10"),
                 "H5": ("str", "Review"),
             }
             for address, (cell_type, cached_value) in expected.items():
                 cell = worksheet_cell(summary, address)
                 self.assertEqual(cell.attrib.get("t"), cell_type, address)
                 self.assertEqual(cell.findtext("main:v", namespaces=NS), cached_value, address)
+
+    def test_trial_balance_all_sheets_are_visible_and_mode_is_lists_backed(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            workbook = ET.fromstring(archive.read("xl/workbook.xml"))
+            sheets = workbook.findall("main:sheets/main:sheet", NS)
+            self.assertEqual([sheet.attrib["name"] for sheet in sheets], SHEETS)
+            self.assertTrue(all(sheet.attrib.get("state", "visible") == "visible" for sheet in sheets))
+            start = worksheet_xml(archive, "Start Here")
+            validation = next(
+                item for item in start.findall(".//main:dataValidation", NS)
+                if "B8" in item.attrib["sqref"].split()
+            )
+            self.assertEqual(validation.findtext("main:formula1", namespaces=NS), "'Lists'!$D$2:$D$3")
+
+    def test_trial_balance_current_and_prior_samples_balance(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            for sheet_name in ("Paste Import", "Manual Input"):
+                sheet = worksheet_xml(archive, sheet_name)
+                totals = {
+                    column: sum(float(cell_value(archive, sheet, f"{column}{row}") or 0) for row in range(6, 106))
+                    for column in "DEFGI"
+                }
+                self.assertEqual(totals["D"], totals["E"], sheet_name)
+                self.assertEqual(totals["F"], totals["G"], sheet_name)
+                self.assertEqual(totals["I"], 0, sheet_name)
+
+    def test_trial_balance_all_review_formulas_are_filled_and_safe(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            review = worksheet_xml(archive, "Review")
+            for row in range(6, 106):
+                expected = {
+                    "H": f'IF(B{row}="","",D{row}-E{row})',
+                    "I": f'IF(B{row}="","",F{row}-G{row})',
+                    "J": f'IF(B{row}="","",H{row}-I{row})',
+                    "K": f'IF(B{row}="","",IF(I{row}=0,IF(H{row}=0,"","New"),J{row}/ABS(I{row})))',
+                    "N": f'IF(B{row}="","",H{row}+M{row})',
+                    "O": f'IF(B{row}="","",IF(L{row}="Unresolved","Unresolved",IF(OR(C{row}="",L{row}=""),"Unmapped","OK")))',
+                    "P": f'IF(B{row}="","",IF(OR(AND(OR(C{row}="Asset",C{row}="Expense"),H{row}<0),AND(OR(C{row}="Liability",C{row}="Equity",C{row}="Revenue"),H{row}>0)),"Unusual","OK"))',
+                    "Q": f'IF(B{row}="","",IF(AND(ABS(J{row})>=\'Start Here\'!$B$10,IFERROR(ABS(K{row})>=\'Start Here\'!$B$11,TRUE)),"Review","OK"))',
+                    "R": f'IF(B{row}="","",IF(O{row}="Unresolved","Unresolved",IF(OR(O{row}<>"OK",P{row}<>"OK",Q{row}<>"OK"),"Review","Complete")))',
+                }
+                for column, expected_formula in expected.items():
+                    self.assertEqual(formula_text(review, f"{column}{row}"), expected_formula, f"{column}{row}")
+            for name in archive.namelist():
+                if not name.startswith("xl/worksheets/sheet") or not name.endswith(".xml"):
+                    continue
+                xml = ET.fromstring(archive.read(name))
+                for node in xml.findall(".//main:f", NS):
+                    formula = node.text or ""
+                    self.assertNotRegex(formula.upper(), r"\b(?:INDIRECT|OFFSET)\s*\(", formula)
+                    self.assertNotRegex(formula, r"(?<![A-Z0-9_])\$?[A-Z]{1,3}:\$?[A-Z]{1,3}(?![A-Z0-9_])", formula)
+
+    def test_trial_balance_cached_samples_and_summary_include_unresolved(self):
+        path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        with zipfile.ZipFile(path) as archive:
+            review = worksheet_xml(archive, "Review")
+            cached = {
+                column: [cell_value(archive, review, f"{column}{row}") for row in range(6, 106)]
+                for column in "KOPQR"
+            }
+            self.assertIn("New", cached["K"])
+            self.assertIn("Unmapped", cached["O"])
+            self.assertIn("Unresolved", cached["O"])
+            self.assertIn("Unusual", cached["P"])
+            self.assertIn("Review", cached["Q"])
+            self.assertIn("Complete", cached["R"])
+            self.assertIn("Unresolved", cached["R"])
+
+            summary = worksheet_xml(archive, "Summary")
+            expected = {
+                "B9": ("SUM('Review'!$D$6:$D$105)", "450000"),
+                "D9": ("SUM('Review'!$E$6:$E$105)", "450000"),
+                "F9": ("B9-D9", "0"),
+                "B12": ("SUM('Review'!$F$6:$F$105)", "395000"),
+                "D12": ("SUM('Review'!$G$6:$G$105)", "395000"),
+                "F12": ("B12-D12", "0"),
+                "B15": ("SUM('Review'!$M$6:$M$105)", "0"),
+                "D15": ("F9+B15", "0"),
+                "F15": ('COUNTIF(\'Review\'!$Q$6:$Q$105,"Review")', "9"),
+                "B18": ('COUNTIF(\'Review\'!$P$6:$P$105,"Unusual")', "1"),
+                "D18": ('COUNTIF(\'Review\'!$O$6:$O$105,"Unmapped")', "1"),
+                "F18": ('COUNTIF(\'Review\'!$R$6:$R$105,"Unresolved")', "1"),
+                "H18": ('COUNTIF(\'Review\'!$R$6:$R$105,"Review")+COUNTIF(\'Review\'!$R$6:$R$105,"Unresolved")', "10"),
+            }
+            for address, (expected_formula, expected_value) in expected.items():
+                cell = worksheet_cell(summary, address)
+                self.assertEqual(cell.findtext("main:f", namespaces=NS), expected_formula, address)
+                self.assertEqual(cell.findtext("main:v", namespaces=NS), expected_value, address)
+
+    def test_trial_balance_publication_manifest_guards_hashes_and_review_width(self):
+        manifest_path = FILES / "trial-balance-review-workpaper-template.verification.json"
+        self.assertTrue(manifest_path.is_file(), manifest_path)
+        manifest = json.loads(manifest_path.read_text())
+        xlsx_path = FILES / "trial-balance-review-workpaper-template.xlsx"
+        cover_path = COVERS / "trial-balance-review-workpaper-template.png"
+        self.assertEqual(manifest["xlsx"]["scratch_sha256"], manifest["xlsx"]["published_sha256"])
+        self.assertEqual(manifest["xlsx"]["published_sha256"], sha256(xlsx_path))
+        self.assertEqual(manifest["cover"]["scratch_sha256"], manifest["cover"]["published_sha256"])
+        self.assertEqual(manifest["cover"]["published_sha256"], sha256(cover_path))
+        self.assertGreaterEqual(manifest["renders"]["Review"]["width"], 2600)
+        self.assertGreaterEqual(manifest["renders"]["Review"]["height"], 900)
 
 
 if __name__ == "__main__":

@@ -15,12 +15,12 @@ const reviewHeaders = [
 ];
 
 const accountTypes = ["Asset", "Liability", "Equity", "Revenue", "Expense", "Other"];
-const reviewCategories = ["Cash", "Receivables", "Inventory", "Fixed Assets", "Payables", "Debt", "Equity", "Revenue", "Operating Expenses", "Other"];
+const reviewCategories = ["Cash", "Receivables", "Inventory", "Fixed Assets", "Payables", "Debt", "Equity", "Revenue", "Operating Expenses", "Other", "Unresolved"];
 const sampleData = [
   ["1000", "Operating Cash", "Asset", 100000, 0, 80000, 0, "Cash", 0, "Material cash movement"],
   ["1100", "Accounts Receivable", "Asset", 50000, 0, 50000, 0, "Receivables", 2000, "Proposed debit adjustment"],
   ["1200", "Inventory", "Asset", 30000, 0, 20000, 0, "Inventory", 0, "Growth requires review"],
-  ["1300", "Prepaid Expenses", "Asset", 5000, 0, 5000, 0, "Other", 0, ""],
+  ["1300", "Prepaid Expenses", "Asset", 5000, 0, 5000, 0, "Unresolved", 0, "Classification support is unresolved"],
   ["1500", "Property and Equipment", "Asset", 80000, 0, 75000, 0, "Fixed Assets", 0, ""],
   ["1590", "Accumulated Depreciation", "Asset", 0, 25000, 0, 20000, "Fixed Assets", 0, "Credit balance flagged by sign rule"],
   ["2000", "Accounts Payable", "Liability", 0, 40000, 0, 35000, "Payables", 0, ""],
@@ -62,14 +62,14 @@ function buildInput(sheet) {
   styleTable(sheet, "A5:J105", "A5:J5", ["D", "E", "F", "G", "I"]);
   styleInputTable(sheet, "A6:J105", [16, 29, 17, 17, 17, 17, 17, 23, 20, 32]);
   addListValidation(listRange(sheet, 3, 6, 105), "'Lists'!$A$2:$A$7");
-  addListValidation(listRange(sheet, 8, 6, 105), "'Lists'!$B$2:$B$11");
+  addListValidation(listRange(sheet, 8, 6, 105), "'Lists'!$B$2:$B$12");
   sheet.autoFilter = "A5:J105";
   sheet.pageSetup = { orientation: "landscape", fitToPage: true, fitToWidth: 1, fitToHeight: 0 };
 }
 
 function buildLists(sheet) {
   sheet.getRow(1).values = ["Account Type", "Review Category", "Status", "Input Mode"];
-  [accountTypes, reviewCategories, ["Review", "Complete", "OK", "Unmapped", "Unusual"], ["Paste Import", "Manual Input"]]
+  [accountTypes, reviewCategories, ["Review", "Complete", "OK", "Unmapped", "Unusual", "Unresolved"], ["Paste Import", "Manual Input"]]
     .forEach((values, column) => values.forEach((value, index) => { sheet.getCell(2 + index, column + 1).value = value; }));
   sheet.getRow(1).font = { bold: true, color: { argb: "FFFFFFFF" } };
   sheet.getRow(1).fill = fill(COLORS.ink);
@@ -89,11 +89,11 @@ function calculatedResult(row) {
   const change = currentNet - priorNet;
   const changePct = priorNet === 0 ? (currentNet === 0 ? "" : "New") : change / Math.abs(priorNet);
   const adjusted = currentNet + source[8];
-  const mapping = !source[2] || !source[7] ? "Unmapped" : "OK";
+  const mapping = source[7] === "Unresolved" ? "Unresolved" : !source[2] || !source[7] ? "Unmapped" : "OK";
   const sign = ((["Asset", "Expense"].includes(source[2]) && currentNet < 0)
     || (["Liability", "Equity", "Revenue"].includes(source[2]) && currentNet > 0)) ? "Unusual" : "OK";
   const materiality = Math.abs(change) >= 5000 && (changePct === "New" || Math.abs(changePct) >= 0.10) ? "Review" : "OK";
-  const status = [mapping, sign, materiality].some((value) => value !== "OK") ? "Review" : "Complete";
+  const status = mapping === "Unresolved" ? "Unresolved" : [mapping, sign, materiality].some((value) => value !== "OK") ? "Review" : "Complete";
   return { currentNet, priorNet, change, changePct, adjusted, mapping, sign, materiality, status };
 }
 
@@ -121,10 +121,10 @@ function buildReview(sheet) {
     sheet.getCell(row, 10).value = formula(`IF(B${row}="","",H${row}-I${row})`, result.change);
     sheet.getCell(row, 11).value = formula(`IF(B${row}="","",IF(I${row}=0,IF(H${row}=0,"","New"),J${row}/ABS(I${row})))`, result.changePct);
     sheet.getCell(row, 14).value = formula(`IF(B${row}="","",H${row}+M${row})`, result.adjusted);
-    sheet.getCell(row, 15).value = formula(`IF(B${row}="","",IF(OR(C${row}="",L${row}=""),"Unmapped","OK"))`, result.mapping);
+    sheet.getCell(row, 15).value = formula(`IF(B${row}="","",IF(L${row}="Unresolved","Unresolved",IF(OR(C${row}="",L${row}=""),"Unmapped","OK")))`, result.mapping);
     sheet.getCell(row, 16).value = formula(`IF(B${row}="","",IF(OR(AND(OR(C${row}="Asset",C${row}="Expense"),H${row}<0),AND(OR(C${row}="Liability",C${row}="Equity",C${row}="Revenue"),H${row}>0)),"Unusual","OK"))`, result.sign);
     sheet.getCell(row, 17).value = formula(`IF(B${row}="","",IF(AND(ABS(J${row})>='Start Here'!$B$10,IFERROR(ABS(K${row})>='Start Here'!$B$11,TRUE)),"Review","OK"))`, result.materiality);
-    sheet.getCell(row, 18).value = formula(`IF(B${row}="","",IF(OR(O${row}<>"OK",P${row}<>"OK",Q${row}<>"OK"),"Review","Complete"))`, result.status);
+    sheet.getCell(row, 18).value = formula(`IF(B${row}="","",IF(O${row}="Unresolved","Unresolved",IF(OR(O${row}<>"OK",P${row}<>"OK",Q${row}<>"OK"),"Review","Complete")))`, result.status);
     sheet.getCell(row, 11).numFmt = "0.0%";
   }
   for (const column of [15, 16, 17, 18]) {
@@ -133,6 +133,7 @@ function buildReview(sheet) {
       { type: "containsText", operator: "containsText", text: "Review", style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
       { type: "containsText", operator: "containsText", text: "Unmapped", style: { fill: fill(COLORS.redSoft), font: { color: { argb: "FFDC2626", bold: true } } } },
       { type: "containsText", operator: "containsText", text: "Unusual", style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
+      { type: "containsText", operator: "containsText", text: "Unresolved", style: { fill: fill(COLORS.redSoft), font: { color: { argb: "FFDC2626", bold: true } } } },
       { type: "containsText", operator: "containsText", text: "OK", style: { fill: fill(COLORS.greenSoft), font: { color: { argb: "FF047857" } } } },
       { type: "containsText", operator: "containsText", text: "Complete", style: { fill: fill(COLORS.greenSoft), font: { color: { argb: "FF047857" } } } },
     ] });
@@ -160,30 +161,34 @@ function buildSummary(sheet) {
   metric(sheet, "A8", "Current Debits", "B9", "SUM('Review'!$D$6:$D$105)", 450000);
   metric(sheet, "C8", "Current Credits", "D9", "SUM('Review'!$E$6:$E$105)", 450000);
   metric(sheet, "E8", "Current Difference", "F9", "B9-D9", 0);
-  metric(sheet, "A11", "Proposed Adjustments", "B12", "SUM('Review'!$M$6:$M$105)", 0);
-  metric(sheet, "C11", "Adjusted Difference", "D12", "F9+B12", 0);
-  metric(sheet, "E11", "Material Movement Count", "F12", 'COUNTIF(\'Review\'!$Q$6:$Q$105,"Review")', 9, true);
-  metric(sheet, "A14", "Unusual Sign Count", "B15", 'COUNTIF(\'Review\'!$P$6:$P$105,"Unusual")', 1, true);
-  metric(sheet, "C14", "Unmapped Count", "D15", 'COUNTIF(\'Review\'!$O$6:$O$105,"Unmapped")', 1, true);
-  metric(sheet, "E14", "Open Review Count", "F15", 'COUNTIF(\'Review\'!$R$6:$R$105,"Review")', 9, true);
-  sheet.getCell("H5").value = formula('IF(AND(ABS(D12)<0.01,F15=0),"Complete","Review")', "Review");
+  metric(sheet, "A11", "Prior Debits", "B12", "SUM('Review'!$F$6:$F$105)", 395000);
+  metric(sheet, "C11", "Prior Credits", "D12", "SUM('Review'!$G$6:$G$105)", 395000);
+  metric(sheet, "E11", "Prior Difference", "F12", "B12-D12", 0);
+  metric(sheet, "A14", "Proposed Adjustments", "B15", "SUM('Review'!$M$6:$M$105)", 0);
+  metric(sheet, "C14", "Adjusted Difference", "D15", "F9+B15", 0);
+  metric(sheet, "E14", "Material Movement Count", "F15", 'COUNTIF(\'Review\'!$Q$6:$Q$105,"Review")', 9, true);
+  metric(sheet, "A17", "Unusual Sign Count", "B18", 'COUNTIF(\'Review\'!$P$6:$P$105,"Unusual")', 1, true);
+  metric(sheet, "C17", "Unmapped Count", "D18", 'COUNTIF(\'Review\'!$O$6:$O$105,"Unmapped")', 1, true);
+  metric(sheet, "E17", "Unresolved Count", "F18", 'COUNTIF(\'Review\'!$R$6:$R$105,"Unresolved")', 1, true);
+  metric(sheet, "G17", "Open Review Count", "H18", 'COUNTIF(\'Review\'!$R$6:$R$105,"Review")+COUNTIF(\'Review\'!$R$6:$R$105,"Unresolved")', 10, true);
+  sheet.getCell("H5").value = formula('IF(AND(ABS(D15)<0.01,H18=0),"Complete","Review")', "Review");
   sheet.getCell("H5").font = { bold: true };
   sheet.addConditionalFormatting({ ref: "H5", rules: [
     { type: "expression", formulae: ['H5="Review"'], style: { fill: fill(COLORS.amberSoft), font: { color: { argb: "FFD97706", bold: true } } } },
     { type: "expression", formulae: ['H5="Complete"'], style: { fill: fill(COLORS.greenSoft), font: { color: { argb: "FF047857", bold: true } } } },
   ] });
-  sheet.mergeCells("A18:H18");
-  sheet.getCell("A18").value = "Reviewer Notes";
-  sheet.getCell("A18").fill = fill(COLORS.ink);
-  sheet.getCell("A18").font = { bold: true, color: { argb: "FFFFFFFF" } };
-  sheet.mergeCells("A19:H22");
-  sheet.getCell("A19").value = "Resolve mapping, unusual-sign, and material-movement review items before sign-off. Proposed adjustments use positive debit and negative credit signs.";
-  sheet.getCell("A19").alignment = { wrapText: true, vertical: "top" };
-  sheet.getCell("A19").fill = fill(COLORS.blueSoft);
-  sheet.getCell("A19").font = { color: { argb: "FF0000FF" } };
+  sheet.mergeCells("A20:H20");
+  sheet.getCell("A20").value = "Reviewer Notes";
+  sheet.getCell("A20").fill = fill(COLORS.ink);
+  sheet.getCell("A20").font = { bold: true, color: { argb: "FFFFFFFF" } };
+  sheet.mergeCells("A21:H23");
+  sheet.getCell("A21").value = "Resolve unresolved classification, mapping, unusual-sign, and material-movement items before sign-off. Proposed adjustments use positive debit and negative credit signs.";
+  sheet.getCell("A21").alignment = { wrapText: true, vertical: "top" };
+  sheet.getCell("A21").fill = fill(COLORS.blueSoft);
+  sheet.getCell("A21").font = { color: { argb: "FF0000FF" } };
   [18, 23, 20, 23, 22, 23, 16, 21].forEach((width, index) => { sheet.getColumn(index + 1).width = width; });
-  for (let row = 5; row <= 22; row += 1) sheet.getRow(row).eachCell({ includeEmpty: true }, (cell) => { cell.border = { bottom: border }; });
-  sheet.pageSetup = { orientation: "landscape", fitToPage: true, fitToWidth: 1, fitToHeight: 1, paperSize: 9, margins: { left: 0.25, right: 0.25, top: 0.4, bottom: 0.4, header: 0.1, footer: 0.1 }, printArea: "A1:H22" };
+  for (let row = 5; row <= 23; row += 1) sheet.getRow(row).eachCell({ includeEmpty: true }, (cell) => { cell.border = { bottom: border }; });
+  sheet.pageSetup = { orientation: "landscape", fitToPage: true, fitToWidth: 1, fitToHeight: 1, paperSize: 9, margins: { left: 0.25, right: 0.25, top: 0.4, bottom: 0.4, header: 0.1, footer: 0.1 }, printArea: "A1:H23" };
 }
 
 export async function buildTrialBalanceReview(workbook) {

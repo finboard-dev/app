@@ -1,0 +1,39 @@
+{
+  "slug": "trial-balance-review-workpaper-template",
+  "xlsx": {
+    "scratch_sha256": "2b767d871709244b59b421b5b23de9ab88d64f475da92e7683b803efc663c142",
+    "published_sha256": "2b767d871709244b59b421b5b23de9ab88d64f475da92e7683b803efc663c142"
+  },
+  "cover": {
+    "scratch_sha256": "7ee7786faf86ba0ef692bce4fa0bef0e21994941cb9429d314d2386815653d10",
+    "published_sha256": "7ee7786faf86ba0ef692bce4fa0bef0e21994941cb9429d314d2386815653d10"
+  },
+  "renders": {
+    "Start Here": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Paste Import": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Manual Input": {
+      "width": 1400,
+      "height": 1000
+    },
+    "Review": {
+      "width": 2800,
+      "height": 1000
+    },
+    "Summary": {
+      "width": 1600,
+      "height": 900
+    },
+    "Lists": {
+      "width": 1400,
+      "height": 1000
+    }
+  },
+  "formula_count": 1917,
+  "validation_count": 401
+}
