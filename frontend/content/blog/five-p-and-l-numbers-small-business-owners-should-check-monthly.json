@@ -18,7 +18,10 @@
       "@type": "Organization",
       "@id": "https://finboard.ai/#organization",
       "name": "FinBoard Team",
-      "url": "https://finboard.ai/about"
+      "url": "https://finboard.ai/about",
+      "sameAs": [
+        "https://www.linkedin.com/company/finboard-ai-native-finance"
+      ]
     },
     "publisher": {
       "@id": "https://finboard.ai/#organization"

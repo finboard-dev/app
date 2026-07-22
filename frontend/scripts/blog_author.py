@@ -2,11 +2,13 @@ from copy import deepcopy
 
 AUTHOR_ID = "finboard-team"
 AUTHOR_NAME = "FinBoard Team"
+FINBOARD_LINKEDIN = "https://www.linkedin.com/company/finboard-ai-native-finance"
 SCHEMA_AUTHOR = {
     "@type": "Organization",
     "@id": "https://finboard.ai/#organization",
     "name": AUTHOR_NAME,
     "url": "https://finboard.ai/about",
+    "sameAs": [FINBOARD_LINKEDIN],
 }
 ARTICLE_TYPES = {
     "Article",

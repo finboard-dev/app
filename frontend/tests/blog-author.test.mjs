@@ -12,9 +12,12 @@ import {
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.join(TEST_DIR, "..", "content", "blog");
+const FINBOARD_LINKEDIN = "https://www.linkedin.com/company/finboard-ai-native-finance";
 
 test("always resolves FinBoard Team for blog authorship", () => {
   assert.equal(resolveAuthor().name, "FinBoard Team");
+  assert.equal(resolveAuthor().linkedin, FINBOARD_LINKEDIN);
+  assert.deepEqual(FINBOARD_TEAM_SCHEMA_AUTHOR.sameAs, [FINBOARD_LINKEDIN]);
   assert.equal(resolveAuthor("tech", "ujjwal-singh"), FINBOARD_TEAM_AUTHOR);
   assert.equal(resolveAuthor("accounting", "vaishnav-gupta"), FINBOARD_TEAM_AUTHOR);
 });

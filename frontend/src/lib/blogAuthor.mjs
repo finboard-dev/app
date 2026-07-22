@@ -1,9 +1,11 @@
+const FINBOARD_LINKEDIN = "https://www.linkedin.com/company/finboard-ai-native-finance";
+
 export const FINBOARD_TEAM_AUTHOR = Object.freeze({
   id: "finboard-team",
   name: "FinBoard Team",
   role: "",
   bio: "Written by the FinBoard team. We build multi-entity reporting and consolidation for QuickBooks Online, and we write from what we see across our customers' books.",
-  linkedin: "https://finboard.ai/about",
+  linkedin: FINBOARD_LINKEDIN,
 });
 
 export const FINBOARD_TEAM_SCHEMA_AUTHOR = Object.freeze({
@@ -11,6 +13,7 @@ export const FINBOARD_TEAM_SCHEMA_AUTHOR = Object.freeze({
   "@id": "https://finboard.ai/#organization",
   name: "FinBoard Team",
   url: "https://finboard.ai/about",
+  sameAs: Object.freeze([FINBOARD_LINKEDIN]),
 });
 
 const ARTICLE_TYPES = new Set([

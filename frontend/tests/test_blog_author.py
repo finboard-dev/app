@@ -6,6 +6,7 @@ from pathlib import Path
 FRONTEND = Path(__file__).resolve().parents[1]
 REPO = FRONTEND.parent
 sys.path.insert(0, str(FRONTEND / "scripts"))
+FINBOARD_LINKEDIN = "https://www.linkedin.com/company/finboard-ai-native-finance"
 
 from blog_author import (  # noqa: E402
     AUTHOR_ID,
@@ -17,6 +18,9 @@ from blog_author import (  # noqa: E402
 
 
 class BlogAuthorPolicyTest(unittest.TestCase):
+    def test_uses_finboard_company_linkedin(self):
+        self.assertEqual(SCHEMA_AUTHOR["sameAs"], [FINBOARD_LINKEDIN])
+
     def test_normalizes_post_metadata_and_nested_article_schema(self):
         post = {
             "title": "Example",
