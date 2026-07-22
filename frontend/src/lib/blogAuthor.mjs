@@ -13,11 +13,36 @@ export const FINBOARD_TEAM_SCHEMA_AUTHOR = Object.freeze({
   url: "https://finboard.ai/about",
 });
 
-const ARTICLE_TYPES = new Set(["Article", "BlogPosting"]);
+const ARTICLE_TYPES = new Set([
+  "Article",
+  "AdvertiserContentArticle",
+  "NewsArticle",
+  "AnalysisNewsArticle",
+  "AskPublicNewsArticle",
+  "BackgroundNewsArticle",
+  "OpinionNewsArticle",
+  "ReportageNewsArticle",
+  "ReviewNewsArticle",
+  "Report",
+  "SatiricalArticle",
+  "ScholarlyArticle",
+  "MedicalScholarlyArticle",
+  "SocialMediaPosting",
+  "BlogPosting",
+  "LiveBlogPosting",
+  "DiscussionForumPosting",
+  "TechArticle",
+  "APIReference",
+]);
+
+function schemaTypeName(value) {
+  if (typeof value !== "string") return null;
+  return value.replace(/^https?:\/\/schema\.org\//, "");
+}
 
 function isArticleType(value) {
   const types = Array.isArray(value) ? value : [value];
-  return types.some((type) => ARTICLE_TYPES.has(type));
+  return types.some((type) => ARTICLE_TYPES.has(schemaTypeName(type)));
 }
 
 export function resolveAuthor() {

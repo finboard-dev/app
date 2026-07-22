@@ -5,10 +5,9 @@ import {
 
 export { resolveAuthor };
 
-// Canonical author registry. Blog posts resolve to one of these named authors
-// (for YMYL E-E-A-T + Person structured data). Each carries a verifiable
-// LinkedIn used as sameAs. Kept in sync with the founders in
-// components/landing/Team.jsx.
+// Shared author registry for founder profiles and the canonical FinBoard Team
+// blog author. Founder records remain available to the About page and other
+// non-blog consumers. Kept in sync with components/landing/Team.jsx.
 
 export const AUTHORS = {
   "vaishnav-gupta": {

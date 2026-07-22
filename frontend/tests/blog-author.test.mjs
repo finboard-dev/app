@@ -26,6 +26,14 @@ test("normalizes Article and BlogPosting authors recursively", () => {
         "@type": ["Article", "TechArticle"],
         name: "Nested article",
       },
+      {
+        "@type": "TechArticle",
+        name: "Subtype article",
+      },
+      {
+        "@type": "https://schema.org/BlogPosting",
+        name: "Expanded blog posting",
+      },
       { "@type": "Organization", name: "Publisher" },
     ],
   };
@@ -34,6 +42,8 @@ test("normalizes Article and BlogPosting authors recursively", () => {
 
   assert.deepEqual(result["@graph"][0].author, FINBOARD_TEAM_SCHEMA_AUTHOR);
   assert.deepEqual(result["@graph"][1].author, FINBOARD_TEAM_SCHEMA_AUTHOR);
-  assert.equal(result["@graph"][2].author, undefined);
+  assert.deepEqual(result["@graph"][2].author, FINBOARD_TEAM_SCHEMA_AUTHOR);
+  assert.deepEqual(result["@graph"][3].author, FINBOARD_TEAM_SCHEMA_AUTHOR);
+  assert.equal(result["@graph"][4].author, undefined);
   assert.notEqual(result, input);
 });
