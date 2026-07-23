@@ -41,3 +41,16 @@ test("navbar Login links independently target the FinBoard app before their cons
     consultationTestId: "mobile-nav-book-demo",
   });
 });
+
+test("testimonials page renders an accessible non-autoplaying video", () => {
+  const component = readSource("src/components/landing/TestimonialVideo.jsx");
+  const page = readSource("src/views/TestimonialsPage.jsx");
+  assert.match(component, /data-testid="testimonial-video-section"/);
+  assert.match(component, /data-testid="testimonial-video"/);
+  assert.match(component, /controls/);
+  assert.match(component, /preload="metadata"/);
+  assert.match(component, /aria-label="FinBoard customer testimonial video"/);
+  assert.match(component, /src="\/videos\/finboard-testimonial\.mp4"/);
+  assert.doesNotMatch(component, /autoPlay/);
+  assert.match(page, /<Testimonials \/>[\s\S]*<TestimonialVideo \/>[\s\S]*<CTABand/);
+});

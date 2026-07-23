@@ -6,6 +6,7 @@ import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import Testimonials from "@/components/landing/Testimonials";
+import TestimonialVideo from "@/components/landing/TestimonialVideo";
 
 export default function TestimonialsPage() {
   const [demoOpen, setDemoOpen] = React.useState(false);
@@ -18,6 +19,7 @@ export default function TestimonialsPage() {
       <Navbar onBookDemo={openDemo} />
       <main className="pt-6">
         <Testimonials />
+        <TestimonialVideo />
         <CTABand onBookDemo={openDemo} />
       </main>
       <Footer />
