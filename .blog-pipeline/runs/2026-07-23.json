@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-23",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "qboa-sunsets-at-the-end-of-2026-a-migration-checklist-to-the-intuit-accountant-suite",
+      "title": "QBOA Sunsets at the End of 2026: A Migration Checklist to the Intuit Accountant Suite",
+      "persona": "accounting-firm",
+      "angle": "QuickBooks Online Accountant is being retired at the end of 2026 and replaced by the Intuit Accountant Suite (Intuit Intelligence, Books Close, AI reconciliation across clients). This is a firm-wide cutover, not a login change. Walk a firm through the migration: inventory every client file and third-party app you depend on, sequence the client cutovers, decide which manual month-end steps the new AI close absorbs and which keep a review gate, and set a fallback plan so nothing breaks mid-season.",
+      "keyword": "QBOA sunset 2026 Intuit Accountant Suite migration",
+      "rationale": "Dated, high-urgency change with a hard end-of-2026 deadline and no on-site coverage. Distinct from the 07-20 AI-bookkeeping-limits post (categorization accuracy) and the 07-20 CAS-deliverables post; this is the platform migration logistics. Target prompt: 'do I have to migrate off QuickBooks Online Accountant in 2026'"
+    },
+    {
+      "slug": "the-2026-roth-catch-up-mandate-what-high-earning-clients-must-change-before-year-end",
+      "title": "The 2026 Roth Catch-Up Mandate: What High-Earning Clients Must Change Before Year-End",
+      "persona": "cpa",
+      "angle": "Starting in 2026, SECURE 2.0 forces catch-up contributions to 401(k), 403(b), and 457(b) plans to be made as after-tax Roth for participants who earned above the wage threshold (roughly $145,000, indexed) in the prior year. Explain who is caught, why a pre-tax catch-up election now gets recharacterized or rejected by payroll, the cash-flow and withholding impact for the client, and the one-page notice a CPA should send to affected clients before open enrollment.",
+      "keyword": "2026 Roth catch-up contribution rule high earners",
+      "rationale": "Fresh dated retirement-plan change effective 2026, distinct from every pending CPA post (1099-K reset, filing-season survival, above-the-line deductions, 1099-DA, W-2 tips). Deadline-anchored to open enrollment and year-end payroll setup. Target prompt: 'do high earners have to make catch-up contributions as Roth in 2026'"
+    },
+    {
+      "slug": "sales-tax-nexus-in-2026-when-your-online-small-business-has-to-start-collecting",
+      "title": "Sales Tax Nexus in 2026: When Your Online Small Business Has to Start Collecting",
+      "persona": "solopreneur",
+      "angle": "Forty-five jurisdictions now enforce economic nexus, most at $100,000 in sales, with California, Texas, and New York at $500,000, and states are dropping transaction-count triggers (Illinois removed its 200-transaction threshold on Jan 1, 2026). A jargon-free guide for an owner selling across state lines: how to tell where you have crossed a threshold, what to do the month you cross one, and how to track your state-by-state sales so a surprise registration and back-tax bill never lands.",
+      "keyword": "sales tax nexus 2026 small business threshold",
+      "rationale": "Fresh 2026 threshold changes (Illinois, revenue-only shift) and a real solopreneur pain with no on-site coverage. Distinct from the 07-21 estimated-taxes post and the 07-20 five-P&L-numbers post. Target prompt: 'when do I have to start collecting sales tax in another state'"
+    },
+    {
+      "slug": "ai-agents-in-the-month-end-close-what-to-automate-and-what-to-govern-in-2026",
+      "title": "AI Agents in the Month-End Close: What to Automate and What to Govern in 2026",
+      "persona": "cfo",
+      "angle": "54% of CFOs now rank AI agents as their top finance priority, and vendors promise autonomous reconciliation and continuous forecasting. Give finance leaders an honest operating map: which close tasks an agent can run unattended (routine reconciliations, PO matching, variance flagging), which need a human control (accruals, judgmental estimates, intercompany), and the governance layer, review gates, audit trail, and ROI metrics, that earns board trust instead of a restatement.",
+      "keyword": "AI agents finance close automation governance 2026",
+      "rationale": "Fresh 2026 CFO-agenda data. Distinct from the 07-21 continuous-close post (the close method) and the 07-21 rolling-forecast post (planning); this is the AI-governance boundary. Product-fit strong (governed automation, audit trail). Target prompt: 'which parts of the month-end close can I safely automate with AI'"
+    },
+    {
+      "slug": "tip-credit-and-tip-pooling-compliance-for-the-2026-summer-season",
+      "title": "Tip Credit and Tip Pooling Compliance for the 2026 Summer Season",
+      "persona": "restaurant",
+      "angle": "Summer hiring is when tip-credit mistakes turn into wage liability. Cover the mechanics operators actually get wrong: the $2.13 cash wage plus tip-credit top-up to minimum wage, the written tip-credit notice required before you take the credit, who can legally share a tip pool after the 2018 rules, and how the new 2026 tip-deduction reporting interacts with payroll, so a manager can run a compliant pool and prove the math when a server disputes it.",
+      "keyword": "restaurant tip credit tip pooling rules 2026",
+      "rationale": "Seasonally timely (summer hiring) and distinct from the 07-21 menu-repricing post and the 07-20 labor-cost-percentage post; this is the tip-credit and pooling compliance lever, not pricing or labor mix. Pairs with the tip/overtime deduction template. Target prompt: 'what are the tip pooling and tip credit rules for restaurants in 2026'"
+    },
+    {
+      "slug": "profit-fade-catching-construction-margin-erosion-in-your-wip-before-year-end",
+      "title": "Profit Fade: Catching Construction Margin Erosion in Your WIP Before Year-End",
+      "persona": "construction",
+      "angle": "A job bid at 22% gross margin that closes at 12% did not fail at closeout, it faded a point at a time while the WIP still looked fine. Show contractors how to read the WIP for profit fade: track each job's original estimated margin against the current projected margin period over period, quantify the fade in dollars, and spot the leading signs (cost-to-complete creep, unapproved change-order work, over/under billing swings) while there is still job left to correct it.",
+      "keyword": "construction profit fade WIP margin erosion",
+      "rationale": "Distinct from the 07-19 WIP-schedule post (over/under billing mechanics), the 07-20 job-costing post (cost capture), and the 07-21 change-order post; profit fade is the margin-trend read across periods. Uncovered on-site. Target prompt: 'how do I catch profit fade on my construction jobs'"
+    },
+    {
+      "slug": "turning-denials-into-dollars-a-no-surprises-act-idr-playbook-for-medical-practices-in-2026",
+      "title": "Turning Denials Into Dollars: A No Surprises Act IDR Playbook for Medical Practices in 2026",
+      "persona": "hospital",
+      "angle": "With initial denial rates above 11% and some specialties at 15 to 20%, denials are now a finance problem, not a billing-office nuisance, and the No Surprises Act Independent Dispute Resolution process is an underused path to recover out-of-network underpayments. Show an administrator how to build a denial-to-appeal workflow: triage denials by payer and reason, decide which underpayments qualify for IDR, track the batching and deadlines, and book the recovered revenue so it reconciles cleanly.",
+      "keyword": "No Surprises Act IDR underpayment recovery 2026",
+      "rationale": "Distinct from the 07-20 RCM-KPI post (days in A/R, denial rate as a metric), the 07-21 fee-schedule post, and the 07-21 telehealth post; this is the IDR/appeal recovery mechanism itself. Fresh 2026 denial data. Target prompt: 'how do I use the No Surprises Act to appeal underpaid claims'"
+    },
+    {
+      "slug": "should-you-buy-equipment-before-year-end-section-179-vs-bonus-depreciation-in-2026",
+      "title": "Should You Buy Equipment Before Year-End? Section 179 vs Bonus Depreciation in 2026",
+      "persona": "solopreneur",
+      "angle": "With 100% bonus depreciation permanent and the Section 179 cap at $2.56M for 2026, the question for an owner is no longer whether to deduct but which lever to pull and when. A plain-language decision guide: how Section 179's income limit and phase-out differ from bonus depreciation, why a big first-year write-off can shrink your QBI deduction, and how to time a year-end purchase so the deduction actually helps this year's tax bill rather than wasting it.",
+      "keyword": "section 179 vs bonus depreciation 2026 small business",
+      "rationale": "A decision-and-timing explainer, distinct from the published QBO how-to-record-bonus-depreciation post; this is the buy/when/which-lever choice and the QBI interaction. Fresh 2026 limits. Pairs with the existing Section 179 planner template. Target prompt: 'should I use section 179 or bonus depreciation in 2026'"
+    },
+    {
+      "slug": "the-cash-conversion-cycle-the-working-capital-number-most-cfos-overlook",
+      "title": "The Cash Conversion Cycle: The Working-Capital Number Most CFOs Overlook",
+      "persona": "cfo",
+      "angle": "A profitable company can still run out of cash if its cash is trapped in receivables and inventory. Define the cash conversion cycle from its three parts (days sales outstanding, days inventory outstanding, days payable outstanding), show how to compute each from the books, and walk through the levers that shorten it, tighter collections, smarter inventory, negotiated payment terms, with a worked before/after that frees real cash without new financing.",
+      "keyword": "cash conversion cycle working capital calculation",
+      "rationale": "Distinct from the 07-21 rolling-forecast and continuous-close posts and the published 13-week cash-flow post; the CCC is the working-capital efficiency metric, not a forecast or a close. Product-fit strong (metric FinBoard can compute and drill). Target prompt: 'how do I calculate and improve my cash conversion cycle'"
+    },
+    {
+      "slug": "the-2026-1099-nec-threshold-jump-to-2000-who-you-still-have-to-file-for",
+      "title": "The 2026 1099-NEC Threshold Jump to $2,000: Who You Still Have to File For",
+      "persona": "cpa",
+      "angle": "For 2026 the 1099-NEC filing threshold rises from $600 to $2,000, the first increase in decades, changing which contractors and vendors trigger a form. Clarify the new rule, the traps (aggregating payments across the year, payments through third-party apps that may still hit a 1099-K, backup withholding when a W-9 is missing), and the client-facing checklist a firm should run before January so it collects W-9s only where a form is now actually required.",
+      "keyword": "1099-NEC threshold 2026 $2000",
+      "rationale": "Distinct from the 07-21 1099-K reset post (payment-app reporting) and the 07-20 1099-DA post (digital assets); this is the 1099-NEC contractor-payment threshold change. Dated for the 2026 filing cycle. Pairs with the pending 1099/W-9 vendor tracker. Target prompt: 'what is the 1099-NEC threshold for 2026'"
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-23"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}

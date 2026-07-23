@@ -1,0 +1,100 @@
+{
+  "date": "2026-07-20-templates",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "restaurant-labor-cost-and-scheduling-optimizer",
+      "title": "Restaurant Labor Cost and Scheduling Optimizer",
+      "persona": "restaurant",
+      "angle": "Enter forecasted sales by daypart and scheduled hours by role; the model computes labor cost percentage against a target band (QSR 25-28%, full-service 30-35%), flags overtime exposure under 2026 rules, and shows the sales needed to bring a shift back into target.",
+      "keyword": "restaurant labor cost calculator",
+      "rationale": "No labor-cost model in the library (restaurant P&L, menu engineering, cocktail cost, POS recon are all different). Distinct from the prior prime-cost tracker because it isolates labor and scheduling. Pairs with the 07-20 labor-cost blog."
+    },
+    {
+      "slug": "recipe-and-plate-cost-calculator-with-menu-pricing",
+      "title": "Recipe and Plate Cost Calculator with Menu Pricing",
+      "persona": "restaurant",
+      "angle": "Build up plate cost from ingredient quantities, pack sizes, yield, and waste, then set a menu price from a target food-cost percentage and see the resulting contribution margin per item. A costing engine, not a classification matrix.",
+      "keyword": "recipe cost calculator restaurant",
+      "rationale": "The existing cocktail-cost calculator covers drinks only; the menu-engineering matrix classifies items but does not build cost from ingredients. This is the plate-costing model that feeds both. Not in existing files."
+    },
+    {
+      "slug": "payer-contract-fee-schedule-and-underpayment-analyzer",
+      "title": "Payer Contract Fee Schedule and Underpayment Analyzer",
+      "persona": "hospital",
+      "angle": "Load contracted allowed amounts by CPT and payer, compare against actual paid amounts, and surface underpayments and denial-adjustment leakage per payer and per code, with a dollar total the practice can appeal.",
+      "keyword": "payer contract underpayment analysis",
+      "rationale": "Distinct from an RCM KPI dashboard (aggregate KPIs) and a payer-mix tracker (revenue split); this reconciles contracted vs paid at the CPT level. No healthcare template in existing files."
+    },
+    {
+      "slug": "medical-practice-break-even-and-provider-capacity-model",
+      "title": "Medical Practice Break-Even and Provider Capacity Model",
+      "persona": "hospital",
+      "angle": "From fixed overhead, variable cost per visit, and average net collection per visit, compute the visits per provider per day needed to break even and the capacity headroom or shortfall per provider, so a group can staff and schedule to profitability.",
+      "keyword": "medical practice break even analysis",
+      "rationale": "The existing indifference-point and ecommerce break-even templates are generic; this is a practice-specific capacity model on the cost/visit side, distinct from the fee-schedule analyzer. Not in existing files."
+    },
+    {
+      "slug": "chart-of-accounts-standardization-and-mapping-template",
+      "title": "Chart of Accounts Standardization and Mapping Template",
+      "persona": "accounting-firm",
+      "angle": "A master standard chart of accounts with a mapping column that crosswalks each client's existing GL accounts to the firm standard, plus a variance sheet flagging unmapped or duplicated accounts, so every client reports on the same structure.",
+      "keyword": "chart of accounts standardization template",
+      "rationale": "No COA template exists (blog covered the concept, but there is no downloadable model). Targets the no-standard-chart-of-accounts pain directly. Not in existing files or prior template runs."
+    },
+    {
+      "slug": "accounting-firm-busy-season-capacity-and-workload-planner",
+      "title": "Accounting Firm Busy-Season Capacity and Workload Planner",
+      "persona": "accounting-firm",
+      "angle": "Map staff available hours against return and close volume week by week through filing season, surfacing the weeks a firm is over capacity so work can be leveled, reassigned, or outsourced before the crunch.",
+      "keyword": "accounting firm capacity planning template",
+      "rationale": "Distinct from the multi-client close tracker (per-client close status) and client profitability tracker; this is staffing capacity across the season. No such model in existing files."
+    },
+    {
+      "slug": "1099-and-w-9-vendor-tracking-and-filing-checklist",
+      "title": "1099 and W-9 Vendor Tracking and Filing Checklist",
+      "persona": "cpa",
+      "angle": "Track each vendor's W-9 status, TIN, payment totals against the 1099 threshold, form type (NEC/MISC), and e-file status, with a rollup of who still owes a W-9 before January filing. Timely given the 2026 information-return changes.",
+      "keyword": "1099 vendor tracking template",
+      "rationale": "No 1099 or vendor-tracking template exists. Distinct from the tip/overtime estimator and quarterly estimated tax calculator; this is information-return compliance. Fresh for the 2026 filing cycle."
+    },
+    {
+      "slug": "bookkeeper-vs-diy-roi-calculator",
+      "title": "Bookkeeper vs DIY ROI Calculator",
+      "persona": "solopreneur",
+      "angle": "Compare the true cost of DIY books (hours spent times the owner's billable rate, plus estimated cost of errors and missed deductions) against a bookkeeper's monthly fee, returning a break-even revenue point and a clear hire/keep recommendation.",
+      "keyword": "when to hire a bookkeeper calculator",
+      "rationale": "Pairs with the 07-19 when-to-hire blog; no ROI calculator exists in the library. Distinct from the owner comp tax set-aside idea. Not in existing files."
+    },
+    {
+      "slug": "owner-profit-to-cash-reconciliation-worksheet",
+      "title": "Owner Profit-to-Cash Reconciliation Worksheet",
+      "persona": "solopreneur",
+      "angle": "A plain-language bridge for owners: start from net profit and adjust for owner draws, loan principal, inventory, A/R and A/P changes, and taxes set aside, to explain in one page why the bank balance does not equal the profit on the P&L.",
+      "keyword": "why is my profit different from cash",
+      "rationale": "The existing direct and indirect cash-flow templates are formal statements for accountants; this is an owner-facing diagnostic worksheet with a different audience and layout. Pairs with the profit-vs-cash theme. Not a duplicate model."
+    },
+    {
+      "slug": "one-page-board-kpi-scorecard",
+      "title": "One-Page Board KPI Scorecard",
+      "persona": "cfo",
+      "angle": "A single-sheet board scorecard: revenue, gross margin, EBITDA, cash and runway, and three or four operating KPIs, each shown as actual vs budget vs prior period with a red/amber/green flag, built to drop into the monthly board deck.",
+      "keyword": "board KPI scorecard template",
+      "rationale": "Distinct from the variance bridge (line-level decomposition) and ARR/MRR templates; this is the one-page executive scorecard. No board-scorecard model in existing files."
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-20"
+    }
+  ],
+  "channel": {
+    "posted": true,
+    "channelId": "C09E0C9G8TW",
+    "messageTs": "1784545024.871639",
+    "threadTs": "1784545024.871639",
+    "postedAt": "2026-07-20T10:57:04Z",
+    "via": "codex-slack-connector"
+  }
+}

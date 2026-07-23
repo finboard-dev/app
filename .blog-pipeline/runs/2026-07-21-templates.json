@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-21-templates",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "medicare-2026-fee-schedule-revenue-impact-calculator",
+      "title": "Medicare 2026 Fee Schedule Revenue Impact Calculator",
+      "persona": "hospital",
+      "angle": "Enter your top CPT codes with annual volumes and 2025 payment; apply the 2026 conversion factors and efficiency/practice-expense adjustments to compute the per-code and total revenue delta, split by facility vs office site of service, so a practice sees exactly where the 2026 rule helps or hurts.",
+      "keyword": "medicare 2026 reimbursement calculator",
+      "rationale": "No healthcare reimbursement model in the library; distinct from the 07-20 payer-underpayment analyzer (contracted vs paid) and break-even capacity model. Fresh with the CY2026 MPFS final rule. Pairs with the 2026 fee-schedule blog."
+    },
+    {
+      "slug": "13-week-rolling-cash-flow-forecast-with-scenarios",
+      "title": "13-Week Rolling Cash Flow Forecast with Scenarios",
+      "persona": "cfo",
+      "angle": "A true weekly 13-week direct cash forecast: opening cash, receipts by customer, disbursements by category, and closing cash per week, with a base/upside/downside scenario toggle and an actual-vs-forecast variance column that rolls the window forward each week.",
+      "keyword": "13 week cash flow forecast template",
+      "rationale": "Existing cash templates are bi-weekly, monthly period-end, and formal direct/indirect statements; none is a weekly 13-week rolling model with scenarios. On-site blog says QBO cannot do this, so the downloadable fills a real gap. Distinct from all prior template runs."
+    },
+    {
+      "slug": "quarterly-estimated-tax-calculator-self-employed-2026",
+      "title": "Quarterly Estimated Tax Calculator (Self-Employed) 2026",
+      "persona": "solopreneur",
+      "angle": "From projected net profit and prior-year tax, compute each 2026 quarterly payment using the safe-harbor rule (90% current / 100% or 110% prior), add self-employment tax at 15.3%, and produce the four voucher amounts and due dates with an underpayment-penalty check.",
+      "keyword": "quarterly estimated tax calculator 2026",
+      "rationale": "No estimated-tax calculator exists; the 07-20 tip/overtime estimator and 1099 vendor tracker are different. Pairs with the estimated-taxes blog. Dated for the 2026 payment cycle."
+    },
+    {
+      "slug": "construction-change-order-log-and-margin-impact-tracker",
+      "title": "Construction Change Order Log and Margin Impact Tracker",
+      "persona": "construction",
+      "angle": "Log every change order against the original contract: description, approved cost, approved price, status, and date; the model rolls up added revenue vs added cost, flags work performed but unpriced, and shows the running effect on contract margin and value.",
+      "keyword": "construction change order log template",
+      "rationale": "Existing construction files are WIP schedule, job cost analysis, project budget, cash flow planner, and equipment cost; no change-order log. Distinct from the 07-19 WIP and job-cost models. Pairs with the change-order blog."
+    },
+    {
+      "slug": "restaurant-break-even-and-daily-sales-target-calculator",
+      "title": "Restaurant Break-Even and Daily Sales Target Calculator",
+      "persona": "restaurant",
+      "angle": "From fixed monthly costs, prime-cost percentage, and other variable costs, compute the monthly break-even sales and translate it into a daily and weekly sales target and covers-needed number, with a profit-target mode that shows the sales required to hit a chosen margin.",
+      "keyword": "restaurant break even calculator",
+      "rationale": "The existing break-even templates are ecommerce and indifference-point (generic); no restaurant-specific break-even. Distinct from the 07-20 labor optimizer and recipe cost calculator. Ties operating costs to a daily number operators can act on."
+    },
+    {
+      "slug": "client-profitability-and-realization-tracker",
+      "title": "Client Profitability and Realization Tracker",
+      "persona": "accounting-firm",
+      "angle": "For each client: annual fee, budgeted vs actual hours by staff level, standard rate, realization and effective rate, write-offs, and a margin flag, so a firm can see which clients are unprofitable and where scope creep or under-pricing is eating capacity.",
+      "keyword": "client profitability tracker accounting firm",
+      "rationale": "No client-profitability model in existing files. Distinct from the multi-client close tracker (close status) and the 07-20 busy-season capacity planner (staffing hours). Targets the price-advisory and margin pain."
+    },
+    {
+      "slug": "provider-productivity-wrvu-and-compensation-tracker",
+      "title": "Provider Productivity (wRVU) and Compensation Tracker",
+      "persona": "hospital",
+      "angle": "Track each provider's work RVUs against target, compensation per wRVU, and productivity variance by month, with a group rollup, so a practice can see who is above or below target and tie compensation to output under the shifting 2026 RVU values.",
+      "keyword": "wRVU productivity tracker template",
+      "rationale": "No provider-productivity model exists; distinct from the 07-20 break-even capacity model (cost per visit) and the fee-schedule impact calculator (payment rates). Fresh given the 2026 work-RVU efficiency adjustment."
+    },
+    {
+      "slug": "owner-pay-and-tax-set-aside-planner",
+      "title": "Owner Pay and Tax Set-Aside Planner",
+      "persona": "solopreneur",
+      "angle": "From monthly profit, prescribe a sustainable owner draw, a tax-reserve percentage moved to a separate account each month, and the operating buffer to keep, so an owner pays themselves without starving the business or the January tax bill.",
+      "keyword": "how much should I set aside for taxes small business",
+      "rationale": "No owner-pay/tax-reserve model exists. Distinct from the 07-20 profit-to-cash reconciliation (explains the gap) and the estimated-tax calculator (computes the IRS payment); this prescribes the monthly draw-and-reserve routine."
+    },
+    {
+      "slug": "1099-k-reconciliation-worksheet-2026",
+      "title": "1099-K Reconciliation Worksheet 2026",
+      "persona": "cpa",
+      "angle": "Reconcile a received 1099-K's gross amount to the books: back out refunds, sales tax, tips, personal transfers, and chargebacks to arrive at reportable revenue, with a per-processor breakdown and a variance flag, sized for the 2026 $20,000/200-transaction reset.",
+      "keyword": "1099-K reconciliation worksheet",
+      "rationale": "Distinct from the 07-20 1099/W-9 vendor tracker (issuer side, forms you send); this is the recipient side, reconciling a 1099-K you received. No such template exists. Fresh for the 2026 threshold reset."
+    },
+    {
+      "slug": "construction-retainage-tracker-and-release-schedule",
+      "title": "Construction Retainage Tracker and Release Schedule",
+      "persona": "construction",
+      "angle": "Per project and per billing period, track retainage withheld (5-10%), the balance held, expected release dates, and aging of overdue releases, with a portfolio rollup of total cash tied up in retainage, so contractors chase releases and forecast the cash instead of losing track of it.",
+      "keyword": "construction retainage tracking template",
+      "rationale": "No retainage model in existing files. Distinct from the WIP schedule and the change-order log; retainage is a separate balance-sheet line and cash-flow driver. Targets the retainage cash-flow pain directly."
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-21"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}

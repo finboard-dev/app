@@ -1,0 +1,100 @@
+{
+  "date": "2026-07-20",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "how-to-report-2026-tips-and-overtime-on-employee-w-2s-box-12-code-tp-for-restaurants",
+      "title": "How to Report 2026 Tips and Overtime on Employee W-2s (Box 12, Code TP) for Restaurants",
+      "persona": "restaurant",
+      "angle": "The OBBBA W-2 changes land on the EMPLOYER, not just the filer: for tax year 2026, Box 12 Code TP reports total cash tips per employee and many restaurants must assign Treasury occupation codes to tipped staff, with the IRS penalty-relief grace window now closed. Walk through capturing tips and overtime in QBO payroll so W-2s are correct, and why skipping the written tip-credit notice creates retroactive wage liability.",
+      "keyword": "W-2 Box 12 Code TP tips 2026",
+      "rationale": "Distinct from the 07-19 CPA post on the Schedule 1-A DEDUCTION (filer side); this is the employer payroll and W-2 REPORTING side for restaurants, uncovered on-site. Fresh: the transition-period penalty relief has closed for TY2026. Target prompt: 'how do I report tips on W-2 box 12 code TP for 2026'"
+    },
+    {
+      "slug": "revenue-cycle-kpis-every-medical-practice-should-watch-days-in-a-r-net-collection-and-denial-rate",
+      "title": "Revenue Cycle KPIs Every Medical Practice Should Watch: Days in A/R, Net Collection Rate, and Denial Rate",
+      "persona": "hospital",
+      "angle": "With national denial rates now above 10% and some specialties at 15-20%, revenue-cycle KPIs are the finance numbers an administrator is judged on. Define days in A/R (target under 35), net collection rate (95-97%), clean claim rate (over 95%), and denial rate by payer, give the formula for each, and show how to build them from QBO plus billing data.",
+      "keyword": "medical practice days in A/R",
+      "rationale": "The 07-18 healthcare post was payer mix and 07-19 was department-level P&L; this targets the A/R and denials KPI side, uncovered as a blog. Fresh 2026 MGMA and denial figures. Target prompt: 'what should my medical practice days in A/R be'"
+    },
+    {
+      "slug": "real-time-job-costing-in-quickbooks-online-catch-overruns-before-the-money-is-spent",
+      "title": "Real-Time Job Costing in QuickBooks Online: Catch Overruns Before the Money Is Spent",
+      "persona": "construction",
+      "angle": "Job costing that lags means overruns surface after the cash is gone. Set up real-time job costing in QBO with service items, cost codes, committed costs from POs, and labor burden, so costs post against the job as they happen instead of at month-end. This is the cost-capture side, distinct from a WIP schedule.",
+      "keyword": "construction job costing QuickBooks",
+      "rationale": "The 07-19 construction post was the WIP schedule (billing and revenue side); this is the cost-capture side, a different artifact. Retainage was 07-18. Uncovered on-site. Target prompt: 'how to set up job costing in QuickBooks for construction'"
+    },
+    {
+      "slug": "completed-contract-vs-percentage-of-completion-choosing-a-method-and-the-2026-30m-threshold",
+      "title": "Completed-Contract vs Percentage-of-Completion: Choosing a Method and the 2026 $30M Threshold",
+      "persona": "construction",
+      "angle": "Contractors with average gross receipts under the 2026 $30M threshold can use cash, accrual, or completed-contract; above it, percentage-of-completion is generally required. Explain each method with a worked example, the tax and bonding implications, and how the method choice shows up in QBO revenue recognition.",
+      "keyword": "completed contract vs percentage of completion",
+      "rationale": "Distinct from the WIP and job-costing posts; this is the revenue-recognition METHOD choice anchored to the fresh 2026 indexed threshold. Uncovered on-site. Target prompt: 'completed contract vs percentage of completion which method'"
+    },
+    {
+      "slug": "the-2026-above-the-line-deductions-your-clients-dont-know-to-ask-about",
+      "title": "The 2026 Above-the-Line Deductions Your Clients Don't Know to Ask About",
+      "persona": "cpa",
+      "angle": "Beyond tips and overtime, the 2026 season adds a $6,000 senior bonus deduction, up to $10,000 of interest on a U.S.-assembled auto loan (phasing out over $100k/$200k income), and a $1,000/$2,000 above-the-line charitable deduction. A proactive advisory checklist: which clients qualify, what to document now, and the client email to send this week.",
+      "keyword": "2026 above the line deductions",
+      "rationale": "Distinct from the 07-19 tips/overtime Schedule 1-A post and the 07-19 paper-check post; centers the senior, auto-loan, and charitable deductions no on-site post covers. Deadline-anchored to the 2026 season. Target prompt: 'what new deductions can I claim for 2026 taxes'"
+    },
+    {
+      "slug": "form-1099-da-is-here-what-the-new-digital-asset-reporting-means-for-your-2026-clients",
+      "title": "Form 1099-DA Is Here: What the New Digital-Asset Reporting Means for Your 2026 Clients",
+      "persona": "cpa",
+      "angle": "For 2026, brokers begin issuing Form 1099-DA for digital-asset transactions, changing how crypto gains reconcile at filing. Cover what the form reports, where cost basis will and will not be included, the reconciliation traps for clients who moved assets between wallets and exchanges, and how to prep clients now.",
+      "keyword": "Form 1099-DA 2026",
+      "rationale": "On-site crypto posts cover GAAP measurement (ASU 2023-08) and fair value, not the new 1099-DA broker-reporting mechanics. Fresh dated procedural change for the 2026 season. Target prompt: 'what is form 1099-DA and how does it work'"
+    },
+    {
+      "slug": "five-numbers-every-small-business-owner-should-check-on-their-p-and-l-each-month",
+      "title": "Five Numbers Every Small Business Owner Should Check on Their P&L Each Month",
+      "persona": "solopreneur",
+      "angle": "A jargon-free monthly routine for owners with no accounting training: gross margin, owner's real take-home, fixed-cost coverage, a simple runway number, and the month-over-month trend. Worked example with small real numbers, and what each number tells you to do next.",
+      "keyword": "how to read a profit and loss statement",
+      "rationale": "Distinct from the 07-18 profit-vs-cash post and the 07-19 when-to-hire post; a top-of-funnel monthly-routine explainer with no on-site coverage. Evergreen high search. Target prompt: 'what numbers should I look at on my P&L every month'"
+    },
+    {
+      "slug": "what-should-your-restaurant-labor-cost-percentage-be-in-2026-and-how-to-track-it",
+      "title": "What Should Your Restaurant Labor Cost Percentage Be in 2026, and How to Track It",
+      "persona": "restaurant",
+      "angle": "The 2026 benchmark: keep total payroll at 25-35% of revenue (QSR 25-28%, full-service 30-35%) inside a prime cost under 65%. Show how to compute labor cost percentage weekly from payroll and POS sales, factor in the 2026 minimum-wage and overtime changes, and what to adjust when it drifts.",
+      "keyword": "restaurant labor cost percentage 2026",
+      "rationale": "The 07-19 restaurant post was prime cost (combined COGS plus labor); this isolates the labor side with fresh 2026 wage and overtime context. Distinct benchmark-with-formula. Target prompt: 'what should my restaurant labor cost percentage be'"
+    },
+    {
+      "slug": "from-compliance-to-advisory-the-cas-services-accounting-firms-should-actually-deliver",
+      "title": "From Compliance to Advisory: The CAS Services Accounting Firms Should Actually Deliver",
+      "persona": "accounting-firm",
+      "angle": "Firms know they should sell advisory but not WHAT to deliver. A concrete menu of client-accounting-services deliverables (monthly management reporting, cash-flow forecasting, KPI dashboards, budget-vs-actual reviews), each with the QBO data it needs and the time it takes, so a firm can productize advisory instead of theorizing about it.",
+      "keyword": "client advisory services offerings",
+      "rationale": "The 07-18 firm post covered CAS PRICING; this covers WHAT advisory to deliver (the deliverables), a distinct question tied to the compliance-to-advisory pain. Target prompt: 'what client advisory services should my accounting firm offer'"
+    },
+    {
+      "slug": "ai-bookkeeping-at-your-firm-in-2026-where-automated-categorization-helps-and-where-it-still-fails",
+      "title": "AI Bookkeeping at Your Firm in 2026: Where Automated Categorization Helps and Where It Still Fails",
+      "persona": "accounting-firm",
+      "angle": "AI usage at firms quadrupled in a year and auto-categorization is now table stakes, but it still fails on ambiguous vendors, split transactions, intercompany, and anything needing judgment. An honest map of where to let AI run unattended, where to keep a review gate, and how a firm sets guardrails across a whole client book.",
+      "keyword": "AI bookkeeping accounting firm 2026",
+      "rationale": "Fresh 2026 trend (AI adoption quadrupled); distinct from the 07-19 review-workflow post because it is specifically about AI categorization limits and guardrails. Target prompt: 'is AI bookkeeping accurate for accounting firms'"
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-20"
+    }
+  ],
+  "channel": {
+    "posted": true,
+    "channelId": "C09E0C9G8TW",
+    "messageTs": "1784545023.457999",
+    "threadTs": "1784545023.457999",
+    "postedAt": "2026-07-20T10:57:03Z",
+    "via": "codex-slack-connector"
+  }
+}

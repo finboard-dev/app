@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-23-templates",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "roth-catch-up-contribution-planner-2026",
+      "title": "Roth Catch-Up Contribution Planner 2026",
+      "persona": "cpa",
+      "angle": "Enter prior-year wages and current elective deferrals across 401(k)/403(b)/457(b); the model checks the indexed high-earner wage threshold, determines whether the catch-up must be Roth under the 2026 rule, computes the allowed pre-tax vs mandatory-Roth split, and estimates the added current-year tax and take-home impact of the Roth recharacterization.",
+      "keyword": "2026 Roth catch-up contribution calculator",
+      "rationale": "No retirement-contribution model in the library. Distinct from the 07-21 estimated-tax calculator and 07-20 owner comp planner. Fresh with the 2026 SECURE 2.0 Roth catch-up mandate. Pairs with the Roth catch-up blog."
+    },
+    {
+      "slug": "sales-tax-nexus-tracker-by-state-2026",
+      "title": "Sales Tax Nexus Tracker by State 2026",
+      "persona": "solopreneur",
+      "angle": "Enter sales and transaction counts by state; the model holds each state's 2026 economic-nexus threshold (revenue and, where still applicable, transactions), flags states where you have crossed nexus, shows a percent-to-threshold gauge for states you are approaching, and lists the registration action and date for each crossing.",
+      "keyword": "sales tax nexus tracker by state 2026",
+      "rationale": "No nexus or multi-state sales-tax model exists. Distinct from the 07-20 1099/W-9 vendor tracker and 07-21 1099-K reconciliation. Fresh with 2026 threshold changes (Illinois transaction-count removal). Pairs with the sales-tax-nexus blog."
+    },
+    {
+      "slug": "cash-conversion-cycle-and-working-capital-calculator",
+      "title": "Cash Conversion Cycle and Working Capital Calculator",
+      "persona": "cfo",
+      "angle": "From revenue, COGS, average receivables, inventory, and payables, compute days sales outstanding, days inventory outstanding, days payable outstanding, and the cash conversion cycle, with a monthly trend, the dollars of cash tied up in the cycle, and a lever panel showing the cash freed by improving each component.",
+      "keyword": "cash conversion cycle calculator template",
+      "rationale": "No CCC or working-capital-efficiency model exists; existing cash templates are forecasts and formal statements. Distinct from the 07-20 board KPI scorecard and 07-21 13-week forecast. Pairs with the cash-conversion-cycle blog."
+    },
+    {
+      "slug": "tip-pooling-and-tip-credit-compliance-calculator",
+      "title": "Tip Pooling and Tip Credit Compliance Calculator",
+      "persona": "restaurant",
+      "angle": "Enter hours and role for each tipped employee and the pooled tip total; the model allocates the pool by hours or points, computes the tip credit taken against the required cash-wage top-up to minimum wage, and flags any employee whose cash wage plus tips falls short so the employer knows the exact make-up owed.",
+      "keyword": "tip pooling tip credit calculator restaurant",
+      "rationale": "No tip-pooling or tip-credit model exists. Distinct from the 07-20 labor optimizer (labor cost percentage) and recipe cost calculator. Seasonally timely for summer hiring. Pairs with the tip-credit compliance blog."
+    },
+    {
+      "slug": "construction-profit-fade-and-job-margin-trend-tracker",
+      "title": "Construction Profit Fade and Job Margin Trend Tracker",
+      "persona": "construction",
+      "angle": "For each job, capture original estimated revenue and cost and the current projected revenue and cost each period; the model computes original vs current gross margin, the profit fade in dollars and points, and a portfolio rollup that ranks jobs by fade so a contractor sees margin erosion while there is still work left to correct.",
+      "keyword": "construction profit fade tracker template",
+      "rationale": "Existing construction files are WIP schedule, job cost analysis, project budget, cash flow, equipment cost, plus the 07-21 change-order log and retainage tracker; none tracks margin fade across periods. Pairs with the profit-fade blog."
+    },
+    {
+      "slug": "medical-denial-management-and-appeal-recovery-tracker",
+      "title": "Medical Denial Management and Appeal Recovery Tracker",
+      "persona": "hospital",
+      "angle": "Log each denial by payer, CPT, reason code, and dollar amount; track appeal status and IDR eligibility, recovered vs written-off dollars, and days-to-resolution, with KPI tiles for denial rate, appeal overturn rate, and net recovery so a practice manages denials as a recoverable revenue stream.",
+      "keyword": "medical claim denial tracker template",
+      "rationale": "No denial-management model exists; distinct from the 07-20 payer underpayment analyzer (contracted vs paid) and the 07-21 wRVU productivity tracker. Fresh with 2026 denial-rate trends and No Surprises Act IDR. Pairs with the No Surprises IDR blog."
+    },
+    {
+      "slug": "multi-entity-consolidation-and-eliminations-worksheet",
+      "title": "Multi-Entity Consolidation and Eliminations Worksheet",
+      "persona": "accounting-firm",
+      "angle": "Load the trial balances of two or three entities side by side, enter intercompany eliminations (receivables/payables, intercompany sales, investment in subsidiary), and the model produces a consolidated trial balance and combined P&L and balance sheet with a check that eliminations net to zero and debits equal credits.",
+      "keyword": "multi-entity consolidation eliminations template",
+      "rationale": "No consolidation/eliminations model in the library; the 07-20 COA standardization template maps accounts but does not consolidate. Strong product fit (consolidation is core to FinBoard). Distinct from all prior template runs."
+    },
+    {
+      "slug": "s-corp-vs-sole-proprietor-tax-savings-calculator-2026",
+      "title": "S-Corp vs Sole Proprietor Tax Savings Calculator 2026",
+      "persona": "solopreneur",
+      "angle": "From projected net business income, compare staying a sole proprietor/LLC (full self-employment tax) against an S-corp election (reasonable salary plus distributions), computing 2026 self-employment and payroll tax, the QBI interaction, and the net savings, returning a break-even income level and a keep/elect recommendation.",
+      "keyword": "s-corp vs sole proprietor tax calculator 2026",
+      "rationale": "No entity-election model exists. Distinct from the 07-21 quarterly estimated-tax calculator and owner pay/tax set-aside planner; this is the entity-structure decision. Evergreen high-intent with a fresh 2026 SE-tax and QBI basis."
+    },
+    {
+      "slug": "qbi-deduction-optimizer-2026",
+      "title": "QBI Deduction Optimizer 2026",
+      "persona": "cpa",
+      "angle": "Enter qualified business income, W-2 wages, UBIA of qualified property, and taxable income; the model applies the 2026 199A thresholds and phase-in, the wage/property limitation, the SSTB reduction, and shows how a Section 179 or bonus-depreciation election changes the QBI deduction, so a preparer can size deductions without clipping the 20% benefit.",
+      "keyword": "QBI deduction calculator 2026 199A",
+      "rationale": "No 199A/QBI model exists. Distinct from the existing bonus-depreciation Section 179 planner (which sizes the write-off) by computing the QBI interaction. Fresh with permanent QBI and 2026 thresholds. Pairs with the equipment-purchase blog."
+    },
+    {
+      "slug": "qboa-to-intuit-accountant-suite-migration-readiness-tracker",
+      "title": "QBOA to Intuit Accountant Suite Migration Readiness Tracker",
+      "persona": "accounting-firm",
+      "angle": "List every client file and each third-party app the firm relies on; score migration readiness per client (data cleaned, apps mapped to replacements, cutover date set), and the model rolls up percent ready, count of unresolved app dependencies, and days remaining to the end-of-2026 sunset so a firm can sequence cutovers instead of scrambling.",
+      "keyword": "QBOA migration checklist Intuit Accountant Suite",
+      "rationale": "No migration/readiness model exists. Distinct from the 07-20 busy-season capacity planner and multi-client close tracker; this tracks a one-time platform cutover. Dated to the end-of-2026 QBOA sunset. Pairs with the QBOA migration blog."
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-23"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}

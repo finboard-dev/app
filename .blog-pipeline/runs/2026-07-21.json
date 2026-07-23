@@ -1,0 +1,95 @@
+{
+  "date": "2026-07-21",
+  "status": "awaiting_topic_approval",
+  "topics": [
+    {
+      "slug": "what-the-2026-medicare-physician-fee-schedule-means-for-your-practice-revenue",
+      "title": "What the 2026 Medicare Physician Fee Schedule Means for Your Practice's Revenue",
+      "persona": "hospital",
+      "angle": "The CY2026 MPFS final rule is the most consequential payment change in a decade: two conversion factors ($33.57 APM / $33.40 non-APM), a new 2.5% efficiency adjustment cutting work RVUs on non-time-based services every three years, and a facility practice-expense reduction that permanently favors office over facility settings. Show an administrator how to model the revenue delta by service line and site of service from their top CPT volumes, so they can rebalance schedule and staffing before the cut hits.",
+      "keyword": "2026 Medicare physician fee schedule impact",
+      "rationale": "Distinct from the 07-20 RCM-KPI post (days in A/R) and the 07-18 payer-mix post; this is the reimbursement-rate change itself. Very fresh: rule effective Jan 1, 2026, first full year of site-neutral PE. No on-site coverage. Target prompt: 'how does the 2026 medicare fee schedule affect my practice'"
+    },
+    {
+      "slug": "the-2026-1099-k-threshold-reset-what-to-tell-clients-who-did-or-didnt-get-one",
+      "title": "The 2026 1099-K Threshold Reset: What to Tell Clients Who Did (or Didn't) Get One",
+      "persona": "cpa",
+      "angle": "After years of on-again-off-again thresholds, 2026 settles it: payment apps and marketplaces issue a 1099-K only above $20,000 AND 200 transactions, while payment-card processors still issue for any amount. Explain who now gets a form and who doesn't, the reconciliation traps (personal transfers, refunds, sales tax gross-up), and the one-page client note a CPA should send before filing season.",
+      "keyword": "1099-K threshold 2026",
+      "rationale": "Distinct from the 07-20 Form 1099-DA post (digital assets) and the 07-20 above-the-line deductions post; this is the payment-platform reporting reset. Dated procedural change for the 2026 season, no on-site coverage. Target prompt: 'what is the 1099-K threshold for 2026'"
+    },
+    {
+      "slug": "change-order-accounting-in-quickbooks-online-stop-losing-margin-on-scope-changes",
+      "title": "Change Order Accounting in QuickBooks Online: Stop Losing Margin on Scope Changes",
+      "persona": "construction",
+      "angle": "Change orders are where contract margin quietly leaks: work starts before the change is priced, costs post to the job but the added revenue never gets billed. Show how to log each change order against the original estimate in QBO, tie approved cost to approved price, and read the cumulative margin impact so nothing is performed unpriced.",
+      "keyword": "construction change order accounting",
+      "rationale": "The 07-20 construction posts were real-time job costing and completed-contract vs POC; the 07-19 post was the WIP schedule. Change orders are a separate artifact none of them cover. Evergreen pain, no on-site coverage. Target prompt: 'how to account for change orders in construction'"
+    },
+    {
+      "slug": "how-to-reprice-your-restaurant-menu-in-2026-without-losing-guests",
+      "title": "How to Reprice Your Restaurant Menu in 2026 Without Losing Guests",
+      "persona": "restaurant",
+      "angle": "With restaurant menu prices up 8.2% year over year and food costs 34% above pre-pandemic levels, flat markup formulas no longer protect margin. Walk operators through a margin-based repricing method: start from each item's food-cost percentage and contribution margin, target an overall food-cost band, and apply selective, psychology-aware increases rather than an across-the-board hike that kills traffic.",
+      "keyword": "restaurant menu repricing 2026",
+      "rationale": "The 07-20 restaurant post was labor-cost percentage and the 07-19 was prime cost; this is menu pricing, a distinct lever. Fresh 2026 inflation context. Distinct from the menu-engineering template. Target prompt: 'how should I raise my menu prices without losing customers'"
+    },
+    {
+      "slug": "quarterly-estimated-taxes-in-2026-a-simple-safe-harbor-method-to-avoid-january-surprises",
+      "title": "Quarterly Estimated Taxes in 2026: A Simple Safe-Harbor Method to Avoid January Surprises",
+      "persona": "solopreneur",
+      "angle": "A jargon-free routine for owners who dread the quarterly surprise: the 2026 due dates (Apr 15, Jun 15, Sep 15, Jan 15 2027), the safe-harbor rule (90% of this year or 100%/110% of last year), and a worked example that turns a monthly profit number into four payment amounts, plus self-employment tax. Shows how current books make the estimate almost automatic.",
+      "keyword": "quarterly estimated taxes 2026 small business",
+      "rationale": "No dedicated estimated-tax explainer on-site; the 07-20 solopreneur post was reading the monthly P&L. Deadline-anchored, evergreen high search. Target prompt: 'how much should I pay in quarterly estimated taxes 2026'"
+    },
+    {
+      "slug": "from-annual-budget-to-rolling-forecast-a-2026-tariff-proof-planning-playbook",
+      "title": "From Annual Budget to Rolling Forecast: A 2026 Tariff-Proof Planning Playbook",
+      "persona": "cfo",
+      "angle": "Gartner's 2026 CFO agenda puts forecast accuracy second only to cost optimization, and boards now demand tariff and supply-chain scenarios on demand. Lay out the shift from a static annual budget to a driver-based rolling forecast: pick the three or four drivers that move your P&L (rates, tariffs, demand), build three actionable scenarios, and refresh monthly so the forecast is never stale on arrival.",
+      "keyword": "rolling forecast vs annual budget 2026",
+      "rationale": "On-site covers budget vs actuals and consolidation, not the rolling-forecast method itself. Fresh 2026 tariff and FP&A context. Product-fit strong (forecasting/consolidation). Target prompt: 'how do I switch from annual budget to rolling forecast'"
+    },
+    {
+      "slug": "standardizing-the-chart-of-accounts-across-clients-a-firm-rollout-playbook",
+      "title": "Standardizing the Chart of Accounts Across Clients: A Firm Rollout Playbook",
+      "persona": "accounting-firm",
+      "angle": "When every client has its own chart of accounts, nothing rolls up and staff churn is expensive. Give firms a rollout method: design a master COA, crosswalk each client's existing accounts to it, handle the accounts that don't map, and keep the standard enforced as clients drift, so consolidated reporting and staff hand-offs stop breaking.",
+      "keyword": "chart of accounts standardization accounting firm",
+      "rationale": "The 07-20 firm posts were CAS deliverables and AI bookkeeping limits; this targets the no-standard-COA pain directly, uncovered as a blog. Pairs with the COA-mapping template. Target prompt: 'how do accounting firms standardize the chart of accounts across clients'"
+    },
+    {
+      "slug": "filing-season-2026-survival-guide-irs-cuts-no-direct-file-and-the-end-of-paper-refund-checks",
+      "title": "Filing Season 2026 Survival Guide: IRS Cuts, No Direct File, and the End of Paper Refund Checks",
+      "persona": "cpa",
+      "angle": "The IRS headcount fell from ~102,000 to ~74,000, Direct File is gone for 2026, and paper refund checks are being phased out for direct deposit. Translate these operational shifts into a practice playbook: set client expectations on refund timing, push e-file and direct deposit, avoid paper correspondence that now sits for weeks, and protect your own capacity during the crunch.",
+      "keyword": "IRS 2026 filing season changes",
+      "rationale": "Distinct from the 07-20 deduction and 1099-DA posts; this is the operational/service side of the 2026 season. Dated and timely. Target prompt: 'what is different about the 2026 IRS filing season'"
+    },
+    {
+      "slug": "telehealth-is-permanent-in-2026-how-to-bill-and-book-virtual-visits-correctly",
+      "title": "Telehealth Is Permanent in 2026: How to Bill and Book Virtual Visits Correctly",
+      "persona": "hospital",
+      "angle": "The 2026 MPFS made key telehealth flexibilities permanent: no frequency limits for hospital and SNF patients and permanent virtual direct supervision for most services. Show a practice how to bill virtual visits under the new rules, where place-of-service and modifier choices change reimbursement, and how to book telehealth revenue so it reconciles cleanly against the fee schedule.",
+      "keyword": "2026 telehealth billing rules",
+      "rationale": "Separate from the fee-schedule revenue post; this is the telehealth billing mechanics that became permanent in 2026. Fresh regulatory change, no on-site coverage. Target prompt: 'how do I bill telehealth visits in 2026'"
+    },
+    {
+      "slug": "closing-the-books-faster-in-2026-a-continuous-close-playbook-for-finance-teams",
+      "title": "Closing the Books Faster in 2026: A Continuous-Close Playbook for Finance Teams",
+      "persona": "cfo",
+      "angle": "The board package that takes days to assemble starts with a slow close. Lay out a continuous-close approach: reconcile and accrue throughout the month instead of in a month-end sprint, automate the repetitive reconciliations, standardize the close calendar and owners, and cut the days-to-close so variance explanations arrive while they still matter.",
+      "keyword": "continuous close month-end acceleration 2026",
+      "rationale": "On-site covers audit-ready controls without slowing the close, but not a continuous-close method for finance teams; distinct from the rolling-forecast post (planning vs close). Product-fit strong (close acceleration). Target prompt: 'how do I close the books faster every month'"
+    }
+  ],
+  "history": [
+    {
+      "status": "awaiting_topic_approval",
+      "at": "2026-07-21"
+    }
+  ],
+  "channel": {
+    "posted": false
+  }
+}
