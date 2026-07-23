@@ -54,3 +54,9 @@ test("testimonials page renders an accessible non-autoplaying video", () => {
   assert.doesNotMatch(component, /autoPlay/);
   assert.match(page, /<Testimonials \/>[\s\S]*<TestimonialVideo \/>[\s\S]*<CTABand/);
 });
+
+test("web-ready testimonial video asset is present", () => {
+  const asset = path.join(FRONTEND_DIR, "public/videos/finboard-testimonial.mp4");
+  assert.ok(fs.existsSync(asset), "testimonial video asset must exist");
+  assert.ok(fs.statSync(asset).size > 0, "testimonial video asset must not be empty");
+});
