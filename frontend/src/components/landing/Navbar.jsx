@@ -260,6 +260,13 @@ export default function Navbar({ onBookDemo }) {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
+          <a
+            href="https://app.finboard.ai"
+            data-testid="nav-login-link"
+            className="rounded-full border border-[#0A0A0A]/20 px-4 py-2.5 text-sm text-[#0A0A0A] transition-colors hover:border-[#0A0A0A]"
+          >
+            Login
+          </a>
           <button
             data-testid="nav-book-demo-button"
             onClick={onBookDemo}
@@ -374,6 +381,14 @@ export default function Navbar({ onBookDemo }) {
                 })}
               </div>
             </div>
+            <a
+              data-testid="mobile-nav-login-link"
+              href="https://app.finboard.ai"
+              onClick={() => setOpen(false)}
+              className="w-full rounded-full border border-[#0A0A0A]/20 px-4 py-2.5 text-center text-base text-[#0A0A0A]"
+            >
+              Login
+            </a>
             <button
               data-testid="mobile-nav-book-demo"
               onClick={() => { setOpen(false); onBookDemo(); }}
