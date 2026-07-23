@@ -8,6 +8,10 @@ export default function TestimonialVideo() {
             Your browser does not support embedded video.
           </video>
         </div>
+        <div className="mt-4" data-testid="testimonial-video-attribution">
+          <div className="text-sm font-medium text-[#0A0A0A]">Olga Hurtado</div>
+          <div className="mt-0.5 text-sm text-[#0A0A0A]/60">NeatBooks LLC</div>
+        </div>
       </div>
     </section>
   );

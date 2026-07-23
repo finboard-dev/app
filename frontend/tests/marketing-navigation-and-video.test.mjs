@@ -64,6 +64,14 @@ test("testimonials page renders an accessible non-autoplaying video", () => {
   assert.match(page, /<Testimonials \/>[\s\S]*<TestimonialVideo \/>[\s\S]*<CTABand/);
 });
 
+test("testimonial video identifies Olga Hurtado and NeatBooks LLC", () => {
+  const component = readSource("src/components/landing/TestimonialVideo.jsx");
+
+  assert.match(component, /data-testid="testimonial-video-attribution"/);
+  assert.match(component, />Olga Hurtado</);
+  assert.match(component, />NeatBooks LLC</);
+});
+
 test("web-ready testimonial video asset is present", () => {
   const asset = path.join(FRONTEND_DIR, "public/videos/finboard-testimonial.mp4");
   assert.ok(fs.existsSync(asset), "testimonial video asset must exist");
