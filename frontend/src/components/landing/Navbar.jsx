@@ -111,7 +111,7 @@ export default function Navbar({ onBookDemo }) {
           <span className="font-serif-display text-[22px] tracking-tight">FinBoard</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden xl:flex items-center gap-7">
           <DropdownMenu>
             <DropdownMenuTrigger
               data-testid="nav-products-trigger"
@@ -259,7 +259,7 @@ export default function Navbar({ onBookDemo }) {
           </DropdownMenu>
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <a
             href="https://app.finboard.ai"
             data-testid="nav-login-link"
@@ -277,7 +277,7 @@ export default function Navbar({ onBookDemo }) {
         </div>
 
         <button
-          className="md:hidden p-2 rounded-md hover:bg-black/5"
+          className="xl:hidden p-2 rounded-md hover:bg-black/5"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           data-testid="nav-mobile-toggle"
@@ -287,7 +287,7 @@ export default function Navbar({ onBookDemo }) {
       </nav>
 
       {open && (
-        <div className="md:hidden border-t border-line bg-[#F5F0E8]" data-testid="nav-mobile-panel">
+        <div className="xl:hidden border-t border-line bg-[#F5F0E8]" data-testid="nav-mobile-panel">
           <div className="px-6 py-4 flex flex-col gap-4">
             <div className="pb-2 border-b border-line/70">
               <div className="text-xs uppercase tracking-[0.18em] text-[#0A0A0A]/50 mb-2">Products</div>

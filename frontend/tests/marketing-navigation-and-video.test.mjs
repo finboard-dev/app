@@ -42,6 +42,15 @@ test("navbar Login links independently target the FinBoard app before their cons
   });
 });
 
+test("navbar uses the compact menu until the full navigation can fit", () => {
+  const source = readSource("src/components/landing/Navbar.jsx");
+
+  assert.match(source, /hidden xl:flex items-center gap-7/);
+  assert.match(source, /hidden xl:flex items-center gap-3/);
+  assert.match(source, /className="xl:hidden p-2 rounded-md hover:bg-black\/5"/);
+  assert.match(source, /className="xl:hidden border-t border-line bg-\[#F5F0E8\]"/);
+});
+
 test("testimonials page renders an accessible non-autoplaying video", () => {
   const component = readSource("src/components/landing/TestimonialVideo.jsx");
   const page = readSource("src/views/TestimonialsPage.jsx");
