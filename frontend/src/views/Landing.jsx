@@ -13,6 +13,7 @@ import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import IndustryCollage from "@/components/landing/IndustryCollage";
+import TestimonialVideo from "@/components/landing/TestimonialVideo";
 
 export default function Landing() {
   const [demoOpen, setDemoOpen] = React.useState(false);
@@ -24,6 +25,7 @@ export default function Landing() {
       <main>
         <Hero onBookDemo={openDemo} />
         <TrustBar />
+        <TestimonialVideo />
         <IndustryCollage />
         <WhyWeExist />
         <Outcomes />
