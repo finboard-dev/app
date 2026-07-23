@@ -18,8 +18,8 @@ export default function TestimonialsPage() {
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="testimonials-page">
       <Navbar onBookDemo={openDemo} />
       <main className="pt-6">
-        <Testimonials />
         <TestimonialVideo />
+        <Testimonials />
         <CTABand onBookDemo={openDemo} />
       </main>
       <Footer />
