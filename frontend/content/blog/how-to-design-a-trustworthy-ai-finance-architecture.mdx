@@ -1,0 +1,119 @@
+---
+title: "How to Design a Trustworthy AI Finance Architecture"
+date: "2026-07-24"
+category: "tech"
+authorId: "finboard-team"
+excerpt: "Five design questions that turn an AI finance pipeline into an architecture that can be trusted with close-critical work."
+coverImage: "/blog/covers/how-to-design-a-trustworthy-ai-finance-architecture.png"
+coverAlt: "Reference architecture for a trustworthy AI finance system"
+tags:
+  - AI finance
+  - financial data architecture
+  - multi-entity accounting
+  - engineering
+---
+
+> This is a conceptual reference architecture for designing AI finance systems. It is not a description of FinBoard's current production implementation.
+
+Every team building an AI finance product draws the same diagram. Data comes in from the ERP. It gets normalized. Something reasons over it. An agent proposes an action. A human approves. Arrows all pointing down.
+
+That diagram is not wrong. It is just not an architecture yet. It is a data flow with the hard parts left out.
+
+For financial reporting, consolidation, and analytics across many entities, the pipeline is only half the problem. The important design questions are about the concerns that cut across the pipeline: evidence, retrieval, memory, policy, and attention.
+
+![Reference architecture for designing AI finance systems](/blog/covers/how-to-design-a-trustworthy-ai-finance-architecture.png)
+
+## Start with the spine
+
+Read the primary pipeline as a narrowing funnel.
+
+1. **ERP systems** are raw and inconsistent.
+2. **Financial objects** are the typed and cleaned version of that data.
+3. **A relationship graph** adds mappings, entities, ownership, lineage, and calendar relationships.
+4. **Context selection** chooses the small subset relevant to a question.
+5. **A reasoning engine** plans, computes, and explains from that subset.
+6. **A finance agent** turns conclusions into proposed actions.
+7. **A human** accepts, edits, or rejects those actions.
+
+The relationship graph is what makes multi-entity work possible. Raw ERP data rarely carries the meaning that a finance team needs. A local account must map to a consolidated line. Ownership must be effective from a date. A period may follow a 4-4-5 calendar rather than a Gregorian one. Those relationships are not incidental metadata. They are part of the financial model.
+
+The spine should move in one direction: each stage is a smaller and more opinionated view than the one before it. The real architectural work is deciding how the cross-cutting concerns attach to that spine.
+
+## Design retrieval as traversal, not similarity
+
+In finance, retrieval should begin from a precise anchor: an entity, account, transaction, period, or report line. From there, traverse defined relationships: mappings, ownership, prior periods, counterparty records, and journal lineage.
+
+The answer to a question such as "Why did consolidated cost of goods sold move?" should be reachable in a bounded number of hops. It should not depend on embedding a question and hoping that the nearest text fragments happen to contain the right explanation.
+
+Vector search still has a useful role on the unstructured tail: policy documents, close memos, contract extracts, and email threads explaining a reclassification. It is not a substitute for a financial relationship model. Treating the general ledger as a corpus to embed is a fragile design choice because financial meaning depends on exact, auditable relationships.
+
+## Separate three kinds of memory
+
+There is no single memory layer. A trustworthy design separates at least three kinds of state.
+
+**Durable business facts** belong in the relationship model. These include account mappings, entity structure, ownership percentages, and calendar definitions. They change deliberately and need audit history.
+
+**Decision memory** records what a human did with a previous proposal. It captures approved exceptions, rejected anomalies, mapping overrides, and their explanations. It is not the same thing as business data, but it must inform future context selection or the system will repeat corrections every close cycle.
+
+**Working memory** belongs to one reasoning run. It is disposable. Treating a temporary calculation as durable business knowledge is a common source of confusing and untraceable behavior.
+
+## Enforce policy where it constrains behavior
+
+Policy is a span, not a single gate before approval.
+
+Some policies constrain what the system may see at all: entity-level access, locked periods, and restricted accounts. Apply those during context selection. If a closed period reaches the reasoning engine, the system can produce a proposal that should never have existed.
+
+Other policies constrain what the system may propose: materiality thresholds, journal-entry limits, segregation of duties, and close-state rules. Apply these at the agent boundary.
+
+The result is two enforcement points backed by one policy engine:
+
+| Enforcement point | Question it answers |
+| --- | --- |
+| Context selection | May this information be retrieved and considered? |
+| Agent boundary | May this action be proposed? |
+
+One enforcement point is usually insufficient. A final policy check cannot undo the risk of reasoning over data the system was never allowed to use.
+
+## Attach evidence at ingestion
+
+Evidence should attach to financial objects when they are constructed and travel forward with them. A source row, document reference, period, and sync version should be available to every calculation and proposal that depends on them.
+
+The reasoning layer may reference or combine that evidence. It should not mint new evidence or reconstruct proof after the fact.
+
+The practical test is simple: at approval time, a reviewer should be able to navigate from any number in a proposal to the source transaction without triggering a second search. If the system has to look for proof after generating the proposal, the proof was not part of the original context.
+
+## Compute attention twice
+
+Attention should be computed in two places for two different jobs.
+
+**Selection-time attention** is cheap. It scores recency, materiality, scope, and whether an account moved at all. Its purpose is to fit useful context within a budget.
+
+**Reasoning-time attention** is more expensive. It asks what matters for the question at hand: a budget variance, an unusual counterparty, related accounts that should have moved together, or intercompany balances that no longer tie.
+
+If these jobs are conflated, a system either retrieves everything and asks the model to sort it out, or filters too aggressively and discards the anomaly before anything can inspect it. The latter is particularly dangerous because it is invisible.
+
+## Close the feedback loop
+
+Human approval must feed back into decision memory.
+
+An acceptance, edit, or rejection is a labeled example from a domain expert at the moment of highest context. Capture the decision, the rationale, the evidence reviewed, and any changed threshold or mapping. Then make the record available to future context selection and proposal generation.
+
+Without this feedback edge, a system may log decisions but still repeat the same mistakes with a stable error rate. With it, every close cycle becomes an opportunity to improve the next one while preserving the human as the authority.
+
+## What the design implies
+
+Once these five questions are taken seriously, the architecture needs more than a vertical pipeline. It needs:
+
+- An evidence store written at ingestion and read at approval.
+- A decision log distinct from business data.
+- A policy engine with separate retrieval and proposal enforcement.
+- A cheap materiality scorer for broad selection and a deeper scorer for financial reasoning.
+- A feedback edge from human approval into decision memory.
+
+None of these components is exotic. They are simply the parts that determine whether an AI finance workflow can be trusted with close-critical work.
+
+The pipeline tells you what the system does. The cross-cutting concerns tell you whether it deserves to be trusted.
+
+---
+
+*Published by the FinBoard Team. FinBoard builds financial reporting, consolidation, and analytics for accounting firms, fractional CFOs, and multi-entity finance teams.*
