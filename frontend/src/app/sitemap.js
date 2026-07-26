@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/blog";
 import { getAllTemplates } from "@/lib/templates";
 import { SITE_URL } from "@/lib/seo";
+import { VIDEOS } from "@/data/videos";
 
 // Generated sitemap served at /sitemap.xml. Static routes are listed once here;
 // blog posts are pulled from content/blog automatically, so publishing a post
@@ -16,6 +17,7 @@ const STATIC_ROUTES = [
   { path: "/engagement", changeFrequency: "monthly", priority: 0.8 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/templates", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/videos", changeFrequency: "monthly", priority: 0.7 },
   { path: "/conferences", changeFrequency: "weekly", priority: 0.7 },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.6 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
@@ -55,5 +57,12 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...postEntries, ...templateEntries];
+  const videoEntries = VIDEOS.map((video) => ({
+    url: `${SITE_URL}/videos/${video.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+    lastModified: new Date(video.uploadDate),
+  }));
+
+  return [...staticEntries, ...postEntries, ...templateEntries, ...videoEntries];
 }

@@ -47,6 +47,7 @@ export default function Footer() {
             <FooterCol title="Company" links={[
               { l: "About", href: "/about" },
               { l: "Customers", href: "/testimonials" },
+              { l: "Videos", href: "/videos" },
               { l: "Contact", href: CALENDLY_URL },
             ]} />
             <FooterCol title="Legal" links={[

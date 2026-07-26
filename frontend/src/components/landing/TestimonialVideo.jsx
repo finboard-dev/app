@@ -34,9 +34,7 @@ export default function TestimonialVideo() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-semibold text-[#0A0A0A] hover:underline"
-                >
-                  Olga Hurtado
-                </a>
+                >Olga Hurtado</a>
               </div>
               <div className="mt-0.5 text-sm text-[#0A0A0A]/60">
                 Founder &amp; CEO,{" "}
@@ -45,9 +43,7 @@ export default function TestimonialVideo() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0A0A0A]/80 hover:underline"
-                >
-                  NeatBooks LLC
-                </a>
+                >NeatBooks LLC</a>
               </div>
             </div>
           </div>
@@ -59,7 +55,7 @@ export default function TestimonialVideo() {
                 controls
                 preload="metadata"
                 poster="/videos/finboard-testimonial-poster.jpg"
-                aria-label="FinBoard customer testimonial: Olga Hurtado, Founder & CEO of NeatBooks LLC, on franchise consolidation"
+                aria-label="FinBoard customer testimonial video"
                 data-testid="testimonial-video"
                 className="block aspect-video w-full"
               >
