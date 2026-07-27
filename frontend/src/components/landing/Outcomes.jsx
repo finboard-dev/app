@@ -88,7 +88,7 @@ export default function Outcomes() {
         <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50"><TrendingUp size={12} /> Business impact</div>
         <div className="mt-6 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left, heading + guarantee */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 min-w-0">
             <h2 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
               Performance Accounting<br />
               <span className="italic">that drives your P&amp;L.</span>
@@ -163,7 +163,7 @@ export default function Outcomes() {
           </div>
 
           {/* Right, improvement (above) + the spreadsheet */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 min-w-0">
             {/* Static improvement tags, active one highlights in black, in sync with the sheet */}
             <div className="mb-3 flex flex-wrap gap-2" data-testid="outcomes-tags">
               {IMPACTS.map((im, i) => {

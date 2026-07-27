@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Layers, LineChart, Users, ShieldCheck, Building2, Database, Receipt, CircleDollarSign } from "lucide-react";
 import HeroCarousel from "@/components/landing/HeroCarousel";
+import ScaleToFit from "@/components/landing/ScaleToFit";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import { INDUSTRY_NAV } from "@/data/industries";
 
@@ -41,7 +42,7 @@ export default function Hero({ onBookDemo }) {
       <div className="grain absolute inset-0" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-6 lg:pt-8 pb-16 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-5 animate-fade-up">
+          <div className="lg:col-span-5 min-w-0 animate-fade-up">
             <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
               <span className="kbd-chip whitespace-nowrap" data-testid="hero-eyebrow">
                 <Sparkles size={12} /> For the Office of the CFO
@@ -128,8 +129,10 @@ export default function Hero({ onBookDemo }) {
             </div>
           </div>
 
-          <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <HeroCarousel onViewChange={handleViewChange} />
+          <div className="lg:col-span-7 min-w-0 animate-fade-up" style={{ animationDelay: "120ms" }}>
+            <ScaleToFit designWidth={520}>
+              <HeroCarousel onViewChange={handleViewChange} />
+            </ScaleToFit>
           </div>
         </div>
       </div>
