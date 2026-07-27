@@ -1,0 +1,407 @@
+{
+  "publicationDate": "2026-07-27",
+  "timeZone": "Asia/Kolkata",
+  "batchId": "2026-07-27-finboard-content",
+  "commitSubject": "content: publish FinBoard batch 2026-07-27",
+  "releaseQuantity": {
+    "blogs": 1,
+    "templates": 1,
+    "reason": "Explicit user override for this release"
+  },
+  "publicationOrder": [
+    "Blog 1",
+    "Template 1"
+  ],
+  "researchSources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1649313/000110465925028922/bwlp-20241231xex4d2.htm",
+      "observedDate": "2026-07-27"
+    },
+    {
+      "url": "https://dart.deloitte.com/USDART/home/codification/liabilities/asc470-10/roadmap-debt/chapter-13-balance-sheet-classification/13-5-credit-related-covenant-violations",
+      "observedDate": "2026-07-27"
+    },
+    {
+      "url": "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-29.html",
+      "observedDate": "2026-07-27"
+    },
+    {
+      "url": "https://ezel.ai/templates/loan-compliance-certificate",
+      "observedDate": "2026-07-27"
+    },
+    {
+      "url": "https://finamodel.com/templates/bank-loan-model",
+      "observedDate": "2026-07-27"
+    },
+    {
+      "url": "https://knowledgebase.cascadedebt.com/reporting-templates",
+      "observedDate": "2026-07-27"
+    }
+  ],
+  "candidateBlogs": [
+    {
+      "candidateId": "debt-covenant-controller-workflow",
+      "topic": "Debt covenant compliance workflow for controllers",
+      "primaryKeyword": "debt covenant compliance",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=debt+covenant+compliance",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller and CFO",
+      "pain": "Contract-specific calculations are rebuilt late and lack source evidence",
+      "competitorGap": "Existing results separate ratio explanations, software, and certificates instead of showing one controlled monthly workflow",
+      "finboardConnection": "Governed multi-entity consolidation and financial analysis",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1649313/000110465925028922/bwlp-20241231xex4d2.htm"
+      ],
+      "score": 97,
+      "scoreBreakdown": {
+        "buyerPain": 20,
+        "searchIntent": 19,
+        "productRelevance": 19,
+        "competitorGap": 15,
+        "geoPotential": 14,
+        "practicalValue": 10
+      },
+      "eligible": true,
+      "rejectionReason": null
+    },
+    {
+      "candidateId": "balance-sheet-risk-reconciliation",
+      "topic": "Risk-ranked balance sheet reconciliation",
+      "primaryKeyword": "balance sheet reconciliation process",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=balance+sheet+reconciliation+process",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller",
+      "pain": "Review time is spread evenly instead of focused on risky accounts",
+      "competitorGap": "Most checklists do not connect risk ranking, evidence, and close escalation",
+      "finboardConnection": "Financial review and close analytics",
+      "sourceUrls": [
+        "https://coefficient.io/templates/balance-sheet-account-reconciliation-checklist"
+      ],
+      "score": 87,
+      "scoreBreakdown": {
+        "buyerPain": 18,
+        "searchIntent": 18,
+        "productRelevance": 17,
+        "competitorGap": 12,
+        "geoPotential": 12,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "fixed-asset-rollforward-controls",
+      "topic": "Fixed asset rollforward controls for month-end close",
+      "primaryKeyword": "fixed asset roll forward",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=fixed+asset+roll+forward",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller and accountant",
+      "pain": "Asset additions, disposals, and depreciation do not reconcile to the ledger",
+      "competitorGap": "Product documentation explains reports but not a review-ready close workpaper",
+      "finboardConnection": "Close reporting and multi-entity controls",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dynamics365/finance/fixed-assets/Fixed-asset-roll-forward-report"
+      ],
+      "score": 84,
+      "scoreBreakdown": {
+        "buyerPain": 17,
+        "searchIntent": 18,
+        "productRelevance": 16,
+        "competitorGap": 12,
+        "geoPotential": 11,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "intercompany-management-fee-allocation",
+      "topic": "Intercompany management fee allocation controls",
+      "primaryKeyword": "intercompany management fee allocation",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=intercompany+management+fee+allocation",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Multi-entity controller",
+      "pain": "Shared-service costs are allocated inconsistently and create elimination differences",
+      "competitorGap": "System guidance covers allocation mechanics but not policy, evidence, and reconciliation",
+      "finboardConnection": "Consolidation and intercompany reporting",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dynamics365/business-central/intercompany-allocate-costs"
+      ],
+      "score": 87,
+      "scoreBreakdown": {
+        "buyerPain": 18,
+        "searchIntent": 16,
+        "productRelevance": 20,
+        "competitorGap": 13,
+        "geoPotential": 11,
+        "practicalValue": 9
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "cash-conversion-cycle-controller",
+      "topic": "Cash conversion cycle analysis for operators",
+      "primaryKeyword": "cash conversion cycle analysis",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=cash+conversion+cycle+analysis",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "CFO and controller",
+      "pain": "Working-capital pressure is reported after cash has already tightened",
+      "competitorGap": "Generic formulas rarely show data controls and entity-level drivers",
+      "finboardConnection": "Cash flow analytics",
+      "sourceUrls": [
+        "https://openstax.org/books/principles-of-finance-2e/pages/19-1-what-is-working-capital"
+      ],
+      "score": 84,
+      "scoreBreakdown": {
+        "buyerPain": 17,
+        "searchIntent": 18,
+        "productRelevance": 16,
+        "competitorGap": 11,
+        "geoPotential": 12,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "covenant-waiver-accounting",
+      "topic": "Covenant violation and waiver accounting under ASC 470",
+      "primaryKeyword": "debt covenant waiver accounting",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=debt+covenant+waiver+accounting",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller and technical accountant",
+      "pain": "Teams discover classification and disclosure implications too late",
+      "competitorGap": "Technical guidance is authoritative but not organized as an operating checklist",
+      "finboardConnection": "Financial reporting controls",
+      "sourceUrls": [
+        "https://dart.deloitte.com/USDART/home/codification/liabilities/asc470-10/roadmap-debt/chapter-13-balance-sheet-classification/13-5-credit-related-covenant-violations"
+      ],
+      "score": 82,
+      "scoreBreakdown": {
+        "buyerPain": 19,
+        "searchIntent": 17,
+        "productRelevance": 15,
+        "competitorGap": 10,
+        "geoPotential": 13,
+        "practicalValue": 8
+      },
+      "eligible": false,
+      "rejectionReason": "Closely overlaps the selected covenant workflow and would cannibalize its breach section"
+    }
+  ],
+  "candidateTemplates": [
+    {
+      "candidateId": "debt-covenant-calculator-certificate",
+      "topic": "Debt covenant compliance calculator and certificate workpaper",
+      "primaryKeyword": "debt covenant compliance certificate template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=debt+covenant+compliance+certificate+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller and CFO",
+      "pain": "Covenant tests lack agreement references, source ties, headroom alerts, and forecast cases",
+      "competitorGap": "Available templates focus on a ratio or certificate instead of the full preparation and review workpaper",
+      "finboardConnection": "Controlled reporting inputs and multi-entity analysis",
+      "sourceUrls": [
+        "https://ezel.ai/templates/loan-compliance-certificate"
+      ],
+      "score": 97,
+      "scoreBreakdown": {
+        "buyerPain": 20,
+        "searchIntent": 19,
+        "productRelevance": 19,
+        "competitorGap": 15,
+        "geoPotential": 14,
+        "practicalValue": 10
+      },
+      "eligible": true,
+      "rejectionReason": null
+    },
+    {
+      "candidateId": "balance-sheet-reconciliation-workpaper",
+      "topic": "Risk-ranked balance sheet reconciliation workpaper",
+      "primaryKeyword": "balance sheet reconciliation template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=balance+sheet+reconciliation+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Controller and accountant",
+      "pain": "Open reconciling items are not prioritized or carried into close review",
+      "competitorGap": "Common downloads lack risk scoring and evidence status",
+      "finboardConnection": "Close review and financial controls",
+      "sourceUrls": [
+        "https://coefficient.io/templates/balance-sheet-account-reconciliation-checklist"
+      ],
+      "score": 87,
+      "scoreBreakdown": {
+        "buyerPain": 18,
+        "searchIntent": 19,
+        "productRelevance": 17,
+        "competitorGap": 12,
+        "geoPotential": 11,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "fixed-asset-rollforward-workpaper",
+      "topic": "Fixed asset rollforward and depreciation control workpaper",
+      "primaryKeyword": "fixed asset roll forward template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=fixed+asset+roll+forward+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Accountant and controller",
+      "pain": "GL balances do not tie to additions, disposals, and depreciation",
+      "competitorGap": "Most examples are report outputs rather than controlled workpapers",
+      "finboardConnection": "Month-end financial review",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dynamics365/finance/fixed-assets/Fixed-asset-roll-forward-report"
+      ],
+      "score": 84,
+      "scoreBreakdown": {
+        "buyerPain": 17,
+        "searchIntent": 18,
+        "productRelevance": 16,
+        "competitorGap": 13,
+        "geoPotential": 10,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "intercompany-allocation-workpaper",
+      "topic": "Intercompany management fee allocation workpaper",
+      "primaryKeyword": "intercompany allocation template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=intercompany+allocation+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Multi-entity controller",
+      "pain": "Allocation bases, entries, and eliminations are difficult to reproduce",
+      "competitorGap": "Generic allocation sheets omit reciprocal posting and elimination controls",
+      "finboardConnection": "Multi-entity consolidation",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dynamics365/business-central/intercompany-allocate-costs"
+      ],
+      "score": 87,
+      "scoreBreakdown": {
+        "buyerPain": 18,
+        "searchIntent": 16,
+        "productRelevance": 20,
+        "competitorGap": 13,
+        "geoPotential": 10,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "cash-conversion-cycle-dashboard",
+      "topic": "Cash conversion cycle dashboard",
+      "primaryKeyword": "cash conversion cycle template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=cash+conversion+cycle+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "CFO and controller",
+      "pain": "Receivable, inventory, and payable days are tracked in separate reports",
+      "competitorGap": "Available calculators rarely include driver-level period comparisons",
+      "finboardConnection": "Working-capital analytics",
+      "sourceUrls": [
+        "https://www.nsca.org/download/cash-conversion-cycle-ccc-template/"
+      ],
+      "score": 83,
+      "scoreBreakdown": {
+        "buyerPain": 17,
+        "searchIntent": 18,
+        "productRelevance": 16,
+        "competitorGap": 11,
+        "geoPotential": 11,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    },
+    {
+      "candidateId": "consolidation-je-control-log",
+      "topic": "Consolidation journal entry control log",
+      "primaryKeyword": "consolidation journal entry template",
+      "keywordDemandEvidence": {
+        "metric": "searchResultsObserved",
+        "value": 10,
+        "sourceUrl": "https://www.google.com/search?q=consolidation+journal+entry+template",
+        "observedDate": "2026-07-27"
+      },
+      "buyer": "Multi-entity controller",
+      "pain": "Top-side entries lack ownership, reversal logic, and support",
+      "competitorGap": "Journal templates do not connect entries to entities, eliminations, and review evidence",
+      "finboardConnection": "Consolidation controls",
+      "sourceUrls": [
+        "https://docs.oracle.com/en/cloud/saas/financials/26b/faugl/intercompany-reconciliation.html"
+      ],
+      "score": 87,
+      "scoreBreakdown": {
+        "buyerPain": 18,
+        "searchIntent": 15,
+        "productRelevance": 20,
+        "competitorGap": 14,
+        "geoPotential": 10,
+        "practicalValue": 10
+      },
+      "eligible": false,
+      "rejectionReason": "Lower score for this one-blog, one-template release"
+    }
+  ],
+  "selectedBlogs": [
+    {
+      "candidateId": "debt-covenant-controller-workflow",
+      "slug": "debt-covenant-compliance-controller-workflow",
+      "selectionReason": "Highest score, strong controller urgency, authoritative sources, and a clear gap for an agreement-specific monthly workflow."
+    }
+  ],
+  "selectedTemplates": [
+    {
+      "candidateId": "debt-covenant-calculator-certificate",
+      "slug": "debt-covenant-compliance-calculator-template",
+      "selectionReason": "Highest score and capable of delivering formula-driven tests, evidence controls, forecast cases, and a printable reviewer summary."
+    }
+  ]
+}

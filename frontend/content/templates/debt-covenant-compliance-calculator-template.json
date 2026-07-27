@@ -1,0 +1,37 @@
+{
+  "slug": "debt-covenant-compliance-calculator-template",
+  "title": "Debt Covenant Compliance Calculator Template",
+  "category": "Financial Reporting",
+  "shortDescription": "Calculate covenant results, document agreement terms and evidence, measure headroom, test downside cases, and prepare a review-ready compliance summary.",
+  "about": "<p>Use this controller-ready Excel workpaper to translate agreement-specific definitions into controlled debt covenant calculations. The workbook includes sample data, source references, net leverage, interest coverage, fixed charge coverage, minimum liquidity, warning bands, and forward downside cases.</p><p>Blue cells are editable inputs. Formula cells calculate actual results, thresholds, headroom, and pass, warning, or fail status. Complete the printable Summary only after inputs tie to the general ledger and supporting schedules. The executed credit agreement and lender certificate form always govern.</p>",
+  "excerpt": "Free Excel debt covenant calculator with four ratio tests, evidence controls, headroom warnings, downside forecasts, and a printable review summary.",
+  "link": "/template-files/debt-covenant-compliance-calculator-template.xlsx",
+  "image": "/templates/covers/debt-covenant-compliance-calculator-template.png",
+  "imageAlt": "Debt covenant compliance calculator summary with actual results, thresholds, headroom, and forecast alerts",
+  "order": 93,
+  "leadQuestions": [
+    {
+      "id": "covenants",
+      "label": "Which covenant creates the most reporting risk?",
+      "type": "select",
+      "options": [
+        "Net leverage",
+        "Interest coverage",
+        "Fixed charge coverage",
+        "Minimum liquidity"
+      ]
+    },
+    {
+      "id": "entities",
+      "label": "How many legal entities are included in the borrower group?",
+      "type": "select",
+      "options": [
+        "1",
+        "2 to 5",
+        "6 to 20",
+        "20+"
+      ]
+    }
+  ],
+  "structuredData": null
+}

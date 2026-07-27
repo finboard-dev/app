@@ -9,7 +9,6 @@ from zoneinfo import ZoneInfo
 
 
 TIME_ZONE = "Asia/Kolkata"
-PUBLICATION_ORDER = ["Blog 1", "Template 1", "Blog 2", "Template 2"]
 SCORE_DIMENSIONS = {
     "buyerPain": 20,
     "searchIntent": 20,
@@ -102,7 +101,7 @@ def candidate_ids(values: object) -> set[str] | None:
 
 
 def selections_match_pool(values: object, pool_ids: set[str]) -> bool:
-    if not isinstance(values, list) or len(values) != 2:
+    if not isinstance(values, list) or not 1 <= len(values) <= 2:
         return False
     selected_ids = []
     slugs = []
@@ -118,7 +117,10 @@ def selections_match_pool(values: object, pool_ids: set[str]) -> bool:
             return False
         selected_ids.append(value["candidateId"])
         slugs.append(value["slug"])
-    return len(set(selected_ids)) == 2 and len(set(slugs)) == 2
+    return (
+        len(set(selected_ids)) == len(values)
+        and len(set(slugs)) == len(values)
+    )
 
 
 def is_complete_batch_record(path: Path, data: object) -> bool:
@@ -140,11 +142,20 @@ def is_complete_batch_record(path: Path, data: object) -> bool:
     template_ids = candidate_ids(data.get("candidateTemplates"))
     if blog_ids is None or template_ids is None:
         return False
-    if not selections_match_pool(data.get("selectedBlogs"), blog_ids):
+    selected_blogs = data.get("selectedBlogs")
+    selected_templates = data.get("selectedTemplates")
+    if not selections_match_pool(selected_blogs, blog_ids):
         return False
-    if not selections_match_pool(data.get("selectedTemplates"), template_ids):
+    if not selections_match_pool(selected_templates, template_ids):
         return False
-    if data.get("publicationOrder") != PUBLICATION_ORDER:
+    if len(selected_blogs) != len(selected_templates):
+        return False
+    publication_order = [
+        item
+        for index in range(1, len(selected_blogs) + 1)
+        for item in (f"Blog {index}", f"Template {index}")
+    ]
+    if data.get("publicationOrder") != publication_order:
         return False
     if data.get("batchId") != f"{publication_date}-finboard-content":
         return False
