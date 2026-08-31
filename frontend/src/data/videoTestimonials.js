@@ -4,19 +4,6 @@
 // when we have a verified profile, and always to the company site.
 export const VIDEO_TESTIMONIALS = [
   {
-    id: "olga-hurtado-neatbooks",
-    blurb:
-      "Olga runs a 20-person accounting firm, and FinBoard powers their complex franchise consolidations across multiple restaurant chains. Hear what they have to say about us.",
-    name: "Olga Hurtado",
-    linkedinUrl: "https://www.linkedin.com/in/olga-hurtado-ea-mba-0759294b/",
-    role: "Founder & CEO",
-    company: "NeatBooks LLC",
-    companyUrl: "https://neatbooksllc.com/",
-    videoPath: "/videos/finboard-testimonial.mp4",
-    posterPath: "/videos/finboard-testimonial-poster.jpg",
-    videoLabel: "FinBoard customer testimonial video",
-  },
-  {
     id: "corinnee-vallier-kindbridge",
     blurb:
       "Corinnee leads finance at Kindbridge Behavioral Health, and FinBoard carries their multi-entity reporting and month-end close. Hear what they have to say about us.",
@@ -28,5 +15,18 @@ export const VIDEO_TESTIMONIALS = [
     videoPath: "/videos/finboard-kindbridge-testimonial.mp4",
     posterPath: "/videos/finboard-kindbridge-testimonial-poster.jpg",
     videoLabel: "FinBoard customer testimonial video with Corinnee Vallier of Kindbridge Behavioral Health",
+  },
+  {
+    id: "olga-hurtado-neatbooks",
+    blurb:
+      "Olga runs a 20-person accounting firm, and FinBoard powers their complex franchise consolidations across multiple restaurant chains. Hear what they have to say about us.",
+    name: "Olga Hurtado",
+    linkedinUrl: "https://www.linkedin.com/in/olga-hurtado-ea-mba-0759294b/",
+    role: "Founder & CEO",
+    company: "NeatBooks LLC",
+    companyUrl: "https://neatbooksllc.com/",
+    videoPath: "/videos/finboard-testimonial.mp4",
+    posterPath: "/videos/finboard-testimonial-poster.jpg",
+    videoLabel: "FinBoard customer testimonial video",
   },
 ];
