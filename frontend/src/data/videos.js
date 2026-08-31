@@ -14,6 +14,17 @@ export const VIDEOS = [
     topic: "Customer story",
   },
   {
+    slug: "corinnee-vallier-kindbridge-testimonial",
+    title: "Corinnee Vallier of Kindbridge Behavioral Health on multi-entity reporting",
+    description:
+      "Corinnee Vallier, Controller at Kindbridge Behavioral Health, shares how FinBoard supports multi-entity reporting and month-end close across their behavioral health practice.",
+    videoPath: "/videos/finboard-kindbridge-testimonial.mp4",
+    thumbnailPath: "/videos/finboard-kindbridge-testimonial-poster.jpg",
+    duration: "PT3M56S",
+    uploadDate: "2026-08-31T09:00:00+05:30",
+    topic: "Customer story",
+  },
+  {
     slug: "finance-for-accounting-firms",
     title: "Finance operations for accounting firms",
     description:

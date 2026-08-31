@@ -1,8 +1,14 @@
 import Landing from "@/views/Landing";
 import { FAQ_ITEMS } from "@/data/faq";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
+import { VIDEO_TESTIMONIALS } from "@/data/videoTestimonials";
 
-const VIDEO_URL = `${SITE_URL}/videos/finboard-testimonial.mp4`;
+// Both customer testimonial videos are embedded on this page, so both are
+// declared for Open Graph. Derived from the same list the page renders.
+const OG_VIDEOS = VIDEO_TESTIMONIALS.map((testimonial) => {
+  const url = `${SITE_URL}${testimonial.videoPath}`;
+  return { url, secureUrl: url, type: "video/mp4", width: 1920, height: 1080 };
+});
 
 const baseMetadata = buildMetadata({
   title: "FinBoard | AI Native Finance for Multi-Entity Operators",
@@ -15,15 +21,7 @@ export const metadata = {
   ...baseMetadata,
   openGraph: {
     ...baseMetadata.openGraph,
-    videos: [
-      {
-        url: VIDEO_URL,
-        secureUrl: VIDEO_URL,
-        type: "video/mp4",
-        width: 1920,
-        height: 1080,
-      },
-    ],
+    videos: OG_VIDEOS,
   },
 };
 
