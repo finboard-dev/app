@@ -18,3 +18,7 @@ class DailyBlogConfigTest(unittest.TestCase):
 
     def test_run_records_are_ignored(self):
         self.assertIn(".blog-pipeline/runs/", (ROOT / ".gitignore").read_text().splitlines())
+
+    def test_automation_object_matches_plan_exactly(self):
+        cfg = json.loads((ROOT / ".blog-pipeline/config.json").read_text())
+        self.assertEqual(cfg["automation"], {"timezone": "Asia/Kolkata", "minTopicScore": 18, "minSourceAuthority": 4, "similarityThreshold": 0.72, "productionBaseUrl": "https://finboard.ai", "sitemapUrl": "https://finboard.ai/sitemap.xml", "verificationAttempts": 30, "verificationIntervalSeconds": 20, "validationCommands": [["python3", "-m", "unittest", "discover", "-s", "tests"], ["yarn", "--cwd", "frontend", "test:unit"], ["yarn", "--cwd", "frontend", "build"]]})
