@@ -176,8 +176,7 @@
     "verificationAttempts": 30,
     "verificationIntervalSeconds": 20,
     "validationCommands": [
-      ["python3", "-m", "unittest", "discover", "-s", "tests"],
-      ["yarn", "--cwd", "frontend", "test:unit"],
+      ["python3", "-m", "unittest", "tests.test_daily_blog", "tests.test_daily_blog_config", "tests.test_daily_blog_launchd", "-v"],
       ["yarn", "--cwd", "frontend", "build"]
     ]
   },

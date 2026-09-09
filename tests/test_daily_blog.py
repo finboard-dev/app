@@ -1,0 +1,302 @@
+"""Pure boundaries used by the deterministic daily blog runner."""
+
+import datetime as dt
+import json
+import os
+import shutil
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+
+from daily_blog import (
+    build_claude_argv,
+    build_failure_message,
+    build_success_message,
+    CommandResult,
+    resolve_skill_root,
+    run_daily,
+    sanitize_model_env,
+    validate_changed_paths,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+SKILL_ROOT = Path("/private/tmp/finboard-auto-blog-skill")
+FIXED_NOW = dt.datetime(2026, 9, 9, 12, 10, tzinfo=dt.timezone(dt.timedelta(hours=5, minutes=30)))
+
+
+class DailyBlogPureTest(unittest.TestCase):
+    def test_model_has_only_read_research_tools(self):
+        argv = build_claude_argv(Path("/app with spaces"), Path("/skill"), '{"type":"object"}')
+        self.assertEqual(argv[0], "claude")
+        self.assertIn("--restricted", argv)
+        for flag in ("--tools", "--allowedTools"):
+            self.assertEqual(argv[argv.index(flag) + 1], "Read,Grep,Glob,WebSearch,WebFetch")
+        self.assertEqual(argv[argv.index("--json-schema") + 1], '{"type":"object"}')
+        self.assertEqual(argv[argv.index("--output-format") + 1], "json")
+        instruction = argv[argv.index("-p") + 1]
+        self.assertIn("/skill/SKILL.md", instruction)
+        self.assertIn("/app with spaces", instruction)
+        self.assertIn("daily-auto", instruction)
+        self.assertNotIn("Bash", " ".join(argv))
+        self.assertNotIn("Edit", " ".join(argv))
+        self.assertNotIn("Write", " ".join(argv))
+
+    def test_model_environment_is_allowlisted_and_excludes_slack(self):
+        env = {
+            "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",
+            "CLAUDE_CODE_OAUTH_TOKEN": "model-auth", "ANTHROPIC_API_KEY": "model-key",
+            "BLOG_PIPELINE_SLACK_WEBHOOK": "webhook-secret",
+            "BLOG_PIPELINE_SLACK_BOT_TOKEN": "bot-secret",
+            "SLACK_TOKEN": "other-slack-secret", "GH_TOKEN": "git-secret",
+            "AWS_SECRET_ACCESS_KEY": "cloud-secret", "UNLISTED_SETTING": "unknown",
+            "ANTHROPIC_BASE_URL": "https://untrusted.invalid",
+        }
+        snapshot = dict(env)
+        self.assertEqual(sanitize_model_env(env, {"BLOG_PIPELINE_SLACK_WEBHOOK"}), {
+            "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",
+            "CLAUDE_CODE_OAUTH_TOKEN": "model-auth", "ANTHROPIC_API_KEY": "model-key",
+        })
+        self.assertEqual(env, snapshot)
+
+    def test_explicit_secret_names_override_the_allowlist(self):
+        self.assertEqual(sanitize_model_env({"PATH": "/bin", "ANTHROPIC_API_KEY": "secret"}, {"ANTHROPIC_API_KEY"}), {"PATH": "/bin"})
+
+    def test_skill_root_defaults_to_canonical_and_accepts_override(self):
+        self.assertEqual(resolve_skill_root({}), Path("/Users/ujjwal/self/blog-pipeline"))
+        self.assertEqual(resolve_skill_root({"BLOG_PIPELINE_SKILL_ROOT": "/private/tmp/test-skill"}), Path("/private/tmp/test-skill"))
+
+    def test_changed_paths_must_equal_article_and_cover(self):
+        expected = {"frontend/content/blog/a.json", "frontend/public/blog/covers/a.png"}
+        self.assertEqual(validate_changed_paths(expected, expected), [])
+        self.assertEqual(validate_changed_paths(expected, expected | {"frontend/src/app/page.jsx"}), ["unexpected changed path: frontend/src/app/page.jsx"])
+        self.assertEqual(validate_changed_paths(expected, {"frontend/content/blog/a.json"}), ["missing expected changed path: frontend/public/blog/covers/a.png"])
+
+    def test_reports_all_path_differences_in_stable_order(self):
+        self.assertEqual(validate_changed_paths({"article", "cover"}, {"z", "a"}), [
+            "unexpected changed path: a", "unexpected changed path: z",
+            "missing expected changed path: article", "missing expected changed path: cover",
+        ])
+
+    def test_success_message_contains_clickable_live_and_commit_links(self):
+        message = build_success_message("A useful article", "https://finboard.ai/blog/a", "https://github.com/finboard-dev/app/commit/abc", "abc", "2026-09-08 12:18 IST")
+        self.assertIn("A useful article", message)
+        self.assertIn("<https://finboard.ai/blog/a|Read the article>", message)
+        self.assertIn("<https://github.com/finboard-dev/app/commit/abc|abc>", message)
+        self.assertIn("2026-09-08 12:18 IST", message)
+
+    def test_failure_message_contains_stage_error_and_log_without_live_claim(self):
+        message = build_failure_message("validating", "Content failed validation", Path("/logs/stderr.log"))
+        for detail in ("validating", "Content failed validation", "/logs/stderr.log"):
+            self.assertIn(detail, message)
+        for unverified_claim in ("Live post:", "Read the article", "Published:", "Commit:"):
+            self.assertNotIn(unverified_claim, message)
+
+    def test_failure_after_commit_links_commit_but_does_not_claim_publication(self):
+        message = build_failure_message("verifying", "Sitemap did not contain slug", Path("/logs/stderr.log"), "https://github.com/finboard-dev/app/commit/abc", "abc")
+        self.assertIn("<https://github.com/finboard-dev/app/commit/abc|abc>", message)
+        self.assertIn("not verified", message)
+        self.assertNotIn("Live post:", message)
+        self.assertNotIn("Published:", message)
+
+
+class FakeEffects:
+    def __init__(self):
+        self.lock_available = True
+        self.dirty = set()
+        self.model_calls = 0
+        self.commands = []
+        self.notifications = []
+        self.fetches = []
+        self.page_status = 200
+        self.sitemap_body = ""
+        self.fail_commands = set()
+        self.lock = object()
+
+    def acquire_lock(self, path):
+        return self.lock if self.lock_available else None
+
+    def release_lock(self, handle):
+        pass
+
+    def run(self, argv, cwd, env=None):
+        argv = list(argv)
+        self.commands.append((argv, dict(env) if env is not None else None))
+        signature = tuple(argv)
+        if signature in self.fail_commands:
+            return CommandResult(1, "", "planned failure")
+        if argv[:3] == ["git", "branch", "--show-current"]:
+            return CommandResult(0, "main\n", "")
+        if argv[:3] == ["git", "status", "--porcelain"]:
+            generated = set(self.dirty)
+            for relative in (
+                "frontend/content/blog/quickbooks-ai-control-matrix.json",
+                "frontend/public/blog/covers/quickbooks-ai-control-matrix.png",
+            ):
+                if (cwd / relative).exists():
+                    generated.add(relative)
+            return CommandResult(0, "".join(f"?? {path}\n" for path in sorted(generated)), "")
+        if len(argv) > 1 and argv[1].endswith("gen_cover.py"):
+            Path(argv[3]).parent.mkdir(parents=True, exist_ok=True)
+            Path(argv[3]).write_bytes(b"png")
+            return CommandResult(0, "cover written\n", "")
+        if argv[:4] == ["git", "diff", "--cached", "--name-only"]:
+            return CommandResult(0, "frontend/content/blog/quickbooks-ai-control-matrix.json\nfrontend/public/blog/covers/quickbooks-ai-control-matrix.png\n", "")
+        if argv[:3] == ["git", "rev-parse", "HEAD"]:
+            return CommandResult(0, "abcdef1234567890\n", "")
+        if argv[:3] == ["git", "remote", "get-url"]:
+            return CommandResult(0, "git@github.com:finboard-dev/app.git\n", "")
+        if argv and argv[0] == "claude":
+            self.model_calls += 1
+        return CommandResult(0, "", "")
+
+    def fetch(self, url):
+        self.fetches.append(url)
+        if url.endswith("sitemap.xml"):
+            return 200, self.sitemap_body
+        return self.page_status, "page"
+
+    def notify(self, kind, message, cfg):
+        self.notifications.append((kind, message))
+
+    def sleep(self, seconds):
+        pass
+
+
+class DailyBlogOrchestrationTest(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.repo = Path(self.temp.name)
+        (self.repo / ".blog-pipeline/runs").mkdir(parents=True)
+        cfg = json.loads((ROOT / ".blog-pipeline/config.json").read_text())
+        cfg["target"]["repoPath"] = str(self.repo)
+        cfg["automation"]["validationCommands"] = [["check"]]
+        (self.repo / ".blog-pipeline/config.json").write_text(json.dumps(cfg))
+        content = self.repo / "frontend/content/blog"
+        content.mkdir(parents=True)
+        for slug in (
+            "designing-and-implementing-comprehensive-internal-control-procedures-for-prepaid-expenses-amortization",
+            "top-5-tools-for-consolidation-in-quickbooks-online",
+        ):
+            (content / f"{slug}.json").write_text("{}")
+        self.fixture = self.repo / "fixture.json"
+        shutil.copyfile(ROOT / "tests/fixtures/daily-blog-publish.json", self.fixture)
+        self.previous_skill_root = os.environ.get("BLOG_PIPELINE_SKILL_ROOT")
+        os.environ["BLOG_PIPELINE_SKILL_ROOT"] = str(SKILL_ROOT)
+        self.effects = FakeEffects()
+        self.effects.sitemap_body = "/blog/quickbooks-ai-control-matrix"
+
+    def tearDown(self):
+        if self.previous_skill_root is None:
+            os.environ.pop("BLOG_PIPELINE_SKILL_ROOT", None)
+        else:
+            os.environ["BLOG_PIPELINE_SKILL_ROOT"] = self.previous_skill_root
+        self.temp.cleanup()
+
+    def execute(self, **kwargs):
+        return run_daily(self.repo, FIXED_NOW, self.effects, artifact_file=self.fixture, **kwargs)
+
+    def state(self):
+        return json.loads((self.repo / ".blog-pipeline/runs/2026-09-09-auto.json").read_text())
+
+    def test_lock_held_stops_before_model_or_git(self):
+        self.effects.lock_available = False
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "skipped_locked")
+        self.assertEqual(self.effects.commands, [])
+        self.assertEqual(self.state()["status"], "skipped_locked")
+
+    def test_same_day_article_stops_before_git_and_model(self):
+        (self.repo / "frontend/content/blog/today.json").write_text('{"date":"2026-09-09"}')
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "already_published")
+        self.assertEqual(self.effects.commands, [])
+
+    def test_dirty_worktree_fails_without_generation(self):
+        self.effects.dirty.add("user-notes.txt")
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertFalse((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+        self.assertEqual(self.effects.notifications[0][0], "failure")
+
+    def test_malformed_artifact_fails_before_writes(self):
+        self.fixture.write_text("not-json")
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertFalse((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+
+    def test_nothing_publishable_is_a_clean_terminal_outcome(self):
+        self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "nothing_publishable")
+        self.assertEqual(outcome.exit_code, 0)
+        self.assertEqual(self.effects.notifications, [])
+
+    def test_validation_command_failure_removes_only_generated_files(self):
+        keep = self.repo / "keep.txt"
+        keep.write_text("mine")
+        self.effects.fail_commands.add(("check",))
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertEqual(keep.read_text(), "mine")
+        self.assertFalse((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+
+    def test_unexpected_generated_path_prevents_commit(self):
+        self.effects.dirty.add("unexpected.txt")
+        # Let the first cleanliness check pass, then inject at validation time.
+        original = self.effects.run
+        calls = {"status": 0}
+        def staged_dirty(argv, cwd, env=None):
+            if list(argv)[:3] == ["git", "status", "--porcelain"]:
+                calls["status"] += 1
+                if calls["status"] == 1:
+                    saved = self.effects.dirty
+                    self.effects.dirty = set()
+                    result = original(argv, cwd, env)
+                    self.effects.dirty = saved
+                    return result
+            return original(argv, cwd, env)
+        self.effects.run = staged_dirty
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "commit"] for command in self.effects.commands))
+
+    def test_dry_run_validates_and_removes_generated_paths_without_commit_or_success(self):
+        outcome = self.execute(dry_run=True)
+        self.assertEqual(outcome.status, "dry_run_validated")
+        self.assertFalse((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+        self.assertFalse(any(command[0][:2] == ["git", "commit"] for command in self.effects.commands))
+        self.assertEqual(self.effects.notifications, [])
+
+    def test_push_failure_does_not_claim_live_publication(self):
+        self.effects.fail_commands.add(("git", "push", "origin", "HEAD:main"))
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertEqual(outcome.commit, "abcdef1234567890")
+        message = self.effects.notifications[-1][1]
+        self.assertIn("deployment not verified", message)
+        self.assertNotIn("Read the article", message)
+
+    def test_missing_sitemap_after_page_success_fails_without_live_claim(self):
+        self.effects.sitemap_body = "<urlset></urlset>"
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertIn("not verified", self.effects.notifications[-1][1])
+        self.assertNotIn("Read the article", self.effects.notifications[-1][1])
+
+    def test_verified_success_pushes_then_posts_clickable_link(self):
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "published")
+        self.assertEqual(outcome.production_url, "https://finboard.ai/blog/quickbooks-ai-control-matrix")
+        self.assertEqual(self.effects.notifications[-1][0], "success")
+        self.assertIn("<https://finboard.ai/blog/quickbooks-ai-control-matrix|Read the article>", self.effects.notifications[-1][1])
+        push_index = next(i for i, value in enumerate(self.effects.commands) if value[0][:2] == ["git", "push"])
+        self.assertGreater(len(self.effects.fetches), 0)
+        self.assertGreater(push_index, 0)
+        self.assertEqual(self.state()["status"], "published")
+
+
+if __name__ == "__main__":
+    unittest.main()
