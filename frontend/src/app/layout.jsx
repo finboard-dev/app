@@ -116,6 +116,16 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');`}
         </Script>
+        <Script id="reb2b-tracking" strategy="afterInteractive">
+          {`!function(key) {
+  if (window.reb2b) return;
+  window.reb2b = {loaded: true};
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://ddw14m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+  document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
+}("ONW1GHJWJ804");`}
+        </Script>
       </head>
       <body>
         <Providers>
