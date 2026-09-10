@@ -122,9 +122,9 @@ gtag('config', '${GA_MEASUREMENT_ID}');`}
   window.reb2b = {loaded: true};
   var s = document.createElement("script");
   s.async = true;
-  s.src = "https://ddw14m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+  s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
   document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
-}("ONW1GHJWJ804");`}
+}("0NW1GHJWJ8O4");`}
         </Script>
       </head>
       <body>
