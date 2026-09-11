@@ -59,6 +59,10 @@ class LaunchdContractTest(unittest.TestCase):
             bin_dir = temp / "bin"
             bin_dir.mkdir()
             calls = temp / "launchctl.calls"
+            installed = user_root / f"Library/LaunchAgents/{LABEL}.plist"
+            installed.parent.mkdir(parents=True)
+            installed.write_text("old")
+            installed.chmod(0o644)
             launchctl = bin_dir / "launchctl"
             launchctl.write_text("#!/bin/bash\necho \"$*\" >> \"$TEST_LAUNCHCTL_LOG\"\nexit 0\n")
             launchctl.chmod(0o700)
@@ -74,16 +78,16 @@ class LaunchdContractTest(unittest.TestCase):
             second = subprocess.run(["/bin/bash", str(installer)], env=env, capture_output=True, text=True)
             self.assertEqual(first.returncode, 0, first.stderr)
             self.assertEqual(second.returncode, 0, second.stderr)
-            installed = user_root / f"Library/LaunchAgents/{LABEL}.plist"
             self.assertEqual(installed.read_bytes(), (plist_dir / f"{LABEL}.plist").read_bytes())
             self.assertEqual(installed.stat().st_mode & 0o777, 0o600)
+            self.assertEqual((user_root / "Library/Logs/finboard-blog-pipeline").stat().st_mode & 0o777, 0o700)
             lines = calls.read_text().splitlines()
         self.assertEqual(len(lines), 6)
         for offset in (0, 3):
             self.assertTrue(lines[offset].startswith("bootout gui/"))
             self.assertTrue(lines[offset + 1].startswith("bootstrap gui/"))
             self.assertTrue(lines[offset + 2].startswith("print gui/"))
-        self.assertFalse(any(any(word in line for word in ("kickstart", " start ", "submit")) for line in lines))
+        self.assertEqual({line.split()[0] for line in lines}, {"bootout", "bootstrap", "print"})
 
 
 if __name__ == "__main__":

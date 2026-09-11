@@ -13,7 +13,8 @@ DOMAIN="gui/$CURRENT_UID"
 
 plutil -lint "$SOURCE"
 mkdir -p "$LOG_DIR" "$USER_ROOT/Library/LaunchAgents"
-cp "$SOURCE" "$DEST"
+chmod 700 "$LOG_DIR"
+install -m 600 "$SOURCE" "$DEST"
 launchctl bootout "$DOMAIN" "$DEST" 2>/dev/null || true
 launchctl bootstrap "$DOMAIN" "$DEST"
 launchctl print "$DOMAIN/$LABEL"
