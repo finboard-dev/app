@@ -168,10 +168,22 @@ def resolve_skill_root(env: Mapping[str, str]) -> Path:
     return Path(env.get("BLOG_PIPELINE_SKILL_ROOT", str(DEFAULT_SKILL_ROOT)))
 
 
-def build_claude_argv(repo: Path, skill_root: Path, schema_json: str) -> list[str]:
+def build_claude_argv(
+    repo: Path,
+    skill_root: Path,
+    schema_json: str,
+    publish_date: Optional[str] = None,
+    validated_config: Optional[dict] = None,
+) -> list[str]:
+    context = ""
+    if publish_date and validated_config:
+        context = (
+            f" The local publish date is {publish_date}. Use this validated configuration: "
+            f"{json.dumps(validated_config, separators=(',', ':'), sort_keys=True)}."
+        )
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
-        f"for {repo}. Return structured JSON only. Do not write files, run shell commands, "
+        f"for {repo}.{context} Return structured JSON only. Do not write files, run shell commands, "
         "use Git, deploy, or contact Slack."
     )
     return [
@@ -335,6 +347,30 @@ def _blog_dates(content_dir: Path) -> set[str]:
     return dates
 
 
+def _model_config(cfg: dict) -> dict:
+    """Return the validated, non-operational policy the research model needs."""
+    automation = cfg["automation"]
+    return {
+        "target": {
+            key: cfg["target"][key]
+            for key in ("repoPath", "contentDir", "blogFormat", "categories", "authors")
+        },
+        "personas": cfg["personas"],
+        "topicsPerRun": cfg["topicsPerRun"],
+        "blogsPerRun": cfg["blogsPerRun"],
+        "automation": {
+            key: automation[key]
+            for key in (
+                "timezone",
+                "minTopicScore",
+                "minSourceAuthority",
+                "similarityThreshold",
+                "productionBaseUrl",
+            )
+        },
+    }
+
+
 def _recent_topics(repo: Path, before_date: str, days: int = 30) -> list[dict]:
     topics = []
     runs = repo / ".blog-pipeline" / "runs"
@@ -402,7 +438,7 @@ def run_daily(
     artifact_file: Optional[Path] = None,
 ) -> RunOutcome:
     repo = Path(repo).resolve()
-    lock = effects.acquire_lock(repo / ".blog-pipeline" / "daily-blog.lock")
+    lock = None
     skill_root = resolve_skill_root(os.environ)
     modules = None
     cfg = None
@@ -420,9 +456,6 @@ def run_daily(
     event_at = lambda: _timestamp(now)
     try:
         modules = _load_skill_modules(skill_root)
-        if lock is None:
-            return RunOutcome(SKIPPED_LOCKED, 0)
-
         stage = "configuration"
         cfg = modules["load_config"](repo)
         cfg = json.loads(json.dumps(cfg))
@@ -435,6 +468,17 @@ def run_daily(
         event_at = lambda: _timestamp(effects.now().astimezone(zone))
         if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
             raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
+        lock = effects.acquire_lock(repo / ".blog-pipeline" / "daily-blog.lock")
+        if lock is None:
+            try:
+                effects.notify(
+                    "skipped_locked",
+                    f"*FinBoard Daily Blog*\nSkipped {local_date} because another run holds the lock.",
+                    cfg,
+                )
+            except Exception as notify_error:
+                _write_log(log_path, f"{event_at()} lock-skip notification failed: {notify_error}")
+            return RunOutcome(SKIPPED_LOCKED, 0)
         content_dir = repo / cfg["target"]["contentDir"]
 
         existing_run = modules["load_run"](repo, run_id)
@@ -443,7 +487,16 @@ def run_daily(
             return RunOutcome(existing_run["status"], exit_code)
         if local_date in _blog_dates(content_dir):
             modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date exists"})
+            try:
+                effects.notify("already_published", f"*FinBoard Daily Blog*\nA {local_date} article already exists; no second post was created.", cfg)
+            except Exception as notify_error:
+                _write_log(log_path, f"{event_at()} already-published notification failed: {notify_error}")
             return RunOutcome(ALREADY_PUBLISHED, 0)
+
+        if existing_run:
+            run = {**existing_run, "status": "researching"}
+            run = modules["record_event"](run, "real_run_started", event_at(), {"after": VALIDATED_DRY_RUN})
+            modules["save_run"](repo, run)
 
         stage = "preflight"
         branch = _command(effects, ["git", "branch", "--show-current"], repo, stage).stdout.strip()
@@ -467,13 +520,13 @@ def run_daily(
                 modules["save_run"](repo, existing_run)
             else:
                 modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date fetched from remote"})
+            try:
+                effects.notify("already_published", f"*FinBoard Daily Blog*\nA {local_date} article was fetched from {remote}; no second post was created.", cfg)
+            except Exception as notify_error:
+                _write_log(log_path, f"{event_at()} fetched-article notification failed: {notify_error}")
             return RunOutcome(ALREADY_PUBLISHED, 0)
 
-        if existing_run:
-            run = {**existing_run, "status": "researching"}
-            run = modules["record_event"](run, "real_run_started", event_at(), {"after": VALIDATED_DRY_RUN})
-            modules["save_run"](repo, run)
-        else:
+        if run is None:
             run = modules["create_run"](repo, run_id)
 
         run = modules["advance"](run, modules["states"]["selecting"], event_at())
@@ -484,7 +537,13 @@ def run_daily(
         else:
             slack = cfg["reviewChannel"]["slack"]
             secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
-            argv = build_claude_argv(repo, skill_root, json.dumps(modules["schema"], separators=(",", ":")))
+            argv = build_claude_argv(
+                repo,
+                skill_root,
+                json.dumps(modules["schema"], separators=(",", ":")),
+                local_date,
+                _model_config(cfg),
+            )
             result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
             raw = result.stdout
         artifact = modules["parse"](raw)
@@ -554,8 +613,13 @@ def run_daily(
         modules["save_run"](repo, run)
         validation_results = []
         for argv in cfg["automation"]["validationCommands"]:
-            result = _command(effects, argv, repo, stage)
+            result = effects.run(argv, repo)
             validation_results.append({"argv": list(argv), "returncode": result.returncode})
+            run["validation"] = {"commands": list(validation_results), "changedPaths": []}
+            modules["save_run"](repo, run)
+            if result.returncode:
+                detail = (result.stderr or result.stdout or "command failed").strip()
+                raise StageError(stage, f"{' '.join(argv)}: {detail[-1000:]}")
         expected = {str(article_path.relative_to(repo)), str(cover_path.relative_to(repo))}
         actual = _status_paths(_command(effects, ["git", "status", "--porcelain", "--untracked-files=all"], repo, stage).stdout)
         path_errors = validate_changed_paths(expected, actual)

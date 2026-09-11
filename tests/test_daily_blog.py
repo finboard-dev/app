@@ -296,6 +296,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(outcome.status, "failed")
         self.assertEqual(keep.read_text(), "mine")
         self.assertFalse((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+        self.assertEqual(self.state()["validation"]["commands"], [{"argv": ["check"], "returncode": 1}])
 
     def test_unexpected_generated_path_prevents_commit(self):
         self.effects.dirty.add("unexpected.txt")
@@ -368,6 +369,8 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertGreater(len(self.effects.fetches), 0)
         self.assertGreater(push_index, 0)
         self.assertEqual(self.state()["status"], "published")
+        self.assertEqual(self.state()["topics"][0]["scores"]["sourceAuthority"], 5)
+        self.assertEqual(self.state()["validation"]["commands"], [{"argv": ["check"], "returncode": 0}])
 
     def test_model_path_allows_skill_without_exposing_slack_environment(self):
         self.effects.model_output = self.fixture.read_text()
@@ -375,12 +378,27 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(outcome.status, "dry_run_validated")
         model_argv, model_env = next(value for value in self.effects.commands if value[0][0] == "claude")
         self.assertEqual(model_argv[model_argv.index("--add-dir") + 1], str(SKILL_ROOT))
+        instruction = model_argv[model_argv.index("-p") + 1]
+        self.assertIn("local publish date is 2026-09-09", instruction)
+        self.assertIn('"minTopicScore":18', instruction)
         self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
 
     def test_nothing_publishable_notifies_dev(self):
         self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
         self.assertEqual(self.execute().status, "nothing_publishable")
         self.assertEqual(self.effects.notifications[-1][0], "nothing_publishable")
+
+    def test_dry_run_record_can_transition_to_failed_real_preflight(self):
+        self.assertEqual(self.execute(dry_run=True).status, "dry_run_validated")
+        self.effects.dirty.add("user-notes.txt")
+        self.assertEqual(self.execute().status, "failed")
+        self.assertEqual(self.state()["status"], "failed")
+
+    def test_configured_timezone_controls_daily_id(self):
+        utc_now = dt.datetime(2026, 9, 8, 20, 0, tzinfo=dt.timezone.utc)
+        outcome = run_daily(self.repo, utc_now, self.effects, dry_run=True, artifact_file=self.fixture)
+        self.assertEqual(outcome.status, "dry_run_validated")
+        self.assertTrue((self.repo / ".blog-pipeline/runs/2026-09-09-auto.json").exists())
 
 
 if __name__ == "__main__":
