@@ -358,6 +358,7 @@ def _model_config(cfg: dict) -> dict:
         "personas": cfg["personas"],
         "topicsPerRun": cfg["topicsPerRun"],
         "blogsPerRun": cfg["blogsPerRun"],
+        "gates": cfg["gates"],
         "automation": {
             key: automation[key]
             for key in (
@@ -466,8 +467,6 @@ def run_daily(
         run_id = f"{local_date}-{AUTO_RUN_SUFFIX}"
         log_path = repo / ".blog-pipeline" / "runs" / f"{run_id}.log"
         event_at = lambda: _timestamp(effects.now().astimezone(zone))
-        if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
-            raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
         lock = effects.acquire_lock(repo / ".blog-pipeline" / "daily-blog.lock")
         if lock is None:
             try:
@@ -479,11 +478,18 @@ def run_daily(
             except Exception as notify_error:
                 _write_log(log_path, f"{event_at()} lock-skip notification failed: {notify_error}")
             return RunOutcome(SKIPPED_LOCKED, 0)
+        if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
+            raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
         content_dir = repo / cfg["target"]["contentDir"]
 
         existing_run = modules["load_run"](repo, run_id)
         if existing_run and existing_run["status"] != modules["states"]["dry"]:
             exit_code = 1 if existing_run["status"] == modules["states"]["failed"] else 0
+            if existing_run["status"] == modules["states"]["published"]:
+                try:
+                    effects.notify("already_published", f"*FinBoard Daily Blog*\nThe {local_date} automatic run is already published; no second post was created.", cfg)
+                except Exception as notify_error:
+                    _write_log(log_path, f"{event_at()} repeat-run notification failed: {notify_error}")
             return RunOutcome(existing_run["status"], exit_code)
         if local_date in _blog_dates(content_dir):
             modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date exists"})

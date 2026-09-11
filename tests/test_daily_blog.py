@@ -239,6 +239,17 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.effects.lock_available = True
         self.assertEqual(self.execute(dry_run=True).status, "dry_run_validated")
 
+    def test_lock_loser_cannot_mutate_an_active_run_even_with_bad_gates(self):
+        state_path = self.repo / ".blog-pipeline/runs/2026-09-09-auto.json"
+        state_path.write_text(json.dumps({"date": "2026-09-09-auto", "status": "selecting", "history": [], "topics": [], "selected": [], "drafted": [], "deploy": {}}))
+        cfg_path = self.repo / ".blog-pipeline/config.json"
+        cfg = json.loads(cfg_path.read_text())
+        cfg["gates"] = {"topicApproval": "manual", "contentApproval": "manual"}
+        cfg_path.write_text(json.dumps(cfg))
+        self.effects.lock_available = False
+        self.assertEqual(self.execute().status, "skipped_locked")
+        self.assertEqual(json.loads(state_path.read_text())["status"], "selecting")
+
     def test_manual_gates_cannot_publish(self):
         cfg_path = self.repo / ".blog-pipeline/config.json"
         cfg = json.loads(cfg_path.read_text())
@@ -372,6 +383,14 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(self.state()["topics"][0]["scores"]["sourceAuthority"], 5)
         self.assertEqual(self.state()["validation"]["commands"], [{"argv": ["check"], "returncode": 0}])
 
+    def test_repeat_after_success_posts_noop_notification(self):
+        self.assertEqual(self.execute().status, "published")
+        self.effects.commands.clear()
+        self.effects.notifications.clear()
+        self.assertEqual(self.execute().status, "published")
+        self.assertEqual(self.effects.commands, [])
+        self.assertEqual(self.effects.notifications[-1][0], "already_published")
+
     def test_model_path_allows_skill_without_exposing_slack_environment(self):
         self.effects.model_output = self.fixture.read_text()
         outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
@@ -381,6 +400,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         instruction = model_argv[model_argv.index("-p") + 1]
         self.assertIn("local publish date is 2026-09-09", instruction)
         self.assertIn('"minTopicScore":18', instruction)
+        self.assertIn('"gates":{"contentApproval":"auto","topicApproval":"auto"}', instruction)
         self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
 
     def test_nothing_publishable_notifies_dev(self):
