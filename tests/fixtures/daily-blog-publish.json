@@ -1,0 +1,114 @@
+{
+  "structured_output": {
+    "outcome": "publish",
+    "topic": {
+      "slug": "quickbooks-ai-control-matrix",
+      "title": "A QuickBooks AI Control Matrix for Finance Teams",
+      "persona": "cfo",
+      "angle": "A practical control matrix for conversational QuickBooks work",
+      "primaryKeyword": "QuickBooks AI",
+      "intentSummary": "A control matrix that separates safe QuickBooks AI assistance from accounting decisions that require evidence and human approval",
+      "whyNow": "Intuit expanded QuickBooks actions in ChatGPT and Claude on 2026-07-28.",
+      "scores": {
+        "freshness": 5,
+        "audienceFit": 5,
+        "sourceAuthority": 5,
+        "searchSharingPotential": 4,
+        "productRelevance": 5
+      },
+      "sources": [
+        {
+          "url": "https://www.intuit.com/blog/news-social/quickbooks-expands-into-claude-and-chatgpt-with-new-sales-invoicing-payroll-and-lending-features/",
+          "publisher": "Intuit",
+          "publishedOrUpdated": "2026-07-28",
+          "claim": "Intuit expanded connected QuickBooks actions in ChatGPT and Claude.",
+          "authority": "primary"
+        },
+        {
+          "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/mobile-and-apps/connect-quickbooks-online-chatgpt/L0RDe9RPd_US_en_US",
+          "publisher": "QuickBooks",
+          "publishedOrUpdated": "2026-08-26",
+          "claim": "QuickBooks documents how users connect and work through ChatGPT.",
+          "authority": "primary"
+        }
+      ]
+    },
+    "blog": {
+      "slug": "quickbooks-ai-control-matrix",
+      "title": "QuickBooks AI Control Matrix: What Finance Teams Can Safely Automate",
+      "category": "accounting",
+      "excerpt": "A QuickBooks AI control matrix helps finance teams automate useful work while keeping source evidence, calculations, reviews, and accounting decisions reliable.",
+      "author": "FinBoard Team",
+      "authorId": "finboard-team",
+      "date": "2026-09-11",
+      "coverImage": "/blog/covers/quickbooks-ai-control-matrix.png",
+      "coverAlt": "QuickBooks AI control matrix for finance team review workflows",
+      "format": "html",
+      "order": 100,
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "headline": "QuickBooks AI Control Matrix: What Finance Teams Can Safely Automate",
+            "datePublished": "2026-09-11",
+            "dateModified": "2026-09-11",
+            "author": {
+              "@type": "Organization",
+              "@id": "https://finboard.ai/#organization",
+              "name": "FinBoard Team",
+              "url": "https://finboard.ai/about"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://finboard.ai/blog/quickbooks-ai-control-matrix"
+            },
+            "image": "https://finboard.ai/blog/covers/quickbooks-ai-control-matrix.png"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can QuickBooks AI approve its own accounting entries?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. A responsible finance professional should review evidence and approve consequential entries."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which QuickBooks AI tasks are safest to automate first?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Begin with retrieval, summaries, and draft workflows that preserve links to source records."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How should a finance team test an AI-generated number?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Recalculate it deterministically and reconcile the result to the ledger before use."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What evidence should the team retain?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Retain source records, calculation logic, reviewer identity, approval time, and the final decision."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "content": "<p>QuickBooks AI can shorten the time finance teams spend finding records, explaining movements, and preparing routine work. It should not erase the boundary between useful assistance and accountable accounting. A practical control matrix assigns evidence, calculation, review, and decision ownership before any automated output reaches a journal entry, report, lender, or board.</p><h2>Why QuickBooks AI needs a control matrix now</h2><p>On 2026-07-28, <a href=\"https://www.intuit.com/blog/news-social/quickbooks-expands-into-claude-and-chatgpt-with-new-sales-invoicing-payroll-and-lending-features/\">Intuit announced expanded connected QuickBooks actions in ChatGPT and Claude</a>. The change makes conversational accounting workflows more accessible, but access is not the same as assurance. A finance leader needs to know what the assistant retrieved, which company and period it used, whether the request changed data, and who accepted the result. The matrix below turns those questions into a repeatable operating rule. It keeps speed where risk is low and adds review where a mistaken amount, date, entity, classification, or approval could affect the books. The objective is not to slow the team. It is to make every consequential output traceable enough that another qualified person can reproduce the work and understand why it was accepted.</p><p>The timing matters because conversational tools can now sit closer to sales, invoicing, payroll, and lending workflows. Teams that wait for an error before defining controls will end up designing policy during an incident. Teams that define the boundary first can adopt new capabilities deliberately. They can compare expected benefits with the cost of review, select narrow starting use cases, and measure whether the automation actually improves close speed without increasing corrections. This approach also gives auditors and managers a consistent explanation of the system. The assistant proposes or retrieves. Deterministic systems calculate. Named reviewers approve. The accounting owner remains responsible for the final decision.</p><h2>Classify tasks by accounting consequence</h2><p>Start with four bands. Band one covers read-only retrieval, such as locating an invoice or listing open receivables. Band two covers summaries and drafts, such as describing a variance or preparing a customer follow-up. Band three covers proposed accounting actions, including a classification change, an accrual, or an intercompany match. Band four covers external or irreversible actions, such as posting an entry, sending an invoice, changing payroll, or sharing a board number. Each higher band requires stronger evidence and a more senior approval. The classification should be based on consequence, not on how confident or polished the answer sounds.</p><p>Read-only retrieval can often run with automated checks because the original record remains available. The system should still record company, query, period, user, and returned record identifiers. A summary needs the same lineage plus a clear statement of assumptions. A draft action needs a proposed change set that a reviewer can inspect before anything is written. An external or ledger-changing action needs segregation of duties, an approval event, and confirmation that the executed result matches the approved proposal. This banded approach gives the team a reusable language. It also avoids creating a different rule for every new model feature.</p><p>Finance teams should connect the matrix to their existing close and reporting procedures. For a practical example of a control-focused operating model, review <a href=\"/blog/designing-and-implementing-comprehensive-internal-control-procedures-for-prepaid-expenses-amortization\">FinBoard's prepaid expense control guide</a>. The accounting topic differs, but the pattern is the same: define source evidence, standardize the calculation, separate preparation from review, and retain a record of the decision. Those steps scale better than relying on a careful person to remember an informal checklist.</p><h2>Build the four accounting controls into every workflow</h2><p><strong>Source data:</strong> Capture the company, ledger, period, filters, record identifiers, and retrieval time. A reviewer must be able to open the same evidence without asking the model to reconstruct it. <strong>Calculation:</strong> Use deterministic formulas or report definitions for totals, ratios, balances, and comparisons. The model may explain a result, but it should not be the only place where the number is computed. <strong>Review:</strong> Route exceptions and material outputs to a named person with enough context to accept, reject, or revise the proposal. <strong>Decision:</strong> Record the final action, approver, time, and exact approved values.</p><p>These controls matter because accounting is full of conditions that look similar in prose but differ in treatment. A payment can be an expense, prepaid asset, deposit, loan, or intercompany balance. A balance sheet amount is measured at a point in time, while a profit and loss amount covers a period. A favorable sign can reverse between revenue, expense, asset, and liability views. The system should resolve those distinctions through canonical ledger-grain rules, not through persuasive language. If a number cannot be traced to source transactions and a reusable definition, the reviewer should treat it as an unsupported draft.</p><p>The review design should focus attention where it changes risk. A retrieval that returns zero records can be checked automatically against query metadata. A proposed journal entry should require balanced debits and credits, valid periods, permitted accounts, supporting evidence, and an approver who did not prepare it. A consolidated report should prove entity coverage, eliminations, currency treatment, and reconciliation. A board narrative should link every material claim to a reviewed number. FinBoard's <a href=\"/blog/top-5-tools-for-consolidation-in-quickbooks-online\">guide to QuickBooks consolidation tools</a> provides useful context for evaluating how evidence and controls vary across multi-entity reporting workflows.</p><h2>Measure adoption without hiding exceptions</h2><p>Track a small set of operating measures: time saved, percentage of outputs accepted without revision, exception rate, correction rate after approval, evidence completeness, and time to reviewer decision. Do not report only the number of automated tasks. High volume can hide repeated low-value work or a growing review backlog. Segment the measures by task band and accounting area so leaders can distinguish safe retrieval gains from higher-risk posting activity.</p><p>Review a sample of accepted and rejected outputs every month. Rejections reveal ambiguous instructions, missing data, weak formulas, or poor routing. Accepted outputs reveal whether reviewers are applying the control or clicking through it. Compare the final action with the approved proposal and with the ledger result. When an exception appears, correct the canonical workflow, test the changed rule, and preserve the before-and-after evidence. This creates an improvement loop that is auditable rather than anecdotal.</p><p>Set explicit stop conditions. Pause an automated path if source lineage is missing, the model selects the wrong company or period, a deterministic calculation disagrees, approval records are incomplete, or post-approval execution differs from the approved values. A stop is a control working as designed. It should create an actionable queue, not a silent failure. Assign an owner and service target to each exception type, then use recurring patterns to improve data quality and workflow instructions.</p><h2>Frequently asked questions</h2><h3>Can QuickBooks AI approve its own accounting entries?</h3><p>No. A responsible finance professional should review evidence and approve consequential entries.</p><h3>Which QuickBooks AI tasks are safest to automate first?</h3><p>Begin with retrieval, summaries, and draft workflows that preserve links to source records.</p><h3>How should a finance team test an AI-generated number?</h3><p>Recalculate it deterministically and reconcile the result to the ledger before use.</p><h3>What evidence should the team retain?</h3><p>Retain source records, calculation logic, reviewer identity, approval time, and the final decision.</p><p>Controlled automation works best when the evidence and approval path are visible beside every number. <a href=\"https://finboard.ai\">Explore FinBoard</a> to see how multi-entity reporting can remain traceable from source data through review.</p>"
+    },
+    "cover": {
+      "tag": "For Finance Teams",
+      "accent": "#2563EB"
+    }
+  }
+}

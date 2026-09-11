@@ -77,6 +77,8 @@ agenthub/agents/youtube/db
 .cache/
 
 memory/test_credentials.md
+.blog-pipeline/runs/
+.blog-pipeline/daily-blog.lock
 
 # Mobile development
 android-sdk/

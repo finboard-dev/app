@@ -140,13 +140,13 @@
     }
   ],
   "topicsPerRun": 10,
-  "blogsPerRun": 2,
+  "blogsPerRun": 1,
   "frequency": "daily",
-  "cron": "0 12 * * *",
+  "cron": "10 12 * * *",
   "scheduler": "launchd",
   "gates": {
-    "topicApproval": "manual",
-    "contentApproval": "manual"
+    "topicApproval": "auto",
+    "contentApproval": "auto"
   },
   "reviewChannel": {
     "type": "slack",
@@ -165,6 +165,20 @@
     "script": "scripts/blog-deploy.sh",
     "remote": "origin",
     "target": "main"
+  },
+  "automation": {
+    "timezone": "Asia/Kolkata",
+    "minTopicScore": 18,
+    "minSourceAuthority": 4,
+    "similarityThreshold": 0.72,
+    "productionBaseUrl": "https://finboard.ai",
+    "sitemapUrl": "https://finboard.ai/sitemap.xml",
+    "verificationAttempts": 30,
+    "verificationIntervalSeconds": 20,
+    "validationCommands": [
+      ["python3", "-m", "unittest", "tests.test_daily_blog", "tests.test_daily_blog_config", "tests.test_daily_blog_launchd", "-v"],
+      ["yarn", "--cwd", "frontend", "build"]
+    ]
   },
   "templatesTarget": {
     "contentDir": "frontend/content/templates",
