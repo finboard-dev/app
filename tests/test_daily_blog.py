@@ -31,18 +31,39 @@ class DailyBlogPureTest(unittest.TestCase):
     def test_model_has_only_read_research_tools(self):
         argv = build_claude_argv(Path("/app with spaces"), Path("/skill"), '{"type":"object"}')
         self.assertEqual(argv[0], "claude")
-        self.assertIn("--restricted", argv)
-        for flag in ("--tools", "--allowedTools"):
-            self.assertEqual(argv[argv.index(flag) + 1], "Read,Grep,Glob,WebSearch,WebFetch")
+        self.assertEqual(argv[argv.index("--permission-mode") + 1], "dontAsk")
+        self.assertEqual(argv[argv.index("--setting-sources") + 1], "")
+        settings = json.loads(argv[argv.index("--settings") + 1])
+        self.assertTrue(settings["disableAllHooks"])
+        self.assertEqual(settings["permissions"]["defaultMode"], "dontAsk")
+        self.assertTrue(settings["permissions"]["blockReadsOutsideWorkingDirectories"])
+        self.assertIn("Read(//**/.env)", settings["permissions"]["deny"])
+        self.assertIn("Read(//**/.env.*)", settings["permissions"]["deny"])
+        self.assertIn("WebSearch", settings["permissions"]["allow"])
+        self.assertIn("WebFetch", settings["permissions"]["allow"])
+        self.assertIn("--strict-mcp-config", argv)
+        self.assertEqual(argv[argv.index("--mcp-config") + 1], '{"mcpServers":{}}')
+        self.assertEqual(argv[argv.index("--tools") + 1], "Read,Grep,Glob,WebSearch,WebFetch")
+        self.assertNotIn("--allowedTools", argv)
+        self.assertEqual(argv[argv.index("--disallowedTools") + 1], "Bash,Edit,Write,NotebookEdit,mcp__*")
         self.assertEqual(argv[argv.index("--json-schema") + 1], '{"type":"object"}')
         self.assertEqual(argv[argv.index("--output-format") + 1], "json")
         instruction = argv[argv.index("-p") + 1]
         self.assertIn("/skill/SKILL.md", instruction)
         self.assertIn("/app with spaces", instruction)
         self.assertIn("daily-auto", instruction)
-        self.assertNotIn("Bash", " ".join(argv))
-        self.assertNotIn("Edit", " ".join(argv))
-        self.assertNotIn("Write", " ".join(argv))
+        allowed = argv[argv.index("--tools") + 1]
+        self.assertNotIn("Bash", allowed)
+        self.assertNotIn("Edit", allowed)
+        self.assertNotIn("Write", allowed)
+
+    def test_model_isolation_settings_are_path_independent(self):
+        first = build_claude_argv(Path("/first"), Path("/skill-one"), '{}')
+        second = build_claude_argv(Path("/second"), Path("/skill-two"), '{}')
+        self.assertEqual(
+            json.loads(first[first.index("--settings") + 1]),
+            json.loads(second[second.index("--settings") + 1]),
+        )
 
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {
@@ -453,12 +474,12 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         attempts = self.state()["validationAttempts"]
         self.assertEqual(attempts[0]["commands"], [{"argv": ["check"], "returncode": 1}])
 
-    def test_explicit_retry_is_refused_for_real_publication(self):
+    def test_explicit_retry_can_recover_precommit_failure_for_real_publication(self):
         self.effects.dirty.add("user-notes.txt")
         self.assertEqual(self.execute().status, "failed")
         self.effects.dirty.clear()
-        self.assertEqual(self.execute(retry_failed=True).status, "failed")
-        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
+        self.assertEqual(self.execute(retry_failed=True).status, "published")
+        self.assertTrue(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
 
     def test_configured_timezone_controls_daily_id(self):
         utc_now = dt.datetime(2026, 9, 8, 20, 0, tzinfo=dt.timezone.utc)
