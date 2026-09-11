@@ -105,6 +105,7 @@ class DailyBlogPureTest(unittest.TestCase):
 class FakeEffects:
     def __init__(self):
         self.lock_available = True
+        self.lock_error = None
         self.dirty = set()
         self.model_calls = 0
         self.commands = []
@@ -122,6 +123,8 @@ class FakeEffects:
         self.after_merge = None
 
     def acquire_lock(self, path):
+        if self.lock_error:
+            raise self.lock_error
         return self.lock if self.lock_available else None
 
     def release_lock(self, handle):
@@ -248,6 +251,13 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         cfg_path.write_text(json.dumps(cfg))
         self.effects.lock_available = False
         self.assertEqual(self.execute().status, "skipped_locked")
+        self.assertEqual(json.loads(state_path.read_text())["status"], "selecting")
+
+    def test_lock_acquisition_error_cannot_mutate_an_active_run(self):
+        state_path = self.repo / ".blog-pipeline/runs/2026-09-09-auto.json"
+        state_path.write_text(json.dumps({"date": "2026-09-09-auto", "status": "selecting", "history": [], "topics": [], "selected": [], "drafted": [], "deploy": {}}))
+        self.effects.lock_error = PermissionError("lock denied")
+        self.assertEqual(self.execute().status, "failed")
         self.assertEqual(json.loads(state_path.read_text())["status"], "selecting")
 
     def test_manual_gates_cannot_publish(self):

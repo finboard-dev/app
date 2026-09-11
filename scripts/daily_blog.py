@@ -440,6 +440,7 @@ def run_daily(
 ) -> RunOutcome:
     repo = Path(repo).resolve()
     lock = None
+    owns_lock = False
     skill_root = resolve_skill_root(os.environ)
     modules = None
     cfg = None
@@ -478,6 +479,7 @@ def run_daily(
             except Exception as notify_error:
                 _write_log(log_path, f"{event_at()} lock-skip notification failed: {notify_error}")
             return RunOutcome(SKIPPED_LOCKED, 0)
+        owns_lock = True
         if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
             raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
         content_dir = repo / cfg["target"]["contentDir"]
@@ -702,12 +704,12 @@ def run_daily(
         if not isinstance(error, StageError):
             error = StageError(stage, str(error))
         _write_log(log_path, f"{event_at()} [{error.stage}] {error}")
-        if modules is not None and run is None and run_id is not None:
+        if owns_lock and modules is not None and run is None and run_id is not None:
             try:
                 run = modules["create_run"](repo, run_id)
             except Exception:
                 run = None
-        if modules is not None and run is not None:
+        if owns_lock and modules is not None and run is not None:
             try:
                 if run.get("status") != modules["states"]["failed"]:
                     run = modules["advance"](run, modules["states"]["failed"], event_at())
