@@ -22,6 +22,18 @@ from zoneinfo import ZoneInfo
 
 
 MODEL_TOOLS = "Read,Grep,Glob,WebSearch,WebFetch"
+MODEL_PERMISSION_MODE = "dontAsk"
+MODEL_DENIED_TOOLS = "Bash,Edit,Write,NotebookEdit,mcp__*"
+MODEL_SETTINGS_DENY = (
+    "Bash",
+    "Edit",
+    "Write",
+    "NotebookEdit",
+    "mcp__*",
+    "Read(//**/.env)",
+    "Read(//**/.env.*)",
+)
+MODEL_SETTINGS_ALLOW = ("WebSearch", "WebFetch")
 DEFAULT_SKILL_ROOT = Path("/Users/ujjwal/self/blog-pipeline")
 AUTO_RUN_SUFFIX = "auto"
 SUCCESS = "published"
@@ -186,21 +198,43 @@ def build_claude_argv(
         f"for {repo}.{context} Return structured JSON only. Do not write files, run shell commands, "
         "use Git, deploy, or contact Slack."
     )
+    isolation_settings = json.dumps(
+        {
+            "disableAllHooks": True,
+            "permissions": {
+                "allow": list(MODEL_SETTINGS_ALLOW),
+                "blockReadsOutsideWorkingDirectories": True,
+                "defaultMode": MODEL_PERMISSION_MODE,
+                "deny": list(MODEL_SETTINGS_DENY),
+            },
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
     return [
         "claude",
         "-p",
         instruction,
-        "--restricted",
+        "--setting-sources",
+        "",
+        "--settings",
+        isolation_settings,
+        "--permission-mode",
+        MODEL_PERMISSION_MODE,
+        "--strict-mcp-config",
+        "--mcp-config",
+        '{"mcpServers":{}}',
         "--add-dir",
         str(skill_root),
         "--tools",
         MODEL_TOOLS,
-        "--allowedTools",
-        MODEL_TOOLS,
+        "--disallowedTools",
+        MODEL_DENIED_TOOLS,
         "--json-schema",
         schema_json,
         "--output-format",
         "json",
+        "--no-session-persistence",
     ]
 
 
@@ -483,8 +517,6 @@ def run_daily(
         owns_lock = True
         if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
             raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
-        if retry_failed and not dry_run:
-            raise StageError(stage, "--retry-failed is restricted to explicit dry runs")
         content_dir = repo / cfg["target"]["contentDir"]
 
         existing_run = modules["load_run"](repo, run_id)
@@ -761,7 +793,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--artifact-file", type=Path)
-    parser.add_argument("--retry-failed", action="store_true", help="manually retry today's failed dry run")
+    parser.add_argument("--retry-failed", action="store_true", help="manually retry today's recoverable pre-commit failure")
     args = parser.parse_args(argv)
     now = dt.datetime.now().astimezone()
     outcome = run_daily(args.repo, now, SystemEffects(), args.dry_run, args.artifact_file, args.retry_failed)
