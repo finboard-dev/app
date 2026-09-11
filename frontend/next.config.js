@@ -32,6 +32,8 @@ const nextConfig = {
     return [
       // The manifesto now lives on /about (manifesto + team).
       { source: "/manifesto", destination: "/about", permanent: true },
+      // Keep the plural legacy URL canonical for visitors and search engines.
+      { source: "/blogs", destination: "/blog", permanent: true },
       // The conference calendar graduated from a blog post to its own page.
       {
         source: "/blog/accounting-conferences-2026-2027",
