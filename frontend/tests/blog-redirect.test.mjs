@@ -15,3 +15,14 @@ test("legacy plural blog URL permanently redirects to the canonical blog index",
     permanent: true,
   });
 });
+
+test("legacy plural blog article URLs preserve their slug when redirected", async () => {
+  const redirects = await nextConfig.redirects();
+  const blogsArticleRedirect = redirects.find(({ source }) => source === "/blogs/:path*");
+
+  assert.deepEqual(blogsArticleRedirect, {
+    source: "/blogs/:path*",
+    destination: "/blog/:path*",
+    permanent: true,
+  });
+});

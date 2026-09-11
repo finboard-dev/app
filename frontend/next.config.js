@@ -34,6 +34,7 @@ const nextConfig = {
       { source: "/manifesto", destination: "/about", permanent: true },
       // Keep the plural legacy URL canonical for visitors and search engines.
       { source: "/blogs", destination: "/blog", permanent: true },
+      { source: "/blogs/:path*", destination: "/blog/:path*", permanent: true },
       // The conference calendar graduated from a blog post to its own page.
       {
         source: "/blog/accounting-conferences-2026-2027",
