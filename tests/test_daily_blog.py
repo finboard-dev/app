@@ -362,6 +362,17 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(self.execute().status, "failed")
         self.assertEqual(len(self.effects.commands), command_count)
 
+    def test_dry_retry_refuses_post_commit_failure_instead_of_claiming_published(self):
+        self.effects.fail_commands.add(("git", "push", "origin", "HEAD:main"))
+        self.assertEqual(self.execute().status, "failed")
+        self.effects.fail_commands.clear()
+        command_count = len(self.effects.commands)
+        outcome = self.execute(dry_run=True, retry_failed=True)
+        self.assertEqual(outcome.status, "failed")
+        self.assertEqual(outcome.exit_code, 1)
+        self.assertEqual(len(self.effects.commands), command_count)
+        self.assertEqual(self.state()["status"], "failed")
+
     def test_missing_sitemap_after_page_success_fails_without_live_claim(self):
         self.effects.sitemap_body = "<urlset></urlset>"
         outcome = self.execute()
@@ -423,6 +434,31 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.effects.dirty.add("user-notes.txt")
         self.assertEqual(self.execute().status, "failed")
         self.assertEqual(self.state()["status"], "failed")
+
+    def test_explicit_manual_retry_preserves_failure_history_and_can_validate(self):
+        self.effects.dirty.add("user-notes.txt")
+        self.assertEqual(self.execute().status, "failed")
+        self.effects.dirty.clear()
+        outcome = self.execute(dry_run=True, retry_failed=True)
+        self.assertEqual(outcome.status, "dry_run_validated")
+        events = [entry.get("event") for entry in self.state()["history"]]
+        self.assertIn("failed", events)
+        self.assertIn("manual_retry_started", events)
+
+    def test_explicit_retry_preserves_prior_validation_evidence(self):
+        self.effects.fail_commands.add(("check",))
+        self.assertEqual(self.execute().status, "failed")
+        self.effects.fail_commands.clear()
+        self.assertEqual(self.execute(dry_run=True, retry_failed=True).status, "dry_run_validated")
+        attempts = self.state()["validationAttempts"]
+        self.assertEqual(attempts[0]["commands"], [{"argv": ["check"], "returncode": 1}])
+
+    def test_explicit_retry_is_refused_for_real_publication(self):
+        self.effects.dirty.add("user-notes.txt")
+        self.assertEqual(self.execute().status, "failed")
+        self.effects.dirty.clear()
+        self.assertEqual(self.execute(retry_failed=True).status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
 
     def test_configured_timezone_controls_daily_id(self):
         utc_now = dt.datetime(2026, 9, 8, 20, 0, tzinfo=dt.timezone.utc)
