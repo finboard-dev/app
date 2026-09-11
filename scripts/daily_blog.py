@@ -437,6 +437,7 @@ def run_daily(
     effects: Effects,
     dry_run: bool = False,
     artifact_file: Optional[Path] = None,
+    retry_failed: bool = False,
 ) -> RunOutcome:
     repo = Path(repo).resolve()
     lock = None
@@ -482,10 +483,26 @@ def run_daily(
         owns_lock = True
         if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
             raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
+        if retry_failed and not dry_run:
+            raise StageError(stage, "--retry-failed is restricted to explicit dry runs")
         content_dir = repo / cfg["target"]["contentDir"]
 
         existing_run = modules["load_run"](repo, run_id)
-        if existing_run and existing_run["status"] != modules["states"]["dry"]:
+        if (
+            retry_failed
+            and existing_run
+            and existing_run["status"] == modules["states"]["failed"]
+            and any(
+                entry.get("event") == FAILED
+                and entry.get("details", {}).get("stage") in {"committing", "deploying", "verifying"}
+                for entry in existing_run.get("history", [])
+            )
+        ):
+            return RunOutcome(FAILED, 1, commit=existing_run.get("deploy", {}).get("commit"))
+        resumable_statuses = {modules["states"]["dry"]}
+        if retry_failed:
+            resumable_statuses.add(modules["states"]["failed"])
+        if existing_run and existing_run["status"] not in resumable_statuses:
             exit_code = 1 if existing_run["status"] == modules["states"]["failed"] else 0
             if existing_run["status"] == modules["states"]["published"]:
                 try:
@@ -502,8 +519,12 @@ def run_daily(
             return RunOutcome(ALREADY_PUBLISHED, 0)
 
         if existing_run:
+            prior_status = existing_run["status"]
             run = {**existing_run, "status": "researching"}
-            run = modules["record_event"](run, "real_run_started", event_at(), {"after": VALIDATED_DRY_RUN})
+            if prior_status == modules["states"]["failed"] and run.get("validation"):
+                run["validationAttempts"] = [*run.get("validationAttempts", []), run["validation"]]
+            event = "manual_retry_started" if prior_status == modules["states"]["failed"] else "real_run_started"
+            run = modules["record_event"](run, event, event_at(), {"after": prior_status})
             modules["save_run"](repo, run)
 
         stage = "preflight"
@@ -522,10 +543,10 @@ def run_daily(
         if local_head != upstream_head:
             raise StageError(stage, "local deployment branch contains commits not present on the configured remote branch")
         if local_date in _blog_dates(content_dir):
-            if existing_run:
-                existing_run = {**existing_run, "status": modules["states"]["already"]}
-                existing_run = modules["record_event"](existing_run, ALREADY_PUBLISHED, event_at(), {"reason": "article date fetched from remote"})
-                modules["save_run"](repo, existing_run)
+            if run is not None:
+                run = {**run, "status": modules["states"]["already"]}
+                run = modules["record_event"](run, ALREADY_PUBLISHED, event_at(), {"reason": "article date fetched from remote"})
+                modules["save_run"](repo, run)
             else:
                 modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date fetched from remote"})
             try:
@@ -740,9 +761,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--artifact-file", type=Path)
+    parser.add_argument("--retry-failed", action="store_true", help="manually retry today's failed dry run")
     args = parser.parse_args(argv)
     now = dt.datetime.now().astimezone()
-    outcome = run_daily(args.repo, now, SystemEffects(), args.dry_run, args.artifact_file)
+    outcome = run_daily(args.repo, now, SystemEffects(), args.dry_run, args.artifact_file, args.retry_failed)
     print(json.dumps(outcome.__dict__, sort_keys=True))
     return outcome.exit_code
 
