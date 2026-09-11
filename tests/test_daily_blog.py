@@ -23,7 +23,7 @@ from daily_blog import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL_ROOT = Path("/private/tmp/finboard-auto-blog-skill")
+SKILL_ROOT = Path(os.environ.get("BLOG_PIPELINE_TEST_SKILL_ROOT", "/Users/ujjwal/self/blog-pipeline"))
 FIXED_NOW = dt.datetime(2026, 9, 9, 12, 10, tzinfo=dt.timezone(dt.timedelta(hours=5, minutes=30)))
 
 
@@ -113,7 +113,13 @@ class FakeEffects:
         self.page_status = 200
         self.sitemap_body = ""
         self.fail_commands = set()
+        self.fail_after_commit = set()
         self.lock = object()
+        self.local_head = "base123"
+        self.remote_head = "base123"
+        self.committed = False
+        self.model_output = ""
+        self.after_merge = None
 
     def acquire_lock(self, path):
         return self.lock if self.lock_available else None
@@ -125,6 +131,8 @@ class FakeEffects:
         argv = list(argv)
         self.commands.append((argv, dict(env) if env is not None else None))
         signature = tuple(argv)
+        if self.committed and signature in self.fail_after_commit:
+            return CommandResult(1, "", "planned failure")
         if signature in self.fail_commands:
             return CommandResult(1, "", "planned failure")
         if argv[:3] == ["git", "branch", "--show-current"]:
@@ -145,11 +153,18 @@ class FakeEffects:
         if argv[:4] == ["git", "diff", "--cached", "--name-only"]:
             return CommandResult(0, "frontend/content/blog/quickbooks-ai-control-matrix.json\nfrontend/public/blog/covers/quickbooks-ai-control-matrix.png\n", "")
         if argv[:3] == ["git", "rev-parse", "HEAD"]:
-            return CommandResult(0, "abcdef1234567890\n", "")
+            return CommandResult(0, ("abcdef1234567890" if self.committed else self.local_head) + "\n", "")
+        if argv[:2] == ["git", "rev-parse"] and argv[2] == "origin/main":
+            return CommandResult(0, self.remote_head + "\n", "")
+        if argv[:3] == ["git", "merge", "--ff-only"] and self.after_merge:
+            self.after_merge(cwd)
         if argv[:3] == ["git", "remote", "get-url"]:
             return CommandResult(0, "git@github.com:finboard-dev/app.git\n", "")
         if argv and argv[0] == "claude":
             self.model_calls += 1
+            return CommandResult(0, self.model_output, "")
+        if argv[:2] == ["git", "commit"]:
+            self.committed = True
         return CommandResult(0, "", "")
 
     def fetch(self, url):
@@ -163,6 +178,9 @@ class FakeEffects:
 
     def sleep(self, seconds):
         pass
+
+    def now(self):
+        return FIXED_NOW
 
 
 class DailyBlogOrchestrationTest(unittest.TestCase):
@@ -183,10 +201,17 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
             (content / f"{slug}.json").write_text("{}")
         self.fixture = self.repo / "fixture.json"
         shutil.copyfile(ROOT / "tests/fixtures/daily-blog-publish.json", self.fixture)
+        fixture_payload = json.loads(self.fixture.read_text())
+        fixture_blog = fixture_payload["structured_output"]["blog"]
+        fixture_blog["date"] = "2026-09-09"
+        posting = fixture_blog["structuredData"]["@graph"][0]
+        posting["datePublished"] = "2026-09-09"
+        posting["dateModified"] = "2026-09-09"
+        self.fixture.write_text(json.dumps(fixture_payload))
         self.previous_skill_root = os.environ.get("BLOG_PIPELINE_SKILL_ROOT")
         os.environ["BLOG_PIPELINE_SKILL_ROOT"] = str(SKILL_ROOT)
         self.effects = FakeEffects()
-        self.effects.sitemap_body = "/blog/quickbooks-ai-control-matrix"
+        self.effects.sitemap_body = "<urlset><url><loc>https://finboard.ai/blog/quickbooks-ai-control-matrix</loc></url></urlset>"
 
     def tearDown(self):
         if self.previous_skill_root is None:
@@ -206,13 +231,42 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         outcome = self.execute()
         self.assertEqual(outcome.status, "skipped_locked")
         self.assertEqual(self.effects.commands, [])
-        self.assertEqual(self.state()["status"], "skipped_locked")
+        self.assertFalse((self.repo / ".blog-pipeline/runs/2026-09-09-auto.json").exists())
+
+    def test_lock_skip_does_not_poison_later_winning_run(self):
+        self.effects.lock_available = False
+        self.assertEqual(self.execute().status, "skipped_locked")
+        self.effects.lock_available = True
+        self.assertEqual(self.execute(dry_run=True).status, "dry_run_validated")
+
+    def test_manual_gates_cannot_publish(self):
+        cfg_path = self.repo / ".blog-pipeline/config.json"
+        cfg = json.loads(cfg_path.read_text())
+        cfg["gates"] = {"topicApproval": "manual", "contentApproval": "manual"}
+        cfg_path.write_text(json.dumps(cfg))
+        self.assertEqual(self.execute().status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
 
     def test_same_day_article_stops_before_git_and_model(self):
         (self.repo / "frontend/content/blog/today.json").write_text('{"date":"2026-09-09"}')
         outcome = self.execute()
         self.assertEqual(outcome.status, "already_published")
         self.assertEqual(self.effects.commands, [])
+
+    def test_same_day_article_fetched_during_preflight_stops_before_model(self):
+        def add_upstream_article(repo):
+            (repo / "frontend/content/blog/upstream.json").write_text('{"date":"2026-09-09"}')
+        self.effects.after_merge = add_upstream_article
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "already_published")
+        self.assertEqual(self.effects.model_calls, 0)
+
+    def test_local_commits_ahead_of_remote_are_not_pushed(self):
+        self.effects.local_head = "local-ahead"
+        self.effects.remote_head = "origin-main"
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
 
     def test_dirty_worktree_fails_without_generation(self):
         self.effects.dirty.add("user-notes.txt")
@@ -232,7 +286,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         outcome = self.execute()
         self.assertEqual(outcome.status, "nothing_publishable")
         self.assertEqual(outcome.exit_code, 0)
-        self.assertEqual(self.effects.notifications, [])
+        self.assertEqual(self.effects.notifications[-1][0], "nothing_publishable")
 
     def test_validation_command_failure_removes_only_generated_files(self):
         keep = self.repo / "keep.txt"
@@ -279,12 +333,30 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertIn("deployment not verified", message)
         self.assertNotIn("Read the article", message)
 
+    def test_failed_push_retry_remains_failed_instead_of_claiming_published(self):
+        self.effects.fail_commands.add(("git", "push", "origin", "HEAD:main"))
+        self.assertEqual(self.execute().status, "failed")
+        command_count = len(self.effects.commands)
+        self.assertEqual(self.execute().status, "failed")
+        self.assertEqual(len(self.effects.commands), command_count)
+
     def test_missing_sitemap_after_page_success_fails_without_live_claim(self):
         self.effects.sitemap_body = "<urlset></urlset>"
         outcome = self.execute()
         self.assertEqual(outcome.status, "failed")
         self.assertIn("not verified", self.effects.notifications[-1][1])
         self.assertNotIn("Read the article", self.effects.notifications[-1][1])
+
+    def test_sitemap_requires_exact_location_not_slug_prefix(self):
+        self.effects.sitemap_body = "<urlset><url><loc>https://finboard.ai/blog/quickbooks-ai-control-matrix-old</loc></url></urlset>"
+        self.assertEqual(self.execute().status, "failed")
+
+    def test_failure_after_commit_does_not_delete_staged_or_committed_artifacts(self):
+        self.effects.fail_after_commit.add(("git", "rev-parse", "HEAD"))
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "failed")
+        self.assertTrue((self.repo / "frontend/content/blog/quickbooks-ai-control-matrix.json").exists())
+        self.assertTrue((self.repo / "frontend/public/blog/covers/quickbooks-ai-control-matrix.png").exists())
 
     def test_verified_success_pushes_then_posts_clickable_link(self):
         outcome = self.execute()
@@ -296,6 +368,19 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertGreater(len(self.effects.fetches), 0)
         self.assertGreater(push_index, 0)
         self.assertEqual(self.state()["status"], "published")
+
+    def test_model_path_allows_skill_without_exposing_slack_environment(self):
+        self.effects.model_output = self.fixture.read_text()
+        outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
+        self.assertEqual(outcome.status, "dry_run_validated")
+        model_argv, model_env = next(value for value in self.effects.commands if value[0][0] == "claude")
+        self.assertEqual(model_argv[model_argv.index("--add-dir") + 1], str(SKILL_ROOT))
+        self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
+
+    def test_nothing_publishable_notifies_dev(self):
+        self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
+        self.assertEqual(self.execute().status, "nothing_publishable")
+        self.assertEqual(self.effects.notifications[-1][0], "nothing_publishable")
 
 
 if __name__ == "__main__":

@@ -14,9 +14,11 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping, Optional, Protocol, Sequence
+from zoneinfo import ZoneInfo
 
 
 MODEL_TOOLS = "Read,Grep,Glob,WebSearch,WebFetch"
@@ -73,6 +75,7 @@ class Effects(Protocol):
     def fetch(self, url: str) -> tuple[int, str]: ...
     def notify(self, kind: str, message: str, cfg: dict) -> None: ...
     def sleep(self, seconds: float) -> None: ...
+    def now(self) -> dt.datetime: ...
 
 
 class SystemEffects:
@@ -122,7 +125,8 @@ class SystemEffects:
         bot_name = slack.get("botTokenEnv")
         webhook = os.environ.get(webhook_name, "") if webhook_name else ""
         token = os.environ.get(bot_name, "") if bot_name else ""
-        if webhook:
+        used_webhook = bool(webhook)
+        if used_webhook:
             request = urllib.request.Request(
                 webhook,
                 data=json.dumps({"text": message}).encode("utf-8"),
@@ -142,13 +146,16 @@ class SystemEffects:
             body = response.read().decode("utf-8", errors="replace")
             if response.status >= 300:
                 raise RuntimeError(f"Slack returned HTTP {response.status}")
-            if token:
+            if not used_webhook:
                 payload = json.loads(body)
                 if not payload.get("ok"):
                     raise RuntimeError(f"Slack rejected the message: {payload.get('error', 'unknown error')}")
 
     def sleep(self, seconds: float) -> None:
         time.sleep(seconds)
+
+    def now(self) -> dt.datetime:
+        return dt.datetime.now().astimezone()
 
 
 class StageError(RuntimeError):
@@ -172,6 +179,8 @@ def build_claude_argv(repo: Path, skill_root: Path, schema_json: str) -> list[st
         "-p",
         instruction,
         "--restricted",
+        "--add-dir",
+        str(skill_root),
         "--tools",
         MODEL_TOOLS,
         "--allowedTools",
@@ -367,6 +376,18 @@ def _remote_commit_url(remote_url: str, sha: str) -> str:
     return f"{cleaned}/commit/{sha}"
 
 
+def _sitemap_contains(body: str, canonical_url: str) -> bool:
+    try:
+        root = ET.fromstring(body)
+    except ET.ParseError:
+        return False
+    return any(
+        element.tag.rsplit("}", 1)[-1] == "loc"
+        and (element.text or "").strip().rstrip("/") == canonical_url.rstrip("/")
+        for element in root.iter()
+    )
+
+
 def _write_log(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
@@ -381,44 +402,48 @@ def run_daily(
     artifact_file: Optional[Path] = None,
 ) -> RunOutcome:
     repo = Path(repo).resolve()
-    local_date = now.date().isoformat()
-    run_id = f"{local_date}-{AUTO_RUN_SUFFIX}"
     lock = effects.acquire_lock(repo / ".blog-pipeline" / "daily-blog.lock")
     skill_root = resolve_skill_root(os.environ)
     modules = None
     cfg = None
     run = None
+    run_id = None
+    local_date = None
+    zone = None
     stage = "locking"
     commit = None
     commit_url = None
     slug = None
-    log_path = repo / ".blog-pipeline" / "runs" / f"{run_id}.log"
+    log_path = repo / ".blog-pipeline" / "runs" / "daily-blog.log"
     created_paths: list[Path] = []
+    cleanup_allowed = True
+    event_at = lambda: _timestamp(now)
     try:
         modules = _load_skill_modules(skill_root)
         if lock is None:
-            modules["create_terminal"](repo, run_id, modules["states"]["skipped"], _timestamp(now), {"reason": "lock held"})
             return RunOutcome(SKIPPED_LOCKED, 0)
 
         stage = "configuration"
         cfg = modules["load_config"](repo)
         cfg = json.loads(json.dumps(cfg))
         cfg["target"]["repoPath"] = str(repo)
+        zone = ZoneInfo(cfg["automation"]["timezone"])
+        local_now = now.astimezone(zone)
+        local_date = local_now.date().isoformat()
+        run_id = f"{local_date}-{AUTO_RUN_SUFFIX}"
+        log_path = repo / ".blog-pipeline" / "runs" / f"{run_id}.log"
+        event_at = lambda: _timestamp(effects.now().astimezone(zone))
+        if cfg.get("gates") != {"topicApproval": "auto", "contentApproval": "auto"}:
+            raise StageError(stage, "daily runner requires both approval gates to equal 'auto'")
         content_dir = repo / cfg["target"]["contentDir"]
-        if local_date in _blog_dates(content_dir):
-            modules["create_terminal"](repo, run_id, modules["states"]["already"], _timestamp(now), {"reason": "article date exists"})
-            return RunOutcome(ALREADY_PUBLISHED, 0)
 
         existing_run = modules["load_run"](repo, run_id)
         if existing_run and existing_run["status"] != modules["states"]["dry"]:
             exit_code = 1 if existing_run["status"] == modules["states"]["failed"] else 0
             return RunOutcome(existing_run["status"], exit_code)
-        if existing_run:
-            run = {**existing_run, "status": "researching"}
-            run = modules["record_event"](run, "real_run_started", _timestamp(now), {"after": VALIDATED_DRY_RUN})
-            modules["save_run"](repo, run)
-        else:
-            run = modules["create_run"](repo, run_id)
+        if local_date in _blog_dates(content_dir):
+            modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date exists"})
+            return RunOutcome(ALREADY_PUBLISHED, 0)
 
         stage = "preflight"
         branch = _command(effects, ["git", "branch", "--show-current"], repo, stage).stdout.strip()
@@ -431,8 +456,27 @@ def run_daily(
         target = cfg["deploy"]["target"]
         _command(effects, ["git", "fetch", remote, target], repo, stage)
         _command(effects, ["git", "merge", "--ff-only", f"{remote}/{target}"], repo, stage)
+        local_head = _command(effects, ["git", "rev-parse", "HEAD"], repo, stage).stdout.strip()
+        upstream_head = _command(effects, ["git", "rev-parse", f"{remote}/{target}"], repo, stage).stdout.strip()
+        if local_head != upstream_head:
+            raise StageError(stage, "local deployment branch contains commits not present on the configured remote branch")
+        if local_date in _blog_dates(content_dir):
+            if existing_run:
+                existing_run = {**existing_run, "status": modules["states"]["already"]}
+                existing_run = modules["record_event"](existing_run, ALREADY_PUBLISHED, event_at(), {"reason": "article date fetched from remote"})
+                modules["save_run"](repo, existing_run)
+            else:
+                modules["create_terminal"](repo, run_id, modules["states"]["already"], event_at(), {"reason": "article date fetched from remote"})
+            return RunOutcome(ALREADY_PUBLISHED, 0)
 
-        run = modules["advance"](run, modules["states"]["selecting"], _timestamp(now))
+        if existing_run:
+            run = {**existing_run, "status": "researching"}
+            run = modules["record_event"](run, "real_run_started", event_at(), {"after": VALIDATED_DRY_RUN})
+            modules["save_run"](repo, run)
+        else:
+            run = modules["create_run"](repo, run_id)
+
+        run = modules["advance"](run, modules["states"]["selecting"], event_at())
         modules["save_run"](repo, run)
         stage = "researching"
         if artifact_file:
@@ -448,12 +492,17 @@ def run_daily(
             errors = modules["validate_artifact"](artifact, cfg, local_date, [], [])
             if errors:
                 raise StageError("validating", "; ".join(errors))
-            run = modules["advance"](run, modules["states"]["nothing"], _timestamp(now))
-            run = modules["record_event"](run, NOTHING_PUBLISHABLE, _timestamp(now), {"reason": artifact["reason"]})
+            effects.notify(
+                "nothing_publishable",
+                f"*FinBoard Daily Blog*\nNo publishable topic for {local_date}.\nReason: {artifact['reason']}",
+                cfg,
+            )
+            run = modules["advance"](run, modules["states"]["nothing"], event_at())
+            run = modules["record_event"](run, NOTHING_PUBLISHABLE, event_at(), {"reason": artifact["reason"], "slackPosted": True})
             modules["save_run"](repo, run)
             return RunOutcome(NOTHING_PUBLISHABLE, 0)
 
-        run = modules["advance"](run, modules["states"]["drafting"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["drafting"], event_at())
         modules["save_run"](repo, run)
         stage = "validating"
         posts = modules["load_posts"](content_dir)
@@ -461,6 +510,19 @@ def run_daily(
         errors = modules["validate_artifact"](artifact, cfg, local_date, posts, recent)
         if errors:
             raise StageError(stage, "; ".join(errors))
+        run["topics"] = [artifact["topic"]]
+        run["selected"] = [0]
+        run = modules["record_event"](
+            run,
+            "topic_selected",
+            event_at(),
+            {
+                "slug": artifact["topic"]["slug"],
+                "scores": artifact["topic"]["scores"],
+                "sources": artifact["topic"]["sources"],
+            },
+        )
+        modules["save_run"](repo, run)
         article_path, cover_path = modules["paths"](repo, cfg, artifact)
         for path in (article_path, cover_path):
             if path.exists():
@@ -488,29 +550,34 @@ def run_daily(
         file_errors = modules["validate_file"](article_path, cfg, [post.slug for post in posts])
         if file_errors:
             raise StageError(stage, "; ".join(file_errors))
-        run = modules["advance"](run, modules["states"]["validating"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["validating"], event_at())
         modules["save_run"](repo, run)
+        validation_results = []
         for argv in cfg["automation"]["validationCommands"]:
-            _command(effects, argv, repo, stage)
+            result = _command(effects, argv, repo, stage)
+            validation_results.append({"argv": list(argv), "returncode": result.returncode})
         expected = {str(article_path.relative_to(repo)), str(cover_path.relative_to(repo))}
         actual = _status_paths(_command(effects, ["git", "status", "--porcelain", "--untracked-files=all"], repo, stage).stdout)
         path_errors = validate_changed_paths(expected, actual)
         if path_errors:
             raise StageError(stage, "; ".join(path_errors))
+        run["validation"] = {"commands": validation_results, "changedPaths": sorted(actual)}
+        modules["save_run"](repo, run)
 
         slug = artifact["blog"]["slug"]
         if dry_run:
             for path in reversed(created_paths):
                 path.unlink()
             created_paths.clear()
-            run = modules["advance"](run, modules["states"]["dry"], _timestamp(now))
-            run = modules["record_event"](run, VALIDATED_DRY_RUN, _timestamp(now), {"slug": slug, "paths": sorted(expected)})
+            run = modules["advance"](run, modules["states"]["dry"], event_at())
+            run = modules["record_event"](run, VALIDATED_DRY_RUN, event_at(), {"slug": slug, "paths": sorted(expected)})
             modules["save_run"](repo, run)
             return RunOutcome(VALIDATED_DRY_RUN, 0, slug=slug)
 
         stage = "committing"
-        run = modules["advance"](run, modules["states"]["committing"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["committing"], event_at())
         modules["save_run"](repo, run)
+        cleanup_allowed = False
         _command(effects, ["git", "add", "--", *sorted(expected)], repo, stage)
         staged = set(_command(effects, ["git", "diff", "--cached", "--name-only"], repo, stage).stdout.splitlines())
         path_errors = validate_changed_paths(expected, staged)
@@ -520,13 +587,13 @@ def run_daily(
         commit = _command(effects, ["git", "rev-parse", "HEAD"], repo, stage).stdout.strip()
         remote_url = _command(effects, ["git", "remote", "get-url", remote], repo, stage).stdout.strip()
         commit_url = _remote_commit_url(remote_url, commit)
-        run = modules["advance"](run, modules["states"]["deploying"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["deploying"], event_at())
         run["deploy"] = {"branch": target, "commit": commit, "prodUrls": []}
         modules["save_run"](repo, run)
         _command(effects, ["git", "push", remote, f"HEAD:{target}"], repo, "deploying")
 
         stage = "verifying"
-        run = modules["advance"](run, modules["states"]["verifying"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["verifying"], event_at())
         modules["save_run"](repo, run)
         base = cfg["automation"]["productionBaseUrl"].rstrip("/")
         live_url = f"{base}/blog/{slug}"
@@ -537,7 +604,7 @@ def run_daily(
                 page_ok = page_status == 200
             if not sitemap_ok:
                 sitemap_status, sitemap = effects.fetch(cfg["automation"]["sitemapUrl"])
-                sitemap_ok = sitemap_status == 200 and f"/blog/{slug}" in sitemap
+                sitemap_ok = sitemap_status == 200 and _sitemap_contains(sitemap, live_url)
             if page_ok and sitemap_ok:
                 break
             if attempt + 1 < cfg["automation"]["verificationAttempts"]:
@@ -545,10 +612,10 @@ def run_daily(
         if not page_ok or not sitemap_ok:
             missing = "page and sitemap" if not page_ok and not sitemap_ok else "page" if not page_ok else "sitemap"
             raise StageError(stage, f"production {missing} verification failed for {slug}")
-        completed = now.astimezone().strftime("%Y-%m-%d %H:%M %Z")
+        completed = effects.now().astimezone(zone).strftime("%Y-%m-%d %H:%M %Z")
         message = build_success_message(artifact["blog"]["title"], live_url, commit_url, commit[:7], completed)
         effects.notify("success", message, cfg)
-        run = modules["advance"](run, modules["states"]["published"], _timestamp(now))
+        run = modules["advance"](run, modules["states"]["published"], event_at())
         run["drafted"] = [{"slug": slug, "file": str(article_path.relative_to(repo))}]
         run["deploy"] = {
             "branch": target,
@@ -558,18 +625,23 @@ def run_daily(
             "sitemapVerified": True,
             "slackPosted": True,
         }
-        run = modules["record_event"](run, SUCCESS, _timestamp(now), {"slug": slug, "productionUrl": live_url, "commit": commit})
+        run = modules["record_event"](run, SUCCESS, event_at(), {"slug": slug, "productionUrl": live_url, "commit": commit})
         modules["save_run"](repo, run)
         return RunOutcome(SUCCESS, 0, slug, commit, live_url)
     except Exception as error:
         if not isinstance(error, StageError):
             error = StageError(stage, str(error))
-        _write_log(log_path, f"{_timestamp(now)} [{error.stage}] {error}")
+        _write_log(log_path, f"{event_at()} [{error.stage}] {error}")
+        if modules is not None and run is None and run_id is not None:
+            try:
+                run = modules["create_run"](repo, run_id)
+            except Exception:
+                run = None
         if modules is not None and run is not None:
             try:
                 if run.get("status") != modules["states"]["failed"]:
-                    run = modules["advance"](run, modules["states"]["failed"], _timestamp(now))
-                run = modules["record_event"](run, FAILED, _timestamp(now), {"stage": error.stage, "error": str(error)[:1000]})
+                    run = modules["advance"](run, modules["states"]["failed"], event_at())
+                run = modules["record_event"](run, FAILED, event_at(), {"stage": error.stage, "error": str(error)[:1000]})
                 modules["save_run"](repo, run)
             except Exception as state_error:
                 _write_log(log_path, f"state write failed: {state_error}")
@@ -582,7 +654,7 @@ def run_daily(
     finally:
         # Cleanup is intentionally limited to files created by this failed run
         # before Git committed them. Never reset, clean, stash, or touch prior files.
-        if commit is None:
+        if cleanup_allowed:
             for path in reversed(created_paths):
                 try:
                     path.unlink()

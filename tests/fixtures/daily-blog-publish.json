@@ -40,7 +40,7 @@
       "excerpt": "A QuickBooks AI control matrix helps finance teams automate useful work while keeping source evidence, calculations, reviews, and accounting decisions reliable.",
       "author": "FinBoard Team",
       "authorId": "finboard-team",
-      "date": "2026-09-09",
+      "date": "2026-09-11",
       "coverImage": "/blog/covers/quickbooks-ai-control-matrix.png",
       "coverAlt": "QuickBooks AI control matrix for finance team review workflows",
       "format": "html",
@@ -51,8 +51,8 @@
           {
             "@type": "BlogPosting",
             "headline": "QuickBooks AI Control Matrix: What Finance Teams Can Safely Automate",
-            "datePublished": "2026-09-09",
-            "dateModified": "2026-09-09",
+            "datePublished": "2026-09-11",
+            "dateModified": "2026-09-11",
             "author": {
               "@type": "Organization",
               "@id": "https://finboard.ai/#organization",
