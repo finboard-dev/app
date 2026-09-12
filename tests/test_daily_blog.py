@@ -443,6 +443,15 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(self.execute().status, "nothing_publishable")
         self.assertEqual(self.effects.notifications[-1][0], "nothing_publishable")
 
+    def test_explicit_retry_nothing_preserves_history_and_can_publish(self):
+        publish_fixture = self.fixture.read_text()
+        self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
+        self.assertEqual(self.execute().status, "nothing_publishable")
+        self.fixture.write_text(publish_fixture)
+        self.assertEqual(self.execute(retry_nothing=True).status, "published")
+        retry = next(entry for entry in self.state()["history"] if entry.get("event") == "manual_retry_started")
+        self.assertEqual(retry["details"]["after"], "nothing_publishable")
+
     def test_dry_run_record_can_transition_to_failed_real_preflight(self):
         self.assertEqual(self.execute(dry_run=True).status, "dry_run_validated")
         self.effects.dirty.add("user-notes.txt")

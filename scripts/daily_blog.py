@@ -440,6 +440,7 @@ def run_daily(
     dry_run: bool = False,
     artifact_file: Optional[Path] = None,
     retry_failed: bool = False,
+    retry_nothing: bool = False,
 ) -> RunOutcome:
     repo = Path(repo).resolve()
     lock = None
@@ -502,6 +503,8 @@ def run_daily(
         resumable_statuses = {modules["states"]["dry"]}
         if retry_failed:
             resumable_statuses.add(modules["states"]["failed"])
+        if retry_nothing:
+            resumable_statuses.add(modules["states"]["nothing"])
         if existing_run and existing_run["status"] not in resumable_statuses:
             exit_code = 1 if existing_run["status"] == modules["states"]["failed"] else 0
             if existing_run["status"] == modules["states"]["published"]:
@@ -523,7 +526,7 @@ def run_daily(
             run = {**existing_run, "status": "researching"}
             if prior_status == modules["states"]["failed"] and run.get("validation"):
                 run["validationAttempts"] = [*run.get("validationAttempts", []), run["validation"]]
-            event = "manual_retry_started" if prior_status == modules["states"]["failed"] else "real_run_started"
+            event = "manual_retry_started" if prior_status in {modules["states"]["failed"], modules["states"]["nothing"]} else "real_run_started"
             run = modules["record_event"](run, event, event_at(), {"after": prior_status})
             modules["save_run"](repo, run)
 
@@ -768,9 +771,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--artifact-file", type=Path)
     parser.add_argument("--retry-failed", action="store_true", help="manually retry today's recoverable pre-commit failure")
+    parser.add_argument("--retry-nothing", action="store_true", help="manually retry today's no-topic outcome after an editorial-policy change")
     args = parser.parse_args(argv)
     now = dt.datetime.now().astimezone()
-    outcome = run_daily(args.repo, now, SystemEffects(), args.dry_run, args.artifact_file, args.retry_failed)
+    outcome = run_daily(args.repo, now, SystemEffects(), args.dry_run, args.artifact_file, args.retry_failed, args.retry_nothing)
     print(json.dumps(outcome.__dict__, sort_keys=True))
     return outcome.exit_code
 
