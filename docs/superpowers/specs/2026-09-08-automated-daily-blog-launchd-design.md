@@ -64,7 +64,7 @@ At 12:10 PM local time, `launchd` executes the repository runner.
 3. Confirm that the `app` repository is on `main`, matches the expected remote, and has no tracked or untracked changes outside ignored pipeline state and log files.
 4. Fast-forward from `origin/main`. A diverged branch or failed fetch stops the run.
 5. Invoke Codex non-interactively with the `blog-pipeline daily-auto` instruction in a read-only sandbox with live web search.
-6. Require Codex to return a schema-constrained JSON envelope whose `artifact` field contains the serialized selected topic, scoring evidence, source list, final FinBoard blog document, and cover-generation inputs.
+6. Require Codex to return schema-constrained direct JSON fields for the selected topic, scoring evidence, source list, final FinBoard blog document, and cover-generation inputs.
 7. Parse the envelope, run duplicate checks again, and validate the article without trusting the model's self-assessment.
 8. Write exactly one JSON article and generate exactly one unique cover using the skill's deterministic cover generator.
 9. Run the focused blog validators, content tests, and the production Next.js build.
