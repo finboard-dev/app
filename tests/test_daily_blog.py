@@ -427,14 +427,10 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(model_argv[model_argv.index("--sandbox") + 1], "read-only")
         self.assertEqual(model_argv[model_argv.index("-C") + 1], str(self.repo.resolve()))
         self.assertEqual(
-            self.effects.model_schema,
-            {
-                "type": "object",
-                "additionalProperties": False,
-                "required": ["artifact"],
-                "properties": {"artifact": {"type": "string"}},
-            },
+            self.effects.model_schema["required"],
+            ["outcome", "reason", "topic", "blog", "cover"],
         )
+        self.assertNotIn("artifact", self.effects.model_schema["properties"])
         self.assertFalse(self.effects.model_schema_path.exists())
         instruction = model_argv[-1]
         self.assertIn("local publish date is 2026-09-09", instruction)

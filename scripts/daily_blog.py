@@ -24,12 +24,6 @@ from zoneinfo import ZoneInfo
 
 MODEL_COMMAND = "codex"
 MODEL_SANDBOX = "read-only"
-CODEX_OUTPUT_SCHEMA = {
-    "type": "object",
-    "additionalProperties": False,
-    "required": ["artifact"],
-    "properties": {"artifact": {"type": "string"}},
-}
 DEFAULT_SKILL_ROOT = Path("/Users/ujjwal/self/blog-pipeline")
 AUTO_RUN_SUFFIX = "auto"
 SUCCESS = "published"
@@ -269,7 +263,7 @@ def _load_skill_modules(skill_root: Path):
     scripts_text = str(scripts)
     if scripts_text not in sys.path:
         sys.path.insert(0, scripts_text)
-    from auto_artifact import parse_model_output, safe_artifact_paths, validate_artifact
+    from auto_artifact import codex_output_schema, parse_model_output, safe_artifact_paths, validate_artifact
     from config import load_config
     from existing import load_post_records
     from gen_cover import main as generate_cover
@@ -296,6 +290,7 @@ def _load_skill_modules(skill_root: Path):
     from validate_blog import validate_file
 
     return {
+        "codex_schema": codex_output_schema,
         "parse": parse_model_output,
         "paths": safe_artifact_paths,
         "validate_artifact": validate_artifact,
@@ -572,7 +567,7 @@ def run_daily(
             slack = cfg["reviewChannel"]["slack"]
             secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
             with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
-                json.dump(CODEX_OUTPUT_SCHEMA, schema_file, separators=(",", ":"))
+                json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
                 schema_path = Path(schema_file.name)
             try:
                 argv = build_codex_argv(
