@@ -192,8 +192,9 @@ def build_codex_argv(
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
         f"for {repo}.{context} Return the complete daily-auto artifact as JSON serialized in the "
-        "required artifact field. Do not write files, run shell commands, "
-        "use Git, deploy, or contact Slack."
+        "required artifact field. You may use read-only inspection commands to read the "
+        "skill, configuration, and local blog inventory. Do not write files, use Git, "
+        "deploy, or contact Slack."
     )
     return [
         MODEL_COMMAND,

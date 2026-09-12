@@ -42,7 +42,9 @@ class DailyBlogPureTest(unittest.TestCase):
         self.assertIn("/skill/SKILL.md", instruction)
         self.assertIn("/app with spaces", instruction)
         self.assertIn("daily-auto", instruction)
+        self.assertIn("read-only inspection commands", instruction)
         self.assertIn("Do not write files", instruction)
+        self.assertNotIn("Do not run shell commands", instruction)
 
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {
