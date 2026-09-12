@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from daily_blog import (
-    build_claude_argv,
+    build_codex_argv,
     build_failure_message,
     build_success_message,
     CommandResult,
@@ -28,47 +28,26 @@ FIXED_NOW = dt.datetime(2026, 9, 9, 12, 10, tzinfo=dt.timezone(dt.timedelta(hour
 
 
 class DailyBlogPureTest(unittest.TestCase):
-    def test_model_has_only_read_research_tools(self):
-        argv = build_claude_argv(Path("/app with spaces"), Path("/skill"), '{"type":"object"}')
-        self.assertEqual(argv[0], "claude")
-        self.assertEqual(argv[argv.index("--permission-mode") + 1], "dontAsk")
-        self.assertEqual(argv[argv.index("--setting-sources") + 1], "")
-        settings = json.loads(argv[argv.index("--settings") + 1])
-        self.assertTrue(settings["disableAllHooks"])
-        self.assertEqual(settings["permissions"]["defaultMode"], "dontAsk")
-        self.assertTrue(settings["permissions"]["blockReadsOutsideWorkingDirectories"])
-        self.assertIn("Read(//**/.env)", settings["permissions"]["deny"])
-        self.assertIn("Read(//**/.env.*)", settings["permissions"]["deny"])
-        self.assertIn("WebSearch", settings["permissions"]["allow"])
-        self.assertIn("WebFetch", settings["permissions"]["allow"])
-        self.assertIn("--strict-mcp-config", argv)
-        self.assertEqual(argv[argv.index("--mcp-config") + 1], '{"mcpServers":{}}')
-        self.assertEqual(argv[argv.index("--tools") + 1], "Read,Grep,Glob,WebSearch,WebFetch")
-        self.assertNotIn("--allowedTools", argv)
-        self.assertEqual(argv[argv.index("--disallowedTools") + 1], "Bash,Edit,Write,NotebookEdit,mcp__*")
-        self.assertEqual(argv[argv.index("--json-schema") + 1], '{"type":"object"}')
-        self.assertEqual(argv[argv.index("--output-format") + 1], "json")
-        instruction = argv[argv.index("-p") + 1]
+    def test_codex_model_has_live_search_and_read_only_access(self):
+        schema = Path("/schema with spaces.json")
+        argv = build_codex_argv(Path("/app with spaces"), Path("/skill"), schema)
+        self.assertEqual(argv[:3], ["codex", "--search", "exec"])
+        self.assertEqual(argv[argv.index("--sandbox") + 1], "read-only")
+        self.assertEqual(argv[argv.index("--output-schema") + 1], str(schema))
+        self.assertEqual(argv[argv.index("-C") + 1], "/app with spaces")
+        self.assertIn("--ephemeral", argv)
+        self.assertIn("--ignore-user-config", argv)
+        self.assertNotIn("--add-dir", argv)
+        instruction = argv[-1]
         self.assertIn("/skill/SKILL.md", instruction)
         self.assertIn("/app with spaces", instruction)
         self.assertIn("daily-auto", instruction)
-        allowed = argv[argv.index("--tools") + 1]
-        self.assertNotIn("Bash", allowed)
-        self.assertNotIn("Edit", allowed)
-        self.assertNotIn("Write", allowed)
-
-    def test_model_isolation_settings_are_path_independent(self):
-        first = build_claude_argv(Path("/first"), Path("/skill-one"), '{}')
-        second = build_claude_argv(Path("/second"), Path("/skill-two"), '{}')
-        self.assertEqual(
-            json.loads(first[first.index("--settings") + 1]),
-            json.loads(second[second.index("--settings") + 1]),
-        )
+        self.assertIn("Do not write files", instruction)
 
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {
             "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",
-            "CLAUDE_CODE_OAUTH_TOKEN": "model-auth", "ANTHROPIC_API_KEY": "model-key",
+            "CODEX_HOME": "/home/runner/.codex", "CODEX_API_KEY": "model-key",
             "BLOG_PIPELINE_SLACK_WEBHOOK": "webhook-secret",
             "BLOG_PIPELINE_SLACK_BOT_TOKEN": "bot-secret",
             "SLACK_TOKEN": "other-slack-secret", "GH_TOKEN": "git-secret",
@@ -78,12 +57,12 @@ class DailyBlogPureTest(unittest.TestCase):
         snapshot = dict(env)
         self.assertEqual(sanitize_model_env(env, {"BLOG_PIPELINE_SLACK_WEBHOOK"}), {
             "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",
-            "CLAUDE_CODE_OAUTH_TOKEN": "model-auth", "ANTHROPIC_API_KEY": "model-key",
+            "CODEX_HOME": "/home/runner/.codex", "CODEX_API_KEY": "model-key",
         })
         self.assertEqual(env, snapshot)
 
     def test_explicit_secret_names_override_the_allowlist(self):
-        self.assertEqual(sanitize_model_env({"PATH": "/bin", "ANTHROPIC_API_KEY": "secret"}, {"ANTHROPIC_API_KEY"}), {"PATH": "/bin"})
+        self.assertEqual(sanitize_model_env({"PATH": "/bin", "CODEX_API_KEY": "secret"}, {"CODEX_API_KEY"}), {"PATH": "/bin"})
 
     def test_skill_root_defaults_to_canonical_and_accepts_override(self):
         self.assertEqual(resolve_skill_root({}), Path("/Users/ujjwal/self/blog-pipeline"))
@@ -141,6 +120,8 @@ class FakeEffects:
         self.remote_head = "base123"
         self.committed = False
         self.model_output = ""
+        self.model_schema = None
+        self.model_schema_path = None
         self.after_merge = None
 
     def acquire_lock(self, path):
@@ -184,8 +165,10 @@ class FakeEffects:
             self.after_merge(cwd)
         if argv[:3] == ["git", "remote", "get-url"]:
             return CommandResult(0, "git@github.com:finboard-dev/app.git\n", "")
-        if argv and argv[0] == "claude":
+        if argv[:3] == ["codex", "--search", "exec"]:
             self.model_calls += 1
+            self.model_schema_path = Path(argv[argv.index("--output-schema") + 1])
+            self.model_schema = json.loads(self.model_schema_path.read_text())
             return CommandResult(0, self.model_output, "")
         if argv[:2] == ["git", "commit"]:
             self.committed = True
@@ -434,12 +417,24 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(self.effects.notifications[-1][0], "already_published")
 
     def test_model_path_allows_skill_without_exposing_slack_environment(self):
-        self.effects.model_output = self.fixture.read_text()
+        artifact = json.loads(self.fixture.read_text())["structured_output"]
+        self.effects.model_output = json.dumps({"artifact": json.dumps(artifact)})
         outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
         self.assertEqual(outcome.status, "dry_run_validated")
-        model_argv, model_env = next(value for value in self.effects.commands if value[0][0] == "claude")
-        self.assertEqual(model_argv[model_argv.index("--add-dir") + 1], str(SKILL_ROOT))
-        instruction = model_argv[model_argv.index("-p") + 1]
+        model_argv, model_env = next(value for value in self.effects.commands if value[0][:3] == ["codex", "--search", "exec"])
+        self.assertEqual(model_argv[model_argv.index("--sandbox") + 1], "read-only")
+        self.assertEqual(model_argv[model_argv.index("-C") + 1], str(self.repo.resolve()))
+        self.assertEqual(
+            self.effects.model_schema,
+            {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["artifact"],
+                "properties": {"artifact": {"type": "string"}},
+            },
+        )
+        self.assertFalse(self.effects.model_schema_path.exists())
+        instruction = model_argv[-1]
         self.assertIn("local publish date is 2026-09-09", instruction)
         self.assertIn('"minTopicScore":18', instruction)
         self.assertIn('"gates":{"contentApproval":"auto","topicApproval":"auto"}', instruction)

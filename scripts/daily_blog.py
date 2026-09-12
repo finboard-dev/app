@@ -11,6 +11,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -21,19 +22,14 @@ from typing import Mapping, Optional, Protocol, Sequence
 from zoneinfo import ZoneInfo
 
 
-MODEL_TOOLS = "Read,Grep,Glob,WebSearch,WebFetch"
-MODEL_PERMISSION_MODE = "dontAsk"
-MODEL_DENIED_TOOLS = "Bash,Edit,Write,NotebookEdit,mcp__*"
-MODEL_SETTINGS_DENY = (
-    "Bash",
-    "Edit",
-    "Write",
-    "NotebookEdit",
-    "mcp__*",
-    "Read(//**/.env)",
-    "Read(//**/.env.*)",
-)
-MODEL_SETTINGS_ALLOW = ("WebSearch", "WebFetch")
+MODEL_COMMAND = "codex"
+MODEL_SANDBOX = "read-only"
+CODEX_OUTPUT_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["artifact"],
+    "properties": {"artifact": {"type": "string"}},
+}
 DEFAULT_SKILL_ROOT = Path("/Users/ujjwal/self/blog-pipeline")
 AUTO_RUN_SUFFIX = "auto"
 SUCCESS = "published"
@@ -51,8 +47,8 @@ MODEL_ENV_NAMES = frozenset(
         "TMPDIR",
         "LANG",
         "LC_ALL",
-        "CLAUDE_CODE_OAUTH_TOKEN",
-        "ANTHROPIC_API_KEY",
+        "CODEX_HOME",
+        "CODEX_API_KEY",
     }
 )
 
@@ -180,10 +176,10 @@ def resolve_skill_root(env: Mapping[str, str]) -> Path:
     return Path(env.get("BLOG_PIPELINE_SKILL_ROOT", str(DEFAULT_SKILL_ROOT)))
 
 
-def build_claude_argv(
+def build_codex_argv(
     repo: Path,
     skill_root: Path,
-    schema_json: str,
+    schema_path: Path,
     publish_date: Optional[str] = None,
     validated_config: Optional[dict] = None,
 ) -> list[str]:
@@ -195,46 +191,23 @@ def build_claude_argv(
         )
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
-        f"for {repo}.{context} Return structured JSON only. Do not write files, run shell commands, "
+        f"for {repo}.{context} Return the complete daily-auto artifact as JSON serialized in the "
+        "required artifact field. Do not write files, run shell commands, "
         "use Git, deploy, or contact Slack."
     )
-    isolation_settings = json.dumps(
-        {
-            "disableAllHooks": True,
-            "permissions": {
-                "allow": list(MODEL_SETTINGS_ALLOW),
-                "blockReadsOutsideWorkingDirectories": True,
-                "defaultMode": MODEL_PERMISSION_MODE,
-                "deny": list(MODEL_SETTINGS_DENY),
-            },
-        },
-        separators=(",", ":"),
-        sort_keys=True,
-    )
     return [
-        "claude",
-        "-p",
+        MODEL_COMMAND,
+        "--search",
+        "exec",
+        "--sandbox",
+        MODEL_SANDBOX,
+        "--ephemeral",
+        "--ignore-user-config",
+        "--output-schema",
+        str(schema_path),
+        "-C",
+        str(repo),
         instruction,
-        "--setting-sources",
-        "",
-        "--settings",
-        isolation_settings,
-        "--permission-mode",
-        MODEL_PERMISSION_MODE,
-        "--strict-mcp-config",
-        "--mcp-config",
-        '{"mcpServers":{}}',
-        "--add-dir",
-        str(skill_root),
-        "--tools",
-        MODEL_TOOLS,
-        "--disallowedTools",
-        MODEL_DENIED_TOOLS,
-        "--json-schema",
-        schema_json,
-        "--output-format",
-        "json",
-        "--no-session-persistence",
     ]
 
 
@@ -295,7 +268,7 @@ def _load_skill_modules(skill_root: Path):
     scripts_text = str(scripts)
     if scripts_text not in sys.path:
         sys.path.insert(0, scripts_text)
-    from auto_artifact import ARTIFACT_JSON_SCHEMA, parse_claude_output, safe_artifact_paths, validate_artifact
+    from auto_artifact import parse_model_output, safe_artifact_paths, validate_artifact
     from config import load_config
     from existing import load_post_records
     from gen_cover import main as generate_cover
@@ -322,8 +295,7 @@ def _load_skill_modules(skill_root: Path):
     from validate_blog import validate_file
 
     return {
-        "schema": ARTIFACT_JSON_SCHEMA,
-        "parse": parse_claude_output,
+        "parse": parse_model_output,
         "paths": safe_artifact_paths,
         "validate_artifact": validate_artifact,
         "load_config": load_config,
@@ -598,15 +570,21 @@ def run_daily(
         else:
             slack = cfg["reviewChannel"]["slack"]
             secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
-            argv = build_claude_argv(
-                repo,
-                skill_root,
-                json.dumps(modules["schema"], separators=(",", ":")),
-                local_date,
-                _model_config(cfg),
-            )
-            result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
-            raw = result.stdout
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
+                json.dump(CODEX_OUTPUT_SCHEMA, schema_file, separators=(",", ":"))
+                schema_path = Path(schema_file.name)
+            try:
+                argv = build_codex_argv(
+                    repo,
+                    skill_root,
+                    schema_path,
+                    local_date,
+                    _model_config(cfg),
+                )
+                result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
+                raw = result.stdout
+            finally:
+                schema_path.unlink(missing_ok=True)
         artifact = modules["parse"](raw)
         if artifact.get("outcome") == NOTHING_PUBLISHABLE:
             errors = modules["validate_artifact"](artifact, cfg, local_date, [], [])

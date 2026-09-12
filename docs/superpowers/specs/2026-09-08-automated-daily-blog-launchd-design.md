@@ -15,7 +15,7 @@ The workflow follows the operating pattern of the existing QuickBooks ratings jo
 The workflow is complete when:
 
 1. A LaunchAgent runs daily at 12:10 PM local time without Codex or another desktop application being open.
-2. The scheduled command invokes the canonical `blog-pipeline` skill through the already-authenticated headless Claude CLI.
+2. The scheduled command invokes the canonical `blog-pipeline` skill through the already-authenticated headless Codex CLI.
 3. At most one new FinBoard blog is published per local calendar day.
 4. Exact and substantially overlapping topics are rejected before writing.
 5. Only an article that passes every deterministic content and frontend check can be committed.
@@ -36,7 +36,7 @@ Future runs choose their topic dynamically from current accounting, QuickBooks, 
 
 ## Existing System
 
-The current LaunchAgent, `ai.ujjwalks.blog-pipeline.app`, runs at noon and has completed successfully 35 times. It invokes Claude with read and research tools, creates blog and template run files, and stops at `awaiting_topic_approval`.
+The original LaunchAgent, `ai.ujjwalks.blog-pipeline.app`, invoked Claude with read and research tools, created blog and template run files, and stopped at `awaiting_topic_approval`. The unattended route invokes Codex in a read-only sandbox with live web search.
 
 The accumulated run files demonstrate that scheduling and research work, but the two mandatory human gates prevent drafting and publication. The configured deployment script is also absent from the `app` repository, so the existing run cannot progress to production.
 
@@ -63,8 +63,8 @@ At 12:10 PM local time, `launchd` executes the repository runner.
 2. Resolve the local date and check whether an article is already published for that date. If so, exit without invoking the model.
 3. Confirm that the `app` repository is on `main`, matches the expected remote, and has no tracked or untracked changes outside ignored pipeline state and log files.
 4. Fast-forward from `origin/main`. A diverged branch or failed fetch stops the run.
-5. Invoke Claude non-interactively with the `blog-pipeline daily-auto` instruction and only read, search, and web tools.
-6. Require Claude to return a single JSON envelope containing the selected topic, scoring evidence, source list, final FinBoard blog document, and cover-generation inputs.
+5. Invoke Codex non-interactively with the `blog-pipeline daily-auto` instruction in a read-only sandbox with live web search.
+6. Require Codex to return a schema-constrained JSON envelope whose `artifact` field contains the serialized selected topic, scoring evidence, source list, final FinBoard blog document, and cover-generation inputs.
 7. Parse the envelope, run duplicate checks again, and validate the article without trusting the model's self-assessment.
 8. Write exactly one JSON article and generate exactly one unique cover using the skill's deterministic cover generator.
 9. Run the focused blog validators, content tests, and the production Next.js build.
