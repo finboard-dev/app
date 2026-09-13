@@ -151,8 +151,8 @@
   "reviewChannel": {
     "type": "slack",
     "slack": {
-      "channelId": "C09E0C9G8TW",
-      "webhookEnv": "BLOG_PIPELINE_SLACK_WEBHOOK",
+      "channelId": "#release",
+      "webhookEnv": "BLOG_PIPELINE_RELEASE_WEBHOOK",
       "botTokenEnv": "BLOG_PIPELINE_SLACK_BOT_TOKEN"
     }
   },
