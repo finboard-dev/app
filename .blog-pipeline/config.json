@@ -152,7 +152,7 @@
     "type": "slack",
     "slack": {
       "channelId": "#release",
-      "webhookEnv": "BLOG_PIPELINE_RELEASE_WEBHOOK",
+      "webhookEnv": "BLOG_PIPELINE_SLACK_WEBHOOK",
       "botTokenEnv": "BLOG_PIPELINE_SLACK_BOT_TOKEN"
     }
   },
