@@ -492,6 +492,22 @@ def run_daily(
         if (
             retry_failed
             and existing_run
+            and existing_run["status"] == modules["states"]["selecting"]
+        ):
+            # Holding the lock proves no earlier process still owns this run.
+            # Selecting has not written an article, so an explicit retry may
+            # safely turn an interrupted model invocation into auditable failure.
+            existing_run = {**existing_run, "status": modules["states"]["failed"]}
+            existing_run = modules["record_event"](
+                existing_run,
+                "abandoned_run_recovered",
+                event_at(),
+                {"priorStatus": modules["states"]["selecting"]},
+            )
+            modules["save_run"](repo, existing_run)
+        if (
+            retry_failed
+            and existing_run
             and existing_run["status"] == modules["states"]["failed"]
             and any(
                 entry.get("event") == FAILED
