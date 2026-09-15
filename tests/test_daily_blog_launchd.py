@@ -48,6 +48,35 @@ class LaunchdContractTest(unittest.TestCase):
         self.assertEqual(result.returncode, 37)
         self.assertEqual(result.stdout.strip(), "--repo /Users/ujjwal/finboard/app")
 
+    def test_wrapper_activates_nvm_default_node_for_background_runs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            nvm_dir = root / "nvm"
+            node_dir = root / "node-bin"
+            nvm_dir.mkdir()
+            node_dir.mkdir()
+            (nvm_dir / "nvm.sh").write_text(
+                f"nvm() {{ PATH={node_dir}:$PATH; export PATH; }}\n"
+            )
+            node = node_dir / "node"
+            node.write_text("#!/bin/bash\nexit 0\n")
+            node.chmod(0o700)
+            runner = root / "runner.py"
+            runner.write_text(
+                "import shutil, sys\n"
+                "print(shutil.which('node') or '')\n"
+                "raise SystemExit(0)\n"
+            )
+            env = {**os.environ, "NVM_DIR": str(nvm_dir), "PATH": "/usr/bin:/bin"}
+            result = subprocess.run(
+                ["/bin/bash", str(ROOT / "scripts/daily-blog.sh"), "--test-runner", str(runner)],
+                env=env,
+                capture_output=True,
+                text=True,
+            )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.strip(), str(node))
+
     def test_installer_is_repeatable_and_never_triggers_job(self):
         with tempfile.TemporaryDirectory() as directory:
             temp = Path(directory)

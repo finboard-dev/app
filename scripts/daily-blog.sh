@@ -17,4 +17,20 @@ else
   fi
 fi
 
+if ! command -v node >/dev/null 2>&1; then
+  NVM_DIR="${NVM_DIR:-/Users/ujjwal/.nvm}"
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
+    if ! nvm use --silent default >/dev/null 2>&1; then
+      echo "Daily blog runner could not activate NVM's default Node version." >&2
+      exit 127
+    fi
+  fi
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "Daily blog runner requires Node on PATH for frontend validation." >&2
+  exit 127
+fi
+
 exec /usr/bin/python3 "$RUNNER" --repo "$REPO"
