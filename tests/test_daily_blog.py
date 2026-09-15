@@ -266,7 +266,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertEqual(self.execute().status, "failed")
         self.assertEqual(json.loads(state_path.read_text())["status"], "selecting")
 
-    def test_explicit_retry_recovers_an_abandoned_selecting_run(self):
+    def test_run_recovers_an_abandoned_selecting_run(self):
         state_path = self.repo / ".blog-pipeline/runs/2026-09-09-auto.json"
         state_path.write_text(json.dumps({
             "date": "2026-09-09-auto",
@@ -277,7 +277,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
             "drafted": [],
             "deploy": {},
         }))
-        outcome = self.execute(retry_failed=True)
+        outcome = self.execute()
         self.assertEqual(outcome.status, "published")
         events = [entry.get("event") for entry in self.state()["history"]]
         self.assertIn("abandoned_run_recovered", events)

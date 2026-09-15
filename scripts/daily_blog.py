@@ -489,13 +489,10 @@ def run_daily(
         content_dir = repo / cfg["target"]["contentDir"]
 
         existing_run = modules["load_run"](repo, run_id)
-        if (
-            retry_failed
-            and existing_run
-            and existing_run["status"] == modules["states"]["selecting"]
-        ):
+        recovered_abandoned_selection = False
+        if existing_run and existing_run["status"] == modules["states"]["selecting"]:
             # Holding the lock proves no earlier process still owns this run.
-            # Selecting has not written an article, so an explicit retry may
+            # Selecting has not written an article, so a fresh invocation may
             # safely turn an interrupted model invocation into auditable failure.
             existing_run = {**existing_run, "status": modules["states"]["failed"]}
             existing_run = modules["record_event"](
@@ -505,6 +502,7 @@ def run_daily(
                 {"priorStatus": modules["states"]["selecting"]},
             )
             modules["save_run"](repo, existing_run)
+            recovered_abandoned_selection = True
         if (
             retry_failed
             and existing_run
@@ -517,7 +515,7 @@ def run_daily(
         ):
             return RunOutcome(FAILED, 1, commit=existing_run.get("deploy", {}).get("commit"))
         resumable_statuses = {modules["states"]["dry"]}
-        if retry_failed:
+        if retry_failed or recovered_abandoned_selection:
             resumable_statuses.add(modules["states"]["failed"])
         if retry_nothing:
             resumable_statuses.add(modules["states"]["nothing"])
