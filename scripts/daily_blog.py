@@ -32,6 +32,7 @@ NOTHING_PUBLISHABLE = "nothing_publishable"
 ALREADY_PUBLISHED = "already_published"
 SKIPPED_LOCKED = "skipped_locked"
 FAILED = "failed"
+PUBLISH_ARTIFACT = "publish"
 MODEL_ENV_NAMES = frozenset(
     {
         "PATH",
@@ -176,6 +177,7 @@ def build_codex_argv(
     schema_path: Path,
     publish_date: Optional[str] = None,
     validated_config: Optional[dict] = None,
+    correction_errors: Sequence[str] = (),
 ) -> list[str]:
     context = ""
     artifact_requirements = ""
@@ -194,9 +196,16 @@ def build_codex_argv(
                 "topic.sources. Include the primary keyword verbatim in the title, excerpt, opening "
                 "paragraph, and coverAlt."
             )
+    correction_context = ""
+    if correction_errors:
+        correction_context = (
+            " The previous artifact failed deterministic validation with these errors: "
+            f"{'; '.join(correction_errors)}. Return a corrected complete artifact that resolves every "
+            "listed error while preserving the required artifact schema."
+        )
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
-        f"for {repo}.{context}{artifact_requirements} Return the complete daily-auto artifact as JSON serialized in the "
+        f"for {repo}.{context}{artifact_requirements}{correction_context} Return the complete daily-auto artifact as JSON serialized in the "
         "required artifact field. You may use read-only inspection commands to read the "
         "skill, configuration, and local blog inventory. Do not write files, use Git, "
         "deploy, or contact Slack."
@@ -630,6 +639,36 @@ def run_daily(
         posts = modules["load_posts"](content_dir)
         recent = _recent_topics(repo, local_date)
         errors = modules["validate_artifact"](artifact, cfg, local_date, posts, recent)
+        if errors and artifact_file is None:
+            run = modules["record_event"](
+                run,
+                "artifact_correction_requested",
+                event_at(),
+                {"errors": errors},
+            )
+            modules["save_run"](repo, run)
+            slack = cfg["reviewChannel"]["slack"]
+            secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
+                json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
+                schema_path = Path(schema_file.name)
+            try:
+                argv = build_codex_argv(
+                    repo,
+                    skill_root,
+                    schema_path,
+                    local_date,
+                    _model_config(cfg),
+                    errors,
+                )
+                result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
+                artifact = modules["parse"](result.stdout)
+            finally:
+                schema_path.unlink(missing_ok=True)
+            if artifact.get("outcome") != PUBLISH_ARTIFACT:
+                errors = ["artifact correction must return a publish artifact"]
+            else:
+                errors = modules["validate_artifact"](artifact, cfg, local_date, posts, recent)
         if errors:
             raise StageError(stage, "; ".join(errors))
         run["topics"] = [artifact["topic"]]

@@ -61,6 +61,20 @@ class DailyBlogPureTest(unittest.TestCase):
         self.assertIn("exact source URL and its publishedOrUpdated date", instruction)
         self.assertIn("primary keyword verbatim in the title, excerpt, opening paragraph, and coverAlt", instruction)
 
+    def test_model_correction_instruction_includes_deterministic_validation_errors(self):
+        instruction = build_codex_argv(
+            Path("/app"),
+            Path("/skill"),
+            Path("/schema.json"),
+            "2026-09-17",
+            {"automation": {"productionBaseUrl": "https://finboard.ai"}},
+            ["blog.coverAlt: primary keyword must appear naturally"],
+        )[-1]
+
+        self.assertIn("previous artifact failed deterministic validation", instruction)
+        self.assertIn("blog.coverAlt: primary keyword must appear naturally", instruction)
+        self.assertIn("Return a corrected complete artifact", instruction)
+
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {
             "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",
@@ -137,6 +151,7 @@ class FakeEffects:
         self.remote_head = "base123"
         self.committed = False
         self.model_output = ""
+        self.model_outputs = []
         self.model_schema = None
         self.model_schema_path = None
         self.after_merge = None
@@ -186,7 +201,8 @@ class FakeEffects:
             self.model_calls += 1
             self.model_schema_path = Path(argv[argv.index("--output-schema") + 1])
             self.model_schema = json.loads(self.model_schema_path.read_text())
-            return CommandResult(0, self.model_output, "")
+            output = self.model_outputs.pop(0) if self.model_outputs else self.model_output
+            return CommandResult(0, output, "")
         if argv[:2] == ["git", "commit"]:
             self.committed = True
         return CommandResult(0, "", "")
@@ -469,6 +485,23 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.assertIn('"minTopicScore":18', instruction)
         self.assertIn('"gates":{"contentApproval":"auto","topicApproval":"auto"}', instruction)
         self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
+
+    def test_model_path_corrects_one_rejected_artifact_before_failing_run(self):
+        valid_artifact = json.loads(self.fixture.read_text())["structured_output"]
+        invalid_artifact = json.loads(json.dumps(valid_artifact))
+        invalid_artifact["blog"]["coverAlt"] = "Accounting workflow diagram"
+        self.effects.model_outputs = [
+            json.dumps({"artifact": json.dumps(invalid_artifact)}),
+            json.dumps({"artifact": json.dumps(valid_artifact)}),
+        ]
+
+        outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
+
+        self.assertEqual(outcome.status, "dry_run_validated")
+        self.assertEqual(self.effects.model_calls, 2)
+        correction_instruction = [command[0][-1] for command in self.effects.commands if command[0][:3] == ["codex", "--search", "exec"]][-1]
+        self.assertIn("previous artifact failed deterministic validation", correction_instruction)
+        self.assertIn("blog.coverAlt: primary keyword must appear naturally", correction_instruction)
 
     def test_nothing_publishable_notifies_dev(self):
         self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
