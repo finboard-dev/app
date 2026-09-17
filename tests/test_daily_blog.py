@@ -59,6 +59,7 @@ class DailyBlogPureTest(unittest.TestCase):
         self.assertIn("https://finboard.ai/blog/<slug>", instruction)
         self.assertIn("h2 whose heading contains both 'why' and 'now'", instruction)
         self.assertIn("exact source URL and its publishedOrUpdated date", instruction)
+        self.assertIn("primary keyword verbatim in the title, excerpt, opening paragraph, and coverAlt", instruction)
 
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {

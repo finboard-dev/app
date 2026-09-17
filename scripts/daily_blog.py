@@ -191,7 +191,8 @@ def build_codex_argv(
                 f"{production_base_url}/blog/<slug>, with <slug> replaced by blog.slug. "
                 "Include an h2 whose heading contains both 'why' and 'now'; within that section, "
                 "link the exact source URL and its publishedOrUpdated date exactly as it appears in "
-                "topic.sources."
+                "topic.sources. Include the primary keyword verbatim in the title, excerpt, opening "
+                "paragraph, and coverAlt."
             )
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
