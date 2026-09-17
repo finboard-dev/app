@@ -1,0 +1,78 @@
+{
+  "slug": "quickbooks-custom-automations-control-checklist",
+  "title": "QuickBooks Custom Automations: A Control Checklist for Accounting Firms",
+  "category": "tech",
+  "excerpt": "Use this QuickBooks custom automations control checklist to pilot one recurring client workflow, verify the output, retain audit evidence, and decide when it is safe to expand.",
+  "author": "FinBoard Team",
+  "authorId": "finboard-team",
+  "date": "2026-09-17",
+  "coverImage": "/blog/covers/quickbooks-custom-automations-control-checklist.png",
+  "coverAlt": "QuickBooks custom automations control checklist showing a reviewed accounting workflow and audit log",
+  "format": "html",
+  "content": "<p>QuickBooks custom automations can reduce recurring work, but an accounting firm should begin with one low-risk client workflow and a documented reviewer. Run the automation beside the existing process, compare every material output, inspect exceptions and audit evidence, and expand only when a named owner accepts the results.</p><h2>Why QuickBooks custom automations matter now</h2><p>In a product update published <a href=\"https://quickbooks.intuit.com/community/quickbooks-product-updates-38/quickbooks-product-updates-ai-powered-automation-smarter-collaboration-and-simpler-payments-august-2026-376118\">2026-09-15</a>, Intuit described automations that users create in plain language and run on a schedule. Available examples include invoice reminders, business health checks, books cleanup, revenue-to-cash tracking, and profit and loss analysis. Intuit also says users can see whether each automation is running, paused, or in error and can inspect its audit log.</p><p>The operational question for a firm is therefore specific: which recurring task can be standardized without allowing an incorrect period, incomplete population, or unusual client transaction to pass unnoticed? That question is more useful than switching on several templates at once. A narrow pilot produces evidence that a partner can review before the firm changes its standard procedure.</p><p>Intuit's help documentation, updated <a href=\"https://quickbooks.intuit.com/learn-support/en-us/help-article/business-automation/automate-tasks-custom-automations/L6qv3odlt_US_en_US\">2026-08-24</a>, says a Primary Admin or Company Admin creates, edits, or deletes an automation. It also documents live previews, run history, failure notifications, approval for outward-facing actions, and activity recorded in the QuickBooks Audit Log. Those features provide evidence, but the firm still needs to define what constitutes an acceptable result.</p><h2>Choose one workflow and establish a baseline</h2><p>Start with a read-only output whose expected result is already familiar. A weekly profit and loss summary, an overdue-invoice list, or a month-end exception report is easier to test than a workflow that communicates with customers. Avoid a first pilot that posts entries, changes master data, or relies on an unresolved accounting judgment.</p><p>Select one client with stable records and enough activity to reveal exceptions. Preserve the current manual procedure for two close cycles. Record the normal preparation time, the report filters, the accounting basis, the reporting period, the source accounts, the reviewer, and every recurring adjustment. This baseline lets the firm compare like with like.</p><p>Write the automation instruction as a miniature procedure. For example: prepare an accrual-basis profit and loss summary for the prior calendar month, compare each account with the prior month, flag changes above both $2,500 and 10%, and draft an internal summary for review. Specify both a dollar and percentage threshold so a small account does not create noise while a large account does not hide a meaningful dollar change.</p><p>Run the automated and existing procedures from the same locked reporting period. Reconcile revenue, total expenses, and net income before assessing commentary. If the totals differ, stop and identify the filter, timing, classification, or source-population difference. Firms that need a consistent reporting foundation can use the approach in <a href=\"/blog/shared-chart-of-accounts-mapping-for-multi-entity-finance-teams\">shared chart of accounts mapping</a> before comparing automated outputs across clients.</p><h2>Accounting controls for a safe pilot</h2><p><strong>Source data:</strong> document the company file, reporting basis, period, included accounts, customer or vendor population, and any excluded classes or locations. Save the source report used by the existing procedure. The workflow owner confirms that both methods use the same cutoff and population.</p><p><strong>Calculation:</strong> define every deterministic calculation outside the prose instruction. A variance should use current-period amount minus comparison-period amount. A percentage variance should use an approved denominator and a documented rule for zero or negative comparison values. Recalculate a sample independently and reconcile control totals to QuickBooks.</p><p><strong>Review:</strong> assign someone other than the preparer to inspect the live preview, exceptions, failure notices, recipients, and Audit Log. The reviewer compares material totals with the baseline, investigates unmatched items, and records whether each difference is expected, corrected, or escalated. Outward-facing drafts receive a separate recipient and wording check before approval.</p><p><strong>Decision:</strong> name the partner, controller, or workflow owner who can approve expansion. The decision record should state the clients covered, permitted task, schedule, thresholds, reviewer, evidence-retention location, and conditions that pause the automation. Access changes, repeated failures, unexplained differences, and changes to the underlying report should trigger a new test.</p><p>This structure complements an established <a href=\"/blog/designing-audit-ready-controls-without-slowing-the-close\">audit-ready close control</a>. FinBoard can help teams compare recurring financial outputs and review multi-entity reporting in one place. <a href=\"https://finboard.ai\">See how FinBoard supports controlled financial reporting</a>.</p><h2>Rollout limits and common mistakes</h2><p>Custom automations do not remove accounting judgment. An accurate report can still support a poor conclusion if the period, basis, population, or materiality threshold is wrong. Audit-log evidence shows what ran and when; it does not prove that the instruction reflected the client's accounting policy.</p><p>A common mistake is treating a polished narrative as evidence that the underlying totals are complete. Reconcile the numbers first. Another is testing only a quiet client, then assuming the same instruction works for clients with classes, locations, multicurrency activity, unusual revenue recognition, or inconsistent charts of accounts. Expand by workflow pattern and client complexity, with a fresh baseline for each material variation.</p><p>Do not count draft preparation as completed communication. Intuit says outward-facing actions wait for approval, so the firm's procedure should identify the individual who checks the recipient, attachments, amount, reporting period, tone, and confidential information. A missed approval queue also needs an owner and an aging threshold.</p><p>Measure results over complete cycles. Track preparation minutes, review minutes, exceptions detected, false positives, failed runs, late approvals, and corrected outputs. Time saved is useful only when the error rate and review burden remain acceptable. Pause the workflow when unexplained differences exceed the firm's threshold or when the evidence needed for review is unavailable.</p><h2>Frequently Asked Questions</h2><h3>What are QuickBooks custom automations?</h3><p>QuickBooks custom automations are scheduled workflows created through Intuit Intelligence from a plain-language instruction. They can generate reports, draft reminders, summarize data, and record activity for later review.</p><h3>Who can create a QuickBooks custom automation?</h3><p>Intuit says a Primary Admin or Company Admin can create, edit, or delete a custom automation. Accounting firms should also assign a named workflow owner and reviewer in their internal control register.</p><h3>Do custom automations send messages without approval?</h3><p>Intuit states that outward-facing actions wait for review and approval. The reviewer should still confirm the recipient, amount, period, source data, and wording before approving a draft.</p><h3>How should an accounting firm pilot custom automations?</h3><p>Start with one low-risk, read-only workflow for one client and run it in parallel with the existing process for two close cycles. Compare the output, document exceptions, and expand only after the reviewer accepts the evidence.</p>",
+  "order": 62,
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "QuickBooks Custom Automations: A Control Checklist for Accounting Firms",
+        "description": "Use this QuickBooks custom automations control checklist to pilot one recurring client workflow with source data, calculation, review, audit-log evidence, and clear decision ownership.",
+        "datePublished": "2026-09-17",
+        "dateModified": "2026-09-17",
+        "author": {
+          "@type": "Organization",
+          "name": "FinBoard Team",
+          "url": "https://finboard.ai/about"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "FinBoard.ai",
+          "url": "https://finboard.ai"
+        },
+        "image": "https://finboard.ai/blog/covers/quickbooks-custom-automations-control-checklist.png",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://finboard.ai/blog/quickbooks-custom-automations-control-checklist"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are QuickBooks custom automations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "QuickBooks custom automations are scheduled workflows created through Intuit Intelligence from a plain-language instruction. They can generate reports, draft reminders, summarize data, and record activity for later review."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who can create a QuickBooks custom automation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Intuit says a Primary Admin or Company Admin can create, edit, or delete a custom automation. Accounting firms should also assign a named workflow owner and reviewer in their internal control register."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do custom automations send messages without approval?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Intuit states that outward-facing actions wait for review and approval. The reviewer should still confirm the recipient, amount, period, source data, and wording before approving a draft."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How should an accounting firm pilot custom automations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with one low-risk, read-only workflow for one client and run it in parallel with the existing process for two close cycles. Compare the output, document exceptions, and expand only after the reviewer accepts the evidence."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
