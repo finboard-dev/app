@@ -46,6 +46,20 @@ class DailyBlogPureTest(unittest.TestCase):
         self.assertIn("Do not write files", instruction)
         self.assertNotIn("Do not run shell commands", instruction)
 
+    def test_model_instruction_spells_out_canonical_and_why_now_validation_contract(self):
+        instruction = build_codex_argv(
+            Path("/app"),
+            Path("/skill"),
+            Path("/schema.json"),
+            "2026-09-17",
+            {"automation": {"productionBaseUrl": "https://finboard.ai"}},
+        )[-1]
+
+        self.assertIn("mainEntityOfPage.@id", instruction)
+        self.assertIn("https://finboard.ai/blog/<slug>", instruction)
+        self.assertIn("h2 whose heading contains both 'why' and 'now'", instruction)
+        self.assertIn("exact source URL and its publishedOrUpdated date", instruction)
+
     def test_model_environment_is_allowlisted_and_excludes_slack(self):
         env = {
             "PATH": "/bin", "HOME": "/home/runner", "LANG": "en_US.UTF-8",

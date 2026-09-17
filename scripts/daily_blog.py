@@ -178,14 +178,24 @@ def build_codex_argv(
     validated_config: Optional[dict] = None,
 ) -> list[str]:
     context = ""
+    artifact_requirements = ""
     if publish_date and validated_config:
         context = (
             f" The local publish date is {publish_date}. Use this validated configuration: "
             f"{json.dumps(validated_config, separators=(',', ':'), sort_keys=True)}."
         )
+        production_base_url = validated_config.get("automation", {}).get("productionBaseUrl", "").rstrip("/")
+        if production_base_url:
+            artifact_requirements = (
+                " Before returning, ensure the BlogPosting mainEntityOfPage.@id is exactly "
+                f"{production_base_url}/blog/<slug>, with <slug> replaced by blog.slug. "
+                "Include an h2 whose heading contains both 'why' and 'now'; within that section, "
+                "link the exact source URL and its publishedOrUpdated date exactly as it appears in "
+                "topic.sources."
+            )
     instruction = (
         f"Read {skill_root / 'SKILL.md'} completely, then execute its daily-auto route "
-        f"for {repo}.{context} Return the complete daily-auto artifact as JSON serialized in the "
+        f"for {repo}.{context}{artifact_requirements} Return the complete daily-auto artifact as JSON serialized in the "
         "required artifact field. You may use read-only inspection commands to read the "
         "skill, configuration, and local blog inventory. Do not write files, use Git, "
         "deploy, or contact Slack."
