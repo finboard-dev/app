@@ -150,6 +150,8 @@ The runner operates only on the `app` repository and only on `main`. It never re
 
 Before generation, any unexpected dirty path causes a safe failure. Pipeline run-state files are added to `.gitignore` so existing local history does not make the application tree permanently dirty.
 
+If a prior automatic run committed a validated article but its push failed, the next day's preflight may recover that push. It requires a clean worktree, a single local commit ahead of the fetched remote, a matching commit and failed deployment recorded in the prior run, and an exact match between the commit's changed files and that run's validated files. After pushing, it fetches the remote again and records `push_recovered` in the earlier run. Any unrelated, divergent, or unvalidated local commit still stops preflight. The earlier run remains marked failed because a recovered push alone does not verify production publication.
+
 After generation, the runner computes the expected article and cover paths from the validated slug. It stages those two paths explicitly. It then confirms the staged path set is exactly the expected set before committing.
 
 The push uses the existing `origin` remote and refuses a non-fast-forward update. A successful Git push is not treated as a successful publication. Production is complete only after the live article returns HTTP 200 and the sitemap contains its slug.

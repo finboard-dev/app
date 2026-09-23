@@ -155,6 +155,8 @@ class FakeEffects:
         self.model_schema = None
         self.model_schema_path = None
         self.after_merge = None
+        self.head_parent = "base123"
+        self.head_paths = set()
 
     def acquire_lock(self, path):
         if self.lock_error:
@@ -191,6 +193,10 @@ class FakeEffects:
             return CommandResult(0, "frontend/content/blog/quickbooks-ai-control-matrix.json\nfrontend/public/blog/covers/quickbooks-ai-control-matrix.png\n", "")
         if argv[:3] == ["git", "rev-parse", "HEAD"]:
             return CommandResult(0, ("abcdef1234567890" if self.committed else self.local_head) + "\n", "")
+        if argv[:3] == ["git", "rev-parse", "HEAD^"]:
+            return CommandResult(0, self.head_parent + "\n", "")
+        if argv[:2] == ["git", "diff-tree"]:
+            return CommandResult(0, "".join(f"{path}\n" for path in sorted(self.head_paths)), "")
         if argv[:2] == ["git", "rev-parse"] and argv[2] == "origin/main":
             return CommandResult(0, self.remote_head + "\n", "")
         if argv[:3] == ["git", "merge", "--ff-only"] and self.after_merge:
@@ -205,6 +211,8 @@ class FakeEffects:
             return CommandResult(0, output, "")
         if argv[:2] == ["git", "commit"]:
             self.committed = True
+        if argv[:2] == ["git", "push"]:
+            self.remote_head = "abcdef1234567890" if self.committed else self.local_head
         return CommandResult(0, "", "")
 
     def fetch(self, url):
@@ -341,6 +349,58 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         self.effects.remote_head = "origin-main"
         outcome = self.execute()
         self.assertEqual(outcome.status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
+
+    def test_preflight_recovers_recorded_failed_push_before_new_article(self):
+        paths = {
+            "frontend/content/blog/previous-post.json",
+            "frontend/public/blog/covers/previous-post.png",
+        }
+        self.effects.local_head = "pending-commit"
+        self.effects.remote_head = "base123"
+        self.effects.head_paths = paths
+        (self.repo / ".blog-pipeline/runs/2026-09-08-auto.json").write_text(json.dumps({
+            "date": "2026-09-08-auto",
+            "status": "failed",
+            "deploy": {"branch": "main", "commit": "pending-commit", "prodUrls": []},
+            "validation": {"changedPaths": sorted(paths), "commands": [{"returncode": 0}]},
+            "history": [{"event": "failed", "details": {"stage": "deploying"}}],
+        }))
+        outcome = self.execute()
+        self.assertEqual(outcome.status, "published")
+        pushes = [command[0] for command in self.effects.commands if command[0][:2] == ["git", "push"]]
+        self.assertEqual(pushes, [["git", "push", "origin", "HEAD:main"], ["git", "push", "origin", "HEAD:main"]])
+        prior = json.loads((self.repo / ".blog-pipeline/runs/2026-09-08-auto.json").read_text())
+        self.assertIn("push_recovered", [entry.get("event") for entry in prior["history"]])
+
+    def test_preflight_refuses_recorded_commit_with_unexpected_files(self):
+        self.effects.local_head = "pending-commit"
+        self.effects.remote_head = "base123"
+        self.effects.head_paths = {"frontend/src/app/page.jsx"}
+        (self.repo / ".blog-pipeline/runs/2026-09-08-auto.json").write_text(json.dumps({
+            "date": "2026-09-08-auto",
+            "status": "failed",
+            "deploy": {"branch": "main", "commit": "pending-commit", "prodUrls": []},
+            "validation": {"changedPaths": ["frontend/content/blog/previous-post.json", "frontend/public/blog/covers/previous-post.png"], "commands": [{"returncode": 0}]},
+            "history": [{"event": "failed", "details": {"stage": "deploying"}}],
+        }))
+        self.assertEqual(self.execute().status, "failed")
+        self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
+
+    def test_preflight_refuses_recovery_when_an_extra_local_commit_exists(self):
+        paths = ["frontend/content/blog/previous-post.json", "frontend/public/blog/covers/previous-post.png"]
+        self.effects.local_head = "pending-commit"
+        self.effects.remote_head = "base123"
+        self.effects.head_parent = "another-local-commit"
+        self.effects.head_paths = set(paths)
+        (self.repo / ".blog-pipeline/runs/2026-09-08-auto.json").write_text(json.dumps({
+            "date": "2026-09-08-auto",
+            "status": "failed",
+            "deploy": {"branch": "main", "commit": "pending-commit", "prodUrls": []},
+            "validation": {"changedPaths": paths, "commands": [{"returncode": 0}]},
+            "history": [{"event": "failed", "details": {"stage": "deploying"}}],
+        }))
+        self.assertEqual(self.execute().status, "failed")
         self.assertFalse(any(command[0][:2] == ["git", "push"] for command in self.effects.commands))
 
     def test_dirty_worktree_fails_without_generation(self):

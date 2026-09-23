@@ -32,6 +32,7 @@ NOTHING_PUBLISHABLE = "nothing_publishable"
 ALREADY_PUBLISHED = "already_published"
 SKIPPED_LOCKED = "skipped_locked"
 FAILED = "failed"
+PUSH_RECOVERED = "push_recovered"
 PUBLISH_ARTIFACT = "publish"
 MODEL_ENV_NAMES = frozenset(
     {
@@ -425,6 +426,28 @@ def _status_paths(output: str) -> set[str]:
     return paths
 
 
+def _pending_push_run(repo: Path, local_date: str, head: str, target: str, deploying_state: str) -> Optional[dict]:
+    """Find a prior validated blog commit whose push failed at deployment."""
+    runs = repo / ".blog-pipeline" / "runs"
+    for path in sorted(runs.glob("*-auto.json")):
+        if path.name[:10] >= local_date:
+            continue
+        try:
+            prior = json.loads(path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        failures = [entry for entry in prior.get("history", []) if entry.get("event") == FAILED]
+        if (
+            prior.get("status") == FAILED
+            and prior.get("deploy", {}).get("branch") == target
+            and prior.get("deploy", {}).get("commit") == head
+            and failures
+            and failures[-1].get("details", {}).get("stage") == deploying_state
+        ):
+            return prior
+    return None
+
+
 def _remote_commit_url(remote_url: str, sha: str) -> str:
     cleaned = remote_url.strip()
     if cleaned.startswith("git@github.com:"):
@@ -578,7 +601,26 @@ def run_daily(
         local_head = _command(effects, ["git", "rev-parse", "HEAD"], repo, stage).stdout.strip()
         upstream_head = _command(effects, ["git", "rev-parse", f"{remote}/{target}"], repo, stage).stdout.strip()
         if local_head != upstream_head:
-            raise StageError(stage, "local deployment branch contains commits not present on the configured remote branch")
+            prior = _pending_push_run(repo, local_date, local_head, target, modules["states"]["deploying"])
+            validated_paths = set(prior.get("validation", {}).get("changedPaths", [])) if prior else set()
+            validations = prior.get("validation", {}).get("commands", []) if prior else []
+            parent = _command(effects, ["git", "rev-parse", "HEAD^"], repo, stage).stdout.strip() if prior else None
+            committed_paths = set(_command(
+                effects, ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"], repo, stage
+            ).stdout.splitlines()) if prior else set()
+            if not (
+                prior and parent == upstream_head and len(validated_paths) == 2
+                and committed_paths == validated_paths and validations
+                and all(item.get("returncode") == 0 for item in validations)
+            ):
+                raise StageError(stage, "local deployment branch contains commits not present on the configured remote branch")
+            _command(effects, ["git", "push", remote, f"HEAD:{target}"], repo, stage)
+            _command(effects, ["git", "fetch", remote, target], repo, stage)
+            pushed_head = _command(effects, ["git", "rev-parse", f"{remote}/{target}"], repo, stage).stdout.strip()
+            if pushed_head != local_head:
+                raise StageError(stage, "recovered blog commit is not on the configured remote branch")
+            prior = modules["record_event"](prior, PUSH_RECOVERED, event_at(), {"commit": local_head, "branch": target})
+            modules["save_run"](repo, prior)
         if local_date in _blog_dates(content_dir):
             if run is not None:
                 run = {**run, "status": modules["states"]["already"]}
