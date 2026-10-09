@@ -168,6 +168,10 @@
   },
   "automation": {
     "timezone": "Asia/Kolkata",
+    "writer": {
+      "provider": "claude",
+      "model": "fable"
+    },
     "minTopicScore": 18,
     "minSourceAuthority": 4,
     "similarityThreshold": 0.72,

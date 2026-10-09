@@ -12,7 +12,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from daily_blog import (
+    build_claude_argv,
     build_codex_argv,
+    configured_writer,
     build_failure_message,
     build_success_message,
     CommandResult,
@@ -45,6 +47,32 @@ class DailyBlogPureTest(unittest.TestCase):
         self.assertIn("read-only inspection commands", instruction)
         self.assertIn("Do not write files", instruction)
         self.assertNotIn("Do not run shell commands", instruction)
+
+    def test_claude_model_reads_repo_and_skill_with_research_tools_only(self):
+        schema = {"$schema": "https://json-schema.org/draft/2020-12/schema", "oneOf": [{"type": "object"}]}
+        argv = build_claude_argv(Path("/app with spaces"), Path("/skill"), schema, "2026-09-17", {"automation": {}}, (), "fable")
+        self.assertEqual(argv[:2], ["claude", "--print"])
+        self.assertEqual(argv[argv.index("--output-format") + 1], "json")
+        self.assertEqual(json.loads(argv[argv.index("--json-schema") + 1]), {"oneOf": [{"type": "object"}]})
+        self.assertEqual(argv[argv.index("--model") + 1], "fable")
+        tools = argv[argv.index("--tools") + 1]
+        self.assertEqual(tools, argv[argv.index("--allowedTools") + 1])
+        self.assertEqual(set(tools.split(",")), {"Read", "Glob", "Grep", "WebSearch", "WebFetch"})
+        self.assertEqual(argv[argv.index("--permission-mode") + 1], "dontAsk")
+        self.assertEqual(argv[argv.index("--permission-prompts") + 1], "none")
+        self.assertEqual(argv[argv.index("--add-dir") + 1], "/skill")
+        for flag in ("--strict-mcp-config", "--disable-slash-commands", "--no-session-persistence"):
+            self.assertIn(flag, argv)
+        instruction = argv[-1]
+        self.assertIn("/skill/SKILL.md", instruction)
+        self.assertIn("daily-auto", instruction)
+        self.assertIn("Do not write files", instruction)
+
+    def test_writer_defaults_to_codex_and_rejects_unknown_providers(self):
+        self.assertEqual(configured_writer({"automation": {}})[0], "codex")
+        self.assertEqual(configured_writer({"automation": {"writer": {"provider": "claude", "model": "fable"}}}), ("claude", "fable"))
+        with self.assertRaises(Exception):
+            configured_writer({"automation": {"writer": {"provider": "other"}}})
 
     def test_model_instruction_spells_out_canonical_and_why_now_validation_contract(self):
         instruction = build_codex_argv(
@@ -209,6 +237,11 @@ class FakeEffects:
             self.model_schema = json.loads(self.model_schema_path.read_text())
             output = self.model_outputs.pop(0) if self.model_outputs else self.model_output
             return CommandResult(0, output, "")
+        if argv[:2] == ["claude", "--print"]:
+            self.model_calls += 1
+            self.model_schema = json.loads(argv[argv.index("--json-schema") + 1])
+            output = self.model_outputs.pop(0) if self.model_outputs else self.model_output
+            return CommandResult(0, output, "")
         if argv[:2] == ["git", "commit"]:
             self.committed = True
         if argv[:2] == ["git", "push"]:
@@ -239,6 +272,7 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         cfg = json.loads((ROOT / ".blog-pipeline/config.json").read_text())
         cfg["target"]["repoPath"] = str(self.repo)
         cfg["automation"]["validationCommands"] = [["check"]]
+        cfg["automation"]["writer"] = {"provider": "codex"}
         (self.repo / ".blog-pipeline/config.json").write_text(json.dumps(cfg))
         content = self.repo / "frontend/content/blog"
         content.mkdir(parents=True)
@@ -562,6 +596,28 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         correction_instruction = [command[0][-1] for command in self.effects.commands if command[0][:3] == ["codex", "--search", "exec"]][-1]
         self.assertIn("previous artifact failed deterministic validation", correction_instruction)
         self.assertIn("blog.coverAlt: primary keyword must appear naturally", correction_instruction)
+
+    def test_claude_writer_drafts_and_corrects_through_print_mode(self):
+        cfg_path = self.repo / ".blog-pipeline/config.json"
+        cfg = json.loads(cfg_path.read_text())
+        cfg["automation"]["writer"] = {"provider": "claude", "model": "fable"}
+        cfg_path.write_text(json.dumps(cfg))
+        artifact = json.loads(self.fixture.read_text())["structured_output"]
+        broken = {**artifact, "blog": {**artifact["blog"], "coverAlt": "A cover image for this article"}}
+        self.effects.model_outputs = [
+            json.dumps({"type": "result", "is_error": False, "structured_output": broken}),
+            json.dumps({"type": "result", "is_error": False, "structured_output": artifact}),
+        ]
+        outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
+        self.assertEqual(outcome.status, "dry_run_validated")
+        self.assertEqual(self.effects.model_calls, 2)
+        claude_calls = [command for command in self.effects.commands if command[0][:2] == ["claude", "--print"]]
+        self.assertEqual(len(claude_calls), 2)
+        self.assertNotIn("$schema", self.effects.model_schema)
+        self.assertIn("previous artifact failed deterministic validation", claude_calls[-1][0][-1])
+        self.assertFalse(any(command[0][:1] == ["codex"] for command in self.effects.commands))
+        model_env = claude_calls[0][1]
+        self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
 
     def test_nothing_publishable_notifies_dev(self):
         self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
