@@ -272,6 +272,9 @@ def build_claude_argv(
         json.dumps(output_schema, separators=(",", ":")),
         "--model",
         model,
+        # --add-dir takes a list, so it must not be the last option before the prompt.
+        "--add-dir",
+        str(skill_root),
         "--tools",
         CLAUDE_TOOLS,
         "--allowedTools",
@@ -283,8 +286,6 @@ def build_claude_argv(
         "--strict-mcp-config",
         "--disable-slash-commands",
         "--no-session-persistence",
-        "--add-dir",
-        str(skill_root),
         instruction,
     ]
 
@@ -313,8 +314,20 @@ def _run_model(effects, cfg: dict, repo: Path, skill_root: Path, modules: dict, 
     env = sanitize_model_env(os.environ, secret_names)
     provider, model = configured_writer(cfg)
     if provider == "claude":
-        argv = build_claude_argv(repo, skill_root, modules["artifact_schema"], local_date, _model_config(cfg), correction_errors, model)
-        return _command(effects, argv, repo, stage, env).stdout
+        # The Claude API rejects the canonical artifact schema but accepts the
+        # flat transport schema Codex uses, so both writers share it.
+        argv = build_claude_argv(repo, skill_root, modules["codex_schema"](), local_date, _model_config(cfg), correction_errors, model)
+        stdout = _command(effects, argv, repo, stage, env).stdout
+        try:
+            result = json.loads(stdout)
+        except json.JSONDecodeError as exc:
+            raise StageError(stage, f"claude returned no JSON result: {exc}") from exc
+        if result.get("is_error") or not isinstance(result.get("structured_output"), dict):
+            detail = result.get("result") or result.get("terminal_reason") or result.get("subtype") or "no structured output"
+            raise StageError(stage, f"claude did not return an artifact: {str(detail)[:500]}")
+        # Hand the bare artifact to the skill parser so it normalises the
+        # transport fields (base64 structuredData, null fields) like Codex output.
+        return json.dumps(result["structured_output"])
     with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
         json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
         schema_path = Path(schema_file.name)
@@ -374,7 +387,7 @@ def _load_skill_modules(skill_root: Path):
     scripts_text = str(scripts)
     if scripts_text not in sys.path:
         sys.path.insert(0, scripts_text)
-    from auto_artifact import ARTIFACT_JSON_SCHEMA, codex_output_schema, parse_model_output, safe_artifact_paths, validate_artifact
+    from auto_artifact import codex_output_schema, parse_model_output, safe_artifact_paths, validate_artifact
     from config import load_config
     from existing import load_post_records
     from gen_cover import main as generate_cover
@@ -402,7 +415,6 @@ def _load_skill_modules(skill_root: Path):
 
     return {
         "codex_schema": codex_output_schema,
-        "artifact_schema": ARTIFACT_JSON_SCHEMA,
         "parse": parse_model_output,
         "paths": safe_artifact_paths,
         "validate_artifact": validate_artifact,

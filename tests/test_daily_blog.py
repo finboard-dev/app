@@ -614,10 +614,22 @@ class DailyBlogOrchestrationTest(unittest.TestCase):
         claude_calls = [command for command in self.effects.commands if command[0][:2] == ["claude", "--print"]]
         self.assertEqual(len(claude_calls), 2)
         self.assertNotIn("$schema", self.effects.model_schema)
+        self.assertEqual(self.effects.model_schema["required"], ["outcome", "reason", "topic", "blog", "cover"])
         self.assertIn("previous artifact failed deterministic validation", claude_calls[-1][0][-1])
         self.assertFalse(any(command[0][:1] == ["codex"] for command in self.effects.commands))
         model_env = claude_calls[0][1]
         self.assertNotIn("BLOG_PIPELINE_SLACK_WEBHOOK", model_env)
+
+    def test_claude_error_result_fails_research_with_its_reason(self):
+        cfg_path = self.repo / ".blog-pipeline/config.json"
+        cfg = json.loads(cfg_path.read_text())
+        cfg["automation"]["writer"] = {"provider": "claude", "model": "fable"}
+        cfg_path.write_text(json.dumps(cfg))
+        self.effects.model_output = json.dumps({"type": "result", "is_error": True, "terminal_reason": "api_error"})
+        outcome = run_daily(self.repo, FIXED_NOW, self.effects, dry_run=True)
+        self.assertEqual(outcome.status, "failed")
+        run = json.loads((self.repo / ".blog-pipeline/runs/2026-09-09-auto.json").read_text())
+        self.assertIn("api_error", run["history"][-1]["details"]["error"])
 
     def test_nothing_publishable_notifies_dev(self):
         self.fixture.write_text(json.dumps({"structured_output": {"outcome": "nothing_publishable", "reason": "No candidate met the configured score"}}))
