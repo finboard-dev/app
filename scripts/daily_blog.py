@@ -24,6 +24,10 @@ from zoneinfo import ZoneInfo
 
 MODEL_COMMAND = "codex"
 MODEL_SANDBOX = "read-only"
+CLAUDE_COMMAND = "claude"
+# Read-only file inspection plus web research; no command, code or write tools.
+CLAUDE_TOOLS = "Read,Glob,Grep,WebSearch,WebFetch"
+DEFAULT_CLAUDE_MODEL = "fable"
 DEFAULT_SKILL_ROOT = Path("/Users/ujjwal/self/blog-pipeline")
 AUTO_RUN_SUFFIX = "auto"
 SUCCESS = "published"
@@ -111,7 +115,7 @@ class SystemEffects:
             env=None if env is None else dict(env),
             capture_output=True,
             text=True,
-            timeout=1800,
+            timeout=2700,
         )
         return CommandResult(completed.returncode, completed.stdout, completed.stderr)
 
@@ -172,14 +176,13 @@ def resolve_skill_root(env: Mapping[str, str]) -> Path:
     return Path(env.get("BLOG_PIPELINE_SKILL_ROOT", str(DEFAULT_SKILL_ROOT)))
 
 
-def build_codex_argv(
+def build_model_instruction(
     repo: Path,
     skill_root: Path,
-    schema_path: Path,
     publish_date: Optional[str] = None,
     validated_config: Optional[dict] = None,
     correction_errors: Sequence[str] = (),
-) -> list[str]:
+) -> str:
     context = ""
     artifact_requirements = ""
     if publish_date and validated_config:
@@ -211,6 +214,18 @@ def build_codex_argv(
         "skill, configuration, and local blog inventory. Do not write files, use Git, "
         "deploy, or contact Slack."
     )
+    return instruction
+
+
+def build_codex_argv(
+    repo: Path,
+    skill_root: Path,
+    schema_path: Path,
+    publish_date: Optional[str] = None,
+    validated_config: Optional[dict] = None,
+    correction_errors: Sequence[str] = (),
+) -> list[str]:
+    instruction = build_model_instruction(repo, skill_root, publish_date, validated_config, correction_errors)
     return [
         MODEL_COMMAND,
         "--search",
@@ -227,12 +242,100 @@ def build_codex_argv(
     ]
 
 
+
+
+def build_claude_argv(
+    repo: Path,
+    skill_root: Path,
+    schema: dict,
+    publish_date: Optional[str] = None,
+    validated_config: Optional[dict] = None,
+    correction_errors: Sequence[str] = (),
+    model: str = DEFAULT_CLAUDE_MODEL,
+) -> list[str]:
+    """Claude Code in print mode with structured output.
+
+    The repository is the working directory and the skill root is added so the
+    model can read SKILL.md, the references and the blog inventory. Only
+    read-only file tools and web research are available, nothing may prompt,
+    and user, project and MCP settings are ignored. Claude validates the
+    schema itself and rejects a dialect declaration, so `$schema` is dropped.
+    """
+    instruction = build_model_instruction(repo, skill_root, publish_date, validated_config, correction_errors)
+    output_schema = {key: value for key, value in schema.items() if key != "$schema"}
+    return [
+        CLAUDE_COMMAND,
+        "--print",
+        "--output-format",
+        "json",
+        "--json-schema",
+        json.dumps(output_schema, separators=(",", ":")),
+        "--model",
+        model,
+        # --add-dir takes a list, so it must not be the last option before the prompt.
+        "--add-dir",
+        str(skill_root),
+        "--tools",
+        CLAUDE_TOOLS,
+        "--allowedTools",
+        CLAUDE_TOOLS,
+        "--permission-mode",
+        "dontAsk",
+        "--permission-prompts",
+        "none",
+        "--strict-mcp-config",
+        "--disable-slash-commands",
+        "--no-session-persistence",
+        instruction,
+    ]
+
+
 def sanitize_model_env(env: Mapping[str, str], secret_names: set[str]) -> dict[str, str]:
     return {
         key: value
         for key, value in env.items()
         if key in MODEL_ENV_NAMES and key not in secret_names
     }
+
+
+def configured_writer(cfg: dict) -> tuple[str, str]:
+    """Return (provider, model) from automation.writer; Codex when unset."""
+    writer = cfg.get("automation", {}).get("writer") or {}
+    provider = str(writer.get("provider", "codex"))
+    if provider not in ("codex", "claude"):
+        raise StageError("configuration", f"automation.writer.provider must be 'codex' or 'claude', got {provider!r}")
+    return provider, str(writer.get("model", DEFAULT_CLAUDE_MODEL))
+
+
+def _run_model(effects, cfg: dict, repo: Path, skill_root: Path, modules: dict, local_date: str, stage: str, correction_errors: Sequence[str] = ()) -> str:
+    """Invoke the configured writer once and return its raw stdout."""
+    slack = cfg["reviewChannel"]["slack"]
+    secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
+    env = sanitize_model_env(os.environ, secret_names)
+    provider, model = configured_writer(cfg)
+    if provider == "claude":
+        # The Claude API rejects the canonical artifact schema but accepts the
+        # flat transport schema Codex uses, so both writers share it.
+        argv = build_claude_argv(repo, skill_root, modules["codex_schema"](), local_date, _model_config(cfg), correction_errors, model)
+        stdout = _command(effects, argv, repo, stage, env).stdout
+        try:
+            result = json.loads(stdout)
+        except json.JSONDecodeError as exc:
+            raise StageError(stage, f"claude returned no JSON result: {exc}") from exc
+        if result.get("is_error") or not isinstance(result.get("structured_output"), dict):
+            detail = result.get("result") or result.get("terminal_reason") or result.get("subtype") or "no structured output"
+            raise StageError(stage, f"claude did not return an artifact: {str(detail)[:500]}")
+        # Hand the bare artifact to the skill parser so it normalises the
+        # transport fields (base64 structuredData, null fields) like Codex output.
+        return json.dumps(result["structured_output"])
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
+        json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
+        schema_path = Path(schema_file.name)
+    try:
+        argv = build_codex_argv(repo, skill_root, schema_path, local_date, _model_config(cfg), correction_errors)
+        return _command(effects, argv, repo, stage, env).stdout
+    finally:
+        schema_path.unlink(missing_ok=True)
 
 
 def validate_changed_paths(expected: set[str], actual: set[str]) -> list[str]:
@@ -643,23 +746,7 @@ def run_daily(
         if artifact_file:
             raw = (artifact_file if artifact_file.is_absolute() else repo / artifact_file).read_text()
         else:
-            slack = cfg["reviewChannel"]["slack"]
-            secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
-            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
-                json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
-                schema_path = Path(schema_file.name)
-            try:
-                argv = build_codex_argv(
-                    repo,
-                    skill_root,
-                    schema_path,
-                    local_date,
-                    _model_config(cfg),
-                )
-                result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
-                raw = result.stdout
-            finally:
-                schema_path.unlink(missing_ok=True)
+            raw = _run_model(effects, cfg, repo, skill_root, modules, local_date, stage)
         artifact = modules["parse"](raw)
         if artifact.get("outcome") == NOTHING_PUBLISHABLE:
             errors = modules["validate_artifact"](artifact, cfg, local_date, [], [])
@@ -689,24 +776,7 @@ def run_daily(
                 {"errors": errors},
             )
             modules["save_run"](repo, run)
-            slack = cfg["reviewChannel"]["slack"]
-            secret_names = {name for name in (slack.get("webhookEnv"), slack.get("botTokenEnv")) if name}
-            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as schema_file:
-                json.dump(modules["codex_schema"](), schema_file, separators=(",", ":"))
-                schema_path = Path(schema_file.name)
-            try:
-                argv = build_codex_argv(
-                    repo,
-                    skill_root,
-                    schema_path,
-                    local_date,
-                    _model_config(cfg),
-                    errors,
-                )
-                result = _command(effects, argv, repo, stage, sanitize_model_env(os.environ, secret_names))
-                artifact = modules["parse"](result.stdout)
-            finally:
-                schema_path.unlink(missing_ok=True)
+            artifact = modules["parse"](_run_model(effects, cfg, repo, skill_root, modules, local_date, stage, errors))
             if artifact.get("outcome") != PUBLISH_ARTIFACT:
                 errors = ["artifact correction must return a publish artifact"]
             else:
