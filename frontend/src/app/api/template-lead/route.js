@@ -1,5 +1,6 @@
 import { getTemplateBySlug } from "@/lib/templates";
 import { validateWorkEmail } from "@/lib/workEmail.mjs";
+import { checkDeliverable } from "@/lib/zeroBounce.mjs";
 
 // Template download lead capture. Forwards the submission to a Slack webhook
 // (TEMPLATE_LEADS_SLACK_WEBHOOK) and returns the template link so the client
@@ -27,6 +28,13 @@ export async function POST(request) {
       { ok: false, error: emailValidation.message },
       { status: 400 }
     );
+  }
+  if (!String(company ?? "").trim()) {
+    return Response.json({ ok: false, error: "Please enter your company." }, { status: 400 });
+  }
+  const deliverable = await checkDeliverable(String(email).trim());
+  if (!deliverable.ok) {
+    return Response.json({ ok: false, error: deliverable.message }, { status: 400 });
   }
 
   const webhook = process.env.TEMPLATE_LEADS_SLACK_WEBHOOK;

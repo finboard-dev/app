@@ -22,21 +22,54 @@ function LeadGate({ template }) {
   const [open, setOpen] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState(null);
-  const [emailError, setEmailError] = React.useState(null);
+  const [email, setEmail] = React.useState("");
+  // idle | checking | ok | error; Download stays disabled until "ok".
+  const [emailCheck, setEmailCheck] = React.useState({ state: "idle", message: null });
+  const [company, setCompany] = React.useState("");
   const [done, setDone] = React.useState(false);
+
+  // Live email check: local work-email policy at once, then ZeroBounce via
+  // /api/validate-email once typing pauses. Stale responses are aborted.
+  React.useEffect(() => {
+    const value = email.trim();
+    if (!value) {
+      setEmailCheck({ state: "idle", message: null });
+      return;
+    }
+    const local = validateWorkEmail(value);
+    if (!local.isValid) {
+      setEmailCheck({ state: "error", message: local.message });
+      return;
+    }
+    setEmailCheck({ state: "checking", message: null });
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch("/api/validate-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: value }),
+          signal: controller.signal,
+        });
+        const data = await res.json();
+        setEmailCheck(data.ok ? { state: "ok", message: null } : { state: "error", message: data.error });
+      } catch (err) {
+        if (err.name !== "AbortError") setEmailCheck({ state: "error", message: "Couldn't check this email. Please try again." });
+      }
+    }, 600);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [email]);
+
+  const canSubmit = emailCheck.state === "ok" && company.trim() !== "" && !busy;
 
   async function submit(e) {
     e.preventDefault();
     setError(null);
+    if (!canSubmit) return;
     const form = new FormData(e.target);
-    const email = String(form.get("email") || "");
-    const emailValidation = validateWorkEmail(email);
-    if (!emailValidation.isValid) {
-      setEmailError(emailValidation.message);
-      return;
-    }
-
-    setEmailError(null);
     setBusy(true);
     const answers = {};
     for (const q of questions) answers[q.label] = form.get(`q_${q.id}`) || "";
@@ -48,7 +81,7 @@ function LeadGate({ template }) {
           slug: template.slug,
           name: form.get("name"),
           email: email.trim(),
-          company: form.get("company"),
+          company: company.trim(),
           answers,
         }),
       });
@@ -122,16 +155,32 @@ function LeadGate({ template }) {
               required
               placeholder="Work email"
               className={inputCls}
-              aria-invalid={Boolean(emailError)}
-              aria-describedby={emailError ? "template-email-error" : undefined}
-              onChange={() => setEmailError(null)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-invalid={emailCheck.state === "error"}
+              aria-describedby={emailCheck.state === "idle" ? undefined : "template-email-status"}
             />
-            {emailError ? (
-              <p id="template-email-error" className="text-xs text-red-600">
-                {emailError}
+            {emailCheck.state === "checking" ? (
+              <p id="template-email-status" className="text-xs text-[#0A0A0A]/55">
+                Checking email...
+              </p>
+            ) : emailCheck.state === "ok" ? (
+              <p id="template-email-status" className="text-xs text-green-700">
+                Email verified
+              </p>
+            ) : emailCheck.state === "error" ? (
+              <p id="template-email-status" className="text-xs text-red-600">
+                {emailCheck.message}
               </p>
             ) : null}
-            <input name="company" placeholder="Company (optional)" className={inputCls} />
+            <input
+              name="company"
+              required
+              placeholder="Company"
+              className={inputCls}
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+            />
             {questions.map((q) =>
               q.type === "select" ? (
                 <select key={q.id} name={`q_${q.id}`} className={inputCls} defaultValue="">
@@ -151,7 +200,7 @@ function LeadGate({ template }) {
           </div>
           {error ? <p className="mt-2 text-xs text-red-600">{error}</p> : null}
           <div className="mt-4 flex items-center gap-3">
-            <button type="submit" disabled={busy} className="btn-primary text-sm disabled:opacity-60">
+            <button type="submit" disabled={!canSubmit} className="btn-primary text-sm disabled:opacity-60">
               {busy ? "Sending..." : isDownload ? "Download now" : "Open template"}
             </button>
             <button type="button" onClick={() => setOpen(false)} className="text-sm text-[#0A0A0A]/55 hover:text-[#0A0A0A]">
