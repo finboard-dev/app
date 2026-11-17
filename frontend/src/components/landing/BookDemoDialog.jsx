@@ -18,7 +18,7 @@ export default function BookDemoDialog({ open, onOpenChange }) {
         className="w-[96vw] sm:max-w-[1100px] bg-[#F5F0E8] border-line p-0 overflow-hidden"
       >
         <DialogHeader className="px-5 pt-4 pb-0 space-y-0">
-          <DialogTitle className="font-serif-display text-lg tracking-tight leading-tight">Book a consultation</DialogTitle>
+          <DialogTitle className="font-serif-display text-lg tracking-tight leading-tight">Book a demo</DialogTitle>
           <DialogDescription className="text-[#0A0A0A]/60 text-[12px]">
             Pick a time that works for you. 30 minutes with the FinBoard founders.
           </DialogDescription>
@@ -27,7 +27,7 @@ export default function BookDemoDialog({ open, onOpenChange }) {
         <div className="px-3 pb-2 pt-1.5">
           <iframe
             src={CALENDLY_EMBED_URL}
-            title="Book a consultation with FinBoard"
+            title="Book a demo with FinBoard"
             data-testid="book-demo-calendly"
             className="w-full rounded-xl border border-line bg-white"
             style={{ height: "min(76vh, 700px)" }}

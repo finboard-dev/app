@@ -266,7 +266,7 @@ export default function TemplateDetail({ template }) {
                   <LeadGate template={template} />
                   <div className="mt-3">
                     <button onClick={openDemo} className="btn-secondary text-sm">
-                      Book a consultation
+                      Book a demo
                     </button>
                   </div>
                 </>

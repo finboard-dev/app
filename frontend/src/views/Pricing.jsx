@@ -13,6 +13,7 @@ import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import { PRODUCT_NAV } from "@/data/products";
+import PricingPlans from "@/components/pricing/PricingPlans";
 
 // Distinct icon color per module (matches the "Your full finance stack" section on industry pages).
 const MODULE_ACCENT = {
@@ -61,18 +62,36 @@ export default function Pricing() {
       <Navbar onBookDemo={openDemo} />
 
       <main>
-        {/* Hero */}
+        {/* Hero: two ways to buy */}
         <section className="relative overflow-hidden">
           <div className="grain absolute inset-0" />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 lg:pt-20 pb-14 lg:pb-24">
-            <div className="grid lg:grid-cols-12 gap-10 items-start">
-              <div className="lg:col-span-7 animate-fade-up">
-                <h1 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
-                  The finance platform for <span className="italic">multi-entity operators</span>.
-                </h1>
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 lg:pt-20 pb-14 lg:pb-20">
+            <div className="max-w-3xl animate-fade-up">
+              <h1 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
+                Simple pricing to start. <span className="italic">Custom pricing to scale.</span>
+              </h1>
+              <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-[#0A0A0A]/75" data-testid="pricing-subhead">
+                Consolidation in Google Sheets has one published per-entity price and a free trial. The full platform is quoted around your entities, modules and seats.
+              </p>
+            </div>
+            <div className="mt-10 animate-fade-up" style={{ animationDelay: "120ms" }}>
+              <PricingPlans onQuote={openDemo} />
+            </div>
+          </div>
+        </section>
 
-                <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/75" data-testid="pricing-subhead">
-                  Priced around your entities, modules and seats - not sticker prices. Tell us how you run finance and we&apos;ll send a quote in a day.
+        {/* Custom quote for the full platform */}
+        <section id="quote" className="scroll-mt-24 border-t border-line">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+            <div className="grid lg:grid-cols-12 gap-10 items-start">
+              <div className="lg:col-span-7">
+                <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Full platform</div>
+                <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
+                  A quote built around <span className="italic">your group</span>.
+                </h2>
+
+                <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/75">
+                  Priced around your entities, modules and seats, not sticker prices. Tell us how you run finance and we&apos;ll send a quote in a day.
                 </p>
 
                 <div className="mt-8 max-w-xl" data-testid="pricing-quote-includes">
@@ -108,13 +127,13 @@ export default function Pricing() {
                     Get a custom quote <ArrowRight size={16} />
                   </button>
                   <a href="#modules" data-testid="pricing-modules-link" className="btn-secondary">
-                    See what&apos;s included
+                    See the modules
                   </a>
                 </div>
               </div>
 
               {/* Quote callout card */}
-              <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "120ms" }}>
+              <div className="lg:col-span-5">
                 <div
                   className="rounded-2xl border border-line bg-white shadow-[0_1px_2px_rgba(10,10,10,0.04),0_20px_40px_-24px_rgba(10,10,10,0.15)] p-6 lg:p-8"
                   data-testid="pricing-quote-card"

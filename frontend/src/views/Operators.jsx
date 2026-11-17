@@ -94,7 +94,7 @@ export default function Operators() {
 
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   <button onClick={openDemo} data-testid="operators-book-demo-button" className="btn-primary">
-                    Book consultation <ArrowRight size={16} />
+                    Book Demo <ArrowRight size={16} />
                   </button>
                   <a href="#why" data-testid="operators-why-link" className="btn-secondary">
                     Why we exist

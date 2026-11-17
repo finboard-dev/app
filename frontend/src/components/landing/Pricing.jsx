@@ -33,7 +33,7 @@ const plans = [
       "Unlimited users · SSO",
       "Priority Slack support",
     ],
-    cta: "Book consultation",
+    cta: "Book Demo",
     highlight: true,
   },
   {

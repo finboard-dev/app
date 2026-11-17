@@ -147,7 +147,7 @@ export default function Industry({ slug }) {
                     data-testid="industry-book-demo-button"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[#0A0A0A] px-4 py-3 text-[14px] font-medium hover:bg-white/90 transition-colors w-full"
                   >
-                    Book consultation <ArrowRight size={15} />
+                    Book Demo <ArrowRight size={15} />
                   </button>
                   <a
                     href="#pains"
@@ -226,7 +226,7 @@ export default function Industry({ slug }) {
                       data-testid="industry-book-demo-button"
                       className="btn-primary"
                     >
-                      Book consultation <ArrowRight size={16} />
+                      Book Demo <ArrowRight size={16} />
                     </button>
                     <a href="#pains" data-testid="industry-how-link" className="btn-secondary">
                       See what you get

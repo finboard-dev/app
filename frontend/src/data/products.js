@@ -56,6 +56,9 @@ export const PRODUCTS = [
     headlineLead: "Multi-entity",
     headlineItalic: "consolidation",
     headlineTail: "on autopilot.",
+    metaTitle: "QuickBooks Multi-Entity Consolidation in Google Sheets | FinBoard",
+    metaDescription:
+      "Install the FinBoard add-on, connect your QuickBooks Online companies and get a consolidated P&L, budgets vs actuals and entity benchmarks in Google Sheets. From $20 per entity per month, 14-day free trial.",
     subhead:
       "Ingest every subsidiary ledger, auto-match inter-company transactions, post eliminations and translate currencies, so your group close goes from weeks to days.",
     capabilities: [

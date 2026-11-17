@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PRODUCT_NAV } from "@/data/products";
+import { START_PATH, START_TRIAL_LABEL } from "@/data/trial";
 import { INDUSTRY_NAV } from "@/data/industries";
 
 // Distinct icon color per module (matches the "Your full finance stack" tiles).
@@ -267,13 +268,13 @@ export default function Navbar({ onBookDemo }) {
           >
             Login
           </a>
-          <button
-            data-testid="nav-book-demo-button"
-            onClick={onBookDemo}
+          <Link
+            href={START_PATH}
+            data-testid="nav-start-trial"
             className="btn-primary text-sm py-2.5"
           >
-            Book consultation
-          </button>
+            {START_TRIAL_LABEL}
+          </Link>
         </div>
 
         <button
@@ -389,13 +390,14 @@ export default function Navbar({ onBookDemo }) {
             >
               Login
             </a>
-            <button
-              data-testid="mobile-nav-book-demo"
-              onClick={() => { setOpen(false); onBookDemo(); }}
+            <Link
+              data-testid="mobile-nav-start-trial"
+              href={START_PATH}
+              onClick={() => setOpen(false)}
               className="btn-primary w-full"
             >
-              Book consultation
-            </button>
+              {START_TRIAL_LABEL}
+            </Link>
           </div>
         </div>
       )}

@@ -7,6 +7,7 @@ import HeroCarousel from "@/components/landing/HeroCarousel";
 import ScaleToFit from "@/components/landing/ScaleToFit";
 import AiTrustRow from "@/components/landing/AiTrustRow";
 import { INDUSTRY_NAV } from "@/data/industries";
+import { START_PATH, START_TRIAL_LABEL } from "@/data/trial";
 
 // Capability line, kept in sync with the hero carousel view on the right.
 const CAP_BY_VIEW = {
@@ -84,12 +85,19 @@ export default function Hero({ onBookDemo }) {
             <AiTrustRow className="mt-5" testid="hero-ai-native" />
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                href={START_PATH}
+                data-testid="hero-start-trial"
+                className="btn-primary"
+              >
+                {START_TRIAL_LABEL} <ArrowRight size={16} />
+              </Link>
               <button
                 onClick={onBookDemo}
                 data-testid="hero-book-demo-button"
-                className="btn-primary"
+                className="btn-secondary"
               >
-                Book consultation <ArrowRight size={16} />
+                Book Demo
               </button>
             </div>
 

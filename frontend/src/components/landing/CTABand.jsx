@@ -23,7 +23,7 @@ export default function CTABand({ onBookDemo }) {
               data-testid="cta-book-demo-button"
               className="inline-flex items-center gap-2 bg-white text-[#0A0A0A] rounded-full px-5 py-3 text-sm font-medium hover:bg-[#F5F0E8] transition-colors"
             >
-              Book consultation <ArrowRight size={16} />
+              Book Demo <ArrowRight size={16} />
             </button>
             <a
               href="/testimonials"

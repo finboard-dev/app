@@ -12,7 +12,7 @@ const PATHS = [
     icon: Landmark,
     title: "I run finance for a group.",
     tags: ["Consolidate", "Close", "Board pack"],
-    ctaLabel: "Book consultation",
+    ctaLabel: "Book Demo",
     external: false,
   },
   {

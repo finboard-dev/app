@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Product from "@/views/Product";
+import ConsolidationProduct from "@/views/ConsolidationProduct";
 import { PRODUCTS, PRODUCTS_BY_SLUG } from "@/data/products";
 import { buildMetadata, breadcrumbs } from "@/lib/seo";
 
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
   const product = PRODUCTS_BY_SLUG[slug];
   if (!product) return {};
   return buildMetadata({
-    title: `${product.nav} Software for Multi-Entity Groups | FinBoard`,
+    title: product.metaTitle || `${product.nav} Software for Multi-Entity Groups | FinBoard`,
     description: product.metaDescription || product.subhead,
     path: `/products/${slug}`,
   });
@@ -51,7 +52,7 @@ export default async function Page({ params }) {
           __html: JSON.stringify([breadcrumbJsonLd, serviceJsonLd]),
         }}
       />
-      <Product slug={slug} />
+      {slug === "consolidation" ? <ConsolidationProduct /> : <Product slug={slug} />}
     </>
   );
 }
