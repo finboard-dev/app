@@ -1,3 +1,4 @@
+import { QUICKBOOKS_LOGO } from "./brandLogos";
 import {
   Scale, RefreshCw, BarChart3, Lock, GitBranch, Building2,
   TrendingUp, Boxes, Percent, Gift, Wallet, Layers,
@@ -82,7 +83,7 @@ export const DEEP_DIVE = {
         { name: "Sage 300 CRE", bg: "#007A33", label: "s3" },
         { name: "Foundation", bg: "#005EB8", label: "f" },
         { name: "Viewpoint Vista", bg: "#0063A3", label: "vp" },
-        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+        { name: "QuickBooks", logo: QUICKBOOKS_LOGO },
       ],
     },
   },
@@ -158,7 +159,7 @@ export const DEEP_DIVE = {
         { name: "Lightspeed", bg: "#F5312E", label: "LS" },
         { name: "Square", bg: "#0A0A0A", label: null },
         { name: "NetSuite", bg: "#1F5EA9", label: "NS" },
-        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+        { name: "QuickBooks", logo: QUICKBOOKS_LOGO },
       ],
     },
   },
@@ -309,7 +310,7 @@ export const DEEP_DIVE = {
         { name: "athenahealth", bg: "#5B8C2A", label: "ah" },
         { name: "Tebra", bg: "#7A2E8E", label: "tb" },
         { name: "NetSuite", bg: "#1F5FA6", label: "NS" },
-        { name: "QuickBooks", bg: "#2CA01C", label: "qb" },
+        { name: "QuickBooks", logo: QUICKBOOKS_LOGO },
       ],
     },
   },

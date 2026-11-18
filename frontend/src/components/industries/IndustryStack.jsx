@@ -68,13 +68,26 @@ export default function IndustryStack({ accent = "#C2410C", nav = "your industry
                   className="card-white p-4 flex items-center gap-3 animate-fade-up"
                   style={{ animationDelay: `${i * 50}ms` }}
                 >
-                  <span
-                    className="h-10 w-10 shrink-0 rounded-lg grid place-items-center text-white font-semibold text-[12px] tracking-tight"
-                    style={{ background: cn.bg }}
-                  >
-                    {cn.label == null ? <SquareIcon size={16} strokeWidth={2.25} /> : cn.label}
-                  </span>
-                  <span className="text-[14px] font-medium">{cn.name}</span>
+                  {cn.logo ? (
+                    <img
+                      src={cn.logo.src}
+                      alt={cn.logo.alt}
+                      width={cn.logo.width}
+                      height={cn.logo.height}
+                      className="h-9 w-auto"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <>
+                      <span
+                        className="h-10 w-10 shrink-0 rounded-lg grid place-items-center text-white font-semibold text-[12px] tracking-tight"
+                        style={{ background: cn.bg }}
+                      >
+                        {cn.label == null ? <SquareIcon size={16} strokeWidth={2.25} /> : cn.label}
+                      </span>
+                      <span className="text-[14px] font-medium">{cn.name}</span>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
