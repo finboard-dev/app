@@ -1,9 +1,21 @@
 "use client";
 
 import React from "react";
+import { Building2, UserRoundCheck, LineChart, LayoutDashboard, ListTree } from "lucide-react";
+
+const WORKSPACE_ICONS = [
+  { icon: LayoutDashboard, c: "#0891B2" },
+  { icon: ListTree, c: "#7C3AED" },
+];
 import { STEPS, STATS, CHIPS, CONSOLIDATED_PL, WORKSPACE, AUDIENCES } from "@/data/consolidationPage";
 import Sheet, { SheetTable, SheetSidebar } from "./SheetTable";
-import { Section, SectionHead, Pill } from "./primitives";
+import { Section, SectionHead, Pill, IconBadge, CheckItem } from "./primitives";
+
+const AUDIENCE_ICONS = [
+  { icon: Building2, c: "#0891B2" },
+  { icon: UserRoundCheck, c: "#7C3AED" },
+  { icon: LineChart, c: "#059669" },
+];
 
 const FRAME = "rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_2px_rgba(10,10,10,.06),0_18px_40px_rgba(10,10,10,.10)]";
 
@@ -13,7 +25,7 @@ export function HowItWorks() {
 
   return (
     <Section id="how" alt testid="product-steps">
-      <SectionHead eyebrow="How it works" color="#D97706" title={<>From install to consolidated numbers <span className="italic">in three steps</span>.</>} />
+      <SectionHead eyebrow="How it works" color="#D97706" title={<>Live in <span className="italic">three steps</span>.</>} />
 
       <div className="mt-10 grid md:grid-cols-3 gap-4">
         {STEPS.map((s, i) => {
@@ -81,22 +93,29 @@ export function HowItWorks() {
 
 export function Workspace() {
   return (
-    <Section id="workspace" testid="consolidation-workspace">
+    <Section id="workspace" alt testid="consolidation-workspace">
       <SectionHead
-        eyebrow="Web workspace"
+        eyebrow="Visualisations"
         color="#7C3AED"
-        title={<>The setup lives in one place, <span className="italic">so every sheet stays consistent</span>.</>}
-        lead="Alongside the add-on, FinBoard gives you a web workspace for mapping accounts and sharing dashboards, working from the same QuickBooks data as your sheet."
+        title={<>See the whole group <span className="italic">at a glance</span>.</>}
+        lead="Dashboards and account mapping in the FinBoard web app, on the same QuickBooks data as your sheet."
       />
       <div className="mt-12 flex flex-col gap-14 lg:gap-16">
-        {WORKSPACE.map(({ title, body, image }, i) => (
+        {WORKSPACE.map(({ eyebrow, title, body, points, image }, i) => (
           <div key={title} className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <figure className={`lg:col-span-7 m-0 ${FRAME} ${i % 2 ? "lg:order-2" : ""}`}>
               <img src={image.src} width={image.width} height={image.height} alt={image.alt} loading="lazy" className="w-full h-auto" />
             </figure>
             <div className={`lg:col-span-5 ${i % 2 ? "lg:order-1" : ""}`}>
-              <h3 className="font-serif-display text-xl sm:text-2xl leading-tight">{title}</h3>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+              <div className="flex items-center gap-2.5">
+                <IconBadge {...WORKSPACE_ICONS[i]} size="h-8 w-8" iconSize={15} rounded="rounded-lg" />
+                <span className="text-[10.5px] uppercase tracking-[0.18em] font-semibold text-[#0A0A0A]/55">{eyebrow}</span>
+              </div>
+              <h3 className="mt-4 font-serif-display text-2xl leading-tight tracking-tight">{title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+              <ul className="mt-5 flex flex-col gap-2.5 text-[14px] text-[#0A0A0A]/85">
+                {points.map((p) => <CheckItem key={p}>{p}</CheckItem>)}
+              </ul>
             </div>
           </div>
         ))}
@@ -110,10 +129,11 @@ export function Audiences() {
     <Section id="who" alt testid="consolidation-audiences">
       <SectionHead eyebrow="Who it’s for" color="#0891B2" title={<>For the people who <span className="italic">close the books</span>.</>} />
       <div className="mt-10 grid md:grid-cols-3 gap-8">
-        {AUDIENCES.map(({ title, body }) => (
+        {AUDIENCES.map(({ title, body }, i) => (
           <div key={title} className="border-t-2 border-[#0A0A0A] pt-5">
-            <h3 className="font-serif-display text-lg leading-tight">{title}</h3>
-            <p className="mt-2 text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+            <IconBadge {...AUDIENCE_ICONS[i]} size="h-10 w-10" iconSize={17} rounded="rounded-lg" />
+            <h3 className="mt-4 font-serif-display text-lg leading-tight">{title}</h3>
+            <p className="mt-2 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
           </div>
         ))}
       </div>

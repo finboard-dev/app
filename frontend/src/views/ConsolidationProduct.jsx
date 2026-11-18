@@ -24,11 +24,11 @@ export default function ConsolidationProduct() {
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="product-page-consolidation">
       <Navbar onBookDemo={openDemo} />
       <main>
-        <Hero />
+        <Hero onBookDemo={openDemo} />
+        <Workspace />
         <Features />
         <Modeling />
         <HowItWorks />
-        <Workspace />
         <Audiences />
         <PricingPlan onBookDemo={openDemo} />
         <ProductCrossLinks slug="consolidation" accent={PRODUCTS_BY_SLUG.consolidation.accent} />

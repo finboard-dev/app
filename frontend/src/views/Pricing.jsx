@@ -27,21 +27,21 @@ const MODULE_ACCENT = {
 
 const QUOTE_INCLUDES = [
   { icon: Timer,         label: "Tailored quote in 1 business day",                 c: "#2563EB" },
-  { icon: MessageSquare, label: "Answers to close, reporting & spend questions",    c: "#059669" },
-  { icon: Database,      label: "Walk-through of how FinBoard scales with your group", c: "#D97706" },
-  { icon: Sparkles,      label: "Forward-deployed build plan for your first 30 days", c: "#7C3AED" },
+  { icon: MessageSquare, label: "Answers on close, reporting and spend",    c: "#059669" },
+  { icon: Database,      label: "A walkthrough built around your group", c: "#D97706" },
+  { icon: Sparkles,      label: "A 30-day forward-deployed build plan", c: "#7C3AED" },
 ];
 
-// Support model - every plan comes with real finance experts, not a help desk.
+// Support model: every plan comes with real finance experts, not a help desk.
 const SUPPORT = [
   { icon: GraduationCap, title: "Expert-led support", c: "#2563EB",
-    body: "Guidance from finance leads who know close, consolidation and FP&A - not a generic help desk." },
+    body: "Finance leads who know close, consolidation and FP&A." },
   { icon: Clock, title: "Seven days a week", c: "#059669",
-    body: "Responsive support whenever your close is running, weekdays and weekends alike." },
+    body: "Support whenever your close is running, weekends included." },
   { icon: Rocket, title: "Dedicated implementation", c: "#D97706",
-    body: "Our forward-deployed team configures FinBoard and stands up your workspace with you." },
+    body: "Our team configures FinBoard and sets up your workspace." },
   { icon: Video, title: "Video-call support", c: "#7C3AED",
-    body: "Resolve issues faster with live screen-share sessions and hands-on assistance." },
+    body: "Live screen-share sessions to fix issues fast." },
 ];
 
 const CHANNELS = [
@@ -68,10 +68,10 @@ export default function Pricing() {
           <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 lg:pt-20 pb-14 lg:pb-20">
             <div className="max-w-3xl animate-fade-up">
               <h1 className="font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight text-[#0A0A0A]" data-testid="pricing-heading">
-                Simple pricing to start. <span className="italic">Custom pricing to scale.</span>
+                Simple pricing to start.<br className="hidden sm:block" /> <span className="italic">Custom pricing to scale.</span>
               </h1>
-              <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-[#0A0A0A]/75" data-testid="pricing-subhead">
-                Consolidation in Google Sheets has one published per-entity price and a free trial. The full platform is quoted around your entities, modules and seats.
+              <p className="mt-5 max-w-2xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75 [text-wrap:balance]" data-testid="pricing-subhead">
+                Start with consolidation in Google Sheets at a published price. Get a custom quote for the full platform.
               </p>
             </div>
             <div className="mt-10 animate-fade-up" style={{ animationDelay: "120ms" }}>
@@ -82,16 +82,16 @@ export default function Pricing() {
 
         {/* Custom quote for the full platform */}
         <section id="quote" className="scroll-mt-24 border-t border-line">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               <div className="lg:col-span-7">
                 <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">Full platform</div>
-                <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
+                <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
                   A quote built around <span className="italic">your group</span>.
                 </h2>
 
-                <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#0A0A0A]/75">
-                  Priced around your entities, modules and seats, not sticker prices. Tell us how you run finance and we&apos;ll send a quote in a day.
+                <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-[#0A0A0A]/75">
+                  Priced around your entities, modules and seats. Your quote is back in one business day.
                 </p>
 
                 <div className="mt-8 max-w-xl" data-testid="pricing-quote-includes">
@@ -210,16 +210,16 @@ export default function Pricing() {
 
         {/* Support - real finance experts, inspired by the "Why FinBoard" support model */}
         <section className="border-t border-line bg-[#F5F0E8]" data-testid="pricing-support-section">
-          <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">
                 <LifeBuoy size={12} /> Why FinBoard
               </div>
-              <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
-                We&apos;re here to help you succeed.
+              <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
+                We&apos;re here to help you <span className="italic">succeed</span>.
               </h2>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/70">
-                Every plan comes with real people - finance experts who know your workflows, not a ticket queue.
+              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/65">
+                Every plan comes with finance experts, not a ticket queue.
               </p>
             </div>
 
@@ -248,14 +248,14 @@ export default function Pricing() {
 
         {/* Modules - compact card grid, each linked to its product page */}
         <section id="modules" className="scroll-mt-24 border-t border-line bg-white">
-          <div className="max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
             <div className="max-w-2xl">
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">What&apos;s included</div>
-              <h2 className="mt-4 font-serif-display text-3xl sm:text-4xl leading-[1.05] tracking-tight">
-                Explore the modules.
+              <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">
+                Explore the <span className="italic">modules</span>.
               </h2>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/70">
-                Every plan starts with the platform. Turn on the modules you run, swap them as you scale.
+              <p className="mt-3 text-[14.5px] leading-relaxed text-[#0A0A0A]/65">
+                Turn on the modules you run. Swap them as you scale.
               </p>
             </div>
 
@@ -289,13 +289,13 @@ export default function Pricing() {
         </section>
 
         {/* Comparison-style trust strip */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+        <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div className="rounded-3xl border border-line bg-white p-8 lg:p-14 grid md:grid-cols-12 gap-8 items-center" data-testid="pricing-partner-strip">
             <div className="md:col-span-8">
               <div className="text-xs uppercase tracking-[0.22em] text-[#0A0A0A]/50">For firms & partners</div>
-              <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">Firm-friendly economics.</h2>
+              <h2 className="mt-3 font-serif-display text-2xl sm:text-3xl leading-[1.1] tracking-tight">Firm-friendly <span className="italic">economics</span>.</h2>
               <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-[#0A0A0A]/70">
-                Per-client and per-seat pricing built for resale margin, plus a dedicated pod. Land one firm, serve a whole portfolio.
+                Per-client pricing with resale margin and a dedicated pod.
               </p>
               <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2.5 text-[13px] text-[#0A0A0A]/80">
                 {[

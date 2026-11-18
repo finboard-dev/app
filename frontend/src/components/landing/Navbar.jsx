@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Route, Compass, MessageSquareQuote, Sparkles, Newspaper, LayoutGrid, CalendarDays } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, Route, Compass, MessageSquareQuote, Sparkles, Newspaper, LayoutGrid, CalendarDays } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PRODUCT_NAV } from "@/data/products";
 import { START_PATH, START_TRIAL_LABEL } from "@/data/trial";
+import { ACCOUNTING_PATH } from "@/data/accountingServices";
 import { INDUSTRY_NAV } from "@/data/industries";
 
 // Distinct icon color per module (matches the "Your full finance stack" tiles).
@@ -145,6 +146,14 @@ export default function Navbar({ onBookDemo }) {
                       onSelect={() => router.push(`/products/${p.slug}`)}
                     />
                   ))}
+                  <MegaTile
+                    testid="nav-product-accounting-services"
+                    icon={Calculator}
+                    color="#0891B2"
+                    title="Accounting services"
+                    desc="Done-for-you books"
+                    onSelect={() => router.push(ACCOUNTING_PATH)}
+                  />
                 </div>
               </div>
             </DropdownMenuContent>
@@ -310,6 +319,17 @@ export default function Navbar({ onBookDemo }) {
                     </Link>
                   );
                 })}
+                <Link
+                  href={ACCOUNTING_PATH}
+                  onClick={() => setOpen(false)}
+                  data-testid="mobile-nav-product-accounting-services"
+                  className="flex items-center gap-2.5 py-1.5 text-base"
+                >
+                  <span className="h-6 w-6 rounded border border-line bg-white grid place-items-center shrink-0 text-[#0A0A0A]">
+                    <Calculator size={13} strokeWidth={1.75} />
+                  </span>
+                  Accounting services
+                </Link>
               </div>
             </div>
             <Link

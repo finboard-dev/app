@@ -9,32 +9,31 @@ export { SHEETS_ADDON_URL, TRIAL_DAYS };
 export const PRICE_PER_ENTITY = "$20";
 
 export const HERO = {
-  eyebrow: "Many entities, one sheet.",
-  headlineLead: "Consolidate every QuickBooks entity in",
+  headlineLead: "QuickBooks consolidation in",
   headlineItalic: "Google Sheets.",
   lede:
-    "Install the FinBoard add-on, connect your QuickBooks Online companies and get a consolidated P&L and balance sheet with intercompany eliminations. No implementation project, no copy-paste.",
+    "Connect your QuickBooks Online entities. Consolidate P&L and balance sheet. Eliminate intercompany transactions.",
   bullets: [
     "Intercompany eliminations",
     "Chart of accounts mapping",
-    "Budgets vs actuals and benchmarking",
-    "Unlimited entities, refreshed hourly",
+    "Budgets vs actuals",
+    "Performance benchmarks",
   ],
-  trust: ["US servers", "Enterprise-grade encryption", "Intuit Developer Program member"],
+  trust: ["US servers", "Enterprise encryption", "Intuit Developer Program"],
 };
 
 export const FEATURES = [
-  { title: "Consolidated financial reporting", body: "A consolidated P&L and balance sheet across every QuickBooks company, with each entity side by side so you can see what drives the group." },
-  { title: "Intercompany eliminations", body: "Intercompany revenue, management fees and balances net out of the group view, so your consolidated numbers aren’t overstated." },
-  { title: "Intercompany journal entries", body: "Pull journal entries from every entity into one sheet and check that both sides of each intercompany entry agree before you close." },
-  { title: "Chart of accounts mapping", body: "Rename and regroup each entity’s accounts once, so every consolidated report lines up across the group." },
+  { title: "Consolidated financial reporting", body: "Group P&L and balance sheet, with every entity side by side." },
+  { title: "Intercompany eliminations", body: "Intercompany revenue, fees and balances net out automatically." },
+  { title: "Intercompany journal entries", body: "Check both sides of every intercompany entry before you close." },
+  { title: "Chart of accounts mapping", body: "Map each entity’s accounts once, and every report lines up." },
 ];
 
 export const MODELING_ITEMS = [
-  { title: "Budgets vs actuals, rolled up", body: "Pull each entity’s QuickBooks budget next to its actuals and roll both up to the group, month by month or year to date." },
-  { title: "Variance analysis", body: "Dollar and percent variances on every line, by entity and for the group, so you can see what moved and where." },
-  { title: "Entity benchmarking", body: "Map every entity to the same chart of accounts, then compare margins, costs and growth side by side." },
-  { title: "% of income benchmarking", body: "Show every line as a percentage of total income, so a small location and a large one can be compared fairly." },
+  { title: "Budgets vs actuals, rolled up", body: "Each entity’s budget next to actuals, rolled up to the group." },
+  { title: "Variance analysis", body: "Dollar and percent variances on every line." },
+  { title: "Entity benchmarking", body: "Compare margins, costs and growth side by side." },
+  { title: "% of income benchmarking", body: "Every line as a share of income, so any size compares fairly." },
 ];
 
 // Cell tones: "pos" | "neg" | "flag" | "elim" (elim can combine: "elim neg").
@@ -53,7 +52,7 @@ export const MODELING_TABS = [
       r("Operating expenses", [["(612,000)", "neg"], ["(590,000)", "neg"], ["(22,000)", "flag"], ["(3.7%)", "flag"]]),
       r("Net income", [["174,000", "pos"], ["185,000", "pos"], ["(11,000)", "flag"], ["(5.9%)", "flag"]], "final"),
     ],
-    note: "Unfavorable variances are highlighted. Each entity’s budget and actuals roll up into the group the same way.",
+    note: "Unfavorable variances are highlighted.",
   },
   {
     id: "bench",
@@ -69,7 +68,7 @@ export const MODELING_TABS = [
       r("Other operating costs", [["11.5%", "pos"], ["10.4%", "pos"], ["10.2%", "pos"], ["10.7%", "pos"]]),
       r("Net income", [["15.0%", "pos"], ["9.5%", "flag"], ["17.5%", "pos"], ["14.0%", "pos"]], "final"),
     ],
-    note: "Denver’s cost of goods sold and payroll both run about 3 points above the group, which is why its margin trails.",
+    note: "Denver’s COGS and payroll run about 3 points above the group.",
   },
 ];
 
@@ -92,17 +91,17 @@ export const CONSOLIDATED_PL = {
 export const STEPS = [
   {
     title: "Install the add-on",
-    body: "Add FinBoard to Google Sheets from the Google Workspace Marketplace. It opens in the sidebar.",
+    body: "Add FinBoard from the Google Workspace Marketplace.",
     image: { src: "/products/consolidation/sheets-addon.webp", width: 1600, height: 878, alt: "The FinBoard add-on open in the Google Sheets sidebar, next to a monthly profit and loss report" },
   },
   {
     title: "Connect QuickBooks",
-    body: "Pick your QuickBooks Online companies and the reports you need, by month or by class.",
+    body: "Pick your companies and the reports you need.",
     image: { src: "/products/consolidation/create-report.webp", width: 1600, height: 872, alt: "FinBoard’s Create Report dialog in Google Sheets, with a QuickBooks company selected and the profit and loss options showing" },
   },
   {
     title: "Consolidate",
-    body: "Roll the companies into one statement with intercompany eliminated, refreshed every hour.",
+    body: "One statement, intercompany eliminated, refreshed hourly.",
     image: null, // renders the consolidated P&L sheet
   },
 ];
@@ -118,21 +117,25 @@ export const CHIPS = [`${TRIAL_DAYS}-day free trial`, `From ${PRICE_PER_ENTITY} 
 
 export const WORKSPACE = [
   {
-    title: "Map each entity’s accounts once",
-    body: "Drag QuickBooks accounts into one reporting structure for the whole group. When QuickBooks adds a new account, FinBoard flags it for review, so nothing slips past the consolidation.",
-    image: { src: "/products/consolidation/workspace-mapping.webp", width: 1600, height: 1019, alt: "FinBoard’s web workspace regrouping QuickBooks accounts into income, cost of goods sold and expense sections" },
+    eyebrow: "Dashboards",
+    title: "Live dashboards for the whole group",
+    body: "Every entity’s QuickBooks numbers roll into one executive view, so owners see cash and performance without waiting for month-end.",
+    points: ["Cash & bank and operating cash flow", "Cash balance trend and cash flow bridge", "AI commentary on any chart, on demand"],
+    image: { src: "/products/consolidation/group-dashboard.webp", width: 1600, height: 782, alt: "FinBoard’s executive group dashboard showing cash and bank, operating cash flow, a cash balance trend and a cash flow bridge" },
   },
   {
-    title: "Share a live dashboard with the group",
-    body: "Profit and loss, entity breakdown and cash position for the whole group, with commentary written for you on demand.",
-    image: { src: "/products/consolidation/group-dashboard.webp", width: 1600, height: 782, alt: "FinBoard’s executive group dashboard showing cash and bank, operating cash flow, a cash balance trend and a cash flow bridge" },
+    eyebrow: "Mapping",
+    title: "Chart of accounts mapping",
+    body: "Give every entity one reporting structure, without changing anything in QuickBooks. Map once, and every consolidated report lines up.",
+    points: ["Drag and drop accounts into income, COGS and expenses", "New QuickBooks accounts flagged for review", "One mapping powers every entity and group report"],
+    image: { src: "/products/consolidation/workspace-mapping.webp", width: 1600, height: 1019, alt: "FinBoard’s web workspace regrouping QuickBooks accounts into income, cost of goods sold and expense sections" },
   },
 ];
 
 export const AUDIENCES = [
-  { title: "Accounting firms and bookkeepers", body: "Consolidate client groups without rebuilding the workbook every month." },
-  { title: "Fractional CFOs", body: "Give each multi-entity client live consolidated numbers in a format they already know." },
-  { title: "Finance and FP&A teams", body: "Keep your own models and formulas, now fed by live QuickBooks data." },
+  { title: "Accounting firms and bookkeepers", body: "Consolidate client groups without rebuilding workbooks." },
+  { title: "Fractional CFOs", body: "Live consolidated numbers for every multi-entity client." },
+  { title: "Finance and FP&A teams", body: "Your own models and formulas, fed by live QuickBooks data." },
 ];
 
 export const PLAN = {

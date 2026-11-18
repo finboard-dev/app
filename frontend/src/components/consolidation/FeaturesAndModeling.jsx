@@ -1,10 +1,17 @@
 "use client";
 
 import React from "react";
-import { Layers, GitMerge, FileText, ListTree } from "lucide-react";
+import { Layers, GitMerge, FileText, ListTree, Scale, TrendingUp, BarChart3, Percent } from "lucide-react";
 import { FEATURES, MODELING_ITEMS, MODELING_TABS } from "@/data/consolidationPage";
 import Sheet, { SheetTable } from "./SheetTable";
-import { Section, SectionHead } from "./primitives";
+import { Section, SectionHead, IconBadge } from "./primitives";
+
+const MODELING_ICONS = [
+  { icon: Scale, c: "#2563EB" },
+  { icon: TrendingUp, c: "#059669" },
+  { icon: BarChart3, c: "#D97706" },
+  { icon: Percent, c: "#E11D48" },
+];
 
 const FEATURE_ICONS = [Layers, GitMerge, FileText, ListTree];
 const FEATURE_ACCENTS = ["#2563EB", "#7C3AED", "#0891B2", "#059669"];
@@ -15,7 +22,7 @@ export function Features() {
       <SectionHead
         eyebrow="What you get"
         title={<>Consolidation, <span className="italic">built into Google Sheets</span>.</>}
-        lead="Your consolidation runs inside the Google Sheets you already use, on QuickBooks data that refreshes every hour. Teams save up to 4 hours per entity, every month."
+        lead="In the Google Sheets you already use, refreshed hourly from QuickBooks. Save up to 4 hours per entity, every month."
       />
       <div className="mt-10 grid sm:grid-cols-2 gap-4">
         {FEATURES.map(({ title, body }, i) => {
@@ -31,13 +38,13 @@ export function Features() {
                 <span className="font-serif-display text-[15px] tabular-nums text-[#0A0A0A]/25">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <h3 className="mt-5 font-serif-display text-xl leading-tight">{title}</h3>
-              <p className="mt-2 text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+              <p className="mt-2 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
             </div>
           );
         })}
       </div>
-      <p className="mt-6 text-[14px] text-[#0A0A0A]/70">
-        Also included: cash flow forecasts, project-level reports, drill down and live dashboards.
+      <p className="mt-6 text-[13.5px] text-[#0A0A0A]/60">
+        Also included: cash flow forecasts, project reports, drill down and live dashboards.
       </p>
     </Section>
   );
@@ -95,19 +102,22 @@ export function Modeling() {
       <SectionHead
         eyebrow="Financial modeling"
         color="#059669"
-        title={<>Plan, compare and explain performance <span className="italic">across every entity</span>.</>}
-        lead="Once your entities sit in one sheet, it becomes your model. Roll up budgets, benchmark entities against each other and explain the variances, with numbers that refresh from QuickBooks."
+        title={<>Plan and compare <span className="italic">every entity</span>.</>}
+        lead="Roll up budgets, benchmark entities and explain variances, on numbers that refresh from QuickBooks."
       />
       <div className="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         <div className="lg:col-span-5 flex flex-col gap-6">
-          {MODELING_ITEMS.map(({ title, body }) => (
-            <div key={title}>
-              <h3 className="font-serif-display text-lg leading-tight">{title}</h3>
-              <p className="mt-1.5 text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+          {MODELING_ITEMS.map(({ title, body }, i) => (
+            <div key={title} className="flex items-start gap-3.5">
+              <IconBadge {...MODELING_ICONS[i]} size="h-9 w-9" iconSize={16} rounded="rounded-lg" />
+              <div>
+                <h3 className="font-serif-display text-lg leading-tight">{title}</h3>
+                <p className="mt-1 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+              </div>
             </div>
           ))}
-          <p className="pt-5 border-t border-line text-[14px] leading-relaxed text-[#0A0A0A]/70">
-            Build forecasts and your own models on top with ordinary Sheets formulas, and they update with every refresh.
+          <p className="pt-5 border-t border-line text-[13.5px] leading-relaxed text-[#0A0A0A]/60">
+            Build forecasts on top with ordinary Sheets formulas.
           </p>
         </div>
         <ModelingTabs />

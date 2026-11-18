@@ -10,17 +10,21 @@ import { PRODUCT_NAV } from "@/data/products";
  * price, and the full platform on a custom quote.
  */
 const PLATFORM_INCLUDES = [
-  ...PRODUCT_NAV.map((p) => `${p.nav}: ${p.eyebrow.toLowerCase()}`),
-  "Forward-deployed build in your first 30 days",
+  ...PRODUCT_NAV.map((p) => p.nav),
+  "Web app, Google Sheets and AI Agent",
+  "Forward-deployed build in 30 days",
 ];
 
-function Includes({ items }) {
+// Items longer than this take a full row in the two-column list.
+const LONG = 30;
+
+function Includes({ items, columns = 1 }) {
   return (
-    <ul className="flex flex-col gap-2.5 pt-5 border-t border-line text-[14px] text-[#0A0A0A]/85">
+    <ul className={`grid gap-x-5 gap-y-2.5 pt-5 border-t border-line text-[13.5px] text-[#0A0A0A]/85 ${columns === 2 ? "sm:grid-cols-2 sm:grid-flow-row-dense" : ""}`}>
       {items.map((t) => (
-        <li key={t} className="flex items-start gap-2.5">
-          <span className="mt-0.5 h-5 w-5 shrink-0 rounded-full bg-emerald-600 text-white grid place-items-center">
-            <Check size={12} strokeWidth={3} />
+        <li key={t} className={`flex items-start gap-2 ${columns === 2 && t.length > LONG ? "sm:col-span-2" : ""}`}>
+          <span className="mt-[3px] h-4 w-4 shrink-0 rounded-full bg-emerald-600 text-white grid place-items-center">
+            <Check size={10} strokeWidth={3} />
           </span>
           {t}
         </li>
@@ -60,14 +64,14 @@ export default function PricingPlans({ onQuote }) {
         <div>
           <div className="flex flex-wrap items-baseline gap-2 text-[#0A0A0A]/70">
             <span>From</span>
-            <strong className="font-serif-display text-5xl leading-none tracking-tight text-[#0A0A0A]">{PRICE_PER_ENTITY}</strong>
+            <strong className="font-serif-display text-4xl leading-none tracking-tight text-[#0A0A0A]">{PRICE_PER_ENTITY}</strong>
             <span>per entity per month</span>
           </div>
-          <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70">
-            Consolidate every QuickBooks Online entity inside Google Sheets. Install, connect and go, with no implementation project.
+          <p className="mt-3 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">
+            Every QuickBooks Online entity, consolidated in Google Sheets.
           </p>
         </div>
-        <Includes items={PLAN.includes} />
+        <Includes items={PLAN.includes} columns={2} />
         <div className="mt-auto flex flex-wrap items-center gap-3">
           <Link href={START_PATH} className="btn-primary" data-testid="pricing-plan-trial">
             Start free trial <ArrowRight size={16} />
@@ -87,12 +91,15 @@ export default function PricingPlans({ onQuote }) {
           badge={<span className="shrink-0 rounded-full bg-[#F5F0E8] text-[#0A0A0A]/70 px-3 py-1 text-[12px] font-semibold">Quote in 1 day</span>}
         />
         <div>
-          <div className="font-serif-display text-5xl leading-none tracking-tight">Custom quote</div>
-          <p className="mt-3 text-[14px] leading-relaxed text-[#0A0A0A]/70">
-            Priced around your entities, modules and seats. Close, consolidation, reporting, planning and spend across the FinBoard web app, Google Sheets and the FinBoard AI Agent.
+          <div className="flex flex-wrap items-baseline gap-2 text-[#0A0A0A]/70">
+            <strong className="font-serif-display text-4xl leading-none tracking-tight text-[#0A0A0A]">Custom</strong>
+            <span>quote for your group</span>
+          </div>
+          <p className="mt-3 text-[13.5px] leading-relaxed text-[#0A0A0A]/70">
+            Your whole finance stack, priced around your entities, modules and seats.
           </p>
         </div>
-        <Includes items={PLATFORM_INCLUDES} />
+        <Includes items={PLATFORM_INCLUDES} columns={2} />
         <div className="mt-auto flex flex-wrap items-center gap-3">
           <button type="button" onClick={onQuote} className="btn-secondary" data-testid="pricing-plan-quote">
             Get a custom quote <ArrowRight size={16} />
