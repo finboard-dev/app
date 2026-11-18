@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Square as SquareIcon } from "lucide-react";
 import { PRODUCT_NAV } from "@/data/products";
+import { QUICKBOOKS_LOGO } from "@/data/brandLogos";
 
 /**
  * Restaurants "stack" block - redesigned integrations + finance stack + cross-industry links.
@@ -15,7 +16,7 @@ import { PRODUCT_NAV } from "@/data/products";
 const BRAND = {
   "Toast":         { bg: "#FF4C00", label: "T" },
   "7shifts":       { bg: "#E5484D", label: "7" },
-  "QuickBooks":    { bg: "#2CA01C", label: "qb" },
+  "QuickBooks":    { logo: QUICKBOOKS_LOGO },
   "Restaurant365": { bg: "#12284C", label: "365" },
   "Square":        { bg: "#0A0A0A", label: null },
 };
@@ -91,13 +92,26 @@ export default function RestaurantStack({ accent = "#C2410C", integrations = [],
                     className="card-white p-4 flex items-center gap-3 animate-fade-up"
                     style={{ animationDelay: `${i * 50}ms` }}
                   >
-                    <span
-                      className="h-10 w-10 shrink-0 rounded-lg grid place-items-center text-white font-semibold text-[12px] tracking-tight"
-                      style={{ background: b.bg }}
-                    >
-                      {b.label === null ? <SquareIcon size={16} strokeWidth={2.25} /> : b.label}
-                    </span>
-                    <span className="text-[14px] font-medium">{name}</span>
+                    {b.logo ? (
+                      <img
+                        src={b.logo.src}
+                        alt={b.logo.alt}
+                        width={b.logo.width}
+                        height={b.logo.height}
+                        className="h-9 w-auto"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <>
+                        <span
+                          className="h-10 w-10 shrink-0 rounded-lg grid place-items-center text-white font-semibold text-[12px] tracking-tight"
+                          style={{ background: b.bg }}
+                        >
+                          {b.label === null ? <SquareIcon size={16} strokeWidth={2.25} /> : b.label}
+                        </span>
+                        <span className="text-[14px] font-medium">{name}</span>
+                      </>
+                    )}
                   </div>
                 );
               })}
