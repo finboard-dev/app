@@ -2,14 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Download, ShieldCheck, PlugZap, Sheet as SheetIcon, Layers, AppWindow, Bot } from "lucide-react";
+import { ArrowRight, Download, PlugZap, Sheet as SheetIcon, Layers, AppWindow, Bot } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import BookDemoDialog from "@/components/landing/BookDemoDialog";
 import { LogoMark, CLIENT_LOGOS } from "@/components/landing/ClientLogos";
-import { WRAP, Section, SectionHead, CheckItem, Pill } from "@/components/consolidation/primitives";
+import { WRAP, Section, SectionHead, CheckItem } from "@/components/consolidation/primitives";
+import TrustBadges from "@/components/consolidation/TrustBadges";
 import { SHEETS_ADDON_URL, TRIAL_DAYS, INSTALL_LABEL } from "@/data/trial";
-import { PRICE_PER_ENTITY, HERO } from "@/data/consolidationPage";
+import { PRICE_PER_ENTITY } from "@/data/consolidationPage";
 
 const STEPS = [
   { icon: Download, c: "#2563EB", title: "Install the add-on", body: "Add FinBoard to Google Sheets from the Google Workspace Marketplace. It opens in the sidebar." },
@@ -60,10 +61,10 @@ export default function StartTrial() {
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               <div className="lg:col-span-6 flex flex-col gap-6 animate-fade-up">
                 <div className="font-serif-display italic text-lg sm:text-xl text-[#0A0A0A]/55">Free for {TRIAL_DAYS} days.</div>
-                <h1 className="-mt-3 font-serif-display text-3xl sm:text-4xl lg:text-[3rem] leading-[1.02] tracking-tight">
+                <h1 className="-mt-3 font-serif-display text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.02] tracking-tight [text-wrap:balance]">
                   Start your <span className="italic">{TRIAL_DAYS}-day free trial</span>.
                 </h1>
-                <p className="text-[15.5px] leading-relaxed text-[#0A0A0A]/75 max-w-xl">
+                <p className="text-[14.5px] leading-relaxed text-[#0A0A0A]/75 max-w-xl">
                   FinBoard works in Google Sheets, in the FinBoard web app and through the FinBoard AI Agent, all on the same
                   QuickBooks data. Your free trial starts in Google Sheets: install the add-on, connect your QuickBooks Online
                   companies and see consolidated numbers for the whole group.
@@ -76,12 +77,7 @@ export default function StartTrial() {
                   From {PRICE_PER_ENTITY} per entity per month after your trial. Already a customer?{" "}
                   <a href="https://app.finboard.ai" className="font-medium text-[#0A0A0A] underline underline-offset-2">Log in</a>
                 </p>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 mr-1 text-[11px] uppercase tracking-[0.14em] text-[#0A0A0A]/55">
-                    <ShieldCheck size={12} /> Secure by design
-                  </span>
-                  {HERO.trust.map((t) => <Pill key={t}>{t}</Pill>)}
-                </div>
+                <TrustBadges />
               </div>
 
               <div className="lg:col-span-6 animate-fade-up" style={{ animationDelay: "120ms" }}>
@@ -90,12 +86,12 @@ export default function StartTrial() {
                     <span className="font-medium">Your trial includes</span>
                     <span className="rounded-full bg-[#2563EB]/10 text-[#2563EB] px-3 py-1 text-[12px] font-semibold">{TRIAL_DAYS} days free</span>
                   </div>
-                  <ul className="flex flex-col gap-3 text-[14.5px]">
+                  <ul className="flex flex-col gap-2.5 text-[13.5px] text-[#0A0A0A]/85">
                     {INCLUDED.map((t) => <CheckItem key={t}>{t}</CheckItem>)}
                   </ul>
                   <div className="pt-5 border-t border-line">
                     <div className="text-[10.5px] uppercase tracking-[0.18em] text-[#0A0A0A]/55">What you need</div>
-                    <ul className="mt-3 flex flex-col gap-2.5 text-[14px] text-[#0A0A0A]/80">
+                    <ul className="mt-3 flex flex-col gap-2.5 text-[13.5px] text-[#0A0A0A]/80">
                       {NEEDS.map(({ icon: Icon, text }) => (
                         <li key={text} className="flex items-center gap-2.5">
                           <span className="h-7 w-7 shrink-0 rounded-md border border-line bg-[#F9F6F0] grid place-items-center">
@@ -122,7 +118,7 @@ export default function StartTrial() {
                   <Icon size={19} strokeWidth={1.75} />
                 </span>
                 <h3 className="mt-2 font-serif-display text-lg leading-tight">{title}</h3>
-                <p className="text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+                <p className="text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
               </div>
             ))}
           </div>
@@ -140,7 +136,7 @@ export default function StartTrial() {
                   <span className="text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#0A0A0A]/45">Step {i + 1}</span>
                 </div>
                 <h3 className="mt-2 font-serif-display text-lg leading-tight">{title}</h3>
-                <p className="text-[14px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
+                <p className="text-[13.5px] leading-relaxed text-[#0A0A0A]/70">{body}</p>
               </li>
             ))}
           </ol>

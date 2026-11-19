@@ -2,6 +2,7 @@
 
 import React from "react";
 import Navbar from "@/components/landing/Navbar";
+import AnnouncementBar from "@/components/landing/AnnouncementBar";
 import Hero from "@/components/landing/Hero";
 import WhyWeExist from "@/components/landing/WhyWeExist";
 import Outcomes from "@/components/landing/Outcomes";
@@ -21,6 +22,7 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-sand text-[#0A0A0A]" data-testid="landing-page">
+      <AnnouncementBar />
       <Navbar onBookDemo={openDemo} />
       <main>
         <Hero onBookDemo={openDemo} />

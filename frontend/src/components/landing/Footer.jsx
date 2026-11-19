@@ -36,6 +36,15 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    href="/accounting-services"
+                    data-testid="footer-product-accounting-services"
+                    className="text-sm text-[#F5F0E8]/80 hover:text-white transition-colors"
+                  >
+                    Accounting services
+                  </Link>
+                </li>
               </ul>
             </div>
             <FooterCol title="Product" links={[
