@@ -5,7 +5,7 @@ import { WRAP } from "@/components/consolidation/primitives";
 import HeroCollage from "./HeroCollage";
 import { Aurora } from "./Layout";
 import { Reveal } from "./motion";
-import { HERO, STATS, DISCOVERY_LABEL } from "@/data/accountingServices";
+import { HERO, STATS, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } from "@/data/accountingServices";
 
 const ALL_LOGOS = [...CLIENT_LOGOS.operators.logos, ...CLIENT_LOGOS.firms.logos];
 const STAT_COLORS = ["#059669", "#2563EB", "#7C3AED", "#D97706"];
@@ -36,7 +36,12 @@ export function Hero({ onDiscovery }) {
             {HERO.secondary} <ArrowDown size={15} />
           </a>
         </div>
-        <p className="mt-4 text-[12.5px] text-white/45">{HERO.microcopy}</p>
+        <p className="mt-4 text-[12.5px] text-white/45">
+          {HERO.microcopy} ·{" "}
+          <a href={EMAIL_CTA.href} data-testid="accounting-hero-email" className="text-white/70 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white">
+            {EMAIL_CTA.prompt} {CONTACT_EMAIL}
+          </a>
+        </p>
       </div>
       <div className={`relative ${WRAP} mt-14 lg:mt-20 pb-10 lg:pb-14 animate-fade-up`} style={{ animationDelay: "150ms" }}>
         <HeroCollage />

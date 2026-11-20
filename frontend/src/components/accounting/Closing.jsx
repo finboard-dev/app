@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { WRAP } from "@/components/consolidation/primitives";
 import { Band, Aurora } from "./Layout";
 import { Reveal } from "./motion";
-import { FAQS, STEPS, FOUNDER, DISCOVERY_LABEL, HERO, CLOSE_DAYS } from "@/data/accountingServices";
+import { FAQS, STEPS, FOUNDER, DISCOVERY_LABEL, HERO, CLOSE_DAYS, CONTACT_EMAIL, EMAIL_CTA } from "@/data/accountingServices";
 
 /** FAQ: heading on the left, questions on the right. */
 export function Faq({ onDiscovery }) {
@@ -20,10 +20,21 @@ export function Faq({ onDiscovery }) {
           <h2 className="mt-4 font-serif-display text-[2rem] sm:text-[2.5rem] lg:text-[3rem] leading-[1.04] tracking-[-0.03em]">
             Questions, <span className="italic">answered</span>.
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-[#0A0A0A]/60">Anything else? Ask us on the call.</p>
-          <button type="button" onClick={onDiscovery} className="btn-secondary mt-7">
-            {DISCOVERY_LABEL} <ArrowRight size={15} />
-          </button>
+          <p className="mt-4 text-[16px] leading-relaxed text-[#0A0A0A]/60">
+            Anything else? Ask us on a call, or email{" "}
+            <a href={EMAIL_CTA.href} className="font-medium text-[#0A0A0A] underline decoration-[#0A0A0A]/25 underline-offset-4 hover:decoration-[#0A0A0A]">
+              {CONTACT_EMAIL}
+            </a>
+            .
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <button type="button" onClick={onDiscovery} className="btn-secondary">
+              {DISCOVERY_LABEL} <ArrowRight size={15} />
+            </button>
+            <a href={EMAIL_CTA.href} data-testid="accounting-faq-email" className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#0A0A0A]/70 transition-colors hover:text-[#0A0A0A]">
+              <Mail size={15} /> {EMAIL_CTA.label}
+            </a>
+          </div>
         </Reveal>
         <Reveal className="lg:col-span-8" delay={100}>
           <Accordion type="single" collapsible className="border-t border-line">
@@ -63,8 +74,22 @@ export function FinalCta({ onDiscovery }) {
               >
                 {DISCOVERY_LABEL} <ArrowRight size={16} />
               </button>
-              <span className="text-[12.5px] text-white/50">{HERO.microcopy}</span>
+              <a
+                href={EMAIL_CTA.href}
+                data-testid="accounting-cta-email"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium text-white ring-1 ring-white/25 transition hover:-translate-y-0.5 hover:bg-white/10"
+              >
+                <Mail size={16} /> {EMAIL_CTA.label}
+              </a>
             </div>
+            <p className="mt-4 text-[12.5px] text-white/50">{HERO.microcopy}</p>
+            <p className="mt-6 max-w-lg rounded-2xl bg-white/[0.06] px-5 py-4 text-[14px] leading-relaxed text-white/70 ring-1 ring-white/10">
+              <span className="font-semibold text-white">{EMAIL_CTA.prompt}</span> Write to{" "}
+              <a href={EMAIL_CTA.href} className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+                {CONTACT_EMAIL}
+              </a>{" "}
+              {EMAIL_CTA.body}
+            </p>
             <ol className="mt-10 grid gap-5 border-t border-white/10 pt-8 sm:grid-cols-3">
               {STEPS.map((s, i) => (
                 <li key={s.title}>
