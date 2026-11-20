@@ -3,10 +3,9 @@
  * (QuickBooks multi-entity consolidation in Google Sheets).
  */
 
-import { SHEETS_ADDON_URL, TRIAL_DAYS } from "@/data/trial";
+import { SHEETS_ADDON_URL, TRIAL_DAYS, PRICE_PER_ENTITY } from "@/data/trial";
 
-export { SHEETS_ADDON_URL, TRIAL_DAYS };
-export const PRICE_PER_ENTITY = "$20";
+export { SHEETS_ADDON_URL, TRIAL_DAYS, PRICE_PER_ENTITY };
 
 export const HERO = {
   headlineLead: "QuickBooks consolidation in",
