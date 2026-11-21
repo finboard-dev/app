@@ -235,7 +235,7 @@ export const FOUNDER = {
 
 // Founder profile, shown right below the hero. Facts match the homepage team section.
 export const FOUNDER_PROFILE = {
-  eyebrow: "Meet your finance lead",
+  eyebrow: "Meet our co-founder",
   title: "Big Four rigor.",
   titleAccent: "Startup speed.",
   lead: "FinBoard's accounting team is led by Vaishnav Gupta, our finance co‑founder. He learned audit-grade finance at PwC, then handled payroll and tax operations at Rippling.",
