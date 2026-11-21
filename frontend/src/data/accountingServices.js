@@ -7,6 +7,15 @@
 
 export const ACCOUNTING_PATH = "/accounting-services";
 export const DISCOVERY_LABEL = "Book a discovery call";
+
+/** For visitors who would rather write than book a call. */
+export const CONTACT_EMAIL = "support@finboard.ai";
+export const EMAIL_CTA = {
+  label: "Email us instead",
+  prompt: "Prefer email?",
+  body: "and we'll get back to you.",
+  href: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Accounting services: I'd like to know more")}`,
+};
 export const CLOSE_DAYS = 5;
 
 export const HERO = {
