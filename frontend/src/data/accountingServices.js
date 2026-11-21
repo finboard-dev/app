@@ -19,6 +19,24 @@ export const EMAIL_CTA = {
 
 export const CALL_SUBTITLE = "30 minutes with our finance co-founder.";
 
+/**
+ * The "Get started" form behind the navbar button on accounting pages (these
+ * pages sell a service, so the button never leads to the software trial).
+ * Segment pages override the copy and the qualifying question.
+ */
+export const LEAD_FORM = {
+  cta: "Get started",
+  title: "Tell us about your books",
+  subtitle: "Share a few details and we'll reply by email with next steps. No commitment.",
+  companyLabel: "Company",
+  qualifier: {
+    label: "Funding stage",
+    options: ["Bootstrapped", "Pre-seed or seed", "Series A", "Series B or later"],
+  },
+  messagePlaceholder: "Catch-up bookkeeping, monthly close, investor reporting...",
+  success: "Thanks, we have your details. We'll reply by email soon.",
+};
+
 /** Which optional sections the page shows. Segment pages override this. */
 export const SECTIONS = { ask: true, segments: true };
 

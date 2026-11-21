@@ -56,7 +56,7 @@ export function Faq({ onDiscovery }) {
 export function FinalCta({ onDiscovery }) {
   const { STEPS, FOUNDER, DISCOVERY_LABEL, HERO, CLOSE_DAYS, CONTACT_EMAIL, EMAIL_CTA, HEADS, FLOW_CARDS } = useCopy();
   return (
-    <section className="relative" data-testid="accounting-cta">
+    <section id="contact" className="relative scroll-mt-20" data-testid="accounting-cta">
       <div className={`${WRAP} pb-14 lg:pb-20`}>
         <Reveal className="relative grid grid-cols-1 overflow-hidden rounded-[2rem] bg-[#0A0A0A] text-white lg:grid-cols-12">
           <Aurora />

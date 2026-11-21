@@ -24,6 +24,16 @@ export const CPA_FIRMS = {
       lede: "An India-based accounting team takes on your bookkeeping, write-up, monthly close and tax-season prep. Work moves while you sleep, our accountants check it, and it comes back ready for your review. AI agents handle the data entry, so you pay for judgment, not typing.",
       microcopy: "Free 30-minute call · Start with one client",
     },
+    LEAD_FORM: {
+      title: "Tell us about your firm",
+      subtitle: "Share a few details and we'll reply by email with how a pilot would work. No commitment.",
+      companyLabel: "Firm name",
+      qualifier: {
+        label: "What do you want to outsource?",
+        options: ["Bookkeeping and write-up", "Monthly close", "Tax-season prep", "A mix of these"],
+      },
+      messagePlaceholder: "Client volume, the software you use, timing for tax season...",
+    },
     EMAIL_CTA: { href: emailHref(CONTACT_EMAIL, "Outsourcing for our CPA firm: I'd like to know more") },
     CALL_SUBTITLE: "30 minutes with our finance co-founder about your firm.",
     SECTIONS: { ask: false, segments: false },

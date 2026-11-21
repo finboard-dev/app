@@ -17,6 +17,12 @@ export const CREATORS = {
       titleAccent: "handled.",
       lede: `Platform payouts, brand deals, memberships and merch in one set of books, closed in ${CLOSE_DAYS} business days. Know what you earn, what you keep and what your team costs. AI agents do the work. Accountants check every entry.`,
     },
+    LEAD_FORM: {
+      title: "Tell us about your business",
+      companyLabel: "Channel or business name",
+      qualifier: { label: "Monthly income", options: ["Under $10K", "$10K to $50K", "$50K to $250K", "Over $250K"] },
+      messagePlaceholder: "Brand deals, platform payouts, contractors, tax time...",
+    },
     EMAIL_CTA: { href: emailHref(CONTACT_EMAIL, "Creator accounting: I'd like to know more") },
     STATS: [
       { label: "Close", value: `${CLOSE_DAYS} days`, note: "Business days to close each month" },

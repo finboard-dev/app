@@ -12,6 +12,7 @@ import Story from "@/components/accounting/Story";
 import Compare from "@/components/accounting/Compare";
 import { Specifics, SegmentLinks } from "@/components/accounting/Specifics";
 import Compliance from "@/components/accounting/Compliance";
+import LeadDialog from "@/components/accounting/LeadDialog";
 import { Faq, FinalCta } from "@/components/accounting/Closing";
 import { MotionStyles } from "@/components/accounting/motion";
 import { displayFont } from "@/components/accounting/fonts";
@@ -30,9 +31,16 @@ export default function AccountingServices({ segment = null }) {
 }
 
 function Page({ segment }) {
-  const { DISCOVERY_LABEL, CALL_SUBTITLE, SECTIONS, SHOW_STORIES } = useCopy();
+  const { DISCOVERY_LABEL, CALL_SUBTITLE, SECTIONS, SHOW_STORIES, LEAD_FORM } = useCopy();
   const [callOpen, setCallOpen] = React.useState(false);
+  const [leadOpen, setLeadOpen] = React.useState(false);
   const openCall = () => setCallOpen(true);
+  // The navbar button opens the lead form, never the software trial.
+  const navCta = { label: LEAD_FORM.cta, href: "#contact", onClick: () => setLeadOpen(true) };
+  const leadToCall = () => {
+    setLeadOpen(false);
+    setCallOpen(true);
+  };
 
   return (
     <div
@@ -41,7 +49,7 @@ function Page({ segment }) {
       data-segment={segment ?? "general"}
     >
       <MotionStyles />
-      <Navbar onBookDemo={openCall} />
+      <Navbar onBookDemo={openCall} cta={navCta} />
       <main>
         <Hero onDiscovery={openCall} />
         <Founder onDiscovery={openCall} />
@@ -57,6 +65,7 @@ function Page({ segment }) {
         <FinalCta onDiscovery={openCall} />
       </main>
       <Footer />
+      <LeadDialog open={leadOpen} onOpenChange={setLeadOpen} segment={segment} onBookCall={leadToCall} />
       <BookDemoDialog open={callOpen} onOpenChange={setCallOpen} title={DISCOVERY_LABEL} subtitle={CALL_SUBTITLE} />
     </div>
   );

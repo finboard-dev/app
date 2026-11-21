@@ -17,6 +17,12 @@ export const ECOMMERCE = {
       titleAccent: "handled.",
       lede: `Every payout matched to orders, fees and refunds. Inventory and cost of goods on a ${CLOSE_DAYS}-day close. Margin by product and channel, every month. AI agents do the work. Accountants check every entry.`,
     },
+    LEAD_FORM: {
+      title: "Tell us about your brand",
+      companyLabel: "Brand",
+      qualifier: { label: "Monthly revenue", options: ["Under $50K", "$50K to $250K", "$250K to $1M", "Over $1M"] },
+      messagePlaceholder: "Payout reconciliation, inventory, margin by product...",
+    },
     EMAIL_CTA: { href: emailHref(CONTACT_EMAIL, "E-commerce accounting: I'd like to know more") },
     STATS: [
       { label: "Close", value: `${CLOSE_DAYS} days`, note: "Business days to close each month" },

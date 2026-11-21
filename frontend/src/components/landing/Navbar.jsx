@@ -81,7 +81,11 @@ function MegaHeading({ eyebrow, title, desc, accent, count }) {
   );
 }
 
-export default function Navbar({ onBookDemo }) {
+/**
+ * `cta` ({ label, href, onClick }) replaces the "Start free trial" button, for
+ * pages that sell a service rather than the software (the accounting pages).
+ */
+export default function Navbar({ onBookDemo, cta }) {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
@@ -278,11 +282,12 @@ export default function Navbar({ onBookDemo }) {
             Login
           </a>
           <Link
-            href={START_PATH}
+            href={cta ? cta.href : START_PATH}
             data-testid="nav-start-trial"
+            onClick={cta ? (e) => { e.preventDefault(); cta.onClick(); } : undefined}
             className="btn-primary text-sm py-2.5"
           >
-            {START_TRIAL_LABEL}
+            {cta ? cta.label : START_TRIAL_LABEL}
           </Link>
         </div>
 
@@ -412,11 +417,14 @@ export default function Navbar({ onBookDemo }) {
             </a>
             <Link
               data-testid="mobile-nav-start-trial"
-              href={START_PATH}
-              onClick={() => setOpen(false)}
+              href={cta ? cta.href : START_PATH}
+              onClick={(e) => {
+                setOpen(false);
+                if (cta) { e.preventDefault(); cta.onClick(); }
+              }}
               className="btn-primary w-full"
             >
-              {START_TRIAL_LABEL}
+              {cta ? cta.label : START_TRIAL_LABEL}
             </Link>
           </div>
         </div>

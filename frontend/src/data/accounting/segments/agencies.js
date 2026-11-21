@@ -17,6 +17,12 @@ export const AGENCIES = {
       titleAccent: "handled.",
       lede: `Retainers, projects and contractor costs closed in ${CLOSE_DAYS} business days, with profit by client and project every month. AI agents do the work. Accountants check every entry.`,
     },
+    LEAD_FORM: {
+      title: "Tell us about your agency",
+      companyLabel: "Agency",
+      qualifier: { label: "Team size", options: ["1 to 10", "11 to 25", "26 to 50", "Over 50"] },
+      messagePlaceholder: "Profit by client, retainers, contractor costs...",
+    },
     EMAIL_CTA: { href: emailHref(CONTACT_EMAIL, "Agency accounting: I'd like to know more") },
     STATS: [
       { label: "Close", value: `${CLOSE_DAYS} days`, note: "Business days to close each month" },
