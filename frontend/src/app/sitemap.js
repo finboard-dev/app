@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllTemplates } from "@/lib/templates";
 import { SITE_URL } from "@/lib/seo";
 import { VIDEOS } from "@/data/videos";
+import { COMPARISONS } from "@/data/compare/pages";
 
 // Generated sitemap served at /sitemap.xml. Static routes are listed once here;
 // blog posts are pulled from content/blog automatically, so publishing a post
@@ -53,6 +54,13 @@ export default function sitemap() {
     ...(post.date ? { lastModified: new Date(post.date) } : {}),
   }));
 
+  // FinBoard comparison pages (Google Ads landing pages), one per competitor set.
+  const compareEntries = COMPARISONS.map((c) => ({
+    url: `${SITE_URL}/compare/${c.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const templateEntries = getAllTemplates().map((tpl) => ({
     url: `${SITE_URL}/templates/${tpl.slug}`,
     changeFrequency: "monthly",
@@ -66,5 +74,5 @@ export default function sitemap() {
     lastModified: new Date(video.uploadDate),
   }));
 
-  return [...staticEntries, ...postEntries, ...templateEntries, ...videoEntries];
+  return [...staticEntries, ...compareEntries, ...postEntries, ...templateEntries, ...videoEntries];
 }

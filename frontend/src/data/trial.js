@@ -3,6 +3,9 @@ export const SHEETS_ADDON_URL =
   "https://workspace.google.com/marketplace/app/finboard_quickbooks_to_google_sheets_con/239112301433";
 
 export const TRIAL_DAYS = 14;
+
+/** Self-serve price, quoted on the consolidation, pricing, start and compare pages. */
+export const PRICE_PER_ENTITY = "$20";
 export const START_TRIAL_LABEL = "Start free trial";
 
 /** Our own trial landing page; the navbar and homepage send new users here first. */
