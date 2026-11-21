@@ -83,7 +83,6 @@ export const HERO = {
   titleLead: "Startup accounting,",
   titleAccent: "handled.",
   lede: `Tax-ready books closed in ${CLOSE_DAYS} business days, with live burn, runway, payables and receivables in between. AI agents do the work. Accountants check every entry.`,
-  secondary: "See how it works",
   microcopy: "Free 30-minute call · No commitment",
 };
 

@@ -36,7 +36,8 @@ function Page({ segment }) {
   const [leadOpen, setLeadOpen] = React.useState(false);
   const openCall = () => setCallOpen(true);
   // The navbar button opens the lead form, never the software trial.
-  const navCta = { label: LEAD_FORM.cta, href: "#contact", onClick: () => setLeadOpen(true) };
+  const openLead = () => setLeadOpen(true);
+  const navCta = { label: LEAD_FORM.cta, href: "#contact", onClick: openLead };
   const leadToCall = () => {
     setLeadOpen(false);
     setCallOpen(true);
@@ -51,7 +52,7 @@ function Page({ segment }) {
       <MotionStyles />
       <Navbar onBookDemo={openCall} cta={navCta} />
       <main>
-        <Hero onDiscovery={openCall} />
+        <Hero onDiscovery={openCall} onLead={openLead} />
         <Founder onDiscovery={openCall} />
         <Proof />
         <Specifics />

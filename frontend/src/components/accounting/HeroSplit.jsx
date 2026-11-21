@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowDown, ArrowRight, Bot, Check, Clock, LayoutDashboard, MoonStar, Sparkles } from "lucide-react";
+import { ArrowRight, Bot, Check, Clock, LayoutDashboard, MoonStar, Sparkles } from "lucide-react";
 import { IconBadge, WRAP } from "@/components/consolidation/primitives";
 import { Aurora } from "./Layout";
 import { MockCard, DataKpi } from "./ui";
@@ -151,8 +151,8 @@ function StatusToast({ v }) {
   );
 }
 
-export default function SplitHero({ onDiscovery }) {
-  const { HERO, HERO_VISUAL: v, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } = useCopy();
+export default function SplitHero({ onDiscovery, onLead }) {
+  const { HERO, HERO_VISUAL: v, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA, LEAD_FORM } = useCopy();
   const Scene = SCENES[v.kind];
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] text-white" data-testid="accounting-hero" data-layout="split">
@@ -182,9 +182,14 @@ export default function SplitHero({ onDiscovery }) {
             >
               {DISCOVERY_LABEL} <ArrowRight size={16} />
             </button>
-            <a href="#how" className="inline-flex items-center gap-2 text-[15px] text-white/75 transition-colors hover:text-white">
-              {HERO.secondary} <ArrowDown size={15} />
-            </a>
+            <button
+              type="button"
+              onClick={onLead}
+              data-testid="accounting-hero-lead"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-[15px] font-medium text-white transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
+            >
+              {LEAD_FORM.title} <ArrowRight size={16} />
+            </button>
           </div>
           <p className="mt-4 text-[12.5px] text-white/45">
             {HERO.microcopy} ·{" "}

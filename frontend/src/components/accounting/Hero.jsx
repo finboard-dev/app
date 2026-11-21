@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { LogoMark, CLIENT_LOGOS } from "@/components/landing/ClientLogos";
 import { WRAP } from "@/components/consolidation/primitives";
 import HeroCollage from "./HeroCollage";
@@ -16,9 +16,9 @@ const STAT_COLORS = ["#059669", "#2563EB", "#7C3AED", "#D97706"];
  * straddles into the sand page below; segment pages (HERO.layout "split") put
  * copy and an animated product card side by side.
  */
-export function Hero({ onDiscovery }) {
-  const { HERO, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } = useCopy();
-  if (HERO.layout === "split") return <SplitHero onDiscovery={onDiscovery} />;
+export function Hero({ onDiscovery, onLead }) {
+  const { HERO, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA, LEAD_FORM } = useCopy();
+  if (HERO.layout === "split") return <SplitHero onDiscovery={onDiscovery} onLead={onLead} />;
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] text-white" data-testid="accounting-hero">
       <Aurora />
@@ -44,9 +44,14 @@ export function Hero({ onDiscovery }) {
           >
             {DISCOVERY_LABEL} <ArrowRight size={16} />
           </button>
-          <a href="#how" className="inline-flex items-center gap-2 text-[15px] text-white/75 transition-colors hover:text-white">
-            {HERO.secondary} <ArrowDown size={15} />
-          </a>
+          <button
+            type="button"
+            onClick={onLead}
+            data-testid="accounting-hero-lead"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-[15px] font-medium text-white transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
+          >
+            {LEAD_FORM.title} <ArrowRight size={16} />
+          </button>
         </div>
         <p className="mt-4 text-[12.5px] text-white/45">
           {HERO.microcopy} ·{" "}

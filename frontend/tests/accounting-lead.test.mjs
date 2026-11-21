@@ -81,3 +81,13 @@ test("accounting pages swap the navbar trial button for the lead form", () => {
   assert.match(view, /<LeadDialog /);
   assert.match(read("src/components/accounting/LeadDialog.jsx"), /Prefer email\? Write to/);
 });
+
+test("the hero's second button opens the lead form instead of scrolling to how it works", () => {
+  for (const file of ["src/components/accounting/Hero.jsx", "src/components/accounting/HeroSplit.jsx"]) {
+    const src = read(file);
+    assert.match(src, /onClick=\{onLead\}/, `${file} wires the form button`);
+    assert.match(src, /\{LEAD_FORM\.title\}/, `${file} labels it with the form title`);
+    assert.doesNotMatch(src, /href="#how"/, `${file} no longer links to #how`);
+  }
+  assert.match(read("src/views/AccountingServices.jsx"), /<Hero onDiscovery=\{openCall\} onLead=\{openLead\} \/>/);
+});
