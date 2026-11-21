@@ -12,10 +12,26 @@ export const ECOMMERCE = {
   metaDescription: `E-commerce accounting, handled. Payouts matched to orders, inventory and cost of goods on a ${CLOSE_DAYS}-day close, and margin by product and channel.`,
   copy: {
     HERO: {
+      layout: "split",
       eyebrow: "Accounting for e-commerce brands",
       titleLead: "E-commerce books,",
       titleAccent: "handled.",
       lede: `Every payout matched to orders, fees and refunds. Inventory and cost of goods on a ${CLOSE_DAYS}-day close. Margin by product and channel, every month. AI agents do the work. Accountants check every entry.`,
+    },
+    // Split-hero card (sample data): margin by product, with the close status.
+    HERO_VISUAL: {
+      kind: "bars",
+      accent: "#7C3AED",
+      title: "Gross margin by product",
+      period: "October",
+      bars: [
+        { label: "Linen tee", pct: 58, display: "58%" },
+        { label: "Canvas tote", pct: 47, display: "47%" },
+        { label: "Ceramic mug", pct: 36, display: "36%" },
+        { label: "Gift set", pct: 12, display: "12%", tone: "bad" },
+      ],
+      insight: "The gift set barely breaks even once fees and shipping are counted.",
+      status: { title: "October close", detail: `Day 4 of ${CLOSE_DAYS} · On track`, progress: 80 },
     },
     LEAD_FORM: {
       title: "Tell us about your brand",

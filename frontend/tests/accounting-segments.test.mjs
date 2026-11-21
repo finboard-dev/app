@@ -92,3 +92,28 @@ test("the CPA page tells firms to notify clients (AICPA 1.150.040), never to hid
   assert.match(notice.a, /preferably in writing/);
   assert.doesNotMatch(JSON.stringify(faqs), /only if you tell them/i);
 });
+
+const SCENE_KINDS = ["bars", "timeline"];
+
+for (const s of SEGMENTS) {
+  test(`${s.slug}: split hero has a complete animated card`, () => {
+    const c = mergeCopy(BASE, s.copy);
+    assert.equal(c.HERO.layout, "split");
+    const v = c.HERO_VISUAL;
+    assert.ok(SCENE_KINDS.includes(v.kind), `unknown hero card "${v.kind}"`);
+    assert.match(v.accent, /^#[0-9A-F]{6}$/i);
+    assert.ok(v.title && v.status.title && v.status.detail && v.status.progress <= 100);
+    if (v.kind === "bars") {
+      assert.ok(v.bars.length >= 3 && v.bars.length <= 5);
+      for (const b of v.bars) assert.ok(b.pct > 0 && b.pct <= 100 && b.display, `${s.slug} bar ${b.label}`);
+    } else {
+      assert.ok(v.steps.length >= 3 && v.steps.every((st) => st.when && st.what && st.who));
+    }
+    assert.equal(c.DASHBOARD.kpis.length, 3, "the hero card shows the page's three KPIs");
+  });
+}
+
+test("the general page keeps its centered hero", () => {
+  assert.equal(BASE.HERO.layout, undefined);
+  assert.equal(BASE.HERO_VISUAL, null);
+});

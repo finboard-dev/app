@@ -18,11 +18,25 @@ export const CPA_FIRMS = {
   metaDescription: "Outsource bookkeeping, write-up, monthly close and tax-season prep to an India-based team, reviewed by our accountants and delivered under your firm's name.",
   copy: {
     HERO: {
+      layout: "split",
       eyebrow: "For US CPA firms",
       titleLead: "More capacity,",
       titleAccent: "no new hires.",
       lede: "An India-based accounting team takes on your bookkeeping, write-up, monthly close and tax-season prep. Work moves while you sleep, our accountants check it, and it comes back ready for your review. AI agents handle the data entry, so you pay for judgment, not typing.",
       microcopy: "Free 30-minute call · Start with one client",
+    },
+    // Split-hero card (sample data): the overnight handoff between time zones.
+    HERO_VISUAL: {
+      kind: "timeline",
+      accent: "#10B981",
+      title: "Overnight handoff",
+      steps: [
+        { when: "Your evening", what: "You share 45 client files", who: "Your firm" },
+        { when: "Morning in India", what: "AI agents categorize 12,400 lines", who: "AI agents" },
+        { when: "Afternoon in India", what: "Our accountants prepare and check", who: "Our team" },
+        { when: "Your next morning", what: "Review-ready work in your queue", who: "Your firm" },
+      ],
+      status: { title: "Ready for your review", detail: "38 returns · 41 client books", progress: 90 },
     },
     LEAD_FORM: {
       title: "Tell us about your firm",

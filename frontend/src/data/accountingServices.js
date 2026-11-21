@@ -43,6 +43,9 @@ export const SECTIONS = { ask: true, segments: true };
 /** Segment-specific "built for you" cards; the general page has none. */
 export const SPECIFICS = null;
 
+/** Animated product card in the split hero (segment pages only). */
+export const HERO_VISUAL = null;
+
 /** Professional-standards section (CPA firm page only). */
 export const COMPLIANCE = null;
 

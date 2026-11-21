@@ -3,6 +3,7 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import { LogoMark, CLIENT_LOGOS } from "@/components/landing/ClientLogos";
 import { WRAP } from "@/components/consolidation/primitives";
 import HeroCollage from "./HeroCollage";
+import SplitHero from "./HeroSplit";
 import { Aurora } from "./Layout";
 import { Reveal } from "./motion";
 import { useCopy } from "./copy";
@@ -10,9 +11,14 @@ import { useCopy } from "./copy";
 const ALL_LOGOS = [...CLIENT_LOGOS.operators.logos, ...CLIENT_LOGOS.firms.logos];
 const STAT_COLORS = ["#059669", "#2563EB", "#7C3AED", "#D97706"];
 
-/** Dark hero; the product collage straddles the edge into the sand page below. */
+/**
+ * Dark hero. The general page centers its copy over a product collage that
+ * straddles into the sand page below; segment pages (HERO.layout "split") put
+ * copy and an animated product card side by side.
+ */
 export function Hero({ onDiscovery }) {
   const { HERO, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } = useCopy();
+  if (HERO.layout === "split") return <SplitHero onDiscovery={onDiscovery} />;
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] text-white" data-testid="accounting-hero">
       <Aurora />

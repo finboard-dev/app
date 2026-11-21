@@ -12,10 +12,26 @@ export const AGENCIES = {
   metaDescription: `Agency accounting, handled. Retainers, projects and contractor costs closed in ${CLOSE_DAYS} business days, with profit by client and project every month.`,
   copy: {
     HERO: {
+      layout: "split",
       eyebrow: "Accounting for agencies",
       titleLead: "Agency accounting,",
       titleAccent: "handled.",
       lede: `Retainers, projects and contractor costs closed in ${CLOSE_DAYS} business days, with profit by client and project every month. AI agents do the work. Accountants check every entry.`,
+    },
+    // Split-hero card (sample data): margin by client, with the close status.
+    HERO_VISUAL: {
+      kind: "bars",
+      accent: "#D97706",
+      title: "Gross margin by client",
+      period: "October",
+      bars: [
+        { label: "Meridian Hotels", pct: 52, display: "52%" },
+        { label: "Copperleaf", pct: 47, display: "47%" },
+        { label: "Northwind Retail", pct: 41, display: "41%" },
+        { label: "Fieldstone Bank", pct: 24, display: "24%", tone: "bad" },
+      ],
+      insight: "Fieldstone Bank's margin fell to 24% after two rounds of extra revisions.",
+      status: { title: "October close", detail: `Day 4 of ${CLOSE_DAYS} · On track`, progress: 80 },
     },
     LEAD_FORM: {
       title: "Tell us about your agency",

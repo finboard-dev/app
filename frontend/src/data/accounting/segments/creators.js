@@ -12,10 +12,26 @@ export const CREATORS = {
   metaDescription: `Creator accounting, handled. Platform payouts, brand deals, memberships and merch in one set of books, closed in ${CLOSE_DAYS} business days.`,
   copy: {
     HERO: {
+      layout: "split",
       eyebrow: "Accounting for creators",
       titleLead: "Creator accounting,",
       titleAccent: "handled.",
       lede: `Platform payouts, brand deals, memberships and merch in one set of books, closed in ${CLOSE_DAYS} business days. Know what you earn, what you keep and what your team costs. AI agents do the work. Accountants check every entry.`,
+    },
+    // Split-hero card (sample data): income by stream, with the close status.
+    HERO_VISUAL: {
+      kind: "bars",
+      accent: "#E11D48",
+      title: "Income by stream",
+      period: "October",
+      bars: [
+        { label: "Brand deals", pct: 46, display: "$38.9K" },
+        { label: "Platform payouts", pct: 31, display: "$26.2K" },
+        { label: "Memberships", pct: 15, display: "$12.7K" },
+        { label: "Merch", pct: 8, display: "$6.8K" },
+      ],
+      insight: "Brand deals were 46% of October income. Three brands still owe you $18.5K.",
+      status: { title: "October close", detail: `Day 4 of ${CLOSE_DAYS} · On track`, progress: 80 },
     },
     LEAD_FORM: {
       title: "Tell us about your business",
