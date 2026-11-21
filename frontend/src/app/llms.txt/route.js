@@ -39,6 +39,14 @@ const FOOTER = `## Templates
 - [Procure-to-Pay](${SITE_URL}/products/p2p) — Purchase order workflow, vendor payment approvals, and spend analytics across entities.
 - [Order-to-Cash](${SITE_URL}/products/o2c) — Revenue tracking, AR aging, and collections workflow for multi-entity operators.
 
+## Accounting Services
+
+- [Accounting Services](${SITE_URL}/accounting-services): Done-for-you startup accounting. AI agents do the work, accountants check every entry, books close in 5 business days.
+- [E-commerce Accounting](${SITE_URL}/accounting-services/ecommerce): Payouts matched to orders, inventory and cost of goods, and margin by product and channel for e-commerce brands.
+- [Accounting for Creators](${SITE_URL}/accounting-services/creators): Platform payouts, brand deals, memberships and merch in one set of books for creators.
+- [Accounting for Agencies](${SITE_URL}/accounting-services/agencies): Retainers, project revenue and profit by client for marketing, creative and development agencies.
+- [Outsourced Accounting for CPA Firms](${SITE_URL}/accounting-services/cpa-firms): An India-based team for bookkeeping, monthly close and tax-season prep, delivered under the CPA firm's name.
+
 ## Industries
 
 - [Restaurants](${SITE_URL}/industries/restaurants) — Financial close and multi-location P&L reporting for restaurant groups.

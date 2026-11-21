@@ -2,19 +2,19 @@ import React from "react";
 import { Check, X } from "lucide-react";
 import { Band, Head } from "./Layout";
 import { Reveal } from "./motion";
-import { COMPARE } from "@/data/accountingServices";
-
-const OURS = COMPARE.columns.length - 1;
+import { useCopy, HeadTitle } from "./copy";
 
 /** FinBoard against doing it yourself in software or hiring a traditional firm. */
 export default function Compare() {
+  const { COMPARE, HEADS } = useCopy();
+  const OURS = COMPARE.columns.length - 1;
   return (
     <Band id="compare" testid="accounting-compare">
       <Head
-        eyebrow="Why FinBoard"
+        eyebrow={HEADS.compare.eyebrow}
         color="#D97706"
-        title={<>Less work than software. <span className="italic">Faster than a firm.</span></>}
-        lead="Software makes you do the work. Firms make you wait. We do the work and keep your numbers current."
+        title={<HeadTitle head={HEADS.compare} />}
+        lead={HEADS.compare.lead}
       />
       <Reveal className="mt-12 overflow-x-auto rounded-3xl border border-line bg-white" delay={100}>
         <table className="w-full min-w-[760px] text-[14px]">
@@ -34,7 +34,7 @@ export default function Compare() {
               <tr key={topic} className="border-t border-line">
                 <th scope="row" className="p-5 text-left font-medium lg:px-7">{topic}</th>
                 {cells.map((c, i) => (
-                  <td key={c} className={`p-5 lg:px-7 ${i === OURS ? "bg-[#F5F0E8]/70 font-semibold" : "text-[#0A0A0A]/55"}`}>
+                  <td key={COMPARE.columns[i].name} className={`p-5 lg:px-7 ${i === OURS ? "bg-[#F5F0E8]/70 font-semibold" : "text-[#0A0A0A]/55"}`}>
                     <span className="inline-flex items-start gap-2.5">
                       {i === OURS ? (
                         <span className="mt-0.5 grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-emerald-600 text-white">

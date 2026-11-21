@@ -2,11 +2,11 @@ import React from "react";
 import { ArrowRight, ArrowUpRight, Check, Linkedin } from "lucide-react";
 import { WRAP } from "@/components/consolidation/primitives";
 import { Reveal } from "./motion";
-import { FOUNDER, FOUNDER_PROFILE } from "@/data/accountingServices";
+import { useCopy } from "./copy";
 
 /** The finance co-founder's profile, right below the hero: PwC rigor, Rippling payroll and tax. */
 export default function Founder({ onDiscovery }) {
-  const p = FOUNDER_PROFILE;
+  const { FOUNDER, FOUNDER_PROFILE: p } = useCopy();
   return (
     <section id="founder" data-testid="accounting-founder" className="relative scroll-mt-20">
       <div className={`${WRAP} pt-12 pb-20 lg:pt-16 lg:pb-28`}>

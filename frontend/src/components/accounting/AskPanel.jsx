@@ -7,7 +7,7 @@ import { Band, Head } from "./Layout";
 import { MockCard } from "./ui";
 import { Reveal, useCycle, usePrefersReducedMotion } from "./motion";
 import { ANSWER_VIEWS } from "./AnswerViews";
-import { ASK } from "@/data/accountingServices";
+import { useCopy, HeadTitle } from "./copy";
 
 const ICONS = {
   runway: { icon: Flame, c: "#D97706" },
@@ -23,6 +23,7 @@ const STEP_MS = 6000;
  * live answer. It cycles on its own until the visitor picks one.
  */
 export default function AskPanel() {
+  const { ASK, HEADS } = useCopy();
   const reduced = usePrefersReducedMotion();
   const [picked, setPicked] = React.useState(false);
   const [index, setIndex] = useCycle(ASK.length, STEP_MS, picked || reduced);
@@ -33,13 +34,13 @@ export default function AskPanel() {
   return (
     <Band id="visibility" testid="accounting-answers">
       <Head
-        eyebrow="Real-time visibility"
+        eyebrow={HEADS.ask.eyebrow}
         color="#2563EB"
-        title={<>Answers, <span className="italic">any day of the month</span>.</>}
-        lead="Live numbers on books we keep current. Ask the questions founders ask every week."
+        title={<HeadTitle head={HEADS.ask} />}
+        lead={HEADS.ask.lead}
       />
       <Reveal className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8" delay={100}>
-        <div className="lg:col-span-5" role="tablist" aria-label="Founder questions">
+        <div className="lg:col-span-5" role="tablist" aria-label="Questions">
           <div className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-2 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
             {ASK.map(({ key, label, q, sub }, i) => {
               const on = i === index;

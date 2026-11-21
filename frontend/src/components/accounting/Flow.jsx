@@ -5,7 +5,7 @@ import { ArrowDown } from "lucide-react";
 import { Band, Head } from "./Layout";
 import { Reveal, usePrefersReducedMotion } from "./motion";
 import { SourceChip, AgentsCard, ReviewCard, BooksCard, SOURCE_ICONS } from "./FlowCards";
-import { SOURCES, REPLACES } from "@/data/accountingServices";
+import { useCopy, HeadTitle } from "./copy";
 
 // Diagram geometry in one coordinate space (W x H). HTML cards are placed with
 // the same numbers as percentages, so lines and cards stay aligned at any width.
@@ -20,7 +20,8 @@ const pct = (v, total) => `${(v / total) * 100}%`;
 const midX = MID.x + MID.w / 2;
 const sideX = SIDE.x + SIDE.w / 2;
 
-const SOURCE_PATHS = SOURCES.map((_, i) => {
+// The diagram is laid out for exactly six sources; every segment supplies six.
+const SOURCE_PATHS = Array.from({ length: 6 }, (_, i) => {
   const y = SRC.cy(i);
   return `M ${SRC.w / 2} ${y} C ${SRC.w + 70} ${y}, ${MID.x - 80} ${MID.cy}, ${midX} ${MID.cy}`;
 });
@@ -36,6 +37,7 @@ function Particle({ path, color, delay, dur = 3.2 }) {
 }
 
 function Diagram() {
+  const { SOURCES } = useCopy();
   const reduced = usePrefersReducedMotion();
   return (
     <div className="relative hidden lg:block" style={{ aspectRatio: `${W} / ${H}` }}>
@@ -88,6 +90,7 @@ function Down() {
 
 /** Below lg: the same flow, stacked. */
 function Stacked() {
+  const { SOURCES } = useCopy();
   return (
     <div className="lg:hidden">
       <div className="mb-3 text-[10.5px] uppercase tracking-[0.18em] text-white/45">Your tools</div>
@@ -106,14 +109,15 @@ function Stacked() {
 
 /** How it works: the client's tools feed the agents, an accountant checks, the books close. */
 export default function Flow() {
+  const { REPLACES, HEADS } = useCopy();
   return (
     <Band id="how" dark testid="accounting-how">
       <Head
         dark
-        eyebrow="How it works"
         color="#A78BFA"
-        title={<>AI agents do the work. <span className="italic text-white/60">Accountants check it.</span></>}
-        lead="Our agents work inside the tools you already use. When they are not sure, they ask your accountant instead of guessing. Then your books close."
+        eyebrow={HEADS.flow.eyebrow}
+        title={<HeadTitle head={HEADS.flow} accentClass="italic text-white/60" />}
+        lead={HEADS.flow.lead}
       />
       <Reveal className="mt-14 lg:mt-16" delay={100}>
         <Diagram />

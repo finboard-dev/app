@@ -68,3 +68,20 @@ export function MiniRows({ rows }) {
     </ul>
   );
 }
+
+const KPI_TONES = { good: "text-emerald-700", bad: "text-[#BE123C]" };
+
+/** A KPI from sample data, where tone is "good", "bad" or absent. */
+export function DataKpi({ tone, ...rest }) {
+  return <Kpi {...rest} tone={KPI_TONES[tone]} />;
+}
+
+/** A chip from sample data: { text, tone }. */
+export function DataChip({ chip }) {
+  return <Chip tone={chip.tone ?? undefined}>{chip.text}</Chip>;
+}
+
+/** Sample rows whose chip is data, rendered as MiniRows. */
+export function DataRows({ rows }) {
+  return <MiniRows rows={rows.map((r) => ({ ...r, chip: <DataChip chip={r.chip} /> }))} />;
+}

@@ -16,6 +16,43 @@ export const EMAIL_CTA = {
   body: "and we'll get back to you.",
   href: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Accounting services: I'd like to know more")}`,
 };
+
+export const CALL_SUBTITLE = "30 minutes with our finance co-founder.";
+
+/** Which optional sections the page shows. Segment pages override this. */
+export const SECTIONS = { ask: true, segments: true };
+
+/** Segment-specific "built for you" cards; the general page has none. */
+export const SPECIFICS = null;
+
+// Section headings: title, then an italic accent, then optional trailing text.
+export const HEADS = {
+  flow: {
+    eyebrow: "How it works",
+    title: "AI agents do the work.",
+    accent: "Accountants check it.",
+    lead: "Our agents work inside the tools you already use. When they are not sure, they ask your accountant instead of guessing. Then your books close.",
+  },
+  ask: {
+    eyebrow: "Real-time visibility",
+    title: "Answers,",
+    accent: "any day of the month",
+    end: ".",
+    lead: "Live numbers on books we keep current. Ask the questions founders ask every week.",
+  },
+  compare: {
+    eyebrow: "Why FinBoard",
+    title: "Less work than software.",
+    accent: "Faster than a firm.",
+    lead: "Software makes you do the work. Firms make you wait. We do the work and keep your numbers current.",
+  },
+  final: {
+    eyebrow: "Discovery call",
+    title: "See your books",
+    accent: "on a 30-minute call.",
+    lead: "Tell us about your company and your tools. We'll show you what your close and dashboards would look like.",
+  },
+};
 export const CLOSE_DAYS = 5;
 
 export const HERO = {

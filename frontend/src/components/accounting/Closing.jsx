@@ -6,10 +6,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { WRAP } from "@/components/consolidation/primitives";
 import { Band, Aurora } from "./Layout";
 import { Reveal } from "./motion";
-import { FAQS, STEPS, FOUNDER, DISCOVERY_LABEL, HERO, CLOSE_DAYS, CONTACT_EMAIL, EMAIL_CTA } from "@/data/accountingServices";
+import { useCopy, HeadTitle } from "./copy";
 
 /** FAQ: heading on the left, questions on the right. */
 export function Faq({ onDiscovery }) {
+  const { FAQS, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } = useCopy();
   return (
     <Band id="faq" testid="accounting-faq">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
@@ -53,18 +54,19 @@ export function Faq({ onDiscovery }) {
 
 /** Closing call to action: the discovery call, who you'll meet, and what happens next. */
 export function FinalCta({ onDiscovery }) {
+  const { STEPS, FOUNDER, DISCOVERY_LABEL, HERO, CLOSE_DAYS, CONTACT_EMAIL, EMAIL_CTA, HEADS, FLOW_CARDS } = useCopy();
   return (
     <section className="relative" data-testid="accounting-cta">
       <div className={`${WRAP} pb-14 lg:pb-20`}>
         <Reveal className="relative grid grid-cols-1 overflow-hidden rounded-[2rem] bg-[#0A0A0A] text-white lg:grid-cols-12">
           <Aurora />
           <div className="relative p-8 sm:p-12 lg:col-span-7 lg:p-16">
-            <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">Discovery call</div>
+            <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">{HEADS.final.eyebrow}</div>
             <h2 className="mt-4 font-serif-display text-[2rem] sm:text-[2.6rem] lg:text-[3.25rem] leading-[1.02] tracking-[-0.035em]">
-              See your books <span className="acct-gradient-text italic pr-[0.06em]">on a 30-minute call.</span>
+              <HeadTitle head={HEADS.final} accentClass="acct-gradient-text italic pr-[0.06em]" />
             </h2>
             <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-white/65">
-              Tell us about your company and your tools. We&apos;ll show you what your close and dashboards would look like.
+              {HEADS.final.lead}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <button
@@ -113,7 +115,7 @@ export function FinalCta({ onDiscovery }) {
               <div className="acct-float absolute -bottom-6 right-6 rounded-2xl bg-white px-4 py-3 text-[#0A0A0A] shadow-[0_20px_50px_-15px_rgba(0,0,0,.5)]">
                 <div className="flex items-center gap-2 text-[12.5px] font-semibold">
                   <span className="grid h-4 w-4 place-items-center rounded-full bg-emerald-600 text-white"><Check size={10} strokeWidth={3} /></span>
-                  October books closed
+                  {FLOW_CARDS.booksHeadline}
                 </div>
                 <div className="mt-0.5 pl-6 text-[11px] text-[#0A0A0A]/55">Day {CLOSE_DAYS} · Sample</div>
               </div>

@@ -3,51 +3,44 @@
 import React from "react";
 import { Bot, CalendarCheck, LayoutDashboard, Check, Clock, Sparkles } from "lucide-react";
 import { IconBadge } from "@/components/consolidation/primitives";
-import { MockCard, Kpi, Chip } from "./ui";
+import { MockCard, Chip, DataKpi, DataRows } from "./ui";
 import RunwayChart from "./RunwayChart";
 import { useCycle, usePrefersReducedMotion } from "./motion";
-import { CLOSE_DAYS } from "@/data/accountingServices";
-
-// What the agents did today (sample data). The newest item pops in every few seconds.
-const FEED = [
-  { text: "Found an AWS invoice in your inbox", tag: "Invoice" },
-  { text: "Scheduled $18,000 of Kestrel AI revenue", tag: "Revenue" },
-  { text: "Matched a payout to 14 invoices", tag: "Match" },
-  { text: "Reconciled 3 bank accounts", tag: "Reconcile" },
-  { text: "Sent a credit note to your accountant", tag: "Review" },
-];
+import { useCopy } from "./copy";
 
 function FounderDashboard() {
+  const d = useCopy().DASHBOARD;
   return (
-    <MockCard title="Founder dashboard" icon={<IconBadge icon={LayoutDashboard} c="#0A0A0A" size="h-6 w-6" iconSize={12} />} live sample>
+    <MockCard title={d.title} icon={<IconBadge icon={LayoutDashboard} c="#0A0A0A" size="h-6 w-6" iconSize={12} />} live sample>
       <div className="grid grid-cols-3 gap-2.5">
-        <Kpi label="Cash" value="$2.84M" note="3 bank accounts" />
-        <Kpi label="Net burn" value="$158K" note="↓ 2.5% vs Sep" tone="text-emerald-700" />
-        <Kpi label="Runway" value="18 mo" note="Cash-out Apr 2028" />
+        {d.kpis.map((k) => <DataKpi key={k.label} {...k} />)}
       </div>
-      <div className="mt-2.5 rounded-xl border border-line px-3 pt-3 pb-1">
-        <div className="flex items-center justify-between gap-3 text-[11px] text-[#0A0A0A]/55">
-          <span className="font-semibold text-[#0A0A0A]/75">Cash balance</span>
-          <span className="hidden sm:flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5"><i className="h-0.5 w-3 rounded bg-[#2563EB]" />Actual</span>
-            <span className="inline-flex items-center gap-1.5"><i className="h-0.5 w-3 rounded bg-[#2563EB]/45" />At current burn</span>
-          </span>
+      {d.chart && (
+        <div className="mt-2.5 rounded-xl border border-line px-3 pt-3 pb-1">
+          <div className="flex items-center justify-between gap-3 text-[11px] text-[#0A0A0A]/55">
+            <span className="font-semibold text-[#0A0A0A]/75">{d.chart.title}</span>
+            <span className="hidden sm:flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5"><i className="h-0.5 w-3 rounded bg-[#2563EB]" />{d.chart.legend[0]}</span>
+              <span className="inline-flex items-center gap-1.5"><i className="h-0.5 w-3 rounded bg-[#2563EB]/45" />{d.chart.legend[1]}</span>
+            </span>
+          </div>
+          <RunwayChart />
         </div>
-        <RunwayChart />
-      </div>
+      )}
+      {d.rows && <div className="mt-2.5 rounded-xl border border-line px-3"><DataRows rows={d.rows} /></div>}
       <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-        <Kpi label="Payables due this week" value="$46.2K" note="14 bills" />
-        <Kpi label="Receivables overdue" value="$31.8K" note="3 customers" tone="text-[#BE123C]" />
+        {d.bottom.map((k) => <DataKpi key={k.label} {...k} />)}
       </div>
       <div className="mt-2.5 flex items-start gap-2 rounded-xl bg-[#F5F0E8] px-3 py-2.5 text-[12px] leading-snug text-[#0A0A0A]/75">
         <Sparkles size={13} className="mt-0.5 shrink-0 text-[#7C3AED]" />
-        Burn fell 2.5% in October. At this pace, cash lasts 18 months.
+        {d.insight}
       </div>
     </MockCard>
   );
 }
 
 function AgentFeed() {
+  const { FEED } = useCopy();
   const reduced = usePrefersReducedMotion();
   const [k] = useCycle(FEED.length, 2600, reduced);
   const visible = [0, 1, 2].map((offset) => FEED[(k - offset + FEED.length) % FEED.length]);
@@ -77,14 +70,8 @@ function AgentFeed() {
   );
 }
 
-const CLOSE_ROWS = [
-  { label: "Bank reconciliations", state: "done" },
-  { label: "Revenue schedules", state: "done" },
-  { label: "Accruals and prepaids", state: "active" },
-  { label: "Accountant review", state: "next" },
-];
-
 function CloseCard() {
+  const { CLOSE_ROWS, CLOSE_DAYS } = useCopy();
   return (
     <MockCard title="October close" icon={<IconBadge icon={CalendarCheck} c="#059669" size="h-6 w-6" iconSize={12} />}>
       <div className="flex items-baseline justify-between">

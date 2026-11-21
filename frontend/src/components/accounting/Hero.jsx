@@ -5,18 +5,24 @@ import { WRAP } from "@/components/consolidation/primitives";
 import HeroCollage from "./HeroCollage";
 import { Aurora } from "./Layout";
 import { Reveal } from "./motion";
-import { HERO, STATS, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } from "@/data/accountingServices";
+import { useCopy } from "./copy";
 
 const ALL_LOGOS = [...CLIENT_LOGOS.operators.logos, ...CLIENT_LOGOS.firms.logos];
 const STAT_COLORS = ["#059669", "#2563EB", "#7C3AED", "#D97706"];
 
 /** Dark hero; the product collage straddles the edge into the sand page below. */
 export function Hero({ onDiscovery }) {
+  const { HERO, DISCOVERY_LABEL, CONTACT_EMAIL, EMAIL_CTA } = useCopy();
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] text-white" data-testid="accounting-hero">
       <Aurora />
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 lg:h-60 bg-sand" />
       <div className={`relative ${WRAP} pt-16 lg:pt-24 text-center animate-fade-up`}>
+        {HERO.eyebrow && (
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.2em] text-white/70">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {HERO.eyebrow}
+          </div>
+        )}
         <h1 className="mx-auto max-w-4xl font-serif-display text-[2.9rem] sm:text-[4rem] lg:text-[5.5rem] leading-[0.95] tracking-[-0.045em]">
           {HERO.titleLead}
           <br />
@@ -52,6 +58,7 @@ export function Hero({ onDiscovery }) {
 
 /** Service commitments in big numbers, then the customer logo row. */
 export function Proof() {
+  const { STATS } = useCopy();
   return (
     <section aria-label="What you can count on" className={`${WRAP} pt-6 pb-20 lg:pb-24`} data-testid="accounting-proof">
       <Reveal className="grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-line bg-[#E5E0D8]">

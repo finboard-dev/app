@@ -1,9 +1,10 @@
 import React from "react";
 import {
   Landmark, CreditCard, Mail, Receipt, Users, BookOpen, Bot, UserCheck, BookCheck, ArrowRight, Check,
+  ShoppingBag, Megaphone, Package, Clapperboard, Handshake, Clock, FileText,
 } from "lucide-react";
 import { IconBadge } from "@/components/consolidation/primitives";
-import { AGENT_ROWS, REVIEW_ROWS, BOOK_OUTPUTS, CLOSE_DAYS } from "@/data/accountingServices";
+import { useCopy } from "./copy";
 
 /** Dark cards for the "how it works" flow (sample data). */
 
@@ -14,6 +15,13 @@ export const SOURCE_ICONS = {
   bills: { icon: Receipt, c: "#D97706" },
   payroll: { icon: Users, c: "#059669" },
   ledger: { icon: BookOpen, c: "#0891B2" },
+  store: { icon: ShoppingBag, c: "#7C3AED" },
+  ads: { icon: Megaphone, c: "#E11D48" },
+  inventory: { icon: Package, c: "#D97706" },
+  platform: { icon: Clapperboard, c: "#E11D48" },
+  sponsors: { icon: Handshake, c: "#7C3AED" },
+  time: { icon: Clock, c: "#D97706" },
+  returns: { icon: FileText, c: "#7C3AED" },
 };
 
 const CARD = "rounded-2xl border border-white/10 bg-[#141414] text-white";
@@ -38,6 +46,7 @@ export function SourceChip({ k, label }) {
 }
 
 export function AgentsCard() {
+  const { AGENT_ROWS, FLOW_CARDS } = useCopy();
   return (
     <div className={`${CARD} shadow-[0_0_0_1px_rgba(124,58,237,.35),0_30px_90px_-20px_rgba(124,58,237,.55)]`}>
       <CardHead
@@ -75,16 +84,17 @@ export function AgentsCard() {
         })}
       </ul>
       <p className="border-t border-white/10 px-4 py-3 text-[11.5px] text-white/50">
-        Not sure? It asks your accountant instead of guessing.
+        {FLOW_CARDS.agentsNote}
       </p>
     </div>
   );
 }
 
 export function ReviewCard() {
+  const { REVIEW_ROWS, FLOW_CARDS } = useCopy();
   return (
     <div className={CARD}>
-      <CardHead n="03" icon={UserCheck} c="#059669" title="Accountant review" />
+      <CardHead n="03" icon={UserCheck} c="#059669" title={FLOW_CARDS.reviewTitle} />
       <ul className="flex flex-col gap-2 px-4 py-3">
         {REVIEW_ROWS.map(({ label, state }) => (
           <li key={label} className="flex items-center gap-2 text-[12px] text-white/80">
@@ -99,11 +109,12 @@ export function ReviewCard() {
 }
 
 export function BooksCard() {
+  const { BOOK_OUTPUTS, FLOW_CARDS, CLOSE_DAYS } = useCopy();
   return (
     <div className={`${CARD} shadow-[0_0_0_1px_rgba(16,185,129,.3),0_24px_70px_-24px_rgba(16,185,129,.5)]`}>
-      <CardHead n="04" icon={BookCheck} c="#0891B2" title="Your books" />
+      <CardHead n="04" icon={BookCheck} c="#0891B2" title={FLOW_CARDS.booksTitle} />
       <div className="px-4 py-3">
-        <div className="font-serif-display text-[17px] leading-tight">October closed · Day {CLOSE_DAYS}</div>
+        <div className="font-serif-display text-[17px] leading-tight">{FLOW_CARDS.booksHeadline} · Day {CLOSE_DAYS}</div>
         <div className="mt-2.5 flex flex-wrap gap-1.5">
           {BOOK_OUTPUTS.map((o) => (
             <span key={o} className="rounded-full bg-white/[0.07] px-2 py-0.5 text-[10.5px] text-white/75">{o}</span>

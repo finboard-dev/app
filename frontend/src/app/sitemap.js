@@ -3,6 +3,8 @@ import { getAllTemplates } from "@/lib/templates";
 import { SITE_URL } from "@/lib/seo";
 import { VIDEOS } from "@/data/videos";
 import { COMPARISONS } from "@/data/compare/pages";
+import { SEGMENTS } from "@/data/accounting/segments";
+import { ACCOUNTING_PATH } from "@/data/accountingServices";
 
 // Generated sitemap served at /sitemap.xml. Static routes are listed once here;
 // blog posts are pulled from content/blog automatically, so publishing a post
@@ -61,6 +63,13 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
+  // Accounting-services pages for each segment (e-commerce, creators, agencies, CPA firms).
+  const accountingEntries = SEGMENTS.map((s) => ({
+    url: `${SITE_URL}${ACCOUNTING_PATH}/${s.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   const templateEntries = getAllTemplates().map((tpl) => ({
     url: `${SITE_URL}/templates/${tpl.slug}`,
     changeFrequency: "monthly",
@@ -74,5 +83,5 @@ export default function sitemap() {
     lastModified: new Date(video.uploadDate),
   }));
 
-  return [...staticEntries, ...compareEntries, ...postEntries, ...templateEntries, ...videoEntries];
+  return [...staticEntries, ...accountingEntries, ...compareEntries, ...postEntries, ...templateEntries, ...videoEntries];
 }
