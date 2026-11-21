@@ -255,7 +255,7 @@ export const FOUNDER_PROFILE = {
       color: "#7C2D52",
     },
   ],
-  facts: ["10+ years advising CFOs", "Fortune 500 finance transformations", "Payroll and tax at scale"],
+  facts: ["Fortune 500 finance transformations", "Payroll and tax at scale"],
   cta: "Book a call with Vaishnav",
   linkedinLabel: "View LinkedIn profile",
 };
