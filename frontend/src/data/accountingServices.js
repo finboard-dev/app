@@ -25,6 +25,9 @@ export const SECTIONS = { ask: true, segments: true };
 /** Segment-specific "built for you" cards; the general page has none. */
 export const SPECIFICS = null;
 
+/** Professional-standards section (CPA firm page only). */
+export const COMPLIANCE = null;
+
 // Section headings: title, then an italic accent, then optional trailing text.
 export const HEADS = {
   flow: {

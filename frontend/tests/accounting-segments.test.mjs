@@ -67,3 +67,28 @@ test("the CPA page keeps the firm as preparer of record and covers Section 7216"
 test("the sitemap lists every segment page", () => {
   assert.match(read("src/app/sitemap.js"), /SEGMENTS\.map/);
 });
+
+// Checked against the AICPA Code (2026 edition), SSTS and Rev. Proc. 2013-14 in Nov 2026.
+const VERIFIED_RULES = [
+  "AICPA Code 1.700.040",
+  "AICPA Code 1.150.040",
+  "AICPA Code 1.300.040",
+  "AICPA SSTS 1.4",
+  "IRC §7216 · Rev. Proc. 2013-14",
+  "FTC Safeguards Rule",
+];
+
+test("the CPA compliance section cites only verified rules", () => {
+  const cpa = SEGMENTS.find((s) => s.slug === "cpa-firms").copy;
+  assert.deepEqual(cpa.COMPLIANCE.items.map((i) => i.rule), VERIFIED_RULES);
+  assert.match(cpa.COMPLIANCE.note, /not legal advice/);
+  for (const s of SEGMENTS.filter((x) => x.slug !== "cpa-firms")) assert.equal(s.copy.COMPLIANCE, undefined, `${s.slug} has no compliance section`);
+  assert.equal(BASE.COMPLIANCE, null);
+});
+
+test("the CPA page tells firms to notify clients (AICPA 1.150.040), never to hide outsourcing", () => {
+  const faqs = SEGMENTS.find((s) => s.slug === "cpa-firms").copy.FAQS;
+  const notice = faqs.find((f) => /clients know/i.test(f.q));
+  assert.match(notice.a, /preferably in writing/);
+  assert.doesNotMatch(JSON.stringify(faqs), /only if you tell them/i);
+});

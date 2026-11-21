@@ -29,7 +29,7 @@ export const CPA_FIRMS = {
     SECTIONS: { ask: false, segments: false },
     STATS: [
       { label: "Time zone", value: "Overnight", note: "Work moves while your team sleeps" },
-      { label: "White-label", value: "Your brand", note: "Clients only ever see your firm" },
+      { label: "White-label", value: "Your brand", note: "Clients work with your firm, not with us" },
       { label: "Review", value: "100%", note: "Of work checked before it reaches you" },
       { label: "Start", value: "1 client", note: "Pilot one client, then scale" },
     ],
@@ -51,6 +51,59 @@ export const CPA_FIRMS = {
         { title: "Business returns prep", body: "1120, 1120-S and 1065 workpapers and drafts prepared for your review." },
         { title: "Payroll and sales tax support", body: "Payroll reconciliations and sales tax workpapers prepared for your firm to review and file." },
       ],
+    },
+    // How the work lines up with AICPA, IRS and FTC rules. Citations checked
+    // against the AICPA Code (2026 edition) and Rev. Proc. 2013-14 in Nov 2026.
+    COMPLIANCE: {
+      eyebrow: "Compliance",
+      title: "AI that fits",
+      accent: "your professional standards",
+      end: ".",
+      lead: "AI does the data entry. People make the judgment calls. Here is how our work lines up with the rules your firm already follows.",
+      principles: [
+        "AI never signs, files or contacts your clients",
+        "Our accountants check every AI output",
+        "Your firm reviews, signs and stays in control",
+      ],
+      items: [
+        {
+          icon: "confidentiality",
+          rule: "AICPA Code 1.700.040",
+          title: "Confidentiality, in writing",
+          body: "We sign a confidentiality agreement with your firm before we see any client data, one of the two ways the Code lets you share confidential client information with a third-party service provider. We work inside your systems, with access you can revoke at any time.",
+        },
+        {
+          icon: "notice",
+          rule: "AICPA Code 1.150.040",
+          title: "Client notice, ready to send",
+          body: "The Code asks you to tell clients, preferably in writing, before you share their information with a third-party service provider. We give you notice language for your engagement letters.",
+        },
+        {
+          icon: "supervision",
+          rule: "AICPA Code 1.300.040",
+          title: "Supervision built in",
+          body: "You stay responsible for planning and supervising outsourced work. Every deliverable comes back with its workpapers and the source data behind them, so your reviewers can check the work and support their conclusions.",
+        },
+        {
+          icon: "ai",
+          rule: "AICPA SSTS 1.4",
+          title: "AI as a tool, never the preparer",
+          body: "AI agents categorize transactions and draft workpapers. Our accountants check every AI output, and your reviewers apply professional judgment before anything is final.",
+        },
+        {
+          icon: "consent",
+          rule: "IRC §7216 · Rev. Proc. 2013-14",
+          title: "Offshore consent, done right",
+          body: "Tax return information can go to a preparer outside the US only with the taxpayer's signed consent, using the wording the IRS requires. We give you that language, and we work with Social Security numbers fully masked.",
+        },
+        {
+          icon: "security",
+          rule: "FTC Safeguards Rule",
+          title: "Fits your security plan",
+          body: "Tax and accounting firms must oversee the safeguards of their service providers. We document our security practices so you can add us to your written information security plan and review us each year.",
+        },
+      ],
+      note: "This section explains how our service supports your firm's obligations. It is not legal advice, and your firm remains responsible for its own compliance.",
     },
     SOURCES: [
       { key: "inbox", label: "Client documents" },
@@ -154,10 +207,11 @@ export const CPA_FIRMS = {
     ],
     FAQS: [
       { q: "Who does the work?", a: "Accountants on our team in India, led by Vaishnav Gupta, our finance co-founder (ex-PwC, ex-Rippling). AI agents handle data entry and first-pass categorization." },
-      { q: "Will our clients know we outsource?", a: "Only if you tell them. We work inside your firm's software and under your firm's name. Your clients deal with you." },
+      { q: "Is using AI allowed under AICPA standards?", a: "Yes. No AICPA rule bans AI tools. The same duties apply as with any software or service provider: keep client information confidential, tell clients you use a third-party service provider, supervise the work and apply professional judgment to what tools produce. Our process is built around each of those duties." },
+      { q: "Will our clients know we outsource?", a: "Yes, and they should. The AICPA Code asks you to tell clients, preferably in writing, before you share their information with a third-party service provider, and offshore tax work needs each taxpayer's signed Section 7216 consent. We give you the language for both. Day to day, your clients keep working with your firm, not with us." },
       { q: "Who signs the returns?", a: "You do. Your firm stays the preparer of record, reviews every return and keeps the client relationship. We prepare the workpapers and drafts." },
       { q: "Do we need client consent to send tax work offshore?", a: "Yes. IRC Section 7216 requires written taxpayer consent before tax return information is disclosed to a preparer outside the US. We walk you through it during onboarding." },
-      { q: "How do you keep client data secure?", a: "We work inside your firm's software with access you grant and can revoke at any time, and we sign an NDA before we start. We walk through our security practices on the discovery call." },
+      { q: "How do you keep client data secure?", a: "We sign a confidentiality agreement before we see any client data, work inside your firm's software with access you can revoke at any time, and keep Social Security numbers fully masked. We walk through our security practices on the discovery call." },
       { q: "How is it priced?", a: "It depends on the work and the volume. We scope it on the discovery call and start with a pilot on one client, so you can judge the quality before you commit to more." },
     ],
   },

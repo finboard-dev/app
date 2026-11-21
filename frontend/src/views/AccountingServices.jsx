@@ -11,6 +11,7 @@ import AskPanel from "@/components/accounting/AskPanel";
 import Story from "@/components/accounting/Story";
 import Compare from "@/components/accounting/Compare";
 import { Specifics, SegmentLinks } from "@/components/accounting/Specifics";
+import Compliance from "@/components/accounting/Compliance";
 import { Faq, FinalCta } from "@/components/accounting/Closing";
 import { MotionStyles } from "@/components/accounting/motion";
 import { displayFont } from "@/components/accounting/fonts";
@@ -47,6 +48,7 @@ function Page({ segment }) {
         <Proof />
         <Specifics />
         <Flow />
+        <Compliance />
         {SECTIONS.ask && <AskPanel />}
         {!segment && SHOW_STORIES && <Story />}
         <Compare />
