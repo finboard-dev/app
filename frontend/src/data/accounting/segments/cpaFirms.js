@@ -22,7 +22,7 @@ export const CPA_FIRMS = {
       eyebrow: "For US CPA firms",
       titleLead: "More capacity,",
       titleAccent: "no new hires.",
-      lede: "An India-based accounting team takes on your bookkeeping, write-up, monthly close and tax-season prep. Work moves while you sleep, our accountants check it, and it comes back ready for your review. AI agents handle the data entry, so you pay for judgment, not typing.",
+      lede: "An India-based team handles your bookkeeping, monthly close and tax-season prep overnight. AI does the data entry, our accountants check it, and it's ready for your review by morning.",
       microcopy: "Free 30-minute call · Start with one client",
     },
     // Split-hero card (sample data): the overnight handoff between time zones.
